@@ -6,7 +6,7 @@ export default function Header({ activeTab, setActiveTab }) {
       position: 'sticky',
       top: 0,
       zIndex: 100,
-      backgroundColor: 'rgba(248, 247, 244, 0.85)',
+      backgroundColor: 'rgba(241, 246, 249, 0.88)',
       backdropFilter: 'blur(12px)',
       borderBottom: '1px solid var(--border-rule)',
       padding: '1.25rem 0'

@@ -1,12 +1,23 @@
 :root {
-  --bg-cream: #F8F7F4;
-  --bg-card: #FFFFFF;
-  --text-ink: #111111;
-  --text-muted: #666666;
-  --border-rule: #E2DFD8;
-  --accent-blue: #0057FF;
-  --accent-blue-light: #EBF2FF;
-  --highlight-yellow: #FFF176;
+  /* Coastal Ocean Palette */
+  --color-dark-navy: #1E3745;       /* Deepest Slate Navy for Headings & Key Text */
+  --color-ocean-blue: #296384;      /* Primary Accent Blue (Buttons, Links, Logos) */
+  --color-slate-blue: #4D7B93;      /* Secondary Slate Blue for muted text & subtitles */
+  --color-soft-blue: #789FB4;       /* Muted Sky/Ocean Blue */
+  --color-ice-blue: #A4C2D1;        /* Ice Blue Accent */
+  --color-mist-bg: #F1F6F9;         /* Very Light Ocean Mist Background */
+  --color-card-bg: #FFFFFF;         /* Pure White Card Background */
+  --color-border-rule: #D5E3EB;      /* Subtle Ocean Mist Border Line */
+  --color-blue-light-bg: #E8F2F7;   /* Soft Pill Tag Background */
+
+  --bg-cream: var(--color-mist-bg);
+  --bg-card: var(--color-card-bg);
+  --text-ink: var(--color-dark-navy);
+  --text-muted: var(--color-slate-blue);
+  --border-rule: var(--color-border-rule);
+  --accent-blue: var(--color-ocean-blue);
+  --accent-blue-light: var(--color-blue-light-bg);
+  --highlight-yellow: #CCE3EE;      /* Soft Oceanic Blue Highlight on Hover */
 
   --font-display: 'Plus Jakarta Sans', 'Be Vietnam Pro', sans-serif;
   --font-body: 'Be Vietnam Pro', sans-serif;
@@ -88,20 +99,20 @@ h1, h2, h3, h4, .font-display {
   margin: 3rem 0;
 }
 
-/* Signature Element: Yellow Highlighter Effect on Hover */
+/* Signature Element: Oceanic Highlight Effect on Hover */
 .highlight-hover {
   position: relative;
   display: inline;
   background-image: linear-gradient(120deg, var(--highlight-yellow) 0%, var(--highlight-yellow) 100%);
   background-repeat: no-repeat;
-  background-size: 0% 40%;
+  background-size: 0% 45%;
   background-position: 0 88%;
   transition: background-size 0.3s ease-in-out;
   cursor: pointer;
 }
 
 .highlight-hover:hover {
-  background-size: 100% 40%;
+  background-size: 100% 45%;
 }
 
 /* Buttons */
@@ -121,24 +132,24 @@ h1, h2, h3, h4, .font-display {
 }
 
 .btn-primary {
-  background-color: var(--text-ink);
-  color: #FFFFFF;
-}
-
-.btn-primary:hover {
   background-color: var(--accent-blue);
   color: #FFFFFF;
 }
 
+.btn-primary:hover {
+  background-color: var(--color-dark-navy);
+  color: #FFFFFF;
+}
+
 .btn-secondary {
-  background-color: transparent;
+  background-color: #FFFFFF;
   color: var(--text-ink);
   border-color: var(--border-rule);
 }
 
 .btn-secondary:hover {
-  border-color: var(--text-ink);
-  background-color: #FFFFFF;
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
 }
 
 /* Responsive Grid System */
@@ -163,7 +174,7 @@ h1, h2, h3, h4, .font-display {
 .card:hover {
   transform: translateY(-4px);
   border-color: var(--accent-blue);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 12px 24px rgba(30, 55, 69, 0.06);
 }
 
 /* Tag Pill */
