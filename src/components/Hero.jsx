@@ -16,8 +16,7 @@ export default function Hero({ t }) {
           color: 'var(--text-ink)',
           fontWeight: 800
         }}>
-          {t.hero.title_1}{' '}
-          <span className="highlight-hover">{t.hero.title_2}</span>.
+          <span>{t.hero.title_2}</span>.
         </h1>
 
         <p style={{

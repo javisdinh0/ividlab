@@ -114,21 +114,7 @@ h1, h2, h3, h4, .font-display {
   margin: 3rem 0;
 }
 
-/* Signature Element: Oceanic Highlight Effect on Hover */
-.highlight-hover {
-  position: relative;
-  display: inline;
-  background-image: linear-gradient(120deg, var(--highlight-yellow) 0%, var(--highlight-yellow) 100%);
-  background-repeat: no-repeat;
-  background-size: 0% 45%;
-  background-position: 0 88%;
-  transition: background-size 0.3s ease-in-out;
-  cursor: pointer;
-}
 
-.highlight-hover:hover {
-  background-size: 100% 45%;
-}
 
 /* Toggle Controls */
 .toggle-btn {

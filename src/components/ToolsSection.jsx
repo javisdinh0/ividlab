@@ -38,7 +38,7 @@ export default function ToolsSection({ t, lang }) {
                 </div>
 
                 <h3 style={{ fontSize: '1.35rem', marginBottom: '0.75rem' }}>
-                  <span className="highlight-hover">{tool.title}</span>
+                  <span>{tool.title}</span>
                 </h3>
 
                 <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
