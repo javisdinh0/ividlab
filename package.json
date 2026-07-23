@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "postbuild": "node -e \"import('fs').then(fs => fs.copyFileSync('public/brand-guidelines.html', 'dist/brand-guidelines.html'))\"",
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
