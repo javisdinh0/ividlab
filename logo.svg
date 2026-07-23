@@ -4,9 +4,9 @@
 <style type="text/css">
 	.st-navy{fill:#2B4E64;}
 	.st-blue{fill:#2E6583;}
-	.st-text{fill:#2B4E64;font-family:'JetBrains Mono','Tahoma-Bold',sans-serif;font-size:42px;font-weight:900;}
+	.st-text{fill:#2B4E64;font-family:'JetBrains Mono','Tahoma-Bold',sans-serif;font-size:24px;font-weight:800;letter-spacing:1px;}
 </style>
-<g transform="translate(0, 100)">
+<g transform="translate(0, 0)">
 	<!-- Main 3D Building Frame (Deep Ocean Navy #2B4E64) -->
 	<g class="st-navy">
 		<path d="M510.94,409.19c-8.58-3.48-16.88-6.85-25.18-10.22c-56.21-22.81-112.42-45.61-168.63-68.44
@@ -57,7 +57,6 @@
 			c20.38,3.06,40.75,6.11,61.13,9.15c17.29,2.58,34.59,5.11,51.86,7.79c1.04,0.16,1.89,1.55,2.82,2.36
 			C511.56,485.42,511.23,485.86,510.89,486.3z"/>
 	</g>
-	<!-- NOTE: White fill on V has been COMPLETELY REMOVED (transparent inside) -->
 </g>
-<text transform="matrix(1 0 0 1 44.2175 626.4343)" class="st-text">LAB</text>
+<text transform="matrix(1 0 0 1 54 526.4343)" class="st-text">LAB</text>
 </svg>
