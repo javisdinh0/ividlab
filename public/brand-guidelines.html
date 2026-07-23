@@ -120,17 +120,6 @@
         box-shadow: 0 4px 12px var(--accent-glow);
       }
 
-      .btn-primary {
-        background: var(--c-navy);
-        color: #FFFFFF;
-        border-color: var(--c-navy);
-      }
-      .btn-primary:hover {
-        background: var(--c-ocean);
-        border-color: var(--c-ocean);
-        color: #FFFFFF;
-      }
-
       /* Centered Layout Wrapper */
       .layout-wrapper {
         max-width: 1240px;
@@ -213,7 +202,7 @@
         opacity: 0.7;
       }
 
-      /* Main Content (Centered 900px Max-Width) */
+      /* Main Content */
       main.main-content {
         flex: 1;
         max-width: 900px;
@@ -274,53 +263,81 @@
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
       }
 
-      /* Logo Display Grid */
+      /* FIXED BACKGROUND LOGO GRID - HIGH CONTRAST */
       .logo-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 1.75rem;
         margin-top: 1.5rem;
       }
 
       .logo-preview-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border-line);
-        border-radius: 16px;
-        padding: 2.5rem 1.5rem;
+        border-radius: 20px;
+        padding: 3rem 2rem;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
-        gap: 1.25rem;
-      }
-      .logo-preview-card.dark-bg {
-        background: #182B37;
-        color: #F0F6F8;
-        border-color: #365B6F;
+        gap: 1.5rem;
+        border: 1px solid var(--border-line);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.06);
       }
 
-      .logo-preview-card img { max-width: 220px; height: auto; }
+      /* FIXED LIGHT CARD BACKGROUND (#A2BFC7) */
+      .logo-preview-card.fixed-light-bg {
+        background: #A2BFC7 !important;
+        color: #2B4E64 !important;
+        border-color: #6F9AAB !important;
+      }
 
-      /* Don'ts Grid */
+      /* FIXED DARK CARD BACKGROUND (#182B37) */
+      .logo-preview-card.fixed-dark-bg {
+        background: #182B37 !important;
+        color: #F0F6F8 !important;
+        border-color: #365B6F !important;
+      }
+
+      /* LARGE LOGO IMAGE DIMENSIONS */
+      .logo-preview-card img {
+        width: 100%;
+        max-width: 380px;
+        height: auto;
+        min-height: 180px;
+        object-fit: contain;
+        display: block;
+      }
+
+      /* Don'ts Grid - FIXED BACKGROUNDS & LARGE IMAGES */
       .donts-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.25rem;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.5rem;
         margin-top: 1.5rem;
       }
 
       .dont-card {
         background: var(--bg-card);
-        border: 1px solid #EF5350;
-        border-radius: 14px;
-        padding: 1.5rem;
+        border: 1.5px solid #EF5350;
+        border-radius: 16px;
+        padding: 2rem 1.5rem;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
       }
-      .dont-card img { height: 48px; margin-bottom: 0.85rem; }
+      .dont-card img {
+        width: 100%;
+        max-width: 260px;
+        height: auto;
+        min-height: 120px;
+        margin-bottom: 1.25rem;
+        object-fit: contain;
+      }
       .dont-tag {
         font-family: var(--font-mono);
-        font-size: 0.75rem;
+        font-size: 0.8rem;
         font-weight: 800;
         color: #D32F2F;
         text-transform: uppercase;
@@ -387,20 +404,6 @@
         background-position: 0 88%;
       }
 
-      /* Type Table */
-      .type-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 1.5rem;
-        font-size: 0.88rem;
-      }
-      .type-table th, .type-table td {
-        padding: 0.85rem 1rem;
-        text-align: left;
-        border-bottom: 1px solid var(--border-line);
-      }
-      .type-table th { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; }
-
       /* Responsive Layout */
       @media (max-width: 992px) {
         .layout-wrapper { flex-direction: column; padding: 1.5rem 1rem; }
@@ -412,7 +415,7 @@
     </style>
   </head>
   <body>
-    <!-- Header -->
+    <!-- Header (No SVG Download Buttons) -->
     <header>
       <div class="header-container">
         <a href="#" class="brand-title">
@@ -424,9 +427,6 @@
           <button class="btn" onclick="toggleTheme()" id="themeBtn">
             ☀️ LIGHT THEME
           </button>
-          <a href="/logo.svg" download class="btn btn-primary">
-            ↓ Tải Logo SVG
-          </a>
         </div>
       </div>
     </header>
@@ -449,7 +449,6 @@
           <li><a href="#typography"><span>5. Typography</span> <span class="nav-num">05</span></a></li>
           <li><a href="#iconography"><span>6. Grid System</span> <span class="nav-num">06</span></a></li>
           <li><a href="#ui-components"><span>7. UI Components</span> <span class="nav-num">07</span></a></li>
-          <li><a href="#downloads"><span>8. Downloads</span> <span class="nav-num">08</span></a></li>
         </ul>
       </aside>
 
@@ -495,56 +494,65 @@
 
         <div class="divider"></div>
 
-        <!-- 02. MASTER LOGO SYSTEM -->
+        <!-- 02. MASTER LOGO SYSTEM (FIXED BACKGROUNDS & LARGE IMAGES) -->
         <section id="logo-system" class="section">
           <div class="editorial-badge">CHAPTER 02 // LOGO SYSTEM</div>
           <h2>2. Hệ Thống Logo Chuẩn (Master Logo)</h2>
           <p class="lead">
-            Logo Master đại diện cho iViDLab là sự kết hợp giữa khối phối cảnh 3D kết cấu tòa nhà công trình và chữ <strong>V rỗng trong suốt (transparent V)</strong> ở mặt đứng, tạo góc nhìn hiện đại và thông thoáng.
+            Logo Master đại diện cho iViDLab là sự kết hợp giữa khối phối cảnh 3D kết cấu tòa nhà công trình và chữ <strong>V rỗng trong suốt (transparent V)</strong> ở mặt đứng. 
+            Dưới đây là 2 biến thể hiển thị kích thước lớn chuẩn sắc nét trên Nền Sáng và Nền Tối:
           </p>
 
           <div class="logo-grid">
-            <div class="logo-preview-card">
-              <span class="editorial-badge">01. PRIMARY LIGHT LOGO</span>
+            <!-- FIXED LIGHT CARD (#A2BFC7) WITH NAVY LOGO -->
+            <div class="logo-preview-card fixed-light-bg">
+              <span class="editorial-badge" style="background: rgba(43,78,100,0.15); color: #2B4E64;">01. PRIMARY LIGHT LOGO</span>
               <img src="/logo.svg" alt="Master Logo Light" />
-              <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">Sử dụng trên Nền Sáng (Light Theme #A2BFC7)</div>
+              <div style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; color: #2B4E64;">Hiển thị chuẩn trên Nền Sáng (Light Theme #A2BFC7)</div>
             </div>
 
-            <div class="logo-preview-card dark-bg">
+            <!-- FIXED DARK CARD (#182B37) WITH BRIGHT ICE LOGO -->
+            <div class="logo-preview-card fixed-dark-bg">
               <span class="editorial-badge" style="background: rgba(162,191,199,0.2); color: #A2BFC7;">02. PRIMARY DARK LOGO</span>
-              <img src="/logo.svg" alt="Master Logo Dark" style="filter: brightness(1.25) contrast(1.1);" />
-              <div style="font-family: var(--font-mono); font-size: 0.8rem; color: #A2BFC7;">Sử dụng trên Nền Tối (Dark Theme #182B37)</div>
+              <img src="/logo-dark-bg.svg" alt="Master Logo Dark Bright" />
+              <div style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; color: #A2BFC7;">Hiển thị chuẩn trên Nền Tối (Dark Theme #182B37)</div>
             </div>
           </div>
         </section>
 
-        <div className="divider"></div>
+        <div class="divider"></div>
 
-        <!-- 03. LOGO RULES & CLEAR SPACE -->
+        <!-- 03. LOGO RULES & DON'TS (LARGE HIGH-CONTRAST IMAGES) -->
         <section id="logo-rules" class="section">
           <div class="editorial-badge">CHAPTER 03 // LOGO RULES</div>
           <h2>3. Quy Tắc An Toàn & Don'ts</h2>
           <p class="lead">
-            Quy định kích thước hiển thị tối thiểu, khoảng cách an toàn (Clear Space) và các lỗi cấm biến dạng logo.
+            Hình ảnh minh họa kích thước lớn chuẩn trực quan cho các lỗi cấm biến dạng logo:
           </p>
 
           <div class="donts-grid">
-            <div class="dont-card">
+            <div class="dont-card" style="background: #A2BFC7;">
               <img src="/logo.svg" alt="Dont Distort" style="transform: scaleX(1.4);" />
-              <div class="dont-tag">❌ CẤM BÓP MÉO</div>
-              <div style="font-size: 0.78rem; color: var(--text-muted);">Không kéo giãn tỷ lệ 1:1</div>
+              <div>
+                <div class="dont-tag">❌ CẤM BÓP MÉO</div>
+                <div style="font-size: 0.8rem; font-weight: 600; color: #2B4E64;">Không kéo giãn tỷ lệ 1:1</div>
+              </div>
             </div>
 
-            <div class="dont-card">
+            <div class="dont-card" style="background: #A2BFC7;">
               <img src="/logo.svg" alt="Dont Rotate" style="transform: rotate(18deg);" />
-              <div class="dont-tag">❌ CẤM XOAY NGHIÊNG</div>
-              <div style="font-size: 0.78rem; color: var(--text-muted);">Không đặt logo nghiêng</div>
+              <div>
+                <div class="dont-tag">❌ CẤM XOAY NGHIÊNG</div>
+                <div style="font-size: 0.8rem; font-weight: 600; color: #2B4E64;">Không đặt logo nghiêng</div>
+              </div>
             </div>
 
-            <div class="dont-card">
+            <div class="dont-card" style="background: #A2BFC7;">
               <img src="/logo.svg" alt="Dont Recolor" style="filter: hue-rotate(120deg);" />
-              <div class="dont-tag">❌ CẤM ĐỔI MÀU</div>
-              <div style="font-size: 0.78rem; color: var(--text-muted);">Không dùng màu ngoài quy chuẩn</div>
+              <div>
+                <div class="dont-tag">❌ CẤM ĐỔI MÀU</div>
+                <div style="font-size: 0.8rem; font-weight: 600; color: #2B4E64;">Không dùng màu ngoài quy chuẩn</div>
+              </div>
             </div>
           </div>
         </section>
@@ -697,23 +705,6 @@
                 Hiệu ứng gạch chân dạ quang nổi bật trên tiêu đề
               </h2>
             </div>
-          </div>
-        </section>
-
-        <div class="divider"></div>
-
-        <!-- 08. DOWNLOADS -->
-        <section id="downloads" class="section">
-          <div class="editorial-badge">CHAPTER 08 // DOWNLOADS</div>
-          <h2>8. Tải Về File Gốc (Brand Asset Downloads)</h2>
-
-          <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
-            <a href="/logo.svg" download class="btn btn-primary" style="padding: 0.8rem 1.5rem; font-size: 0.88rem;">
-              ↓ Tải Logo Master SVG (Trong suốt rỗng V)
-            </a>
-            <a href="/logo-reference.jpg" download class="btn" style="padding: 0.8rem 1.5rem; font-size: 0.88rem;">
-              ↓ Tải Logo Reference JPG (1000x1000px)
-            </a>
           </div>
         </section>
       </main>
