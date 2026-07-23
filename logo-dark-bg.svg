@@ -3,13 +3,14 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
 <style type="text/css">
+	@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&amp;display=swap');
 	.st0{fill:#A2BFC7;}
-	.st1{font-family:'Tahoma-Bold';}
-	.st2{font-size:45.0964px;}
-	.st3{letter-spacing:2;}
-	.st4{font-family:'Arial-Black';}
-	.st5{font-size:65.9748px;}
-	.st6{letter-spacing:2.6;}
+	.st1{font-family:'Plus Jakarta Sans', -apple-system, sans-serif; font-weight: 800;}
+	.st2{font-size:42px;}
+	.st3{letter-spacing:2.5px;}
+	.st4{font-family:'Plus Jakarta Sans', -apple-system, sans-serif; font-weight: 900;}
+	.st5{font-size:62px;}
+	.st6{letter-spacing:1.5px;}
 </style>
 <path class="st0" d="M732.3,200.1c-13.1-5.3-25.8-10.5-38.5-15.6C608,149.7,522.1,114.8,436.2,80c-31.8-12.9-63.5-26-95.4-38.7
 	c-3.4-1.4-7.9-1.7-11.4-0.7c-32.1,8.3-64.2,16.9-96.2,25.4C185.6,78.5,138,91,90.5,103.7c-16.2,4.3-32.4,8.8-48.6,12.9
@@ -48,5 +49,5 @@
 	c31.7,4.8,63.4,9.6,95.1,14.4c32.3,4.9,64.5,9.7,96.8,14.6c31.1,4.7,62.3,9.3,93.4,14c26.4,3.9,52.8,7.8,79.2,11.9
 	c1.6,0.2,2.9,2.4,4.3,3.6C733.3,316.6,732.8,317.3,732.2,318z"/>
 <text transform="matrix(1 0 0 1 30.164 375.5602)" class="st0 st1 st2 st3">LAB</text>
-<text transform="matrix(1.5675 0 0 1 16.2073 459.691)" class="st0 st4 st5 st6">iViDLab</text>
+<text transform="matrix(1 0 0 1 16.2073 459.691)" class="st0 st4 st5 st6">iViDLab</text>
 </svg>
