@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 340" width="100%" height="100%">
+  <!-- Exact Website Ocean Palette Swatches: #2B4E64, #2E6583, #4F7C91, #6F9AAB, #A2BFC7 -->
+  <g transform="translate(20, 20)">
+    <!-- 1. Roof Perspective Solid Top Block (Nét kín Fill màu) -->
+    <polygon points="195,55 228,35 480,135 195,55" fill="#4F7C91"/>
+
+    <!-- 2. Front Facade Main Wall (Nét kín Fill màu) -->
+    <polygon points="50,78 195,55 195,268 50,268" fill="#2B4E64"/>
+
+    <!-- 3. Inner Cutout Outline for V area -->
+    <polygon points="58,86 187,65 187,260 58,260" fill="#182B37" opacity="0.4"/>
+
+    <!-- 4. Monogram "V" Solid Filled Shape (Nét kín Fill màu) -->
+    <polygon points="72,92 115,268 155,105 190,105 145,268 115,268 72,92" fill="#A2BFC7"/>
+
+    <!-- 5. Bottom Base Foundation Bar (Nét kín Fill màu) -->
+    <polygon points="195,268 115,290 480,290 480,278 195,268" fill="#4F7C91"/>
+
+    <!-- 6. Horizontal Perspective Beams (Nét kín Fill màu) -->
+    <polygon points="212,78 480,152 480,158 212,84" fill="#2E6583"/>
+    <polygon points="212,104 480,174 480,180 212,110" fill="#2E6583"/>
+    <polygon points="212,130 480,196 480,202 212,136" fill="#2E6583"/>
+    <polygon points="212,156 480,218 480,224 212,162" fill="#2E6583"/>
+    <polygon points="212,182 480,240 480,246 212,188" fill="#2E6583"/>
+    <polygon points="212,208 480,262 480,268 212,214" fill="#2E6583"/>
+
+    <!-- 7. EDITABLE TEXT (Chữ có thể chỉnh sửa trực tiếp) -->
+    <text x="65" y="286" font-family="'JetBrains Mono', 'Plus Jakarta Sans', Arial, sans-serif" font-weight="900" font-size="18" fill="#A2BFC7" letter-spacing="2">LAB</text>
+  </g>
+</svg>

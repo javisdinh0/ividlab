@@ -19,7 +19,7 @@ export default function Header({ activeTab, setActiveTab, lang, setLang, theme, 
       backgroundColor: 'var(--header-bg)',
       backdropFilter: 'blur(12px)',
       borderBottom: '1px solid var(--border-rule)',
-      padding: '1.25rem 0',
+      padding: '1rem 0',
       transition: 'background-color 0.3s ease'
     }}>
       <div className="container" style={{
@@ -29,30 +29,20 @@ export default function Header({ activeTab, setActiveTab, lang, setLang, theme, 
         flexWrap: 'wrap',
         gap: '1rem'
       }}>
-        {/* Brand Logo */}
+        {/* Official iViDLab Logo (Master logo with transparent V and ocean palette) */}
         <a 
           href="#" 
           onClick={(e) => { e.preventDefault(); setActiveTab('all'); }}
-          style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.6rem' }}
+          style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.75rem' }}
         >
-          <div style={{
-            width: '32px',
-            height: '32px',
-            backgroundColor: 'var(--text-ink)',
-            borderRadius: '6px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'var(--bg-cream)',
-            fontWeight: 800,
-            fontFamily: 'var(--font-display)',
-            fontSize: '1.1rem'
-          }}>
-            iV
-          </div>
+          <img 
+            src="/logo.svg" 
+            alt="iViDLab Official Logo" 
+            style={{ height: '36px', width: 'auto', display: 'block' }}
+          />
           <span style={{
             fontFamily: 'var(--font-display)',
-            fontSize: '1.4rem',
+            fontSize: '1.35rem',
             fontWeight: 800,
             letterSpacing: '-0.02em',
             color: 'var(--text-ink)'
@@ -113,7 +103,7 @@ export default function Header({ activeTab, setActiveTab, lang, setLang, theme, 
         </nav>
 
         {/* Toggles (Theme & Language) */}
-        <div style={{ display: 'flex', items: 'center', gap: '0.6rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
           {/* Theme Toggle */}
           <button onClick={toggleTheme} className="toggle-btn" title="Chuyển giao diện Sáng / Tối">
             {theme === 'light' ? '☀️ LIGHT' : '🌙 DARK'}
