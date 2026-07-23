@@ -1,23 +1,19 @@
 :root {
-  /* Coastal Ocean Palette */
-  --color-dark-navy: #1E3745;       /* Deepest Slate Navy for Headings & Key Text */
-  --color-ocean-blue: #296384;      /* Primary Accent Blue (Buttons, Links, Logos) */
-  --color-slate-blue: #4D7B93;      /* Secondary Slate Blue for muted text & subtitles */
-  --color-soft-blue: #789FB4;       /* Muted Sky/Ocean Blue */
-  --color-ice-blue: #A4C2D1;        /* Ice Blue Accent */
-  --color-mist-bg: #F1F6F9;         /* Very Light Ocean Mist Background */
-  --color-card-bg: #FFFFFF;         /* Pure White Card Background */
-  --color-border-rule: #D5E3EB;      /* Subtle Ocean Mist Border Line */
-  --color-blue-light-bg: #E8F2F7;   /* Soft Pill Tag Background */
+  /* Exact Color Palette Swatches provided by User */
+  --c-1: #2B4E64; /* Deep Ocean Navy */
+  --c-2: #2E6583; /* Classic Ocean Blue */
+  --c-3: #4F7C91; /* Steel Slate Blue */
+  --c-4: #6F9AAB; /* Sky Mist Blue */
+  --c-5: #A2BFC7; /* Light Ice Blue (Main Background) */
 
-  --bg-cream: var(--color-mist-bg);
-  --bg-card: var(--color-card-bg);
-  --text-ink: var(--color-dark-navy);
-  --text-muted: var(--color-slate-blue);
-  --border-rule: var(--color-border-rule);
-  --accent-blue: var(--color-ocean-blue);
-  --accent-blue-light: var(--color-blue-light-bg);
-  --highlight-yellow: #CCE3EE;      /* Soft Oceanic Blue Highlight on Hover */
+  --bg-cream: var(--c-5);           /* Toàn bộ màu nền trang web #A2BFC7 */
+  --bg-card: #FFFFFF;               /* Thẻ Card trắng nổi bật */
+  --text-ink: var(--c-1);           /* Chữ tiêu đề tối #2B4E64 */
+  --text-muted: var(--c-3);         /* Chữ phụ #4F7C91 */
+  --border-rule: var(--c-4);        /* Đường viền #6F9AAB */
+  --accent-blue: var(--c-2);        /* Màu nhấn / Nút bấm #2E6583 */
+  --accent-blue-light: #DCE8EC;     /* Tag pill background */
+  --highlight-yellow: #6F9AAB;      /* Highlight signature hover */
 
   --font-display: 'Plus Jakarta Sans', 'Be Vietnam Pro', sans-serif;
   --font-body: 'Be Vietnam Pro', sans-serif;
@@ -75,8 +71,8 @@ h1, h2, h3, h4, .font-display {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--accent-blue);
-  font-weight: 600;
+  color: var(--c-1);
+  font-weight: 700;
   margin-bottom: 0.75rem;
   display: flex;
   align-items: center;
@@ -88,7 +84,7 @@ h1, h2, h3, h4, .font-display {
   display: inline-block;
   width: 8px;
   height: 8px;
-  background-color: var(--accent-blue);
+  background-color: var(--c-2);
   border-radius: 50%;
 }
 
@@ -103,7 +99,7 @@ h1, h2, h3, h4, .font-display {
 .highlight-hover {
   position: relative;
   display: inline;
-  background-image: linear-gradient(120deg, var(--highlight-yellow) 0%, var(--highlight-yellow) 100%);
+  background-image: linear-gradient(120deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.6) 100%);
   background-repeat: no-repeat;
   background-size: 0% 45%;
   background-position: 0 88%;
@@ -132,24 +128,25 @@ h1, h2, h3, h4, .font-display {
 }
 
 .btn-primary {
-  background-color: var(--accent-blue);
+  background-color: var(--c-1);
   color: #FFFFFF;
 }
 
 .btn-primary:hover {
-  background-color: var(--color-dark-navy);
+  background-color: var(--c-2);
   color: #FFFFFF;
 }
 
 .btn-secondary {
-  background-color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.7);
   color: var(--text-ink);
-  border-color: var(--border-rule);
+  border-color: var(--c-1);
 }
 
 .btn-secondary:hover {
-  border-color: var(--accent-blue);
-  color: var(--accent-blue);
+  border-color: var(--c-1);
+  background-color: #FFFFFF;
+  color: var(--c-1);
 }
 
 /* Responsive Grid System */
@@ -162,7 +159,7 @@ h1, h2, h3, h4, .font-display {
 /* Card Component Style */
 .card {
   background-color: var(--bg-card);
-  border: 1px solid var(--border-rule);
+  border: 1px solid var(--c-4);
   border-radius: 12px;
   padding: 1.75rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -173,8 +170,8 @@ h1, h2, h3, h4, .font-display {
 
 .card:hover {
   transform: translateY(-4px);
-  border-color: var(--accent-blue);
-  box-shadow: 0 12px 24px rgba(30, 55, 69, 0.06);
+  border-color: var(--c-1);
+  box-shadow: 0 12px 28px rgba(43, 78, 100, 0.12);
 }
 
 /* Tag Pill */
@@ -184,9 +181,9 @@ h1, h2, h3, h4, .font-display {
   font-size: 0.7rem;
   padding: 0.25rem 0.6rem;
   background-color: var(--accent-blue-light);
-  color: var(--accent-blue);
+  color: var(--c-1);
   border-radius: 4px;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
 }
 

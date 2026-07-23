@@ -5,7 +5,7 @@ export default function Footer() {
     <footer style={{
       borderTop: '1px solid var(--border-rule)',
       padding: '3rem 0',
-      backgroundColor: 'rgba(241, 246, 249, 0.6)',
+      backgroundColor: 'rgba(162, 191, 199, 0.7)',
       marginTop: '4rem'
     }}>
       <div className="container" style={{
@@ -20,15 +20,15 @@ export default function Footer() {
           fontFamily: 'var(--font-display)',
           fontSize: '1.2rem',
           fontWeight: 800,
-          color: 'var(--text-ink)'
+          color: 'var(--c-1)'
         }}>
-          iViD<span style={{ color: 'var(--accent-blue)' }}>Lab</span>
+          iViD<span style={{ color: 'var(--c-2)' }}>Lab</span>
         </div>
 
         <p style={{
           fontFamily: 'var(--font-mono)',
           fontSize: '0.8rem',
-          color: 'var(--text-muted)'
+          color: 'var(--c-1)'
         }}>
           © {new Date().getFullYear()} iViDLab. All rights reserved.
         </p>

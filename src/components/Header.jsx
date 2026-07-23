@@ -6,7 +6,7 @@ export default function Header({ activeTab, setActiveTab }) {
       position: 'sticky',
       top: 0,
       zIndex: 100,
-      backgroundColor: 'rgba(241, 246, 249, 0.88)',
+      backgroundColor: 'rgba(162, 191, 199, 0.92)',
       backdropFilter: 'blur(12px)',
       borderBottom: '1px solid var(--border-rule)',
       padding: '1.25rem 0'
@@ -25,7 +25,7 @@ export default function Header({ activeTab, setActiveTab }) {
           <div style={{
             width: '32px',
             height: '32px',
-            backgroundColor: 'var(--accent-blue)',
+            backgroundColor: 'var(--c-1)',
             borderRadius: '6px',
             display: 'flex',
             alignItems: 'center',
@@ -42,9 +42,9 @@ export default function Header({ activeTab, setActiveTab }) {
             fontSize: '1.4rem',
             fontWeight: 800,
             letterSpacing: '-0.02em',
-            color: 'var(--text-ink)'
+            color: 'var(--c-1)'
           }}>
-            iViD<span style={{ color: 'var(--accent-blue)' }}>Lab</span>
+            iViD<span style={{ color: 'var(--c-2)' }}>Lab</span>
           </span>
         </a>
 
@@ -58,7 +58,7 @@ export default function Header({ activeTab, setActiveTab }) {
               fontFamily: 'var(--font-mono)',
               fontSize: '0.9rem',
               fontWeight: activeTab === 'all' ? 700 : 500,
-              color: activeTab === 'all' ? 'var(--accent-blue)' : 'var(--text-muted)',
+              color: activeTab === 'all' ? 'var(--c-1)' : 'var(--c-3)',
               cursor: 'pointer',
               transition: 'color 0.2s ease'
             }}
@@ -74,7 +74,7 @@ export default function Header({ activeTab, setActiveTab }) {
               fontFamily: 'var(--font-mono)',
               fontSize: '0.9rem',
               fontWeight: activeTab === 'tools' ? 700 : 500,
-              color: activeTab === 'tools' ? 'var(--accent-blue)' : 'var(--text-muted)',
+              color: activeTab === 'tools' ? 'var(--c-1)' : 'var(--c-3)',
               cursor: 'pointer',
               transition: 'color 0.2s ease'
             }}
@@ -90,7 +90,7 @@ export default function Header({ activeTab, setActiveTab }) {
               fontFamily: 'var(--font-mono)',
               fontSize: '0.9rem',
               fontWeight: activeTab === 'about' ? 700 : 500,
-              color: activeTab === 'about' ? 'var(--accent-blue)' : 'var(--text-muted)',
+              color: activeTab === 'about' ? 'var(--c-1)' : 'var(--c-3)',
               cursor: 'pointer',
               transition: 'color 0.2s ease'
             }}
