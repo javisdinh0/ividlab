@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 240" width="100%" height="100%">
+  <!-- Exact Line Trace from Original Sketch using Theme Ocean Palette (#2B4E64 & #2E6583) -->
+  <g stroke="#2B4E64" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    
+    <!-- 1. Front Facade Outer Polygon -->
+    <polygon points="62,82 208,62 208,180 62,180" />
+
+    <!-- 2. Outlined "V" Shape inside Facade -->
+    <polygon points="85,92 122,185 158,102 196,102 154,185 122,185 85,92" stroke-width="4" />
+
+    <!-- 3. Top Roof Line extending right and angling down -->
+    <path d="M 208,62 L 235,46 L 440,126" stroke-width="4.5" />
+
+    <!-- 4. Bottom Line extending all the way left to right -->
+    <path d="M 122,202 L 440,202" stroke-width="4.5" />
+
+    <!-- 5. Connecting line under facade -->
+    <path d="M 208,180 L 122,202" stroke-width="4.5" />
+
+    <!-- 6. Right Side Parallel Horizontal Lines -->
+    <line x1="225" y1="75" x2="440" y2="139" stroke="#2E6583" stroke-width="3.8" />
+    <line x1="225" y1="95" x2="440" y2="151" stroke="#2E6583" stroke-width="3.8" />
+    <line x1="225" y1="115" x2="440" y2="164" stroke="#2E6583" stroke-width="3.8" />
+    <line x1="225" y1="135" x2="440" y2="177" stroke="#2E6583" stroke-width="3.8" />
+    <line x1="225" y1="155" x2="440" y2="190" stroke="#2E6583" stroke-width="3.8" />
+  </g>
+
+  <!-- 7. LAB Text in Bottom Left -->
+  <text x="75" y="198" font-family="'JetBrains Mono', sans-serif" font-weight="800" font-size="16" fill="#2E6583" letter-spacing="1">LAB</text>
+</svg>
