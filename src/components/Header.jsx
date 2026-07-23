@@ -29,21 +29,16 @@ export default function Header({ activeTab, setActiveTab, lang, setLang, theme, 
         flexWrap: 'wrap',
         gap: '1rem'
       }}>
-        {/* Official iViDLab Logo (Master logo with transparent V and ocean palette) */}
+        {/* Clean iViDLab Brand Title (No tiny squished icon) */}
         <a 
           href="#" 
           onClick={(e) => { e.preventDefault(); setActiveTab('all'); }}
-          style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.75rem' }}
+          style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}
         >
-          <img 
-            src="/logo.svg" 
-            alt="iViDLab Official Logo" 
-            style={{ height: '36px', width: 'auto', display: 'block' }}
-          />
           <span style={{
             fontFamily: 'var(--font-display)',
-            fontSize: '1.35rem',
-            fontWeight: 800,
+            fontSize: '1.45rem',
+            fontWeight: 900,
             letterSpacing: '-0.02em',
             color: 'var(--text-ink)'
           }}>
