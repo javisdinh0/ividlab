@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>iViDLab — Brand Identity Guidelines & Design System Manual</title>
+    <title>iViDLab — Brand Identity Guidelines & Design System Portal</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,9 +25,8 @@
         --text-muted: var(--c-slate);
         --border-line: var(--c-sky);
         --accent: var(--c-ocean);
-        --accent-glow: rgba(46, 101, 131, 0.15);
+        --accent-glow: rgba(46, 101, 131, 0.12);
         --highlight: rgba(255, 255, 255, 0.75);
-        --sidebar-w: 280px;
 
         --font-display: 'Plus Jakarta Sans', -apple-system, sans-serif;
         --font-body: 'Be Vietnam Pro', -apple-system, sans-serif;
@@ -43,7 +42,7 @@
         --text-muted: #A2BFC7;
         --border-line: #365B6F;
         --accent: #6F9AAB;
-        --accent-glow: rgba(111, 154, 171, 0.2);
+        --accent-glow: rgba(111, 154, 171, 0.18);
         --highlight: rgba(43, 78, 100, 0.85);
       }
 
@@ -57,7 +56,7 @@
         transition: background-color 0.3s ease, color 0.3s ease;
       }
 
-      /* Behance Editorial Cover Bar */
+      /* Sticky Top Header */
       header {
         position: sticky;
         top: 0;
@@ -65,7 +64,13 @@
         background: var(--bg-nav);
         backdrop-filter: blur(16px);
         border-bottom: 1px solid var(--border-line);
-        padding: 0.85rem 2.5rem;
+        padding: 0.85rem 0;
+      }
+
+      .header-container {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -79,7 +84,7 @@
         color: var(--text-ink);
       }
 
-      .brand-title img { height: 38px; width: auto; }
+      .brand-title img { height: 38px; width: auto; display: block; }
       .brand-title span {
         font-family: var(--font-display);
         font-size: 1.35rem;
@@ -126,76 +131,109 @@
         color: #FFFFFF;
       }
 
-      /* Behance Layout Framework */
-      .app-layout {
+      /* Centered Layout Wrapper */
+      .layout-wrapper {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 2.5rem 1.5rem;
         display: flex;
-        min-height: calc(100vh - 65px);
+        gap: 2.5rem;
+        align-items: flex-start;
+        justify-content: center;
       }
 
-      /* Sidebar Navigation */
-      aside {
-        width: var(--sidebar-w);
+      /* Redesigned Floating Sidebar */
+      aside.sidebar {
+        width: 280px;
         position: sticky;
-        top: 65px;
-        height: calc(100vh - 65px);
+        top: 90px;
         background: var(--bg-card);
-        border-right: 1px solid var(--border-line);
-        padding: 2.2rem 1.5rem;
-        overflow-y: auto;
+        border: 1px solid var(--border-line);
+        border-radius: 20px;
+        padding: 1.5rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         flex-shrink: 0;
       }
 
-      .nav-group-title {
+      .sidebar-header {
         font-family: var(--font-mono);
-        font-size: 0.7rem;
+        font-size: 0.72rem;
         font-weight: 800;
-        letter-spacing: 0.14em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
         color: var(--text-muted);
-        margin-bottom: 0.85rem;
-        margin-top: 1.75rem;
+        margin-bottom: 1.25rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--border-line);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
       }
-      .nav-group-title:first-child { margin-top: 0; }
 
-      .sidebar-nav { list-style: none; }
+      .sidebar-nav {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+
       .sidebar-nav a {
-        display: block;
-        padding: 0.6rem 0.85rem;
-        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.65rem 0.9rem;
+        border-radius: 10px;
         color: var(--text-ink);
         text-decoration: none;
-        font-size: 0.88rem;
-        font-weight: 500;
+        font-size: 0.86rem;
+        font-weight: 600;
         transition: all 0.2s ease;
       }
-      .sidebar-nav a:hover, .sidebar-nav a.active {
+
+      .sidebar-nav a:hover {
         background: var(--accent-glow);
         color: var(--accent);
-        font-weight: 700;
+        transform: translateX(3px);
       }
 
-      /* Main Editorial Body */
-      main {
+      .sidebar-nav a.active {
+        background: var(--accent);
+        color: #FFFFFF;
+        font-weight: 700;
+        box-shadow: 0 4px 12px var(--accent-glow);
+      }
+      [data-theme="dark"] .sidebar-nav a.active {
+        background: var(--accent);
+        color: #182B37;
+      }
+
+      .nav-num {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        opacity: 0.7;
+      }
+
+      /* Main Content (Centered 900px Max-Width) */
+      main.main-content {
         flex: 1;
-        padding: 3.5rem 4.5rem;
-        max-width: 1100px;
+        max-width: 900px;
+        width: 100%;
       }
 
       .cover-editorial {
         background: var(--bg-card);
         border: 1px solid var(--border-line);
         border-radius: 20px;
-        padding: 4rem 3.5rem;
-        margin-bottom: 4rem;
-        position: relative;
-        overflow: hidden;
+        padding: 3.5rem 3rem;
+        margin-bottom: 3.5rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
       }
 
       .editorial-badge {
         font-family: var(--font-mono);
         font-size: 0.75rem;
         font-weight: 800;
-        letter-spacing: 0.15em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
         color: var(--accent);
         margin-bottom: 1rem;
@@ -205,26 +243,25 @@
         border-radius: 20px;
       }
 
-      h1 { font-family: var(--font-display); font-size: 3rem; font-weight: 900; line-height: 1.1; margin-bottom: 1.25rem; letter-spacing: -0.02em; }
-      h2 { font-family: var(--font-display); font-size: 2rem; font-weight: 800; line-height: 1.25; margin-bottom: 1.25rem; }
-      h3 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; margin-bottom: 0.85rem; }
+      h1 { font-family: var(--font-display); font-size: 2.75rem; font-weight: 900; line-height: 1.15; margin-bottom: 1.25rem; letter-spacing: -0.02em; }
+      h2 { font-family: var(--font-display); font-size: 1.85rem; font-weight: 800; line-height: 1.25; margin-bottom: 1.25rem; }
+      h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; margin-bottom: 0.85rem; }
 
       p.lead {
-        font-size: 1.15rem;
+        font-size: 1.1rem;
         color: var(--text-muted);
-        max-width: 800px;
         margin-bottom: 2rem;
       }
 
       .section {
-        margin-bottom: 5rem;
-        scroll-margin-top: 85px;
+        margin-bottom: 4.5rem;
+        scroll-margin-top: 110px;
       }
 
       .divider {
         height: 1px;
         background: var(--border-line);
-        margin: 4rem 0;
+        margin: 3.5rem 0;
       }
 
       /* Card Grid System */
@@ -232,29 +269,30 @@
         background: var(--bg-card);
         border: 1px solid var(--border-line);
         border-radius: 16px;
-        padding: 2.5rem;
-        margin-top: 1.75rem;
+        padding: 2.25rem;
+        margin-top: 1.5rem;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
       }
 
       /* Logo Display Grid */
       .logo-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 1.75rem;
-        margin-top: 1.75rem;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1.5rem;
       }
 
       .logo-preview-card {
         background: var(--bg-card);
         border: 1px solid var(--border-line);
         border-radius: 16px;
-        padding: 3rem 2rem;
+        padding: 2.5rem 1.5rem;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
-        gap: 1.5rem;
+        gap: 1.25rem;
       }
       .logo-preview-card.dark-bg {
         background: #182B37;
@@ -262,48 +300,24 @@
         border-color: #365B6F;
       }
 
-      .logo-preview-card img { max-width: 240px; height: auto; }
-
-      /* Clear Space Diagram Spec */
-      .clear-space-box {
-        background: var(--bg-card);
-        border: 2px dashed var(--border-line);
-        border-radius: 16px;
-        padding: 3rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        margin-top: 1.5rem;
-      }
-
-      .spec-tag {
-        position: absolute;
-        font-family: var(--font-mono);
-        font-size: 0.75rem;
-        font-weight: 700;
-        color: var(--accent);
-        background: var(--accent-glow);
-        padding: 0.2rem 0.5rem;
-        border-radius: 4px;
-      }
+      .logo-preview-card img { max-width: 220px; height: auto; }
 
       /* Don'ts Grid */
       .donts-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 1.5rem;
-        margin-top: 1.75rem;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.25rem;
+        margin-top: 1.5rem;
       }
 
       .dont-card {
         background: var(--bg-card);
         border: 1px solid #EF5350;
         border-radius: 14px;
-        padding: 1.75rem;
+        padding: 1.5rem;
         text-align: center;
       }
-      .dont-card img { height: 50px; margin-bottom: 1rem; }
+      .dont-card img { height: 48px; margin-bottom: 0.85rem; }
       .dont-tag {
         font-family: var(--font-mono);
         font-size: 0.75rem;
@@ -313,12 +327,12 @@
         margin-bottom: 0.35rem;
       }
 
-      /* Color Palette Swatches Table */
+      /* Color Palette Swatches */
       .swatch-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-        gap: 1.5rem;
-        margin-top: 1.75rem;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 1.25rem;
+        margin-top: 1.5rem;
       }
 
       .swatch-item {
@@ -327,40 +341,30 @@
         border-radius: 14px;
         overflow: hidden;
         cursor: pointer;
-        transition: transform 0.25 ease, box-shadow 0.25s ease;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
       }
       .swatch-item:hover {
         transform: translateY(-4px);
-        box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+        box-shadow: 0 12px 24px rgba(0,0,0,0.1);
       }
 
-      .swatch-box { height: 120px; }
-      .swatch-meta { padding: 1.15rem; font-family: var(--font-mono); font-size: 0.82rem; }
-      .swatch-title { font-weight: 800; font-size: 0.95rem; margin-bottom: 0.25rem; }
+      .swatch-box { height: 110px; }
+      .swatch-meta { padding: 1rem; font-family: var(--font-mono); font-size: 0.8rem; }
+      .swatch-title { font-weight: 800; font-size: 0.88rem; margin-bottom: 0.2rem; }
       .swatch-hex { font-weight: 700; color: var(--accent); }
 
-      /* Color Ratio Bar */
-      .color-ratio-bar {
-        display: flex;
-        height: 24px;
-        border-radius: 12px;
-        overflow: hidden;
-        margin-top: 1.5rem;
-        border: 1px solid var(--border-line);
-      }
-
-      /* Typography Specimen Table */
+      /* Typography Table */
       .type-specimen {
         background: var(--bg-card);
         border: 1px solid var(--border-line);
         border-radius: 16px;
-        padding: 2.5rem;
-        margin-top: 1.75rem;
+        padding: 2.25rem;
+        margin-top: 1.5rem;
       }
 
       .type-row {
-        padding-bottom: 2rem;
-        margin-bottom: 2rem;
+        padding-bottom: 1.75rem;
+        margin-bottom: 1.75rem;
         border-bottom: 1px solid var(--border-line);
       }
       .type-row:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: none; }
@@ -369,11 +373,11 @@
         display: flex;
         justify-content: space-between;
         font-family: var(--font-mono);
-        font-size: 0.78rem;
+        font-size: 0.75rem;
         font-weight: 700;
         color: var(--text-muted);
         text-transform: uppercase;
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.65rem;
       }
 
       .highlight-hover {
@@ -383,78 +387,85 @@
         background-position: 0 88%;
       }
 
-      /* Type Hierarchy Table */
+      /* Type Table */
       .type-table {
         width: 100%;
         border-collapse: collapse;
         margin-top: 1.5rem;
-        font-size: 0.9rem;
+        font-size: 0.88rem;
       }
       .type-table th, .type-table td {
-        padding: 1rem;
+        padding: 0.85rem 1rem;
         text-align: left;
         border-bottom: 1px solid var(--border-line);
       }
       .type-table th { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; }
 
-      /* Responsive Adjustments */
-      @media (max-width: 960px) {
-        .app-layout { flex-direction: column; }
-        aside { width: 100%; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--border-line); }
-        main { padding: 2rem 1.5rem; }
+      /* Responsive Layout */
+      @media (max-width: 992px) {
+        .layout-wrapper { flex-direction: column; padding: 1.5rem 1rem; }
+        aside.sidebar { width: 100%; position: static; }
+        main.main-content { max-width: 100%; }
         h1 { font-size: 2.2rem; }
-        .cover-editorial { padding: 2.5rem 1.5rem; }
+        .cover-editorial { padding: 2rem 1.5rem; }
       }
     </style>
   </head>
   <body>
     <!-- Header -->
     <header>
-      <a href="#" className="brand-title">
-        <img src="/logo.svg" alt="iViDLab Logo" />
-        <span>iViD<span style="color: var(--accent);">Lab</span></span>
-      </a>
-
-      <div className="top-actions">
-        <button className="btn" onclick="toggleTheme()" id="themeBtn">
-          ☀️ LIGHT THEME
-        </button>
-        <a href="/logo.svg" download className="btn btn-primary">
-          ↓ Tải Logo Vector SVG
+      <div className="header-container">
+        <a href="#" className="brand-title">
+          <img src="/logo.svg" alt="iViDLab Logo" />
+          <span>iViD<span style="color: var(--accent);">Lab</span></span>
         </a>
+
+        <div className="top-actions">
+          <button className="btn" onclick="toggleTheme()" id="themeBtn">
+            ☀️ LIGHT THEME
+          </button>
+          <a href="/logo.svg" download className="btn btn-primary">
+            ↓ Tải Logo SVG
+          </a>
+        </div>
       </div>
     </header>
 
-    <div className="app-layout">
-      <!-- Behance Style Left Navigation -->
-      <aside>
-        <div className="nav-group-title">BRAND MANUAL STRUCTURE</div>
+    <!-- Centered Layout Wrapper -->
+    <div className="layout-wrapper">
+      <!-- Sleek Redesigned Sidebar -->
+      <aside className="sidebar">
+        <div className="sidebar-header">
+          <span>BRAND MANUAL</span>
+          <span>v1.0</span>
+        </div>
+
         <ul className="sidebar-nav">
-          <li><a href="#cover" className="active">0. Editorial Cover & Overview</a></li>
-          <li><a href="#brand-identity">1. Brand Identity & Strategy</a></li>
-          <li><a href="#logo-system">2. Master Logo System</a></li>
-          <li><a href="#logo-rules">3. Logo Rules & Clear Space</a></li>
-          <li><a href="#color-system">4. Color Palette & Tokens</a></li>
-          <li><a href="#typography">5. Typography & Font System</a></li>
-          <li><a href="#iconography">6. Iconography & Layout Grid</a></li>
-          <li><a href="#ui-components">7. UI Components & Mockups</a></li>
-          <li><a href="#downloads">8. Asset Downloads & Files</a></li>
+          <li><a href="#cover" className="active"><span>0. Overview</span> <span className="nav-num">00</span></a></li>
+          <li><a href="#brand-identity"><span>1. Brand Strategy</span> <span className="nav-num">01</span></a></li>
+          <li><a href="#logo-system"><span>2. Logo System</span> <span className="nav-num">02</span></a></li>
+          <li><a href="#logo-rules"><span>3. Logo Rules</span> <span className="nav-num">03</span></a></li>
+          <li><a href="#color-system"><span>4. Color Palette</span> <span className="nav-num">04</span></a></li>
+          <li><a href="#typography"><span>5. Typography</span> <span className="nav-num">05</span></a></li>
+          <li><a href="#iconography"><span>6. Grid System</span> <span className="nav-num">06</span></a></li>
+          <li><a href="#ui-components"><span>7. UI Components</span> <span className="nav-num">07</span></a></li>
+          <li><a href="#downloads"><span>8. Downloads</span> <span className="nav-num">08</span></a></li>
         </ul>
       </aside>
 
-      <!-- Main Editorial Guidelines Content -->
-      <main>
+      <!-- Centered Main Content -->
+      <main className="main-content">
         <!-- COVER EDITORIAL -->
         <section id="cover" className="cover-editorial">
-          <div className="editorial-badge">BEHANCE EDITORIAL TEMPLATE // OFFICIAL BRAND MANUAL V1.0</div>
+          <div className="editorial-badge">OFFICIAL BRAND MANUAL V1.0</div>
           <h1>iViDLab Identity & Design System</h1>
           <p className="lead">
-            Tài liệu Quy chuẩn Thương hiệu & Hệ thống Thiết kế Giao diện Web chính thức dành cho <strong>iViDLab — Nhóm Kỹ sư Tự động hóa Thiết kế Xây dựng Việt Nam</strong>.
+            Tài liệu Quy chuẩn Thương hiệu & Hệ thống Thiết kế Giao diện Web chính thức cho <strong>iViDLab — Nhóm Kỹ sư Tự động hóa Thiết kế Xây dựng Việt Nam</strong>.
           </p>
-          <div style="display: flex; gap: 2rem; font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); margin-top: 2rem; border-top: 1px solid var(--border-line); padding-top: 1.5rem;">
+          <div style="display: flex; gap: 2rem; font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); margin-top: 1.75rem; border-top: 1px solid var(--border-line); padding-top: 1.25rem;">
             <div><strong>PUBLICATION:</strong> JULY 2026</div>
             <div><strong>VERSION:</strong> 1.0.0</div>
-            <div><strong>LICENSE:</strong> NON-PROFIT COMMUNITY</div>
+            <div><strong>LICENSE:</strong> NON-PROFIT</div>
           </div>
         </section>
 
@@ -466,18 +477,18 @@
             iViDLab là nhóm kỹ sư xây dựng có đam mê với các ứng dụng tự động thiết kế xây dựng. Với sự ra đời và hỗ trợ của AI và khả năng Vibe Code tuyệt vời hỗ trợ, chúng tôi mong muốn ngày càng có nhiều công cụ thực sự hữu ích giúp giảm thời gian, tối ưu thao tác, giảm thiểu sai sót và nâng cao chất lượng sản phẩm thiết kế. Nhóm hoạt động phi lợi nhuận phục vụ cộng đồng trên cơ sở tuân thủ tuyệt đối quy định và luật pháp về sở hữu trí tuệ và bản quyền.
           </p>
 
-          <div className="card-box" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.75rem;">
+          <div className="card-box" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
             <div>
-              <div style="font-family: var(--font-mono); font-weight: 800; font-size: 1.1rem; color: var(--accent); margin-bottom: 0.4rem;">⚙️ KỸ THUẬT CHÍNH XÁC</div>
-              <p style="font-size: 0.9rem;">Toàn bộ công cụ và sản phẩm thiết kế tuân thủ nghiêm ngặt tiêu chuẩn và quy chuẩn xây dựng hiện hành.</p>
+              <div style="font-family: var(--font-mono); font-weight: 800; font-size: 1rem; color: var(--accent); margin-bottom: 0.35rem;">⚙️ KỸ THUẬT CHÍNH XÁC</div>
+              <p style="font-size: 0.88rem;">Toàn bộ công cụ và sản phẩm thiết kế tuân thủ nghiêm ngặt tiêu chuẩn và quy chuẩn xây dựng hiện hành.</p>
             </div>
             <div>
-              <div style="font-family: var(--font-mono); font-weight: 800; font-size: 1.1rem; color: var(--accent); margin-bottom: 0.4rem;">💡 TỰ ĐỘNG HÓA AI</div>
-              <p style="font-size: 0.9rem;">Tận dụng sức mạnh Vibe Code và AI để tự động hóa 80% thao tác thủ công lặp đi lặp lại.</p>
+              <div style="font-family: var(--font-mono); font-weight: 800; font-size: 1rem; color: var(--accent); margin-bottom: 0.35rem;">💡 TỰ ĐỘNG HÓA AI</div>
+              <p style="font-size: 0.88rem;">Tận dụng sức mạnh Vibe Code và AI để tự động hóa 80% thao tác thủ công lặp đi lặp lại.</p>
             </div>
             <div>
-              <div style="font-family: var(--font-mono); font-weight: 800; font-size: 1.1rem; color: var(--accent); margin-bottom: 0.4rem;">🌐 PHỤC VỤ CỘNG ĐỒNG</div>
-              <p style="font-size: 0.9rem;">Hoạt động phi lợi nhuận vì cộng đồng kỹ sư xây dựng Việt Nam, tôn trọng bản quyền sở hữu trí tuệ.</p>
+              <div style="font-family: var(--font-mono); font-weight: 800; font-size: 1rem; color: var(--accent); margin-bottom: 0.35rem;">🌐 PHỤC VỤ CỘNG ĐỒNG</div>
+              <p style="font-size: 0.88rem;">Hoạt động phi lợi nhuận vì cộng đồng kỹ sư xây dựng Việt Nam, tôn trọng bản quyền sở hữu trí tuệ.</p>
             </div>
           </div>
         </section>
@@ -496,13 +507,13 @@
             <div className="logo-preview-card">
               <span className="editorial-badge">01. PRIMARY LIGHT LOGO</span>
               <img src="/logo.svg" alt="Master Logo Light" />
-              <div style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted);">Sử dụng trên Nền Sáng (Light Theme #A2BFC7)</div>
+              <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">Sử dụng trên Nền Sáng (Light Theme #A2BFC7)</div>
             </div>
 
             <div className="logo-preview-card dark-bg">
               <span className="editorial-badge" style="background: rgba(162,191,199,0.2); color: #A2BFC7;">02. PRIMARY DARK LOGO</span>
               <img src="/logo.svg" alt="Master Logo Dark" style="filter: brightness(1.25) contrast(1.1);" />
-              <div style="font-family: var(--font-mono); font-size: 0.82rem; color: #A2BFC7;">Sử dụng trên Nền Tối (Dark Theme #182B37)</div>
+              <div style="font-family: var(--font-mono); font-size: 0.8rem; color: #A2BFC7;">Sử dụng trên Nền Tối (Dark Theme #182B37)</div>
             </div>
           </div>
         </section>
@@ -517,40 +528,23 @@
             Quy định kích thước hiển thị tối thiểu, khoảng cách an toàn (Clear Space) và các lỗi cấm biến dạng logo.
           </p>
 
-          <h3>1. Khoảng cách an toàn (Clear Space 1X):</h3>
-          <div className="clear-space-box">
-            <span className="spec-tag" style="top: 10px; left: 50%; transform: translateX(-50%);">TOP CLEAR SPACE (1X)</span>
-            <span className="spec-tag" style="bottom: 10px; left: 50%; transform: translateX(-50%);">BOTTOM CLEAR SPACE (1X)</span>
-            <span className="spec-tag" style="left: 10px; top: 50%; transform: translateY(-50%);">LEFT (1X)</span>
-            <span className="spec-tag" style="right: 10px; top: 50%; transform: translateY(-50%);">RIGHT (1X)</span>
-
-            <img src="/logo.svg" alt="Clear Space Diagram" style="max-width: 220px;" />
-          </div>
-
-          <h3 style="margin-top: 3rem;">2. Quy tắc CẤM biến dạng Logo (Incorrect Usage):</h3>
           <div className="donts-grid">
             <div className="dont-card">
               <img src="/logo.svg" alt="Dont Distort" style="transform: scaleX(1.4);" />
               <div className="dont-tag">❌ CẤM BÓP MÉO</div>
-              <div style="font-size: 0.8rem; color: var(--text-muted);">Không kéo giãn tỷ lệ 1:1</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">Không kéo giãn tỷ lệ 1:1</div>
             </div>
 
             <div className="dont-card">
               <img src="/logo.svg" alt="Dont Rotate" style="transform: rotate(18deg);" />
               <div className="dont-tag">❌ CẤM XOAY NGHIÊNG</div>
-              <div style="font-size: 0.8rem; color: var(--text-muted);">Không đặt logo nghiêng</div>
-            </div>
-
-            <div className="dont-card">
-              <img src="/logo.svg" alt="Dont Shadow" style="filter: drop-shadow(4px 4px 10px red);" />
-              <div className="dont-tag">❌ CẤM TẠO BÓNG ĐỔ</div>
-              <div style="font-size: 0.8rem; color: var(--text-muted);">Không thêm hiệu ứng bóng rực rỡ</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">Không đặt logo nghiêng</div>
             </div>
 
             <div className="dont-card">
               <img src="/logo.svg" alt="Dont Recolor" style="filter: hue-rotate(120deg);" />
               <div className="dont-tag">❌ CẤM ĐỔI MÀU</div>
-              <div style="font-size: 0.8rem; color: var(--text-muted);">Không dùng màu ngoài quy chuẩn</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">Không dùng màu ngoài quy chuẩn</div>
             </div>
           </div>
         </section>
@@ -571,7 +565,7 @@
               <div className="swatch-meta">
                 <div className="swatch-title">Deep Ocean Navy</div>
                 <div className="swatch-hex">#2B4E64</div>
-                <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">Headings & Text chính</div>
+                <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem;">Headings & Text chính</div>
               </div>
             </div>
 
@@ -580,7 +574,7 @@
               <div className="swatch-meta">
                 <div className="swatch-title">Classic Ocean Blue</div>
                 <div className="swatch-hex">#2E6583</div>
-                <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">Màu nhấn Brand Accent</div>
+                <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem;">Màu nhấn Brand Accent</div>
               </div>
             </div>
 
@@ -589,7 +583,7 @@
               <div className="swatch-meta">
                 <div className="swatch-title">Steel Slate Blue</div>
                 <div className="swatch-hex">#4F7C91</div>
-                <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">Subtitles & Subtext</div>
+                <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem;">Subtitles & Subtext</div>
               </div>
             </div>
 
@@ -598,7 +592,7 @@
               <div className="swatch-meta">
                 <div className="swatch-title">Sky Mist Blue</div>
                 <div className="swatch-hex">#6F9AAB</div>
-                <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">Viền thẻ Card & Dividers</div>
+                <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem;">Viền thẻ Card & Dividers</div>
               </div>
             </div>
 
@@ -607,18 +601,9 @@
               <div className="swatch-meta">
                 <div className="swatch-title">Light Ice Blue</div>
                 <div className="swatch-hex">#A2BFC7</div>
-                <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">Màu nền Web Light Theme</div>
+                <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem;">Màu nền Web Light Theme</div>
               </div>
             </div>
-          </div>
-
-          <h3 style="margin-top: 2.5rem;">Tỷ lệ phân bổ màu sắc (Color Proportions):</h3>
-          <div className="color-ratio-bar">
-            <div style="width: 40%; background: #A2BFC7;" title="Background 40%"></div>
-            <div style="width: 30%; background: #2B4E64;" title="Primary Text 30%"></div>
-            <div style="width: 15%; background: #2E6583;" title="Accent Blue 15%"></div>
-            <div style="width: 10%; background: #4F7C91;" title="Secondary 10%"></div>
-            <div style="width: 5%; background: #6F9AAB;" title="Borders 5%"></div>
           </div>
         </section>
 
@@ -638,7 +623,7 @@
                 <span>01. DISPLAY & HEADINGS</span>
                 <span>PLUS JAKARTA SANS (800 BOLD)</span>
               </div>
-              <h1 style="font-size: 2.2rem; font-weight: 800;">Tự động hóa Thiết kế Xây dựng Việt Nam</h1>
+              <h1 style="font-size: 2rem; font-weight: 800;">Tự động hóa Thiết kế Xây dựng Việt Nam</h1>
             </div>
 
             <div className="type-row">
@@ -646,7 +631,7 @@
                 <span>02. BODY & PARAGRAPHS</span>
                 <span>BE VIETNAM PRO (400 REGULAR)</span>
               </div>
-              <p style="font-size: 1.05rem; font-family: 'Be Vietnam Pro', sans-serif;">
+              <p style="font-size: 1rem; font-family: 'Be Vietnam Pro', sans-serif;">
                 Nhóm hoạt động phi lợi nhuận phục vụ cộng đồng trên cơ sở tuân thủ tuyệt đối quy định và luật pháp về sở hữu trí tuệ và bản quyền.
               </p>
             </div>
@@ -656,55 +641,11 @@
                 <span>03. MONOSPACE & DATA TAGS</span>
                 <span>JETBRAINS MONO (700 BOLD)</span>
               </div>
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 700; color: var(--accent);">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 700; color: var(--accent);">
                 LAB // PEB_SECTION_CREATOR // BEAM_CONTINUOUS // 2026
               </div>
             </div>
           </div>
-
-          <h3 style="margin-top: 2.5rem;">Cấu trúc Thang Kích thước Chữ (Type Scale Hierarchy):</h3>
-          <table className="type-table">
-            <thead>
-              <tr>
-                <th>Thẻ HTML</th>
-                <th>Phông chữ</th>
-                <th>Cỡ chữ (Desktop)</th>
-                <th>Trọng lượng (Weight)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>H1</code> Hero Title</td>
-                <td>Plus Jakarta Sans</td>
-                <td>48px - 64px</td>
-                <td>800 / 900</td>
-              </tr>
-              <tr>
-                <td><code>H2</code> Section Title</td>
-                <td>Plus Jakarta Sans</td>
-                <td>32px - 36px</td>
-                <td>800</td>
-              </tr>
-              <tr>
-                <td><code>H3</code> Card Title</td>
-                <td>Plus Jakarta Sans</td>
-                <td>20px - 24px</td>
-                <td>700</td>
-              </tr>
-              <tr>
-                <td><code>p</code> Body Text</td>
-                <td>Be Vietnam Pro</td>
-                <td>16px</td>
-                <td>400 Regular</td>
-              </tr>
-              <tr>
-                <td><code>.mono</code> Data Tag</td>
-                <td>JetBrains Mono</td>
-                <td>12px - 14px</td>
-                <td>700 Bold</td>
-              </tr>
-            </tbody>
-          </table>
         </section>
 
         <div className="divider"></div>
@@ -713,43 +654,37 @@
         <section id="iconography" className="section">
           <div className="editorial-badge">CHAPTER 06 // GRID & ICONS</div>
           <h2>6. Hệ Thống Icon & Khung Lưới (Grid System)</h2>
-          <p className="lead">
-            Quy chuẩn nét vẽ Iconogram 1.5px nét đơn góc bo mượt và hệ thống khung lưới 12 cột chuẩn giao diện web.
-          </p>
 
-          <div className="card-box" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; text-align: center;">
+          <div className="card-box" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.25rem; text-align: center;">
             <div>
-              <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📐</div>
+              <div style="font-size: 2.2rem; margin-bottom: 0.4rem;">📐</div>
               <div style="font-family: var(--font-mono); font-weight: 700;">12-Column Grid</div>
-              <div style="font-size: 0.8rem; color: var(--text-muted);">Max-width 1200px</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">Max-width 1240px</div>
             </div>
             <div>
-              <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">✏️</div>
+              <div style="font-size: 2.2rem; margin-bottom: 0.4rem;">✏️</div>
               <div style="font-family: var(--font-mono); font-weight: 700;">1.5px Stroke Width</div>
-              <div style="font-size: 0.8rem; color: var(--text-muted);">Line-art clean style</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">Line-art clean style</div>
             </div>
             <div>
-              <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📦</div>
-              <div style="font-family: var(--font-mono); font-weight: 700;">12px Card Radius</div>
-              <div style="font-size: 0.8rem; color: var(--text-muted);">Rounded Corners</div>
+              <div style="font-size: 2.2rem; margin-bottom: 0.4rem;">📦</div>
+              <div style="font-family: var(--font-mono); font-weight: 700;">16px Card Radius</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">Rounded Corners</div>
             </div>
           </div>
         </section>
 
         <div className="divider"></div>
 
-        <!-- 07. UI COMPONENTS & MOCKUPS -->
+        <!-- 07. UI COMPONENTS -->
         <section id="ui-components" className="section">
           <div className="editorial-badge">CHAPTER 07 // UI COMPONENTS</div>
           <h2>7. Thư Viện Linh Kiện UI & Pattern Signature</h2>
-          <p className="lead">
-            Các dạng nút bấm, thẻ công cụ và hiệu ứng gạch chân bút dạ quang (Highlight Underline) signature của iViDLab.
-          </p>
 
-          <div className="card-box" style="display: flex; flex-direction: column; gap: 2rem;">
+          <div className="card-box" style="display: flex; flex-direction: column; gap: 1.75rem;">
             <div>
-              <div className="type-label" style="margin-bottom: 1rem;">NÚT BẤM (BUTTONS)</div>
-              <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <div className="type-meta" style="margin-bottom: 0.85rem;">NÚT BẤM (BUTTONS)</div>
+              <div style="display: flex; gap: 0.85rem; flex-wrap: wrap;">
                 <button className="btn btn-primary">Primary Action</button>
                 <button className="btn">Secondary Action</button>
                 <button className="btn" style="border-style: dashed;">Dashed Action</button>
@@ -757,8 +692,8 @@
             </div>
 
             <div>
-              <div className="type-label" style="margin-bottom: 1rem;">HIỆU ỨNG BÚT DẠ QUANG HIGHLIGHT SIGNATURE</div>
-              <h2 className="highlight-hover" style="display: inline-block;">
+              <div className="type-meta" style="margin-bottom: 0.85rem;">HIỆU ỨNG BÚT DẠ QUANG HIGHLIGHT SIGNATURE</div>
+              <h2 className="highlight-hover" style="display: inline-block; font-size: 1.5rem;">
                 Hiệu ứng gạch chân dạ quang nổi bật trên tiêu đề
               </h2>
             </div>
@@ -767,17 +702,16 @@
 
         <div className="divider"></div>
 
-        <!-- 08. ASSET DOWNLOADS -->
+        <!-- 08. DOWNLOADS -->
         <section id="downloads" className="section">
           <div className="editorial-badge">CHAPTER 08 // DOWNLOADS</div>
           <h2>8. Tải Về File Gốc (Brand Asset Downloads)</h2>
-          <p className="lead">Tải về toàn bộ file logo Vector SVG và file hình ảnh chất lượng cao.</p>
 
-          <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.75rem;">
-            <a href="/logo.svg" download className="btn btn-primary" style="padding: 0.85rem 1.75rem; font-size: 0.9rem;">
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+            <a href="/logo.svg" download className="btn btn-primary" style="padding: 0.8rem 1.5rem; font-size: 0.88rem;">
               ↓ Tải Logo Master SVG (Trong suốt rỗng V)
             </a>
-            <a href="/logo-reference.jpg" download className="btn" style="padding: 0.85rem 1.75rem; font-size: 0.9rem;">
+            <a href="/logo-reference.jpg" download className="btn" style="padding: 0.8rem 1.5rem; font-size: 0.88rem;">
               ↓ Tải Logo Reference JPG (1000x1000px)
             </a>
           </div>
@@ -802,6 +736,27 @@
         navigator.clipboard.writeText(hex);
         alert('Đã sao chép mã màu ' + hex + ' vào khay nhớ tạm!');
       }
+
+      // Active state on scroll
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          if (pageYOffset >= sectionTop - 140) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+          }
+        });
+      });
     </script>
   </body>
 </html>
