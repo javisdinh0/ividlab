@@ -1,20 +1,33 @@
 import React from 'react';
 
-export default function Header({ activeTab, setActiveTab }) {
+export default function Header({ activeTab, setActiveTab, lang, setLang, theme, setTheme, t }) {
+  const toggleTheme = () => {
+    const nextTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(nextTheme);
+  };
+
+  const toggleLang = () => {
+    const nextLang = lang === 'vi' ? 'en' : 'vi';
+    setLang(nextLang);
+  };
+
   return (
     <header style={{
       position: 'sticky',
       top: 0,
       zIndex: 100,
-      backgroundColor: 'rgba(162, 191, 199, 0.92)',
+      backgroundColor: 'var(--header-bg)',
       backdropFilter: 'blur(12px)',
       borderBottom: '1px solid var(--border-rule)',
-      padding: '1.25rem 0'
+      padding: '1.25rem 0',
+      transition: 'background-color 0.3s ease'
     }}>
       <div className="container" style={{
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        gap: '1rem'
       }}>
         {/* Brand Logo */}
         <a 
@@ -25,12 +38,12 @@ export default function Header({ activeTab, setActiveTab }) {
           <div style={{
             width: '32px',
             height: '32px',
-            backgroundColor: 'var(--c-1)',
+            backgroundColor: 'var(--text-ink)',
             borderRadius: '6px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: '#FFFFFF',
+            color: 'var(--bg-cream)',
             fontWeight: 800,
             fontFamily: 'var(--font-display)',
             fontSize: '1.1rem'
@@ -42,28 +55,28 @@ export default function Header({ activeTab, setActiveTab }) {
             fontSize: '1.4rem',
             fontWeight: 800,
             letterSpacing: '-0.02em',
-            color: 'var(--c-1)'
+            color: 'var(--text-ink)'
           }}>
-            iViD<span style={{ color: 'var(--c-2)' }}>Lab</span>
+            iViD<span style={{ color: 'var(--accent-blue)' }}>Lab</span>
           </span>
         </a>
 
         {/* Navigation */}
-        <nav style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+        <nav style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
           <button
             onClick={() => setActiveTab('all')}
             style={{
               background: 'none',
               border: 'none',
               fontFamily: 'var(--font-mono)',
-              fontSize: '0.9rem',
+              fontSize: '0.85rem',
               fontWeight: activeTab === 'all' ? 700 : 500,
-              color: activeTab === 'all' ? 'var(--c-1)' : 'var(--c-3)',
+              color: activeTab === 'all' ? 'var(--text-ink)' : 'var(--text-muted)',
               cursor: 'pointer',
               transition: 'color 0.2s ease'
             }}
           >
-            // TRANG CHỦ
+            {t.nav.home}
           </button>
 
           <button
@@ -72,14 +85,14 @@ export default function Header({ activeTab, setActiveTab }) {
               background: 'none',
               border: 'none',
               fontFamily: 'var(--font-mono)',
-              fontSize: '0.9rem',
+              fontSize: '0.85rem',
               fontWeight: activeTab === 'tools' ? 700 : 500,
-              color: activeTab === 'tools' ? 'var(--c-1)' : 'var(--c-3)',
+              color: activeTab === 'tools' ? 'var(--text-ink)' : 'var(--text-muted)',
               cursor: 'pointer',
               transition: 'color 0.2s ease'
             }}
           >
-            // CÔNG CỤ
+            {t.nav.tools}
           </button>
 
           <button
@@ -88,16 +101,29 @@ export default function Header({ activeTab, setActiveTab }) {
               background: 'none',
               border: 'none',
               fontFamily: 'var(--font-mono)',
-              fontSize: '0.9rem',
+              fontSize: '0.85rem',
               fontWeight: activeTab === 'about' ? 700 : 500,
-              color: activeTab === 'about' ? 'var(--c-1)' : 'var(--c-3)',
+              color: activeTab === 'about' ? 'var(--text-ink)' : 'var(--text-muted)',
               cursor: 'pointer',
               transition: 'color 0.2s ease'
             }}
           >
-            // GIỚI THIỆU
+            {t.nav.about}
           </button>
         </nav>
+
+        {/* Toggles (Theme & Language) */}
+        <div style={{ display: 'flex', items: 'center', gap: '0.6rem' }}>
+          {/* Theme Toggle */}
+          <button onClick={toggleTheme} className="toggle-btn" title="Chuyển giao diện Sáng / Tối">
+            {theme === 'light' ? '☀️ LIGHT' : '🌙 DARK'}
+          </button>
+
+          {/* Language Toggle */}
+          <button onClick={toggleLang} className="toggle-btn" title="Switch Language">
+            🌐 {lang.toUpperCase()}
+          </button>
+        </div>
       </div>
     </header>
   );

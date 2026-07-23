@@ -1,7 +1,7 @@
 import React from 'react';
 import { toolsData } from '../data/tools';
 
-export default function ToolsSection() {
+export default function ToolsSection({ t, lang }) {
   return (
     <section id="tools" style={{ padding: '3rem 0' }}>
       <div className="container">
@@ -15,14 +15,14 @@ export default function ToolsSection() {
         }}>
           <div>
             <div className="section-label">
-              PORTFOLIO // TOOLS
+              {t.tools.badge}
             </div>
             <h2 style={{ fontSize: '2rem', letterSpacing: '-0.02em' }}>
-              Danh mục Công cụ & Plugin
+              {t.tools.title}
             </h2>
           </div>
           <span className="font-mono" style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-            {toolsData.length} items
+            {toolsData.length} {t.tools.items_count}
           </span>
         </div>
 
@@ -32,7 +32,7 @@ export default function ToolsSection() {
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                   <span className="tag-pill">{tool.tag}</span>
-                  <span className="font-mono" style={{ fontSize: '0.75rem', color: 'var(--accent-blue)', fontWeight: 600 }}>
+                  <span className="font-mono" style={{ fontSize: '0.75rem', color: 'var(--text-ink)', fontWeight: 700 }}>
                     {tool.status}
                   </span>
                 </div>
@@ -42,7 +42,7 @@ export default function ToolsSection() {
                 </h3>
 
                 <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
-                  {tool.description}
+                  {tool.description[lang]}
                 </p>
               </div>
 
@@ -55,12 +55,12 @@ export default function ToolsSection() {
                   style={{
                     fontFamily: 'var(--font-mono)',
                     fontSize: '0.85rem',
-                    color: 'var(--accent-blue)',
+                    color: 'var(--text-ink)',
                     textDecoration: 'none',
-                    fontWeight: 600
+                    fontWeight: 700
                   }}
                 >
-                  Xem chi tiết →
+                  {t.tools.view_details}
                 </a>
               </div>
             </div>

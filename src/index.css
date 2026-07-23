@@ -4,22 +4,39 @@
   --c-2: #2E6583; /* Classic Ocean Blue */
   --c-3: #4F7C91; /* Steel Slate Blue */
   --c-4: #6F9AAB; /* Sky Mist Blue */
-  --c-5: #A2BFC7; /* Light Ice Blue (Main Background) */
+  --c-5: #A2BFC7; /* Light Ice Blue */
 
-  --bg-cream: var(--c-5);           /* Toàn bộ màu nền trang web #A2BFC7 */
+  /* Default Light Theme Palette */
+  --bg-cream: var(--c-5);           /* #A2BFC7 */
   --bg-card: #FFFFFF;               /* Thẻ Card trắng nổi bật */
   --text-ink: var(--c-1);           /* Chữ tiêu đề tối #2B4E64 */
   --text-muted: var(--c-3);         /* Chữ phụ #4F7C91 */
   --border-rule: var(--c-4);        /* Đường viền #6F9AAB */
   --accent-blue: var(--c-2);        /* Màu nhấn / Nút bấm #2E6583 */
   --accent-blue-light: #DCE8EC;     /* Tag pill background */
-  --highlight-yellow: #6F9AAB;      /* Highlight signature hover */
+  --highlight-yellow: rgba(255, 255, 255, 0.6); /* Highlight signature hover */
+  --header-bg: rgba(162, 191, 199, 0.92);
+  --footer-bg: rgba(162, 191, 199, 0.7);
 
   --font-display: 'Plus Jakarta Sans', 'Be Vietnam Pro', sans-serif;
   --font-body: 'Be Vietnam Pro', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   --container-max: 1200px;
+}
+
+/* Dark Theme Palette Override */
+[data-theme="dark"] {
+  --bg-cream: #182B37;              /* Nền tối đại dương sâu */
+  --bg-card: #223B4B;               /* Card nền xanh navy tối */
+  --text-ink: #F0F6F8;              /* Chữ tiêu đề sáng ngọc */
+  --text-muted: #A2BFC7;            /* Chữ phụ màu băng */
+  --border-rule: #365B6F;           /* Viền tối */
+  --accent-blue: #6F9AAB;           /* Nhấn màu xanh sáng */
+  --accent-blue-light: #2A485A;     /* Tag pill background tối */
+  --highlight-yellow: rgba(43, 78, 100, 0.7); /* Highlight signature hover tối */
+  --header-bg: rgba(24, 43, 55, 0.92);
+  --footer-bg: rgba(24, 43, 55, 0.7);
 }
 
 * {
@@ -36,11 +53,13 @@ html {
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body {
   min-height: 100vh;
   background-color: var(--bg-cream);
+  transition: background-color 0.3s ease;
 }
 
 /* Typography Helpers */
@@ -71,7 +90,7 @@ h1, h2, h3, h4, .font-display {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--c-1);
+  color: var(--text-ink);
   font-weight: 700;
   margin-bottom: 0.75rem;
   display: flex;
@@ -84,7 +103,7 @@ h1, h2, h3, h4, .font-display {
   display: inline-block;
   width: 8px;
   height: 8px;
-  background-color: var(--c-2);
+  background-color: var(--accent-blue);
   border-radius: 50%;
 }
 
@@ -99,7 +118,7 @@ h1, h2, h3, h4, .font-display {
 .highlight-hover {
   position: relative;
   display: inline;
-  background-image: linear-gradient(120deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.6) 100%);
+  background-image: linear-gradient(120deg, var(--highlight-yellow) 0%, var(--highlight-yellow) 100%);
   background-repeat: no-repeat;
   background-size: 0% 45%;
   background-position: 0 88%;
@@ -109,6 +128,27 @@ h1, h2, h3, h4, .font-display {
 
 .highlight-hover:hover {
   background-size: 100% 45%;
+}
+
+/* Toggle Controls */
+.toggle-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-rule);
+  color: var(--text-ink);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+}
+
+.toggle-btn:hover {
+  border-color: var(--accent-blue);
 }
 
 /* Buttons */
@@ -128,25 +168,23 @@ h1, h2, h3, h4, .font-display {
 }
 
 .btn-primary {
-  background-color: var(--c-1);
-  color: #FFFFFF;
+  background-color: var(--text-ink);
+  color: var(--bg-cream);
 }
 
 .btn-primary:hover {
-  background-color: var(--c-2);
+  background-color: var(--accent-blue);
   color: #FFFFFF;
 }
 
 .btn-secondary {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: var(--bg-card);
   color: var(--text-ink);
-  border-color: var(--c-1);
+  border-color: var(--border-rule);
 }
 
 .btn-secondary:hover {
-  border-color: var(--c-1);
-  background-color: #FFFFFF;
-  color: var(--c-1);
+  border-color: var(--text-ink);
 }
 
 /* Responsive Grid System */
@@ -159,7 +197,7 @@ h1, h2, h3, h4, .font-display {
 /* Card Component Style */
 .card {
   background-color: var(--bg-card);
-  border: 1px solid var(--c-4);
+  border: 1px solid var(--border-rule);
   border-radius: 12px;
   padding: 1.75rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -170,8 +208,8 @@ h1, h2, h3, h4, .font-display {
 
 .card:hover {
   transform: translateY(-4px);
-  border-color: var(--c-1);
-  box-shadow: 0 12px 28px rgba(43, 78, 100, 0.12);
+  border-color: var(--accent-blue);
+  box-shadow: 0 12px 28px rgba(24, 43, 55, 0.15);
 }
 
 /* Tag Pill */
@@ -181,7 +219,7 @@ h1, h2, h3, h4, .font-display {
   font-size: 0.7rem;
   padding: 0.25rem 0.6rem;
   background-color: var(--accent-blue-light);
-  color: var(--c-1);
+  color: var(--text-ink);
   border-radius: 4px;
   font-weight: 700;
   text-transform: uppercase;
