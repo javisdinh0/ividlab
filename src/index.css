@@ -1,0 +1,190 @@
+:root {
+  --bg-cream: #F8F7F4;
+  --bg-card: #FFFFFF;
+  --text-ink: #111111;
+  --text-muted: #666666;
+  --border-rule: #E2DFD8;
+  --accent-blue: #0057FF;
+  --accent-blue-light: #EBF2FF;
+  --highlight-yellow: #FFF176;
+
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'Source Serif 4', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --container-max: 1200px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-cream);
+  color: var(--text-ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg-cream);
+}
+
+/* Typography Helpers */
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text-ink);
+  line-height: 1.15;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* Layout Utilities */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-blue);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-blue);
+  border-radius: 50%;
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--border-rule);
+  width: 100%;
+  margin: 3rem 0;
+}
+
+/* Signature Element: Yellow Highlighter Effect on Hover */
+.highlight-hover {
+  position: relative;
+  display: inline;
+  background-image: linear-gradient(120deg, var(--highlight-yellow) 0%, var(--highlight-yellow) 100%);
+  background-repeat: no-repeat;
+  background-size: 0% 40%;
+  background-position: 0 88%;
+  transition: background-size 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.highlight-hover:hover {
+  background-size: 100% 40%;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background-color: var(--text-ink);
+  color: #FFFFFF;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-blue);
+  color: #FFFFFF;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-ink);
+  border-color: var(--border-rule);
+}
+
+.btn-secondary:hover {
+  border-color: var(--text-ink);
+  background-color: #FFFFFF;
+}
+
+/* Responsive Grid System */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.75rem;
+}
+
+/* Card Component Style */
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-rule);
+  border-radius: 12px;
+  padding: 1.75rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-blue);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.04);
+}
+
+/* Tag Pill */
+.tag-pill {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.25rem 0.6rem;
+  background-color: var(--accent-blue-light);
+  color: var(--accent-blue);
+  border-radius: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}
