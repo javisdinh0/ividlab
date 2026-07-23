@@ -1,13 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 595.28 841.89" style="enable-background:new 0 0 595.28 841.89;" xml:space="preserve">
+<!-- iViDLab Master Logo - Perfect 1:1 Square Aspect Ratio (500x500) -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 viewBox="0 0 500 500" width="100%" height="100%">
 <style type="text/css">
-	.st-mono{fill:#2B4E64;}
-	.st-text{fill:#2B4E64;font-family:'JetBrains Mono','Tahoma-Bold',sans-serif;font-size:24px;font-weight:800;letter-spacing:1px;}
+	.st-navy { fill: #2B4E64; }
+	.st-brand-title {
+		fill: #2B4E64;
+		font-family: 'Plus Jakarta Sans', 'Be Vietnam Pro', sans-serif;
+		font-size: 38px;
+		font-weight: 900;
+		letter-spacing: 1.5px;
+	}
+	.st-brand-team {
+		font-weight: 500;
+		fill: #2B4E64;
+		opacity: 0.85;
+	}
+	.st-lab-sub {
+		fill: #2B4E64;
+		font-family: 'JetBrains Mono', 'Tahoma-Bold', sans-serif;
+		font-size: 20px;
+		font-weight: 800;
+		letter-spacing: 1px;
+	}
 </style>
-<g transform="translate(0, 0)">
-	<!-- All Paths Single Solid Color: Deep Ocean Navy #2B4E64 -->
-	<g class="st-mono">
+
+<!-- 1:1 Centered Composition Group -->
+<g transform="translate(12, 25)">
+	<!-- 3D Structural Building Icon -->
+	<g class="st-navy" transform="scale(0.88)">
 		<path d="M510.94,409.19c-8.58-3.48-16.88-6.85-25.18-10.22c-56.21-22.81-112.42-45.61-168.63-68.44
 			c-20.82-8.45-41.59-17.04-62.46-25.36c-2.23-0.89-5.16-1.08-7.48-0.48c-21.03,5.4-42,11.06-62.99,16.62
 			c-31.12,8.25-62.24,16.47-93.35,24.72c-10.61,2.82-21.19,5.77-31.84,8.46c-2.4,0.61-3.23,1.57-3.22,4.03
@@ -52,7 +73,12 @@
 			c6.77,0.98,12.78,1.82,18.77,2.72c20.75,3.13,41.49,6.28,62.24,9.41c21.12,3.19,42.23,6.38,63.35,9.55
 			c20.38,3.06,40.75,6.11,61.13,9.15c17.29,2.58,34.59,5.11,51.86,7.79c1.04,0.16,1.89,1.55,2.82,2.36
 			C511.56,485.42,511.23,485.86,510.89,486.3z"/>
+		<text transform="matrix(1 0 0 1 48 462)" class="st-lab-sub">LAB</text>
 	</g>
+
+	<!-- BRAND TITLE "iViDLab Team" (Directly in Red Boxed Area below, 1:1 Square Balanced) -->
+	<text x="240" y="475" text-anchor="middle" class="st-brand-title">
+		iViDLab <tspan class="st-brand-team">Team</tspan>
+	</text>
 </g>
-<text transform="matrix(1 0 0 1 54 526.4343)" class="st-text">LAB</text>
 </svg>
