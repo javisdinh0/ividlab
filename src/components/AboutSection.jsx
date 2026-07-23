@@ -17,7 +17,7 @@ export default function AboutSection() {
           border: '1px solid var(--border-rule)',
           borderRadius: '12px',
           padding: '2.5rem',
-          maxWidth: '900px',
+          width: '100%',
           boxShadow: '0 4px 20px rgba(0, 0, 0, 0.02)'
         }}>
           <p style={{
@@ -35,11 +35,11 @@ export default function AboutSection() {
             paddingLeft: '1.25rem',
             marginTop: '1.5rem',
             backgroundColor: 'var(--accent-blue-light)',
-            padding: '1rem 1.25rem',
+            padding: '1.25rem 1.5rem',
             borderRadius: '0 8px 8px 0'
           }}>
             <p style={{
-              fontSize: '0.95rem',
+              fontSize: '1rem',
               lineHeight: '1.7',
               color: 'var(--text-ink)',
               fontWeight: 500
