@@ -3,161 +3,348 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>iViDLab — Official Brand Guidelines & Design System</title>
+    <title>iViDLab — Official Brand Identity & Design System Portal</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
       :root {
-        /* User Exact Ocean Palette Swatches */
+        /* User Exact 5 Ocean Palette Hex Codes */
         --c-navy: #2B4E64;
         --c-ocean: #2E6583;
         --c-slate: #4F7C91;
         --c-sky: #6F9AAB;
         --c-ice: #A2BFC7;
 
+        /* Light Theme Tokens */
         --bg-page: var(--c-ice);
         --bg-card: #FFFFFF;
+        --bg-nav: rgba(162, 191, 199, 0.95);
         --text-ink: var(--c-navy);
         --text-muted: var(--c-slate);
         --border-line: var(--c-sky);
         --accent: var(--c-ocean);
-        --accent-light: #DCE8EC;
-        --highlight: rgba(255, 255, 255, 0.6);
+        --accent-glow: rgba(46, 101, 131, 0.15);
+        --highlight: rgba(255, 255, 255, 0.7);
+        --sidebar-w: 260px;
 
-        --font-display: 'Plus Jakarta Sans', sans-serif;
-        --font-body: 'Be Vietnam Pro', sans-serif;
+        --font-display: 'Plus Jakarta Sans', -apple-system, sans-serif;
+        --font-body: 'Be Vietnam Pro', -apple-system, sans-serif;
         --font-mono: 'JetBrains Mono', monospace;
       }
 
       [data-theme="dark"] {
+        /* Dark Theme Tokens */
         --bg-page: #182B37;
         --bg-card: #223B4B;
+        --bg-nav: rgba(24, 43, 55, 0.95);
         --text-ink: #F0F6F8;
         --text-muted: #A2BFC7;
         --border-line: #365B6F;
         --accent: #6F9AAB;
-        --accent-light: #2A485A;
-        --highlight: rgba(43, 78, 100, 0.7);
+        --accent-glow: rgba(111, 154, 171, 0.2);
+        --highlight: rgba(43, 78, 100, 0.8);
       }
 
       * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
       body {
         background-color: var(--bg-page);
         color: var(--text-ink);
         font-family: var(--font-body);
-        line-height: 1.6;
+        line-height: 1.65;
         transition: background-color 0.3s ease, color 0.3s ease;
-        padding-bottom: 5rem;
       }
 
+      /* Sticky Top Navigation Bar */
       header {
         position: sticky;
         top: 0;
-        z-index: 100;
-        background: rgba(162, 191, 199, 0.9);
-        backdrop-filter: blur(12px);
+        z-index: 200;
+        background: var(--bg-nav);
+        backdrop-filter: blur(16px);
         border-bottom: 1px solid var(--border-line);
-        padding: 1.2rem 2rem;
+        padding: 0.85rem 2rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
       }
-      [data-theme="dark"] header {
-        background: rgba(24, 43, 55, 0.9);
-      }
 
-      .container {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 0 1.5rem;
-      }
-
-      .hero {
-        padding: 4rem 0 3rem 0;
-        border-bottom: 1px solid var(--border-line);
-      }
-
-      .badge {
-        font-family: var(--font-mono);
-        font-size: 0.75rem;
-        color: var(--text-ink);
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        margin-bottom: 0.75rem;
-      }
-
-      h1 { font-family: var(--font-display); font-size: 2.8rem; margin-bottom: 1rem; }
-      h2 { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 1.5rem; }
-
-      .section {
-        padding: 3.5rem 0;
-        border-bottom: 1px solid var(--border-line);
-      }
-
-      /* Logo Display Card */
-      .logo-display-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border-line);
-        border-radius: 16px;
-        padding: 3rem;
+      .brand-title {
         display: flex;
-        flex-direction: column;
         align-items: center;
-        gap: 2rem;
-        margin-top: 1.5rem;
+        gap: 0.85rem;
+        text-decoration: none;
+        color: var(--text-ink);
       }
 
-      .logo-img {
-        max-width: 320px;
-        height: auto;
+      .brand-title img {
+        height: 38px;
+        width: auto;
       }
 
-      /* Swatch Grid */
-      .swatch-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 1.25rem;
-        margin-top: 1.5rem;
+      .brand-title span {
+        font-family: var(--font-display);
+        font-size: 1.35rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
       }
-      .swatch {
-        border-radius: 12px;
-        overflow: hidden;
-        border: 1px solid var(--border-line);
-        background: var(--bg-card);
-      }
-      .swatch-color { height: 100px; }
-      .swatch-info { padding: 1rem; font-family: var(--font-mono); font-size: 0.85rem; }
-      .swatch-name { font-weight: 700; margin-bottom: 0.25rem; }
 
-      /* Typography Table */
-      .type-specimen {
-        background: var(--bg-card);
-        border: 1px solid var(--border-line);
-        border-radius: 12px;
-        padding: 2rem;
-        margin-top: 1.5rem;
+      .top-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
       }
-      .type-row {
-        margin-bottom: 1.5rem;
-        padding-bottom: 1.5rem;
-        border-bottom: 1px solid var(--border-line);
-      }
-      .type-row:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
 
-      /* Buttons */
-      .toggle-btn {
+      .btn {
         background: var(--bg-card);
         border: 1px solid var(--border-line);
         color: var(--text-ink);
         font-family: var(--font-mono);
         font-size: 0.8rem;
         font-weight: 700;
-        padding: 0.4rem 1rem;
+        padding: 0.5rem 1.1rem;
         border-radius: 20px;
         cursor: pointer;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .btn:hover {
+        border-color: var(--accent);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px var(--accent-glow);
+      }
+
+      .btn-primary {
+        background: var(--c-navy);
+        color: #FFFFFF;
+        border-color: var(--c-navy);
+      }
+      .btn-primary:hover {
+        background: var(--c-ocean);
+        border-color: var(--c-ocean);
+        color: #FFFFFF;
+      }
+
+      /* Layout Container */
+      .app-layout {
+        display: flex;
+        min-height: calc(100vh - 65px);
+      }
+
+      /* Sidebar Navigation */
+      aside {
+        width: var(--sidebar-w);
+        position: sticky;
+        top: 65px;
+        height: calc(100vh - 65px);
+        background: var(--bg-card);
+        border-right: 1px solid var(--border-line);
+        padding: 2rem 1.25rem;
+        overflow-y: auto;
+        flex-shrink: 0;
+      }
+
+      .nav-group-title {
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-bottom: 0.75rem;
+        margin-top: 1.5rem;
+      }
+      .nav-group-title:first-child { margin-top: 0; }
+
+      .sidebar-nav {
+        list-style: none;
+      }
+      .sidebar-nav a {
+        display: block;
+        padding: 0.5rem 0.75rem;
+        border-radius: 8px;
+        color: var(--text-ink);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+      .sidebar-nav a:hover, .sidebar-nav a.active {
+        background: var(--accent-light);
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      /* Main Content Area */
+      main {
+        flex: 1;
+        padding: 3rem 4rem;
+        max-width: 1050px;
+      }
+
+      .section {
+        margin-bottom: 4rem;
+        scroll-margin-top: 90px;
+      }
+
+      .eyebrow {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+
+      h1 { font-family: var(--font-display); font-size: 2.8rem; font-weight: 800; line-height: 1.15; margin-bottom: 1rem; }
+      h2 { font-family: var(--font-display); font-size: 1.85rem; font-weight: 800; line-height: 1.25; margin-bottom: 1rem; }
+      h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; margin-bottom: 0.75rem; }
+
+      p.lead {
+        font-size: 1.15rem;
+        color: var(--text-muted);
+        max-width: 760px;
+        margin-bottom: 2rem;
+      }
+
+      .divider {
+        height: 1px;
+        background: var(--border-line);
+        margin: 3.5rem 0;
+      }
+
+      /* Grid & Card Containers */
+      .card-box {
+        background: var(--bg-card);
+        border: 1px solid var(--border-line);
+        border-radius: 16px;
+        padding: 2.5rem;
+        margin-top: 1.5rem;
+      }
+
+      /* Logo Display Grid */
+      .logo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      .logo-preview-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-line);
+        border-radius: 14px;
+        padding: 2.5rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 1.25rem;
+        position: relative;
+      }
+      .logo-preview-card.dark-bg {
+        background: #182B37;
+        color: #F0F6F8;
+        border-color: #365B6F;
+      }
+
+      .logo-preview-card img {
+        max-width: 220px;
+        height: auto;
+      }
+
+      /* Incorrect Usage Grid */
+      .donts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.25rem;
+        margin-top: 1.5rem;
+      }
+
+      .dont-card {
+        background: var(--bg-card);
+        border: 1px solid #E57373;
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-align: center;
+      }
+      .dont-card img {
+        height: 50px;
+        margin-bottom: 1rem;
+      }
+      .dont-tag {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #D32F2F;
+        text-transform: uppercase;
+        margin-bottom: 0.35rem;
+      }
+
+      /* Swatches */
+      .swatch-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.25rem;
+        margin-top: 1.5rem;
+      }
+
+      .swatch-item {
+        background: var(--bg-card);
+        border: 1px solid var(--border-line);
+        border-radius: 12px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .swatch-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      }
+
+      .swatch-box {
+        height: 110px;
+      }
+
+      .swatch-meta {
+        padding: 1rem;
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+      }
+      .swatch-title { font-weight: 800; font-size: 0.9rem; margin-bottom: 0.25rem; }
+      .swatch-hex { font-weight: 700; color: var(--accent); }
+
+      /* Type Specimen Block */
+      .type-block {
+        background: var(--bg-card);
+        border: 1px solid var(--border-line);
+        border-radius: 14px;
+        padding: 2rem;
+        margin-top: 1.5rem;
+      }
+
+      .type-row {
+        padding-bottom: 1.75rem;
+        margin-bottom: 1.75rem;
+        border-bottom: 1px solid var(--border-line);
+      }
+      .type-row:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: none; }
+
+      .type-label {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
       }
 
       .highlight-hover {
@@ -166,125 +353,267 @@
         background-size: 100% 45%;
         background-position: 0 88%;
       }
+
+      /* Responsive Layout */
+      @media (max-width: 900px) {
+        .app-layout { flex-direction: column; }
+        aside { width: 100%; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--border-line); }
+        main { padding: 2rem 1.25rem; }
+        h1 { font-size: 2.2rem; }
+      }
     </style>
   </head>
   <body>
+    <!-- Header -->
     <header>
-      <div style="display: flex; align-items: center; gap: 1rem;">
-        <img src="/logo.svg" alt="iViDLab Logo" style="height: 38px; width: auto;" />
-        <span style="font-family: var(--font-display); font-weight: 800; font-size: 1.4rem;">iViD<span style="color: var(--accent);">Lab</span></span>
-      </div>
+      <a href="#" className="brand-title">
+        <img src="/logo.svg" alt="iViDLab Logo" />
+        <span>iViD<span style="color: var(--accent);">Lab</span></span>
+      </a>
 
-      <button className="toggle-btn" onclick="toggleTheme()" id="themeBtn">
-        ☀️ LIGHT THEME
-      </button>
+      <div className="top-actions">
+        <button className="btn" onclick="toggleTheme()" id="themeBtn">
+          ☀️ LIGHT THEME
+        </button>
+        <a href="/logo.svg" download className="btn btn-primary">
+          ↓ Tải Logo SVG
+        </a>
+      </div>
     </header>
 
-    <div className="container">
-      <!-- HERO -->
-      <section className="hero">
-        <div className="badge">// OFFICIAL BRAND GUIDELINES</div>
-        <h1>Bộ Quy Chuẩn Thương Hiệu & Design System</h1>
-        <p style="font-size: 1.15rem; color: var(--text-muted); max-width: 700px;">
-          Tài liệu quy chuẩn chính thức về Logo, Bảng màu đại dương, Typography tiếng Việt và các linh kiện giao diện ứng dụng web iViDLab.
-        </p>
-      </section>
+    <div className="app-layout">
+      <!-- Sidebar Navigation -->
+      <aside>
+        <div className="nav-group-title">QUY CHUẨN THƯƠNG HIỆU</div>
+        <ul className="sidebar-nav">
+          <li><a href="#brand-identity" className="active">01. Brand Story & Values</a></li>
+          <li><a href="#logo-system">02. Logo System & Rules</a></li>
+          <li><a href="#color-system">03. Color Palette & Tokens</a></li>
+          <li><a href="#typography">04. Typography & Fonts</a></li>
+          <li><a href="#ui-components">05. UI Component Library</a></li>
+          <li><a href="#brand-downloads">06. Asset Downloads</a></li>
+        </ul>
+      </aside>
 
-      <!-- LOGO SYSTEM -->
-      <section className="section">
-        <div className="badge">SECTION 01 // LOGO SYSTEM</div>
-        <h2>1. Logo Master (File Chuẩn `ivid_logo_theme.svg`)</h2>
-        <p style="color: var(--text-muted);">
-          Logo master kế thừa phác thảo kết cấu 3D <code>ivid lAP.svg</code>. <strong>Đặc biệt: Đã bỏ hoàn toàn mảng fill màu trắng ở chữ V (trong suốt rỗng)</strong> và phối màu theo bộ màu giao diện đại dương <code>#2B4E64</code> & <code>#2E6583</code>.
-        </p>
+      <!-- Main Guidelines Content -->
+      <main>
+        <!-- 01. BRAND IDENTITY -->
+        <section id="brand-identity" className="section">
+          <span className="eyebrow">// SECTION 01</span>
+          <h1>Brand Story & Core Values</h1>
+          <p className="lead">
+            iViDLab là nhóm kỹ sư xây dựng đam mê ứng dụng tự động thiết kế xây dựng. Với sự hỗ trợ của AI và khả năng Vibe Code tuyệt vời, chúng tôi phát triển các công cụ thực sự hữu ích giúp giảm thời gian, tối ưu thao tác và nâng cao chất lượng sản phẩm thiết kế.
+          </p>
 
-        <div className="logo-display-card">
-          <img src="/logo.svg" alt="iViDLab Official Logo" class="logo-img" />
-          <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); text-align: center;">
-            Master Logo: Transparent V Background • Ocean Palette Colored
+          <div className="card-box" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; padding: 2rem;">
+            <div>
+              <div style="font-family: var(--font-mono); font-weight: 800; font-size: 1.1rem; color: var(--accent); margin-bottom: 0.3rem;">🎯 Sứ Mệnh</div>
+              <p style="font-size: 0.9rem;">Tự động hóa quy trình thiết kế xây dựng, giảm thời gian thao tác lặp lại.</p>
+            </div>
+            <div>
+              <div style="font-family: var(--font-mono); font-weight: 800; font-size: 1.1rem; color: var(--accent); margin-bottom: 0.3rem;">🤝 Phi Lợi Nhuận</div>
+              <p style="font-size: 0.9rem;">Phục vụ cộng đồng kỹ sư trên cơ sở tuân thủ tuyệt đối bản quyền sở hữu trí tuệ.</p>
+            </div>
+            <div>
+              <div style="font-family: var(--font-mono); font-weight: 800; font-size: 1.1rem; color: var(--accent); margin-bottom: 0.3rem;">⚡ Chính Xác</div>
+              <p style="font-size: 0.9rem;">Sản phẩm thiết kế đạt độ chính xác kỹ thuật tối đa và thẩm mỹ cao.</p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- COLOR PALETTE -->
-      <section className="section">
-        <div className="badge">SECTION 02 // COLOR SYSTEM</div>
-        <h2>2. Bảng Màu Thương Hiệu (Ocean Slate Palette)</h2>
-        <p style="color: var(--text-muted);">
-          Bộ 5 mã màu đại dương quy chuẩn được áp dụng đồng bộ trên toàn bộ giao diện:
-        </p>
+        <div className="divider"></div>
 
-        <div className="swatch-grid">
-          <div className="swatch">
-            <div className="swatch-color" style="background: #2B4E64;"></div>
-            <div className="swatch-info">
-              <div className="swatch-name">Deep Navy</div>
-              <div>#2B4E64</div>
+        <!-- 02. LOGO SYSTEM -->
+        <section id="logo-system" className="section">
+          <span className="eyebrow">// SECTION 02</span>
+          <h2>Official Logo System & Usage Rules</h2>
+          <p className="lead">
+            Logo Master của iViDLab được thiết kế theo tỷ lệ phối cảnh 3D kết cấu công trình. <strong>Điểm đặc biệt: Chữ V ở mặt đứng hoàn toàn rỗng trong suốt (transparent)</strong>, thể hiện sự mở rộng và hiện đại.
+          </p>
+
+          <h3>1. Các biến thể Logo chính thức:</h3>
+          <div className="logo-grid">
+            <div className="logo-preview-card">
+              <span className="eyebrow">PRIMARY LIGHT LOGO</span>
+              <img src="/logo.svg" alt="Master Logo Light" />
+              <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">Sử dụng trên Nền Sáng / Light Theme</div>
+            </div>
+
+            <div className="logo-preview-card dark-bg">
+              <span className="eyebrow" style="color: #A2BFC7;">PRIMARY DARK LOGO</span>
+              <img src="/logo.svg" alt="Master Logo Dark" style="filter: brightness(1.2) contrast(1.1);" />
+              <div style="font-family: var(--font-mono); font-size: 0.8rem; color: #A2BFC7;">Sử dụng trên Nền Tối / Dark Theme</div>
             </div>
           </div>
 
-          <div className="swatch">
-            <div className="swatch-color" style="background: #2E6583;"></div>
-            <div className="swatch-info">
-              <div className="swatch-name">Ocean Blue</div>
-              <div>#2E6583</div>
-            </div>
+          <h3 style="margin-top: 2.5rem;">2. Quy tắc Khoảng cách An toàn & Kích thước:</h3>
+          <div className="card-box">
+            <ul style="padding-left: 1.25rem; font-size: 0.95rem;">
+              <li style="margin-bottom: 0.5rem;"><strong>Clear Space (Khoảng trống an toàn)</strong>: Luôn duy trì khoảng cách tối thiểu bằng <code>1X</code> (chiều cao chữ LAB) ở tất cả 4 phía xung quanh logo.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>Kích thước tối thiểu trên Web Navbar</strong>: Chiều cao chuẩn <code>38px</code> - <code>44px</code>.</li>
+              <li><strong>Favicon Icon</strong>: Chiều cao tối thiểu <code>32px</code>.</li>
+            </ul>
           </div>
 
-          <div className="swatch">
-            <div className="swatch-color" style="background: #4F7C91;"></div>
-            <div className="swatch-info">
-              <div className="swatch-name">Steel Slate</div>
-              <div>#4F7C91</div>
+          <h3 style="margin-top: 2.5rem;">3. Quy tắc CẤM biến dạng Logo (Don'ts):</h3>
+          <div className="donts-grid">
+            <div className="dont-card">
+              <img src="/logo.svg" alt="Dont Distort" style="transform: scaleX(1.4);" />
+              <div className="dont-tag">❌ CẤM BÓP MÉO</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Không co giãn lệch tỷ lệ 1:1</div>
+            </div>
+
+            <div className="dont-card">
+              <img src="/logo.svg" alt="Dont Rotate" style="transform: rotate(15deg);" />
+              <div className="dont-tag">❌ CẤM XOAY NGHIÊNG</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Không xoay góc logo</div>
+            </div>
+
+            <div className="dont-card">
+              <img src="/logo.svg" alt="Dont Recolor" style="filter: hue-rotate(90deg);" />
+              <div className="dont-tag">❌ CẤM ĐỔI MÀU SAI</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Không dùng màu ngoài hệ màu</div>
             </div>
           </div>
+        </section>
 
-          <div className="swatch">
-            <div className="swatch-color" style="background: #6F9AAB;"></div>
-            <div className="swatch-info">
-              <div className="swatch-name">Sky Mist</div>
-              <div>#6F9AAB</div>
+        <div className="divider"></div>
+
+        <!-- 03. COLOR SYSTEM -->
+        <section id="color-system" className="section">
+          <span className="eyebrow">// SECTION 03</span>
+          <h2>Color Palette & Design Tokens</h2>
+          <p className="lead">
+            Bảng 5 mã màu Đại Dương & Phiến Đá (Oceanic Slate) cố định của thương hiệu. Bấm vào ô màu để sao chép mã Hex!
+          </p>
+
+          <div className="swatch-grid">
+            <div className="swatch-item" onclick="copyHex('#2B4E64')">
+              <div className="swatch-box" style="background: #2B4E64;"></div>
+              <div className="swatch-meta">
+                <div className="swatch-title">Deep Ocean Navy</div>
+                <div className="swatch-hex">#2B4E64</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">Headings & Text chính</div>
+              </div>
+            </div>
+
+            <div className="swatch-item" onclick="copyHex('#2E6583')">
+              <div className="swatch-box" style="background: #2E6583;"></div>
+              <div className="swatch-meta">
+                <div className="swatch-title">Classic Ocean Blue</div>
+                <div className="swatch-hex">#2E6583</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">Màu nhấn Brand Accent</div>
+              </div>
+            </div>
+
+            <div className="swatch-item" onclick="copyHex('#4F7C91')">
+              <div className="swatch-box" style="background: #4F7C91;"></div>
+              <div className="swatch-meta">
+                <div className="swatch-title">Steel Slate Blue</div>
+                <div className="swatch-hex">#4F7C91</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">Subtitles & Muted text</div>
+              </div>
+            </div>
+
+            <div className="swatch-item" onclick="copyHex('#6F9AAB')">
+              <div className="swatch-box" style="background: #6F9AAB;"></div>
+              <div className="swatch-meta">
+                <div className="swatch-title">Sky Mist Blue</div>
+                <div className="swatch-hex">#6F9AAB</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">Viền thẻ Card & Dividers</div>
+              </div>
+            </div>
+
+            <div className="swatch-item" onclick="copyHex('#A2BFC7')">
+              <div className="swatch-box" style="background: #A2BFC7;"></div>
+              <div className="swatch-meta">
+                <div className="swatch-title">Light Ice Blue</div>
+                <div className="swatch-hex">#A2BFC7</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">Màu nền Web Light Theme</div>
+              </div>
             </div>
           </div>
+        </section>
 
-          <div className="swatch">
-            <div className="swatch-color" style="background: #A2BFC7;"></div>
-            <div className="swatch-info">
-              <div className="swatch-name">Light Ice Blue</div>
-              <div>#A2BFC7 (Nền Web)</div>
+        <div className="divider"></div>
+
+        <!-- 04. TYPOGRAPHY -->
+        <section id="typography" className="section">
+          <span className="eyebrow">// SECTION 04</span>
+          <h2>Typography & Font System</h2>
+          <p className="lead">
+            Hệ thống phông chữ quy định 3 vai trò rõ ràng: Headings, Body text tiếng Việt và Monospace data tags.
+          </p>
+
+          <div className="type-block">
+            <div className="type-row">
+              <div className="type-label">DISPLAY & HEADINGS // PLUS JAKARTA SANS (800 BOLD)</div>
+              <h1 style="font-size: 2.2rem; font-weight: 800;">Tự động hóa Thiết kế Xây dựng Việt Nam</h1>
+            </div>
+
+            <div className="type-row">
+              <div className="type-label">BODY TEXT // BE VIETNAM PRO (400 REGULAR)</div>
+              <p style="font-size: 1.05rem; font-family: 'Be Vietnam Pro', sans-serif;">
+                Nhóm hoạt động phi lợi nhuận phục vụ cộng đồng trên cơ sở tuân thủ tuyệt đối quy định và luật pháp về sở hữu trí tuệ và bản quyền.
+              </p>
+            </div>
+
+            <div className="type-row">
+              <div className="type-label">DATA & MONO TAGS // JETBRAINS MONO (700 BOLD)</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 700; color: var(--accent);">
+                LAB // PEB_SECTION_CREATOR // BEAM_CONTINUOUS // 2026
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- TYPOGRAPHY -->
-      <section className="section">
-        <div className="badge">SECTION 03 // TYPOGRAPHY</div>
-        <h2>3. Hệ Thống Phông Chữ (Typography)</h2>
+        <div className="divider"></div>
 
-        <div className="type-specimen">
-          <div className="type-row">
-            <div className="badge">DISPLAY & HEADINGS // PLUS JAKARTA SANS (800)</div>
-            <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 2rem;">
-              Công cụ BIM & Tự động hóa thiết kế
+        <!-- 05. UI COMPONENTS -->
+        <section id="ui-components" className="section">
+          <span className="eyebrow">// SECTION 05</span>
+          <h2>UI Component Library & Signature Pattern</h2>
+          <p className="lead">
+            Các linh kiện nút bấm, thẻ công cụ và hiệu ứng bút dạ quang (Highlight Underline) đặc trưng trên trang web iViDLab.
+          </p>
+
+          <div className="card-box" style="display: flex; flex-direction: column; gap: 2rem;">
+            <div>
+              <div className="type-label" style="margin-bottom: 1rem;">NÚT BẤM (BUTTONS)</div>
+              <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <button className="btn btn-primary">Primary Action</button>
+                <button className="btn">Secondary Action</button>
+                <button className="btn" style="border-style: dashed;">Dashed Border</button>
+              </div>
+            </div>
+
+            <div>
+              <div className="type-label" style="margin-bottom: 1rem;">HIỆU ỨNG HIGHLIGHT DẠ QUANG SIGNATURE</div>
+              <h2 className="highlight-hover" style="display: inline-block;">
+                Hiệu ứng bút đánh dấu dạ quang trên tiêu đề
+              </h2>
             </div>
           </div>
+        </section>
 
-          <div className="type-row">
-            <div className="badge">BODY & PARAGRAPHS // BE VIETNAM PRO (400)</div>
-            <div style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 1.05rem;">
-              iViDLab là nhóm kỹ sư xây dựng có đam mê với các ứng dụng tự động thiết kế xây dựng, giúp tối ưu thao tác và giảm thiểu sai sót.
-            </div>
-          </div>
+        <div className="divider"></div>
 
-          <div className="type-row">
-            <div className="badge">MONO & LABELS // JETBRAINS MONO / TAHOMA (700)</div>
-            <div style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 1.1rem; color: var(--accent);">
-              LAB // PORTFOLIO // CÔNG CỤ // 2026
-            </div>
+        <!-- 06. DOWNLOADS -->
+        <section id="brand-downloads" className="section">
+          <span className="eyebrow">// SECTION 06</span>
+          <h2>Asset Downloads (Tải về File Gốc)</h2>
+          <p className="lead">Tải về toàn bộ tài nguyên logo và tài liệu quy chuẩn thương hiệu chính thức.</p>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+            <a href="/logo.svg" download className="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 0.9rem;">
+              ↓ Tải Logo Master SVG (Trong suốt rỗng V)
+            </a>
+            <a href="/logo-reference.jpg" download className="btn" style="padding: 0.75rem 1.5rem; font-size: 0.9rem;">
+              ↓ Tải Logo Reference JPG (1000x1000px)
+            </a>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
     </div>
 
     <script>
@@ -298,6 +627,11 @@
           html.setAttribute('data-theme', 'dark');
           btn.innerText = '🌙 DARK THEME';
         }
+      }
+
+      function copyHex(hex) {
+        navigator.clipboard.writeText(hex);
+        alert('Đã sao chép mã màu ' + hex + ' vào khay nhớ tạm!');
       }
     </script>
   </body>
