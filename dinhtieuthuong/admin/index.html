@@ -210,6 +210,7 @@
 
     <script>
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx-SeWQ9aCi3BbQyg0ODPa0MP8Wa-eiUJxFXQSU6LBLGxnx00O7NwK3Lfgjeqw6Nm4B/exec';
+        let rawHeaders = [];
         let rawData = [];
 
         async function fetchData() {
@@ -218,40 +219,46 @@
                 const response = await fetch(SCRIPT_URL);
                 const data = await response.json();
                 
-                // Process only valid rows (skip empty/header if it doesn't match our JSON structure)
-                rawData = data.filter(row => row.length >= 4 && row[3] && row[3].toString().startsWith('{'));
+                if (!data || data.length === 0) {
+                    throw new Error("Không có dữ liệu hoặc định dạng sai.");
+                }
+
+                rawHeaders = data[0];
+                // Process rows (skip header)
+                rawData = data.slice(1).filter(row => row.length > 0 && row[0]);
 
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('dashboard').style.display = 'block';
 
-                processAndRenderCharts(rawData);
-                renderTable(rawData);
+                processAndRenderCharts(rawData, rawHeaders);
+                renderTable(rawData, rawHeaders);
             } catch (err) {
                 document.getElementById('loading').innerText = 'Lỗi khi tải dữ liệu: ' + err.message;
             }
         }
 
-        function processAndRenderCharts(rows) {
+        function processAndRenderCharts(rows, headers) {
             // Stats object
             const statsMuctieu = {};
             const statsMongdoi = {};
 
-            rows.forEach(row => {
-                try {
-                    const parsed = JSON.parse(row[3]);
-                    
-                    if(parsed['Mục Tiêu Sau THPT'] && parsed['Mục Tiêu Sau THPT'].checked) {
-                        parsed['Mục Tiêu Sau THPT'].checked.forEach(item => {
-                            statsMuctieu[item] = (statsMuctieu[item] || 0) + 1;
-                        });
-                    }
+            const idxMuctieu = headers.indexOf('MỤC TIÊU SAU THPT');
+            const idxMongdoi = headers.indexOf('MONG ĐỢI NHÀ TRƯỜNG, GVCN HỖ TRỢ KHÍA CẠNH');
 
-                    if(parsed['Mong Đợi Nhà Trường, GVCN Hỗ Trợ Khía Cạnh'] && parsed['Mong Đợi Nhà Trường, GVCN Hỗ Trợ Khía Cạnh'].checked) {
-                        parsed['Mong Đợi Nhà Trường, GVCN Hỗ Trợ Khía Cạnh'].checked.forEach(item => {
-                            statsMongdoi[item] = (statsMongdoi[item] || 0) + 1;
-                        });
-                    }
-                } catch(e) {}
+            rows.forEach(row => {
+                if (idxMuctieu !== -1 && row[idxMuctieu]) {
+                    const items = row[idxMuctieu].toString().split(',').map(s => s.trim()).filter(s => s);
+                    items.forEach(item => {
+                        statsMuctieu[item] = (statsMuctieu[item] || 0) + 1;
+                    });
+                }
+
+                if (idxMongdoi !== -1 && row[idxMongdoi]) {
+                    const items = row[idxMongdoi].toString().split(',').map(s => s.trim()).filter(s => s);
+                    items.forEach(item => {
+                        statsMongdoi[item] = (statsMongdoi[item] || 0) + 1;
+                    });
+                }
             });
 
             // Draw Chart 1
@@ -283,26 +290,32 @@
             });
         }
 
-        function renderTable(rows) {
+        function renderTable(rows, headers) {
             const tbody = document.querySelector('#dataTable tbody');
             tbody.innerHTML = '';
 
+            const idxName = headers.indexOf('Họ Tên Con') !== -1 ? headers.indexOf('Họ Tên Con') : 1;
+            const idxEmail = headers.indexOf('Email Phụ Huynh') !== -1 ? headers.indexOf('Email Phụ Huynh') : 2;
+            const idxMuctieu = headers.indexOf('MỤC TIÊU SAU THPT');
+            const idxThemanh = headers.indexOf('THẾ MẠNH CỦA PHỤ HUYNH ĐỒNG HÀNH CÙNG CÁC CON');
+
             rows.forEach(row => {
                 const tr = document.createElement('tr');
-                let muctieu = '';
-                let themanh = '';
-                try {
-                    const parsed = JSON.parse(row[3]);
-                    muctieu = (parsed['Mục Tiêu Sau THPT']?.checked || []).join(', ');
-                    themanh = (parsed['Thế Mạnh Của Phụ Huynh Đồng Hành Cùng Các Con']?.checked || []).join(', ');
-                } catch(e) {}
+                
+                const muctieu = idxMuctieu !== -1 && row[idxMuctieu] ? row[idxMuctieu] : '';
+                const themanh = idxThemanh !== -1 && row[idxThemanh] ? row[idxThemanh] : '';
 
-                const date = new Date(row[0]).toLocaleDateString('vi-VN');
+                let dateStr = '';
+                if (row[0]) {
+                    const d = new Date(row[0]);
+                    if (!isNaN(d)) dateStr = d.toLocaleDateString('vi-VN');
+                    else dateStr = row[0];
+                }
 
                 tr.innerHTML = `
-                    <td>${date}</td>
-                    <td><strong>${row[1]}</strong></td>
-                    <td>${row[2]}</td>
+                    <td>${dateStr}</td>
+                    <td><strong>${row[idxName] || ''}</strong></td>
+                    <td>${row[idxEmail] || ''}</td>
                     <td>${muctieu}</td>
                     <td>${themanh}</td>
                 `;
