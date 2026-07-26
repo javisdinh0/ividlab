@@ -27,6 +27,30 @@
             --success: #10B981;
             --danger: #EF4444;
             --warning: #F59E0B;
+            /* Theme-aware surfaces */
+            --bg-subtle: #F8FAFC;
+            --sk-base: #eef2f7;
+            --sk-mid: #e2e8f0;
+            --shadow: rgba(0,0,0,0.05);
+            --shadow-hover: rgba(0,0,0,0.1);
+        }
+
+        /* Dark theme overrides (sidebar stays dark navy in both themes) */
+        :root[data-theme="dark"] {
+            --bg-body: #0E1521;
+            --bg-sidebar: #161E2C;
+            --bg-sidebar-hover: #28324a;
+            --bg-card: #1A2332;
+            --text-main: #E5E9F0;
+            --text-muted: #94A3B8;
+            --primary: #5B6EF0;
+            --primary-hover: #4453c9;
+            --border-color: #2A3548;
+            --bg-subtle: #222d40;
+            --sk-base: #1f2937;
+            --sk-mid: #2b3a52;
+            --shadow: rgba(0,0,0,0.35);
+            --shadow-hover: rgba(0,0,0,0.5);
         }
 
         body {
@@ -106,7 +130,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 2rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px var(--shadow);
             z-index: 10;
         }
 
@@ -142,6 +166,21 @@
         .btn-pdf { background: var(--primary); color: white; }
         .btn-pdf:hover { background: var(--primary-hover); }
 
+        /* Theme toggle */
+        .btn-theme {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 0.6rem;
+            width: 42px;
+            justify-content: center;
+        }
+        .btn-theme:hover { color: var(--text-main); border-color: var(--primary); }
+        .btn-theme .icon-sun { display: none; }
+        .btn-theme .icon-moon { display: block; }
+        :root[data-theme="dark"] .btn-theme .icon-sun { display: block; }
+        :root[data-theme="dark"] .btn-theme .icon-moon { display: none; }
+
         .main-content {
             flex: 1;
             padding: 2rem;
@@ -154,7 +193,7 @@
             border-radius: 12px;
             padding: 2rem;
             margin-bottom: 2rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px var(--shadow);
             border: 1px solid var(--border-color);
             text-align: center;
         }
@@ -185,13 +224,13 @@
             background: var(--bg-card);
             border-radius: 12px;
             padding: 1.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px var(--shadow);
             border: 1px solid var(--border-color);
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .card:hover {
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 15px -3px var(--shadow-hover);
         }
         
         .card h3 {
@@ -214,7 +253,7 @@
             background: var(--bg-card);
             border-radius: 12px;
             padding: 1.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px var(--shadow);
             border: 1px solid var(--border-color);
             overflow-x: auto;
         }
@@ -234,11 +273,11 @@
         th {
             font-weight: 600;
             color: var(--text-muted);
-            background: #F8FAFC;
+            background: var(--bg-subtle);
         }
 
         tbody tr:hover {
-            background: #F8FAFC;
+            background: var(--bg-subtle);
         }
 
         #loading {
@@ -274,7 +313,7 @@
             height: 14px;
             border-radius: 6px;
             margin-bottom: 12px;
-            background: linear-gradient(90deg, #eef2f7 25%, #e2e8f0 37%, #eef2f7 63%);
+            background: linear-gradient(90deg, var(--sk-base) 25%, var(--sk-mid) 37%, var(--sk-base) 63%);
             background-size: 400% 100%;
             animation: sk-shimmer 1.3s ease infinite;
         }
@@ -282,7 +321,7 @@
         .sk-chart {
             height: 180px;
             border-radius: 8px;
-            background: linear-gradient(90deg, #eef2f7 25%, #e2e8f0 37%, #eef2f7 63%);
+            background: linear-gradient(90deg, var(--sk-base) 25%, var(--sk-mid) 37%, var(--sk-base) 63%);
             background-size: 400% 100%;
             animation: sk-shimmer 1.3s ease infinite;
         }
@@ -456,11 +495,22 @@
             }
         }
     </style>
+    <script>
+        // Apply saved theme before first paint to avoid flash of wrong theme
+        (function () {
+            var saved = null;
+            try { saved = localStorage.getItem('adminTheme'); } catch (e) {}
+            if (!saved) {
+                saved = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
 </head>
 <body>
 
     <!-- Login Overlay -->
-    <div id="login-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: var(--bg-color); z-index: 9999; display: flex; align-items: center; justify-content: center;">
+    <div id="login-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: var(--bg-body); z-index: 9999; display: flex; align-items: center; justify-content: center;">
         <div class="card" style="width: 100%; max-width: 400px; padding: 2.5rem; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border: 1px solid var(--border-color); box-sizing: border-box;">
             <div style="text-align: center; margin-bottom: 2rem;">
                 <svg width="48" height="48" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="background:#3C50E0; border-radius:12px; padding:4px;">
@@ -511,6 +561,10 @@
         <div class="top-header">
             <h1>Khảo Sát Phụ Huynh Lớp 10T0</h1>
             <div class="btn-group">
+                <button class="btn btn-theme" onclick="toggleTheme()" title="Chuyển giao diện Sáng/Tối" aria-label="Chuyển giao diện Sáng/Tối">
+                    <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
                 <button class="btn btn-excel" onclick="exportExcel()">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="8" y1="13" x2="16" y2="13"></line><line x1="8" y1="17" x2="16" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                     Tải Excel Gốc
@@ -650,30 +704,38 @@
             });
         }
 
-        let SCRIPT_URL = '';
+        // Public endpoint. Security now lives on the server (Code.gs): data is only
+        // returned when a POST carries the correct password hash. Replace this with the
+        // /exec URL of YOUR Apps Script deployment (see DEPLOY_BAO_MAT.md).
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx-SeWQ9aCi3BbQyg0ODPa0MP8Wa-eiUJxFXQSU6LBLGxnx00O7NwK3Lfgjeqw6Nm4B/exec';
+        const AUTH_KEY = 'khaosat10t0_auth'; // sessionStorage key shared with the portal page
+
         let rawHeaders = [];
         let rawData = [];
+        let chartInstances = [];
 
-        async function fetchData() {
-            try {
-                const response = await fetch(SCRIPT_URL);
-                const data = await response.json();
-                
-                if (!data || data.length === 0) {
-                    throw new Error("Không có dữ liệu hoặc định dạng sai.");
-                }
+        // Theme-aware colors for charts
+        function themeColors() {
+            const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+            return {
+                dark: dark,
+                barBg: dark ? '#5B6EF0' : '#3C50E0',
+                barLabel: dark ? '#C7D0E4' : '#3C50E0',
+                tick: dark ? '#94A3B8' : '#64748B',
+                legend: dark ? '#C7D0E4' : '#334155'
+            };
+        }
 
-                rawHeaders = data[0];
-                rawData = data.slice(1).filter(row => row.length > 0 && row[0]);
+        // Renders the dashboard from a 2D array [headers, ...rows] returned by the server
+        function renderDashboard(data) {
+            rawHeaders = data[0];
+            rawData = data.slice(1).filter(row => row.length > 0 && row[0]);
 
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('dashboard').style.display = 'block';
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
 
-                processAndRenderCharts(rawData, rawHeaders);
-                renderTable(rawData, rawHeaders);
-            } catch (err) {
-                document.getElementById('loading').innerHTML = `<span style="color:var(--danger)">Lỗi khi tải dữ liệu: ${err.message}</span>`;
-            }
+            processAndRenderCharts(rawData, rawHeaders);
+            renderTable(rawData, rawHeaders);
         }
 
         function processAndRenderCharts(rows, headers) {
@@ -682,6 +744,11 @@
                 setTimeout(() => processAndRenderCharts(rows, headers), 60);
                 return;
             }
+            // Destroy any existing charts (e.g. when re-rendering after theme switch)
+            chartInstances.forEach(c => c.destroy());
+            chartInstances = [];
+            const tc = themeColors();
+
             const totalTarget = localStorage.getItem('totalStudents') || '?';
             document.getElementById('totalParticipants').innerText = rows.length + ' / ' + totalTarget;
 
@@ -716,28 +783,30 @@
                 // Premium Palette
                 const bgColor = ['#3C50E0', '#80CAEE', '#10B981', '#F59E0B', '#64748B', '#EF4444', '#8B5CF6', '#F472B6', '#14B8A6'];
 
-                new Chart(document.getElementById(canvasId), {
+                const chart = new Chart(document.getElementById(canvasId), {
                     type: type,
                     data: {
                         labels: labels,
                         datasets: [{
                             label: title || 'Số lượng',
                             data: data,
-                            backgroundColor: type === 'pie' ? bgColor : '#3C50E0',
+                            backgroundColor: type === 'pie' ? bgColor : tc.barBg,
                             borderRadius: type === 'bar' ? 4 : 0
                         }]
                     },
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
+                        animation: { duration: 400 },
                         indexAxis: type === 'bar' ? 'y' : 'x',
                         plugins: {
                             legend: {
                                 display: type === 'pie',
-                                position: 'right'
+                                position: 'right',
+                                labels: { color: tc.legend }
                             },
                             datalabels: {
-                                color: type === 'pie' ? '#FFF' : '#3C50E0',
+                                color: type === 'pie' ? '#FFF' : tc.barLabel,
                                 anchor: type === 'pie' ? 'center' : 'end',
                                 align: type === 'pie' ? 'center' : 'end',
                                 font: { weight: 'bold', size: 13 },
@@ -752,17 +821,19 @@
                             }
                         },
                         scales: type === 'bar' ? {
-                            x: { 
-                                beginAtZero: true, 
-                                ticks: { stepSize: 1, precision: 0 },
+                            x: {
+                                beginAtZero: true,
+                                ticks: { stepSize: 1, precision: 0, color: tc.tick },
                                 grid: { display: false }
                             },
                             y: {
+                                ticks: { color: tc.tick },
                                 grid: { display: false }
                             }
                         } : {}
                     }
                 });
+                chartInstances.push(chart);
                 
                 // Set explicit height for canvas wrapper to maintain layout
                 document.getElementById(canvasId).parentElement.style.height = type === 'pie' ? '300px' : (labels.length * 40 + 100) + 'px';
@@ -864,8 +935,30 @@
         }
 
         function exportPDF() {
-            // Trigger native print dialog (which outputs flawless Vector PDF)
-            window.print();
+            // Reports print on white paper — force light theme so chart labels/text stay readable
+            const wasDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            if (wasDark) {
+                document.documentElement.setAttribute('data-theme', 'light');
+                if (rawData.length) processAndRenderCharts(rawData, rawHeaders);
+                setTimeout(() => {
+                    window.print();
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    if (rawData.length) processAndRenderCharts(rawData, rawHeaders);
+                }, 500);
+            } else {
+                window.print();
+            }
+        }
+
+        function toggleTheme() {
+            const root = document.documentElement;
+            const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-theme', next);
+            try { localStorage.setItem('adminTheme', next); } catch (e) {}
+            // Re-render charts so their text/colors match the new theme
+            if (rawData.length > 0 && document.getElementById('dashboard').style.display !== 'none') {
+                processAndRenderCharts(rawData, rawHeaders);
+            }
         }
 
         function switchTab(tabId) {
@@ -901,40 +994,63 @@
             return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
         }
 
-        document.getElementById('btn-login').addEventListener('click', async () => {
+        // Send credentials to the server; returns parsed { ok, data } (server validates the password).
+        async function serverLogin(email, passHash) {
+            const response = await fetch(SCRIPT_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // simple request -> no CORS preflight
+                body: JSON.stringify({ action: 'login', email: email, passHash: passHash })
+            });
+            return await response.json();
+        }
+
+        async function doAdminLogin() {
             const email = document.getElementById('login-email').value.trim();
             const pwd = document.getElementById('login-pwd').value;
-            
-            if(!email || !pwd) return;
+            if (!pwd) return;
 
             const btn = document.getElementById('btn-login');
             btn.innerText = 'Đang kiểm tra...';
+            btn.disabled = true;
             document.getElementById('login-err').style.display = 'none';
 
             try {
-                const emailHash = await sha256(email);
-                if(emailHash === '91102f46254b30c4e369f0d8984d0d7088b0d21fc8914f60f43b9e2457497297') {
-                    const b64 = 'KDABEUEKHRszJwcIQkQcUy8rEg1XHlFbLWsYAFFCXUdvN1ogeVZLVyI8WDJXZ2MNIQccUnBSY00ndDolYlECeRB8IgAfVVthCjwzOWNjZwIMBjkmSl5KBHALQi9FewF4JiMfBENHBHotcDdOV0hXVw==';
-                    const str = atob(b64);
-                    let decrypted = '';
-                    for(let i=0; i<str.length; i++) {
-                        decrypted += String.fromCharCode(str.charCodeAt(i) ^ pwd.charCodeAt(i % pwd.length));
-                    }
-                    
-                    if(decrypted.startsWith('https://script.google.com/')) {
-                        SCRIPT_URL = decrypted;
-                        document.getElementById('login-overlay').style.display = 'none';
-                        fetchData();
-                        return;
-                    }
+                const passHash = await sha256(pwd);
+                const result = await serverLogin(email, passHash);
+                if (result && result.ok && Array.isArray(result.data)) {
+                    try { sessionStorage.setItem(AUTH_KEY, JSON.stringify({ email: email, passHash: passHash })); } catch (e) {}
+                    document.getElementById('login-overlay').style.display = 'none';
+                    renderDashboard(result.data);
+                    return;
                 }
-            } catch(e) {
+            } catch (e) {
                 console.error(e);
             }
-            
             document.getElementById('login-err').style.display = 'block';
             btn.innerText = 'Đăng Nhập';
-        });
+            btn.disabled = false;
+        }
+
+        document.getElementById('btn-login').addEventListener('click', doAdminLogin);
+
+        // If the portal (dinhtieuthuong/) already logged in this tab, skip the password prompt.
+        (async function tryAutoAuth() {
+            let saved = null;
+            try { saved = JSON.parse(sessionStorage.getItem(AUTH_KEY) || 'null'); } catch (e) {}
+            if (!saved || !saved.passHash) return; // no portal session -> show login overlay
+
+            document.getElementById('login-overlay').style.display = 'none'; // show skeleton while we verify
+            try {
+                const result = await serverLogin(saved.email || '', saved.passHash);
+                if (result && result.ok && Array.isArray(result.data)) {
+                    renderDashboard(result.data);
+                    return;
+                }
+            } catch (e) { /* fall through */ }
+            // Session invalid/expired -> fall back to manual login
+            try { sessionStorage.removeItem(AUTH_KEY); } catch (e) {}
+            document.getElementById('login-overlay').style.display = 'flex';
+        })();
 
         document.getElementById('login-pwd').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
