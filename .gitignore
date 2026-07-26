@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local survey sample data & heavy assets (contains PII — keep out of git)
+Data/
