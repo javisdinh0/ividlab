@@ -765,17 +765,38 @@
             const formGroups = Array.from(document.querySelectorAll('.form-group')).slice(1);
             
             formGroups.forEach((group) => {
-                const label = group.querySelector('.group-label');
-                if(!label) return;
-                const key = label.innerText.trim();
+                const labelElem = group.querySelector('.group-label');
+                const baseKey = labelElem ? labelElem.innerText.trim() : '';
                 
-                const checked = Array.from(group.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.nextElementSibling.innerText.trim());
-                const textInputs = Array.from(group.querySelectorAll('input[type="text"]')).map(inp => inp.value.trim()).filter(v => v);
+                const checkboxes = Array.from(group.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.nextElementSibling.innerText.trim());
+                
+                if (checkboxes.length > 0 && baseKey) {
+                    if (!surveyData[baseKey]) surveyData[baseKey] = { checked: [], text: [] };
+                    surveyData[baseKey].checked.push(...checkboxes);
+                }
 
-                surveyData[key] = {
-                    checked: checked,
-                    text: textInputs
-                };
+                const textInputs = Array.from(group.querySelectorAll('input[type="text"], input[type="tel"]'));
+                textInputs.forEach(inp => {
+                    const val = inp.value.trim();
+                    if (val) {
+                        const ph = inp.getAttribute('placeholder') || '';
+                        
+                        // If it's a "Khác" input related to a checkbox group
+                        if (ph.toLowerCase().includes('khác')) {
+                            if (baseKey) {
+                                if (!surveyData[baseKey]) surveyData[baseKey] = { checked: [], text: [] };
+                                surveyData[baseKey].text.push(val);
+                            }
+                        } else {
+                            // Unique column for each text input (e.g. "Thông tin Bố - Họ và tên")
+                            const specificKey = baseKey ? `${baseKey} - ${ph}` : ph;
+                            if (specificKey) {
+                                if (!surveyData[specificKey]) surveyData[specificKey] = { checked: [], text: [] };
+                                surveyData[specificKey].text.push(val);
+                            }
+                        }
+                    }
+                });
             });
 
             try {
