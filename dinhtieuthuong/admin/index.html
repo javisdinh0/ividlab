@@ -6,6 +6,7 @@
     <title>ViDiLab - Admin Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
@@ -155,6 +156,25 @@
             font-size: 1.2rem;
             color: var(--text-light);
         }
+
+        /* Print formatting */
+        @media print {
+            body { background: white; }
+            .sidebar { display: none; }
+            .main-content { padding: 0; }
+            .card { 
+                page-break-inside: avoid; 
+                border: 1px solid #eee; 
+                box-shadow: none;
+                margin-bottom: 20px;
+            }
+            .stat-banner { 
+                page-break-inside: avoid; 
+                border: 1px solid #eee; 
+                box-shadow: none; 
+            }
+            .header h1 { text-align: center; width: 100%; }
+        }
     </style>
 </head>
 <body>
@@ -241,6 +261,9 @@
     </div>
 
     <script>
+        // Register DataLabels Plugin globally
+        Chart.register(ChartDataLabels);
+
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx-SeWQ9aCi3BbQyg0ODPa0MP8Wa-eiUJxFXQSU6LBLGxnx00O7NwK3Lfgjeqw6Nm4B/exec';
         let rawHeaders = [];
         let rawData = [];
@@ -288,10 +311,18 @@
             }
 
             function drawChart(canvasId, type, statsObj, title='') {
-                const labels = Object.keys(statsObj);
+                let labels = Object.keys(statsObj);
                 if (labels.length === 0) return;
-                const data = Object.values(statsObj);
+                let data = Object.values(statsObj);
                 
+                // For Bar charts, sort descending for scientific presentation
+                if (type === 'bar') {
+                    const combined = labels.map((l, i) => ({ label: l, value: data[i] }));
+                    combined.sort((a, b) => b.value - a.value);
+                    labels = combined.map(c => c.label);
+                    data = combined.map(c => c.value);
+                }
+
                 const bgColor = ['#78A4CB', '#B3D9E6', '#E6F3F7', '#FFF9E6', '#4A7A9C', '#F2C94C', '#F2994A', '#EB5757', '#6FCF97'];
 
                 new Chart(document.getElementById(canvasId), {
@@ -304,7 +335,29 @@
                             backgroundColor: type === 'pie' ? bgColor : '#78A4CB'
                         }]
                     },
-                    options: type === 'bar' ? { scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } } } : {}
+                    options: {
+                        indexAxis: type === 'bar' ? 'y' : 'x', // Horizontal bars for readability
+                        plugins: {
+                            legend: {
+                                display: type === 'pie'
+                            },
+                            datalabels: {
+                                color: type === 'pie' ? '#2C3E50' : '#FFF',
+                                font: { weight: 'bold' },
+                                formatter: (value, ctx) => {
+                                    if (value === 0) return '';
+                                    if (type === 'pie') {
+                                        const sum = ctx.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                                        return ((value / sum) * 100).toFixed(1) + "%";
+                                    }
+                                    return value;
+                                }
+                            }
+                        },
+                        scales: type === 'bar' ? {
+                            x: { beginAtZero: true, ticks: { stepSize: 1 } }
+                        } : {}
+                    }
                 });
             }
 
