@@ -155,6 +155,20 @@
             transition: transform 0.4s ease;
         }
 
+        .icon-col svg path, .icon-col svg polyline, .icon-col svg circle, .icon-col svg rect, .icon-col svg line {
+            stroke-dasharray: 500;
+            stroke-dashoffset: 500;
+            transition: stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .grid-row.visible .icon-col svg path,
+        .grid-row.visible .icon-col svg polyline,
+        .grid-row.visible .icon-col svg circle,
+        .grid-row.visible .icon-col svg rect,
+        .grid-row.visible .icon-col svg line {
+            stroke-dashoffset: 0;
+        }
+
         .grid-row:hover .icon-col svg {
             transform: scale(1.05) rotate(-3deg);
             stroke: var(--c-blue-2);
