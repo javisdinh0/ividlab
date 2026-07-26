@@ -160,7 +160,7 @@
 <body>
 
     <div class="sidebar">
-        <h2>ViDiLab Admin</h2>
+        <h2>Admin Dashboard - Đinh Tiểu Thương</h2>
         <div class="nav-item active">10T0 - Khảo Sát Phụ Huynh</div>
         <div class="nav-item">Thống kê khác</div>
     </div>
@@ -177,14 +177,46 @@
         <div id="loading">Đang tải dữ liệu từ Google Sheets...</div>
 
         <div id="dashboard" style="display: none;">
+            <div class="stat-banner" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.03); text-align: center;">
+                <h2 style="margin: 0; color: var(--c-blue-4);">Số phụ huynh đã tham gia khảo sát: <span id="totalParticipants" style="font-size: 2.2rem; color: #D83B01;">0</span></h2>
+            </div>
+
             <div class="dashboard-grid">
                 <div class="card">
                     <h3>Khối thi / Định hướng mục tiêu</h3>
-                    <canvas id="chart1"></canvas>
+                    <canvas id="chartMuctieu"></canvas>
                 </div>
                 <div class="card">
+                    <h3>Năng khiếu nổi bật</h3>
+                    <canvas id="chartNangkhieu"></canvas>
+                </div>
+                <div class="card">
+                    <h3>Môn học lợi thế (đam mê, điểm cao)</h3>
+                    <canvas id="chartMonLoiThe"></canvas>
+                </div>
+                <div class="card">
+                    <h3>Môn học e ngại (cần hỗ trợ thêm)</h3>
+                    <canvas id="chartMonENgai"></canvas>
+                </div>
+                <div class="card">
+                    <h3>Lưu ý y tế đặc biệt</h3>
+                    <canvas id="chartYTe"></canvas>
+                </div>
+                <div class="card">
+                    <h3>Phương tiện đi lại</h3>
+                    <canvas id="chartPhuongTien"></canvas>
+                </div>
+                <div class="card">
+                    <h3>Kinh nghiệm Ban đại diện CMHS</h3>
+                    <canvas id="chartKinhNghiem"></canvas>
+                </div>
+                <div class="card">
+                    <h3>Sẵn sàng tham gia Ban phụ huynh năm nay</h3>
+                    <canvas id="chartSanSang"></canvas>
+                </div>
+                <div class="card" style="grid-column: span 2;">
                     <h3>Mong đợi hỗ trợ từ Giáo viên chủ nhiệm</h3>
-                    <canvas id="chart2"></canvas>
+                    <canvas id="chartMongdoi"></canvas>
                 </div>
             </div>
 
@@ -238,56 +270,53 @@
         }
 
         function processAndRenderCharts(rows, headers) {
-            // Stats object
-            const statsMuctieu = {};
-            const statsMongdoi = {};
+            document.getElementById('totalParticipants').innerText = rows.length;
 
-            const idxMuctieu = headers.indexOf('MỤC TIÊU SAU THPT');
-            const idxMongdoi = headers.indexOf('MONG ĐỢI NHÀ TRƯỜNG, GVCN HỖ TRỢ KHÍA CẠNH');
+            function getStats(headerName) {
+                const idx = headers.indexOf(headerName);
+                if (idx === -1) return {};
+                const stats = {};
+                rows.forEach(row => {
+                    if (row[idx]) {
+                        const items = row[idx].toString().split(',').map(s => s.trim()).filter(s => s);
+                        items.forEach(item => {
+                            stats[item] = (stats[item] || 0) + 1;
+                        });
+                    }
+                });
+                return stats;
+            }
 
-            rows.forEach(row => {
-                if (idxMuctieu !== -1 && row[idxMuctieu]) {
-                    const items = row[idxMuctieu].toString().split(',').map(s => s.trim()).filter(s => s);
-                    items.forEach(item => {
-                        statsMuctieu[item] = (statsMuctieu[item] || 0) + 1;
-                    });
-                }
+            function drawChart(canvasId, type, statsObj, title='') {
+                const labels = Object.keys(statsObj);
+                if (labels.length === 0) return;
+                const data = Object.values(statsObj);
+                
+                const bgColor = ['#78A4CB', '#B3D9E6', '#E6F3F7', '#FFF9E6', '#4A7A9C', '#F2C94C', '#F2994A', '#EB5757', '#6FCF97'];
 
-                if (idxMongdoi !== -1 && row[idxMongdoi]) {
-                    const items = row[idxMongdoi].toString().split(',').map(s => s.trim()).filter(s => s);
-                    items.forEach(item => {
-                        statsMongdoi[item] = (statsMongdoi[item] || 0) + 1;
-                    });
-                }
-            });
+                new Chart(document.getElementById(canvasId), {
+                    type: type,
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: title || 'Số lượng',
+                            data: data,
+                            backgroundColor: type === 'pie' ? bgColor : '#78A4CB'
+                        }]
+                    },
+                    options: type === 'bar' ? { scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } } } : {}
+                });
+            }
 
-            // Draw Chart 1
-            new Chart(document.getElementById('chart1'), {
-                type: 'pie',
-                data: {
-                    labels: Object.keys(statsMuctieu),
-                    datasets: [{
-                        data: Object.values(statsMuctieu),
-                        backgroundColor: ['#78A4CB', '#B3D9E6', '#E6F3F7', '#FFF9E6', '#4A7A9C']
-                    }]
-                }
-            });
-
-            // Draw Chart 2
-            new Chart(document.getElementById('chart2'), {
-                type: 'bar',
-                data: {
-                    labels: Object.keys(statsMongdoi),
-                    datasets: [{
-                        label: 'Số lượng',
-                        data: Object.values(statsMongdoi),
-                        backgroundColor: '#78A4CB'
-                    }]
-                },
-                options: {
-                    scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
-                }
-            });
+            drawChart('chartMuctieu', 'pie', getStats('MỤC TIÊU SAU THPT'));
+            drawChart('chartNangkhieu', 'bar', getStats('NĂNG KHIẾU NỔI BẬT'));
+            drawChart('chartMonLoiThe', 'bar', getStats('MÔN HỌC LỢI THẾ (ĐAM MÊ, ĐIỂM CAO)'));
+            drawChart('chartMonENgai', 'bar', getStats('MÔN HỌC E NGẠI (CẦN HỖ TRỢ THÊM)'));
+            drawChart('chartYTe', 'pie', getStats('LƯU Ý Y TẾ ĐẶC BIỆT'));
+            drawChart('chartPhuongTien', 'pie', getStats('PHƯƠNG TIỆN ĐI LẠI'));
+            drawChart('chartKinhNghiem', 'bar', getStats('KINH NGHIỆM BAN ĐẠI DIỆN CMHS'));
+            drawChart('chartSanSang', 'pie', getStats('SẴN SÀNG THAM GIA BAN PHỤ HUYNH NĂM NAY'));
+            drawChart('chartMongdoi', 'bar', getStats('MONG ĐỢI NHÀ TRƯỜNG, GVCN HỖ TRỢ KHÍA CẠNH'));
         }
 
         function renderTable(rows, headers) {
@@ -324,8 +353,9 @@
         }
 
         function exportExcel() {
-            const table = document.getElementById('dataTable');
-            const wb = XLSX.utils.table_to_book(table, {sheet:"10T0"});
+            const ws = XLSX.utils.aoa_to_sheet([rawHeaders, ...rawData]);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Khao Sat 10T0");
             XLSX.writeFile(wb, 'ThongKe_KhaoSat_10T0.xlsx');
         }
 
