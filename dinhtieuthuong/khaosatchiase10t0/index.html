@@ -136,7 +136,7 @@
             content: attr(data-step);
             position: absolute;
             top: 50%;
-            left: 50%;
+            left: 20%;
             transform: translate(-50%, -50%);
             font-size: 10rem;
             font-weight: 900;
@@ -145,6 +145,10 @@
             pointer-events: none;
             font-family: 'Inter', sans-serif;
             white-space: nowrap;
+        }
+
+        .grid-row:nth-child(even)::after {
+            left: 80%;
         }
 
         .grid-row:nth-child(even) {
@@ -351,6 +355,11 @@
         }
 
         @media (max-width: 768px) {
+            .grid-row::after, .grid-row:nth-child(even)::after {
+                top: 10%;
+                left: 50%;
+                font-size: 8rem;
+            }
             .grid-row, .grid-row:nth-child(even) {
                 flex-direction: column; text-align: left; margin-bottom: 4rem;
             }
