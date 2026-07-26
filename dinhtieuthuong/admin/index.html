@@ -434,15 +434,13 @@
                 </div>
 
                 <div class="table-container">
-                    <h3 style="margin-top: 0; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; color: var(--text-main);">Danh sách phản hồi chi tiết (Xem trước)</h3>
+                    <h3 style="margin-top: 0; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; color: var(--text-main);">Danh sách phản hồi chi tiết</h3>
                     <table id="dataTable">
                         <thead>
                             <tr>
                                 <th>Thời gian</th>
                                 <th>Họ Tên Con</th>
                                 <th>Email Phụ Huynh</th>
-                                <th>Mục Tiêu Sau THPT</th>
-                                <th>Thế Mạnh Đồng Hành</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -587,14 +585,9 @@
 
             const idxName = headers.indexOf('Họ Tên Con') !== -1 ? headers.indexOf('Họ Tên Con') : 1;
             const idxEmail = headers.indexOf('Email Phụ Huynh') !== -1 ? headers.indexOf('Email Phụ Huynh') : 2;
-            const idxMuctieu = headers.indexOf('MỤC TIÊU SAU THPT');
-            const idxThemanh = headers.indexOf('THẾ MẠNH CỦA PHỤ HUYNH ĐỒNG HÀNH CÙNG CÁC CON');
 
-            rows.slice(0, 10).forEach(row => { // only show 10 in preview
+            rows.forEach(row => {
                 const tr = document.createElement('tr');
-                
-                const muctieu = idxMuctieu !== -1 && row[idxMuctieu] ? row[idxMuctieu] : '';
-                const themanh = idxThemanh !== -1 && row[idxThemanh] ? row[idxThemanh] : '';
 
                 let dateStr = '';
                 if (row[0]) {
@@ -607,16 +600,9 @@
                     <td>${dateStr}</td>
                     <td><strong>${row[idxName] || ''}</strong></td>
                     <td>${row[idxEmail] || ''}</td>
-                    <td>${muctieu}</td>
-                    <td>${themanh}</td>
                 `;
                 tbody.appendChild(tr);
             });
-            if(rows.length > 10) {
-                 const tr = document.createElement('tr');
-                 tr.innerHTML = `<td colspan="5" style="text-align:center; color: var(--text-muted); font-style: italic;">Đang hiển thị 10 phản hồi gần nhất... (Tải Excel để xem toàn bộ)</td>`;
-                 tbody.appendChild(tr);
-            }
         }
 
         function exportExcel() {
