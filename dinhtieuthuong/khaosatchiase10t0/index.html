@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khảo Sát Phụ Huynh K10</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* New Pastel Palette */
+            --bg-color: #F0F8FA; /* very light blue for background */
+            --bg-card: #FFFFFF;
+            
+            --c-yellow: #F9E8A2;
+            --c-blue-1: #B4E1EB;
+            --c-blue-2: #95BDD7;
+            --c-blue-3: #78A4CB;
+            
+            --accent: #78A4CB;
+            --accent-light: #95BDD7;
+            --text-main: #34495e; /* dark gray blue */
+            --text-dim: #7f8c8d;
+            
+            /* Keep yellow for strong highlights */
+            --highlight: #F9E8A2; 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at center, var(--c-blue-1) 0%, var(--bg-color) 100%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            color: var(--text-main);
+            font-family: 'Lora', serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 4rem 1rem;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--c-blue-3);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .header .subtitle-box {
+            display: inline-block;
+            background-color: var(--c-yellow);
+            color: var(--text-main);
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(249, 232, 162, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid var(--c-yellow);
+        }
+
+        /* Intro Section */
+        .intro-box {
+            text-align: center;
+            margin-bottom: 4rem;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-main);
+            font-style: italic;
+            padding: 0 2rem;
+            animation: fadeIn 1.5s ease-out;
+            position: relative;
+        }
+
+        .intro-box::before, .intro-box::after {
+            content: '❝';
+            font-size: 3rem;
+            color: var(--c-blue-1);
+            position: absolute;
+        }
+        .intro-box::before { top: -10px; left: 0; }
+        .intro-box::after { content: '❞'; bottom: -30px; right: 0; }
+
+        .author {
+            display: block;
+            margin-top: 1rem;
+            font-weight: 600;
+            font-style: normal;
+            font-family: 'Inter', sans-serif;
+            color: var(--c-blue-3);
+            font-size: 1rem;
+        }
+
+        /* Grid Layout */
+        .grid-row {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .grid-row.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .grid-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .icon-col {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            padding: 2rem;
+            position: sticky;
+            top: 20px;
+        }
+
+        .icon-col svg {
+            width: 140px;
+            height: 140px;
+            stroke: var(--c-blue-3);
+            stroke-width: 1.5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: drop-shadow(0px 10px 15px rgba(120, 164, 203, 0.3));
+            transition: transform 0.4s ease;
+        }
+
+        .grid-row:hover .icon-col svg {
+            transform: scale(1.05) rotate(-3deg);
+            stroke: var(--c-blue-2);
+        }
+
+        .text-col {
+            flex: 1.5;
+            padding: 1rem 2rem;
+        }
+
+        .text-col h2 {
+            font-family: 'Merriweather', serif;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--c-blue-3);
+        }
+
+        .text-col h2 span {
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            color: var(--c-blue-2);
+            display: block;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Form Groups */
+        .form-group-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--c-blue-3);
+            box-shadow: 0 4px 20px rgba(120, 164, 203, 0.15);
+        }
+
+        .form-group .group-label {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: var(--c-blue-3);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--c-blue-1);
+            padding-bottom: 0.5rem;
+        }
+
+        .form-group input[type="text"], 
+        .form-group input[type="tel"],
+        .form-group input[type="email"] {
+            background: #f8fcfd;
+            border: 1px solid var(--c-blue-1);
+            border-radius: 6px;
+            padding: 0.8rem 1rem;
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder {
+            color: var(--c-blue-2);
+            font-style: italic;
+        }
+
+        .form-group input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 30px #f8fcfd inset !important;
+            -webkit-text-fill-color: var(--text-main) !important;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--c-blue-3);
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(120, 164, 203, 0.2);
+        }
+
+        /* Pill Checkboxes for Multi-select */
+        .pill-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 0.5rem;
+        }
+
+        .pill-checkbox {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .pill-checkbox input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .pill-checkbox span {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--c-blue-1);
+            border: 1px solid var(--c-blue-2);
+            border-radius: 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .pill-checkbox:hover span {
+            border-color: var(--c-blue-3);
+            color: var(--c-blue-3);
+            background: #ffffff;
+        }
+
+        .pill-checkbox input:checked ~ span {
+            background: var(--c-blue-3);
+            color: #fff;
+            border-color: var(--c-blue-3);
+            box-shadow: 0 2px 10px rgba(120, 164, 203, 0.4);
+        }
+
+        /* Checkbox Lists */
+        .text-col ul { list-style: none; }
+        .text-col ul li {
+            margin-bottom: 1.2rem; padding-left: 2.5rem; position: relative;
+            color: var(--text-dim); line-height: 1.6; font-size: 1.05rem;
+            cursor: pointer; transition: color 0.3s ease;
+        }
+        .text-col ul li:hover { color: var(--text-main); }
+        .text-col ul li::before {
+            content: ''; position: absolute; left: 0; top: 4px;
+            width: 20px; height: 20px; border: 2px solid var(--c-blue-3);
+            border-radius: 4px; background-color: transparent;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); opacity: 0.7;
+        }
+        .text-col ul li:hover::before {
+            background-color: var(--c-blue-3); opacity: 1;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+            background-size: 14px; background-repeat: no-repeat; background-position: center;
+            transform: scale(1.1); box-shadow: 0 0 10px rgba(120, 164, 203, 0.4);
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .grid-row, .grid-row:nth-child(even) {
+                flex-direction: column; text-align: left; margin-bottom: 4rem;
+            }
+            .icon-col { padding: 1rem; position: static; text-align: center; width: 100%; display: flex; justify-content: center; }
+            .icon-col svg { width: 100px; height: 100px; }
+            .text-col { padding: 1rem 0; width: 100%; }
+            .header h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="header">
+            <h1 style="font-size: 2.6rem; line-height: 1.4; padding: 0 1rem;">Kết nối đầu tiên cho hành trình của các con tại trường THCS-THPT Newton</h1>
+            <div class="subtitle-box">10T0 - Khởi động</div>
+        </div>
+
+        <div class="intro-box">
+            Kính chào phụ huynh lớp 10T0! Hành trình 3 năm thanh xuân THPT của các con tại Trường THCS-THPT Newton sẽ trọn vẹn và ý nghĩa hơn bao giờ hết khi có sự đồng hành, thấu hiểu giữa Gia đình và Nhà trường. Rất mong Quý phụ huynh dành chút thời gian chia sẻ thông tin để chúng ta cùng nhau kiến tạo một môi trường giáo dục tốt nhất cho các con!
+            <span class="author">— Giáo viên chủ nhiệm lớp 10T0</span>
+        </div>
+
+        <div id="landing-page" class="content-wrapper">
+            <div class="grid-row" style="margin-bottom: 2rem;">
+                <div class="icon-col">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </div>
+                <div class="text-col">
+                    <div class="form-group-wrapper">
+                        <div class="form-group" style="border-left-color: var(--accent-light);">
+                            <label class="group-label">Thông Tin Học Sinh</label>
+                            <input type="email" id="student-email" placeholder="Email khảo sát (để nhận kết quả & thông báo)">
+                            <input type="text" id="student-name" placeholder="Họ và tên của con">
+                            <button id="btn-start" style="padding: 1rem; background: var(--accent); color: white; border: none; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 0.5rem; transition: all 0.3s ease;">Xác Nhận & Bắt Đầu Khảo Sát</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="main-survey" class="content-wrapper" style="display: none;">
+            
+            <!-- Section 1 -->
+            <div class="grid-row">
+                <div class="icon-col">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                        <circle cx="7" cy="15" r="2"></circle>
+                        <line x1="11" y1="14" x2="19" y2="14"></line>
+                        <line x1="11" y1="17" x2="19" y2="17"></line>
+                    </svg>
+                </div>
+                <div class="text-col">
+                    <h2><span>Phần 1</span> Thông Tin Liên Hệ</h2>
+                    <div class="form-group-wrapper">
+                        <!-- Group Bố -->
+                        <div class="form-group">
+                            <label class="group-label">Thông tin Bố</label>
+                            <input type="text" placeholder="Họ và tên">
+                            <input type="tel" placeholder="Số điện thoại">
+                            <input type="text" placeholder="Nghề nghiệp">
+                        </div>
+                        
+                        <!-- Group Mẹ -->
+                        <div class="form-group">
+                            <label class="group-label">Thông tin Mẹ</label>
+                            <input type="text" placeholder="Họ và tên">
+                            <input type="tel" placeholder="Số điện thoại">
+                            <input type="text" placeholder="Nghề nghiệp">
+                        </div>
+
+                        <!-- Group Khác -->
+                        <div class="form-group">
+                            <label class="group-label">Khác (Người giám hộ)</label>
+                            <input type="text" placeholder="Vai trò (VD: Cô, Dì, Chú, Bác...)">
+                            <input type="text" placeholder="Họ và tên">
+                            <input type="tel" placeholder="Số điện thoại">
+                            <input type="text" placeholder="Nghề nghiệp">
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" placeholder="Địa chỉ thường trú / tạm trú của gia đình">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="grid-row">
+                <div class="icon-col">
+                    <svg viewBox="0 0 24 24">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                </div>
+                <div class="text-col">
+                    <h2><span>Phần 2</span> Tài Năng Của Con</h2>
+                    <div class="form-group-wrapper">
+                        
+                        <div class="form-group">
+                            <label class="group-label">Ưu / Nhược điểm</label>
+                            <input type="text" placeholder="Những điểm mạnh tự hào của con...">
+                            <input type="text" placeholder="Những điểm yếu con đang nỗ lực khắc phục...">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="group-label">Năng Khiếu Nổi Bật</label>
+                            <div class="pill-container">
+                                <!-- 20 Talents -->
+                                <label class="pill-checkbox"><input type="checkbox"><span>Hát</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Múa / Nhảy hiện đại</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Chơi nhạc cụ (Piano, Guitar...)</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Vẽ / Mỹ thuật</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Thể thao (Bóng đá, Cầu lông...)</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Bơi lội</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>MC / Dẫn chương trình</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Hùng biện / Tranh biện</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Viết lách / Sáng tác</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Lập trình / Tin học</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Ngoại ngữ (Tiếng Anh, Trung...)</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Nhiếp ảnh / Quay phim</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Làm đồ handmade</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Nấu ăn / Pha chế</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Thiết kế đồ họa (Canva, PTS...)</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Tổ chức sự kiện</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Chơi cờ (Cờ vua, Cờ tướng...)</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Diễn xuất / Kịch</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Toán học / Logic</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Giao tiếp / Thuyết phục</span></label>
+                            </div>
+                            <input type="text" placeholder="Khác (vui lòng ghi rõ)..." style="margin-top: 0.5rem;">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="group-label">Teamleader</label>
+                            <div class="pill-container">
+                                <label class="pill-checkbox"><input type="checkbox"><span>Lớp trưởng</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Lớp phó Học tập</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Lớp phó Kỷ luật</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Lớp phó Văn thể mỹ</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Bí thư Chi đoàn</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Phó Bí thư Chi đoàn</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Ủy viên Ban chấp hành</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Tổ trưởng / Tổ phó</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Cán sự Bộ môn</span></label>
+                            </div>
+                            <input type="text" placeholder="Khác (vui lòng ghi rõ)..." style="margin-top: 0.5rem;">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="group-label">Môn Học Lợi Thế (Đam mê, điểm cao)</label>
+                            <div class="pill-container">
+                                <label class="pill-checkbox"><input type="checkbox"><span>Toán học</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Ngữ văn</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Tiếng Anh</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Vật lý</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Hóa học</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Sinh học</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Lịch sử</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Địa lý</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>GDCD</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Tin học</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Công nghệ</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Âm nhạc</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Mỹ thuật</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Thể dục</span></label>
+                            </div>
+                            <input type="text" placeholder="Khác (vui lòng ghi rõ)..." style="margin-top: 0.5rem;">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="group-label">Môn Học E Ngại (Cần hỗ trợ thêm)</label>
+                            <div class="pill-container">
+                                <label class="pill-checkbox"><input type="checkbox"><span>Toán học</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Ngữ văn</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Tiếng Anh</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Vật lý</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Hóa học</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Sinh học</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Lịch sử</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Địa lý</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>GDCD</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Tin học</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Công nghệ</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Âm nhạc</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Mỹ thuật</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Thể dục</span></label>
+                            </div>
+                            <input type="text" placeholder="Khác (vui lòng ghi rõ)..." style="margin-top: 0.5rem;">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="grid-row">
+                <div class="icon-col">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                </div>
+                <div class="text-col">
+                    <h2><span>Phần 3</span> Y Tế & Sinh Hoạt</h2>
+                    <div class="form-group-wrapper">
+                        
+                        <div class="form-group">
+                            <label class="group-label">Lưu Ý Y Tế Đặc Biệt</label>
+                            <div class="pill-container">
+                                <label class="pill-checkbox"><input type="checkbox"><span>Không có</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Cận thị / Viễn thị</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Dị ứng thức ăn</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Dị ứng thời tiết</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Hen suyễn</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Bệnh lý dạ dày</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Huyết áp thấp</span></label>
+                            </div>
+                            <input type="text" placeholder="Ghi chú thêm hoặc Khác (vui lòng ghi rõ)..." style="margin-top: 0.5rem;">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="group-label">Đặc Điểm Tâm Lý</label>
+                            <div class="pill-container">
+                                <label class="pill-checkbox"><input type="checkbox"><span>Hướng nội</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Hướng ngoại</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Dễ bị tổn thương / Nhạy cảm</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Hay gặp áp lực thi cử</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Hòa đồng, dễ thích nghi</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Cần thời gian làm quen bạn mới</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Tính tự lập cao</span></label>
+                            </div>
+                            <input type="text" placeholder="Khác (vui lòng ghi rõ)..." style="margin-top: 0.5rem;">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="group-label">Phương Tiện Đi Lại</label>
+                            <div class="pill-container">
+                                <label class="pill-checkbox"><input type="checkbox"><span>Phụ huynh đưa đón</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Tự đi xe đạp / Xe đạp điện</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Tự đi xe máy (Dưới 50cc)</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Xe bus của trường</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Xe bus công cộng</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Đi bộ</span></label>
+                            </div>
+                            <input type="text" placeholder="Khác (vui lòng ghi rõ)..." style="margin-top: 0.5rem;">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="grid-row">
+                <div class="icon-col">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                    </svg>
+                </div>
+                <div class="text-col">
+                    <h2><span>Phần 4</span> Định Hướng Tương Lai</h2>
+                    <div class="form-group-wrapper">
+                        <div class="form-group">
+                            <label class="group-label">Mục Tiêu Sau THPT</label>
+                            <div class="pill-container">
+                                <label class="pill-checkbox"><input type="checkbox"><span>Đại học trong nước</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Du học</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Học nghề</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Khởi nghiệp</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Chưa xác định</span></label>
+                            </div>
+                            <input type="text" placeholder="Khác (vui lòng ghi rõ)..." style="margin-top: 0.5rem;">
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label class="group-label">Định Hướng Chuyên Ngành</label>
+                            <input type="text" placeholder="Ghi rõ ngành nghề mong muốn (VD: Kinh tế, CNTT, Y khoa, Nghệ thuật...)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 5 -->
+            <div class="grid-row">
+                <div class="icon-col">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                    </svg>
+                </div>
+                <div class="text-col">
+                    <h2><span>Phần 5</span> Kết Nối Gia Đình - Nhà Trường</h2>
+                    <div class="form-group-wrapper">
+                        <div class="form-group">
+                            <label class="group-label">Mong Đợi Nhà Trường, GVCN Hỗ Trợ Khía Cạnh</label>
+                            <div class="pill-container">
+                                <label class="pill-checkbox"><input type="checkbox"><span>Phương pháp học tập</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Kỹ năng mềm / Giao tiếp</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Kỷ luật / Nề nếp</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Định hướng nghề nghiệp</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Hỗ trợ tâm lý / Động viên</span></label>
+                            </div>
+                            <input type="text" placeholder="Khác (vui lòng ghi rõ)..." style="margin-top: 0.5rem;">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="group-label">Thế Mạnh Của Phụ Huynh Đồng Hành Cùng Các Con</label>
+                            <div class="pill-container">
+                                <label class="pill-checkbox"><input type="checkbox"><span>Chia sẻ định hướng nghề nghiệp</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Hỗ trợ sự kiện / Ngoại khóa</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Cung cấp địa điểm tham quan</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Tư vấn tâm lý / Sức khỏe</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Chưa có điều kiện hỗ trợ</span></label>
+                            </div>
+                            <input type="text" placeholder="Khác (vui lòng ghi rõ)..." style="margin-top: 0.5rem;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 6 -->
+            <div class="grid-row">
+                <div class="icon-col">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                </div>
+                <div class="text-col">
+                    <h2><span>Phần 6</span> Công Tác Phụ Huynh</h2>
+                    <div class="form-group-wrapper">
+                        <div class="form-group">
+                            <label class="group-label">Kinh Nghiệm Ban Đại Diện CMHS</label>
+                            <div class="pill-container">
+                                <label class="pill-checkbox"><input type="checkbox"><span>Từng làm Trưởng ban</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Từng làm Ủy viên</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Chưa từng tham gia</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="group-label">Sẵn Sàng Tham Gia Ban Phụ Huynh Năm Nay</label>
+                            <div class="pill-container">
+                                <label class="pill-checkbox"><input type="checkbox"><span>Sẵn sàng ứng cử</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Chỉ có thể hỗ trợ hậu cần</span></label>
+                                <label class="pill-checkbox"><input type="checkbox"><span>Rất tiếc, năm nay chưa thể</span></label>
+                            </div>
+                            <input type="text" placeholder="Khác (vui lòng ghi rõ)..." style="margin-top: 0.5rem;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.15
+        });
+
+        document.querySelectorAll('.grid-row').forEach((item) => {
+            observer.observe(item);
+        });
+
+        // Add hover effect for button
+        const btnStart = document.getElementById('btn-start');
+        btnStart.addEventListener('mouseenter', () => {
+            btnStart.style.backgroundColor = 'var(--accent-light)';
+            btnStart.style.color = 'var(--bg-color)';
+        });
+        btnStart.addEventListener('mouseleave', () => {
+            btnStart.style.backgroundColor = 'var(--accent)';
+            btnStart.style.color = 'white';
+        });
+
+        // Handle transition from landing page to main survey
+        btnStart.addEventListener('click', () => {
+            const email = document.getElementById('student-email').value.trim();
+            const name = document.getElementById('student-name').value.trim();
+            
+            if (!email || !name) {
+                alert('Vui lòng điền đầy đủ Email và Họ tên của con để tiếp tục!');
+                return;
+            }
+
+            document.getElementById('landing-page').style.display = 'none';
+            document.getElementById('main-survey').style.display = 'block';
+            
+            // Re-observe grid rows in main survey to trigger animation
+            document.querySelectorAll('#main-survey .grid-row').forEach((item) => {
+                observer.observe(item);
+            });
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
