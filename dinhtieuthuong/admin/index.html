@@ -202,6 +202,11 @@
             padding-bottom: 0.8rem;
         }
 
+        .chart-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
         /* Table */
         .table-container {
             background: var(--bg-card);
@@ -392,39 +397,39 @@
                 <div class="dashboard-grid">
                     <div class="card">
                         <h3>Khối thi / Định hướng mục tiêu</h3>
-                        <canvas id="chartMuctieu"></canvas>
+                        <div class="chart-wrapper"><canvas id="chartMuctieu"></canvas></div>
                     </div>
                     <div class="card">
                         <h3>Năng khiếu nổi bật</h3>
-                        <canvas id="chartNangkhieu"></canvas>
+                        <div class="chart-wrapper"><canvas id="chartNangkhieu"></canvas></div>
                     </div>
                     <div class="card">
                         <h3>Môn học lợi thế (đam mê, điểm cao)</h3>
-                        <canvas id="chartMonLoiThe"></canvas>
+                        <div class="chart-wrapper"><canvas id="chartMonLoiThe"></canvas></div>
                     </div>
                     <div class="card">
                         <h3>Môn học e ngại (cần hỗ trợ thêm)</h3>
-                        <canvas id="chartMonENgai"></canvas>
+                        <div class="chart-wrapper"><canvas id="chartMonENgai"></canvas></div>
                     </div>
                     <div class="card">
                         <h3>Lưu ý y tế đặc biệt</h3>
-                        <canvas id="chartYTe"></canvas>
+                        <div class="chart-wrapper"><canvas id="chartYTe"></canvas></div>
                     </div>
                     <div class="card">
                         <h3>Phương tiện đi lại</h3>
-                        <canvas id="chartPhuongTien"></canvas>
+                        <div class="chart-wrapper"><canvas id="chartPhuongTien"></canvas></div>
                     </div>
                     <div class="card">
                         <h3>Kinh nghiệm Ban đại diện CMHS</h3>
-                        <canvas id="chartKinhNghiem"></canvas>
+                        <div class="chart-wrapper"><canvas id="chartKinhNghiem"></canvas></div>
                     </div>
                     <div class="card">
                         <h3>Sẵn sàng tham gia Ban phụ huynh năm nay</h3>
-                        <canvas id="chartSanSang"></canvas>
+                        <div class="chart-wrapper"><canvas id="chartSanSang"></canvas></div>
                     </div>
                     <div class="card" style="grid-column: 1 / -1;">
                         <h3>Mong đợi hỗ trợ từ Giáo viên chủ nhiệm</h3>
-                        <canvas id="chartMongdoi"></canvas>
+                        <div class="chart-wrapper"><canvas id="chartMongdoi"></canvas></div>
                     </div>
                 </div>
 
