@@ -695,6 +695,10 @@
                 </div>
             </div>
 
+            <div class="grid-row" style="margin-bottom: 4rem; justify-content: center; opacity: 1; transform: translateY(0);">
+                <button id="btn-submit" style="padding: 1.2rem 3rem; background: var(--c-blue-3); color: white; border: none; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(120, 164, 203, 0.4);">GỬI BẢNG KHẢO SÁT</button>
+            </div>
+
         </div>
     </div>
 
@@ -743,6 +747,58 @@
             });
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Handle Submission to Google Sheets
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwHdKX15d-_8LoPMiPgsrD139_eOfVG9myK0sTeDnHF3Mt7x6hcvRBlBkccD4TewPLr_Q/exec';
+        
+        document.getElementById('btn-submit').addEventListener('click', async () => {
+            const btn = document.getElementById('btn-submit');
+            btn.innerText = 'ĐANG GỬI...';
+            btn.disabled = true;
+
+            const email = document.getElementById('student-email').value;
+            const name = document.getElementById('student-name').value;
+            
+            const surveyData = {};
+            // Skip the first form group (Landing Page Info)
+            const formGroups = Array.from(document.querySelectorAll('.form-group')).slice(1);
+            
+            formGroups.forEach((group) => {
+                const label = group.querySelector('.group-label');
+                if(!label) return;
+                const key = label.innerText.trim();
+                
+                const checked = Array.from(group.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.nextElementSibling.innerText.trim());
+                const textInputs = Array.from(group.querySelectorAll('input[type="text"]')).map(inp => inp.value.trim()).filter(v => v);
+
+                surveyData[key] = {
+                    checked: checked,
+                    text: textInputs
+                };
+            });
+
+            try {
+                // Using text/plain mode with no-cors to avoid Google Apps Script CORS preflight issues
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({
+                        studentName: name,
+                        studentEmail: email,
+                        dataJSON: JSON.stringify(surveyData)
+                    })
+                });
+                
+                alert('Cảm ơn Quý phụ huynh! Biểu mẫu đã được gửi thành công.');
+                window.location.reload();
+            } catch (err) {
+                alert('Có lỗi xảy ra khi gửi, vui lòng thử lại sau.');
+                console.error(err);
+                btn.innerText = 'GỬI BẢNG KHẢO SÁT';
+                btn.disabled = false;
+            }
         });
     </script>
 </body>

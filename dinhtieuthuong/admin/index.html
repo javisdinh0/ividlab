@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViDiLab - Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        :root {
+            --c-yellow: #FFF9E6;
+            --c-blue-1: #E6F3F7;
+            --c-blue-2: #B3D9E6;
+            --c-blue-3: #78A4CB;
+            --c-blue-4: #4A7A9C;
+            --bg-color: #F0F8FA;
+            --text-main: #2C3E50;
+            --text-light: #5A738E;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 260px;
+            background: white;
+            padding: 2rem 1.5rem;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar h2 {
+            font-size: 1.4rem;
+            color: var(--c-blue-4);
+            margin-bottom: 2.5rem;
+        }
+
+        .nav-item {
+            padding: 1rem 1.2rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .nav-item.active {
+            background: var(--c-blue-1);
+            color: var(--c-blue-4);
+        }
+
+        .nav-item:hover:not(.active) {
+            background: #f8f9fa;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2.5rem;
+            overflow-y: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: var(--c-blue-4);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-group button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-excel { background: #107C41; color: white; }
+        .btn-pdf { background: #D83B01; color: white; }
+        
+        .btn-excel:hover { background: #0b5e31; }
+        .btn-pdf:hover { background: #a62d00; }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        
+        .card h3 {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            font-weight: 600;
+            color: var(--text-light);
+            background: #fafafa;
+        }
+
+        #loading {
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>ViDiLab Admin</h2>
+        <div class="nav-item active">10T0 - Khảo Sát Phụ Huynh</div>
+        <div class="nav-item">Thống kê khác</div>
+    </div>
+
+    <div class="main-content" id="print-area">
+        <div class="header">
+            <h1>Thống Kê Khảo Sát Lớp 10T0</h1>
+            <div class="btn-group">
+                <button class="btn-excel" onclick="exportExcel()">Xuất Excel</button>
+                <button class="btn-pdf" onclick="exportPDF()">In PDF</button>
+            </div>
+        </div>
+
+        <div id="loading">Đang tải dữ liệu từ Google Sheets...</div>
+
+        <div id="dashboard" style="display: none;">
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h3>Khối thi / Định hướng mục tiêu</h3>
+                    <canvas id="chart1"></canvas>
+                </div>
+                <div class="card">
+                    <h3>Mong đợi hỗ trợ từ Giáo viên chủ nhiệm</h3>
+                    <canvas id="chart2"></canvas>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <h3>Danh sách phản hồi chi tiết</h3>
+                <table id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Thời gian</th>
+                            <th>Họ Tên Con</th>
+                            <th>Email Phụ Huynh</th>
+                            <th>Mục Tiêu Sau THPT</th>
+                            <th>Thế Mạnh Đồng Hành</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows will be populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwHdKX15d-_8LoPMiPgsrD139_eOfVG9myK0sTeDnHF3Mt7x6hcvRBlBkccD4TewPLr_Q/exec';
+        let rawData = [];
+
+        async function fetchData() {
+            try {
+                // Fetch using GET to retrieve data from Google Sheets
+                const response = await fetch(SCRIPT_URL);
+                const data = await response.json();
+                
+                // Process only valid rows (skip empty/header if it doesn't match our JSON structure)
+                rawData = data.filter(row => row.length >= 4 && row[3] && row[3].toString().startsWith('{'));
+
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+
+                processAndRenderCharts(rawData);
+                renderTable(rawData);
+            } catch (err) {
+                document.getElementById('loading').innerText = 'Lỗi khi tải dữ liệu: ' + err.message;
+            }
+        }
+
+        function processAndRenderCharts(rows) {
+            // Stats object
+            const statsMuctieu = {};
+            const statsMongdoi = {};
+
+            rows.forEach(row => {
+                try {
+                    const parsed = JSON.parse(row[3]);
+                    
+                    if(parsed['Mục Tiêu Sau THPT'] && parsed['Mục Tiêu Sau THPT'].checked) {
+                        parsed['Mục Tiêu Sau THPT'].checked.forEach(item => {
+                            statsMuctieu[item] = (statsMuctieu[item] || 0) + 1;
+                        });
+                    }
+
+                    if(parsed['Mong Đợi Nhà Trường, GVCN Hỗ Trợ Khía Cạnh'] && parsed['Mong Đợi Nhà Trường, GVCN Hỗ Trợ Khía Cạnh'].checked) {
+                        parsed['Mong Đợi Nhà Trường, GVCN Hỗ Trợ Khía Cạnh'].checked.forEach(item => {
+                            statsMongdoi[item] = (statsMongdoi[item] || 0) + 1;
+                        });
+                    }
+                } catch(e) {}
+            });
+
+            // Draw Chart 1
+            new Chart(document.getElementById('chart1'), {
+                type: 'pie',
+                data: {
+                    labels: Object.keys(statsMuctieu),
+                    datasets: [{
+                        data: Object.values(statsMuctieu),
+                        backgroundColor: ['#78A4CB', '#B3D9E6', '#E6F3F7', '#FFF9E6', '#4A7A9C']
+                    }]
+                }
+            });
+
+            // Draw Chart 2
+            new Chart(document.getElementById('chart2'), {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(statsMongdoi),
+                    datasets: [{
+                        label: 'Số lượng',
+                        data: Object.values(statsMongdoi),
+                        backgroundColor: '#78A4CB'
+                    }]
+                },
+                options: {
+                    scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+                }
+            });
+        }
+
+        function renderTable(rows) {
+            const tbody = document.querySelector('#dataTable tbody');
+            tbody.innerHTML = '';
+
+            rows.forEach(row => {
+                const tr = document.createElement('tr');
+                let muctieu = '';
+                let themanh = '';
+                try {
+                    const parsed = JSON.parse(row[3]);
+                    muctieu = (parsed['Mục Tiêu Sau THPT']?.checked || []).join(', ');
+                    themanh = (parsed['Thế Mạnh Của Phụ Huynh Đồng Hành Cùng Các Con']?.checked || []).join(', ');
+                } catch(e) {}
+
+                const date = new Date(row[0]).toLocaleDateString('vi-VN');
+
+                tr.innerHTML = `
+                    <td>${date}</td>
+                    <td><strong>${row[1]}</strong></td>
+                    <td>${row[2]}</td>
+                    <td>${muctieu}</td>
+                    <td>${themanh}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function exportExcel() {
+            const table = document.getElementById('dataTable');
+            const wb = XLSX.utils.table_to_book(table, {sheet:"10T0"});
+            XLSX.writeFile(wb, 'ThongKe_KhaoSat_10T0.xlsx');
+        }
+
+        function exportPDF() {
+            const element = document.getElementById('print-area');
+            const opt = {
+                margin:       0.5,
+                filename:     'ThongKe_KhaoSat_10T0.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'in', format: 'a4', orientation: 'landscape' }
+            };
+            
+            document.querySelector('.btn-group').style.display = 'none';
+            html2pdf().set(opt).from(element).save().then(() => {
+                document.querySelector('.btn-group').style.display = 'flex';
+            });
+        }
+
+        // Start fetching data immediately
+        fetchData();
+    </script>
+</body>
+</html>
