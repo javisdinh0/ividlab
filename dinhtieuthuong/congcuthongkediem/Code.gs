@@ -205,8 +205,10 @@ function maskAcc_(acc) {
 function handleList_() {
   var sheet = getSheet_();
   var values = sheet.getDataRange().getValues();
-  var data = values.map(function (row) {
-    return row.map(function (c) {
+  var iMonth = values.length ? values[0].indexOf('Tháng') : -1;
+  var data = values.map(function (row, r) {
+    return row.map(function (c, ci) {
+      if (r > 0 && ci === iMonth) return monthKey_(c);        // Tháng luôn trả "YYYY-MM"
       if (c instanceof Date) return c.toISOString();
       return c === null || c === undefined ? '' : c;
     });
@@ -250,7 +252,7 @@ function handleListKeys_() {
  * body = { month, class, subject, rows: [ {tt, maHS, hoTen, ngaySinh, ghiChu, tb, lan1, thiLai}, ... ] }
  */
 function handleSaveBatch_(body) {
-  var month = (body.month || '').toString().trim();
+  var month = monthKey_(body.month);   // chuẩn hoá về "YYYY-MM"
   var klass = (body['class'] || body.klass || '').toString().trim();
   var subject = (body.subject || '').toString().trim();
   var rows = Array.isArray(body.rows) ? body.rows : [];
@@ -269,9 +271,10 @@ function handleSaveBatch_(body) {
     var iClass = headers.indexOf('Lớp');
     var iSubj = headers.indexOf('Môn');
 
-    // Xóa các dòng cũ cùng Tháng+Lớp+Môn (xóa từ dưới lên để không lệch chỉ số).
+    // Xóa các dòng cũ cùng Tháng+Lớp+Môn (so khớp theo "YYYY-MM" nên vẫn khớp cả
+    // dòng cũ đã bị Sheets đổi sang kiểu ngày). Xóa từ dưới lên để không lệch chỉ số.
     for (var r = values.length - 1; r >= 1; r--) {
-      var m = (values[r][iMonth] || '').toString().trim();
+      var m = monthKey_(values[r][iMonth]);
       var c = (values[r][iClass] || '').toString().trim();
       var s = (values[r][iSubj] || '').toString().trim();
       if (m === month && c === klass && s === subject) {
@@ -296,7 +299,10 @@ function handleSaveBatch_(body) {
       ];
     });
     if (out.length) {
-      sheet.getRange(sheet.getLastRow() + 1, 1, out.length, HEADERS.length).setValues(out);
+      var startRow = sheet.getLastRow() + 1;
+      // Ép cột Tháng sang định dạng VĂN BẢN để Sheets KHÔNG tự đổi "2026-06" thành ngày.
+      sheet.getRange(startRow, iMonth + 1, out.length, 1).setNumberFormat('@');
+      sheet.getRange(startRow, 1, out.length, HEADERS.length).setValues(out);
     }
     return json_({ ok: true, saved: out.length });
   } catch (err) {
@@ -308,7 +314,7 @@ function handleSaveBatch_(body) {
 
 /** Xóa 1 đợt Tháng+Lớp+Môn. */
 function handleDeleteBatch_(body) {
-  var month = (body.month || '').toString().trim();
+  var month = monthKey_(body.month);
   var klass = (body['class'] || body.klass || '').toString().trim();
   var subject = (body.subject || '').toString().trim();
   if (!month || !klass || !subject) {
@@ -326,7 +332,7 @@ function handleDeleteBatch_(body) {
     var iSubj = headers.indexOf('Môn');
     var deleted = 0;
     for (var r = values.length - 1; r >= 1; r--) {
-      var m = (values[r][iMonth] || '').toString().trim();
+      var m = monthKey_(values[r][iMonth]);
       var c = (values[r][iClass] || '').toString().trim();
       var s = (values[r][iSubj] || '').toString().trim();
       if (m === month && c === klass && s === subject) {
@@ -340,6 +346,26 @@ function handleDeleteBatch_(body) {
   } finally {
     lock.releaseLock();
   }
+}
+
+/**
+ * Chuẩn hoá tháng về "YYYY-MM". Nhận: chuỗi "YYYY-MM", chuỗi ISO, hoặc Date
+ * (do Google Sheets tự đổi). Dùng UTC để khớp đúng tháng người dùng đã nhập.
+ */
+function monthKey_(v) {
+  if (v instanceof Date) {
+    return v.getUTCFullYear() + '-' + ('0' + (v.getUTCMonth() + 1)).slice(-2);
+  }
+  var s = (v === null || v === undefined) ? '' : v.toString().trim();
+  var m = /^(\d{4})-(\d{2})/.exec(s);
+  if (m) {
+    if (s.indexOf('T') !== -1) {
+      var d = new Date(s);
+      if (!isNaN(d.getTime())) return d.getUTCFullYear() + '-' + ('0' + (d.getUTCMonth() + 1)).slice(-2);
+    }
+    return m[1] + '-' + m[2];
+  }
+  return s;
 }
 
 /** Chuẩn hoá số: '' hoặc không phải số -> '' (ô trống); còn lại -> Number. */
