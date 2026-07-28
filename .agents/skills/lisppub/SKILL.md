@@ -63,7 +63,7 @@ Trong phần **Hướng Dẫn Sử Dụng**, phải liên kết thẳng tới 2 
   ```
 - Tại bước **1 (Nạp Lisp vào CAD):**
   ```html
-  <li>Load Lisp vào AutoCAD (kém theo <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html" target="_blank">Hướng dẫn chi tiết APPLOAD và Startup Suite tải Lisp tự động</a>).</li>
+  <li>Load Lisp vào AutoCAD (kèm theo <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html" target="_blank">Hướng dẫn chi tiết APPLOAD và Startup Suite tải Lisp tự động</a>).</li>
   ```
 
 ### 📥 Yêu cầu Hộp Tải Về (Download Section):
