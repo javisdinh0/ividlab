@@ -55,6 +55,15 @@
       --table-row-alt: #1e293b;
     }
 
+    [data-lang="vi"] { display: block; }
+    [data-lang="en"] { display: none; }
+    body.lang-en [data-lang="vi"] { display: none; }
+    body.lang-en [data-lang="en"] { display: block; }
+    span[data-lang="vi"] { display: inline; }
+    span[data-lang="en"] { display: none; }
+    body.lang-en span[data-lang="vi"] { display: none; }
+    body.lang-en span[data-lang="en"] { display: inline; }
+
     * { box-sizing: border-box; }
     body {
       font-family: 'Be Vietnam Pro', sans-serif;
@@ -71,6 +80,7 @@
     .nav-links { display: flex; align-items: center; gap: 12px; }
     .back-link { color: var(--text-primary); text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: color 0.2s; }
     .back-link:hover { text-decoration: underline; color: var(--link-color); }
+    .toggles { display: flex; gap: 10px; }
     .toggle-btn {
       background: var(--btn-bg); border: 1px solid var(--border-color); color: var(--btn-text);
       font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 700;
@@ -105,10 +115,6 @@
     th { background-color: var(--table-header); color: var(--table-header-text); font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; }
     tr:nth-child(even) { background-color: var(--table-row-alt); }
     
-    .tip-box { background-color: var(--tip-bg); border-left: 4px solid var(--tip-border); padding: 18px 22px; border-radius: 0 12px 12px 0; margin: 25px 0; color: var(--tip-text); }
-    .tip-box strong { display: block; margin-bottom: 6px; font-size: 1.05em; }
-    .badge { display: inline-block; background-color: var(--badge-bg); color: var(--badge-text); font-size: 0.78rem; font-weight: 700; padding: 4px 10px; border-radius: 9999px; text-transform: uppercase; margin-bottom: 12px; }
-
     .download-section {
       background-color: var(--bg-page); border: 2px dashed var(--link-color);
       padding: 25px 30px; border-radius: 12px; margin: 35px 0;
@@ -116,90 +122,195 @@
     .download-section p { margin-top: 0; font-weight: 700; font-size: 1.1rem; color: var(--text-primary); }
 
     @media (max-width: 600px) { .article-container { padding: 25px 18px; } h1 { font-size: 1.8rem; } th, td { padding: 8px 10px; font-size: 0.85rem; } }
-  </style>
+  
+    .related-container { margin-top: 45px; background: var(--bg-card); padding: 40px; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.15); transition: background-color 0.3s ease, border-color 0.3s ease; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 25px; }
+    .related-card { display: flex; flex-direction: column; text-decoration: none; background: var(--bg-page); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; transition: transform 0.2s, border-color 0.2s; }
+    .related-card:hover { transform: translateY(-3px); border-color: var(--link-color); }
+    .related-card .badge { align-self: flex-start; background: var(--badge-bg); color: var(--badge-text); font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; font-family: 'JetBrains Mono', monospace; }
+    .related-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.1rem; margin: 0; color: var(--text-primary); line-height: 1.4; transition: color 0.2s; }
+    .related-card:hover h3 { color: var(--link-color); }
+\n  </style>
 </head>
 <body>
-  <div class="top-bar">
-    <div class="nav-links">
-      <a href="/" class="back-link">🏠 Trang chủ iViDLab</a>
-      <span style="color: var(--text-muted);">|</span>
-      <a href="/autocad/autolisp/autolisp-layiso-layer-manager.html" class="back-link">⚡ Layiso Layer Suite</a>
-    </div>
-    <button id="theme-toggle" class="toggle-btn" title="Chuyển giao diện Sáng / Tối">☀️ LIGHT</button>
-  </div>
   
-  <div class="article-container">
+  <header style="position: sticky; top: 0; z-index: 100; background-color: var(--bg-page); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 15px 0; transition: background-color 0.3s ease; margin-bottom: 30px;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+      <a href="/" style="text-decoration: none; display: flex; align-items: center;">
+        <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.45rem; font-weight: 900; letter-spacing: -0.02em; color: var(--text-primary);">
+          iViD<span style="color: #2E6583;">Lab</span>
+        </span>
+      </a>
+      <nav style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+        <a href="/?tab=all" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); transition: color 0.2s ease;">
+          <span data-lang="vi">// TRANG CHỦ</span><span data-lang="en" style="display:none;">// HOME</span>
+        </a>
+        <a href="/?tab=tools" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// CÔNG CỤ</span><span data-lang="en" style="display:none;">// TOOLS</span>
+        </a>
+        <a href="/?tab=guides" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span data-lang="en" style="display:none;">// GUIDES</span>
+        </a>
+        <a href="/?tab=about" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en" style="display:none;">// ABOUT</span>
+        </a>
+      </nav>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button id="theme-toggle" class="toggle-btn" title="Chuyển giao diện Sáng / Tối" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; padding: 6px 14px; border-radius: 20px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s;">
+          ☀️ LIGHT
+        </button>
+        <button id="lang-toggle" class="toggle-btn" title="Chuyển Ngôn Ngữ / Toggle Language" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; padding: 6px 14px; border-radius: 20px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s;">
+          🌐 VN / EN
+        </button>
+      </div>
+    </div>
+  </header>
+\n  <div class="article-container">
     <span class="badge">CAD Automation & Hatch Suite</span>
-    <h1>Lisp Gộp Nhanh Vùng Hatch Rời Rạc (Merge Hatch - MH)</h1>
+    <h1 data-lang="vi">Lisp Gộp Nhanh Vùng Hatch Rời Rạc (Merge Hatch - MH)</h1>
+    <h1 data-lang="en">Lisp to Rapidly Merge Fragmented Hatches (Merge Hatch - MH)</h1>
 
-    <p>Trong quá trình vẽ, chỉnh sửa mặt bằng kiến trúc, kết cấu hoặc khi chia nhỏ phân khu dự án, các vùng tô (Hatch) thường bị phân mảnh thành nhiều block đối tượng rời rạc. Khi cần chỉnh sửa thông số chu kỳ họa tiết (Scale), màu sắc hoặc tính tổng diện tích vùng tô, việc click chọn từng Hatch con hoặc hì hục ngồi bo lại đường biên Ranh giới (Boundary) từ đầu vừa rườm rà vừa lãng phí vô số thời gian.</p>
-    <p>Để khắc phục nhược điểm gây bức bối này, <strong>iViDLab</strong> trân trọng đem tới cho kỹ sư xây dựng và kiến trúc sư công cụ <strong>Merge Hatch (MH)</strong> — giải pháp tối ưu cho phép gộp nối liền mạch hàng chục vùng Hatch rời rạc trở thành <strong>1 đối tượng duy nhất</strong> chỉ trong tích tắc!</p>
+    <p data-lang="vi">Trong quá trình vẽ, chỉnh sửa mặt bằng kiến trúc, kết cấu hoặc khi chia nhỏ phân khu dự án, các vùng tô (Hatch) thường bị phân mảnh thành nhiều block đối tượng rời rạc. Khi cần chỉnh sửa thông số chu kỳ họa tiết (Scale), màu sắc hoặc tính tổng diện tích vùng tô, việc click chọn từng Hatch con hoặc hì hục ngồi bo lại đường biên Ranh giới (Boundary) từ đầu vừa rườm rà vừa lãng phí vô số thời gian.</p>
+    <p data-lang="en">During the process of drawing, editing architectural/structural floor plans, or subdividing project zones, hatch areas often become fragmented into multiple separate objects. When you need to edit the pattern scale, color, or calculate the total hatch area, clicking each sub-hatch individually or redrawing the boundary from scratch is tedious and wastes countless hours.</p>
+
+    <p data-lang="vi">Để khắc phục nhược điểm gây bức bối này, <strong>iViDLab</strong> trân trọng đem tới cho kỹ sư xây dựng và kiến trúc sư công cụ <strong>Merge Hatch (MH)</strong> — giải pháp tối ưu cho phép gộp nối liền mạch hàng chục vùng Hatch rời rạc trở thành <strong>1 đối tượng duy nhất</strong> chỉ trong tích tắc!</p>
+    <p data-lang="en">To overcome this frustrating bottleneck, <strong>iViDLab</strong> proudly introduces <strong>Merge Hatch (MH)</strong> to structural engineers and architects — an optimal solution that seamlessly merges dozens of fragmented hatches into <strong>a single unified object</strong> in just a split second!</p>
 
     <div class="img-box">
       <img src="Pic/MergeHatch_MH_01.jpg" alt="Tổng quan thành quả gộp nhiều đối tượng Hatch rời rạc trong bản vẽ CAD bằng lệnh MH" />
-      <span>Hình 1: Các vùng Hatch rời rạc trên bản vẽ được gộp liền mạch thành một khối thống nhất nhờ Lisp MH</span>
+      <span data-lang="vi">Hình 1: Các vùng Hatch rời rạc trên bản vẽ được gộp liền mạch thành một khối thống nhất nhờ Lisp MH</span>
+      <span data-lang="en">Figure 1: Fragmented hatch areas seamlessly merged into a unified block using the MH Lisp</span>
     </div>
 
-    <h2>&#128142; Nguyên Lý Hoạt Động & Những Điểm Sáng Vượt Trội</h2>
-    <p>Công cụ <strong>Merge Hatch</strong> thực thi dựa trên thuật toán can thiệp trực tiếp vào cấu trúc chuỗi dữ liệu ranh giới (Boundary Data) của mã nhóm đối tượng DXF <code>assoc 91</code> trong AutoCAD, mang tới sự khác biệt hoàn toàn so với các cách vẽ lại truyền thống:</p>
+    <h2 data-lang="vi">&#128142; Nguyên Lý Hoạt Động & Những Điểm Sáng Vượt Trội</h2>
+    <h2 data-lang="en">&#128142; Operating Principle & Outstanding Features</h2>
+    
+    <p data-lang="vi">Công cụ <strong>Merge Hatch</strong> thực thi dựa trên thuật toán can thiệp trực tiếp vào cấu trúc chuỗi dữ liệu ranh giới (Boundary Data) của mã nhóm đối tượng DXF <code>assoc 91</code> trong AutoCAD, mang tới sự khác biệt hoàn toàn so với các cách vẽ lại truyền thống:</p>
+    <p data-lang="en">The <strong>Merge Hatch</strong> tool operates via an algorithm that directly manipulates the Boundary Data structure of the DXF group code <code>assoc 91</code> within AutoCAD, offering a completely different approach from traditional redrawing methods:</p>
 
     <div style="overflow-x: auto;">
       <table>
         <thead>
           <tr>
-            <th style="width: 30%;">Tính Năng</th>
-            <th style="width: 70%;">Giá Trị Mang Lại Cho Người Dùng</th>
+            <th style="width: 30%;"><span data-lang="vi">Tính Năng</span><span data-lang="en">Feature</span></th>
+            <th style="width: 70%;"><span data-lang="vi">Giá Trị Mang Lại Cho Người Dùng</span><span data-lang="en">Value Delivered to Users</span></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>Không Cần Vẽ Lại Boundary</strong></td>
-            <td>Bỏ qua hoàn toàn công đoạn tạo đường polyline ranh giới mới hay xóa Hatch cũ đi tô lại từ đầu. Thuật toán tự lôi kéo và nối các ranh giới hiện hữu lại với nhau liền mạch.</td>
+            <td><strong data-lang="vi">Không Cần Vẽ Lại Boundary</strong><strong data-lang="en">No Need to Redraw Boundaries</strong></td>
+            <td>
+                <span data-lang="vi">Bỏ qua hoàn toàn công đoạn tạo đường polyline ranh giới mới hay xóa Hatch cũ đi tô lại từ đầu. Thuật toán tự lôi kéo và nối các ranh giới hiện hữu lại với nhau liền mạch.</span>
+                <span data-lang="en">Completely skip the process of creating new polyline boundaries or deleting old hatches to re-hatch from scratch. The algorithm automatically pulls and seamlessly connects existing boundaries together.</span>
+            </td>
           </tr>
           <tr>
-            <td><strong>Kế Thừa Thuộc Tính Hatch Đầu</strong></td>
-            <td>Đối tượng Hatch đầu tiên trong tập hợp được quét chọn sẽ làm "máy chủ" định dạng. Mọi thông số (tên hoa văn Pattern, góc quay Angle, tỷ lệ Scale) đều tự động chia sẻ đồng nhất cho khối gộp hậu kỳ.</td>
+            <td><strong data-lang="vi">Kế Thừa Thuộc Tính Hatch Đầu</strong><strong data-lang="en">Inherits Properties from the First Hatch</strong></td>
+            <td>
+                <span data-lang="vi">Đối tượng Hatch đầu tiên trong tập hợp được quét chọn sẽ làm "máy chủ" định dạng. Mọi thông số (tên hoa văn Pattern, góc quay Angle, tỷ lệ Scale) đều tự động chia sẻ đồng nhất cho khối gộp hậu kỳ.</span>
+                <span data-lang="en">The first hatch object selected in the set acts as the "master" format. All parameters (Pattern name, Angle, Scale) are automatically and uniformly shared across the newly merged block.</span>
+            </td>
           </tr>
           <tr>
-            <td><strong>Tối Ưu & Dọn Dẹp Bản Vẽ</strong></td>
-            <td>Sau khi hợp nhất cấu trúc ranh giới, toàn bộ các Hatch lẻ tẻ thâm hụt trước đó đều tự động biến mất, giúp tệp <code>.DWG</code> giảm thiểu thực tế số lượng Ent, trở nên nhẹ nhàng, mượt mà và sạch sẽ khi zoom xoay.</td>
+            <td><strong data-lang="vi">Tối Ưu & Dọn Dẹp Bản Vẽ</strong><strong data-lang="en">Optimize & Clean the Drawing</strong></td>
+            <td>
+                <span data-lang="vi">Sau khi hợp nhất cấu trúc ranh giới, toàn bộ các Hatch lẻ tẻ thâm hụt trước đó đều tự động biến mất, giúp tệp <code>.DWG</code> giảm thiểu thực tế số lượng Ent, trở nên nhẹ nhàng, mượt mà và sạch sẽ khi zoom xoay.</span>
+                <span data-lang="en">After merging the boundary structures, all previous fragmented hatches automatically disappear, effectively reducing the Ent count in the <code>.DWG</code> file, making it lighter, smoother, and cleaner during panning and zooming.</span>
+            </td>
           </tr>
           <tr>
-            <td><strong>Hỗ Trợ Hoàn Trả (Undo) Siêu Sạch</strong></td>
-            <td>Được lót sẵn bộ đệm <code>_undo be / e</code> an toàn tuyệt đối. Nếu thao tác nhầm lẫn hay chọn sai đối tượng, chỉ cần gõ nhẹ <code>Ctrl + Z</code> (hoặc lệnh <code>U</code>), toàn bộ trạng thái bản vẽ lập tức hồi phục trọn vẹn 100%.</td>
+            <td><strong data-lang="vi">Hỗ Trợ Hoàn Trả (Undo) Siêu Sạch</strong><strong data-lang="en">Super Clean Undo Support</strong></td>
+            <td>
+                <span data-lang="vi">Được lót sẵn bộ đệm <code>_undo be / e</code> an toàn tuyệt đối. Nếu thao tác nhầm lẫn hay chọn sai đối tượng, chỉ cần gõ nhẹ <code>Ctrl + Z</code> (hoặc lệnh <code>U</code>), toàn bộ trạng thái bản vẽ lập tức hồi phục trọn vẹn 100%.</span>
+                <span data-lang="en">Wrapped safely with <code>_undo be / e</code> buffers. If a mistake is made or wrong objects are selected, simply tap <code>Ctrl + Z</code> (or the <code>U</code> command), and the drawing state will instantly and perfectly restore 100%.</span>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <h2>&#128295; Hướng Dẫn Nạp Và Sử Dụng Trong AutoCAD</h2>
+    <h2 data-lang="vi">&#128295; Hướng Dẫn Nạp Lisp Và Sử Dụng Trong AutoCAD</h2>
+    <h2 data-lang="en">&#128295; How to Load and Use in AutoCAD</h2>
 
-    <p>Để tận hưởng sự tiện lợi của Lisp gộp Hatch, bạn chỉ cần thực hiện đúng theo 3 bước cực kỳ dễ nhớ:</p>
+    <p data-lang="vi">Để tận hưởng sự tiện lợi của Lisp gộp Hatch, bạn chỉ cần thực hiện đúng theo 3 bước cực kỳ dễ nhớ:</p>
+    <p data-lang="en">To enjoy the convenience of this Hatch merging Lisp, you simply need to follow 3 easy steps:</p>
+    
     <ol>
-      <li>Load Lisp vào AutoCAD (kèm theo <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html" target="_blank">Hướng dẫn chi tiết APPLOAD và Startup Suite tải Lisp tự động</a> để mỗi lần mở CAD là tool sẵn sàng nghinh chiến).</li>
-      <li>Tại màn hình làm việc của bản vẽ, nhập phím tắt khởi chạy lệnh trên thanh Command Line: gõ <code>MH</code> (rồi nhấn Space / Enter).</li>
-      <li>Quét chuột tạo hộp chọn (box select) bao trùm qua các đối tượng Hatch rời rạc mà bạn muốn gộp nối (báo hiệu: <code>Select hatches to merge:</code>) và nhấn Space lần cuối để hoàn tất!</li>
-      <li><strong>Tên lệnh:</strong> <code>MH</code> - <a href="/autocad/chiase/tuy-chinh-lenh-autolisp.html" target="_blank">Hướng dẫn tuỳ chỉnh đổi tên lệnh trong AutoLISP</a> (nếu bạn muốn tùy biến lại tên phím tắt theo thói quen tay phím của riêng mình).</li>
+      <li>
+        <span data-lang="vi">Nạp Lisp vào AutoCAD (kèm theo <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html" target="_blank">Hướng dẫn chi tiết APPLOAD và Startup Suite tải Lisp tự động</a> để mỗi lần mở CAD là tool sẵn sàng nghinh chiến).</span>
+        <span data-lang="en">Load the Lisp into AutoCAD (along with the <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html" target="_blank">Detailed Guide on APPLOAD and Startup Suite</a> so the tool is ready every time you open CAD).</span>
+      </li>
+      <li>
+        <span data-lang="vi">Tại màn hình làm việc của bản vẽ, nhập phím tắt khởi chạy lệnh trên thanh Command Line: gõ <code>MH</code> (rồi nhấn Space / Enter).</span>
+        <span data-lang="en">In the drawing workspace, enter the shortcut on the Command Line to launch the command: type <code>MH</code> (then press Space / Enter).</span>
+      </li>
+      <li>
+        <span data-lang="vi">Quét chuột tạo hộp chọn (box select) bao trùm qua các đối tượng Hatch rời rạc mà bạn muốn gộp nối (báo hiệu: <code>Select hatches to merge:</code>) và nhấn Space lần cuối để hoàn tất!</span>
+        <span data-lang="en">Drag your mouse to create a selection box covering the fragmented hatch objects you want to merge (prompt: <code>Select hatches to merge:</code>) and press Space one last time to finish!</span>
+      </li>
+      <li>
+        <span data-lang="vi"><strong>Lệnh / Phím tắt:</strong> <code>MH</code> - <a href="/autocad/chiase/tuy-chinh-lenh-autolisp.html" target="_blank">Hướng dẫn tuỳ chỉnh đổi phím tắt trong AutoLISP</a> (nếu bạn muốn tùy biến lại tên phím tắt theo thói quen tay phím của riêng mình).</span>
+        <span data-lang="en"><strong>Command:</strong> <code>MH</code> - <a href="/autocad/chiase/tuy-chinh-lenh-autolisp.html" target="_blank">How to customize AutoLISP commands</a> (if you want to remap the shortcut name to suit your personal typing habits).</span>
+      </li>
     </ol>
 
     <div class="img-box">
       <img src="Pic/MergeHatch_MH_02.jpg" alt="Thao tác gọi lệnh MH trên thanh Command Line và chọn các vùng Hatch cần nối" />
-      <span>Hình 2: Thao tác gọi lệnh MH trên thanh Command Line và quét chọn nhanh chóng khối ranh giới Hatch cần hợp nhất</span>
+      <span data-lang="vi">Hình 2: Thao tác gọi lệnh MH trên thanh Command Line và quét chọn nhanh chóng khối ranh giới Hatch cần hợp nhất</span>
+      <span data-lang="en">Figure 2: Calling the MH command on the Command Line and rapidly box-selecting the hatch boundaries to merge</span>
     </div>
 
-    <h2>&#128229; Tải Về Công Cụ Merge Hatch (MH)</h2>
+    <h2 data-lang="vi">&#128229; Thông Tin Tải Về Công Cụ Merge Hatch (MH)</h2>
+    <h2 data-lang="en">&#128229; Merge Hatch (MH) Download Information</h2>
+    
     <div class="download-section">
-      <p>Tải xuống bộ công cụ gốc ngay tại đường dẫn bên dưới:</p>
+      <p data-lang="vi">Tải về bộ công cụ gốc ngay tại đường dẫn bên dưới:</p>
+      <p data-lang="en">Download the original toolkit via the link below:</p>
       <ul>
-        <li><strong>Tệp tin:</strong> <code>MH - Merge hatch.lsp</code></li>
-        <li><strong>Phiên bản:</strong> Release 1.0 (Đã tối ưu biến cục bộ, kiểm lỗi số lượng chọn & chuẩn hóa mã).</li>
-        <li><strong>Link Tải trực tiếp:</strong> <a href="/fordownload/MH%20-%20Merge%20hatch.lsp" download="MH - Merge hatch.lsp">&#11015; Tải Về MH - Merge hatch.lsp</a></li>
+        <li>
+            <span data-lang="vi"><strong>Tệp tin:</strong></span>
+            <span data-lang="en"><strong>File:</strong></span> <code>MH - Merge hatch.lsp</code>
+        </li>
+        <li>
+            <span data-lang="vi"><strong>Phiên bản:</strong> Release 1.0 (Đã tối ưu biến cục bộ, kiểm lỗi số lượng chọn & chuẩn hóa mã).</span>
+            <span data-lang="en"><strong>Version:</strong> Release 1.0 (Local variables optimized, selection count error checking & code standardized).</span>
+        </li>
+        <li>
+            <span data-lang="vi"><strong>Link Tải trực tiếp:</strong></span>
+            <span data-lang="en"><strong>Direct Download Link:</strong></span> <a href="/fordownload/MH%20-%20Merge%20hatch.lsp" download="MH - Merge hatch.lsp">&#11015; <span data-lang="vi">Tải Về</span><span data-lang="en">Download</span> MH - Merge hatch.lsp</a>
+        </li>
       </ul>
     </div>
+  </div>\n\n
+  <div class="related-container">
+    <h2 data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
+    <h2 data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem; display:none;">You might also be interested in</h2>
+    <div class="related-grid">
+      <a class="related-card" href="/autocad/autolisp/autolisp-merge-hatch-mh.html">
+        <span class="badge">CAD Automation</span>
+        <h3><span data-lang="vi">Lisp Gộp Vùng Hatch (Merge Hatch - MH)</span><span data-lang="en" style="display:none;">Merge Hatch Lisp (MH)</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/autolisp/autolisp-quick-block-bb.html">
+        <span class="badge">CAD Automation</span>
+        <h3><span data-lang="vi">Lisp Tạo Block Nhanh (Quick Block - BB)</span><span data-lang="en" style="display:none;">Quick Block Lisp (BB)</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/autolisp/autolisp-layiso-layer-manager.html">
+        <span class="badge">CAD Automation</span>
+        <h3><span data-lang="vi">Bộ 10 Phím Tắt Quản Lý Layer (Layiso Suite)</span><span data-lang="en" style="display:none;">Layiso Layer Management Suite</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/chiase/huong-dan-appload-lisp-autocad.html">
+        <span class="badge">Knowledge Share</span>
+        <h3><span data-lang="vi">Hướng Dẫn Nạp Lisp Bằng APPLOAD</span><span data-lang="en" style="display:none;">Guide to Load Lisp via APPLOAD</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/chiase/tuy-chinh-lenh-autolisp.html">
+        <span class="badge">Knowledge Share</span>
+        <h3><span data-lang="vi">Cách Tùy Chỉnh Phím Tắt Lệnh AutoLISP</span><span data-lang="en" style="display:none;">How to Customize AutoLISP Commands</span></h3>
+      </a>
+    </div>
   </div>
-
-  <script>
+\n\n  <script>
     (function() {
+      // --- Theme Logic ---
       const savedTheme = localStorage.getItem('ividlab-theme') || 'light';
       document.documentElement.setAttribute('data-theme', savedTheme);
       const themeBtn = document.getElementById('theme-toggle');
@@ -211,6 +322,16 @@
         document.documentElement.setAttribute('data-theme', nextTheme);
         localStorage.setItem('ividlab-theme', nextTheme);
         updateBtnText(nextTheme);
+      });
+
+      // --- Language Logic ---
+      const savedLang = localStorage.getItem('ividlab-lang') || 'vi';
+      if (savedLang === 'en') document.body.classList.add('lang-en');
+      const langBtn = document.getElementById('lang-toggle');
+      langBtn.addEventListener('click', () => {
+        document.body.classList.toggle('lang-en');
+        const isEn = document.body.classList.contains('lang-en');
+        localStorage.setItem('ividlab-lang', isEn ? 'en' : 'vi');
       });
     })();
   </script>
