@@ -1,5 +1,18 @@
 export const toolsData = [
   {
+    id: 'layiso-layer-manager',
+    title: 'Layiso Layer Manager Suite',
+    category: 'AutoCAD Lisp',
+    tag: 'CAD Automation',
+    description: {
+      vi: 'Bộ 10 phím tắt quản lý Layer và Linetype siêu tốc (L1, L2, L3, TS0, LS...) giúp cô lập, bật/tắt lớp và đồng bộ thuộc tính ByLayer nháy mắt.',
+      en: 'Ultra-fast Layer and Linetype management shortcut suite (L1, L2, L3, TS0, LS) for isolating, toggling visibility, and shifting ByLayer properties instantly.'
+    },
+    status: 'Release',
+    link: '/autocad/autolisp/autolisp-layiso-layer-manager.html',
+    featured: true
+  },
+  {
     id: 'draw-purlin-lisp',
     title: 'DrawPurlin Lisp (VEXAGO)',
     category: 'AutoCAD Lisp',
