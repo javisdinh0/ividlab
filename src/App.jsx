@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import ToolsSection from './components/ToolsSection';
+import GuidesSection from './components/GuidesSection';
 import AboutSection from './components/AboutSection';
 import Footer from './components/Footer';
 import { translations } from './i18n/translations';
@@ -10,12 +11,13 @@ import './index.css';
 export default function App() {
   const [activeTab, setActiveTab] = useState('all');
   const [lang, setLang] = useState('vi');
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(() => localStorage.getItem('ividlab-theme') || 'light');
 
   const t = translations[lang];
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('ividlab-theme', theme);
   }, [theme]);
 
   return (
@@ -37,6 +39,8 @@ export default function App() {
             <div className="divider" />
             <ToolsSection t={t} lang={lang} />
             <div className="divider" />
+            <GuidesSection t={t} lang={lang} />
+            <div className="divider" />
             <AboutSection t={t} />
           </>
         )}
@@ -44,6 +48,12 @@ export default function App() {
         {activeTab === 'tools' && (
           <div style={{ paddingTop: '2rem' }}>
             <ToolsSection t={t} lang={lang} />
+          </div>
+        )}
+
+        {activeTab === 'guides' && (
+          <div style={{ paddingTop: '2rem' }}>
+            <GuidesSection t={t} lang={lang} />
           </div>
         )}
 

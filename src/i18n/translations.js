@@ -3,6 +3,7 @@ export const translations = {
     nav: {
       home: '// TRANG CHỦ',
       tools: '// CÔNG CỤ',
+      guides: '// HƯỚNG Dẫn & CHIA SẺ',
       about: '// GIỚI THIỆU'
     },
     hero: {
@@ -19,6 +20,12 @@ export const translations = {
       items_count: 'công cụ',
       view_details: 'Xem chi tiết →'
     },
+    guides: {
+      badge: 'KNOWLEDGE // GUIDES & TIPS',
+      title: 'Chia Sẻ Kiến Thức & Hướng Dẫn Kỹ Thuật',
+      items_count: 'bài viết',
+      read_article: 'Đọc hướng dẫn →'
+    },
     about: {
       badge: 'ABOUT // IVIDLAB',
       title: 'Giới thiệu về iViDLab',
@@ -33,6 +40,7 @@ export const translations = {
     nav: {
       home: '// HOME',
       tools: '// TOOLS',
+      guides: '// GUIDES & TIPS',
       about: '// ABOUT'
     },
     hero: {
@@ -48,6 +56,12 @@ export const translations = {
       title: 'Tools & Applications Directory',
       items_count: 'tools',
       view_details: 'View details →'
+    },
+    guides: {
+      badge: 'KNOWLEDGE // GUIDES & TIPS',
+      title: 'Knowledge Sharing & Technical Guides',
+      items_count: 'articles',
+      read_article: 'Read guide →'
     },
     about: {
       badge: 'ABOUT // IVIDLAB',

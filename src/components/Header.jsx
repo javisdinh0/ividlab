@@ -29,7 +29,7 @@ export default function Header({ activeTab, setActiveTab, lang, setLang, theme, 
         flexWrap: 'wrap',
         gap: '1rem'
       }}>
-        {/* Clean iViDLab Brand Title (No tiny squished icon) */}
+        {/* Clean iViDLab Brand Title */}
         <a 
           href="#" 
           onClick={(e) => { e.preventDefault(); setActiveTab('all'); }}
@@ -47,7 +47,7 @@ export default function Header({ activeTab, setActiveTab, lang, setLang, theme, 
         </a>
 
         {/* Navigation */}
-        <nav style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+        <nav style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
           <button
             onClick={() => setActiveTab('all')}
             style={{
@@ -78,6 +78,22 @@ export default function Header({ activeTab, setActiveTab, lang, setLang, theme, 
             }}
           >
             {t.nav.tools}
+          </button>
+
+          <button
+            onClick={() => setActiveTab('guides')}
+            style={{
+              background: 'none',
+              border: 'none',
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.85rem',
+              fontWeight: activeTab === 'guides' ? 700 : 500,
+              color: activeTab === 'guides' ? 'var(--text-ink)' : 'var(--text-muted)',
+              cursor: 'pointer',
+              transition: 'color 0.2s ease'
+            }}
+          >
+            {t.nav.guides}
           </button>
 
           <button
