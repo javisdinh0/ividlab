@@ -55,6 +55,16 @@
       --table-row-alt: #1e293b;
     }
 
+    [data-lang="vi"] { display: block; }
+    [data-lang="en"] { display: none; }
+    body.lang-en [data-lang="vi"] { display: none; }
+    body.lang-en [data-lang="en"] { display: block; }
+    /* Fix inline elements like spans */
+    span[data-lang="vi"] { display: inline; }
+    span[data-lang="en"] { display: none; }
+    body.lang-en span[data-lang="vi"] { display: none; }
+    body.lang-en span[data-lang="en"] { display: inline; }
+
     * { box-sizing: border-box; }
     body {
       font-family: 'Be Vietnam Pro', sans-serif;
@@ -71,6 +81,7 @@
     .nav-links { display: flex; align-items: center; gap: 12px; }
     .back-link { color: var(--text-primary); text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: color 0.2s; }
     .back-link:hover { text-decoration: underline; color: var(--link-color); }
+    .toggles { display: flex; gap: 10px; }
     .toggle-btn {
       background: var(--btn-bg); border: 1px solid var(--border-color); color: var(--btn-text);
       font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 700;
@@ -105,10 +116,6 @@
     th { background-color: var(--table-header); color: var(--table-header-text); font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; }
     tr:nth-child(even) { background-color: var(--table-row-alt); }
     
-    .tip-box { background-color: var(--tip-bg); border-left: 4px solid var(--tip-border); padding: 18px 22px; border-radius: 0 12px 12px 0; margin: 25px 0; color: var(--tip-text); }
-    .tip-box strong { display: block; margin-bottom: 6px; font-size: 1.05em; }
-    .badge { display: inline-block; background-color: var(--badge-bg); color: var(--badge-text); font-size: 0.78rem; font-weight: 700; padding: 4px 10px; border-radius: 9999px; text-transform: uppercase; margin-bottom: 12px; }
-
     .download-section {
       background-color: var(--bg-page); border: 2px dashed var(--link-color);
       padding: 25px 30px; border-radius: 12px; margin: 35px 0;
@@ -116,112 +123,229 @@
     .download-section p { margin-top: 0; font-weight: 700; font-size: 1.1rem; color: var(--text-primary); }
 
     @media (max-width: 600px) { .article-container { padding: 25px 18px; } h1 { font-size: 1.8rem; } th, td { padding: 8px 10px; font-size: 0.85rem; } }
-  </style>
+  
+    .related-container { margin-top: 45px; background: var(--bg-card); padding: 40px; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.15); transition: background-color 0.3s ease, border-color 0.3s ease; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 25px; }
+    .related-card { display: flex; flex-direction: column; text-decoration: none; background: var(--bg-page); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; transition: transform 0.2s, border-color 0.2s; }
+    .related-card:hover { transform: translateY(-3px); border-color: var(--link-color); }
+    .related-card .badge { align-self: flex-start; background: var(--badge-bg); color: var(--badge-text); font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; font-family: 'JetBrains Mono', monospace; }
+    .related-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.1rem; margin: 0; color: var(--text-primary); line-height: 1.4; transition: color 0.2s; }
+    .related-card:hover h3 { color: var(--link-color); }
+\n  </style>
 </head>
 <body>
-  <div class="top-bar">
-    <div class="nav-links">
-      <a href="/" class="back-link">🏠 Trang chủ iViDLab</a>
-      <span style="color: var(--text-muted);">|</span>
-      <a href="/autocad/autolisp/autocad-lisp-vexago.html" class="back-link">⚡ DrawPurlin Lisp</a>
-    </div>
-    <button id="theme-toggle" class="toggle-btn" title="Chuyển giao diện Sáng / Tối">☀️ LIGHT</button>
-  </div>
   
-  <div class="article-container">
+  <header style="position: sticky; top: 0; z-index: 100; background-color: var(--bg-page); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 15px 0; transition: background-color 0.3s ease; margin-bottom: 30px;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+      <a href="/" style="text-decoration: none; display: flex; align-items: center;">
+        <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.45rem; font-weight: 900; letter-spacing: -0.02em; color: var(--text-primary);">
+          iViD<span style="color: #2E6583;">Lab</span>
+        </span>
+      </a>
+      <nav style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+        <a href="/?tab=all" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); transition: color 0.2s ease;">
+          <span data-lang="vi">// TRANG CHỦ</span><span data-lang="en" style="display:none;">// HOME</span>
+        </a>
+        <a href="/?tab=tools" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// CÔNG CỤ</span><span data-lang="en" style="display:none;">// TOOLS</span>
+        </a>
+        <a href="/?tab=guides" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span data-lang="en" style="display:none;">// GUIDES</span>
+        </a>
+        <a href="/?tab=about" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en" style="display:none;">// ABOUT</span>
+        </a>
+      </nav>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button id="theme-toggle" class="toggle-btn" title="Chuyển giao diện Sáng / Tối" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; padding: 6px 14px; border-radius: 20px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s;">
+          ☀️ LIGHT
+        </button>
+        <button id="lang-toggle" class="toggle-btn" title="Chuyển Ngôn Ngữ / Toggle Language" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; padding: 6px 14px; border-radius: 20px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s;">
+          🌐 VN / EN
+        </button>
+      </div>
+    </div>
+  </header>
+\n  <div class="article-container">
     <span class="badge">CAD Automation & Layer Suite</span>
-    <h1>Bộ 10 Phím Tắt Quản Lý Layer & Linetype (Layiso Suite)</h1>
+    <h1 data-lang="vi">Bộ 10 Phím Tắt Quản Lý Layer & Linetype (Layiso Suite)</h1>
+    <h1 data-lang="en">10 Quick Shortcuts for Layer & Linetype Management (Layiso Suite)</h1>
 
-    <p>Trong các dự án thiết kế và triển khai bản vẽ thi công xây dựng quy mô lớn, việc thao tác qua lại giữa hàng trăm lớp bản vẽ (Layers) khác nhau, bật/tắt đối tượng và đồng bộ nét vẽ có thể ngốn của bạn hàng giờ đồng hồ mỗi ngày. Để giải quyết dứt điểm rào cản đó, <strong>iViDLab</strong> xin ra mắt bộ công cụ <strong>Layiso Suite</strong> – bộ 10 phím tắt Lisp tự động giúp bạn kiểm soát hoàn toàn Layer và Linetype chỉ bằng vài tích tắc nhấp chuột!</p>
+    <p data-lang="vi">Trong các dự án thiết kế và triển khai bản vẽ thi công xây dựng quy mô lớn, việc thao tác qua lại giữa hàng trăm lớp bản vẽ (Layers) khác nhau, bật/tắt đối tượng và đồng bộ nét vẽ có thể ngốn của bạn hàng giờ đồng hồ mỗi ngày. Để giải quyết dứt điểm rào cản đó, <strong>iViDLab</strong> xin ra mắt bộ công cụ <strong>Layiso Suite</strong> – bộ 10 phím tắt Lisp tự động giúp bạn kiểm soát hoàn toàn Layer và Linetype chỉ bằng vài tích tắc nhấp chuột!</p>
+    <p data-lang="en">In large-scale construction and design projects, navigating through hundreds of drawing layers, toggling object visibility, and synchronizing linetypes can consume hours of your time every day. To permanently resolve this bottleneck, <strong>iViDLab</strong> introduces the <strong>Layiso Suite</strong> – an automated 10-shortcut Lisp toolkit that grants you complete control over Layers and Linetypes with just a few clicks!</p>
 
     <div class="img-box">
       <img src="Pic/Layiso_Suite_01.png" alt="Tổng quan thành quả quản lý layer trong bản vẽ CAD bằng Layiso Suite" />
-      <span>Hình 1: Bản vẽ kỹ thuật thi công được phân lớp và điều chỉnh thuộc tính nét gọn gàng bằng Layiso Suite</span>
+      <span data-lang="vi">Hình 1: Bản vẽ kỹ thuật thi công được phân lớp và điều chỉnh thuộc tính nét gọn gàng bằng Layiso Suite</span>
+      <span data-lang="en">Figure 1: Construction drawing properly layered and standardized using Layiso Suite</span>
     </div>
 
-    <h2>&#128142; Tính Năng & Danh Sách 10 Lệnh Siêu Tốc</h2>
-    <p>Bộ công cụ tích hợp sẵn 10 lệnh rút gọn siêu linh hoạt, phân chia làm 3 nhóm chính: <em>Điều khiển tầm nhìn Layer</em>, <em>Dịch chuyển Layer lập tức</em> và <em>Đồng bộ thuộc tính ByLayer / Tỷ lệ nét</em>:</p>
+    <h2 data-lang="vi">&#128142; Tính Năng & Danh Sách 10 Lệnh Siêu Tốc</h2>
+    <h2 data-lang="en">&#128142; Features & List of 10 Superfast Commands</h2>
+    <p data-lang="vi">Bộ công cụ tích hợp sẵn 10 lệnh rút gọn siêu linh hoạt, phân chia làm 3 nhóm chính: <em>Điều khiển tầm nhìn Layer</em>, <em>Dịch chuyển Layer lập tức</em> và <em>Đồng bộ thuộc tính ByLayer / Tỷ lệ nét</em>:</p>
+    <p data-lang="en">The suite integrates 10 highly flexible shortcut commands, divided into 3 main categories: <em>Layer Visibility Control</em>, <em>Instant Layer Migration</em>, and <em>ByLayer Synchronization / Linetype Scale</em>:</p>
 
     <div style="overflow-x: auto;">
       <table>
         <thead>
           <tr>
-            <th style="width: 25%;">Lệnh Lisp</th>
-            <th style="width: 75%;">Tác Dụng & Giải Thích Chi Tiết</th>
+            <th style="width: 25%;"><span data-lang="vi">Lệnh / Phím tắt</span><span data-lang="en">Command</span></th>
+            <th style="width: 75%;"><span data-lang="vi">Tính Năng & Giải Thích Chi Tiết</span><span data-lang="en">Feature Details</span></th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><code>L1</code></td>
-            <td><strong>Cô lập Layer (LAYISO):</strong> Chọn 1 đối tượng, toàn bộ bản vẽ sẽ bị giấu đi, chỉ giữ lại duy nhất Layer của đối tượng được chọn trên màn hình để bạn dễ dàng tác nghiệp.</td>
+            <td>
+                <span data-lang="vi"><strong>Cô lập Layer (LAYISO):</strong> Chọn 1 đối tượng, toàn bộ bản vẽ sẽ bị giấu đi, chỉ giữ lại duy nhất Layer của đối tượng được chọn trên màn hình để bạn dễ dàng tác nghiệp.</span>
+                <span data-lang="en"><strong>Isolate Layer (LAYISO):</strong> Select an object and the rest of the drawing will be hidden, leaving only the chosen object's Layer visible for easy editing.</span>
+            </td>
           </tr>
           <tr>
             <td><code>L2</code></td>
-            <td><strong>Tắt nhanh Layer (LAYOFF):</strong> Tắt ngóm ngay lập tức Layer của đối tượng bạn vừa nhấp chuột.</td>
+            <td>
+                <span data-lang="vi"><strong>Tắt nhanh Layer (LAYOFF):</strong> Tắt ngóm ngay lập tức Layer của đối tượng bạn vừa nhấp chuột.</span>
+                <span data-lang="en"><strong>Turn Off Layer (LAYOFF):</strong> Instantly turn off the Layer of the clicked object.</span>
+            </td>
           </tr>
           <tr>
             <td><code>L3</code></td>
-            <td><strong>Bật lại tất cả Layer (LAYON):</strong> Phục hồi tầm nhìn, bật sáng toàn bộ các lớp Layer đang bị tắt trong bản vẽ.</td>
+            <td>
+                <span data-lang="vi"><strong>Bật lại tất cả Layer (LAYON):</strong> Phục hồi tầm nhìn, bật sáng toàn bộ các lớp Layer đang bị tắt trong bản vẽ.</span>
+                <span data-lang="en"><strong>Turn On All Layers (LAYON):</strong> Restore visibility by turning on all previously turned-off Layers in the drawing.</span>
+            </td>
           </tr>
           <tr>
             <td><code>T</code></td>
-            <td><strong>Cắt thần tốc (TRIM):</strong> Gõ đúng phím 1 chữ <code>T</code> để kích hoạt lệnh Cắt thay vì phải gõ <code>TR</code> hoặc bấm nút trên Toolbar.</td>
+            <td>
+                <span data-lang="vi"><strong>Cắt thần tốc (TRIM):</strong> Gõ đúng phím 1 chữ <code>T</code> để kích hoạt lệnh Cắt thay vì phải gõ <code>TR</code> hoặc bấm nút trên Toolbar.</span>
+                <span data-lang="en"><strong>Lightning Trim (TRIM):</strong> Press a single <code>T</code> key to activate the Trim command instead of typing <code>TR</code>.</span>
+            </td>
           </tr>
           <tr>
             <td><code>TS0</code></td>
-            <td><strong>Đổi về Layer 0:</strong> Đẩy ngay các đối tượng đang quét chọn về <strong>Layer 0</strong> chuẩn gốc của AutoCAD.</td>
+            <td>
+                <span data-lang="vi"><strong>Đổi về Layer 0:</strong> Đẩy ngay các đối tượng đang quét chọn về <strong>Layer 0</strong> chuẩn gốc của AutoCAD.</span>
+                <span data-lang="en"><strong>Move to Layer 0:</strong> Instantly push selected objects to AutoCAD's default <strong>Layer 0</strong>.</span>
+            </td>
           </tr>
           <tr>
             <td><code>TP</code></td>
-            <td><strong>Đổi về Layer Part:</strong> Dịch chuyển toàn bộ đối tượng chọn sang Layer <code>Part</code>.</td>
+            <td>
+                <span data-lang="vi"><strong>Đổi về Layer Part:</strong> Dịch chuyển toàn bộ đối tượng chọn sang Layer <code>Part</code>.</span>
+                <span data-lang="en"><strong>Move to Layer Part:</strong> Migrate selected objects to the <code>Part</code> Layer.</span>
+            </td>
           </tr>
           <tr>
             <td><code>TSD</code></td>
-            <td><strong>Đổi về Layer Defpoints:</strong> Đẩy ngay đối tượng vào lớp <code>Defpoints</code> (Layer tự động tàng hình, không hiển thị ra hồ sơ khi in ấn In/Plot).</td>
+            <td>
+                <span data-lang="vi"><strong>Đổi về Layer Defpoints:</strong> Đẩy ngay đối tượng vào lớp <code>Defpoints</code> (Layer tự động tàng hình, không hiển thị ra hồ sơ khi in ấn In/Plot).</span>
+                <span data-lang="en"><strong>Move to Defpoints Layer:</strong> Push objects to the <code>Defpoints</code> Layer (non-plotting invisible layer).</span>
+            </td>
           </tr>
           <tr>
             <td><code>TSCOLOR</code></td>
-            <td><strong>Chuẩn hóa màu ByLayer:</strong> Đưa lập tức màu sắc đối tượng bị đổi màu lẻ về màu chung của lớp Layer (<code>BYLAYER</code>).</td>
+            <td>
+                <span data-lang="vi"><strong>Chuẩn hóa màu ByLayer:</strong> Đưa lập tức màu sắc đối tượng bị đổi màu lẻ về màu chung của lớp Layer (<code>BYLAYER</code>).</span>
+                <span data-lang="en"><strong>Standardize Color ByLayer:</strong> Instantly revert overridden object colors back to their parent Layer color (<code>BYLAYER</code>).</span>
+            </td>
           </tr>
           <tr>
             <td><code>TSLINETYPE</code></td>
-            <td><strong>Chuẩn hóa kiểu nét ByLayer:</strong> Đổi nhanh kiểu nét về chuẩn theo lớp (<code>BYLAYER</code>).</td>
+            <td>
+                <span data-lang="vi"><strong>Chuẩn hóa kiểu nét ByLayer:</strong> Đổi nhanh kiểu nét về chuẩn theo lớp (<code>BYLAYER</code>).</span>
+                <span data-lang="en"><strong>Standardize Linetype ByLayer:</strong> Quickly revert linetypes back to the standard layer property (<code>BYLAYER</code>).</span>
+            </td>
           </tr>
           <tr>
             <td><code>LS</code></td>
-            <td><strong>Định tỷ lệ Linetype Scale (LTSCALE):</strong> Quét chọn đối tượng, nhập số tỷ lệ giãn nét mới straight trên màn hình!</td>
+            <td>
+                <span data-lang="vi"><strong>Định tỷ lệ Linetype Scale (LTSCALE):</strong> Quét chọn đối tượng, nhập số tỷ lệ giãn nét mới thẳng trên màn hình!</span>
+                <span data-lang="en"><strong>Linetype Scale (LTSCALE):</strong> Select objects and input the new linetype scale ratio directly on screen!</span>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <h2>&#128295; Hướng Dẫn Nạp Và Sử Dụng Trong AutoCAD</h2>
+    <h2 data-lang="vi">&#128295; Hướng Dẫn Nạp Lisp Và Sử Dụng Trong AutoCAD</h2>
+    <h2 data-lang="en">&#128295; How to Load and Use in AutoCAD</h2>
 
-    <p>Quy trình làm việc với Layiso Suite diễn ra cực kỳ tốc độ và chuẩn xác theo 3 bước:</p>
-    <ol>
-      <li>Load Lisp vào AutoCAD (chúng tôi khuyết khích thực hiện kèm <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html" target="_blank">Hướng dẫn chi tiết APPLOAD và Startup Suite tải Lisp tự động</a> để không phải tải lại hằng ngày).</li>
-      <li>Tại màn hình làm việc, nhập các lệnh tắt trong danh sách (Ví dụ: gõ <code>L1</code> hoặc <code>TS0</code>).</li>
-      <li><strong>Tên lệnh:</strong> <code>L1, L2, L3, TS0, LS...</code> - <a href="/autocad/chiase/tuy-chinh-lenh-autolisp.html" target="_blank">Hướng dẫn tuỳ chỉnh đổi tên lệnh trong AutoLISP</a> (nếu bạn muốn đổi phím tắt theo thói quen tay cá nhân).</li>
-    </ol>
+    <p data-lang="vi">Quy trình làm việc với Layiso Suite diễn ra cực kỳ tốc độ và chuẩn xác theo 3 bước:</p>
+    <p data-lang="en">The workflow with Layiso Suite is extremely fast and accurate in 3 simple steps:</p>
+    
+    <ul>
+      <li>
+        <span data-lang="vi">Nạp Lisp vào AutoCAD (chúng tôi khuyết khích thực hiện kèm <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html" target="_blank">Hướng dẫn chi tiết APPLOAD và Startup Suite tải Lisp tự động</a> để không phải nạp lại hằng ngày).</span>
+        <span data-lang="en">Load Lisp into AutoCAD (we highly recommend following our <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html" target="_blank">Detailed Guide on APPLOAD and Startup Suite</a> so you don't have to load it manually every day).</span>
+      </li>
+      <li>
+        <span data-lang="vi">Tại màn hình làm việc, nhập các lệnh / phím tắt trong danh sách (Ví dụ: gõ <code>L1</code> hoặc <code>TS0</code>).</span>
+        <span data-lang="en">In the workspace, type the shortcut commands from the list (Example: type <code>L1</code> or <code>TS0</code>).</span>
+      </li>
+      <li>
+        <span data-lang="vi"><strong>Lệnh / Phím tắt:</strong> <code>L1, L2, L3, TS0, LS...</code> - <a href="/autocad/chiase/tuy-chinh-lenh-autolisp.html" target="_blank">Hướng dẫn tuỳ chỉnh đổi phím tắt trong AutoLISP</a> (nếu bạn muốn đổi phím tắt theo thói quen cá nhân).</span>
+        <span data-lang="en"><strong>Command:</strong> <code>L1, L2, L3, TS0, LS...</code> - <a href="/autocad/chiase/tuy-chinh-lenh-autolisp.html" target="_blank">How to customize AutoLISP commands</a> (if you want to remap the shortcuts to your personal preference).</span>
+      </li>
+    </ul>
 
     <div class="img-box">
       <img src="Pic/Layiso_Suite_02.jpg" alt="Thao tác gõ phím tắt quản lý Layer L1 L2 TS0 ngay tại khu vực lệnh Command Line" />
-      <span>Hình 2: Thao tác gọi phím tắt quản lý Layer và nhập tham số trực tiếp tại Command Line</span>
+      <span data-lang="vi">Hình 2: Thao tác gọi lệnh quản lý Layer và nhập tham số trực tiếp tại Command Line</span>
+      <span data-lang="en">Figure 2: Executing Layer management commands and entering parameters directly in the Command Line</span>
     </div>
 
-    <h2>&#128229; Tải Về Bộ Công Cụ Layiso Suite</h2>
+    <h2 data-lang="vi">&#128229; Thông Tin Tải Về Layiso Suite</h2>
+    <h2 data-lang="en">&#128229; Layiso Suite Download Information</h2>
+    
     <div class="download-section">
-      <p>Tải xuống bộ công cụ gốc chính thức ngay tại đường dẫn bên dưới:</p>
+      <p data-lang="vi">Tải về bộ công cụ gốc chính thức ngay tại đường dẫn bên dưới:</p>
+      <p data-lang="en">Download the official original toolkit via the link below:</p>
       <ul>
-        <li><strong>Tệp tin:</strong> <code>L1_L2_L3_Layiso.lsp</code></li>
-        <li><strong>Phiên bản:</strong> Release 1.0 (Bao gồm 10 lệnh, đã lót bản quyền và chuẩn hóa mã).</li>
-        <li><strong>Link Tải trực tiếp:</strong> <a href="/fordownload/L1_L2_L3_Layiso.lsp" download="L1_L2_L3_Layiso.lsp">&#11015; Tải Về L1_L2_L3_Layiso.lsp</a></li>
+        <li>
+            <span data-lang="vi"><strong>Tệp tin:</strong></span>
+            <span data-lang="en"><strong>File:</strong></span> <code>L1_L2_L3_Layiso.lsp</code>
+        </li>
+        <li>
+            <span data-lang="vi"><strong>Phiên bản:</strong> Release 1.0 (Bao gồm 10 lệnh, đã lót bản quyền và chuẩn hóa mã).</span>
+            <span data-lang="en"><strong>Version:</strong> Release 1.0 (Includes 10 commands, copyrighted and standardized).</span>
+        </li>
+        <li>
+            <span data-lang="vi"><strong>Link Tải trực tiếp:</strong></span>
+            <span data-lang="en"><strong>Direct Download Link:</strong></span> <a href="/fordownload/L1_L2_L3_Layiso.lsp" download="L1_L2_L3_Layiso.lsp">&#11015; <span data-lang="vi">Tải Về</span><span data-lang="en">Download</span> L1_L2_L3_Layiso.lsp</a>
+        </li>
       </ul>
     </div>
+  </div>\n\n
+  <div class="related-container">
+    <h2 data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
+    <h2 data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem; display:none;">You might also be interested in</h2>
+    <div class="related-grid">
+      <a class="related-card" href="/autocad/autolisp/autolisp-merge-hatch-mh.html">
+        <span class="badge">CAD Automation</span>
+        <h3><span data-lang="vi">Lisp Gộp Vùng Hatch (Merge Hatch - MH)</span><span data-lang="en" style="display:none;">Merge Hatch Lisp (MH)</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/autolisp/autolisp-quick-block-bb.html">
+        <span class="badge">CAD Automation</span>
+        <h3><span data-lang="vi">Lisp Tạo Block Nhanh (Quick Block - BB)</span><span data-lang="en" style="display:none;">Quick Block Lisp (BB)</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/autolisp/autolisp-layiso-layer-manager.html">
+        <span class="badge">CAD Automation</span>
+        <h3><span data-lang="vi">Bộ 10 Phím Tắt Quản Lý Layer (Layiso Suite)</span><span data-lang="en" style="display:none;">Layiso Layer Management Suite</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/chiase/huong-dan-appload-lisp-autocad.html">
+        <span class="badge">Knowledge Share</span>
+        <h3><span data-lang="vi">Hướng Dẫn Nạp Lisp Bằng APPLOAD</span><span data-lang="en" style="display:none;">Guide to Load Lisp via APPLOAD</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/chiase/tuy-chinh-lenh-autolisp.html">
+        <span class="badge">Knowledge Share</span>
+        <h3><span data-lang="vi">Cách Tùy Chỉnh Phím Tắt Lệnh AutoLISP</span><span data-lang="en" style="display:none;">How to Customize AutoLISP Commands</span></h3>
+      </a>
+    </div>
   </div>
-
-  <script>
+\n\n  <script>
     (function() {
+      // --- Theme Logic ---
       const savedTheme = localStorage.getItem('ividlab-theme') || 'light';
       document.documentElement.setAttribute('data-theme', savedTheme);
       const themeBtn = document.getElementById('theme-toggle');
@@ -233,6 +357,16 @@
         document.documentElement.setAttribute('data-theme', nextTheme);
         localStorage.setItem('ividlab-theme', nextTheme);
         updateBtnText(nextTheme);
+      });
+
+      // --- Language Logic ---
+      const savedLang = localStorage.getItem('ividlab-lang') || 'vi';
+      if (savedLang === 'en') document.body.classList.add('lang-en');
+      const langBtn = document.getElementById('lang-toggle');
+      langBtn.addEventListener('click', () => {
+        document.body.classList.toggle('lang-en');
+        const isEn = document.body.classList.contains('lang-en');
+        localStorage.setItem('ividlab-lang', isEn ? 'en' : 'vi');
       });
     })();
   </script>

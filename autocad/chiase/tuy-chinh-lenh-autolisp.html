@@ -225,19 +225,50 @@
       .article-container { padding: 25px 18px; }
       h1 { font-size: 1.85rem; }
     }
-  </style>
+  
+    .related-container { margin-top: 45px; background: var(--bg-card); padding: 40px; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.15); transition: background-color 0.3s ease, border-color 0.3s ease; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 25px; }
+    .related-card { display: flex; flex-direction: column; text-decoration: none; background: var(--bg-page); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; transition: transform 0.2s, border-color 0.2s; }
+    .related-card:hover { transform: translateY(-3px); border-color: var(--link-color); }
+    .related-card .badge { align-self: flex-start; background: var(--badge-bg); color: var(--badge-text); font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; font-family: 'JetBrains Mono', monospace; }
+    .related-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.1rem; margin: 0; color: var(--text-primary); line-height: 1.4; transition: color 0.2s; }
+    .related-card:hover h3 { color: var(--link-color); }
+\n  </style>
 </head>
 <body>
-  <div class="top-bar">
-    <div class="nav-links">
-      <a href="/autocad/autolisp/autocad-lisp-vexago.html" class="back-link">← Bài viết DrawPurlin</a>
-      <span style="color: var(--text-muted);">|</span>
-      <a href="/" class="back-link">🏠 Trang chủ iViDLab</a>
-    </div>
-    <button id="theme-toggle" class="toggle-btn" title="Chuyển giao diện Sáng / Tối">☀️ LIGHT</button>
-  </div>
   
-  <div class="article-container">
+  <header style="position: sticky; top: 0; z-index: 100; background-color: var(--bg-page); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 15px 0; transition: background-color 0.3s ease; margin-bottom: 30px;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+      <a href="/" style="text-decoration: none; display: flex; align-items: center;">
+        <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.45rem; font-weight: 900; letter-spacing: -0.02em; color: var(--text-primary);">
+          iViD<span style="color: #2E6583;">Lab</span>
+        </span>
+      </a>
+      <nav style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+        <a href="/?tab=all" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); transition: color 0.2s ease;">
+          <span data-lang="vi">// TRANG CHỦ</span><span data-lang="en" style="display:none;">// HOME</span>
+        </a>
+        <a href="/?tab=tools" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// CÔNG CỤ</span><span data-lang="en" style="display:none;">// TOOLS</span>
+        </a>
+        <a href="/?tab=guides" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span data-lang="en" style="display:none;">// GUIDES</span>
+        </a>
+        <a href="/?tab=about" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en" style="display:none;">// ABOUT</span>
+        </a>
+      </nav>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button id="theme-toggle" class="toggle-btn" title="Chuyển giao diện Sáng / Tối" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; padding: 6px 14px; border-radius: 20px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s;">
+          ☀️ LIGHT
+        </button>
+        <button id="lang-toggle" class="toggle-btn" title="Chuyển Ngôn Ngữ / Toggle Language" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; padding: 6px 14px; border-radius: 20px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s;">
+          🌐 VN / EN
+        </button>
+      </div>
+    </div>
+  </header>
+\n  <div class="article-container">
     <span class="badge">Chia Sẻ & Thủ Thuật CAD</span>
     <h1>Hướng Dẫn Tùy Chỉnh & Đổi Tên Lệnh Trong File AutoLISP (.lsp)</h1>
 
@@ -298,9 +329,34 @@
     <p style="text-align: center; font-style: italic; color: var(--text-muted); margin-bottom: 0;">
       Bài viết thuộc sự nghiên cứu và biên soạn từ kỹ thuật viên của <a href="https://ividlab.com/">iViDLab.com</a>. Chúc các bạn thiết lập không gian làm việc AutoCAD tối ưu và chuyên nghiệp!
     </p>
+  </div>\n\n
+  <div class="related-container">
+    <h2 data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
+    <h2 data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem; display:none;">You might also be interested in</h2>
+    <div class="related-grid">
+      <a class="related-card" href="/autocad/autolisp/autolisp-merge-hatch-mh.html">
+        <span class="badge">CAD Automation</span>
+        <h3><span data-lang="vi">Lisp Gộp Vùng Hatch (Merge Hatch - MH)</span><span data-lang="en" style="display:none;">Merge Hatch Lisp (MH)</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/autolisp/autolisp-quick-block-bb.html">
+        <span class="badge">CAD Automation</span>
+        <h3><span data-lang="vi">Lisp Tạo Block Nhanh (Quick Block - BB)</span><span data-lang="en" style="display:none;">Quick Block Lisp (BB)</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/autolisp/autolisp-layiso-layer-manager.html">
+        <span class="badge">CAD Automation</span>
+        <h3><span data-lang="vi">Bộ 10 Phím Tắt Quản Lý Layer (Layiso Suite)</span><span data-lang="en" style="display:none;">Layiso Layer Management Suite</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/chiase/huong-dan-appload-lisp-autocad.html">
+        <span class="badge">Knowledge Share</span>
+        <h3><span data-lang="vi">Hướng Dẫn Nạp Lisp Bằng APPLOAD</span><span data-lang="en" style="display:none;">Guide to Load Lisp via APPLOAD</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/chiase/tuy-chinh-lenh-autolisp.html">
+        <span class="badge">Knowledge Share</span>
+        <h3><span data-lang="vi">Cách Tùy Chỉnh Phím Tắt Lệnh AutoLISP</span><span data-lang="en" style="display:none;">How to Customize AutoLISP Commands</span></h3>
+      </a>
+    </div>
   </div>
-
-  <script>
+\n\n  <script>
     (function() {
       const savedTheme = localStorage.getItem('ividlab-theme') || 'light';
       document.documentElement.setAttribute('data-theme', savedTheme);
