@@ -16,8 +16,8 @@ Khi người dùng gọi tên **LispPub** hoặc cung cấp 1 tệp tin AutoLISP
      * **Cách thức nhập liệu:** (Người dùng phải click chọn đối tượng hay gõ thông số như thế nào?).
 2. **Kiểm tra, Dịch thuật mã Lisp & Bản quyền iViDLab:**
    - **Kiểm tra và xử lý chỉ dẫn Tiếng Việt:** Rà soát kỹ lưỡng toàn bộ mã nguồn Lisp. Nếu có bất kỳ từ ngữ, chú thích (comments) hay chỉ dẫn nhắc lệnh nào bằng **Tiếng Việt (có dấu hoặc không dấu)** (chẳng hạn như `Chon diem`, `Nhap ty le`...), bắt buộc **dịch toàn bộ sang Tiếng Anh** chuẩn xác (tránh lỗi hiển thị phông chữ khi chạy trên CAD).
-   - **Thông báo khi kết thúc lệnh:** Bổ sung dòng mã in thông báo phi lợi nhuận sau ra màn hình Command khi kết thúc chạy lệnh:
-     `(princ "\nAutolisp được sưu tầm và chia sẻ phi lợi nhuận bởi iViDLab.com")`
+   - **Thông báo khi kết thúc lệnh (Bắt buộc bằng Tiếng Anh):** Để tránh lỗi font trên thanh Command của AutoCAD, bắt buộc chèn đoạn lệnh bằng Tiếng Anh (không dùng Tiếng Việt) in thông báo sưu tầm và chia sẻ phi lợi nhuận khi kết thúc thực thi lệnh:
+     `(princ "\nAutoLISP tool collected and shared for non-profit by iViDLab.com")`
 3. **Lưu file thẳng vào kho tải web:**
    - Copy tệp Lisp đã chuẩn hóa đặt thẳng vào máy chủ tài nguyên web tại đường dẫn bắt buộc:
      `X:\OneDrive\05 CODI\ViDiLab Web\public\fordownload\<TenFile>.lsp`
