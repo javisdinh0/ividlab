@@ -269,67 +269,103 @@
     </div>
   </header>
 \n  <div class="article-container">
-    <span class="badge">Chia Sẻ & Thủ Thuật CAD</span>
-    <h1>Hướng Dẫn Tùy Chỉnh & Đổi Tên Lệnh Trong File AutoLISP (.lsp)</h1>
+    <span class="badge" data-lang="vi">Chia Sẻ & Thủ Thuật CAD</span>
+    <span class="badge" data-lang="en">Share & CAD Tips</span>
+    
+    <h1 data-lang="vi">Hướng Dẫn Tùy Chỉnh & Đổi Tên Lệnh Trong File AutoLISP (.lsp)</h1>
+    <h1 data-lang="en">Guide to Customize & Rename Commands in AutoLISP (.lsp) Files</h1>
 
-    <p>Khi tải về các công cụ Lisp hay Plugin cho AutoCAD (như Lisp vẽ xà gồ <strong>DrawPurlin</strong> của iViDLab), đôi khi tên lệnh mặc định (ví dụ <code>VEXAGO</code>) có thể hơi dài hoặc không thuận tay với thói quen gõ bàn phím của bạn. Hoặc đôi khi lệnh đó bị trùng với một shortcut khác mà bạn đã có trong máy.</p>
+    <p data-lang="vi">Khi tải về các công cụ Lisp hay Plugin cho AutoCAD (như Lisp vẽ xà gồ <strong>DrawPurlin</strong> của iViDLab), đôi khi tên lệnh mặc định (ví dụ <code>VEXAGO</code>) có thể hơi dài hoặc không thuận tay với thói quen gõ bàn phím của bạn. Hoặc đôi khi lệnh đó bị trùng với một shortcut khác mà bạn đã có trong máy.</p>
+    <p data-lang="en">When downloading Lisp tools or Plugins for AutoCAD (like iViDLab's <strong>DrawPurlin</strong> purlin drawing Lisp), sometimes the default command name (e.g., <code>VEXAGO</code>) might be a bit long or not handy for your keyboard typing habits. Or sometimes that command conflicts with another shortcut you already have on your machine.</p>
 
-    <p>Bài viết này sẽ hướng dẫn bạn cách tự chỉnh sửa (edit) file <code>.lsp</code> để đổi tên lệnh theo sở thích chỉ với vài thao tác cực kỳ đơn giản và an toàn, không cần phải am hiểu sâu về lập trình AutoLISP.</p>
+    <p data-lang="vi">Bài viết này sẽ hướng dẫn bạn cách tự chỉnh sửa (edit) file <code>.lsp</code> để đổi tên lệnh theo sở thích chỉ với vài thao tác cực kỳ đơn giản và an toàn, không cần phải am hiểu sâu về lập trình AutoLISP.</p>
+    <p data-lang="en">This article will guide you on how to edit the <code>.lsp</code> file yourself to rename the command to your liking with just a few extremely simple and safe operations, without needing to deeply understand AutoLISP programming.</p>
 
-    <h2>&#128398; Các Bước Đổi Tên Lệnh AutoLISP</h2>
+    <h2 data-lang="vi">&#128398; Các Bước Đổi Tên Lệnh AutoLISP</h2>
+    <h2 data-lang="en">&#128398; Steps to Rename AutoLISP Commands</h2>
 
-    <h3>Bước 1: Mở tệp tin Lisp (.lsp) bằng trình soạn thảo</h3>
-    <p>Bạn không mở trực tiếp file Lisp bằng AutoCAD để sửa. Thay vào đó, hãy <strong>click chuột phải</strong> vào file Lisp (ví dụ <code>DrawPurlin.lsp</code>) &rarr; Chọn <strong>Open with</strong> &rarr; Chọn <strong>Notepad</strong> (hoặc nếu có các phần mềm tiện hơn như <em>Notepad++</em> hay <em>Visual Studio Code</em> thì càng tuyệt vời).</p>
+    <h3 data-lang="vi">Bước 1: Mở tệp tin Lisp (.lsp) bằng trình soạn thảo</h3>
+    <h3 data-lang="en">Step 1: Open the Lisp file (.lsp) with an editor</h3>
+    <p data-lang="vi">Bạn không mở trực tiếp file Lisp bằng AutoCAD để sửa. Thay vào đó, hãy <strong>click chuột phải</strong> vào file Lisp (ví dụ <code>DrawPurlin.lsp</code>) &rarr; Chọn <strong>Open with</strong> &rarr; Chọn <strong>Notepad</strong> (hoặc nếu có các phần mềm tiện hơn như <em>Notepad++</em> hay <em>Visual Studio Code</em> thì càng tuyệt vời).</p>
+    <p data-lang="en">You do not open the Lisp file directly with AutoCAD to edit it. Instead, <strong>right-click</strong> on the Lisp file (e.g., <code>DrawPurlin.lsp</code>) &rarr; Select <strong>Open with</strong> &rarr; Select <strong>Notepad</strong> (or if you have more convenient software like <em>Notepad++</em> or <em>Visual Studio Code</em>, that's even better).</p>
 
-    <h3>Bước 2: Tìm đến cú pháp khai báo tên lệnh</h3>
-    <p>Trong ngôn ngữ AutoLISP, mọi lệnh có thể gõ trực tiếp trong AutoCAD đều được bắt đầu bằng cú pháp chuẩn:</p>
+    <h3 data-lang="vi">Bước 2: Tìm đến cú pháp khai báo tên lệnh</h3>
+    <h3 data-lang="en">Step 2: Find the command declaration syntax</h3>
+    <p data-lang="vi">Trong ngôn ngữ AutoLISP, mọi lệnh có thể gõ trực tiếp trong AutoCAD đều được bắt đầu bằng cú pháp chuẩn:</p>
+    <p data-lang="en">In the AutoLISP language, every command that can be typed directly in AutoCAD starts with the standard syntax:</p>
     <pre><code>(defun c:<span class="highlight-code">TEN_LENH</span> () ... )</code></pre>
-    <p>Trong đó, chữ <code>c:</code> đứng ngay trước tên lệnh là quy ước bắt buộc của AutoCAD (nó tượng trưng cho từ <em>Command</em>, hoàn toàn không liên quan gì đến ổ đĩa C của máy tính cả).</p>
-    <p>Hãy bấm tổ hợp phím <code>Ctrl + F</code> trong Notepad và tìm chữ <code>c:</code> hoặc tìm tên lệnh gốc. <br>Ví dụ trong file <code>DrawPurlin.lsp</code>, bạn sẽ thấy dòng mã như sau:</p>
+    <p data-lang="vi">Trong đó, chữ <code>c:</code> đứng ngay trước tên lệnh là quy ước bắt buộc của AutoCAD (nó tượng trưng cho từ <em>Command</em>, hoàn toàn không liên quan gì đến ổ đĩa C của máy tính cả).</p>
+    <p data-lang="en">Where the letter <code>c:</code> standing right before the command name is a mandatory convention of AutoCAD (it stands for the word <em>Command</em>, completely unrelated to your computer's C drive).</p>
+    
+    <p data-lang="vi">Hãy bấm tổ hợp phím <code>Ctrl + F</code> trong Notepad và tìm chữ <code>c:</code> hoặc tìm tên lệnh gốc. <br>Ví dụ trong file <code>DrawPurlin.lsp</code>, bạn sẽ thấy dòng mã như sau:</p>
+    <p data-lang="en">Press the <code>Ctrl + F</code> key combination in Notepad and search for <code>c:</code> or search for the original command name. <br>For example, in the <code>DrawPurlin.lsp</code> file, you will see a line of code like this:</p>
     <pre><code>(defun <span class="highlight-code">c:VEXAGO</span> ( / *error* oldOs oldCmd ... )</code></pre>
 
-    <h3>Bước 3: Đổi thành tên lệnh bạn yêu thích</h3>
-    <p>Bây giờ, bạn chỉ cần thay đổi cụm từ đi sát sau chữ <code>c:</code> thành tên lệnh ngắn gọn mà bạn muốn dùng.</p>
-    <p>Ví dụ: Bạn muốn gõ phím <strong><code>XG</code></strong> hoặc <strong><code>VXG</code></strong> cho tiện và siêu nhanh, hãy đổi thành:</p>
+    <h3 data-lang="vi">Bước 3: Đổi thành tên lệnh bạn yêu thích</h3>
+    <h3 data-lang="en">Step 3: Change to your favorite command name</h3>
+    <p data-lang="vi">Bây giờ, bạn chỉ cần thay đổi cụm từ đi sát sau chữ <code>c:</code> thành tên lệnh ngắn gọn mà bạn muốn dùng.</p>
+    <p data-lang="en">Now, you just need to change the phrase right after <code>c:</code> to the short command name you want to use.</p>
+    <p data-lang="vi">Ví dụ: Bạn muốn gõ phím <strong><code>XG</code></strong> hoặc <strong><code>VXG</code></strong> cho tiện và siêu nhanh, hãy đổi thành:</p>
+    <p data-lang="en">For example: You want to type <strong><code>XG</code></strong> or <strong><code>VXG</code></strong> for convenience and super speed, change it to:</p>
     <pre><code>(defun <span class="highlight-code">c:XG</span> ( / *error* oldOs oldCmd ... )
-;; Hoặc:
+;; <span data-lang="vi">Hoặc:</span><span data-lang="en">Or:</span>
 (defun <span class="highlight-code">c:VXG</span> ( / *error* oldOs oldCmd ... )</code></pre>
 
     <div class="tip-box">
-      <strong>&#128161; Mẹo hay: Tạo đồng thời 2 phím tắt cho 1 Lisp</strong>
-      <p>Nếu bạn vừa muốn giữ tên lệnh cũ để nhớ thói quen, vừa muốn có thêm tên lệnh siêu ngắn, bạn có thể cuộn xuống cuối cùng của file <code>.lsp</code> và tự tạo một dòng mã bí danh (alias) như sau: <br><code>(defun c:XG () (c:VEXAGO))</code><br>Khi đó gõ cả <code>VEXAGO</code> hay <code>XG</code> trong CAD đều sẽ cùng chạy một lệnh cho bạn!</p>
+      <strong data-lang="vi">&#128161; Mẹo hay: Tạo đồng thời 2 phím tắt cho 1 Lisp</strong>
+      <strong data-lang="en">&#128161; Great tip: Create 2 shortcuts simultaneously for 1 Lisp</strong>
+      <p data-lang="vi">Nếu bạn vừa muốn giữ tên lệnh cũ để nhớ thói quen, vừa muốn có thêm tên lệnh siêu ngắn, bạn có thể cuộn xuống cuối cùng của file <code>.lsp</code> và tự tạo một dòng mã bí danh (alias) như sau: <br><code>(defun c:XG () (c:VEXAGO))</code><br>Khi đó gõ cả <code>VEXAGO</code> hay <code>XG</code> trong CAD đều sẽ cùng chạy một lệnh cho bạn!</p>
+      <p data-lang="en">If you both want to keep the old command name to remember the habit, and want an additional super short command name, you can scroll to the very bottom of the <code>.lsp</code> file and create an alias code line yourself like this: <br><code>(defun c:XG () (c:VEXAGO))</code><br>Then typing either <code>VEXAGO</code> or <code>XG</code> in CAD will both run the same command for you!</p>
     </div>
 
-    <h3>Bước 4: Lưu file và Tải lại vào AutoCAD</h3>
+    <h3 data-lang="vi">Bước 4: Lưu file và Tải lại vào AutoCAD</h3>
+    <h3 data-lang="en">Step 4: Save the file and Reload into AutoCAD</h3>
     <ol>
-      <li>Nhấn <strong>Ctrl + S</strong> để lưu lại thay đổi (Sau đó có thể đóng Notepad lại).</li>
-      <li>Mở bản vẽ AutoCAD của bạn lên, gõ lệnh <code>AP</code> (APPLOAD) &rarr; Chọn lại file Lisp bạn vừa chỉnh sửa &rarr; Bấm <strong>Load</strong>.</li>
-      <li>Gõ tên lệnh mới của bạn (ví dụ <code>XG</code>) và trải nghiệm tốc độ vẽ phi thường!</li>
+      <li>
+        <span data-lang="vi">Nhấn <strong>Ctrl + S</strong> để lưu lại thay đổi (Sau đó có thể đóng Notepad lại).</span>
+        <span data-lang="en">Press <strong>Ctrl + S</strong> to save the changes (Then you can close Notepad).</span>
+      </li>
+      <li>
+        <span data-lang="vi">Mở bản vẽ AutoCAD của bạn lên, gõ lệnh <code>AP</code> (APPLOAD) &rarr; Chọn lại file Lisp bạn vừa chỉnh sửa &rarr; Bấm <strong>Load</strong>.</span>
+        <span data-lang="en">Open your AutoCAD drawing, type the <code>AP</code> (APPLOAD) command &rarr; Reselect the Lisp file you just edited &rarr; Click <strong>Load</strong>.</span>
+      </li>
+      <li>
+        <span data-lang="vi">Gõ tên lệnh mới của bạn (ví dụ <code>XG</code>) và trải nghiệm tốc độ vẽ phi thường!</span>
+        <span data-lang="en">Type your new command name (e.g., <code>XG</code>) and experience extraordinary drawing speed!</span>
+      </li>
     </ol>
 
-    <h2>&#9888;&#65039; Một Số Lưu Ý Quan Trọng Khi Sửa Code</h2>
+    <h2 data-lang="vi">&#9888;&#65039; Một Số Lưu Ý Quan Trọng Khi Sửa Code</h2>
+    <h2 data-lang="en">&#9888;&#65039; Some Important Notes When Editing Code</h2>
 
     <div class="warning-box">
-      <strong>1. Tuyệt đối không xóa mất chữ "c:" hay dấu ngoặc đơn</strong>
-      <p>Nếu bạn lỡ tay sửa thành <code>(defun VEXAGO</code> (mất chữ <code>c:</code>) thì CAD sẽ coi đây là một hàm phụ ẩn và khi ra ngoài giao diện bạn sẽ không thể gõ được tên lệnh này nữa. Đồng thời không làm mất bất kỳ dấu ngoặc đơn <code>(</code> <code>)</code> hoặc khoảng trắng nào ở dòng định nghĩa này.</p>
+      <strong data-lang="vi">1. Tuyệt đối không xóa mất chữ "c:" hay dấu ngoặc đơn</strong>
+      <strong data-lang="en">1. Absolutely do not delete the "c:" or parentheses</strong>
+      <p data-lang="vi">Nếu bạn lỡ tay sửa thành <code>(defun VEXAGO</code> (mất chữ <code>c:</code>) thì CAD sẽ coi đây là một hàm phụ ẩn và khi ra ngoài giao diện bạn sẽ không thể gõ được tên lệnh này nữa. Đồng thời không làm mất bất kỳ dấu ngoặc đơn <code>(</code> <code>)</code> hoặc khoảng trắng nào ở dòng định nghĩa này.</p>
+      <p data-lang="en">If you accidentally edit it to <code>(defun VEXAGO</code> (losing the <code>c:</code>) then CAD will consider this a hidden sub-function and when returning to the interface you will not be able to type this command name anymore. At the same time, do not lose any parentheses <code>(</code> <code>)</code> or spaces in this definition line.</p>
     </div>
 
     <div class="warning-box">
-      <strong>2. Tránh đặt trùng với phím tắt mặc định của AutoCAD</strong>
-      <p>Không nên đặt tên lệnh là <code>L</code>, <code>C</code>, <code>M</code>, <code>CO</code>, <code>PL</code>,... vì nếu trùng lặp, Lisp có thể sẽ ghi đè và làm vô hiệu hóa các lệnh cơ bản như Line, Circle, Move hay Polyline của bạn khi file Lisp đang được nạp.</p>
+      <strong data-lang="vi">2. Tránh đặt trùng với phím tắt mặc định của AutoCAD</strong>
+      <strong data-lang="en">2. Avoid duplicating AutoCAD's default shortcuts</strong>
+      <p data-lang="vi">Không nên đặt tên lệnh là <code>L</code>, <code>C</code>, <code>M</code>, <code>CO</code>, <code>PL</code>,... vì nếu trùng lặp, Lisp có thể sẽ ghi đè và làm vô hiệu hóa các lệnh cơ bản như Line, Circle, Move hay Polyline của bạn khi file Lisp đang được nạp.</p>
+      <p data-lang="en">You should not name the command <code>L</code>, <code>C</code>, <code>M</code>, <code>CO</code>, <code>PL</code>,... because if duplicated, the Lisp might overwrite and disable your basic commands like Line, Circle, Move or Polyline while the Lisp file is loaded.</p>
     </div>
 
     <div class="warning-box">
-      <strong>3. Lưu file ở định dạng mã hóa (Encoding) đúng</strong>
-      <p>Khi lưu bằng Notepad, hãy chắc chắn chọn Encoding là <strong>UTF-8</strong> (hoặc ANSI) và không để bị tự động đổi đuôi tệp thành <code>.lsp.txt</code>.</p>
+      <strong data-lang="vi">3. Lưu file ở định dạng mã hóa (Encoding) đúng</strong>
+      <strong data-lang="en">3. Save the file in the correct Encoding format</strong>
+      <p data-lang="vi">Khi lưu bằng Notepad, hãy chắc chắn chọn Encoding là <strong>UTF-8</strong> (hoặc ANSI) và không để bị tự động đổi đuôi tệp thành <code>.lsp.txt</code>.</p>
+      <p data-lang="en">When saving with Notepad, make sure to select Encoding as <strong>UTF-8</strong> (or ANSI) and do not let it automatically change the file extension to <code>.lsp.txt</code>.</p>
     </div>
 
     <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--border-color);">
     
     <p style="text-align: center; font-style: italic; color: var(--text-muted); margin-bottom: 0;">
-      Bài viết thuộc sự nghiên cứu và biên soạn từ kỹ thuật viên của <a href="https://ividlab.com/">iViDLab.com</a>. Chúc các bạn thiết lập không gian làm việc AutoCAD tối ưu và chuyên nghiệp!
+      <span data-lang="vi">Bài viết thuộc sự nghiên cứu và biên soạn từ kỹ thuật viên của <a href="https://ividlab.com/">iViDLab.com</a>. Chúc các bạn thiết lập không gian làm việc AutoCAD tối ưu và chuyên nghiệp!</span>
+      <span data-lang="en">Article researched and compiled by technicians of <a href="https://ividlab.com/">iViDLab.com</a>. Wish you set up an optimal and professional AutoCAD workspace!</span>
     </p>
-  </div>\n\n
+  </div>
   <div class="related-container">
     <h2 data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
     <h2 data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem; display:none;">You might also be interested in</h2>
@@ -356,7 +392,17 @@
       </a>
     </div>
   </div>
-\n\n  <script>
+  
+  <footer style="border-top: 1px solid var(--border-color); padding: 3rem 0; background-color: var(--bg-page); margin-top: 4rem; text-align: center;">
+    <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--text-primary);">
+      iViD<span style="color: #2E6583;">Lab</span>
+    </div>
+    <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">
+      © 2026 iViDLab. All rights reserved.
+    </p>
+  </footer>
+
+  <script>
     (function() {
       const savedTheme = localStorage.getItem('ividlab-theme') || 'light';
       document.documentElement.setAttribute('data-theme', savedTheme);
