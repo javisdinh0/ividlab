@@ -26,9 +26,10 @@ Tối ưu hóa và tự động hóa chuỗi cung ứng sản phẩm công cụ 
   - **Tích hợp thông báo tại màn hình Command AutoCAD (Bắt buộc bằng Tiếng Anh):** Ngay trước khi kết thúc lệnh (trước thẻ đóng của `defun c:...`), bắt buộc in chuỗi thông báo bản quyền sưu tầm phi lợi nhuận bằng Tiếng Anh để chống tuyệt đối lỗi phông CAD:  
     `(princ "\nAutoLISP tool collected and shared for non-profit by iViDLab.com")`
   - **⚠️ LƯU Ý VÀNG VỀ NỘI DUNG BÀI VIÊT WEB:** Thao tác dịch sang Tiếng Anh và cài chuỗi bản quyền là việc của lập trình viên trong tệp `.lsp` (chạy trên CAD). **Tuyệt đối KHÔNG đưa các giải thích mang tính kỹ thuật hậu trường này (như "tối ưu phông chữ", "chống lỗi encoding") vào bài viết giới thiệu/hướng dẫn trên Website**. Bài viết chỉ tập trung giới thiệu tính năng và hướng dẫn thao tác lệnh nhanh, gọn, trong sáng!
-- **Lưu trữ tài nguyên:** 
-  - Lưu file thẳng vào máy chủ web ở thư mục tải xuống tĩnh:  
-    `public\fordownload\<TenFile>.lsp`
+- **Chuẩn Hóa Tên Tệp & Lưu trữ tài nguyên:** 
+  - **Quy tắc Đặt & Đổi lại Tên File Lisp:** Tuyệt đối không để lại các khoảng trắng lọt thỏm, dấu gạch ngang lộn xộn hay cụm từ Tiếng Việt không dấu (như `BB - Tao block nhanh.lsp`, `MH - Merge hatch.lsp`). Agent bắt buộc **viết lại sang tên Tiếng Anh / Tên kỹ thuật chuẩn mực**, dùng dấu gạch dưới `_` để ngăn cách từ (Ví dụ: `BB - Tao block nhanh.lsp` ➔ `BB_Quick_Block_Creator.lsp`, `MH - Merge hatch.lsp` ➔ `MH_Merge_Hatch.lsp`). Việc này đảm bảo tính chuyên nghiệp và 100% chống lỗi ký tự trắng (`%20`) khi tải về trên trình duyệt Web.
+  - Lưu file đã chuẩn hóa thẳng vào kho tải xuống tĩnh:  
+    `public\fordownload\<TenFileChuanHoa>.lsp`
 
 ### 🟡 Bước 2: Dừng & Xin Cung Cấp Hình Ảnh Minh Họa Theo Kịch Bản
 Ngay sau Bước 1, Agent không đoán mò ảnh mà phải tạm dừng thực thi, chủ động đặt một câu hỏi ngắn gọn tới Kỹ Sư / Người Dùng để xin file hình ảnh.

@@ -19,9 +19,10 @@ Khi người dùng gọi tên **LispPub** hoặc cung cấp 1 tệp tin AutoLISP
    - **Thông báo khi kết thúc lệnh (Bắt buộc bằng Tiếng Anh):** Để tránh lỗi font trên thanh Command của AutoCAD, bắt buộc chèn đoạn lệnh bằng Tiếng Anh (không dùng Tiếng Việt) in thông báo sưu tầm và chia sẻ phi lợi nhuận khi kết thúc thực thi lệnh:
      `(princ "\nAutoLISP tool collected and shared for non-profit by iViDLab.com")`
    - **⚠️ LƯU Ý VÀNG:** Việc dịch chỉ dẫn sang Tiếng Anh và thêm câu thông báo `princ` là thao tác ngầm ĐẶC VỤ bên trong mã Lisp (trong AutoCAD). **Tuyệt đối KHÔNG viết giải thích về việc "dịch phông chữ" hay "tránh lỗi encoding" ra ngoài nội dung Bài Viết HTML**. Bài viết HTML chỉ tập trung thuần túy hướng dẫn sử dụng công cụ cho người đọc!
-3. **Lưu file thẳng vào kho tải web:**
-   - Copy tệp Lisp đã chuẩn hóa đặt thẳng vào máy chủ tài nguyên web tại đường dẫn bắt buộc:
-     `X:\OneDrive\05 CODI\ViDiLab Web\public\fordownload\<TenFile>.lsp`
+3. **Chuẩn Hóa Đổi Tên File & Lưu vào Kho Tải Web:**
+   - **Quy tắc viết lại Tên File (.lsp):** Tuyệt đối không giữ nguyên các tên file rườm rà, có dấu gạch ngang dư thừa, khoảng trắng hoặc chữ Tiếng Việt không dấu (như `BB - Tao block nhanh.lsp` hay `MH - Merge hatch.lsp`). Bắt buộc **viết lại / chuẩn hóa sang tên kỹ thuật Tiếng Anh** sắc sảo, dùng dấu gạch dưới `_` thay cho khoảng trắng để loại bỏ lỗi URL (ví dụ: `BB_Quick_Block_Creator.lsp` hoặc `MH_Merge_Hatch.lsp`, `L1_L2_L3_Layiso.lsp`).
+   - Lưu tệp Lisp đã chuẩn hóa đặt thẳng vào kho tải xuống tĩnh của máy chủ tại:
+     `X:\OneDrive\05 CODI\ViDiLab Web\public\fordownload\<TenFileChuanHoa>.lsp`
 
 ## 🟡 Giai đoạn 2: Phác thảo Bố cục & Yêu cầu Cung cấp Hình Ảnh
 Agent **NGƯNG LẠI và ra thông báo rõ ràng cho người dùng**, liệt kê chính xác các hình ảnh minh họa cần thiết (kèm theo mô tả chi tiết nội dung bức ảnh và thứ tự mong muốn trong bài viết).
