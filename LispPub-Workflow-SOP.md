@@ -25,6 +25,7 @@ Tối ưu hóa và tự động hóa chuỗi cung ứng sản phẩm công cụ 
   - **Dịch sang Tiếng Anh toàn bộ chỉ dẫn Tiếng Việt:** Kiểm tra chi tiết nội dung file Lisp, nếu xuất hiện bất kỳ chú giả hay dòng nhắc chỉ dẫn nào bằng **Tiếng Việt (có dấu hoặc không dấu)** thì bắt buộc phải **dịch toàn bộ sang Tiếng Anh** để tránh xung đột bảng mã encoding trong AutoCAD.
   - **Tích hợp thông báo tại màn hình Command AutoCAD (Bắt buộc bằng Tiếng Anh):** Ngay trước khi kết thúc lệnh (trước thẻ đóng của `defun c:...`), bắt buộc in chuỗi thông báo bản quyền sưu tầm phi lợi nhuận bằng Tiếng Anh để chống tuyệt đối lỗi phông CAD:  
     `(princ "\nAutoLISP tool collected and shared for non-profit by iViDLab.com")`
+  - **⚠️ LƯU Ý VÀNG VỀ NỘI DUNG BÀI VIÊT WEB:** Thao tác dịch sang Tiếng Anh và cài chuỗi bản quyền là việc của lập trình viên trong tệp `.lsp` (chạy trên CAD). **Tuyệt đối KHÔNG đưa các giải thích mang tính kỹ thuật hậu trường này (như "tối ưu phông chữ", "chống lỗi encoding") vào bài viết giới thiệu/hướng dẫn trên Website**. Bài viết chỉ tập trung giới thiệu tính năng và hướng dẫn thao tác lệnh nhanh, gọn, trong sáng!
 - **Lưu trữ tài nguyên:** 
   - Lưu file thẳng vào máy chủ web ở thư mục tải xuống tĩnh:  
     `public\fordownload\<TenFile>.lsp`
