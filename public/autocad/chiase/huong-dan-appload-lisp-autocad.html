@@ -138,39 +138,38 @@
     </div>
 
     <h2>&#128640; Phương Pháp 2: Thiết Lập Startup Suite (Tự Động Nạp Khi Mở CAD)</h2>
-    <p>Nếu bạn có những Lisp "cực đỉnh" sử dụng liên tục hàng ngày trong mọi dự án, việc ngày nào mở máy cũng phải gõ AP rồi nạp thủ công sẽ gây hao tổn thời gian và gột rửa sự kiên nhẫn. Đây là lúc <strong>Startup Suite</strong> phát huy sức mạnh:</p>
+    <p>Nếu bạn có những tiện ích AutoLISP thường xuyên sử dụng hàng ngày trong công việc, việc thao tác gõ lệnh AP và tải file thủ công mỗi lần khởi động AutoCAD sẽ bất tiện và tốn thời gian. Bạn có thể tận dụng tính năng <strong>Startup Suite</strong> để tự động hóa quá trình này:</p>
 
     <ol>
-      <li>Gõ lệnh <code>AP</code> để bẻ khóa mở hộp thoại <strong>Load/Unload Applications</strong>.</li>
-      <li>Quan sát mục <strong>Startup Suite</strong> ở góc bên phải phía dưới hộp thoại, có kèm hình ổ khóa hoặc biểu tượng vali cất cặp. Bấm vào nút <strong>Contents...</strong> ngay sát đó.</li>
-      <li>Hộp thoại <em>Startup Suite</em> xuất hiện hiển thị danh sách các tiện ích đã được đăng ký nạp tự động. Bạn tiếp tục bấm nút <strong>Add...</strong> ở phía bên dưới.</li>
-      <li>Duyệt chọn các file Lisp, FAS hoặc VLX yêu thích của bạn từ máy tính rồi bấm <strong>Open</strong>.</li>
-      <li>Tệp tin sẽ có mặt trong danh sách Startup Suite. Bạn bấm <strong>Close</strong> để kết thúc cấu hình, sau đó đóng luôn hộp thoại APPLOAD lại.</li>
+      <li>Gõ lệnh <code>AP</code> (hoặc <code>APPLOAD</code>) và nhấn Space để mở hộp thoại <strong>Load/Unload Applications</strong>.</li>
+      <li>Quan sát mục <strong>Startup Suite</strong> ở góc bên dưới bên phải hộp thoại. Bấm vào nút <strong>Contents...</strong> ngay bên cạnh.</li>
+      <li>Hộp thoại <em>Startup Suite</em> xuất hiện, hiển thị danh sách các tiện ích đã được đăng ký nạp tự động. Bạn tiếp tục bấm nút <strong>Add...</strong> ở góc dưới.</li>
+      <li>Duyệt tìm trên ổ đĩa, chọn các file <code>.lsp</code>, <code>.fas</code> hoặc <code>.vlx</code> cần nạp rồi bấm <strong>Open</strong>.</li>
+      <li>Tệp tin sẽ xuất hiện trong danh sách Startup Suite. Bạn bấm <strong>Close</strong> để chốt cài đặt, sau đó đóng hộp thoại APPLOAD.</li>
     </ol>
     
-    <p><strong>&#10024; Kết quả:</strong> Từ nay về sau, cứ mỗi sáng bạn mở phần mềm AutoCAD lên hoặc ra lệnh tạo bản vẽ mới (New / Ctrl+N), AutoCAD sẽ âm thầm tự động tải sẵn danh sách tệp này cho bạn. Bạn chỉ việc mở máy và trực tiếp gõ phím tắt lệnh để làm việc!</p>
+    <p><strong>&#10024; Kết quả:</strong> Từ thời điểm này, mỗi khi bạn khởi động AutoCAD hoặc tạo bản vẽ mới, phần mềm sẽ ngầm tải sẵn các công cụ trong danh sách này vào bộ nhớ. Bạn có thể sử dụng ngay lập tức các phím tắt của Lisp mà không cần tải lại thủ công!</p>
 
-    <h2>&#9888;&#65039; Các Lưu Ý Quan Trọng Khi Thiết Lập Startup Suite</h2>
+    <h2>&#9888;&#65039; Các Lưu Ý Khi Thiết Lập Startup Suite</h2>
 
     <div class="warning-box">
-      <strong>1. Không thay đổi vị trí lưu trữ file Lisp sau khi đã Add Contents</strong>
-      <p>Startup Suite ghi nhớ đường dẫn tĩnh (Path) dẫn đến file của bạn trên ổ đĩa. Nếu sau khi thêm vào danh sách, bạn di chuyển file Lisp sang thư mục khác, đổi tên ổ đĩa hoặc đổi tên file, lần sau mở CAD lên hệ thống sẽ báo lỗi <em>"Unable to load..."</em> vì không còn tìm thấy file theo đường dẫn cũ nữa.</p>
+      <strong>1. Không thay đổi vị trí lưu trữ file Lisp sau khi đã thêm vào danh sách</strong>
+      <p>Startup Suite ghi nhớ đường dẫn cố định (Absolute Path) tới file trên máy tính. Nếu sau khi cấu hình, bạn chuyển file sang thư mục khác, thay đổi ký tự ổ đĩa hoặc đổi tên tệp, AutoCAD sẽ báo lỗi <em>"Unable to load..."</em> ở lần mở CAD tiếp theo vì không còn tìm thấy file theo đường dẫn cũ.</p>
     </div>
 
     <div class="warning-box">
-      <strong>2. Đặt thư mục Lisp ở vị trí cố định, tránh Tiếng Việt có dấu</strong>
-      <p>Bạn nên lập riêng một thư mục kiên cố trên máy tính (ví dụ <code>D:\CAD_Tools\AutoLISP\</code> hoặc <code>C:\iViDLab_Tools\</code>) để chuyên cất trữ các công cụ kỹ thuật. Tránh để file trong ổ đĩa ảo, thẻ Download hoặc đường dẫn chứa tiếng Việt có dấu lộn dặm (chẳng hạn <code>C:\Người dùng\Thư mục Lisp\</code>) vì một số phiên bản AutoCAD cũ có thể bị lỗi font không đọc được đường dẫn.</p>
+      <strong>2. Lưu file ở vị trí cố định, không để khoảng trắng hay Tiếng Việt có dấu</strong>
+      <p>Bạn nên lập một thư mục cố định trên đĩa cứng (ví dụ <code>D:\CAD_Tools\AutoLISP\</code> hoặc <code>C:\iViDLab_Tools\</code>) chuyên dụng để quản lý tiện ích. Tránh lưu tệp trong đĩa ảo, thư mục tạm Downloads hoặc các đường dẫn chứa ký tự Tiếng Việt có dấu hoặc ký tự đặc biệt, nhằm bảo đảm AutoCAD đọc và thực thi chuỗi đường dẫn mượt mà không xung đột mã phông chữ.</p>
     </div>
 
     <div class="warning-box">
-      <strong>3. Chỉ đưa những Lisp thực sự cần thiết vào Startup Suite</strong>
-
-      <p>Không nên nhồi nhét cùng lúc 50 - 100 file Lisp không thường dùng vào Startup Suite, vì điều này sẽ làm tăng thời gian khởi động (Startup Time) ban đầu của AutoCAD lên đáng kể.</p>
+      <strong>3. Chỉ đưa các tiện ích thiết yếu vào Startup Suite</strong>
+      <p>Tránh thêm quá nhiều file công cụ không thường dùng (ví dụ hàng chục file Lisp rải rác) vào Startup Suite vì điều này có thể làm ảnh hưởng đến tốc độ khởi động của AutoCAD.</p>
     </div>
 
     <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--border-color);">
     <p style="text-align: center; font-style: italic; color: var(--text-muted); margin-bottom: 0;">
-      Biên soạn bởi kỹ thuật viên <a href="https://ividlab.com/">iViDLab.com</a>. Mọi ý kiến thắc mắc hoặc cần công cụ CAD/BIM chuyên biệt xin hãy liên hệ đội ngũ!
+      Tài liệu được tổng hợp và biên soạn bởi đội ngũ kỹ thuật <a href="https://ividlab.com/">iViDLab.com</a>.
     </p>
   </div>
 

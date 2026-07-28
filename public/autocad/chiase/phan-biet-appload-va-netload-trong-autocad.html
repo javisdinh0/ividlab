@@ -117,47 +117,47 @@
           </tr>
           <tr>
             <td><strong>Khả năng nạp lại (Reload)</strong></td>
-            <td><strong>Siêu linh hoạt!</strong> Nếu bạn vừa sửa code file Lisp (.lsp), bạn chỉ cần kéo thả lại vào màn hình hoặc gõ AP nạp đè là code mới chạy lập tức. Không khóa tệp.</td>
-            <td><strong>Bị Khóa Tệp (File Locked).</strong> Khi nạp 1 lần, CAD giữ chặt file .dll trong RAM. Muốn cập nhật file hay build code mới phải tắt hẳn AutoCAD khởi động lại (trừ khi dùng cơ chế trỏ Shadow Copy lúc develop).</td>
+            <td><strong>Siêu linh hoạt!</strong> Nếu bạn vừa chỉnh sửa mã nguồn file Lisp (.lsp), chỉ cần kéo thả lại file vào màn hình hoặc gõ lệnh AP nạp đè là đoạn mã mới có hiệu lực ngay lập tức.</td>
+            <td><strong>Bị Khóa Tệp (File Locked).</strong> Khi đã nạp vào CAD 1 lần, hệ thống giữ file .dll trong RAM. Muốn cập nhật phiên bản file mới hoặc biên dịch lại code, bạn phải tắt hẳn AutoCAD rồi khởi động lại (trừ khi lập trình viên dùng cơ chế Shadow Copy).</td>
           </tr>
           <tr>
-            <td><strong>Tốc độ thực hiện vụn lớn</strong></td>
-            <td>Ở mức trung bình khá. Tuyệt vời cho các lệnh 2D thuần túy, tính diện tích, vẽ mặt cắt xà gồ, chỉnh sửa Dim/Text thao tác tay.</td>
-            <td><strong>Siêu tốc!</strong> Sức mạnh phi thường nhờ tận dụng bộ xử lý biên dịch .NET, tối ưu tuyệt vời cho thao tác trên hàng nghìn đối tượng kết cấu 3D hay nạp BIM quy mô khủng.</td>
+            <td><strong>Tốc độ xử lý dữ liệu lớn</strong></td>
+            <td>Ở mức trung bình. Rất phù hợp và hiệu quả đối với các lệnh vẽ 2D, tính toán diện tích, quản lý ranh giới, vẽ tiết diện hoặc thao tác chỉnh sửa Dim/Text.</td>
+            <td><strong>Vượt trội!</strong> Nhờ sức mạnh của nền tảng .NET và ngôn ngữ biên dịch (C# / VB.NET), tốc độ thực thi rất cao khi cần thao tác đồng thời trên hàng nghìn đối tượng hoặc xử lý các mô hình 3D/BIM phức tạp.</td>
           </tr>
           <tr>
-            <td><strong>Hậu môn & Khả năng kết nối</strong></td>
-            <td>Lập trình Lisp là ngôn ngữ hàm cổ điển, khó kết nối với Internet, SQL, Excel, hay thiết kế các giao diện nút bấm WinForms / WPF đẹp mắt.</td>
-            <td>Tận dụng 100% hệ sinh thái khổng lồ của Microsoft .NET: có thể móc nối cơ sở dữ liệu SQL, REST API, tương tác liên mác Revit - Excel - Tekla, dựng các bảng điều khiển Docking Palette đẹp mê hồn.</td>
+            <td><strong>Khả năng tích hợp & Mở rộng (Backend)</strong></td>
+            <td>AutoLISP là ngôn ngữ kịch bản mang tính truyền thống, gặp nhiều trở ngại nếu muốn kết nối với Internet, cơ sở dữ liệu SQL, Excel hoặc khi muốn xây dựng giao diện người dùng chuyên sâu như WinForms / WPF.</td>
+            <td>Tận dụng trọn vẹn sự đa dạng của hệ sinh thái Microsoft .NET: dễ dàng móc nối cơ sở dữ liệu SQL, giao tiếp qua REST API, liên thông dữ liệu song phương giữa AutoCAD – Revit – Excel – Tekla, và xây dựng giao diện bảng điều khiển Docking Palette hiện đại, trực quan.</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <h2>&#128161; Tóm Lại: Khi Nào Bạn Cần Dùng Lệnh Nào?</h2>
+    <h2>&#128161; Tóm Lại: Khi Nào Cần Dùng Lệnh Nào?</h2>
     
-    <h3>1. Hãy dùng APPLOAD khi:</h3>
+    <h3>1. Trường hợp sử dụng APPLOAD:</h3>
     <ul>
-      <li>Bạn vừa nhận được hoặc tải về một tiện ích cá nhân nhỏ nhạy bén có đuôi <strong><code>.LSP</code>, <code>.FAS</code> hay <code>.VLX</code></strong> (như Lisp vẽ Xà Gồ DrawPurlin của iViDLab).</li>
-      <li>Bạn muốn một công cụ nhẹ bắp, chỉ cần kéo và thả (Drag & Drop) vào vùng vẽ là sử dụng ngay tắp lự.</li>
-      <li>Bạn muốn thiết lập cho tiện ích tự chạy vĩnh viễn khi mở máy tính thông qua danh sách <strong>Startup Suite</strong> cực kỳ tiện lợi.</li>
+      <li>Khi bạn làm việc với các tiện ích nhỏ gọn, linh hoạt có đuôi <strong><code>.LSP</code>, <code>.FAS</code> hay <code>.VLX</code></strong> (ví dụ như bộ công cụ vẽ xà gồ DrawPurlin hoặc Layiso Suite của iViDLab).</li>
+      <li>Khi bạn muốn công cụ có thao tác tải đơn giản, có thể kéo thả trực tiếp (Drag & Drop) vào không gian làm việc là chạy được ngay.</li>
+      <li>Khi bạn muốn thiết lập cho tiện ích tự động chạy mỗi lần khởi động AutoCAD thông qua danh sách <strong>Startup Suite</strong>.</li>
     </ul>
 
-    <h3>2. Hãy dùng NETLOAD khi:</h3>
+    <h3>2. Trường hợp sử dụng NETLOAD:</h3>
     <ul>
-      <li>Bạn được cung cấp một gói bộ công cụ chuyên môn cao cấp có tệp tin chính mang phần mở rộng <strong><code>.DLL</code></strong>.</li>
-      <li>Bạn đang trải nghiệm hoặc phát triển các sản phẩm quy mô doanh nghiệp, tiện ích kết cấu thép / bê tông tích hợp sâu vào quy trình BIM hoặc cần trao đổi thông số mô hình với phần mềm khác qua bộ nguồn .NET API.</li>
-      <li><em>Lưu ý vàng:</em> Đừng quên Click chuột phải vào file <code>.DLL</code> tải trên mạng để <strong>Unblock</strong> trong Properties trước khi gọi lệnh NETLOAD!</li>
+      <li>Khi bạn sử dụng các plugin, bộ công cụ lập trình cao cấp có tệp tin thực thi chính mang phần mở rộng <strong><code>.DLL</code></strong>.</li>
+      <li>Khi làm việc với các sản phẩm tích hợp quy trình BIM, tiện ích tính toán kết cấu chuyên sâu hoặc cần liên kết trao đổi thông số với phần mềm bên thứ ba qua AutoCAD .NET API.</li>
+      <li><em>Lưu ý:</em> Cần ấn chuột phải vào tệp <code>.DLL</code> tải về từ Internet, chọn Properties và tích vào ô <strong>Unblock</strong> trước khi gọi lệnh NETLOAD.</li>
     </ul>
 
     <div class="tip-box">
-      <strong>&#129302; Lời khuyên từ iViDLab: Sự kết hợp hoàn hảo</strong>
-      <p>Trong thực tế triển khai các bộ công cụ hiện đại, các lập trình viên thường dùng <strong>APPLOAD</strong> (hoặc file Autospawn Lisp) như một chiếc khóa gõ (Bootstrapper) nhẹ đắc lực để CAD tự động gọi ra lệnh <strong>NETLOAD</strong> nạp ngầm các file <code>.DLL</code> năng lượng nặng vào bộ nhớ một cách hoàn toàn tự động, mang lại cảm giác nhẹ nhàng nhất cho người kỹ sư thi công!</p>
+      <strong>&#129302; Lời khuyên từ iViDLab: Sự kết hợp linh hoạt</strong>
+      <p>Trong thực tế, các lập trình viên thường dùng một tệp AutoLISP nhỏ mang vai trò tập lệnh mồi (Bootstrapper) được gán qua <strong>APPLOAD</strong>, từ đó lệnh Lisp này sẽ tự động chạy lệnh <strong>NETLOAD</strong> ngầm bên dưới để nạp tệp <code>.DLL</code> vào hệ thống. Giải pháp này giúp tự động hóa khâu thao tác kỹ thuật và mang lại sự tinh gọn nhất cho người kỹ sư!</p>
     </div>
 
     <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--border-color);">
     <p style="text-align: center; font-style: italic; color: var(--text-muted); margin-bottom: 0;">
-      Bài viết so sánh thực tế được nghiên cứu và tổng hợp bởi đội ngũ <a href="https://ividlab.com/">iViDLab.com</a>. Mời bạn khám phá thêm kho lưu trữ Lisp và công cụ xây dựng tại website!
+      Tài liệu được nghiên cứu và tổng hợp bởi đội ngũ kỹ thuật <a href="https://ividlab.com/">iViDLab.com</a>.
     </p>
   </div>
 
