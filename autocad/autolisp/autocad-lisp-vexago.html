@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lisp Vẽ Tiết Diện Xà Gồ C Và Z Cán Nguội - iViDLab</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background-color: #f9fafb;
+    }
+    .article-container {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    h1, h2, h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #111827;
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+    }
+    h1 {
+      font-size: 2.25rem;
+      line-height: 1.2;
+      margin-top: 0;
+      color: #2563eb;
+    }
+    h2 {
+      font-size: 1.5rem;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 8px;
+    }
+    p {
+      margin-bottom: 1.2em;
+    }
+    ul, ol {
+      margin-bottom: 1.5em;
+      padding-left: 1.5em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    code {
+      background-color: #f3f4f6;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      color: #ef4444;
+      font-size: 0.9em;
+    }
+    .figure-wrapper {
+      margin: 28px 0;
+      text-align: center;
+    }
+    .figure-wrapper img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border: 1px solid #e5e7eb;
+    }
+    .figure-wrapper figcaption {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #6b7280;
+      font-style: italic;
+    }
+    .download-section {
+      background-color: #eff6ff;
+      border-left: 4px solid #3b82f6;
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 20px 0;
+    }
+    .download-section p, .download-section ul {
+      margin-bottom: 0.5em;
+    }
+    .download-section ul {
+      margin-bottom: 0;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #6b7280;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .back-link:hover {
+      color: #111827;
+    }
+  </style>
+</head>
+<body>
+  <a href="/" class="back-link">← Quay lại Trang chủ</a>
+  
+  <div class="article-container">
+    <h1>Lisp Vẽ Tiết Diện Xà Gồ C Và Z Cán Nguội (Bản Cập Nhật Hoàn Thiện)</h1>
+
+    <figure class="figure-wrapper">
+      <img src="Pic/XG1.png" alt="Mặt cắt xà gồ C và Z cán nguội">
+      <figcaption>Hình 1: Minh họa ứng dụng Lisp vẽ xà gồ C và Z trong AutoCAD</figcaption>
+    </figure>
+
+    <p>Trong quá trình triển khai bản vẽ kết cấu thép, việc vẽ chi tiết mặt cắt các loại xà gồ C và Z thường mất khá nhiều thời gian nếu thực hiện thủ công, đặc biệt là khi phải xử lý chính xác các góc bo (fillet) hay mép gấp (lip). Để giải quyết vấn đề này, hôm nay chuyên mục AutoCAD Lisp xin giới thiệu đến các bạn một công cụ cực kỳ hữu ích: <strong>Lisp vẽ tiết diện xà gồ C và Z cán nguội</strong> bản cập nhật hoàn thiện.</p>
+
+    <h2>&#127775; Các Tính Năng Nổi Bật</h2>
+    <p>Lisp được tối ưu hóa với thuật toán xử lý Polyline khép kín vô cùng chuẩn xác, mang đến những ưu điểm vượt trội:</p>
+    <ol>
+        <li><strong>Bo góc cực kỳ chuẩn xác</strong>: Thuật toán tự động tính toán để tạo ra bán kính góc bo (fillet) chính xác tuyệt đối với:
+            <ul>
+                <li>Bán kính cong mặt trong: <strong>R = 2T</strong> (T là độ dày xà gồ).</li>
+                <li>Bán kính cong mặt ngoài: <strong>R = 3T</strong>.</li>
+            </ul>
+        </li>
+        <li><strong>Lưu Cache thông minh</strong>: Lisp tự động ghi nhớ các thông số (Mã tiết diện, tỷ lệ, góc mép...) của lần vẽ gần nhất. Bạn chỉ cần nhấn <code>Enter</code> hoặc <code>Space</code> ở các lần dùng sau nếu không muốn thay đổi thông số, giúp tăng tốc độ làm việc đáng kể.</li>
+    </ol>
+
+    <h2>&#128640; Hướng Dẫn Sử Dụng</h2>
+    <ul>
+        <li><strong>Tên lệnh:</strong> <code>VEXAGO</code> - <a href="#" target="_blank">Hướng dẫn tuỳ chỉnh lệnh trong Autolisp</a></li>
+        <li><strong>Cách thực hiện:</strong>
+            <ol>
+                <li>Load Lisp vào AutoCAD (dùng lệnh <code>AP</code> hoặc kéo thả file lisp vào màn hình CAD).</li>
+                <li>Gõ lệnh <code>VEXAGO</code> và nhấn Enter.</li>
+                <li>Lisp sẽ yêu cầu nhập <strong>Mã tiết diện</strong>. Cú pháp nhập rất trực quan:
+                    <ul>
+                        <li>Đối với xà gồ Z: <code>Z&lt;Cao&gt;*&lt;Cánh 1&gt;*&lt;Cánh 2&gt;*&lt;Độ dày&gt;</code> hoặc <code>Z&lt;Cao&gt;*&lt;Cánh 1&gt;*&lt;Cánh 2&gt;*&lt;Mép gấp&gt;*&lt;Độ dày&gt;</code> (Ví dụ: <code>Z250*62*68*2.5</code>)</li>
+                        <li>Đối với xà gồ C: <code>C&lt;Cao&gt;*&lt;Cánh&gt;*&lt;Mép gấp&gt;*&lt;Độ dày&gt;</code> (Ví dụ: <code>C200*50*20*2</code>)</li>
+                    </ul>
+                </li>
+                <li>Nhập <strong>Tỷ lệ thu nhỏ</strong> (Ví dụ nhập 10 nếu muốn vẽ thu nhỏ 1/10, mặc định là 1).</li>
+                <li>Nếu là xà gồ Z, chọn <strong>Góc mép gấp</strong> (Lip Angle): có thể là 90, 50, hoặc 45 độ.</li>
+                <li><strong>Chọn điểm chèn</strong> trên bản vẽ và tận hưởng kết quả là một đường Polyline khép kín hoàn chỉnh!</li>
+            </ol>
+        </li>
+    </ul>
+
+    <figure class="figure-wrapper">
+      <img src="Pic/XG2.jpg" alt="Hướng dẫn sử dụng lệnh VEXAGO trong AutoCAD">
+      <figcaption>Hình 2: Minh họa các thông số và sử dụng lệnh VEXAGO</figcaption>
+    </figure>
+
+    <h2>&#128229; Tải Về</h2>
+    <div class="download-section">
+      <p>Bạn có thể tải lisp trực tiếp theo đường dẫn hoặc liên kết bên dưới:</p>
+      <ul>
+          <li><strong>Tệp tin:</strong> <code>DrawPurlin.lsp</code></li>
+          <li><strong>Link Tải xuống:</strong> <a href="/fordownload/DrawPurlin.lsp" download="DrawPurlin.lsp">⬇ Tải Về DrawPurlin.lsp</a> <em>(Bấm để tải xuống ngay)</em></li>
+      </ul>
+    </div>
+
+    <p style="margin-top: 30px; font-style: italic; color: #4b5563;">Chúc các bạn áp dụng thành công Lisp này vào công việc để tăng tốc độ triển khai bản vẽ! Đừng quên chia sẻ nếu thấy hữu ích.</p>
+  </div>
+</body>
+</html>

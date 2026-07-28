@@ -24,10 +24,6 @@
 // Các cột cố định luôn đứng đầu bảng
 var FIXED_COLS = ['Thời gian', 'Họ Tên Con', 'Email Phụ Huynh'];
 
-// ID bảng "User Admin" dùng chung (SSO toàn portal). Có thể ghi đè bằng Script
-// property USERS_SHEET_ID; để trống chuỗi này nếu muốn quay lại ADMIN_PASSWORD cũ.
-var USERS_SHEET_ID_DEFAULT = '1txdkgSiqsctvI3HAXgRyPZjKJIQLIUJr08fVzbb3ypo';
-
 /** Lấy sheet dữ liệu (theo Script property SHEET_NAME, mặc định sheet đầu tiên). */
 function getSheet_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -60,9 +56,7 @@ function json_(obj) {
  * (Đây chính là chỗ bản cũ bị lộ toàn bộ dữ liệu — nay đã đóng lại.)
  */
 function doGet() {
-  // Trả kèm thông tin chẩn đoán (không lộ mật khẩu) để mở URL /exec là thấy ngay
-  // đã đọc được bảng "User Admin" hay chưa.
-  return diag_();
+  return json_({ ok: true, service: 'ividlab-khaosat-10t0', message: 'Endpoint hoạt động. Dữ liệu chỉ truy cập qua POST + mật khẩu.' });
 }
 
 /**
@@ -78,117 +72,33 @@ function doPost(e) {
     return json_({ ok: false, error: 'BAD_JSON' });
   }
 
-  if (body.action === 'diag') {
-    return diag_();
-  }
   if (body.action === 'login') {
     return handleLogin_(body);
   }
   return handleSubmit_(body);
 }
 
-/**
- * Chẩn đoán (KHÔNG cần mật khẩu, KHÔNG lộ email/mật khẩu):
- * cho biết đọc được bảng "User Admin" hay không, tìm thấy bao nhiêu tài khoản.
- * Gọi bằng: POST {"action":"diag"} tới URL /exec.
- */
-function diag_() {
-  var out = { ok: true, service: 'khaosat-admin' };
-  try {
-    var id = PropertiesService.getScriptProperties().getProperty('USERS_SHEET_ID') || USERS_SHEET_ID_DEFAULT;
-    out.usersSheetConfigured = !!id;
-    var creds = readCredentials_();
-    out.readable = true;
-    out.credentialCount = creds ? creds.length : 0;
-    out.roles = creds ? creds.map(function (c) { return c.role; }) : [];
-    out.accountsMasked = creds ? creds.map(function (c) { return maskAcc_(c.acc); }) : [];
-  } catch (err) {
-    out.readable = false;
-    out.error = String(err);
-  }
-  return json_(out);
-}
-
-/** Che bớt email để chẩn đoán mà không lộ đầy đủ: abc@x.com -> a***@x.com */
-function maskAcc_(acc) {
-  acc = (acc || '').toString();
-  var at = acc.indexOf('@');
-  if (at <= 1) return acc.charAt(0) + '***';
-  return acc.charAt(0) + '***' + acc.substring(at);
-}
-
-/**
- * Đọc bảng tài khoản DÙNG CHUNG "User Admin" (SSO cho toàn portal dinhtieuthuong).
- * Trả null nếu CHƯA cấu hình USERS_SHEET_ID -> gọi hàm sẽ fallback về ADMIN_PASSWORD.
- * Cột nhận diện (không phân biệt hoa/thường): "Admin account", "Admin Password",
- * "User account", "User password". Mỗi cặp là một tài khoản; đọc mọi dòng dữ liệu.
- */
-function readCredentials_() {
-  var props = PropertiesService.getScriptProperties();
-  var id = props.getProperty('USERS_SHEET_ID') || USERS_SHEET_ID_DEFAULT;
-  if (!id) return null;
-  var ss = SpreadsheetApp.openById(id);
-  var name = props.getProperty('USERS_SHEET_NAME');
-  var sheet = name ? ss.getSheetByName(name) : ss.getSheets()[0];
-  if (!sheet) return [];
-  var values = sheet.getDataRange().getValues();
-  if (values.length < 2) return [];
-  var headers = values[0].map(function (h) { return (h || '').toString().trim().toLowerCase(); });
-  var iAA = headers.indexOf('admin account'), iAP = headers.indexOf('admin password');
-  var iUA = headers.indexOf('user account'), iUP = headers.indexOf('user password');
-  var creds = [];
-  for (var r = 1; r < values.length; r++) {
-    var row = values[r];
-    if (iAA > -1 && (row[iAA] || '').toString().trim() !== '') {
-      creds.push({ acc: row[iAA].toString().trim(), pw: (iAP > -1 ? row[iAP] : '').toString().trim(), role: 'admin' });
-    }
-    if (iUA > -1 && (row[iUA] || '').toString().trim() !== '') {
-      creds.push({ acc: row[iUA].toString().trim(), pw: (iUP > -1 ? row[iUP] : '').toString().trim(), role: 'user' });
-    }
-  }
-  return creds;
-}
-
-/**
- * Xác thực chung: ưu tiên bảng "User Admin"; nếu chưa cấu hình -> fallback
- * về ADMIN_PASSWORD / ADMIN_EMAIL cũ (để không phá hệ thống đang chạy).
- * Trả { ok, role, email } hoặc { ok:false, error }.
- */
-function authenticate_(body) {
-  var incomingHash = (body.passHash || '').toLowerCase();
-  var incomingEmail = (body.email || '').toString().trim().toLowerCase();
-
-  var creds;
-  try {
-    creds = readCredentials_();
-  } catch (err) {
-    return { ok: false, error: 'USERS_SHEET_ERROR', message: String(err) };
-  }
-  if (creds !== null) {
-    for (var i = 0; i < creds.length; i++) {
-      var c = creds[i];
-      if (c.acc.toLowerCase() !== incomingEmail) continue;
-      if (sha256Hex_(c.pw) === incomingHash) return { ok: true, role: c.role, email: c.acc };
-    }
-    return { ok: false, error: 'INVALID_CREDENTIALS' };
-  }
-
-  // --- Fallback: cấu hình cũ ---
-  var props = PropertiesService.getScriptProperties();
-  var stored = props.getProperty('ADMIN_PASSWORD');
-  if (!stored) return { ok: false, error: 'SERVER_NOT_CONFIGURED' };
-  var storedEmail = props.getProperty('ADMIN_EMAIL');
-  if (storedEmail && incomingEmail !== storedEmail.trim().toLowerCase()) {
-    return { ok: false, error: 'INVALID_CREDENTIALS' };
-  }
-  if (sha256Hex_(stored) !== incomingHash) return { ok: false, error: 'INVALID_CREDENTIALS' };
-  return { ok: true, role: 'admin', email: incomingEmail };
-}
-
 /** Xác thực admin phía server rồi trả dữ liệu bảng. */
 function handleLogin_(body) {
-  var auth = authenticate_(body);
-  if (!auth.ok) return json_(auth);
+  var props = PropertiesService.getScriptProperties();
+  var stored = props.getProperty('ADMIN_PASSWORD');
+  if (!stored) {
+    return json_({ ok: false, error: 'SERVER_NOT_CONFIGURED' });
+  }
+  // Nếu có đặt ADMIN_EMAIL thì bắt buộc email phải khớp (không phân biệt hoa/thường).
+  var storedEmail = props.getProperty('ADMIN_EMAIL');
+  if (storedEmail) {
+    var incomingEmail = (body.email || '').toString().trim().toLowerCase();
+    if (incomingEmail !== storedEmail.trim().toLowerCase()) {
+      return json_({ ok: false, error: 'INVALID_CREDENTIALS' });
+    }
+  }
+  // Client gửi SHA-256(mật khẩu) — mật khẩu gốc không bao giờ đi qua mạng.
+  var expected = sha256Hex_(stored);
+  var incoming = (body.passHash || '').toLowerCase();
+  if (incoming !== expected) {
+    return json_({ ok: false, error: 'INVALID_CREDENTIALS' });
+  }
 
   var sheet = getSheet_();
   var values = sheet.getDataRange().getValues();
@@ -199,7 +109,7 @@ function handleLogin_(body) {
       return c === null || c === undefined ? '' : c;
     });
   });
-  return json_({ ok: true, role: auth.role, data: data });
+  return json_({ ok: true, data: data });
 }
 
 /** Ghi một bài khảo sát mới; tự tạo cột theo key nếu chưa có. */
