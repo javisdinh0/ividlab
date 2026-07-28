@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hướng Dẫn Tùy Chỉnh & Đổi Tên Lệnh Trong File AutoLISP (.lsp) - iViDLab</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      line-height: 1.7;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background-color: #f9fafb;
+    }
+    .article-container {
+      background: white;
+      padding: 45px;
+      border-radius: 16px;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+      border: 1px solid #f3f4f6;
+    }
+    h1, h2, h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #111827;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+    }
+    h1 {
+      font-size: 2.35rem;
+      line-height: 1.25;
+      margin-top: 0;
+      color: #1d4ed8;
+    }
+    h2 {
+      font-size: 1.55rem;
+      border-bottom: 2px solid #f3f4f6;
+      padding-bottom: 10px;
+      color: #1e3a8a;
+    }
+    h3 {
+      font-size: 1.25rem;
+      color: #374151;
+    }
+    p {
+      margin-bottom: 1.3em;
+    }
+    ul, ol {
+      margin-bottom: 1.5em;
+      padding-left: 1.5em;
+    }
+    li {
+      margin-bottom: 0.7em;
+    }
+    a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    a:hover {
+      color: #1d4ed8;
+      text-decoration: underline;
+    }
+    code {
+      background-color: #f3f4f6;
+      padding: 3px 7px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      color: #dc2626;
+      font-size: 0.88em;
+      font-weight: 600;
+    }
+    pre {
+      background-color: #1e293b;
+      color: #f8fafc;
+      padding: 20px;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.92em;
+      line-height: 1.5;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    }
+    pre code {
+      background-color: transparent;
+      color: inherit;
+      padding: 0;
+      font-weight: 400;
+      font-size: 1em;
+    }
+    .highlight-code {
+      color: #38bdf8;
+      font-weight: 600;
+    }
+    .tip-box {
+      background-color: #f0fdf4;
+      border-left: 4px solid #22c55e;
+      padding: 18px 22px;
+      border-radius: 0 12px 12px 0;
+      margin: 25px 0;
+      color: #166534;
+    }
+    .warning-box {
+      background-color: #fef2f2;
+      border-left: 4px solid #ef4444;
+      padding: 18px 22px;
+      border-radius: 0 12px 12px 0;
+      margin: 25px 0;
+      color: #991b1b;
+    }
+    .tip-box strong, .warning-box strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1.05em;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 24px;
+      color: #6b7280;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .back-link:hover {
+      color: #111827;
+      text-decoration: none;
+    }
+    .badge {
+      display: inline-block;
+      background-color: #e0e7ff;
+      color: #4338ca;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <a href="/autocad/autolisp/autocad-lisp-vexago.html" class="back-link">← Quay lại bài viết DrawPurlin (VEXAGO)</a> | 
+  <a href="/" class="back-link" style="margin-left: 8px;">🏠 Trang chủ iViDLab</a>
+  
+  <div class="article-container">
+    <span class="badge">Chia Sẻ & Thủ Thuật CAD</span>
+    <h1>Hướng Dẫn Tùy Chỉnh & Đổi Tên Lệnh Trong File AutoLISP (.lsp)</h1>
+
+    <p>Khi tải về các công cụ Lisp hay Plugin cho AutoCAD (như Lisp vẽ xà gồ <strong>DrawPurlin</strong> của iViDLab), đôi khi tên lệnh mặc định (ví dụ <code>VEXAGO</code>) có thể hơi dài hoặc không thuận tay với thói quen gõ bàn phím của bạn. Hoặc đôi khi lệnh đó bị trùng với một shortcut khác mà bạn đã có trong máy.</p>
+
+    <p>Bài viết này sẽ hướng dẫn bạn cách tự chỉnh sửa (edit) file <code>.lsp</code> để đổi tên lệnh theo sở thích chỉ với vài thao tác cực kỳ đơn giản và an toàn, không cần phải là một trình bày code hay am hiểu sâu về lập trình AutoLISP.</p>
+
+    <h2>&#128398; Các Bước Đổi Tên Lệnh AutoLISP</h2>
+
+    <h3>Bước 1: Mở tệp tin Lisp (.lsp) bằng trình soạn thảo</h3>
+    <p>Bạn không mở trực tiếp file Lisp bằng AutoCAD để sửa. Thay vào đó, hãy <strong>click chuột phải</strong> vào file file Lisp (ví dụ <code>DrawPurlin.lsp</code>) &rarr; Chọn <strong>Open with</strong> &rarr; Chọn <strong>Notepad</strong> (hoặc nếu có các phần mềm tối ưu hơn như <em>Notepad++</em> hay <em>Visual Studio Code</em> thì càng tuyệt vời).</p>
+
+    <h3>Bước 2: Tìm đến cú pháp khai báo tên lệnh</h3>
+    <p>Trong ngôn ngữ AutoLISP, mọi lệnh có thể gõ trực tiếp trong AutoCAD đều được bắt đầu bằng cú pháp chuẩn:</p>
+    <pre><code>(defun c:<span class="highlight-code">TEN_LENH</span> () ... )</code></pre>
+    <p>Trong đó, chữ <code>c:</code> đứng ngay trước tên lệnh là quy ước bắt buộc của AutoCAD (nó tượng trưng cho từ <em>Command</em>, hoàn toàn không liên quan gì đến ổ đĩa C của máy tính cả).</p>
+    <p>Hãy bấm tổ hợp phím <code>Ctrl + F</code> trong Notepad và tìm chữ <code>c:</code> hoặc tìm tên lệnh gốc. <br>Ví dụ trong file <code>DrawPurlin.lsp</code>, bạn sẽ thấy dòng mã như sau:</p>
+    <pre><code>(defun <span class="highlight-code">c:VEXAGO</span> ( / *error* oldOs oldCmd ... )</code></pre>
+
+    <h3>Bước 3: Đổi thành tên lệnh bạn yêu thích</h3>
+    <p>Bây giờ, bạn chỉ cần thay đổi cụm từ đi sát sau chữ <code>c:</code> thành tên lệnh ngắn gọn mà bạn muốn dùng.</p>
+    <p>Ví dụ: Bạn muốn gõ phím <strong><code>XG</code></strong> hoặc <strong><code>VXG</code></strong> cho tiện và siêu nhanh, hãy đổi thành:</p>
+    <pre><code>(defun <span class="highlight-code">c:XG</span> ( / *error* oldOs oldCmd ... )
+;; Hoặc:
+(defun <span class="highlight-code">c:VXG</span> ( / *error* oldOs oldCmd ... )</code></pre>
+
+    <div class="tip-box">
+      <strong>&#128161; Mẹo hay: Tạo đồng thời 2 phím tắt cho 1 Lisp</strong>
+      <p>Nếu bạn vừa muốn giữ tên lệnh cũ để nhớ thói quen, vừa muốn có thêm tên lệnh siêu ngắn, bạn có thể cuộn lướt xuống cuối cùng của file <code>.lsp</code> và tự tạo một dòng mã bí danh (alias) như sau: <br><code>(defun c:XG () (c:VEXAGO))</code><br>Khi đó cả gõ <code>VEXAGO</code> hay <code>XG</code> thì CAD đều chạy cùng một lệnh cho bạn!</p>
+    </div>
+
+    <h3>Bước 4: Lưu file và Tải lại vào AutoCAD</h3>
+    <ol>
+      <li>Nhấn <strong>Ctrl + S</strong> để lưu lại thay đổi (Sau đó có thể đóng Notepad lại).</li>
+      <li>Mở bản vẽ AutoCAD của bạn lên, gõ lệnh <code>AP</code> (APPLOAD) &rarr; Chọn lại file Lisp bạn vừa chỉnh sửa &rarr; Bấm <strong>Load</strong>.</li>
+      <li>Gõ tên lệnh mới của bạn (ví dụ <code>XG</code>) và trải nghiệm tốc độ vẽ phi thường!</li>
+    </ol>
+
+    <h2>&#9888;&#65039; Một Số Lưu Ý Quan Trọng Khi Sửa Code</h2>
+
+    <div class="warning-box">
+      <strong>1. Tuyệt đối không xóa mất chữ "c:" hay dấu ngoặc đơn</strong>
+      <p>Nếu bạn lỡ tay sửa thành <code>(defun VEXAGO</code> (mất chữ <code>c:</code>) thì CAD sẽ coi đây là một hàm phụ ẩn và khi ra ngoài giao diện bạn sẽ không thể gõ được tên lệnh này nữa. Đồng thời không làm mất bất kỳ dấu ngoặc đơn <code>(</code> <code>)</code> hoặc khoảng trắng nào ở dòng định nghĩa này.</p>
+    </div>
+
+    <div class="warning-box">
+      <strong>2. Tránh đặt trùng với phím tắt mặc định của AutoCAD</strong>
+      <p>Không nên đặt tên lệnh là <code>L</code>, <code>C</code>, <code>M</code>, <code>CO</code>, <code>PL</code>,... vì nếu trùng lặp, Lisp có thể sẽ ghi đè và làm vô hiệu hóa các lệnh cơ bản như Line, Circle, Move hay Polyline của bạn khi file Lisp đang được nạp.</p>
+    </div>
+
+    <div class="warning-box">
+      <strong>3. Lưu file ở định dạng mã hóa (Encoding) đúng</strong>
+      <p>Khi lưu bằng Notepad, hãy chắc chắn chọn Encoding là <strong>UTF-8</strong> (hoặc ANSI) và không để bị tự động đổi đuôi tệp thành <code>.lsp.txt</code>.</p>
+    </div>
+
+    <hr style="margin: 40px 0; border: none; border-top: 1px solid #e5e7eb;">
+    
+    <p style="text-align: center; font-style: italic; color: #6b7280; margin-bottom: 0;">
+      Bài viết thuộc sự nghiên cứu và biên soạn từ kỹ thuật viên của <a href="https://ividlab.com/">iViDLab.com</a>. Chúc các bạn thiết lập không gian làm việc AutoCAD tối ưu và chuyên nghiệp!
+    </p>
+  </div>
+</body>
+</html>
