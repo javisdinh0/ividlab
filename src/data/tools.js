@@ -1,5 +1,18 @@
 export const toolsData = [
   {
+    id: 'merge-hatch-mh',
+    title: 'Merge Hatch - Gộp Vùng Tô (MH)',
+    category: 'AutoCAD Lisp',
+    tag: 'CAD Automation',
+    description: {
+      vi: 'Lisp tự động nối gộp nhiều vùng Hatch rời rạc thành một đối tượng Hatch duy nhất nhanh chóng trong tích tắc mà không cần định nghĩa lại ranh giới.',
+      en: 'AutoLISP tool to seamlessly merge multiple fragmented hatches into a single unified hatch object directly on your drawing without redefining boundaries.'
+    },
+    status: 'Release',
+    link: '/autocad/autolisp/autolisp-merge-hatch-mh.html',
+    featured: true
+  },
+  {
     id: 'layiso-layer-manager',
     title: 'Layiso Layer Manager Suite',
     category: 'AutoCAD Lisp',
