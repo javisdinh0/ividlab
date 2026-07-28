@@ -14,10 +14,10 @@ Khi người dùng gọi tên **LispPub** hoặc cung cấp 1 tệp tin AutoLISP
      * **Tên lệnh thực thi trong AutoCAD:** (Tìm kiếm cú pháp `(defun c:TENLENH ...)`).
      * **Mục đích & Tác dụng chính:** (Lisp này dùng để làm gì? Vẽ đối tượng gì? Bo góc, tính diện tích hay xuất bảng?).
      * **Cách thức nhập liệu:** (Người dùng phải click chọn đối tượng hay gõ thông số như thế nào?).
-2. **Chuẩn hóa thông số & Bản quyền (iViDLab Branding):**
-   - Đảm bảo các chú giải (comments) trong mã nguồn được viết/dịch sang Tiếng Anh.
-   - Kiểm tra và bổ sung chuỗi in ra command khi nạp và kết thúc lệnh:
-     `(princ "\nResearched and developed by iViDLab.com")`
+2. **Kiểm tra, Dịch thuật mã Lisp & Bản quyền iViDLab:**
+   - **Kiểm tra và xử lý chỉ dẫn Tiếng Việt:** Rà soát kỹ lưỡng toàn bộ mã nguồn Lisp. Nếu có bất kỳ từ ngữ, chú thích (comments) hay chỉ dẫn nhắc lệnh nào bằng **Tiếng Việt (có dấu hoặc không dấu)** (chẳng hạn như `Chon diem`, `Nhap ty le`...), bắt buộc **dịch toàn bộ sang Tiếng Anh** chuẩn xác (tránh lỗi hiển thị phông chữ khi chạy trên CAD).
+   - **Thông báo khi kết thúc lệnh:** Bổ sung dòng mã in thông báo phi lợi nhuận sau ra màn hình Command khi kết thúc chạy lệnh:
+     `(princ "\nAutolisp được sưu tầm và chia sẻ phi lợi nhuận bởi iViDLab.com")`
 3. **Lưu file thẳng vào kho tải web:**
    - Copy tệp Lisp đã chuẩn hóa đặt thẳng vào máy chủ tài nguyên web tại đường dẫn bắt buộc:
      `X:\OneDrive\05 CODI\ViDiLab Web\public\fordownload\<TenFile>.lsp`
