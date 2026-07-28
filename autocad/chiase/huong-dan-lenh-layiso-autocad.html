@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hướng dẫn toàn tập về lệnh LAYISO trong AutoCAD - iViDLab</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Light Theme Palette */
+      --bg-page: #A2BFC7;
+      --bg-card: #FFFFFF;
+      --text-primary: #2B4E64;
+      --text-body: #334155;
+      --text-muted: #4F7C91;
+      --border-color: #6F9AAB;
+      --link-color: #2563eb;
+      --link-hover: #1d4ed8;
+      --code-bg: #f3f4f6;
+      --code-text: #dc2626;
+      --tip-bg: #f0fdf4;
+      --tip-border: #22c55e;
+      --tip-text: #166534;
+      --warn-bg: #fef2f2;
+      --warn-border: #ef4444;
+      --warn-text: #991b1b;
+      --btn-bg: #FFFFFF;
+      --btn-text: #2B4E64;
+      --pre-bg: #1e293b;
+      --badge-bg: #e0e7ff;
+      --badge-text: #4338ca;
+    }
+
+    [data-theme="dark"] {
+      /* Dark Theme Palette (iViDLab Dark Ocean) */
+      --bg-page: #182B37;
+      --bg-card: #223B4B;
+      --text-primary: #F0F6F8;
+      --text-body: #E2E8F0;
+      --text-muted: #A2BFC7;
+      --border-color: #365B6F;
+      --link-color: #60A5FA;
+      --link-hover: #93C5FD;
+      --code-bg: #1e293b;
+      --code-text: #f87171;
+      --tip-bg: #14532d;
+      --tip-border: #4ade80;
+      --tip-text: #dcfce7;
+      --warn-bg: #7f1d1d;
+      --warn-border: #f87171;
+      --warn-text: #fee2e2;
+      --btn-bg: #223B4B;
+      --btn-text: #F0F6F8;
+      --pre-bg: #0f172a;
+      --badge-bg: #312e81;
+      --badge-text: #c7d2fe;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      line-height: 1.7;
+      color: var(--text-body);
+      background-color: var(--bg-page);
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 30px 20px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .back-link {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+      color: var(--link-color);
+    }
+
+    .toggle-btn {
+      background: var(--btn-bg);
+      border: 1px solid var(--border-color);
+      color: var(--btn-text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: all 0.2s;
+    }
+    .toggle-btn:hover {
+      border-color: var(--link-color);
+      transform: translateY(-1px);
+    }
+
+    .article-container {
+      background: var(--bg-card);
+      padding: 45px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 5px 10px -5px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--border-color);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-primary);
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+    }
+    h1 {
+      font-size: 2.35rem;
+      line-height: 1.25;
+      margin-top: 0;
+      color: var(--link-color);
+    }
+    h2 {
+      font-size: 1.55rem;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 10px;
+    }
+    h3 { font-size: 1.25rem; color: var(--text-primary); }
+    p { margin-bottom: 1.3em; }
+    ul, ol { margin-bottom: 1.5em; padding-left: 1.6em; }
+    li { margin-bottom: 0.7em; }
+    
+    a {
+      color: var(--link-color);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a:hover { color: var(--link-hover); text-decoration: underline; }
+
+    code {
+      background-color: var(--code-bg);
+      padding: 3px 7px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--code-text);
+      font-size: 0.88em;
+      font-weight: 600;
+    }
+    pre {
+      background-color: var(--pre-bg);
+      color: #f8fafc;
+      padding: 20px;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.92em;
+      line-height: 1.5;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    pre code {
+      background-color: transparent;
+      color: inherit;
+      padding: 0;
+      font-weight: 400;
+      font-size: 1em;
+    }
+    .highlight-code { color: #38bdf8; font-weight: 600; }
+    
+    .tip-box {
+      background-color: var(--tip-bg);
+      border-left: 4px solid var(--tip-border);
+      padding: 18px 22px;
+      border-radius: 0 12px 12px 0;
+      margin: 25px 0;
+      color: var(--tip-text);
+    }
+    .warning-box {
+      background-color: var(--warn-bg);
+      border-left: 4px solid var(--warn-border);
+      padding: 18px 22px;
+      border-radius: 0 12px 12px 0;
+      margin: 25px 0;
+      color: var(--warn-text);
+    }
+    .tip-box strong, .warning-box strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1.05em;
+    }
+    .badge {
+      display: inline-block;
+      background-color: var(--badge-bg);
+      color: var(--badge-text);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .article-container { padding: 25px 18px; }
+      h1 { font-size: 1.85rem; }
+    }
+  
+    .related-container { margin-top: 45px; background: var(--bg-card); padding: 40px; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.15); transition: background-color 0.3s ease, border-color 0.3s ease; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 25px; }
+    .related-card { display: flex; flex-direction: column; text-decoration: none; background: var(--bg-page); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; transition: transform 0.2s, border-color 0.2s; }
+    .related-card:hover { transform: translateY(-3px); border-color: var(--link-color); }
+    .related-card .badge { align-self: flex-start; background: var(--badge-bg); color: var(--badge-text); font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; font-family: 'JetBrains Mono', monospace; }
+    .related-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.1rem; margin: 0; color: var(--text-primary); line-height: 1.4; transition: color 0.2s; }
+    .related-card:hover h3 { color: var(--link-color); }
+  </style>
+</head>
+<body>
+  
+  <header style="position: sticky; top: 0; z-index: 100; background-color: var(--bg-page); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 15px 0; transition: background-color 0.3s ease; margin-bottom: 30px;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+      <a href="/" style="text-decoration: none; display: flex; align-items: center;">
+        <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.45rem; font-weight: 900; letter-spacing: -0.02em; color: var(--text-primary);">
+          iViD<span style="color: #2E6583;">Lab</span>
+        </span>
+      </a>
+      <nav style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+        <a href="/?tab=all" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); transition: color 0.2s ease;">
+          <span data-lang="vi">// TRANG CHỦ</span><span data-lang="en" style="display:none;">// HOME</span>
+        </a>
+        <a href="/?tab=tools" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// CÔNG CỤ</span><span data-lang="en" style="display:none;">// TOOLS</span>
+        </a>
+        <a href="/?tab=guides" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span data-lang="en" style="display:none;">// GUIDES</span>
+        </a>
+        <a href="/?tab=about" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en" style="display:none;">// ABOUT</span>
+        </a>
+      </nav>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button id="theme-toggle" class="toggle-btn" title="Chuyển giao diện Sáng / Tối" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; padding: 6px 14px; border-radius: 20px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s;">
+          ☀️ LIGHT
+        </button>
+        <button id="lang-toggle" class="toggle-btn" title="Chuyển Ngôn Ngữ / Toggle Language" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; padding: 6px 14px; border-radius: 20px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s;">
+          🌐 VN / EN
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="article-container">
+    <span class="badge" data-lang="vi">Chia Sẻ & Thủ Thuật CAD</span>
+    <span class="badge" data-lang="en">Share & CAD Tips</span>
+    
+    <h1 data-lang="vi">Hướng dẫn toàn tập về lệnh LAYISO trong AutoCAD</h1>
+    <h1 data-lang="en">Comprehensive Guide to the LAYISO Command in AutoCAD</h1>
+
+    <p data-lang="vi"><strong>LAYISO</strong> (viết tắt của <em>Layer Isolate</em>) là một trong những lệnh quản lý Layer quan trọng và được sử dụng thường xuyên nhất trong AutoCAD. Lệnh này giúp người dùng tối ưu hóa không gian làm việc bằng cách cô lập các đối tượng cần thiết, từ đó giúp việc quan sát, bắt điểm và chỉnh sửa bản vẽ trở nên dễ dàng và chính xác hơn.</p>
+    <p data-lang="en"><strong>LAYISO</strong> (stands for <em>Layer Isolate</em>) is one of the most important and frequently used Layer management commands in AutoCAD. This command helps users optimize the workspace by isolating necessary objects, thereby making viewing, snapping, and editing drawings easier and more accurate.</p>
+
+    <p data-lang="vi">Bài viết dưới đây sẽ hướng dẫn bạn cách sử dụng cơ bản lệnh LAYISO, cách khôi phục Layer, và đặc biệt là cách thiết lập chế độ hiển thị (ẩn đi hoặc làm mờ) cho lệnh này.</p>
+    <p data-lang="en">The article below will guide you on the basic use of the LAYISO command, how to restore Layers, and especially how to set the display mode (hide or fade) for this command.</p>
+
+    <h2 data-lang="vi">1. Cách sử dụng lệnh LAYISO cơ bản</h2>
+    <h2 data-lang="en">1. How to use the basic LAYISO command</h2>
+
+    <p data-lang="vi">Chức năng chính của LAYISO là giữ lại (cô lập) layer của đối tượng được chọn và xử lý các layer còn lại (ẩn đi hoặc làm mờ).</p>
+    <p data-lang="en">The main function of LAYISO is to keep (isolate) the layer of the selected object and process the remaining layers (hide or fade them).</p>
+    
+    <p><strong data-lang="vi">Các bước thực hiện:</strong><strong data-lang="en">Steps to execute:</strong></p>
+    <ul>
+      <li>
+        <span data-lang="vi"><strong>Bước 1:</strong> Gõ lệnh <code>LAYISO</code> (hoặc phím tắt của lệnh) vào thanh Command và nhấn <code>Enter</code> (hoặc phím <code>Space</code>).</span>
+        <span data-lang="en"><strong>Step 1:</strong> Type the <code>LAYISO</code> command (or its shortcut) into the Command bar and press <code>Enter</code> (or <code>Space</code>).</span>
+      </li>
+      <li>
+        <span data-lang="vi"><strong>Bước 2:</strong> Click chuột chọn vào một (hoặc nhiều) đối tượng thuộc layer mà bạn muốn giữ lại trên màn hình.</span>
+        <span data-lang="en"><strong>Step 2:</strong> Click to select one (or more) objects belonging to the layer you want to keep on the screen.</span>
+      </li>
+      <li>
+        <span data-lang="vi"><strong>Bước 3:</strong> Nhấn <code>Enter</code> để kết thúc lệnh.</span>
+        <span data-lang="en"><strong>Step 3:</strong> Press <code>Enter</code> to end the command.</span>
+      </li>
+    </ul>
+    
+    <p data-lang="vi">Ngay lập tức, bạn sẽ thấy chỉ còn lại các đối tượng thuộc layer bạn vừa chọn, các layer khác sẽ bị ẩn hoặc làm mờ đi.</p>
+    <p data-lang="en">Immediately, you will see only the objects belonging to the layer you just selected remain, other layers will be hidden or faded.</p>
+
+    <h2 data-lang="vi">2. Thiết lập cách hiển thị cho lệnh LAYISO (Tắt hẳn hoặc Làm mờ)</h2>
+    <h2 data-lang="en">2. Setting the display mode for the LAYISO command (Turn off completely or Fade)</h2>
+
+    <p data-lang="vi">Từ các phiên bản AutoCAD đời cao (từ 2008 trở đi), mặc định khi sử dụng lệnh LAYISO, các layer không được chọn sẽ không biến mất hoàn toàn mà chuyển sang trạng thái <strong>bị khóa và làm mờ (Lock and fade)</strong>.</p>
+    <p data-lang="en">From higher AutoCAD versions (2008 onwards), by default when using the LAYISO command, unselected layers do not disappear completely but switch to a <strong>locked and faded state (Lock and fade)</strong>.</p>
+    
+    <p data-lang="vi">Nếu bạn muốn khi dùng lệnh LAYISO, các layer khác phải <strong>tắt hoàn toàn (biến mất khỏi màn hình)</strong> cho đỡ rối mắt, bạn cần thay đổi thiết lập Setting của lệnh theo các bước sau:</p>
+    <p data-lang="en">If you want that when using the LAYISO command, other layers must be <strong>completely turned off (disappear from the screen)</strong> to reduce clutter, you need to change the Setting configuration of the command according to the following steps:</p>
+
+    <ul>
+      <li>
+        <span data-lang="vi"><strong>Bước 1:</strong> Gõ lệnh <code>LAYISO</code> và nhấn <code>Enter</code>.</span>
+        <span data-lang="en"><strong>Step 1:</strong> Type the <code>LAYISO</code> command and press <code>Enter</code>.</span>
+      </li>
+      <li>
+        <span data-lang="vi"><strong>Bước 2:</strong> Khoan hãy chọn đối tượng! Gõ phím <code>S</code> (để gọi tùy chọn <em>Settings</em>) và nhấn <code>Enter</code>.</span>
+        <span data-lang="en"><strong>Step 2:</strong> Hold on before selecting objects! Type <code>S</code> (to call the <em>Settings</em> option) and press <code>Enter</code>.</span>
+      </li>
+      <li>
+        <span data-lang="vi"><strong>Bước 3:</strong> Trên dòng nhắc lệnh sẽ xuất hiện tùy chọn <code>[Off/Lock and fade]</code>.</span>
+        <span data-lang="en"><strong>Step 3:</strong> On the command prompt, the option <code>[Off/Lock and fade]</code> will appear.</span>
+        <ul>
+          <li>
+            <span data-lang="vi">Gõ <code>O</code> (chọn <em>Off</em>) và nhấn <code>Enter</code> nếu bạn muốn các layer khác <strong>bị tắt và biến mất</strong>.</span>
+            <span data-lang="en">Type <code>O</code> (choose <em>Off</em>) and press <code>Enter</code> if you want other layers to be <strong>turned off and disappear</strong>.</span>
+          </li>
+          <li>
+            <span data-lang="vi">Gõ <code>L</code> (chọn <em>Lock and fade</em>) nếu bạn muốn các layer khác <strong>bị khóa và làm mờ</strong>.</span>
+            <span data-lang="en">Type <code>L</code> (choose <em>Lock and fade</em>) if you want other layers to be <strong>locked and faded</strong>.</span>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span data-lang="vi"><strong>Bước 4:</strong> Nếu ở bước 3 bạn chọn <code>O</code> (Off), CAD sẽ hỏi thêm bạn muốn thiết lập trong không gian Layout Viewport như thế nào <code>[Vpfreeze/Off]</code>. Bạn gõ tiếp <code>O</code> (Off) và nhấn <code>Enter</code> để áp dụng tắt layer trên toàn bộ bản vẽ.</span>
+        <span data-lang="en"><strong>Step 4:</strong> If in step 3 you chose <code>O</code> (Off), CAD will ask further how you want to set it in the Layout Viewport space <code>[Vpfreeze/Off]</code>. You continue typing <code>O</code> (Off) and press <code>Enter</code> to apply turning off layers across the entire drawing.</span>
+      </li>
+      <li>
+        <span data-lang="vi"><strong>Bước 5:</strong> Bây giờ bạn có thể click chọn đối tượng cần cô lập và nhấn <code>Enter</code> như bình thường.</span>
+        <span data-lang="en"><strong>Step 5:</strong> Now you can click to select the object to isolate and press <code>Enter</code> as normal.</span>
+      </li>
+    </ul>
+
+    <div class="tip-box">
+      <strong data-lang="vi">&#128161; Lưu ý:</strong>
+      <strong data-lang="en">&#128161; Note:</strong>
+      <p data-lang="vi">Thiết lập này chỉ cần thực hiện 1 lần. AutoCAD sẽ tự động lưu lại cấu hình này cho tất cả các lần dùng lệnh LAYISO về sau (kể cả khi bạn tắt và mở lại CAD).</p>
+      <p data-lang="en">This setting only needs to be done once. AutoCAD will automatically save this configuration for all subsequent uses of the LAYISO command (even when you close and reopen CAD).</p>
+    </div>
+
+    <h2 data-lang="vi">3. Lệnh LAYUNISO - Khôi phục trạng thái Layer</h2>
+    <h2 data-lang="en">3. LAYUNISO Command - Restore Layer State</h2>
+
+    <p data-lang="vi">Sau khi đã hoàn tất việc chỉnh sửa trên layer được cô lập bằng lệnh LAYISO, bạn cần đưa bản vẽ trở về trạng thái hiển thị ban đầu.</p>
+    <p data-lang="en">After finishing editing on the layer isolated by the LAYISO command, you need to return the drawing to its original display state.</p>
+    
+    <p><strong data-lang="vi">Cách thực hiện:</strong><strong data-lang="en">How to do it:</strong></p>
+    <ul>
+      <li>
+        <span data-lang="vi">Gõ lệnh <code>LAYUNISO</code> và nhấn <code>Enter</code>.</span>
+        <span data-lang="en">Type the <code>LAYUNISO</code> command and press <code>Enter</code>.</span>
+      </li>
+      <li>
+        <span data-lang="vi">Toàn bộ các layer bị tắt hoặc làm mờ trước đó sẽ ngay lập tức hiển thị lại bình thường.</span>
+        <span data-lang="en">All previously turned off or faded layers will immediately display normally again.</span>
+      </li>
+    </ul>
+
+    <h2 data-lang="vi">4. Lời khuyên giúp thao tác nhanh hơn</h2>
+    <h2 data-lang="en">4. Advice to help operate faster</h2>
+
+    <p data-lang="vi">Vì <code>LAYISO</code> và <code>LAYUNISO</code> là hai lệnh được dùng liên tục trong quá trình vẽ, việc gõ nguyên chữ sẽ rất mất thời gian. Bạn nên thay đổi phím tắt cho hai lệnh này thành các phím dễ bấm bằng tay trái.</p>
+    <p data-lang="en">Because <code>LAYISO</code> and <code>LAYUNISO</code> are two commands used continuously during the drawing process, typing the full words will be very time-consuming. You should change the shortcuts for these two commands to easy-to-press keys with your left hand.</p>
+    
+    <p data-lang="vi">Ví dụ phổ biến:</p>
+    <p data-lang="en">Common examples:</p>
+    <ul>
+      <li><span data-lang="vi">Đổi <code>LAYISO</code> thành phím <code>1</code></span><span data-lang="en">Change <code>LAYISO</code> to key <code>1</code></span></li>
+      <li><span data-lang="vi">Đổi <code>LAYUNISO</code> thành phím <code>2</code></span><span data-lang="en">Change <code>LAYUNISO</code> to key <code>2</code></span></li>
+    </ul>
+
+    <p data-lang="vi">Bạn có thể đổi phím tắt thông qua công cụ <strong>ALIASEDIT</strong> (thuộc bộ Express Tools) hoặc chỉnh sửa trực tiếp trong file <strong>acad.pgp</strong> (Vào tab <em>Manage</em> -> <em>Edit Aliases</em>).</p>
+    <p data-lang="en">You can change the shortcuts via the <strong>ALIASEDIT</strong> tool (belonging to Express Tools) or edit directly in the <strong>acad.pgp</strong> file (Go to the <em>Manage</em> tab -> <em>Edit Aliases</em>).</p>
+
+    <p data-lang="vi">Ngoài ra, một giải pháp cực kỳ tiện lợi và được sử dụng rộng rãi bởi các kỹ sư là dùng <strong>Lisp quản lý Layer (L1, L2, L3...)</strong>. Bộ lisp này giúp gán sẵn các phím tắt siêu tốc cho hàng loạt thao tác quản lý layer mà không cần phải thiết lập thủ công.</p>
+    <p data-lang="en">Additionally, an extremely convenient solution widely used by engineers is using a <strong>Layer Management Lisp (L1, L2, L3...)</strong>. This lisp set helps pre-assign super-fast shortcuts for a series of layer management operations without having to set them up manually.</p>
+
+    <p>
+      👉 
+      <strong data-lang="vi">Xem hướng dẫn chi tiết và tải Lisp tại đây:</strong>
+      <strong data-lang="en">See detailed instructions and download the Lisp here:</strong>
+      <a href="/autocad/autolisp/autolisp-layiso-layer-manager.html">
+        <span data-lang="vi">AutoLISP Quản lý Layer siêu tốc (L1 L2 L3)</span>
+        <span data-lang="en">Super-fast Layer Management AutoLISP (L1 L2 L3)</span>
+      </a>
+    </p>
+
+    <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--border-color);">
+    
+    <p style="text-align: center; font-style: italic; color: var(--text-muted); margin-bottom: 0;">
+      <span data-lang="vi">Chúc các bạn thao tác thành công và vẽ CAD tốc độ hơn! 🚀 Tác giả: <a href="https://ividlab.com/">iViDLab.com</a>.</span>
+      <span data-lang="en">Wish you successful operations and faster CAD drawing! 🚀 Author: <a href="https://ividlab.com/">iViDLab.com</a>.</span>
+    </p>
+  </div>
+
+  <div class="related-container">
+    <h2 data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
+    <h2 data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem; display:none;">You might also be interested in</h2>
+    <div class="related-grid">
+      <a class="related-card" href="/autocad/autolisp/autolisp-layiso-layer-manager.html">
+        <span class="badge">CAD Automation</span>
+        <h3><span data-lang="vi">Bộ 10 Phím Tắt Quản Lý Layer (Layiso Suite)</span><span data-lang="en" style="display:none;">Layiso Layer Management Suite</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/chiase/huong-dan-appload-lisp-autocad.html">
+        <span class="badge">Knowledge Share</span>
+        <h3><span data-lang="vi">Hướng Dẫn Nạp Lisp Bằng APPLOAD</span><span data-lang="en" style="display:none;">Guide to Load Lisp via APPLOAD</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/chiase/tuy-chinh-lenh-autolisp.html">
+        <span class="badge">Knowledge Share</span>
+        <h3><span data-lang="vi">Cách Tùy Chỉnh Phím Tắt Lệnh AutoLISP</span><span data-lang="en" style="display:none;">How to Customize AutoLISP Commands</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/autolisp/autolisp-merge-hatch-mh.html">
+        <span class="badge">CAD Automation</span>
+        <h3><span data-lang="vi">Lisp Gộp Vùng Hatch (Merge Hatch - MH)</span><span data-lang="en" style="display:none;">Merge Hatch Lisp (MH)</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/autolisp/autolisp-quick-block-bb.html">
+        <span class="badge">CAD Automation</span>
+        <h3><span data-lang="vi">Lisp Tạo Block Nhanh (Quick Block - BB)</span><span data-lang="en" style="display:none;">Quick Block Lisp (BB)</span></h3>
+      </a>
+    </div>
+  </div>
+  
+  <footer style="border-top: 1px solid var(--border-color); padding: 3rem 0; background-color: var(--bg-page); margin-top: 4rem; text-align: center;">
+    <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--text-primary);">
+      iViD<span style="color: #2E6583;">Lab</span>
+    </div>
+    <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">
+      © 2026 iViDLab. All rights reserved.
+    </p>
+  </footer>
+
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('ividlab-theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      
+      const themeBtn = document.getElementById('theme-toggle');
+      function updateBtnText(theme) {
+        themeBtn.textContent = theme === 'light' ? '☀️ LIGHT' : '🌙 DARK';
+      }
+      updateBtnText(savedTheme);
+
+      themeBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('ividlab-theme', nextTheme);
+        updateBtnText(nextTheme);
+      });
+    })();
+  </script>
+</body>
+</html>
