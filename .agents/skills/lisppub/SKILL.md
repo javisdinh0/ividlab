@@ -36,8 +36,9 @@ Agent **NGƯNG LẠI và ra thông báo rõ ràng cho người dùng**, liệt k
 
 ## 🟠 Giai đoạn 3: Tích hợp hình ảnh & Xây dựng Bài Viết HTML Chuẩn iViDLab
 Ngay sau khi nhận được đường dẫn ảnh từ người dùng:
-1. **Lưu tệp ảnh vào hệ thống:** Copy tất cả ảnh vào thư mục chuyên môn:
-   `X:\OneDrive\05 CODI\ViDiLab Web\public\autocad\autolisp\Pic\`
+1. **Lưu và Tự Động Đổi Tên tệp ảnh vào hệ thống:**
+   - Copy tất cả ảnh vào thư mục chuyên nghiệp: `X:\OneDrive\05 CODI\ViDiLab Web\public\autocad\autolisp\Pic\`
+   - **Quy tắc Tránh Trùng Tên & Chuẩn Hóa Tên Ảnh:** Không giữ nguyên tên file gốc của người dùng (như `1.png`, `zalo_123.jpg`). Bắt buộc **tự đổi tên tệp ảnh theo tên bài viết hoặc tên công cụ Lisp** kèm số thứ tự rõ ràng (Ví dụ: `DrawPurlin_01.png`, `DrawPurlin_02.jpg` hoặc `vexago_hero.png`). Nếu kiểm tra phát hiện thư mục đã có file cùng tên, hãy thêm tiền tố phiên bản (ví dụ: `_v2`, `_new`) để đảm bảo tuyệt đối không ghi đè vào ảnh của các bài viết cũ!
 2. **Tạo trang bài viết HTML mới:**
    Tạo tệp tại đường dẫn: `public/autocad/autolisp/<ten-bai-viet>.html` tuân thủ các quy tắc bất vi bất dịch của giao diện web iViDLab:
 

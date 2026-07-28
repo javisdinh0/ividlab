@@ -39,8 +39,9 @@ Ngay sau Bước 1, Agent không đoán mò ảnh mà phải tạm dừng thực
 👉 *Người dùng chỉ cần thả đường dẫn ổ cứng chứa ảnh, Agent sẽ tự thọc tay hút ảnh về đúng kho chuyên mục!*
 
 ### 🟠 Bước 3: Tạo Bài Viết HTML Hướng Dẫn Chuẩn Mực
-- Hút các tệp ảnh mà người dùng vừa giao vào kho lưu trữ chuyên mục:  
-  `public\autocad\autolisp\Pic\`
+- **Hút và Tự động đổi tên ảnh vào kho chuyên mục:**  
+  - Lưu vào: `public\autocad\autolisp\Pic\`
+  - **Quy tắc chống trùng & Chuẩn hóa tên file:** Tuyệt đối không để nguyên các tên ảnh chung chung (như `ảnh 1.png`, `image.jpg`). Agent bắt buộc **tự động đặt tên lại cho file ảnh dựa theo tên bài viết/công cụ Lisp** đang triển khai kèm số thứ tự (ví dụ: `TenLisp_01.png`, `TenLisp_02.jpg`). Nếu tên vừa đặt vẫn bị trùng với một file đã có từ trước trong thư mục `Pic`, tự động hậu tố số phiên bản (`_v2`, `_rev1`) để ngăn cản việc ghi đè sai lệch dữ liệu!
 - Thiết lập một file bài viết HTML độc lập mới tại:  
   `public\autocad\autolisp\<ten-bai-viet-lisp>.html`
 - **Quy tắc Giao diện Trang bài viết:**
