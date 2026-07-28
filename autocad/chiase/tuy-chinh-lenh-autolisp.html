@@ -9,25 +9,129 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      /* Light Theme Palette */
+      --bg-page: #A2BFC7;
+      --bg-card: #FFFFFF;
+      --text-primary: #2B4E64;
+      --text-body: #334155;
+      --text-muted: #4F7C91;
+      --border-color: #6F9AAB;
+      --link-color: #2563eb;
+      --link-hover: #1d4ed8;
+      --code-bg: #f3f4f6;
+      --code-text: #dc2626;
+      --tip-bg: #f0fdf4;
+      --tip-border: #22c55e;
+      --tip-text: #166534;
+      --warn-bg: #fef2f2;
+      --warn-border: #ef4444;
+      --warn-text: #991b1b;
+      --btn-bg: #FFFFFF;
+      --btn-text: #2B4E64;
+      --pre-bg: #1e293b;
+      --badge-bg: #e0e7ff;
+      --badge-text: #4338ca;
+    }
+
+    [data-theme="dark"] {
+      /* Dark Theme Palette (iViDLab Dark Ocean) */
+      --bg-page: #182B37;
+      --bg-card: #223B4B;
+      --text-primary: #F0F6F8;
+      --text-body: #E2E8F0;
+      --text-muted: #A2BFC7;
+      --border-color: #365B6F;
+      --link-color: #60A5FA;
+      --link-hover: #93C5FD;
+      --code-bg: #1e293b;
+      --code-text: #f87171;
+      --tip-bg: #14532d;
+      --tip-border: #4ade80;
+      --tip-text: #dcfce7;
+      --warn-bg: #7f1d1d;
+      --warn-border: #f87171;
+      --warn-text: #fee2e2;
+      --btn-bg: #223B4B;
+      --btn-text: #F0F6F8;
+      --pre-bg: #0f172a;
+      --badge-bg: #312e81;
+      --badge-text: #c7d2fe;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       font-family: 'Be Vietnam Pro', sans-serif;
       line-height: 1.7;
-      color: #333;
-      max-width: 800px;
+      color: var(--text-body);
+      background-color: var(--bg-page);
+      max-width: 860px;
       margin: 0 auto;
-      padding: 40px 20px;
-      background-color: #f9fafb;
+      padding: 30px 20px;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .back-link {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+      color: var(--link-color);
+    }
+
+    .toggle-btn {
+      background: var(--btn-bg);
+      border: 1px solid var(--border-color);
+      color: var(--btn-text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: all 0.2s;
+    }
+    .toggle-btn:hover {
+      border-color: var(--link-color);
+      transform: translateY(-1px);
+    }
+
     .article-container {
-      background: white;
+      background: var(--bg-card);
       padding: 45px;
       border-radius: 16px;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
-      border: 1px solid #f3f4f6;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 5px 10px -5px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--border-color);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
     }
+
     h1, h2, h3 {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      color: #111827;
+      color: var(--text-primary);
       margin-top: 1.6em;
       margin-bottom: 0.6em;
     }
@@ -35,49 +139,36 @@
       font-size: 2.35rem;
       line-height: 1.25;
       margin-top: 0;
-      color: #1d4ed8;
+      color: var(--link-color);
     }
     h2 {
       font-size: 1.55rem;
-      border-bottom: 2px solid #f3f4f6;
+      border-bottom: 2px solid var(--border-color);
       padding-bottom: 10px;
-      color: #1e3a8a;
     }
-    h3 {
-      font-size: 1.25rem;
-      color: #374151;
-    }
-    p {
-      margin-bottom: 1.3em;
-    }
-    ul, ol {
-      margin-bottom: 1.5em;
-      padding-left: 1.5em;
-    }
-    li {
-      margin-bottom: 0.7em;
-    }
+    h3 { font-size: 1.25rem; color: var(--text-primary); }
+    p { margin-bottom: 1.3em; }
+    ul, ol { margin-bottom: 1.5em; padding-left: 1.6em; }
+    li { margin-bottom: 0.7em; }
+    
     a {
-      color: #2563eb;
+      color: var(--link-color);
       text-decoration: none;
       font-weight: 600;
-      transition: color 0.2s;
     }
-    a:hover {
-      color: #1d4ed8;
-      text-decoration: underline;
-    }
+    a:hover { color: var(--link-hover); text-decoration: underline; }
+
     code {
-      background-color: #f3f4f6;
+      background-color: var(--code-bg);
       padding: 3px 7px;
       border-radius: 6px;
       font-family: 'JetBrains Mono', monospace;
-      color: #dc2626;
+      color: var(--code-text);
       font-size: 0.88em;
       font-weight: 600;
     }
     pre {
-      background-color: #1e293b;
+      background-color: var(--pre-bg);
       color: #f8fafc;
       padding: 20px;
       border-radius: 10px;
@@ -85,7 +176,7 @@
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.92em;
       line-height: 1.5;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
     pre code {
       background-color: transparent;
@@ -94,49 +185,33 @@
       font-weight: 400;
       font-size: 1em;
     }
-    .highlight-code {
-      color: #38bdf8;
-      font-weight: 600;
-    }
+    .highlight-code { color: #38bdf8; font-weight: 600; }
+    
     .tip-box {
-      background-color: #f0fdf4;
-      border-left: 4px solid #22c55e;
+      background-color: var(--tip-bg);
+      border-left: 4px solid var(--tip-border);
       padding: 18px 22px;
       border-radius: 0 12px 12px 0;
       margin: 25px 0;
-      color: #166534;
+      color: var(--tip-text);
     }
     .warning-box {
-      background-color: #fef2f2;
-      border-left: 4px solid #ef4444;
+      background-color: var(--warn-bg);
+      border-left: 4px solid var(--warn-border);
       padding: 18px 22px;
       border-radius: 0 12px 12px 0;
       margin: 25px 0;
-      color: #991b1b;
+      color: var(--warn-text);
     }
     .tip-box strong, .warning-box strong {
       display: block;
       margin-bottom: 6px;
       font-size: 1.05em;
     }
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 24px;
-      color: #6b7280;
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-    .back-link:hover {
-      color: #111827;
-      text-decoration: none;
-    }
     .badge {
       display: inline-block;
-      background-color: #e0e7ff;
-      color: #4338ca;
+      background-color: var(--badge-bg);
+      color: var(--badge-text);
       font-size: 0.78rem;
       font-weight: 700;
       padding: 4px 10px;
@@ -145,11 +220,22 @@
       letter-spacing: 0.05em;
       margin-bottom: 12px;
     }
+
+    @media (max-width: 600px) {
+      .article-container { padding: 25px 18px; }
+      h1 { font-size: 1.85rem; }
+    }
   </style>
 </head>
 <body>
-  <a href="/autocad/autolisp/autocad-lisp-vexago.html" class="back-link">← Quay lại bài viết DrawPurlin (VEXAGO)</a> | 
-  <a href="/" class="back-link" style="margin-left: 8px;">🏠 Trang chủ iViDLab</a>
+  <div class="top-bar">
+    <div class="nav-links">
+      <a href="/autocad/autolisp/autocad-lisp-vexago.html" class="back-link">← Bài viết DrawPurlin</a>
+      <span style="color: var(--text-muted);">|</span>
+      <a href="/" class="back-link">🏠 Trang chủ iViDLab</a>
+    </div>
+    <button id="theme-toggle" class="toggle-btn" title="Chuyển giao diện Sáng / Tối">☀️ LIGHT</button>
+  </div>
   
   <div class="article-container">
     <span class="badge">Chia Sẻ & Thủ Thuật CAD</span>
@@ -157,12 +243,12 @@
 
     <p>Khi tải về các công cụ Lisp hay Plugin cho AutoCAD (như Lisp vẽ xà gồ <strong>DrawPurlin</strong> của iViDLab), đôi khi tên lệnh mặc định (ví dụ <code>VEXAGO</code>) có thể hơi dài hoặc không thuận tay với thói quen gõ bàn phím của bạn. Hoặc đôi khi lệnh đó bị trùng với một shortcut khác mà bạn đã có trong máy.</p>
 
-    <p>Bài viết này sẽ hướng dẫn bạn cách tự chỉnh sửa (edit) file <code>.lsp</code> để đổi tên lệnh theo sở thích chỉ với vài thao tác cực kỳ đơn giản và an toàn, không cần phải là một trình bày code hay am hiểu sâu về lập trình AutoLISP.</p>
+    <p>Bài viết này sẽ hướng dẫn bạn cách tự chỉnh sửa (edit) file <code>.lsp</code> để đổi tên lệnh theo sở thích chỉ với vài thao tác cực kỳ đơn giản và an toàn, không cần phải am hiểu sâu về lập trình AutoLISP.</p>
 
     <h2>&#128398; Các Bước Đổi Tên Lệnh AutoLISP</h2>
 
     <h3>Bước 1: Mở tệp tin Lisp (.lsp) bằng trình soạn thảo</h3>
-    <p>Bạn không mở trực tiếp file Lisp bằng AutoCAD để sửa. Thay vào đó, hãy <strong>click chuột phải</strong> vào file file Lisp (ví dụ <code>DrawPurlin.lsp</code>) &rarr; Chọn <strong>Open with</strong> &rarr; Chọn <strong>Notepad</strong> (hoặc nếu có các phần mềm tối ưu hơn như <em>Notepad++</em> hay <em>Visual Studio Code</em> thì càng tuyệt vời).</p>
+    <p>Bạn không mở trực tiếp file Lisp bằng AutoCAD để sửa. Thay vào đó, hãy <strong>click chuột phải</strong> vào file Lisp (ví dụ <code>DrawPurlin.lsp</code>) &rarr; Chọn <strong>Open with</strong> &rarr; Chọn <strong>Notepad</strong> (hoặc nếu có các phần mềm tiện hơn như <em>Notepad++</em> hay <em>Visual Studio Code</em> thì càng tuyệt vời).</p>
 
     <h3>Bước 2: Tìm đến cú pháp khai báo tên lệnh</h3>
     <p>Trong ngôn ngữ AutoLISP, mọi lệnh có thể gõ trực tiếp trong AutoCAD đều được bắt đầu bằng cú pháp chuẩn:</p>
@@ -180,7 +266,7 @@
 
     <div class="tip-box">
       <strong>&#128161; Mẹo hay: Tạo đồng thời 2 phím tắt cho 1 Lisp</strong>
-      <p>Nếu bạn vừa muốn giữ tên lệnh cũ để nhớ thói quen, vừa muốn có thêm tên lệnh siêu ngắn, bạn có thể cuộn lướt xuống cuối cùng của file <code>.lsp</code> và tự tạo một dòng mã bí danh (alias) như sau: <br><code>(defun c:XG () (c:VEXAGO))</code><br>Khi đó cả gõ <code>VEXAGO</code> hay <code>XG</code> thì CAD đều chạy cùng một lệnh cho bạn!</p>
+      <p>Nếu bạn vừa muốn giữ tên lệnh cũ để nhớ thói quen, vừa muốn có thêm tên lệnh siêu ngắn, bạn có thể cuộn xuống cuối cùng của file <code>.lsp</code> và tự tạo một dòng mã bí danh (alias) như sau: <br><code>(defun c:XG () (c:VEXAGO))</code><br>Khi đó gõ cả <code>VEXAGO</code> hay <code>XG</code> trong CAD đều sẽ cùng chạy một lệnh cho bạn!</p>
     </div>
 
     <h3>Bước 4: Lưu file và Tải lại vào AutoCAD</h3>
@@ -207,11 +293,32 @@
       <p>Khi lưu bằng Notepad, hãy chắc chắn chọn Encoding là <strong>UTF-8</strong> (hoặc ANSI) và không để bị tự động đổi đuôi tệp thành <code>.lsp.txt</code>.</p>
     </div>
 
-    <hr style="margin: 40px 0; border: none; border-top: 1px solid #e5e7eb;">
+    <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--border-color);">
     
-    <p style="text-align: center; font-style: italic; color: #6b7280; margin-bottom: 0;">
+    <p style="text-align: center; font-style: italic; color: var(--text-muted); margin-bottom: 0;">
       Bài viết thuộc sự nghiên cứu và biên soạn từ kỹ thuật viên của <a href="https://ividlab.com/">iViDLab.com</a>. Chúc các bạn thiết lập không gian làm việc AutoCAD tối ưu và chuyên nghiệp!
     </p>
   </div>
+
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('ividlab-theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      
+      const themeBtn = document.getElementById('theme-toggle');
+      function updateBtnText(theme) {
+        themeBtn.textContent = theme === 'light' ? '☀️ LIGHT' : '🌙 DARK';
+      }
+      updateBtnText(savedTheme);
+
+      themeBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('ividlab-theme', nextTheme);
+        updateBtnText(nextTheme);
+      });
+    })();
+  </script>
 </body>
 </html>
