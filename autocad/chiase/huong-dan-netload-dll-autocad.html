@@ -106,15 +106,15 @@
     </div>
 
     <h2>&#128273; Cấu Hình Biến Bảo Mật (SECURELOAD & Trusted Locations)</h2>
-    <p>Từ các phiên bản AutoCAD mới hiện nay (2016 trở lên), cơ chế bảo mật của CAD rất khắt khe đối với mã lập trình bên thứ ba. Nếu khi NETLOAD xuất hiện bảng thông báo cảnh báo <em>"Security Concern: You are about to run an executable file..."</em>, bạn có thể giải quyết dứt điểm như sau:</p>
+    <p>Từ các phiên bản AutoCAD mới hiện nay (2016 trở lên), cơ chế bảo mật của AutoCAD được siết chặt đối với tệp tin mã lệnh từ bên ngoài. Nếu khi dùng lệnh NETLOAD xuất hiện bảng cảnh báo <em>"Security Concern: You are about to run an executable file..."</em>, bạn có thể thiết lập như sau:</p>
     <ul>
-      <li><strong>Thêm Thư Mục Khấu Trực (Trusted Locations):</strong> Vào Gõ lệnh <code>OP</code> (Options) &rarr; Tab <strong>Files</strong> &rarr; Bấm mở trôi ra mục <em>Trusted Locations</em> &rarr; Bấm <strong>Add</strong> rồi chỉ đường dẫn tới thư mục chuyên đựng Lisp & Plugin của bạn. Từ nay mọi tệp nạp từ đường dẫn này đều được coi là hoàn toàn tin cậy.</li>
-      <li><strong>Tùy chỉnh biến hệ thống SECURELOAD:</strong> Gõ lệnh <code>SECURELOAD</code> vào thanh Command. Nhập giá trị bằng <code>0</code> (Tắt cảnh báo nạp code) hoặc để mặc định <code>1</code> (Chỉ nạp tự động từ Trusted Locations).</li>
+      <li><strong>Thêm Thư Mục Tin Cậy (Trusted Locations):</strong> Gõ lệnh <code>OP</code> (Options) &rarr; Mở tab <strong>Files</strong> &rarr; Mở rộng nhánh <em>Trusted Locations</em> &rarr; Bấm <strong>Add</strong> rồi chỉ đường dẫn tới thư mục lưu Lisp & Plugin trên đĩa cứng của bạn. Từ thời điểm này, mọi tệp nạp từ các thư mục trong danh sách tin cậy sẽ được AutoCAD chạy tự động và không hiện cảnh báo.</li>
+      <li><strong>Tùy chỉnh biến hệ thống SECURELOAD:</strong> Gõ lệnh <code>SECURELOAD</code> vào thanh Command. Nhập giá trị <code>0</code> (Tắt cảnh báo nạp code) hoặc giữ mức mặc định <code>1</code> (Chỉ tự động nạp mà không cảnh báo nếu file nằm trong Trusted Locations).</li>
     </ul>
 
     <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--border-color);">
     <p style="text-align: center; font-style: italic; color: var(--text-muted); margin-bottom: 0;">
-      Biên soạn chuyên sâu từ đội ngũ lập trình viên BIM tại <a href="https://ividlab.com/">iViDLab.com</a>. Chúc các đồng nghiệp chinh phục kiến trúc .NET API chuyên nghiệp!
+      Tài liệu được tổng hợp và biên soạn bởi đội ngũ kỹ thuật <a href="https://ividlab.com/">iViDLab.com</a>.
     </p>
   </div>
 
