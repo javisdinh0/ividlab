@@ -46,6 +46,10 @@ Ngay sau Bước 1, Agent không đoán mò ảnh mà phải tạm dừng thực
   - **Quy tắc chống trùng & Chuẩn hóa tên file:** Tuyệt đối không để nguyên các tên ảnh chung chung (như `ảnh 1.png`, `image.jpg`). Agent bắt buộc **tự động đặt tên lại cho file ảnh dựa theo tên bài viết/công cụ Lisp** đang triển khai kèm số thứ tự (ví dụ: `TenLisp_01.png`, `TenLisp_02.jpg`). Nếu tên vừa đặt vẫn bị trùng với một file đã có từ trước trong thư mục `Pic`, tự động hậu tố số phiên bản (`_v2`, `_rev1`) để ngăn cản việc ghi đè sai lệch dữ liệu!
 - Thiết lập một file bài viết HTML độc lập mới tại:  
   `public\autocad\autolisp\<ten-bai-viet-lisp>.html`
+- **💎 Kỷ Luật Văn Phong & Ngôn Ngữ (Quy tắc Rà Soát Bắt Buộc):**
+  - **Chuẩn xác Thuật ngữ Kỹ Thuật CAD/BIM:** 100% sử dụng hệ từ vựng kỹ sư chuyên nghiệp (*Tốc độ xử lý dữ liệu lớn*, *Hệ sinh thái & Mở rộng Backend*, *Thư mục tin cậy Trusted Locations*...).
+  - **Cấm Tuyệt Đối Lỗi Dịch Máy (No Translation Bugs):** Loại bỏ hoàn toàn các dạng dịch word-by-word sai lệch (cấm tuyệt đối từ như *"Hậu môn"*, *"khấu trực"*, *"vụn lớn"*...). Khi gặp thuật ngữ IT/CAD đặc thù, ưu tiên giữ nguyên tiếng Anh cơ cấu (như *Backend*, *Trusted Locations*, *Bootstrapper*) thay vì việt hóa gượng ép.
+  - **Văn phong Khúc chiết, Đĩnh đạc:** Cấm lời văn hoa mỹ rườm rà hay bốc đồng nhí nhảnh (*"đẹp mê hồn"*, *"cực đỉnh"*). Ngôn từ xuất bản phải trang nhã, tường minh, 100% không lỗi chính tả (Zero Typo Policy)!
 - **Quy tắc Giao diện Trang bài viết:**
   - Sử dụng chung bộ CSS Custom Variables **Ocean Navy & Ice Blue** từ trang mẹ (`#A2BFC7` cho Sáng, `#182B37` cho Tối).
   - Thanh Navigation phía đỉnh có gắn Nút chuyển chế độ **☀️ LIGHT / 🌙 DARK Toggle**, đọc trích xuất từ biến lưu đệm `localStorage.getItem('ividlab-theme')`.
