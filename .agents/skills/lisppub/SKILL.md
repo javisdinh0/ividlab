@@ -70,6 +70,9 @@ Tạo bục tải xuống nổi bật ở vị trí cận cuối bài viết:
 </div>
 ```
 
+### ❌ Nghiêm cấm ghi dòng vinh danh ở chân trang (Footer Prohibition):
+Tuyệt đối **KHÔNG** chèn thêm dải phân cách hay dòng chữ tín nhiệm ở cuối trang HTML sau Hộp Tải Về (chẳng hạn như: *"Autolisp được sưu tầm và chia sẻ phi lợi nhuận bởi iViDLab.com. Trợ lý xuất bản: Agent LispPub"*). Nơi duy nhất xuất trình chuỗi *"AutoLISP tool collected and shared for non-profit by iViDLab.com"* là trên màn hình Command trong phần mềm AutoCAD (tại mã Lisp gốc). Bài viết HTML hướng dẫn trên website phải kết thúc gọn nảy ngay sau Hộp Tải Về!
+
 ## 🔵 Giai đoạn 4: Cập Nhật Trang Chủ & Xuất Bản Website (Deploy)
 1. **Đăng ký công cụ ra Landing Page:**
    - Mở file `X:\OneDrive\05 CODI\ViDiLab Web\src\data\tools.js`.

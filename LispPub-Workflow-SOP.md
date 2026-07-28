@@ -57,6 +57,7 @@ Ngay sau Bước 1, Agent không đoán mò ảnh mà phải tạm dừng thực
      - Hướng tới: `/autocad/chiase/huong-dan-appload-lisp-autocad.html`
 - **Hộp thông tin Tải về:**
   - Nằm giáp cuối trang bài viết, có khung viền bao quanh sang trọng và một nút bám `⬇ Tải Về <TenFile>.lsp` trỏ thẳng tới thư mục gốc `/fordownload/<TenFile>.lsp`.
+  - **❌ CẤM CHÈN DÒNG TRI ÂN NƠI ĐẮY BÀI VIẾT WEB:** Tuyệt đối KHÔNG gài thêm đoạn văn kíp đuôi ở đáy bài viết HTML (chẳng hạn như: *"Autolisp được sưu tầm và chia sẻ phi lợi nhuận... Trợ lý xuất bản: Agent LispPub"*). Nơi duy nhất in thông điệp *"AutoLISP tool collected and shared..."* là trên thanh Command trong phần mềm AutoCAD (bên trong mã code Lisp). Bài viết trên Website kết thúc thanh lịch và dứt khoát ngay sau Hộp thông tin tải về!
 
 ### 🔵 Bước 4: Nạp Cập Nhật Ra Trang Chủ & Xuất Bản Website (Deployment)
 - Mở danh mục cơ sở dữ liệu `src\data\tools.js`.
