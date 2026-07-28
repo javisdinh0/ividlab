@@ -1,5 +1,18 @@
 export const toolsData = [
   {
+    id: 'quick-block-creator-bb',
+    title: 'Quick Block - Tạo Block Nhanh (BB)',
+    category: 'AutoCAD Lisp',
+    tag: 'CAD Automation',
+    description: {
+      vi: 'Lisp tạo block siêu tốc không qua hộp thoại, hỗ trợ tự động đặt tên theo chuỗi ngày giờ thời gian thực YYYYMMDD_HHMMSS và đặt tên chứa dấu cách.',
+      en: 'Ultra-fast AutoLISP block creation without dialog boxes, featuring automated real-time YYYYMMDD_HHMMSS timestamp naming and space-inclusive naming support.'
+    },
+    status: 'Release',
+    link: '/autocad/autolisp/autolisp-quick-block-bb.html',
+    featured: true
+  },
+  {
     id: 'merge-hatch-mh',
     title: 'Merge Hatch - Gộp Vùng Tô (MH)',
     category: 'AutoCAD Lisp',
