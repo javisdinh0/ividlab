@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bộ Phím Tắt Quản Lý Layer & Linetype (Layiso Suite) - iViDLab</title>
+  <title>Lisp Gộp Vùng Hatch Rời Rạc Thành 1 (Merge Hatch - MH) - iViDLab</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -123,73 +123,50 @@
     <div class="nav-links">
       <a href="/" class="back-link">🏠 Trang chủ iViDLab</a>
       <span style="color: var(--text-muted);">|</span>
-      <a href="/autocad/autolisp/autocad-lisp-vexago.html" class="back-link">⚡ DrawPurlin Lisp</a>
+      <a href="/autocad/autolisp/autolisp-layiso-layer-manager.html" class="back-link">⚡ Layiso Layer Suite</a>
     </div>
     <button id="theme-toggle" class="toggle-btn" title="Chuyển giao diện Sáng / Tối">☀️ LIGHT</button>
   </div>
   
   <div class="article-container">
-    <span class="badge">CAD Automation & Layer Suite</span>
-    <h1>Bộ 10 Phím Tắt Quản Lý Layer & Linetype (Layiso Suite)</h1>
+    <span class="badge">CAD Automation & Hatch Suite</span>
+    <h1>Lisp Gộp Nhanh Vùng Hatch Rời Rạc (Merge Hatch - MH)</h1>
 
-    <p>Trong các dự án thiết kế và triển khai bản vẽ thi công xây dựng quy mô lớn, việc thao tác qua lại giữa hàng trăm lớp bản vẽ (Layers) khác nhau, bật/tắt đối tượng và đồng bộ nét vẽ có thể ngốn của bạn hàng giờ đồng hồ mỗi ngày. Để giải quyết dứt điểm rào cản đó, <strong>iViDLab</strong> xin ra mắt bộ công cụ <strong>Layiso Suite</strong> – bộ 10 phím tắt Lisp tự động giúp bạn kiểm soát hoàn toàn Layer và Linetype chỉ bằng vài tích tắc nhấp chuột!</p>
+    <p>Trong quá trình vẽ, chỉnh sửa mặt bằng kiến trúc, kết cấu hoặc khi chia nhỏ phân khu dự án, các vùng tô (Hatch) thường bị phân mảnh thành nhiều block đối tượng rời rạc. Khi cần chỉnh sửa thông số chu kỳ họa tiết (Scale), màu sắc hoặc tính tổng diện tích vùng tô, việc click chọn từng Hatch con hoặc hì hục ngồi bo lại đường biên Ranh giới (Boundary) từ đầu vừa rườm rà vừa lãng phí vô số thời gian.</p>
+    <p>Để khắc phục nhược điểm gây bức bối này, <strong>iViDLab</strong> trân trọng đem tới cho kỹ sư xây dựng và kiến trúc sư công cụ <strong>Merge Hatch (MH)</strong> — giải pháp tối ưu cho phép gộp nối liền mạch hàng chục vùng Hatch rời rạc trở thành <strong>1 đối tượng duy nhất</strong> chỉ trong tích tắc!</p>
 
     <div class="img-box">
-      <img src="Pic/Layiso_Suite_01.png" alt="Tổng quan thành quả quản lý layer trong bản vẽ CAD bằng Layiso Suite" />
-      <span>Hình 1: Bản vẽ kỹ thuật thi công được phân lớp và điều chỉnh thuộc tính nét gọn gàng bằng Layiso Suite</span>
+      <img src="Pic/MergeHatch_MH_01.jpg" alt="Tổng quan thành quả gộp nhiều đối tượng Hatch rời rạc trong bản vẽ CAD bằng lệnh MH" />
+      <span>Hình 1: Các vùng Hatch rời rạc trên bản vẽ được gộp liền mạch thành một khối thống nhất nhờ Lisp MH</span>
     </div>
 
-    <h2>&#128142; Tính Năng & Danh Sách 10 Lệnh Siêu Tốc</h2>
-    <p>Bộ công cụ tích hợp sẵn 10 lệnh rút gọn siêu linh hoạt, phân chia làm 3 nhóm chính: <em>Điều khiển tầm nhìn Layer</em>, <em>Dịch chuyển Layer lập tức</em> và <em>Đồng bộ thuộc tính ByLayer / Tỷ lệ nét</em>:</p>
+    <h2>&#128142; Nguyên Lý Hoạt Động & Những Điểm Sáng Vượt Trội</h2>
+    <p>Công cụ <strong>Merge Hatch</strong> thực thi dựa trên thuật toán can thiệp trực tiếp vào cấu trúc chuỗi dữ liệu ranh giới (Boundary Data) của mã nhóm đối tượng DXF <code>assoc 91</code> trong AutoCAD, mang tới sự khác biệt hoàn toàn so với các cách vẽ lại truyền thống:</p>
 
     <div style="overflow-x: auto;">
       <table>
         <thead>
           <tr>
-            <th style="width: 25%;">Lệnh Lisp</th>
-            <th style="width: 75%;">Tác Dụng & Giải Thích Chi Tiết</th>
+            <th style="width: 30%;">Tính Năng</th>
+            <th style="width: 70%;">Giá Trị Mang Lại Cho Người Dùng</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><code>L1</code></td>
-            <td><strong>Cô lập Layer (LAYISO):</strong> Chọn 1 đối tượng, toàn bộ bản vẽ sẽ bị giấu đi, chỉ giữ lại duy nhất Layer của đối tượng được chọn trên màn hình để bạn dễ dàng tác nghiệp.</td>
+            <td><strong>Không Cần Vẽ Lại Boundary</strong></td>
+            <td>Bỏ qua hoàn toàn công đoạn tạo đường polyline ranh giới mới hay xóa Hatch cũ đi tô lại từ đầu. Thuật toán tự lôi kéo và nối các ranh giới hiện hữu lại với nhau liền mạch.</td>
           </tr>
           <tr>
-            <td><code>L2</code></td>
-            <td><strong>Tắt nhanh Layer (LAYOFF):</strong> Tắt ngóm ngay lập tức Layer của đối tượng bạn vừa nhấp chuột.</td>
+            <td><strong>Kế Thừa Thuộc Tính Hatch Đầu</strong></td>
+            <td>Đối tượng Hatch đầu tiên trong tập hợp được quét chọn sẽ làm "máy chủ" định dạng. Mọi thông số (tên hoa văn Pattern, góc quay Angle, tỷ lệ Scale) đều tự động chia sẻ đồng nhất cho khối gộp hậu kỳ.</td>
           </tr>
           <tr>
-            <td><code>L3</code></td>
-            <td><strong>Bật lại tất cả Layer (LAYON):</strong> Phục hồi tầm nhìn, bật sáng toàn bộ các lớp Layer đang bị tắt trong bản vẽ.</td>
+            <td><strong>Tối Ưu & Dọn Dẹp Bản Vẽ</strong></td>
+            <td>Sau khi hợp nhất cấu trúc ranh giới, toàn bộ các Hatch lẻ tẻ thâm hụt trước đó đều tự động biến mất, giúp tệp <code>.DWG</code> giảm thiểu thực tế số lượng Ent, trở nên nhẹ nhàng, mượt mà và sạch sẽ khi zoom xoay.</td>
           </tr>
           <tr>
-            <td><code>T</code></td>
-            <td><strong>Cắt thần tốc (TRIM):</strong> Gõ đúng phím 1 chữ <code>T</code> để kích hoạt lệnh Cắt thay vì phải gõ <code>TR</code> hoặc bấm nút trên Toolbar.</td>
-          </tr>
-          <tr>
-            <td><code>TS0</code></td>
-            <td><strong>Đổi về Layer 0:</strong> Đẩy ngay các đối tượng đang quét chọn về <strong>Layer 0</strong> chuẩn gốc của AutoCAD.</td>
-          </tr>
-          <tr>
-            <td><code>TP</code></td>
-            <td><strong>Đổi về Layer Part:</strong> Dịch chuyển toàn bộ đối tượng chọn sang Layer <code>Part</code>.</td>
-          </tr>
-          <tr>
-            <td><code>TSD</code></td>
-            <td><strong>Đổi về Layer Defpoints:</strong> Đẩy ngay đối tượng vào lớp <code>Defpoints</code> (Layer tự động tàng hình, không hiển thị ra hồ sơ khi in ấn In/Plot).</td>
-          </tr>
-          <tr>
-            <td><code>TSCOLOR</code></td>
-            <td><strong>Chuẩn hóa màu ByLayer:</strong> Đưa lập tức màu sắc đối tượng bị đổi màu lẻ về màu chung của lớp Layer (<code>BYLAYER</code>).</td>
-          </tr>
-          <tr>
-            <td><code>TSLINETYPE</code></td>
-            <td><strong>Chuẩn hóa kiểu nét ByLayer:</strong> Đổi nhanh kiểu nét về chuẩn theo lớp (<code>BYLAYER</code>).</td>
-          </tr>
-          <tr>
-            <td><code>LS</code></td>
-            <td><strong>Định tỷ lệ Linetype Scale (LTSCALE):</strong> Quét chọn đối tượng, nhập số tỷ lệ giãn nét mới straight trên màn hình!</td>
+            <td><strong>Hỗ Trợ Hoàn Trả (Undo) Siêu Sạch</strong></td>
+            <td>Được lót sẵn bộ đệm <code>_undo be / e</code> an toàn tuyệt đối. Nếu thao tác nhầm lẫn hay chọn sai đối tượng, chỉ cần gõ nhẹ <code>Ctrl + Z</code> (hoặc lệnh <code>U</code>), toàn bộ trạng thái bản vẽ lập tức hồi phục trọn vẹn 100%.</td>
           </tr>
         </tbody>
       </table>
@@ -197,25 +174,31 @@
 
     <h2>&#128295; Hướng Dẫn Nạp Và Sử Dụng Trong AutoCAD</h2>
 
-    <p>Quy trình làm việc với Layiso Suite diễn ra cực kỳ tốc độ và chuẩn xác theo 3 bước:</p>
+    <p>Để tận hưởng sự tiện lợi của Lisp gộp Hatch, bạn chỉ cần thực hiện đúng theo 3 bước cực kỳ dễ nhớ:</p>
     <ol>
-      <li>Load Lisp vào AutoCAD (chúng tôi khuyết khích thực hiện kèm <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html" target="_blank">Hướng dẫn chi tiết APPLOAD và Startup Suite tải Lisp tự động</a> để không phải tải lại hằng ngày).</li>
-      <li>Tại màn hình làm việc, nhập các lệnh tắt trong danh sách (Ví dụ: gõ <code>L1</code> hoặc <code>TS0</code>).</li>
-      <li><strong>Tên lệnh:</strong> <code>L1, L2, L3, TS0, LS...</code> - <a href="/autocad/chiase/tuy-chinh-lenh-autolisp.html" target="_blank">Hướng dẫn tuỳ chỉnh đổi tên lệnh trong AutoLISP</a> (nếu bạn muốn đổi phím tắt theo thói quen tay cá nhân).</li>
+      <li>Load Lisp vào AutoCAD (kém theo <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html" target="_blank">Hướng dẫn chi tiết APPLOAD và Startup Suite tải Lisp tự động</a> để mỗi lần mở CAD là tool sẵn sàng nghinh chiến).</li>
+      <li>Tại màn hình làm việc của bản vẽ, nhập phím tắt khởi chạy lệnh trên thanh Command Line: gõ <code>MH</code> (rồi nhấn Space / Enter).</li>
+      <li>Quét chuột tạo hộp chọn (box select) bao trùm qua các đối tượng Hatch rời rạc mà bạn muốn gộp nối (báo hiệu: <code>Select hatches to merge:</code>) và nhấn Space lần cuối để hoàn tất!</li>
+      <li><strong>Tên lệnh:</strong> <code>MH</code> - <a href="/autocad/chiase/tuy-chinh-lenh-autolisp.html" target="_blank">Hướng dẫn tuỳ chỉnh đổi tên lệnh trong AutoLISP</a> (nếu bạn muốn tùy biến lại tên phím tắt theo thói quen tay phím của riêng mình).</li>
     </ol>
 
     <div class="img-box">
-      <img src="Pic/Layiso_Suite_02.jpg" alt="Thao tác gõ phím tắt quản lý Layer L1 L2 TS0 ngay tại khu vực lệnh Command Line" />
-      <span>Hình 2: Thao tác gọi phím tắt quản lý Layer và nhập tham số trực tiếp tại Command Line</span>
+      <img src="Pic/MergeHatch_MH_02.jpg" alt="Thao tác gọi lệnh MH trên thanh Command Line và chọn các vùng Hatch cần nối" />
+      <span>Hình 2: Thao tác gọi lệnh MH trên thanh Command Line và quét chọn nhanh chóng khối ranh giới Hatch cần hợp nhất</span>
     </div>
 
-    <h2>&#128229; Tải Về Bộ Công Cụ Layiso Suite</h2>
+    <div class="tip-box">
+      <strong>&#9889; Tối ưu mã nguồn & Đảm bảo tương thích tuyệt đối:</strong>
+      <p>Mã Lisp gốc đã được đội ngũ chuyên gia công nghệ tại <strong>iViDLab</strong> tu sửa toàn diện: rà soát, dọn dẹp biến cục bộ tránh tràn bộ nhớ Namespace AutoCAD và dịch chuyển 100% các câu nhắc lệnh sang Tiếng Anh quốc tế chuẩn mực (ví dụ: <em>"Select hatches to merge"</em>). Lisp nay thách thức mọi phiên bản AutoCAD từ xa xưa đến đời mới nhất mà không bao giờ gặp trở ngại về phông chữ hay văng lỗi Runtime!</p>
+    </div>
+
+    <h2>&#128229; Tải Về Công Cụ Merge Hatch (MH)</h2>
     <div class="download-section">
-      <p>Tải xuống bộ công cụ gốc chính thức ngay tại đường dẫn bên dưới:</p>
+      <p>Tải xuống bộ công cụ gốc ngay tại đường dẫn bên dưới:</p>
       <ul>
-        <li><strong>Tệp tin:</strong> <code>L1_L2_L3_Layiso.lsp</code></li>
-        <li><strong>Phiên bản:</strong> Release 1.0 (Bao gồm 10 lệnh, đã lót bản quyền và chuẩn hóa mã).</li>
-        <li><strong>Link Tải trực tiếp:</strong> <a href="/fordownload/L1_L2_L3_Layiso.lsp" download="L1_L2_L3_Layiso.lsp">&#11015; Tải Về L1_L2_L3_Layiso.lsp</a></li>
+        <li><strong>Tệp tin:</strong> <code>MH - Merge hatch.lsp</code></li>
+        <li><strong>Phiên bản:</strong> Release 1.0 (Đã tối ưu biến cục bộ, kiểm lỗi số lượng chọn & chuẩn hóa mã).</li>
+        <li><strong>Link Tải trực tiếp:</strong> <a href="/fordownload/MH%20-%20Merge%20hatch.lsp" download="MH - Merge hatch.lsp">&#11015; Tải Về MH - Merge hatch.lsp</a></li>
       </ul>
     </div>
 
