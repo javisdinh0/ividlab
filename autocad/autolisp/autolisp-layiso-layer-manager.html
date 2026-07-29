@@ -131,7 +131,19 @@
     .related-card .badge { align-self: flex-start; background: var(--badge-bg); color: var(--badge-text); font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; font-family: 'JetBrains Mono', monospace; }
     .related-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.1rem; margin: 0; color: var(--text-primary); line-height: 1.4; transition: color 0.2s; }
     .related-card:hover h3 { color: var(--link-color); }
-\n  </style>
+  
+    /* Language Toggle Styles */
+    [data-lang="vi"] { display: block !important; }
+    [data-lang="en"] { display: none !important; }
+    body.lang-en [data-lang="vi"] { display: none !important; }
+    body.lang-en [data-lang="en"] { display: block !important; }
+    
+    /* Fix inline elements */
+    span[data-lang="vi"], strong[data-lang="vi"], em[data-lang="vi"], a[data-lang="vi"], figcaption[data-lang="vi"] { display: inline !important; }
+    span[data-lang="en"], strong[data-lang="en"], em[data-lang="en"], a[data-lang="en"], figcaption[data-lang="en"] { display: none !important; }
+    body.lang-en span[data-lang="vi"], body.lang-en strong[data-lang="vi"], body.lang-en em[data-lang="vi"], body.lang-en a[data-lang="vi"], body.lang-en figcaption[data-lang="vi"] { display: none !important; }
+    body.lang-en span[data-lang="en"], body.lang-en strong[data-lang="en"], body.lang-en em[data-lang="en"], body.lang-en a[data-lang="en"], body.lang-en figcaption[data-lang="en"] { display: inline !important; }
+  </style>
 </head>
 <body>
   
@@ -144,16 +156,16 @@
       </a>
       <nav style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
         <a href="/?tab=all" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); transition: color 0.2s ease;">
-          <span data-lang="vi">// TRANG CHỦ</span><span data-lang="en" style="display:none;">// HOME</span>
+          <span data-lang="vi">// TRANG CHỦ</span><span data-lang="en" >// HOME</span>
         </a>
         <a href="/?tab=tools" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// CÔNG CỤ</span><span data-lang="en" style="display:none;">// TOOLS</span>
+          <span data-lang="vi">// CÔNG CỤ</span><span data-lang="en" >// TOOLS</span>
         </a>
         <a href="/?tab=guides" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span data-lang="en" style="display:none;">// GUIDES</span>
+          <span data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span data-lang="en" >// GUIDES</span>
         </a>
         <a href="/?tab=about" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en" style="display:none;">// ABOUT</span>
+          <span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en" >// ABOUT</span>
         </a>
       </nav>
       <div style="display: flex; align-items: center; gap: 10px;">
@@ -166,7 +178,7 @@
       </div>
     </div>
   </header>
-\n  <div class="article-container">
+  <div class="article-container">
     <span class="badge">CAD Automation & Layer Suite</span>
     <h1 data-lang="vi">Bộ 10 Phím Tắt Quản Lý Layer & Linetype (Layiso Suite)</h1>
     <h1 data-lang="en">10 Quick Shortcuts for Layer & Linetype Management (Layiso Suite)</h1>
@@ -323,23 +335,23 @@
     <div class="related-grid">
       <a class="related-card" href="/autocad/autolisp/autolisp-merge-hatch-mh.html">
         <span class="badge">CAD Automation</span>
-        <h3><span data-lang="vi">Lisp Gộp Vùng Hatch (Merge Hatch - MH)</span><span data-lang="en" style="display:none;">Merge Hatch Lisp (MH)</span></h3>
+        <h3><span data-lang="vi">Lisp Gộp Vùng Hatch (Merge Hatch - MH)</span><span data-lang="en" >Merge Hatch Lisp (MH)</span></h3>
       </a>
       <a class="related-card" href="/autocad/autolisp/autolisp-quick-block-bb.html">
         <span class="badge">CAD Automation</span>
-        <h3><span data-lang="vi">Lisp Tạo Block Nhanh (Quick Block - BB)</span><span data-lang="en" style="display:none;">Quick Block Lisp (BB)</span></h3>
+        <h3><span data-lang="vi">Lisp Tạo Block Nhanh (Quick Block - BB)</span><span data-lang="en" >Quick Block Lisp (BB)</span></h3>
       </a>
       <a class="related-card" href="/autocad/autolisp/autolisp-layiso-layer-manager.html">
         <span class="badge">CAD Automation</span>
-        <h3><span data-lang="vi">Bộ 10 Phím Tắt Quản Lý Layer (Layiso Suite)</span><span data-lang="en" style="display:none;">Layiso Layer Management Suite</span></h3>
+        <h3><span data-lang="vi">Bộ 10 Phím Tắt Quản Lý Layer (Layiso Suite)</span><span data-lang="en" >Layiso Layer Management Suite</span></h3>
       </a>
       <a class="related-card" href="/autocad/chiase/huong-dan-appload-lisp-autocad.html">
         <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Hướng Dẫn Nạp Lisp Bằng APPLOAD</span><span data-lang="en" style="display:none;">Guide to Load Lisp via APPLOAD</span></h3>
+        <h3><span data-lang="vi">Hướng Dẫn Nạp Lisp Bằng APPLOAD</span><span data-lang="en" >Guide to Load Lisp via APPLOAD</span></h3>
       </a>
       <a class="related-card" href="/autocad/chiase/tuy-chinh-lenh-autolisp.html">
         <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Cách Tùy Chỉnh Phím Tắt Lệnh AutoLISP</span><span data-lang="en" style="display:none;">How to Customize AutoLISP Commands</span></h3>
+        <h3><span data-lang="vi">Cách Tùy Chỉnh Phím Tắt Lệnh AutoLISP</span><span data-lang="en" >How to Customize AutoLISP Commands</span></h3>
       </a>
     </div>
   </div>
