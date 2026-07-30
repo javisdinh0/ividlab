@@ -66,100 +66,257 @@
     .badge { display: inline-block; background-color: var(--badge-bg); color: var(--badge-text); font-size: 0.78rem; font-weight: 700; padding: 4px 10px; border-radius: 9999px; text-transform: uppercase; margin-bottom: 12px; }
     
     @media (max-width: 600px) { .article-container { padding: 25px 15px; } h1 { font-size: 1.75rem; } table { font-size: 0.82rem; } th, td { padding: 8px 10px; } }
+  
+    .related-container { margin-top: 45px; background: var(--bg-card); padding: 40px; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.15); transition: background-color 0.3s ease, border-color 0.3s ease; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 25px; }
+    .related-card { display: flex; flex-direction: column; text-decoration: none; background: var(--bg-page); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; transition: transform 0.2s, border-color 0.2s; }
+    .related-card:hover { transform: translateY(-3px); border-color: var(--link-color); }
+    .related-card .badge { align-self: flex-start; background: var(--badge-bg); color: var(--badge-text); font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; font-family: 'JetBrains Mono', monospace; }
+    .related-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.1rem; margin: 0; color: var(--text-primary); line-height: 1.4; transition: color 0.2s; }
+    .related-card:hover h3 { color: var(--link-color); }
+  
+    /* Language Toggle Styles */
+    [data-lang="vi"] { display: block !important; }
+    [data-lang="en"] { display: none !important; }
+    body.lang-en [data-lang="vi"] { display: none !important; }
+    body.lang-en [data-lang="en"] { display: block !important; }
+    
+    /* Fix inline elements */
+    span[data-lang="vi"], strong[data-lang="vi"], em[data-lang="vi"], a[data-lang="vi"], figcaption[data-lang="vi"] { display: inline !important; }
+    span[data-lang="en"], strong[data-lang="en"], em[data-lang="en"], a[data-lang="en"], figcaption[data-lang="en"] { display: none !important; }
+    body.lang-en span[data-lang="vi"], body.lang-en strong[data-lang="vi"], body.lang-en em[data-lang="vi"], body.lang-en a[data-lang="vi"], body.lang-en figcaption[data-lang="vi"] { display: none !important; }
+    body.lang-en span[data-lang="en"], body.lang-en strong[data-lang="en"], body.lang-en em[data-lang="en"], body.lang-en a[data-lang="en"], body.lang-en figcaption[data-lang="en"] { display: inline !important; }
   </style>
 </head>
 <body>
-  <div class="top-bar">
-    <div class="nav-links">
-      <a href="/" class="back-link">🏠 Trang chủ iViDLab</a>
-      <span style="color: var(--text-muted);">|</span>
-      <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html" class="back-link">📂 Hướng dẫn Appload</a>
-      <span style="color: var(--text-muted);">|</span>
-      <a href="/autocad/chiase/huong-dan-netload-dll-autocad.html" class="back-link">⚡ Hướng dẫn Netload</a>
-    </div>
-    <button id="theme-toggle" class="toggle-btn" title="Chuyển giao diện Sáng / Tối">☀️ LIGHT</button>
-  </div>
   
+  <header style="position: sticky; top: 0; z-index: 100; background-color: var(--bg-page); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 15px 0; transition: background-color 0.3s ease; margin-bottom: 30px;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+      <a href="/" style="text-decoration: none; display: flex; align-items: center;">
+        <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.45rem; font-weight: 900; letter-spacing: -0.02em; color: var(--text-primary);">
+          iViD<span style="color: #2E6583;">Lab</span>
+        </span>
+      </a>
+      <nav style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+        <a href="/?tab=all" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); transition: color 0.2s ease;">
+          <span data-lang="vi">// TRANG CHỦ</span><span data-lang="en" >// HOME</span>
+        </a>
+        <a href="/?tab=tools" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// CÔNG CỤ</span><span data-lang="en" >// TOOLS</span>
+        </a>
+        <a href="/?tab=guides" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span data-lang="en" >// GUIDES</span>
+        </a>
+        <a href="/?tab=about" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en" >// ABOUT</span>
+        </a>
+      </nav>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button id="theme-toggle" class="toggle-btn" title="Chuyển giao diện Sáng / Tối" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; padding: 6px 14px; border-radius: 20px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s;">
+          ☀️ LIGHT
+        </button>
+        <button id="lang-toggle" class="toggle-btn" title="Chuyển Ngôn Ngữ / Toggle Language" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; padding: 6px 14px; border-radius: 20px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s;">
+          🌐 VN / EN
+        </button>
+      </div>
+    </div>
+  </header>
   <div class="article-container">
-    <span class="badge">So Sánh & Kiến Thức Nền Tảng</span>
-    <h1>Phân Biệt & Khi Nào Cần Dùng APPLOAD vs NETLOAD Trong AutoCAD?</h1>
+    <span class="badge" data-lang="vi">So Sánh & Kiến Thức Nền Tảng</span>
+    <span class="badge" data-lang="en">Comparison & Fundamental Knowledge</span>
+    
+    <h1 data-lang="vi">Phân Biệt & Khi Nào Cần Dùng APPLOAD vs NETLOAD Trong AutoCAD?</h1>
+    <h1 data-lang="en">Distinguishing & When to Use APPLOAD vs NETLOAD in AutoCAD?</h1>
 
-    <p>Đối với các kỹ sư và kiến trúc sư khi tiếp cận thế giới tự động hóa AutoCAD, có rất nhiều dạng tệp tiện ích mở rộng được ra mắt và chia sẻ trong cộng đồng (như <code>.lsp</code>, <code>.vlx</code>, <code>.dll</code>, <code>.arx</code>). Một câu hỏi vô cùng phổ biến là: <strong>Tại sao lúc thì người ta dùng lệnh AP (Appload), lúc thì lại bảo phải gõ NETLOAD? Hai lệnh này có gì khác biệt về bản chất?</strong></p>
+    <p data-lang="vi">Đối với các kỹ sư và kiến trúc sư khi tiếp cận thế giới tự động hóa AutoCAD, có rất nhiều dạng tệp tiện ích mở rộng được ra mắt và chia sẻ trong cộng đồng (như <code>.lsp</code>, <code>.vlx</code>, <code>.dll</code>, <code>.arx</code>). Một câu hỏi vô cùng phổ biến là: <strong>Tại sao lúc thì người ta dùng lệnh AP (Appload), lúc thì lại bảo phải gõ NETLOAD? Hai lệnh này có gì khác biệt về bản chất?</strong></p>
+    <p data-lang="en">For engineers and architects approaching the world of AutoCAD automation, there are many types of extension utility files released and shared in the community (like <code>.lsp</code>, <code>.vlx</code>, <code>.dll</code>, <code>.arx</code>). A very common question is: <strong>Why do people sometimes use the AP (Appload) command, and other times say to type NETLOAD? What is the fundamental difference between these two commands?</strong></p>
 
-    <p>Bài viết này sẽ giúp bạn đối chiếu minh bạch toàn diện để bạn hiểu sâu sắc và làm chủ không gian lập trình của mình.</p>
+    <p data-lang="vi">Bài viết này sẽ giúp bạn đối chiếu minh bạch toàn diện để bạn hiểu sâu sắc và làm chủ không gian lập trình của mình.</p>
+    <p data-lang="en">This article will help you comprehensively compare them transparently so you deeply understand and master your programming space.</p>
 
-    <h2>&#128202; Bảng So Sánh Chi Tiết APPLOAD và NETLOAD</h2>
+    <h2 data-lang="vi">&#128202; Bảng So Sánh Chi Tiết APPLOAD và NETLOAD</h2>
+    <h2 data-lang="en">&#128202; Detailed Comparison Table of APPLOAD and NETLOAD</h2>
 
     <div style="overflow-x: auto;">
       <table>
         <thead>
           <tr>
-            <th style="width: 20%;">Tiêu Chí</th>
-            <th style="width: 40%;">APPLOAD (Lệnh AP)</th>
+            <th style="width: 20%;">
+              <span data-lang="vi">Tiêu Chí</span>
+              <span data-lang="en">Criteria</span>
+            </th>
+            <th style="width: 40%;">APPLOAD <span data-lang="vi">(Lệnh AP)</span><span data-lang="en">(AP Command)</span></th>
             <th style="width: 40%;">NETLOAD (Managed Assembly)</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>Định dạng tệp hỗ trợ</strong></td>
-            <td><code>.lsp</code> (AutoLISP), <code>.fas</code>, <code>.vlx</code> (Compiled Lisp), <code>.arx</code> / <code>.crx</code> (C++ ObjectARX), <code>.dvb</code> (VBA).</td>
-            <td><code>.dll</code> (.NET Managed Assembly, biên dịch ra từ ngôn ngữ C#, VB.NET, F# qua thư viện acdbmgd.dll / acmgd.dll).</td>
+            <td>
+              <strong data-lang="vi">Định dạng tệp hỗ trợ</strong>
+              <strong data-lang="en">Supported file formats</strong>
+            </td>
+            <td><code>.lsp</code> (AutoLISP), <code>.fas</code>, <code>.vlx</code> <span data-lang="vi">(Lisp đã biên dịch)</span><span data-lang="en">(Compiled Lisp)</span>, <code>.arx</code> / <code>.crx</code> (C++ ObjectARX), <code>.dvb</code> (VBA).</td>
+            <td><code>.dll</code> <span data-lang="vi">(.NET Managed Assembly, biên dịch ra từ ngôn ngữ C#, VB.NET, F# qua thư viện acdbmgd.dll / acmgd.dll).</span><span data-lang="en">(.NET Managed Assembly, compiled from C#, VB.NET, F# languages via acdbmgd.dll / acmgd.dll library).</span></td>
           </tr>
           <tr>
-            <td><strong>Cơ chế nạp file</strong></td>
-            <td>Mở hộp thoại giao diện trực quan, có thể chọn và nạp nhiều file cùng lúc.</td>
-            <td>Mở trình duyệt tìm file cơ bản, chỉ có thể nạp đúng <strong>1 file .dll mỗi lần gõ lệnh</strong>.</td>
+            <td>
+              <strong data-lang="vi">Cơ chế nạp file</strong>
+              <strong data-lang="en">File loading mechanism</strong>
+            </td>
+            <td>
+              <span data-lang="vi">Mở hộp thoại giao diện trực quan, có thể chọn và nạp nhiều file cùng lúc.</span>
+              <span data-lang="en">Opens a visual interface dialog, can select and load multiple files at once.</span>
+            </td>
+            <td>
+              <span data-lang="vi">Mở trình duyệt tìm file cơ bản, chỉ có thể nạp đúng <strong>1 file .dll mỗi lần gõ lệnh</strong>.</span>
+              <span data-lang="en">Opens a basic file browser, can only load exactly <strong>1 .dll file per command entry</strong>.</span>
+            </td>
           </tr>
           <tr>
-            <td><strong>Nạp tự động khi mở CAD</strong></td>
-            <td>Có sẵn công cụ siêu tiện lợi là <strong>Startup Suite (Contents)</strong> tích hợp thẳng trong hộp thoại AP.</td>
-            <td>Không thể gán trực tiếp qua Startup Suite của CAD. Bắt buộc phải viết 1 dòng lệnh Lisp trung gian trong tệp <code>acaddoc.lsp</code> (ví dụ: <code>(command "netload" "C:\\path\\plugin.dll")</code>) hoặc cấu hình Windows Registry / Autoloader bundle (.cuix).</td>
+            <td>
+              <strong data-lang="vi">Nạp tự động khi mở CAD</strong>
+              <strong data-lang="en">Auto-load on CAD startup</strong>
+            </td>
+            <td>
+              <span data-lang="vi">Có sẵn công cụ siêu tiện lợi là <strong>Startup Suite (Contents)</strong> tích hợp thẳng trong hộp thoại AP.</span>
+              <span data-lang="en">Has a super convenient built-in tool called <strong>Startup Suite (Contents)</strong> integrated right into the AP dialog.</span>
+            </td>
+            <td>
+              <span data-lang="vi">Không thể gán trực tiếp qua Startup Suite của CAD. Bắt buộc phải viết 1 dòng lệnh Lisp trung gian trong tệp <code>acaddoc.lsp</code> (ví dụ: <code>(command "netload" "C:\\path\\plugin.dll")</code>) hoặc cấu hình Windows Registry / Autoloader bundle (.cuix).</span>
+              <span data-lang="en">Cannot be assigned directly via CAD's Startup Suite. Mandatory to write 1 intermediate Lisp command line in the <code>acaddoc.lsp</code> file (e.g., <code>(command "netload" "C:\\path\\plugin.dll")</code>) or configure Windows Registry / Autoloader bundle (.cuix).</span>
+            </td>
           </tr>
           <tr>
-            <td><strong>Khả năng nạp lại (Reload)</strong></td>
-            <td><strong>Siêu linh hoạt!</strong> Nếu bạn vừa chỉnh sửa mã nguồn file Lisp (.lsp), chỉ cần kéo thả lại file vào màn hình hoặc gõ lệnh AP nạp đè là đoạn mã mới có hiệu lực ngay lập tức.</td>
-            <td><strong>Bị Khóa Tệp (File Locked).</strong> Khi đã nạp vào CAD 1 lần, hệ thống giữ file .dll trong RAM. Muốn cập nhật phiên bản file mới hoặc biên dịch lại code, bạn phải tắt hẳn AutoCAD rồi khởi động lại (trừ khi lập trình viên dùng cơ chế Shadow Copy).</td>
+            <td>
+              <strong data-lang="vi">Khả năng nạp lại (Reload)</strong>
+              <strong data-lang="en">Reload capability</strong>
+            </td>
+            <td>
+              <strong data-lang="vi">Siêu linh hoạt!</strong> <span data-lang="vi">Nếu bạn vừa chỉnh sửa mã nguồn file Lisp (.lsp), chỉ cần kéo thả lại file vào màn hình hoặc gõ lệnh AP nạp đè là đoạn mã mới có hiệu lực ngay lập tức.</span>
+              <strong data-lang="en">Super flexible!</strong> <span data-lang="en">If you just edited a Lisp file's source code (.lsp), simply drag and drop the file back onto the screen or type the AP command to overwrite and the new code takes effect immediately.</span>
+            </td>
+            <td>
+              <strong data-lang="vi">Bị Khóa Tệp (File Locked).</strong> <span data-lang="vi">Khi đã nạp vào CAD 1 lần, hệ thống giữ file .dll trong RAM. Muốn cập nhật phiên bản file mới hoặc biên dịch lại code, bạn phải tắt hẳn AutoCAD rồi khởi động lại (trừ khi lập trình viên dùng cơ chế Shadow Copy).</span>
+              <strong data-lang="en">File Locked.</strong> <span data-lang="en">Once loaded into CAD, the system keeps the .dll file in RAM. To update to a new file version or recompile code, you must completely close AutoCAD and restart it (unless the programmer uses a Shadow Copy mechanism).</span>
+            </td>
           </tr>
           <tr>
-            <td><strong>Tốc độ xử lý dữ liệu lớn</strong></td>
-            <td>Ở mức trung bình. Rất phù hợp và hiệu quả đối với các lệnh vẽ 2D, tính toán diện tích, quản lý ranh giới, vẽ tiết diện hoặc thao tác chỉnh sửa Dim/Text.</td>
-            <td><strong>Vượt trội!</strong> Nhờ sức mạnh của nền tảng .NET và ngôn ngữ biên dịch (C# / VB.NET), tốc độ thực thi rất cao khi cần thao tác đồng thời trên hàng nghìn đối tượng hoặc xử lý các mô hình 3D/BIM phức tạp.</td>
+            <td>
+              <strong data-lang="vi">Tốc độ xử lý dữ liệu lớn</strong>
+              <strong data-lang="en">Large data processing speed</strong>
+            </td>
+            <td>
+              <span data-lang="vi">Ở mức trung bình. Rất phù hợp và hiệu quả đối với các lệnh vẽ 2D, tính toán diện tích, quản lý ranh giới, vẽ tiết diện hoặc thao tác chỉnh sửa Dim/Text.</span>
+              <span data-lang="en">Average. Very suitable and effective for 2D drawing commands, area calculations, boundary management, cross-section drawing or Dim/Text editing operations.</span>
+            </td>
+            <td>
+              <strong data-lang="vi">Vượt trội!</strong> <span data-lang="vi">Nhờ sức mạnh của nền tảng .NET và ngôn ngữ biên dịch (C# / VB.NET), tốc độ thực thi rất cao khi cần thao tác đồng thời trên hàng nghìn đối tượng hoặc xử lý các mô hình 3D/BIM phức tạp.</span>
+              <strong data-lang="en">Outstanding!</strong> <span data-lang="en">Thanks to the power of the .NET platform and compiled languages (C# / VB.NET), the execution speed is extremely high when needing to simultaneously manipulate thousands of objects or process complex 3D/BIM models.</span>
+            </td>
           </tr>
           <tr>
-            <td><strong>Khả năng tích hợp & Mở rộng (Backend)</strong></td>
-            <td>AutoLISP là ngôn ngữ kịch bản mang tính truyền thống, gặp nhiều trở ngại nếu muốn kết nối với Internet, cơ sở dữ liệu SQL, Excel hoặc khi muốn xây dựng giao diện người dùng chuyên sâu như WinForms / WPF.</td>
-            <td>Tận dụng trọn vẹn sự đa dạng của hệ sinh thái Microsoft .NET: dễ dàng móc nối cơ sở dữ liệu SQL, giao tiếp qua REST API, liên thông dữ liệu song phương giữa AutoCAD – Revit – Excel – Tekla, và xây dựng giao diện bảng điều khiển Docking Palette hiện đại, trực quan.</td>
+            <td>
+              <strong data-lang="vi">Khả năng tích hợp & Mở rộng (Backend)</strong>
+              <strong data-lang="en">Integration & Expansion capability (Backend)</strong>
+            </td>
+            <td>
+              <span data-lang="vi">AutoLISP là ngôn ngữ kịch bản mang tính truyền thống, gặp nhiều trở ngại nếu muốn kết nối với Internet, cơ sở dữ liệu SQL, Excel hoặc khi muốn xây dựng giao diện người dùng chuyên sâu như WinForms / WPF.</span>
+              <span data-lang="en">AutoLISP is a traditional scripting language, facing many obstacles if you want to connect to the Internet, SQL databases, Excel, or when you want to build in-depth user interfaces like WinForms / WPF.</span>
+            </td>
+            <td>
+              <span data-lang="vi">Tận dụng trọn vẹn sự đa dạng của hệ sinh thái Microsoft .NET: dễ dàng móc nối cơ sở dữ liệu SQL, giao tiếp qua REST API, liên thông dữ liệu song phương giữa AutoCAD – Revit – Excel – Tekla, và xây dựng giao diện bảng điều khiển Docking Palette hiện đại, trực quan.</span>
+              <span data-lang="en">Fully utilizes the diversity of the Microsoft .NET ecosystem: easily hooks into SQL databases, communicates via REST APIs, bilateral data interoperability between AutoCAD - Revit - Excel - Tekla, and builds modern, intuitive Docking Palette dashboard interfaces.</span>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <h2>&#128161; Tóm Lại: Khi Nào Cần Dùng Lệnh Nào?</h2>
+    <h2 data-lang="vi">&#128161; Tóm Lại: Khi Nào Cần Dùng Lệnh Nào?</h2>
+    <h2 data-lang="en">&#128161; In Summary: When to Use Which Command?</h2>
     
-    <h3>1. Trường hợp sử dụng APPLOAD:</h3>
+    <h3 data-lang="vi">1. Trường hợp sử dụng APPLOAD:</h3>
+    <h3 data-lang="en">1. Use cases for APPLOAD:</h3>
     <ul>
-      <li>Khi bạn làm việc với các tiện ích nhỏ gọn, linh hoạt có đuôi <strong><code>.LSP</code>, <code>.FAS</code> hay <code>.VLX</code></strong> (ví dụ như bộ công cụ vẽ xà gồ DrawPurlin hoặc Layiso Suite của iViDLab).</li>
-      <li>Khi bạn muốn công cụ có thao tác tải đơn giản, có thể kéo thả trực tiếp (Drag & Drop) vào không gian làm việc là chạy được ngay.</li>
-      <li>Khi bạn muốn thiết lập cho tiện ích tự động chạy mỗi lần khởi động AutoCAD thông qua danh sách <strong>Startup Suite</strong>.</li>
+      <li>
+        <span data-lang="vi">Khi bạn làm việc với các tiện ích nhỏ gọn, linh hoạt có đuôi <strong><code>.LSP</code>, <code>.FAS</code> hay <code>.VLX</code></strong> (ví dụ như bộ công cụ vẽ xà gồ DrawPurlin hoặc Layiso Suite của iViDLab).</span>
+        <span data-lang="en">When working with compact, flexible utilities with <strong><code>.LSP</code>, <code>.FAS</code> or <code>.VLX</code></strong> extensions (e.g., the DrawPurlin purlin drawing toolset or iViDLab's Layiso Suite).</span>
+      </li>
+      <li>
+        <span data-lang="vi">Khi bạn muốn công cụ có thao tác tải đơn giản, có thể kéo thả trực tiếp (Drag & Drop) vào không gian làm việc là chạy được ngay.</span>
+        <span data-lang="en">When you want a tool with simple loading operations, able to be directly dragged & dropped into the workspace to run immediately.</span>
+      </li>
+      <li>
+        <span data-lang="vi">Khi bạn muốn thiết lập cho tiện ích tự động chạy mỗi lần khởi động AutoCAD thông qua danh sách <strong>Startup Suite</strong>.</span>
+        <span data-lang="en">When you want to set up the utility to run automatically every time AutoCAD starts via the <strong>Startup Suite</strong> list.</span>
+      </li>
     </ul>
 
-    <h3>2. Trường hợp sử dụng NETLOAD:</h3>
+    <h3 data-lang="vi">2. Trường hợp sử dụng NETLOAD:</h3>
+    <h3 data-lang="en">2. Use cases for NETLOAD:</h3>
     <ul>
-      <li>Khi bạn sử dụng các plugin, bộ công cụ lập trình cao cấp có tệp tin thực thi chính mang phần mở rộng <strong><code>.DLL</code></strong>.</li>
-      <li>Khi làm việc với các sản phẩm tích hợp quy trình BIM, tiện ích tính toán kết cấu chuyên sâu hoặc cần liên kết trao đổi thông số với phần mềm bên thứ ba qua AutoCAD .NET API.</li>
-      <li><em>Lưu ý:</em> Cần ấn chuột phải vào tệp <code>.DLL</code> tải về từ Internet, chọn Properties và tích vào ô <strong>Unblock</strong> trước khi gọi lệnh NETLOAD.</li>
+      <li>
+        <span data-lang="vi">Khi bạn sử dụng các plugin, bộ công cụ lập trình cao cấp có tệp tin thực thi chính mang phần mở rộng <strong><code>.DLL</code></strong>.</span>
+        <span data-lang="en">When you use plugins or advanced programming toolsets whose main executable file has a <strong><code>.DLL</code></strong> extension.</span>
+      </li>
+      <li>
+        <span data-lang="vi">Khi làm việc với các sản phẩm tích hợp quy trình BIM, tiện ích tính toán kết cấu chuyên sâu hoặc cần liên kết trao đổi thông số với phần mềm bên thứ ba qua AutoCAD .NET API.</span>
+        <span data-lang="en">When working with products integrating BIM workflows, in-depth structural calculation utilities, or needing to link and exchange parameters with third-party software via the AutoCAD .NET API.</span>
+      </li>
+      <li>
+        <em data-lang="vi">Lưu ý:</em> <span data-lang="vi">Cần ấn chuột phải vào tệp <code>.DLL</code> tải về từ Internet, chọn Properties và tích vào ô <strong>Unblock</strong> trước khi gọi lệnh NETLOAD.</span>
+        <em data-lang="en">Note:</em> <span data-lang="en">You need to right-click the <code>.DLL</code> file downloaded from the Internet, select Properties, and check the <strong>Unblock</strong> box before calling the NETLOAD command.</span>
+      </li>
     </ul>
 
     <div class="tip-box">
-      <strong>&#129302; Lời khuyên từ iViDLab: Sự kết hợp linh hoạt</strong>
-      <p>Trong thực tế, các lập trình viên thường dùng một tệp AutoLISP nhỏ mang vai trò tập lệnh mồi (Bootstrapper) được gán qua <strong>APPLOAD</strong>, từ đó lệnh Lisp này sẽ tự động chạy lệnh <strong>NETLOAD</strong> ngầm bên dưới để nạp tệp <code>.DLL</code> vào hệ thống. Giải pháp này giúp tự động hóa khâu thao tác kỹ thuật và mang lại sự tinh gọn nhất cho người kỹ sư!</p>
+      <strong data-lang="vi">&#129302; Lời khuyên từ iViDLab: Sự kết hợp linh hoạt</strong>
+      <strong data-lang="en">&#129302; Advice from iViDLab: Flexible combination</strong>
+      <p data-lang="vi">Trong thực tế, các lập trình viên thường dùng một tệp AutoLISP nhỏ mang vai trò tập lệnh mồi (Bootstrapper) được gán qua <strong>APPLOAD</strong>, từ đó lệnh Lisp này sẽ tự động chạy lệnh <strong>NETLOAD</strong> ngầm bên dưới để nạp tệp <code>.DLL</code> vào hệ thống. Giải pháp này giúp tự động hóa khâu thao tác kỹ thuật và mang lại sự tinh gọn nhất cho người kỹ sư!</p>
+      <p data-lang="en">In practice, programmers often use a small AutoLISP file acting as a bootstrapper script assigned via <strong>APPLOAD</strong>, from which this Lisp command will automatically run the <strong>NETLOAD</strong> command implicitly underneath to load the <code>.DLL</code> file into the system. This solution helps automate the technical operation phase and brings the most streamlining for the engineer!</p>
     </div>
 
     <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--border-color);">
     <p style="text-align: center; font-style: italic; color: var(--text-muted); margin-bottom: 0;">
-      Tài liệu được nghiên cứu và tổng hợp bởi đội ngũ kỹ thuật <a href="https://ividlab.com/">iViDLab.com</a>.
+      <span data-lang="vi">Tài liệu được nghiên cứu và tổng hợp bởi đội ngũ kỹ thuật <a href="https://ividlab.com/">iViDLab.com</a>.</span>
+      <span data-lang="en">Document researched and compiled by the <a href="https://ividlab.com/">iViDLab.com</a> technical team.</span>
     </p>
   </div>
+  <div class="related-container">
+    <h2 data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
+    <h2 data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem; display:none;">You might also be interested in</h2>
+    <div class="related-grid">
+      <a class="related-card" href="/autocad/autolisp/autolisp-merge-hatch-mh.html">
+        <span class="badge">CAD Automation</span>
+        <h3><span data-lang="vi">Lisp Gộp Vùng Hatch (Merge Hatch - MH)</span><span data-lang="en" >Merge Hatch Lisp (MH)</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/autolisp/autolisp-quick-block-bb.html">
+        <span class="badge">CAD Automation</span>
+        <h3><span data-lang="vi">Lisp Tạo Block Nhanh (Quick Block - BB)</span><span data-lang="en" >Quick Block Lisp (BB)</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/autolisp/autolisp-layiso-layer-manager.html">
+        <span class="badge">CAD Automation</span>
+        <h3><span data-lang="vi">Bộ 10 Phím Tắt Quản Lý Layer (Layiso Suite)</span><span data-lang="en" >Layiso Layer Management Suite</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/chiase/huong-dan-appload-lisp-autocad.html">
+        <span class="badge">Knowledge Share</span>
+        <h3><span data-lang="vi">Hướng Dẫn Nạp Lisp Bằng APPLOAD</span><span data-lang="en" >Guide to Load Lisp via APPLOAD</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/chiase/tuy-chinh-lenh-autolisp.html">
+        <span class="badge">Knowledge Share</span>
+        <h3><span data-lang="vi">Cách Tùy Chỉnh Phím Tắt Lệnh AutoLISP</span><span data-lang="en" >How to Customize AutoLISP Commands</span></h3>
+      </a>
+    </div>
+  </div>
+  
+  <footer style="border-top: 1px solid var(--border-color); padding: 3rem 0; background-color: var(--bg-page); margin-top: 4rem; text-align: center;">
+    <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--text-primary);">
+      iViD<span style="color: #2E6583;">Lab</span>
+    </div>
+    <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">
+      © 2026 iViDLab. All rights reserved.
+    </p>
+  </footer>
 
   <script>
     (function() {
@@ -175,6 +332,19 @@
         localStorage.setItem('ividlab-theme', nextTheme);
         updateBtnText(nextTheme);
       });
+
+      // --- Language Logic ---
+      const savedLang = localStorage.getItem('ividlab-lang') || 'vi';
+      if (savedLang === 'en') document.body.classList.add('lang-en');
+      const langBtn = document.getElementById('lang-toggle');
+      if (langBtn) {
+        langBtn.addEventListener('click', () => {
+          document.body.classList.toggle('lang-en');
+          const isEn = document.body.classList.contains('lang-en');
+          localStorage.setItem('ividlab-lang', isEn ? 'en' : 'vi');
+        });
+      }
+
     })();
   </script>
 </body>

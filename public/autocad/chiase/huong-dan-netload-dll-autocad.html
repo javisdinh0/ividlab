@@ -58,65 +58,190 @@
     .tip-box strong, .warning-box strong { display: block; margin-bottom: 6px; font-size: 1.05em; }
     .badge { display: inline-block; background-color: var(--badge-bg); color: var(--badge-text); font-size: 0.78rem; font-weight: 700; padding: 4px 10px; border-radius: 9999px; text-transform: uppercase; margin-bottom: 12px; }
     @media (max-width: 600px) { .article-container { padding: 25px 18px; } h1 { font-size: 1.8rem; } }
+  
+    .related-container { margin-top: 45px; background: var(--bg-card); padding: 40px; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.15); transition: background-color 0.3s ease, border-color 0.3s ease; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 25px; }
+    .related-card { display: flex; flex-direction: column; text-decoration: none; background: var(--bg-page); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; transition: transform 0.2s, border-color 0.2s; }
+    .related-card:hover { transform: translateY(-3px); border-color: var(--link-color); }
+    .related-card .badge { align-self: flex-start; background: var(--badge-bg); color: var(--badge-text); font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; font-family: 'JetBrains Mono', monospace; }
+    .related-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.1rem; margin: 0; color: var(--text-primary); line-height: 1.4; transition: color 0.2s; }
+    .related-card:hover h3 { color: var(--link-color); }
+  
+    /* Language Toggle Styles */
+    [data-lang="vi"] { display: block !important; }
+    [data-lang="en"] { display: none !important; }
+    body.lang-en [data-lang="vi"] { display: none !important; }
+    body.lang-en [data-lang="en"] { display: block !important; }
+    
+    /* Fix inline elements */
+    span[data-lang="vi"], strong[data-lang="vi"], em[data-lang="vi"], a[data-lang="vi"], figcaption[data-lang="vi"] { display: inline !important; }
+    span[data-lang="en"], strong[data-lang="en"], em[data-lang="en"], a[data-lang="en"], figcaption[data-lang="en"] { display: none !important; }
+    body.lang-en span[data-lang="vi"], body.lang-en strong[data-lang="vi"], body.lang-en em[data-lang="vi"], body.lang-en a[data-lang="vi"], body.lang-en figcaption[data-lang="vi"] { display: none !important; }
+    body.lang-en span[data-lang="en"], body.lang-en strong[data-lang="en"], body.lang-en em[data-lang="en"], body.lang-en a[data-lang="en"], body.lang-en figcaption[data-lang="en"] { display: inline !important; }
   </style>
 </head>
 <body>
-  <div class="top-bar">
-    <div class="nav-links">
-      <a href="/" class="back-link">🏠 Trang chủ iViDLab</a>
-      <span style="color: var(--text-muted);">|</span>
-      <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html" class="back-link">← Hướng dẫn APPLOAD</a>
-    </div>
-    <button id="theme-toggle" class="toggle-btn" title="Chuyển giao diện Sáng / Tối">☀️ LIGHT</button>
-  </div>
   
+  <header style="position: sticky; top: 0; z-index: 100; background-color: var(--bg-page); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 15px 0; transition: background-color 0.3s ease; margin-bottom: 30px;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+      <a href="/" style="text-decoration: none; display: flex; align-items: center;">
+        <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.45rem; font-weight: 900; letter-spacing: -0.02em; color: var(--text-primary);">
+          iViD<span style="color: #2E6583;">Lab</span>
+        </span>
+      </a>
+      <nav style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+        <a href="/?tab=all" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); transition: color 0.2s ease;">
+          <span data-lang="vi">// TRANG CHỦ</span><span data-lang="en" >// HOME</span>
+        </a>
+        <a href="/?tab=tools" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// CÔNG CỤ</span><span data-lang="en" >// TOOLS</span>
+        </a>
+        <a href="/?tab=guides" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span data-lang="en" >// GUIDES</span>
+        </a>
+        <a href="/?tab=about" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en" >// ABOUT</span>
+        </a>
+      </nav>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button id="theme-toggle" class="toggle-btn" title="Chuyển giao diện Sáng / Tối" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; padding: 6px 14px; border-radius: 20px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s;">
+          ☀️ LIGHT
+        </button>
+        <button id="lang-toggle" class="toggle-btn" title="Chuyển Ngôn Ngữ / Toggle Language" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; padding: 6px 14px; border-radius: 20px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s;">
+          🌐 VN / EN
+        </button>
+      </div>
+    </div>
+  </header>
   <div class="article-container">
-    <span class="badge">Plugin .NET & API CAD</span>
-    <h1>Hướng Dẫn NETLOAD Nạp Plugin (.DLL) Trong AutoCAD</h1>
+    <span class="badge" data-lang="vi">Plugin .NET & API CAD</span>
+    <span class="badge" data-lang="en">.NET Plugin & CAD API</span>
+    
+    <h1 data-lang="vi">Hướng Dẫn NETLOAD Nạp Plugin (.DLL) Trong AutoCAD</h1>
+    <h1 data-lang="en">Guide to NETLOAD for Loading Plugins (.DLL) in AutoCAD</h1>
 
-    <p>Bên cạnh ngôn ngữ AutoLISP quen thuộc, khi lập trình các ứng dụng tự động hóa xây dựng quy mô lớn (BIM Workflow, trao đổi dữ liệu qua API, các công cụ phân tích kết cấu như <strong>PEB Section Creator</strong>), các lập trình viên thường phát triển bằng ngôn ngữ C# hoặc VB.NET trên nền tảng .NET của Microsoft. Sản phẩm khi biên dịch ra sẽ đóng gói thành tệp tin thư viện động có đuôi <strong><code>.dll</code></strong> (Managed Assembly).</p>
+    <p data-lang="vi">Bên cạnh ngôn ngữ AutoLISP quen thuộc, khi lập trình các ứng dụng tự động hóa xây dựng quy mô lớn (BIM Workflow, trao đổi dữ liệu qua API, các công cụ phân tích kết cấu như <strong>PEB Section Creator</strong>), các lập trình viên thường phát triển bằng ngôn ngữ C# hoặc VB.NET trên nền tảng .NET của Microsoft. Sản phẩm khi biên dịch ra sẽ đóng gói thành tệp tin thư viện động có đuôi <strong><code>.dll</code></strong> (Managed Assembly).</p>
+    <p data-lang="en">Besides the familiar AutoLISP language, when programming large-scale construction automation applications (BIM Workflow, data exchange via API, structural analysis tools like <strong>PEB Section Creator</strong>), programmers often develop using C# or VB.NET on Microsoft's .NET platform. The compiled product is packaged into a dynamic link library file with a <strong><code>.dll</code></strong> extension (Managed Assembly).</p>
 
-    <p>Để nạp các Plugin loại này vào AutoCAD và sử dụng lệnh, chúng ta không dùng APPLOAD thông thường mà phải sử dụng lệnh đặc biệt là <strong>NETLOAD</strong>.</p>
+    <p data-lang="vi">Để nạp các Plugin loại này vào AutoCAD và sử dụng lệnh, chúng ta không dùng APPLOAD thông thường mà phải sử dụng lệnh đặc biệt là <strong>NETLOAD</strong>.</p>
+    <p data-lang="en">To load these types of Plugins into AutoCAD and use their commands, we do not use the standard APPLOAD but must use a special command: <strong>NETLOAD</strong>.</p>
 
-    <h2>&#128391; Các Bước Thực Hiện NETLOAD Trong AutoCAD</h2>
+    <h2 data-lang="vi">&#128391; Các Bước Thực Hiện NETLOAD Trong AutoCAD</h2>
+    <h2 data-lang="en">&#128391; Steps to Execute NETLOAD in AutoCAD</h2>
     <ol>
-      <li>Mở bản vẽ AutoCAD của bạn lên. Tại dòng nhắc lệnh (Command line), nhập từ khóa <code>NETLOAD</code> và nhấn <strong>Enter</strong> hoặc <strong>Space</strong>.</li>
-      <li>Hộp thoại <strong>Choose .NET Assembly</strong> (Chọn tệp DLL) lập tức xuất hiện trên màn hình.</li>
-      <li>Duyệt tìm đến thư mục trên ổ cứng nơi bạn lưu trữ file <code>.dll</code> của Plugin cần chạy.</li>
-      <li>Nhấn chọn file <code>.dll</code> và bấm nút <strong>Open</strong>.</li>
-      <li>Sau khi tệp nạp vào bộ nhớ (không hiển thị thêm lỗi gì), toàn bộ bộ lệnh mới do Plugin đó cung cấp đã sẵn sàng. Bạn chỉ cần gõ tên lệnh custom của DLL vào thanh Command để kích hoạt!</li>
+      <li>
+        <span data-lang="vi">Mở bản vẽ AutoCAD của bạn lên. Tại dòng nhắc lệnh (Command line), nhập từ khóa <code>NETLOAD</code> và nhấn <strong>Enter</strong> hoặc <strong>Space</strong>.</span>
+        <span data-lang="en">Open your AutoCAD drawing. At the command line, type the keyword <code>NETLOAD</code> and press <strong>Enter</strong> or <strong>Space</strong>.</span>
+      </li>
+      <li>
+        <span data-lang="vi">Hộp thoại <strong>Choose .NET Assembly</strong> (Chọn tệp DLL) lập tức xuất hiện trên màn hình.</span>
+        <span data-lang="en">The <strong>Choose .NET Assembly</strong> dialog box will immediately appear on the screen.</span>
+      </li>
+      <li>
+        <span data-lang="vi">Duyệt tìm đến thư mục trên ổ cứng nơi bạn lưu trữ file <code>.dll</code> của Plugin cần chạy.</span>
+        <span data-lang="en">Browse to the folder on your hard drive where you stored the <code>.dll</code> file of the Plugin you need to run.</span>
+      </li>
+      <li>
+        <span data-lang="vi">Nhấn chọn file <code>.dll</code> và bấm nút <strong>Open</strong>.</span>
+        <span data-lang="en">Select the <code>.dll</code> file and click the <strong>Open</strong> button.</span>
+      </li>
+      <li>
+        <span data-lang="vi">Sau khi tệp nạp vào bộ nhớ (không hiển thị thêm lỗi gì), toàn bộ bộ lệnh mới do Plugin đó cung cấp đã sẵn sàng. Bạn chỉ cần gõ tên lệnh custom của DLL vào thanh Command để kích hoạt!</span>
+        <span data-lang="en">After the file is loaded into memory (without showing any errors), the entire new command set provided by that Plugin is ready. You just need to type the custom command name of the DLL into the Command bar to activate it!</span>
+      </li>
     </ol>
 
-    <h2>&#9888;&#65039; Thao Tác Bắt Buộc: UNBLOCK File DLL Tải Từ Internet</h2>
-    <p>Đây là nguyên nhân số 1 khiến 90% kỹ sư gặp lỗi <em>"Cannot load assembly..."</em> hoặc Plugin từ chối chạy khi tải các file <code>.dll</code> từ Internet hay email về máy tính. Hệ điều hành Windows mặc định khóa bảo mật đối với các tệp thực thi tải từ bên ngoài!</p>
+    <h2 data-lang="vi">&#9888;&#65039; Thao Tác Bắt Buộc: UNBLOCK File DLL Tải Từ Internet</h2>
+    <h2 data-lang="en">&#9888;&#65039; Mandatory Action: UNBLOCK DLL Files Downloaded from the Internet</h2>
+    <p data-lang="vi">Đây là nguyên nhân số 1 khiến 90% kỹ sư gặp lỗi <em>"Cannot load assembly..."</em> hoặc Plugin từ chối chạy khi tải các file <code>.dll</code> từ Internet hay email về máy tính. Hệ điều hành Windows mặc định khóa bảo mật đối với các tệp thực thi tải từ bên ngoài!</p>
+    <p data-lang="en">This is the #1 reason why 90% of engineers encounter the <em>"Cannot load assembly..."</em> error or the Plugin refuses to run when downloading <code>.dll</code> files from the Internet or email to their computers. The Windows operating system locks security by default for executable files downloaded from outside sources!</p>
     
     <div class="warning-box">
-      <strong>&#128275; Hướng dẫn Mở Khóa (Unblock) File DLL trước khi NETLOAD:</strong>
-      <p>1. Trước khi mở CAD, mở thư mục chứa file <code>.dll</code> vừa tải về.<br>
+      <strong data-lang="vi">&#128275; Hướng dẫn Mở Khóa (Unblock) File DLL trước khi NETLOAD:</strong>
+      <strong data-lang="en">&#128275; Guide to Unblock DLL Files before NETLOAD:</strong>
+      <p data-lang="vi">1. Trước khi mở CAD, mở thư mục chứa file <code>.dll</code> vừa tải về.<br>
       2. <strong>Click chuột phải</strong> thẳng vào file DLL &rarr; Chọn <strong>Properties</strong> (Thuộc tính nằm cuối cùng).<br>
       3. Ở tab <em>General</em>, nhìn xuống phía góc dưới cùng bên phải, nếu có mục <strong>Security: This file came from another computer...</strong> thì hãy <strong>Tích VÀO ô Unblock</strong> (hoặc bấm nút Unblock tùy phiên bản Windows).<br>
       4. Bấm <strong>Apply</strong> rồi <strong>OK</strong>. Lúc này bạn mới vào AutoCAD gõ NETLOAD nạp file thành công!</p>
+      <p data-lang="en">1. Before opening CAD, open the folder containing the recently downloaded <code>.dll</code> file.<br>
+      2. <strong>Right-click</strong> directly on the DLL file &rarr; Select <strong>Properties</strong> (located at the bottom).<br>
+      3. In the <em>General</em> tab, look down at the bottom right corner, if there is a <strong>Security: This file came from another computer...</strong> section, then <strong>Check the Unblock box</strong> (or click the Unblock button depending on Windows version).<br>
+      4. Click <strong>Apply</strong> then <strong>OK</strong>. Now you can go into AutoCAD and type NETLOAD to load the file successfully!</p>
     </div>
 
-    <h2>&#128220; Sự Khác Biệt Quan Trọng: Hiện Tượng Khóa Tệp (File Lock)</h2>
+    <h2 data-lang="vi">&#128220; Sự Khác Biệt Quan Trọng: Hiện Tượng Khóa Tệp (File Lock)</h2>
+    <h2 data-lang="en">&#128220; Important Difference: File Lock Phenomenon</h2>
     <div class="tip-box">
-      <strong>&#128274; Tại sao không thể ghi đè, xóa hoặc sửa file .DLL khi đang chạy CAD?</strong>
-      <p>Trong kiến trúc .NET Framework của AutoCAD, một khi file <code>.dll</code> đã nạp vào bằng lệnh <code>NETLOAD</code>, hệ thống AutoCAD sẽ <strong>khóa chết (lock) tệp tin đó trong bộ nhớ RAM</strong> của phiên làm việc. Bạn không thể nạp lại (Reload) cùng 1 file, không thể dùng lệnh AP để unload và cũng không thể xóa hay ghi đè file mới ở thư mục nguồn.</p>
-      <p>👉 <strong>Cách tháo gỡ:</strong> Để cập nhật phiên bản DLL mới hoặc biên dịch (Build) lại code C# trong Visual Studio, bạn <strong>bắt buộc phải tắt hẳn ứng dụng AutoCAD</strong> rồi mở lại, hoặc các dev có thể cấu hình tải qua cơ chế Shadow Copy trong tệp cấu hình CAD.</p>
+      <strong data-lang="vi">&#128274; Tại sao không thể ghi đè, xóa hoặc sửa file .DLL khi đang chạy CAD?</strong>
+      <strong data-lang="en">&#128274; Why can't you overwrite, delete or modify a .DLL file while CAD is running?</strong>
+      <p data-lang="vi">Trong kiến trúc .NET Framework của AutoCAD, một khi file <code>.dll</code> đã nạp vào bằng lệnh <code>NETLOAD</code>, hệ thống AutoCAD sẽ <strong>khóa chết (lock) tệp tin đó trong bộ nhớ RAM</strong> của phiên làm việc. Bạn không thể nạp lại (Reload) cùng 1 file, không thể dùng lệnh AP để unload và cũng không thể xóa hay ghi đè file mới ở thư mục nguồn.</p>
+      <p data-lang="en">In AutoCAD's .NET Framework architecture, once a <code>.dll</code> file is loaded using the <code>NETLOAD</code> command, the AutoCAD system will <strong>lock that file in the RAM memory</strong> of the session. You cannot reload the same file, cannot use the AP command to unload it, and cannot delete or overwrite the new file in the source folder.</p>
+      <p>
+        <span data-lang="vi">👉 <strong>Cách tháo gỡ:</strong> Để cập nhật phiên bản DLL mới hoặc biên dịch (Build) lại code C# trong Visual Studio, bạn <strong>bắt buộc phải tắt hẳn ứng dụng AutoCAD</strong> rồi mở lại, hoặc các dev có thể cấu hình tải qua cơ chế Shadow Copy trong tệp cấu hình CAD.</span>
+        <span data-lang="en">👉 <strong>Workaround:</strong> To update a new DLL version or recompile (Build) C# code in Visual Studio, you <strong>must completely close the AutoCAD application</strong> and open it again, or developers can configure loading via the Shadow Copy mechanism in the CAD config file.</span>
+      </p>
     </div>
 
-    <h2>&#128273; Cấu Hình Biến Bảo Mật (SECURELOAD & Trusted Locations)</h2>
-    <p>Từ các phiên bản AutoCAD mới hiện nay (2016 trở lên), cơ chế bảo mật của AutoCAD được siết chặt đối với tệp tin mã lệnh từ bên ngoài. Nếu khi dùng lệnh NETLOAD xuất hiện bảng cảnh báo <em>"Security Concern: You are about to run an executable file..."</em>, bạn có thể thiết lập như sau:</p>
+    <h2 data-lang="vi">&#128273; Cấu Hình Biến Bảo Mật (SECURELOAD & Trusted Locations)</h2>
+    <h2 data-lang="en">&#128273; Security Variable Configuration (SECURELOAD & Trusted Locations)</h2>
+    <p data-lang="vi">Từ các phiên bản AutoCAD mới hiện nay (2016 trở lên), cơ chế bảo mật của AutoCAD được siết chặt đối với tệp tin mã lệnh từ bên ngoài. Nếu khi dùng lệnh NETLOAD xuất hiện bảng cảnh báo <em>"Security Concern: You are about to run an executable file..."</em>, bạn có thể thiết lập như sau:</p>
+    <p data-lang="en">In recent newer versions of AutoCAD (2016 and above), AutoCAD's security mechanism is tightened against external code files. If when using the NETLOAD command a warning box appears saying <em>"Security Concern: You are about to run an executable file..."</em>, you can configure it as follows:</p>
     <ul>
-      <li><strong>Thêm Thư Mục Tin Cậy (Trusted Locations):</strong> Gõ lệnh <code>OP</code> (Options) &rarr; Mở tab <strong>Files</strong> &rarr; Mở rộng nhánh <em>Trusted Locations</em> &rarr; Bấm <strong>Add</strong> rồi chỉ đường dẫn tới thư mục lưu Lisp & Plugin trên đĩa cứng của bạn. Từ thời điểm này, mọi tệp nạp từ các thư mục trong danh sách tin cậy sẽ được AutoCAD chạy tự động và không hiện cảnh báo.</li>
-      <li><strong>Tùy chỉnh biến hệ thống SECURELOAD:</strong> Gõ lệnh <code>SECURELOAD</code> vào thanh Command. Nhập giá trị <code>0</code> (Tắt cảnh báo nạp code) hoặc giữ mức mặc định <code>1</code> (Chỉ tự động nạp mà không cảnh báo nếu file nằm trong Trusted Locations).</li>
+      <li>
+        <strong data-lang="vi">Thêm Thư Mục Tin Cậy (Trusted Locations):</strong>
+        <strong data-lang="en">Add Trusted Locations:</strong> 
+        <span data-lang="vi">Gõ lệnh <code>OP</code> (Options) &rarr; Mở tab <strong>Files</strong> &rarr; Mở rộng nhánh <em>Trusted Locations</em> &rarr; Bấm <strong>Add</strong> rồi chỉ đường dẫn tới thư mục lưu Lisp & Plugin trên đĩa cứng của bạn. Từ thời điểm này, mọi tệp nạp từ các thư mục trong danh sách tin cậy sẽ được AutoCAD chạy tự động và không hiện cảnh báo.</span>
+        <span data-lang="en">Type the command <code>OP</code> (Options) &rarr; Open the <strong>Files</strong> tab &rarr; Expand the <em>Trusted Locations</em> branch &rarr; Click <strong>Add</strong> then point the path to the folder saving Lisp & Plugins on your hard drive. From this point on, any files loaded from folders in the trusted list will be automatically run by AutoCAD without displaying warnings.</span>
+      </li>
+      <li>
+        <strong data-lang="vi">Tùy chỉnh biến hệ thống SECURELOAD:</strong>
+        <strong data-lang="en">Customize the SECURELOAD system variable:</strong> 
+        <span data-lang="vi">Gõ lệnh <code>SECURELOAD</code> vào thanh Command. Nhập giá trị <code>0</code> (Tắt cảnh báo nạp code) hoặc giữ mức mặc định <code>1</code> (Chỉ tự động nạp mà không cảnh báo nếu file nằm trong Trusted Locations).</span>
+        <span data-lang="en">Type the <code>SECURELOAD</code> command into the Command bar. Enter the value <code>0</code> (Turn off code load warnings) or keep the default level <code>1</code> (Only automatically load without warnings if the file is in Trusted Locations).</span>
+      </li>
     </ul>
 
     <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--border-color);">
     <p style="text-align: center; font-style: italic; color: var(--text-muted); margin-bottom: 0;">
-      Tài liệu được tổng hợp và biên soạn bởi đội ngũ kỹ thuật <a href="https://ividlab.com/">iViDLab.com</a>.
+      <span data-lang="vi">Tài liệu được tổng hợp và biên soạn bởi đội ngũ kỹ thuật <a href="https://ividlab.com/">iViDLab.com</a>.</span>
+      <span data-lang="en">Document compiled and edited by the <a href="https://ividlab.com/">iViDLab.com</a> technical team.</span>
     </p>
   </div>
+  <div class="related-container">
+    <h2 data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
+    <h2 data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem; display:none;">You might also be interested in</h2>
+    <div class="related-grid">
+      <a class="related-card" href="/autocad/autolisp/autolisp-merge-hatch-mh.html">
+        <span class="badge">CAD Automation</span>
+        <h3><span data-lang="vi">Lisp Gộp Vùng Hatch (Merge Hatch - MH)</span><span data-lang="en" >Merge Hatch Lisp (MH)</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/autolisp/autolisp-quick-block-bb.html">
+        <span class="badge">CAD Automation</span>
+        <h3><span data-lang="vi">Lisp Tạo Block Nhanh (Quick Block - BB)</span><span data-lang="en" >Quick Block Lisp (BB)</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/autolisp/autolisp-layiso-layer-manager.html">
+        <span class="badge">CAD Automation</span>
+        <h3><span data-lang="vi">Bộ 10 Phím Tắt Quản Lý Layer (Layiso Suite)</span><span data-lang="en" >Layiso Layer Management Suite</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/chiase/huong-dan-appload-lisp-autocad.html">
+        <span class="badge">Knowledge Share</span>
+        <h3><span data-lang="vi">Hướng Dẫn Nạp Lisp Bằng APPLOAD</span><span data-lang="en" >Guide to Load Lisp via APPLOAD</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/chiase/tuy-chinh-lenh-autolisp.html">
+        <span class="badge">Knowledge Share</span>
+        <h3><span data-lang="vi">Cách Tùy Chỉnh Phím Tắt Lệnh AutoLISP</span><span data-lang="en" >How to Customize AutoLISP Commands</span></h3>
+      </a>
+    </div>
+  </div>
+  
+  <footer style="border-top: 1px solid var(--border-color); padding: 3rem 0; background-color: var(--bg-page); margin-top: 4rem; text-align: center;">
+    <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--text-primary);">
+      iViD<span style="color: #2E6583;">Lab</span>
+    </div>
+    <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">
+      © 2026 iViDLab. All rights reserved.
+    </p>
+  </footer>
 
   <script>
     (function() {
@@ -132,6 +257,19 @@
         localStorage.setItem('ividlab-theme', nextTheme);
         updateBtnText(nextTheme);
       });
+
+      // --- Language Logic ---
+      const savedLang = localStorage.getItem('ividlab-lang') || 'vi';
+      if (savedLang === 'en') document.body.classList.add('lang-en');
+      const langBtn = document.getElementById('lang-toggle');
+      if (langBtn) {
+        langBtn.addEventListener('click', () => {
+          document.body.classList.toggle('lang-en');
+          const isEn = document.body.classList.contains('lang-en');
+          localStorage.setItem('ividlab-lang', isEn ? 'en' : 'vi');
+        });
+      }
+
     })();
   </script>
 </body>

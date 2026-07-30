@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hướng Dẫn Tùy Chỉnh & Đổi Tên Lệnh Trong File AutoLISP (.lsp) - iViDLab</title>
+  <title>Hướng dẫn toàn tập về lệnh LAYISO trong AutoCAD - iViDLab</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -280,116 +280,153 @@
       </div>
     </div>
   </header>
+
   <div class="article-container">
     <span class="badge" data-lang="vi">Chia Sẻ & Thủ Thuật CAD</span>
     <span class="badge" data-lang="en">Share & CAD Tips</span>
     
-    <h1 data-lang="vi">Hướng Dẫn Tùy Chỉnh & Đổi Tên Lệnh Trong File AutoLISP (.lsp)</h1>
-    <h1 data-lang="en">Guide to Customize & Rename Commands in AutoLISP (.lsp) Files</h1>
+    <h1 data-lang="vi">Hướng dẫn toàn tập về lệnh LAYISO trong AutoCAD</h1>
+    <h1 data-lang="en">Comprehensive Guide to the LAYISO Command in AutoCAD</h1>
 
-    <p data-lang="vi">Khi tải về các công cụ Lisp hay Plugin cho AutoCAD (như Lisp vẽ xà gồ <strong>DrawPurlin</strong> của iViDLab), đôi khi tên lệnh mặc định (ví dụ <code>VEXAGO</code>) có thể hơi dài hoặc không thuận tay với thói quen gõ bàn phím của bạn. Hoặc đôi khi lệnh đó bị trùng với một shortcut khác mà bạn đã có trong máy.</p>
-    <p data-lang="en">When downloading Lisp tools or Plugins for AutoCAD (like iViDLab's <strong>DrawPurlin</strong> purlin drawing Lisp), sometimes the default command name (e.g., <code>VEXAGO</code>) might be a bit long or not handy for your keyboard typing habits. Or sometimes that command conflicts with another shortcut you already have on your machine.</p>
+    <p data-lang="vi"><strong>LAYISO</strong> (viết tắt của <em>Layer Isolate</em>) là một trong những lệnh quản lý Layer quan trọng và được sử dụng thường xuyên nhất trong AutoCAD. Lệnh này giúp người dùng tối ưu hóa không gian làm việc bằng cách cô lập các đối tượng cần thiết, từ đó giúp việc quan sát, bắt điểm và chỉnh sửa bản vẽ trở nên dễ dàng và chính xác hơn.</p>
+    <p data-lang="en"><strong>LAYISO</strong> (stands for <em>Layer Isolate</em>) is one of the most important and frequently used Layer management commands in AutoCAD. This command helps users optimize the workspace by isolating necessary objects, thereby making viewing, snapping, and editing drawings easier and more accurate.</p>
 
-    <p data-lang="vi">Bài viết này sẽ hướng dẫn bạn cách tự chỉnh sửa (edit) file <code>.lsp</code> để đổi tên lệnh theo sở thích chỉ với vài thao tác cực kỳ đơn giản và an toàn, không cần phải am hiểu sâu về lập trình AutoLISP.</p>
-    <p data-lang="en">This article will guide you on how to edit the <code>.lsp</code> file yourself to rename the command to your liking with just a few extremely simple and safe operations, without needing to deeply understand AutoLISP programming.</p>
+    <p data-lang="vi">Bài viết dưới đây sẽ hướng dẫn bạn cách sử dụng cơ bản lệnh LAYISO, cách khôi phục Layer, và đặc biệt là cách thiết lập chế độ hiển thị (ẩn đi hoặc làm mờ) cho lệnh này.</p>
+    <p data-lang="en">The article below will guide you on the basic use of the LAYISO command, how to restore Layers, and especially how to set the display mode (hide or fade) for this command.</p>
 
-    <h2 data-lang="vi">&#128398; Các Bước Đổi Tên Lệnh AutoLISP</h2>
-    <h2 data-lang="en">&#128398; Steps to Rename AutoLISP Commands</h2>
+    <h2 data-lang="vi">1. Cách sử dụng lệnh LAYISO cơ bản</h2>
+    <h2 data-lang="en">1. How to use the basic LAYISO command</h2>
 
-    <h3 data-lang="vi">Bước 1: Mở tệp tin Lisp (.lsp) bằng trình soạn thảo</h3>
-    <h3 data-lang="en">Step 1: Open the Lisp file (.lsp) with an editor</h3>
-    <p data-lang="vi">Bạn không mở trực tiếp file Lisp bằng AutoCAD để sửa. Thay vào đó, hãy <strong>click chuột phải</strong> vào file Lisp (ví dụ <code>DrawPurlin.lsp</code>) &rarr; Chọn <strong>Open with</strong> &rarr; Chọn <strong>Notepad</strong> (hoặc nếu có các phần mềm tiện hơn như <em>Notepad++</em> hay <em>Visual Studio Code</em> thì càng tuyệt vời).</p>
-    <p data-lang="en">You do not open the Lisp file directly with AutoCAD to edit it. Instead, <strong>right-click</strong> on the Lisp file (e.g., <code>DrawPurlin.lsp</code>) &rarr; Select <strong>Open with</strong> &rarr; Select <strong>Notepad</strong> (or if you have more convenient software like <em>Notepad++</em> or <em>Visual Studio Code</em>, that's even better).</p>
-
-    <h3 data-lang="vi">Bước 2: Tìm đến cú pháp khai báo tên lệnh</h3>
-    <h3 data-lang="en">Step 2: Find the command declaration syntax</h3>
-    <p data-lang="vi">Trong ngôn ngữ AutoLISP, mọi lệnh có thể gõ trực tiếp trong AutoCAD đều được bắt đầu bằng cú pháp chuẩn:</p>
-    <p data-lang="en">In the AutoLISP language, every command that can be typed directly in AutoCAD starts with the standard syntax:</p>
-    <pre><code>(defun c:<span class="highlight-code">TEN_LENH</span> () ... )</code></pre>
-    <p data-lang="vi">Trong đó, chữ <code>c:</code> đứng ngay trước tên lệnh là quy ước bắt buộc của AutoCAD (nó tượng trưng cho từ <em>Command</em>, hoàn toàn không liên quan gì đến ổ đĩa C của máy tính cả).</p>
-    <p data-lang="en">Where the letter <code>c:</code> standing right before the command name is a mandatory convention of AutoCAD (it stands for the word <em>Command</em>, completely unrelated to your computer's C drive).</p>
+    <p data-lang="vi">Chức năng chính của LAYISO là giữ lại (cô lập) layer của đối tượng được chọn và xử lý các layer còn lại (ẩn đi hoặc làm mờ).</p>
+    <p data-lang="en">The main function of LAYISO is to keep (isolate) the layer of the selected object and process the remaining layers (hide or fade them).</p>
     
-    <p data-lang="vi">Hãy bấm tổ hợp phím <code>Ctrl + F</code> trong Notepad và tìm chữ <code>c:</code> hoặc tìm tên lệnh gốc. <br>Ví dụ trong file <code>DrawPurlin.lsp</code>, bạn sẽ thấy dòng mã như sau:</p>
-    <p data-lang="en">Press the <code>Ctrl + F</code> key combination in Notepad and search for <code>c:</code> or search for the original command name. <br>For example, in the <code>DrawPurlin.lsp</code> file, you will see a line of code like this:</p>
-    <pre><code>(defun <span class="highlight-code">c:VEXAGO</span> ( / *error* oldOs oldCmd ... )</code></pre>
+    <p><strong data-lang="vi">Các bước thực hiện:</strong><strong data-lang="en">Steps to execute:</strong></p>
+    <ul>
+      <li>
+        <span data-lang="vi"><strong>Bước 1:</strong> Gõ lệnh <code>LAYISO</code> (hoặc phím tắt của lệnh) vào thanh Command và nhấn <code>Enter</code> (hoặc phím <code>Space</code>).</span>
+        <span data-lang="en"><strong>Step 1:</strong> Type the <code>LAYISO</code> command (or its shortcut) into the Command bar and press <code>Enter</code> (or <code>Space</code>).</span>
+      </li>
+      <li>
+        <span data-lang="vi"><strong>Bước 2:</strong> Click chuột chọn vào một (hoặc nhiều) đối tượng thuộc layer mà bạn muốn giữ lại trên màn hình.</span>
+        <span data-lang="en"><strong>Step 2:</strong> Click to select one (or more) objects belonging to the layer you want to keep on the screen.</span>
+      </li>
+      <li>
+        <span data-lang="vi"><strong>Bước 3:</strong> Nhấn <code>Enter</code> để kết thúc lệnh.</span>
+        <span data-lang="en"><strong>Step 3:</strong> Press <code>Enter</code> to end the command.</span>
+      </li>
+    </ul>
+    
+    <p data-lang="vi">Ngay lập tức, bạn sẽ thấy chỉ còn lại các đối tượng thuộc layer bạn vừa chọn, các layer khác sẽ bị ẩn hoặc làm mờ đi.</p>
+    <p data-lang="en">Immediately, you will see only the objects belonging to the layer you just selected remain, other layers will be hidden or faded.</p>
 
-    <h3 data-lang="vi">Bước 3: Đổi thành tên lệnh bạn yêu thích</h3>
-    <h3 data-lang="en">Step 3: Change to your favorite command name</h3>
-    <p data-lang="vi">Bây giờ, bạn chỉ cần thay đổi cụm từ đi sát sau chữ <code>c:</code> thành tên lệnh ngắn gọn mà bạn muốn dùng.</p>
-    <p data-lang="en">Now, you just need to change the phrase right after <code>c:</code> to the short command name you want to use.</p>
-    <p data-lang="vi">Ví dụ: Bạn muốn gõ phím <strong><code>XG</code></strong> hoặc <strong><code>VXG</code></strong> cho tiện và siêu nhanh, hãy đổi thành:</p>
-    <p data-lang="en">For example: You want to type <strong><code>XG</code></strong> or <strong><code>VXG</code></strong> for convenience and super speed, change it to:</p>
-    <pre><code>(defun <span class="highlight-code">c:XG</span> ( / *error* oldOs oldCmd ... )
-;; <span data-lang="vi">Hoặc:</span><span data-lang="en">Or:</span>
-(defun <span class="highlight-code">c:VXG</span> ( / *error* oldOs oldCmd ... )</code></pre>
+    <h2 data-lang="vi">2. Thiết lập cách hiển thị cho lệnh LAYISO (Tắt hẳn hoặc Làm mờ)</h2>
+    <h2 data-lang="en">2. Setting the display mode for the LAYISO command (Turn off completely or Fade)</h2>
+
+    <p data-lang="vi">Từ các phiên bản AutoCAD đời cao (từ 2008 trở đi), mặc định khi sử dụng lệnh LAYISO, các layer không được chọn sẽ không biến mất hoàn toàn mà chuyển sang trạng thái <strong>bị khóa và làm mờ (Lock and fade)</strong>.</p>
+    <p data-lang="en">From higher AutoCAD versions (2008 onwards), by default when using the LAYISO command, unselected layers do not disappear completely but switch to a <strong>locked and faded state (Lock and fade)</strong>.</p>
+    
+    <p data-lang="vi">Nếu bạn muốn khi dùng lệnh LAYISO, các layer khác phải <strong>tắt hoàn toàn (biến mất khỏi màn hình)</strong> cho đỡ rối mắt, bạn cần thay đổi thiết lập Setting của lệnh theo các bước sau:</p>
+    <p data-lang="en">If you want that when using the LAYISO command, other layers must be <strong>completely turned off (disappear from the screen)</strong> to reduce clutter, you need to change the Setting configuration of the command according to the following steps:</p>
+
+    <ul>
+      <li>
+        <span data-lang="vi"><strong>Bước 1:</strong> Gõ lệnh <code>LAYISO</code> và nhấn <code>Enter</code>.</span>
+        <span data-lang="en"><strong>Step 1:</strong> Type the <code>LAYISO</code> command and press <code>Enter</code>.</span>
+      </li>
+      <li>
+        <span data-lang="vi"><strong>Bước 2:</strong> Khoan hãy chọn đối tượng! Gõ phím <code>S</code> (để gọi tùy chọn <em>Settings</em>) và nhấn <code>Enter</code>.</span>
+        <span data-lang="en"><strong>Step 2:</strong> Hold on before selecting objects! Type <code>S</code> (to call the <em>Settings</em> option) and press <code>Enter</code>.</span>
+      </li>
+      <li>
+        <span data-lang="vi"><strong>Bước 3:</strong> Trên dòng nhắc lệnh sẽ xuất hiện tùy chọn <code>[Off/Lock and fade]</code>.</span>
+        <span data-lang="en"><strong>Step 3:</strong> On the command prompt, the option <code>[Off/Lock and fade]</code> will appear.</span>
+        <ul>
+          <li>
+            <span data-lang="vi">Gõ <code>O</code> (chọn <em>Off</em>) và nhấn <code>Enter</code> nếu bạn muốn các layer khác <strong>bị tắt và biến mất</strong>.</span>
+            <span data-lang="en">Type <code>O</code> (choose <em>Off</em>) and press <code>Enter</code> if you want other layers to be <strong>turned off and disappear</strong>.</span>
+          </li>
+          <li>
+            <span data-lang="vi">Gõ <code>L</code> (chọn <em>Lock and fade</em>) nếu bạn muốn các layer khác <strong>bị khóa và làm mờ</strong>.</span>
+            <span data-lang="en">Type <code>L</code> (choose <em>Lock and fade</em>) if you want other layers to be <strong>locked and faded</strong>.</span>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span data-lang="vi"><strong>Bước 4:</strong> Nếu ở bước 3 bạn chọn <code>O</code> (Off), CAD sẽ hỏi thêm bạn muốn thiết lập trong không gian Layout Viewport như thế nào <code>[Vpfreeze/Off]</code>. Bạn gõ tiếp <code>O</code> (Off) và nhấn <code>Enter</code> để áp dụng tắt layer trên toàn bộ bản vẽ.</span>
+        <span data-lang="en"><strong>Step 4:</strong> If in step 3 you chose <code>O</code> (Off), CAD will ask further how you want to set it in the Layout Viewport space <code>[Vpfreeze/Off]</code>. You continue typing <code>O</code> (Off) and press <code>Enter</code> to apply turning off layers across the entire drawing.</span>
+      </li>
+      <li>
+        <span data-lang="vi"><strong>Bước 5:</strong> Bây giờ bạn có thể click chọn đối tượng cần cô lập và nhấn <code>Enter</code> như bình thường.</span>
+        <span data-lang="en"><strong>Step 5:</strong> Now you can click to select the object to isolate and press <code>Enter</code> as normal.</span>
+      </li>
+    </ul>
 
     <div class="tip-box">
-      <strong data-lang="vi">&#128161; Mẹo hay: Tạo đồng thời 2 phím tắt cho 1 Lisp</strong>
-      <strong data-lang="en">&#128161; Great tip: Create 2 shortcuts simultaneously for 1 Lisp</strong>
-      <p data-lang="vi">Nếu bạn vừa muốn giữ tên lệnh cũ để nhớ thói quen, vừa muốn có thêm tên lệnh siêu ngắn, bạn có thể cuộn xuống cuối cùng của file <code>.lsp</code> và tự tạo một dòng mã bí danh (alias) như sau: <br><code>(defun c:XG () (c:VEXAGO))</code><br>Khi đó gõ cả <code>VEXAGO</code> hay <code>XG</code> trong CAD đều sẽ cùng chạy một lệnh cho bạn!</p>
-      <p data-lang="en">If you both want to keep the old command name to remember the habit, and want an additional super short command name, you can scroll to the very bottom of the <code>.lsp</code> file and create an alias code line yourself like this: <br><code>(defun c:XG () (c:VEXAGO))</code><br>Then typing either <code>VEXAGO</code> or <code>XG</code> in CAD will both run the same command for you!</p>
+      <strong data-lang="vi">&#128161; Lưu ý:</strong>
+      <strong data-lang="en">&#128161; Note:</strong>
+      <p data-lang="vi">Thiết lập này chỉ cần thực hiện 1 lần. AutoCAD sẽ tự động lưu lại cấu hình này cho tất cả các lần dùng lệnh LAYISO về sau (kể cả khi bạn tắt và mở lại CAD).</p>
+      <p data-lang="en">This setting only needs to be done once. AutoCAD will automatically save this configuration for all subsequent uses of the LAYISO command (even when you close and reopen CAD).</p>
     </div>
 
-    <h3 data-lang="vi">Bước 4: Lưu file và Tải lại vào AutoCAD</h3>
-    <h3 data-lang="en">Step 4: Save the file and Reload into AutoCAD</h3>
-    <ol>
+    <h2 data-lang="vi">3. Lệnh LAYUNISO - Khôi phục trạng thái Layer</h2>
+    <h2 data-lang="en">3. LAYUNISO Command - Restore Layer State</h2>
+
+    <p data-lang="vi">Sau khi đã hoàn tất việc chỉnh sửa trên layer được cô lập bằng lệnh LAYISO, bạn cần đưa bản vẽ trở về trạng thái hiển thị ban đầu.</p>
+    <p data-lang="en">After finishing editing on the layer isolated by the LAYISO command, you need to return the drawing to its original display state.</p>
+    
+    <p><strong data-lang="vi">Cách thực hiện:</strong><strong data-lang="en">How to do it:</strong></p>
+    <ul>
       <li>
-        <span data-lang="vi">Nhấn <strong>Ctrl + S</strong> để lưu lại thay đổi (Sau đó có thể đóng Notepad lại).</span>
-        <span data-lang="en">Press <strong>Ctrl + S</strong> to save the changes (Then you can close Notepad).</span>
+        <span data-lang="vi">Gõ lệnh <code>LAYUNISO</code> và nhấn <code>Enter</code>.</span>
+        <span data-lang="en">Type the <code>LAYUNISO</code> command and press <code>Enter</code>.</span>
       </li>
       <li>
-        <span data-lang="vi">Mở bản vẽ AutoCAD của bạn lên, gõ lệnh <code>AP</code> (APPLOAD) &rarr; Chọn lại file Lisp bạn vừa chỉnh sửa &rarr; Bấm <strong>Load</strong>.</span>
-        <span data-lang="en">Open your AutoCAD drawing, type the <code>AP</code> (APPLOAD) command &rarr; Reselect the Lisp file you just edited &rarr; Click <strong>Load</strong>.</span>
+        <span data-lang="vi">Toàn bộ các layer bị tắt hoặc làm mờ trước đó sẽ ngay lập tức hiển thị lại bình thường.</span>
+        <span data-lang="en">All previously turned off or faded layers will immediately display normally again.</span>
       </li>
-      <li>
-        <span data-lang="vi">Gõ tên lệnh mới của bạn (ví dụ <code>XG</code>) và trải nghiệm tốc độ vẽ phi thường!</span>
-        <span data-lang="en">Type your new command name (e.g., <code>XG</code>) and experience extraordinary drawing speed!</span>
-      </li>
-    </ol>
+    </ul>
 
-    <h2 data-lang="vi">&#9888;&#65039; Một Số Lưu Ý Quan Trọng Khi Sửa Code</h2>
-    <h2 data-lang="en">&#9888;&#65039; Some Important Notes When Editing Code</h2>
+    <h2 data-lang="vi">4. Lời khuyên giúp thao tác nhanh hơn</h2>
+    <h2 data-lang="en">4. Advice to help operate faster</h2>
 
-    <div class="warning-box">
-      <strong data-lang="vi">1. Tuyệt đối không xóa mất chữ "c:" hay dấu ngoặc đơn</strong>
-      <strong data-lang="en">1. Absolutely do not delete the "c:" or parentheses</strong>
-      <p data-lang="vi">Nếu bạn lỡ tay sửa thành <code>(defun VEXAGO</code> (mất chữ <code>c:</code>) thì CAD sẽ coi đây là một hàm phụ ẩn và khi ra ngoài giao diện bạn sẽ không thể gõ được tên lệnh này nữa. Đồng thời không làm mất bất kỳ dấu ngoặc đơn <code>(</code> <code>)</code> hoặc khoảng trắng nào ở dòng định nghĩa này.</p>
-      <p data-lang="en">If you accidentally edit it to <code>(defun VEXAGO</code> (losing the <code>c:</code>) then CAD will consider this a hidden sub-function and when returning to the interface you will not be able to type this command name anymore. At the same time, do not lose any parentheses <code>(</code> <code>)</code> or spaces in this definition line.</p>
-    </div>
+    <p data-lang="vi">Vì <code>LAYISO</code> và <code>LAYUNISO</code> là hai lệnh được dùng liên tục trong quá trình vẽ, việc gõ nguyên chữ sẽ rất mất thời gian. Bạn nên thay đổi phím tắt cho hai lệnh này thành các phím dễ bấm bằng tay trái.</p>
+    <p data-lang="en">Because <code>LAYISO</code> and <code>LAYUNISO</code> are two commands used continuously during the drawing process, typing the full words will be very time-consuming. You should change the shortcuts for these two commands to easy-to-press keys with your left hand.</p>
+    
+    <p data-lang="vi">Ví dụ phổ biến:</p>
+    <p data-lang="en">Common examples:</p>
+    <ul>
+      <li><span data-lang="vi">Đổi <code>LAYISO</code> thành phím <code>1</code></span><span data-lang="en">Change <code>LAYISO</code> to key <code>1</code></span></li>
+      <li><span data-lang="vi">Đổi <code>LAYUNISO</code> thành phím <code>2</code></span><span data-lang="en">Change <code>LAYUNISO</code> to key <code>2</code></span></li>
+    </ul>
 
-    <div class="warning-box">
-      <strong data-lang="vi">2. Tránh đặt trùng với phím tắt mặc định của AutoCAD</strong>
-      <strong data-lang="en">2. Avoid duplicating AutoCAD's default shortcuts</strong>
-      <p data-lang="vi">Không nên đặt tên lệnh là <code>L</code>, <code>C</code>, <code>M</code>, <code>CO</code>, <code>PL</code>,... vì nếu trùng lặp, Lisp có thể sẽ ghi đè và làm vô hiệu hóa các lệnh cơ bản như Line, Circle, Move hay Polyline của bạn khi file Lisp đang được nạp.</p>
-      <p data-lang="en">You should not name the command <code>L</code>, <code>C</code>, <code>M</code>, <code>CO</code>, <code>PL</code>,... because if duplicated, the Lisp might overwrite and disable your basic commands like Line, Circle, Move or Polyline while the Lisp file is loaded.</p>
-    </div>
+    <p data-lang="vi">Bạn có thể đổi phím tắt thông qua công cụ <strong>ALIASEDIT</strong> (thuộc bộ Express Tools) hoặc chỉnh sửa trực tiếp trong file <strong>acad.pgp</strong> (Vào tab <em>Manage</em> -> <em>Edit Aliases</em>).</p>
+    <p data-lang="en">You can change the shortcuts via the <strong>ALIASEDIT</strong> tool (belonging to Express Tools) or edit directly in the <strong>acad.pgp</strong> file (Go to the <em>Manage</em> tab -> <em>Edit Aliases</em>).</p>
 
-    <div class="warning-box">
-      <strong data-lang="vi">3. Lưu file ở định dạng mã hóa (Encoding) đúng</strong>
-      <strong data-lang="en">3. Save the file in the correct Encoding format</strong>
-      <p data-lang="vi">Khi lưu bằng Notepad, hãy chắc chắn chọn Encoding là <strong>UTF-8</strong> (hoặc ANSI) và không để bị tự động đổi đuôi tệp thành <code>.lsp.txt</code>.</p>
-      <p data-lang="en">When saving with Notepad, make sure to select Encoding as <strong>UTF-8</strong> (or ANSI) and do not let it automatically change the file extension to <code>.lsp.txt</code>.</p>
-    </div>
+    <p data-lang="vi">Ngoài ra, một giải pháp cực kỳ tiện lợi và được sử dụng rộng rãi bởi các kỹ sư là dùng <strong>Lisp quản lý Layer (L1, L2, L3...)</strong>. Bộ lisp này giúp gán sẵn các phím tắt siêu tốc cho hàng loạt thao tác quản lý layer mà không cần phải thiết lập thủ công.</p>
+    <p data-lang="en">Additionally, an extremely convenient solution widely used by engineers is using a <strong>Layer Management Lisp (L1, L2, L3...)</strong>. This lisp set helps pre-assign super-fast shortcuts for a series of layer management operations without having to set them up manually.</p>
+
+    <p>
+      👉 
+      <strong data-lang="vi">Xem hướng dẫn chi tiết và tải Lisp tại đây:</strong>
+      <strong data-lang="en">See detailed instructions and download the Lisp here:</strong>
+      <a href="/autocad/autolisp/autolisp-layiso-layer-manager.html">
+        <span data-lang="vi">AutoLISP Quản lý Layer siêu tốc (L1 L2 L3)</span>
+        <span data-lang="en">Super-fast Layer Management AutoLISP (L1 L2 L3)</span>
+      </a>
+    </p>
 
     <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--border-color);">
     
     <p style="text-align: center; font-style: italic; color: var(--text-muted); margin-bottom: 0;">
-      <span data-lang="vi">Bài viết thuộc sự nghiên cứu và biên soạn từ kỹ thuật viên của <a href="https://ividlab.com/">iViDLab.com</a>. Chúc các bạn thiết lập không gian làm việc AutoCAD tối ưu và chuyên nghiệp!</span>
-      <span data-lang="en">Article researched and compiled by technicians of <a href="https://ividlab.com/">iViDLab.com</a>. Wish you set up an optimal and professional AutoCAD workspace!</span>
+      <span data-lang="vi">Chúc các bạn thao tác thành công và vẽ CAD tốc độ hơn! 🚀 Tác giả: <a href="https://ividlab.com/">iViDLab.com</a>.</span>
+      <span data-lang="en">Wish you successful operations and faster CAD drawing! 🚀 Author: <a href="https://ividlab.com/">iViDLab.com</a>.</span>
     </p>
   </div>
+
   <div class="related-container">
     <h2 data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
     <h2 data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem; display:none;">You might also be interested in</h2>
     <div class="related-grid">
-      <a class="related-card" href="/autocad/autolisp/autolisp-merge-hatch-mh.html">
-        <span class="badge">CAD Automation</span>
-        <h3><span data-lang="vi">Lisp Gộp Vùng Hatch (Merge Hatch - MH)</span><span data-lang="en" >Merge Hatch Lisp (MH)</span></h3>
-      </a>
-      <a class="related-card" href="/autocad/autolisp/autolisp-quick-block-bb.html">
-        <span class="badge">CAD Automation</span>
-        <h3><span data-lang="vi">Lisp Tạo Block Nhanh (Quick Block - BB)</span><span data-lang="en" >Quick Block Lisp (BB)</span></h3>
-      </a>
       <a class="related-card" href="/autocad/autolisp/autolisp-layiso-layer-manager.html">
         <span class="badge">CAD Automation</span>
         <h3><span data-lang="vi">Bộ 10 Phím Tắt Quản Lý Layer (Layiso Suite)</span><span data-lang="en" >Layiso Layer Management Suite</span></h3>
@@ -401,6 +438,14 @@
       <a class="related-card" href="/autocad/chiase/tuy-chinh-lenh-autolisp.html">
         <span class="badge">Knowledge Share</span>
         <h3><span data-lang="vi">Cách Tùy Chỉnh Phím Tắt Lệnh AutoLISP</span><span data-lang="en" >How to Customize AutoLISP Commands</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/autolisp/autolisp-merge-hatch-mh.html">
+        <span class="badge">CAD Automation</span>
+        <h3><span data-lang="vi">Lisp Gộp Vùng Hatch (Merge Hatch - MH)</span><span data-lang="en" >Merge Hatch Lisp (MH)</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/autolisp/autolisp-quick-block-bb.html">
+        <span class="badge">CAD Automation</span>
+        <h3><span data-lang="vi">Lisp Tạo Block Nhanh (Quick Block - BB)</span><span data-lang="en" >Quick Block Lisp (BB)</span></h3>
       </a>
     </div>
   </div>
