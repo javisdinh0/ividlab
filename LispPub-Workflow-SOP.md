@@ -46,13 +46,16 @@ Ngay sau Bước 1, Agent không đoán mò ảnh mà phải tạm dừng thực
   - **Quy tắc chống trùng & Chuẩn hóa tên file:** Tuyệt đối không để nguyên các tên ảnh chung chung (như `ảnh 1.png`, `image.jpg`). Agent bắt buộc **tự động đặt tên lại cho file ảnh dựa theo tên bài viết/công cụ Lisp** đang triển khai kèm số thứ tự (ví dụ: `TenLisp_01.png`, `TenLisp_02.jpg`). Nếu tên vừa đặt vẫn bị trùng với một file đã có từ trước trong thư mục `Pic`, tự động hậu tố số phiên bản (`_v2`, `_rev1`) để ngăn cản việc ghi đè sai lệch dữ liệu!
 - Thiết lập một file bài viết HTML độc lập mới tại:  
   `public\autocad\autolisp\<ten-bai-viet-lisp>.html`
-- **💎 Kỷ Luật Văn Phong & Ngôn Ngữ (Quy tắc Rà Soát Bắt Buộc):**
-  - **Chuẩn xác Thuật ngữ Kỹ Thuật CAD/BIM:** 100% sử dụng hệ từ vựng kỹ sư chuyên nghiệp (*Tốc độ xử lý dữ liệu lớn*, *Hệ sinh thái & Mở rộng Backend*, *Thư mục tin cậy Trusted Locations*...).
-  - **Cấm Tuyệt Đối Lỗi Dịch Máy (No Translation Bugs):** Loại bỏ hoàn toàn các dạng dịch word-by-word sai lệch (cấm tuyệt đối từ như *"Hậu môn"*, *"khấu trực"*, *"vụn lớn"*...). Khi gặp thuật ngữ IT/CAD đặc thù, ưu tiên giữ nguyên tiếng Anh cơ cấu (như *Backend*, *Trusted Locations*, *Bootstrapper*) thay vì việt hóa gượng ép.
-  - **Văn phong Khúc chiết, Đĩnh đạc:** Cấm lời văn hoa mỹ rườm rà hay bốc đồng nhí nhảnh (*"đẹp mê hồn"*, *"cực đỉnh"*). Ngôn từ xuất bản phải trang nhã, tường minh, 100% không lỗi chính tả (Zero Typo Policy)!
-- **Quy tắc Giao diện Trang bài viết:**
+- **💎 Kỷ Luật Văn Phong, Ngôn Ngữ & Vòng Lặp Kiểm Duyệt:**
+  - **Self-Correction (Tự Kiểm Duyệt):** Bắt buộc tự đọc lại nháp văn bản Tiếng Việt trong đầu (think block) trước khi xuất HTML. Nếu câu cú lúng túng, gượng ép hoặc lặp từ, phải sửa lại ngay.
+  - **Bảng Khóa Từ Vựng (Dictionary):** Bắt buộc tuân thủ tuyệt đối: *Download ➔ Tải về*, *Command ➔ Lệnh / Phím tắt*, *Feature ➔ Tính năng*, *Load ➔ Nạp Lisp*. Không dùng từ thay thế.
+  - **Cấm Tuyệt Đối Lỗi Dịch Máy (No Translation Bugs):** Loại bỏ hoàn toàn các dạng dịch word-by-word sai lệch (như *"Hậu môn"*, *"khấu trực"*, *"vụn lớn"*). Giữ nguyên tiếng Anh cơ cấu (như *Backend*, *Bootstrapper*) thay vì việt hóa gượng ép.
+  - **Văn phong Khúc chiết, 100% Sạch Chính tả (Zero Typo Policy):** Cấm lời văn hoa mỹ bốc đồng (*"đẹp mê hồn"*, *"cực đỉnh"*).
+- **Quy tắc Giao diện Trang bài viết (SONG NGỮ & SÁNG/TỐI):**
+  - **Cấu Trúc HTML Song Ngữ (Bilingual):** Toàn bộ nội dung chữ (Paragraph, Heading, List) trong bài phải được sinh thành 2 bản đi kèm thuộc tính `<div data-lang="vi">...</div>` và `<div data-lang="en">...</div>`.
+  - **CSS Logic Ngôn Ngữ:** Mặc định hiện Tiếng Việt, khi thẻ body có class `lang-en` thì ẩn `[data-lang="vi"]` và hiện `[data-lang="en"]`.
   - Sử dụng chung bộ CSS Custom Variables **Ocean Navy & Ice Blue** từ trang mẹ (`#A2BFC7` cho Sáng, `#182B37` cho Tối).
-  - Thanh Navigation phía đỉnh có gắn Nút chuyển chế độ **☀️ LIGHT / 🌙 DARK Toggle**, đọc trích xuất từ biến lưu đệm `localStorage.getItem('ividlab-theme')`.
+  - Thanh Navigation phía đỉnh có gắn **☀️ LIGHT / 🌙 DARK Toggle** và Nút **🌐 VN / EN Toggle**. Trạng thái được lưu vào `localStorage.getItem('ividlab-theme')` và `localStorage.getItem('ividlab-lang')`.
 - **2 Vị Trí Gắn Liên Kết Chéo (Cross-Linking) Không Thể Bỏ Xót:**
   1. Tại mô tả tên lệnh Lisp, gắn liên kết Hướng Dẫn Tùy Chỉnh Lệnh:
      - Text Link: *Hướng dẫn tuỳ chỉnh đổi tên lệnh trong AutoLISP*

@@ -45,14 +45,32 @@ Ngay sau khi nhận được đường dẫn ảnh từ người dùng:
    Tạo tệp tại đường dẫn: `public/autocad/autolisp/<ten-bai-viet>.html` tuân thủ các quy tắc bất vi bất dịch của giao diện web iViDLab:
 
 ### 💎 KỶ LUẬT VĂN PHONG & CHUYÊN MÔN NGÔN NGỮ (BẮT BUỘC RÀ SOÁT CHẶT CHẼ):
-Agent phải thực hiện kiểm tra ngôn ngữ thi công bài viết HTML vô cùng khắt khe theo 4 chuẩn mực thiết yếu:
-1. **Thuật ngữ Kỹ Thuật CAD/BIM Chính Xác 100%:** Dùng từ vựng chuẩn kỹ sư ngành xây dựng và kiến trúc (ví dụ: *Tốc độ xử lý dữ liệu lớn*, *Tích hợp Hệ sinh thái & Mở rộng Backend*, *Thư mục tin cậy Trusted Locations*...).
-2. **Tuyệt đối nói KHÔNG với lỗi dịch máy & chuyển ngữ sai (No Machine Translation Bugs):** Cấm tuyệt đối các cụm từ lệch ngả do dịch word-by-word hoặc suy đoán vô căn cứ (ví dụ: cấm từ phi kỹ thuật như *"Hậu môn"*, *"khấu trực"*, *"vụn lớn"*, *"lộn dặm"*, *"vali cất cặp"*...). Nếu một thuật ngữ IT/CAD tiếng Anh khó dịch ngắn gọn sang Tiếng Việt, hãy giữ nguyên từ khóa kỹ thuật Tiếng Anh gốc (như *Backend*, *Trusted Locations*, *Managed Assembly*, *Bootstrapper*, *Shadow Copy*) thay vì việt hóa gượng ép.
-3. **Văn phong Trang nhã, Chuyên nghiệp & Sức tích:** Cấm sử dụng các tính từ thái quá, ngôn ngữ cường điệu hay hoa mỹ rườm rà (cấm: *"đẹp mê hồn"*, *"cực đỉnh"*, *"gột rửa sự kiên nhẫn"*, *"siêu nhạy bén"*...). Lời văn phải mạch lạc, khúc chiết, đĩnh đạc mang thẩm mỹ của Viện Nghiên cứu Kỹ Thuật iViDLab.
-4. **Kiểm soát Chính tả tuyệt đối (Zero Typo Policy):** Không để lọt bất kỳ lỗi lặp từ, lỗi cú pháp hay sai chính tả nào trong văn bản!
+Agent phải thực hiện kiểm tra ngôn ngữ thi công bài viết HTML vô cùng khắt khe theo 5 chuẩn mực thiết yếu:
+1. **Vòng Lặp Tự Kiểm Duyệt (Self-Correction Pass):** Trước khi viết HTML, Agent BẮT BUỘC phải tạo một nhịp suy nghĩ (think block) tự đọc lại câu văn tiếng Việt vừa phác thảo. Nếu thấy lủng củng, lặp từ, hoặc dịch máy gượng ép, phải tự gọt giũa lại ngay.
+2. **Bảng Khóa Từ Vựng Tiêu Chuẩn (Hardcoded Dictionary):** Ép buộc dùng chính xác các từ sau, không được tự bịa từ khác:
+   - *Download* ➔ **Tải về** (Cấm dùng: Tải xuống)
+   - *Command* ➔ **Lệnh / Phím tắt** (Cấm dùng: Chỉ thị, Mệnh lệnh)
+   - *Feature* ➔ **Tính năng** (Cấm dùng: Đặc trưng, Nét tiêu biểu)
+   - *Load* ➔ **Nạp Lisp / Tải Lisp** (Cấm dùng: Chở Lisp, Đưa Lisp)
+3. **Thuật ngữ Kỹ Thuật CAD/BIM Chính Xác 100%:** Dùng từ vựng chuẩn kỹ sư ngành xây dựng và kiến trúc (ví dụ: *Tốc độ xử lý dữ liệu lớn*, *Tích hợp Hệ sinh thái & Mở rộng Backend*, *Thư mục tin cậy Trusted Locations*...).
+4. **Tuyệt đối nói KHÔNG với lỗi dịch máy (No Machine Translation Bugs):** Cấm tuyệt đối cụm từ lệch ngả do dịch word-by-word (ví dụ cấm: *"Hậu môn"*, *"khấu trực"*, *"vụn lớn"*...). Nếu khó dịch, giữ nguyên từ tiếng Anh gốc (*Backend*, *Trusted Locations*, *Shadow Copy*).
+5. **Văn phong Trang nhã & Kiểm soát Chính tả (Zero Typo Policy):** Cấm tính từ bốc đồng (*"cực đỉnh"*, *"siêu nhạy bén"*). Không để lọt lỗi chính tả!
 
-### 🌟 Yêu cầu thiết kế HTML bắt buộc:
-- **Hệ thống Giao diện Sáng / Tối (Deep Ocean Navy / Ice Blue):** Nạp đầy đủ CSS custom variables và Nút chuyển đổi **☀️ LIGHT / 🌙 DARK Toggle** ở Top Bar (kết nối đọc/ghi trực tiếp vào `localStorage.getItem('ividlab-theme')`).
+### 🌟 Yêu cầu thiết kế HTML bắt buộc (GIAO DIỆN SONG NGỮ & SÁNG/TỐI):
+- **Cấu trúc HTML Song Ngữ (Anh - Việt) [BẮT BUỘC 100% KHÔNG NGOẠI LỆ]:** Dù là bài đăng Lisp công cụ, bài Hướng dẫn sử dụng hay bài Chia sẻ kinh nghiệm, MỌI đoạn văn, tiêu đề, thẻ danh sách đều BẮT BUỘC phải được Agent dịch và viết thành 2 phiên bản (Tiếng Việt và Tiếng Anh) đi kèm thuộc tính `data-lang`:
+  ```html
+  <p data-lang="vi">Hướng dẫn nạp lisp...</p>
+  <p data-lang="en">Guide to load lisp...</p>
+  ```
+  *CẢNH BÁO MỨC ĐỘ CAO: Việc bỏ sót nội dung tiếng Anh trên bất kỳ câu chữ nào sẽ khiến nút chuyển đổi ngôn ngữ của website bị hỏng cục bộ. Agent tuyệt đối không được phép lười biếng bỏ qua bước dịch thuật này!*
+- **Logic CSS Song Ngữ (Nhúng thẳng vào thẻ <style>):**
+  ```css
+  [data-lang="vi"] { display: block; }
+  [data-lang="en"] { display: none; }
+  body.lang-en [data-lang="vi"] { display: none; }
+  body.lang-en [data-lang="en"] { display: block; }
+  ```
+- **Hệ thống Giao diện Sáng / Tối & Nút Đổi Ngôn Ngữ:** Nạp đầy đủ CSS custom variables. Ở Top Bar, phải có Nút chuyển đổi **☀️ LIGHT / 🌙 DARK Toggle** và Nút **🌐 VN / EN Toggle**. Cấu hình Javascript liên kết biến `localStorage.getItem('ividlab-theme')` và biến `localStorage.getItem('ividlab-lang')`.
 - **Font chữ:** Dùng các font hiện đại `Be Vietnam Pro`, `Plus Jakarta Sans` và `JetBrains Mono`.
 
 ### 🔗 Yêu cầu Liên kết hỗ trợ (Cross-links - Tuyệt đối không được gạt bỏ):

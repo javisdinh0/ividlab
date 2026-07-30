@@ -185,76 +185,221 @@
       .article-container { padding: 25px 18px; }
       h1 { font-size: 1.8rem; }
     }
+  
+    .related-container { margin-top: 45px; background: var(--bg-card); padding: 40px; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.15); transition: background-color 0.3s ease, border-color 0.3s ease; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 25px; }
+    .related-card { display: flex; flex-direction: column; text-decoration: none; background: var(--bg-page); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; transition: transform 0.2s, border-color 0.2s; }
+    .related-card:hover { transform: translateY(-3px); border-color: var(--link-color); }
+    .related-card .badge { align-self: flex-start; background: var(--badge-bg); color: var(--badge-text); font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; font-family: 'JetBrains Mono', monospace; }
+    .related-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.1rem; margin: 0; color: var(--text-primary); line-height: 1.4; transition: color 0.2s; }
+    .related-card:hover h3 { color: var(--link-color); }
+  
+    /* Language Toggle Styles */
+    [data-lang="vi"] { display: block !important; }
+    [data-lang="en"] { display: none !important; }
+    body.lang-en [data-lang="vi"] { display: none !important; }
+    body.lang-en [data-lang="en"] { display: block !important; }
+    
+    /* Fix inline elements */
+    span[data-lang="vi"], strong[data-lang="vi"], em[data-lang="vi"], a[data-lang="vi"], figcaption[data-lang="vi"] { display: inline !important; }
+    span[data-lang="en"], strong[data-lang="en"], em[data-lang="en"], a[data-lang="en"], figcaption[data-lang="en"] { display: none !important; }
+    body.lang-en span[data-lang="vi"], body.lang-en strong[data-lang="vi"], body.lang-en em[data-lang="vi"], body.lang-en a[data-lang="vi"], body.lang-en figcaption[data-lang="vi"] { display: none !important; }
+    body.lang-en span[data-lang="en"], body.lang-en strong[data-lang="en"], body.lang-en em[data-lang="en"], body.lang-en a[data-lang="en"], body.lang-en figcaption[data-lang="en"] { display: inline !important; }
   </style>
 </head>
 <body>
-  <div class="top-bar">
-    <div class="nav-links">
-      <a href="/" class="back-link">← Quay lại Trang chủ iViDLab</a>
-      <span style="color: var(--text-muted);">|</span>
-      <a href="/autocad/chiase/tuy-chinh-lenh-autolisp.html" class="back-link">📖 Thủ thuật đổi lệnh CAD</a>
-    </div>
-    <button id="theme-toggle" class="toggle-btn" title="Chuyển giao diện Sáng / Tối">☀️ LIGHT</button>
-  </div>
   
+  <header style="position: sticky; top: 0; z-index: 100; background-color: var(--bg-page); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 15px 0; transition: background-color 0.3s ease; margin-bottom: 30px;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+      <a href="/" style="text-decoration: none; display: flex; align-items: center;">
+        <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.45rem; font-weight: 900; letter-spacing: -0.02em; color: var(--text-primary);">
+          iViD<span style="color: #2E6583;">Lab</span>
+        </span>
+      </a>
+      <nav style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+        <a href="/?tab=all" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); transition: color 0.2s ease;">
+          <span data-lang="vi">// TRANG CHỦ</span><span data-lang="en" >// HOME</span>
+        </a>
+        <a href="/?tab=tools" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// CÔNG CỤ</span><span data-lang="en" >// TOOLS</span>
+        </a>
+        <a href="/?tab=guides" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span data-lang="en" >// GUIDES</span>
+        </a>
+        <a href="/?tab=about" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en" >// ABOUT</span>
+        </a>
+      </nav>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button id="theme-toggle" class="toggle-btn" title="Chuyển giao diện Sáng / Tối" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; padding: 6px 14px; border-radius: 20px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s;">
+          ☀️ LIGHT
+        </button>
+        <button id="lang-toggle" class="toggle-btn" title="Chuyển Ngôn Ngữ / Toggle Language" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; padding: 6px 14px; border-radius: 20px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s;">
+          🌐 VN / EN
+        </button>
+      </div>
+    </div>
+  </header>
   <div class="article-container">
-    <h1>Lisp Vẽ Tiết Diện Xà Gồ C Và Z Cán Nguội (Bản Cập Nhật Hoàn Thiện)</h1>
+    <h1 data-lang="vi">Lisp Vẽ Tiết Diện Xà Gồ C Và Z Cán Nguội (Bản Cập Nhật Hoàn Thiện)</h1>
+    <h1 data-lang="en">Cold-Formed C and Z Purlin Drawing Lisp (Final Update)</h1>
 
     <figure class="figure-wrapper">
       <img src="Pic/XG1.png" alt="Mặt cắt xà gồ C và Z cán nguội">
-      <figcaption>Hình 1: Minh họa ứng dụng Lisp vẽ xà gồ C và Z trong AutoCAD</figcaption>
+      <figcaption data-lang="vi">Hình 1: Minh họa ứng dụng Lisp vẽ xà gồ C và Z trong AutoCAD</figcaption>
+      <figcaption data-lang="en">Figure 1: Illustration of applying C and Z purlin drawing Lisp in AutoCAD</figcaption>
     </figure>
 
-    <p>Trong quá trình triển khai bản vẽ kết cấu thép, việc vẽ chi tiết mặt cắt các loại xà gồ C và Z thường mất khá nhiều thời gian nếu thực hiện thủ công, đặc biệt là khi phải xử lý chính xác các góc bo (fillet) hay mép gấp (lip). Để giải quyết vấn đề này, hôm nay chuyên mục AutoCAD Lisp xin giới thiệu đến các bạn một công cụ cực kỳ hữu ích: <strong>Lisp vẽ tiết diện xà gồ C và Z cán nguội</strong> bản cập nhật hoàn thiện.</p>
+    <p data-lang="vi">Trong quá trình triển khai bản vẽ kết cấu thép, việc vẽ chi tiết mặt cắt các loại xà gồ C và Z thường mất khá nhiều thời gian nếu thực hiện thủ công, đặc biệt là khi phải xử lý chính xác các góc bo (fillet) hay mép gấp (lip). Để giải quyết vấn đề này, hôm nay chuyên mục AutoCAD Lisp xin giới thiệu đến các bạn một công cụ cực kỳ hữu ích: <strong>Lisp vẽ tiết diện xà gồ C và Z cán nguội</strong> bản cập nhật hoàn thiện.</p>
+    <p data-lang="en">During the deployment of steel structure drawings, drawing detailed cross-sections of C and Z purlins often takes a lot of time if done manually, especially when you have to accurately process fillets or lips. To solve this problem, today the AutoCAD Lisp section would like to introduce to you an extremely useful tool: <strong>Cold-formed C and Z purlin drawing Lisp</strong> in its final updated version.</p>
 
-    <h2>&#127775; Các Tính Năng Nổi Bật</h2>
-    <p>Lisp được tối ưu hóa với thuật toán xử lý Polyline khép kín vô cùng chuẩn xác, mang đến những ưu điểm vượt trội:</p>
+    <h2 data-lang="vi">&#127775; Các Tính Năng Nổi Bật</h2>
+    <h2 data-lang="en">&#127775; Outstanding Features</h2>
+    
+    <p data-lang="vi">Lisp được tối ưu hóa với thuật toán xử lý Polyline khép kín vô cùng chuẩn xác, mang đến những ưu điểm vượt trội:</p>
+    <p data-lang="en">The Lisp is optimized with a highly accurate closed Polyline processing algorithm, bringing outstanding advantages:</p>
     <ol>
-        <li><strong>Bo góc cực kỳ chuẩn xác</strong>: Thuật toán tự động tính toán để tạo ra bán kính góc bo (fillet) chính xác tuyệt đối với:
+        <li>
+            <strong data-lang="vi">Bo góc chuẩn xác</strong>
+            <strong data-lang="en">Accurate Fillet</strong>: 
+            <span data-lang="vi">Thuật toán tự động tính toán để tạo ra bán kính góc bo (fillet) chính xác tuyệt đối với:</span>
+            <span data-lang="en">The algorithm automatically calculates to create an absolutely precise fillet radius with:</span>
             <ul>
-                <li>Bán kính cong mặt trong: <strong>R = 2T</strong> (T là độ dày xà gồ).</li>
-                <li>Bán kính cong mặt ngoài: <strong>R = 3T</strong>.</li>
+                <li><span data-lang="vi">Bán kính cong mặt trong:</span><span data-lang="en">Inner surface bending radius:</span> <strong>R = 2T</strong> <span data-lang="vi">(T là độ dày xà gồ).</span><span data-lang="en">(T is purlin thickness).</span></li>
+                <li><span data-lang="vi">Bán kính cong mặt ngoài:</span><span data-lang="en">Outer surface bending radius:</span> <strong>R = 3T</strong>.</li>
             </ul>
         </li>
-        <li><strong>Lưu Cache thông minh</strong>: Lisp tự động ghi nhớ các thông số (Mã tiết diện, tỷ lệ, góc mép...) của lần vẽ gần nhất. Bạn chỉ cần nhấn <code>Enter</code> hoặc <code>Space</code> ở các lần dùng sau nếu không muốn thay đổi thông số, giúp tăng tốc độ làm việc đáng kể.</li>
+        <li>
+            <strong data-lang="vi">Lưu Cache thông minh</strong>
+            <strong data-lang="en">Smart Cache Storage</strong>: 
+            <span data-lang="vi">Lisp tự động ghi nhớ các thông số (Mã tiết diện, tỷ lệ, góc mép...) của lần vẽ gần nhất. Bạn chỉ cần nhấn <code>Enter</code> hoặc <code>Space</code> ở các lần dùng sau nếu không muốn thay đổi thông số, giúp tăng tốc độ làm việc đáng kể.</span>
+            <span data-lang="en">The Lisp automatically remembers the parameters (Section code, scale, lip angle...) of the most recent drawing. You just need to press <code>Enter</code> or <code>Space</code> in subsequent uses if you do not want to change parameters, significantly increasing work speed.</span>
+        </li>
     </ol>
 
-    <h2>&#128640; Hướng Dẫn Sử Dụng</h2>
+    <h2 data-lang="vi">&#128640; Hướng Dẫn Sử Dụng</h2>
+    <h2 data-lang="en">&#128640; Usage Instructions</h2>
     <ul>
-        <li><strong>Tên lệnh:</strong> <code>VEXAGO</code> - <a href="/autocad/chiase/tuy-chinh-lenh-autolisp.html">Hướng dẫn tuỳ chỉnh lệnh trong Autolisp</a></li>
-        <li><strong>Cách thực hiện:</strong>
+        <li>
+            <strong data-lang="vi">Lệnh / Phím tắt:</strong>
+            <strong data-lang="en">Command:</strong> <code>VEXAGO</code> - 
+            <a href="/autocad/chiase/tuy-chinh-lenh-autolisp.html" data-lang="vi">Hướng dẫn tuỳ chỉnh lệnh trong Autolisp</a>
+            <a href="/autocad/chiase/tuy-chinh-lenh-autolisp.html" data-lang="en">Guide to customize Autolisp commands</a>
+        </li>
+        <li>
+            <strong data-lang="vi">Cách thực hiện:</strong>
+            <strong data-lang="en">How to execute:</strong>
             <ol>
-                <li>Load Lisp vào AutoCAD (dùng lệnh <code>AP</code> hoặc kéo thả file lisp vào màn hình CAD).</li>
-                <li>Gõ lệnh <code>VEXAGO</code> và nhấn Enter.</li>
-                <li>Lisp sẽ yêu cầu nhập <strong>Mã tiết diện</strong>. Cú pháp nhập rất trực quan:
+                <li>
+                    <span data-lang="vi">Nạp Lisp vào AutoCAD (dùng lệnh <code>AP</code> hoặc kéo thả file lisp vào màn hình CAD).</span>
+                    <span data-lang="en">Load Lisp into AutoCAD (use <code>AP</code> command or drag and drop the lisp file into CAD screen).</span>
+                </li>
+                <li>
+                    <span data-lang="vi">Gõ lệnh <code>VEXAGO</code> và nhấn Enter.</span>
+                    <span data-lang="en">Type <code>VEXAGO</code> command and press Enter.</span>
+                </li>
+                <li>
+                    <span data-lang="vi">Lisp sẽ yêu cầu nhập <strong>Mã tiết diện</strong>. Cú pháp nhập rất trực quan:</span>
+                    <span data-lang="en">Lisp will prompt for <strong>Section Code</strong>. The syntax is highly intuitive:</span>
                     <ul>
-                        <li>Đối với xà gồ Z: <code>Z&lt;Cao&gt;*&lt;Cánh 1&gt;*&lt;Cánh 2&gt;*&lt;Độ dày&gt;</code> hoặc <code>Z&lt;Cao&gt;*&lt;Cánh 1&gt;*&lt;Cánh 2&gt;*&lt;Mép gấp&gt;*&lt;Độ dày&gt;</code> (Ví dụ: <code>Z250*62*68*2.5</code>)</li>
-                        <li>Đối với xà gồ C: <code>C&lt;Cao&gt;*&lt;Cánh&gt;*&lt;Mép gấp&gt;*&lt;Độ dày&gt;</code> (Ví dụ: <code>C200*50*20*2</code>)</li>
+                        <li>
+                            <span data-lang="vi">Đối với xà gồ Z:</span><span data-lang="en">For Z purlin:</span> 
+                            <code>Z&lt;Cao&gt;*&lt;Cánh 1&gt;*&lt;Cánh 2&gt;*&lt;Độ dày&gt;</code> 
+                            <span data-lang="vi">hoặc</span><span data-lang="en">or</span> 
+                            <code>Z&lt;Cao&gt;*&lt;Cánh 1&gt;*&lt;Cánh 2&gt;*&lt;Mép gấp&gt;*&lt;Độ dày&gt;</code> 
+                            <span data-lang="vi">(Ví dụ:</span><span data-lang="en">(Example:</span> <code>Z250*62*68*2.5</code>)
+                        </li>
+                        <li>
+                            <span data-lang="vi">Đối với xà gồ C:</span><span data-lang="en">For C purlin:</span> 
+                            <code>C&lt;Cao&gt;*&lt;Cánh&gt;*&lt;Mép gấp&gt;*&lt;Độ dày&gt;</code> 
+                            <span data-lang="vi">(Ví dụ:</span><span data-lang="en">(Example:</span> <code>C200*50*20*2</code>)
+                        </li>
                     </ul>
                 </li>
-                <li>Nhập <strong>Tỷ lệ thu nhỏ</strong> (Ví dụ nhập 10 nếu muốn vẽ thu nhỏ 1/10, mặc định là 1).</li>
-                <li>Nếu là xà gồ Z, chọn <strong>Góc mép gấp</strong> (Lip Angle): có thể là 90, 50, hoặc 45 độ.</li>
-                <li><strong>Chọn điểm chèn</strong> trên bản vẽ và tận hưởng kết quả là một đường Polyline khép kín hoàn chỉnh!</li>
+                <li>
+                    <span data-lang="vi">Nhập <strong>Tỷ lệ thu nhỏ</strong> (Ví dụ nhập 10 nếu muốn vẽ thu nhỏ 1/10, mặc định là 1).</span>
+                    <span data-lang="en">Enter <strong>Scale ratio</strong> (Example: enter 10 to draw 1/10 scaled down, default is 1).</span>
+                </li>
+                <li>
+                    <span data-lang="vi">Nếu là xà gồ Z, chọn <strong>Góc mép gấp</strong> (Lip Angle): có thể là 90, 50, hoặc 45 độ.</span>
+                    <span data-lang="en">If it is a Z purlin, choose <strong>Lip Angle</strong>: it can be 90, 50, or 45 degrees.</span>
+                </li>
+                <li>
+                    <strong data-lang="vi">Chọn điểm chèn</strong>
+                    <strong data-lang="en">Pick insertion point</strong>
+                    <span data-lang="vi">trên bản vẽ và tận hưởng kết quả là một đường Polyline khép kín hoàn chỉnh!</span>
+                    <span data-lang="en">on the drawing and enjoy the result of a perfectly closed Polyline!</span>
+                </li>
             </ol>
         </li>
     </ul>
 
     <figure class="figure-wrapper">
       <img src="Pic/XG2.jpg" alt="Hướng dẫn sử dụng lệnh VEXAGO trong AutoCAD">
-      <figcaption>Hình 2: Minh họa các thông số và sử dụng lệnh VEXAGO</figcaption>
+      <figcaption data-lang="vi">Hình 2: Minh họa các thông số và sử dụng lệnh VEXAGO</figcaption>
+      <figcaption data-lang="en">Figure 2: Illustration of parameters and VEXAGO command usage</figcaption>
     </figure>
 
-    <h2>&#128229; Tải Về</h2>
+    <h2 data-lang="vi">&#128229; Tải Về</h2>
+    <h2 data-lang="en">&#128229; Download</h2>
     <div class="download-section">
-      <p>Bạn có thể tải lisp trực tiếp theo đường dẫn hoặc liên kết bên dưới:</p>
+      <p data-lang="vi">Bạn có thể tải về công cụ trực tiếp theo đường dẫn hoặc liên kết bên dưới:</p>
+      <p data-lang="en">You can download the tool directly via the path or link below:</p>
       <ul>
-          <li><strong>Tệp tin:</strong> <code>DrawPurlin.lsp</code></li>
-          <li><strong>Link Tải xuống:</strong> <a href="/fordownload/DrawPurlin.lsp" download="DrawPurlin.lsp">⬇ Tải Về DrawPurlin.lsp</a> <em>(Bấm để tải xuống ngay)</em></li>
+          <li>
+              <strong data-lang="vi">Tệp tin:</strong>
+              <strong data-lang="en">File:</strong> <code>DrawPurlin.lsp</code>
+          </li>
+          <li>
+              <strong data-lang="vi">Link Tải về:</strong>
+              <strong data-lang="en">Download Link:</strong> 
+              <a href="/fordownload/DrawPurlin.lsp" download="DrawPurlin.lsp">
+                  ⬇ <span data-lang="vi">Tải Về</span><span data-lang="en">Download</span> DrawPurlin.lsp
+              </a>
+          </li>
       </ul>
     </div>
 
-    <p style="margin-top: 35px; font-style: italic; color: var(--text-muted); text-align: center;">Chúc các bạn áp dụng thành công Lisp này vào công việc để tăng tốc độ triển khai bản vẽ! Đừng quên chia sẻ nếu thấy hữu ích.</p>
+    <p style="margin-top: 35px; font-style: italic; color: var(--text-muted); text-align: center;">
+      <span data-lang="vi">Chúc các bạn áp dụng thành công Lisp này vào công việc để tăng tốc độ triển khai bản vẽ! Đừng quên chia sẻ nếu thấy hữu ích.</span>
+      <span data-lang="en">Wish you successful application of this Lisp to your work to increase drawing deployment speed! Don't forget to share if you find it useful.</span>
+    </p>
   </div>
+  <div class="related-container">
+    <h2 data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
+    <h2 data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem; display:none;">You might also be interested in</h2>
+    <div class="related-grid">
+      <a class="related-card" href="/autocad/autolisp/autolisp-merge-hatch-mh.html">
+        <span class="badge">CAD Automation</span>
+        <h3><span data-lang="vi">Lisp Gộp Vùng Hatch (Merge Hatch - MH)</span><span data-lang="en" >Merge Hatch Lisp (MH)</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/autolisp/autolisp-quick-block-bb.html">
+        <span class="badge">CAD Automation</span>
+        <h3><span data-lang="vi">Lisp Tạo Block Nhanh (Quick Block - BB)</span><span data-lang="en" >Quick Block Lisp (BB)</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/autolisp/autolisp-layiso-layer-manager.html">
+        <span class="badge">CAD Automation</span>
+        <h3><span data-lang="vi">Bộ 10 Phím Tắt Quản Lý Layer (Layiso Suite)</span><span data-lang="en" >Layiso Layer Management Suite</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/chiase/huong-dan-appload-lisp-autocad.html">
+        <span class="badge">Knowledge Share</span>
+        <h3><span data-lang="vi">Hướng Dẫn Nạp Lisp Bằng APPLOAD</span><span data-lang="en" >Guide to Load Lisp via APPLOAD</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/chiase/tuy-chinh-lenh-autolisp.html">
+        <span class="badge">Knowledge Share</span>
+        <h3><span data-lang="vi">Cách Tùy Chỉnh Phím Tắt Lệnh AutoLISP</span><span data-lang="en" >How to Customize AutoLISP Commands</span></h3>
+      </a>
+    </div>
+  </div>
+  
+  <footer style="border-top: 1px solid var(--border-color); padding: 3rem 0; background-color: var(--bg-page); margin-top: 4rem; text-align: center;">
+    <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--text-primary);">
+      iViD<span style="color: #2E6583;">Lab</span>
+    </div>
+    <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">
+      © 2026 iViDLab. All rights reserved.
+    </p>
+  </footer>
 
   <script>
     (function() {
@@ -274,6 +419,19 @@
         localStorage.setItem('ividlab-theme', nextTheme);
         updateBtnText(nextTheme);
       });
+
+      // --- Language Logic ---
+      const savedLang = localStorage.getItem('ividlab-lang') || 'vi';
+      if (savedLang === 'en') document.body.classList.add('lang-en');
+      const langBtn = document.getElementById('lang-toggle');
+      if (langBtn) {
+        langBtn.addEventListener('click', () => {
+          document.body.classList.toggle('lang-en');
+          const isEn = document.body.classList.contains('lang-en');
+          localStorage.setItem('ividlab-lang', isEn ? 'en' : 'vi');
+        });
+      }
+
     })();
   </script>
 </body>
