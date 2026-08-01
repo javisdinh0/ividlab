@@ -1,0 +1,25 @@
+rules_version = '2';
+
+// RFI Console — ảnh RFI. Đường dẫn: projects/{pid}/rfis/{rfiId}/{imageId}
+//
+// LƯU Ý: Storage Rules KHÔNG đọc được Firestore membership, nên phân quyền ở đây
+// chỉ ở mức "đã đăng nhập + đã xác minh email". Cô lập theo dự án ở tầng Storage
+// (chỉ thành viên dự án mới đọc/ghi ảnh của dự án đó) cần custom claims / Cloud
+// Function — để dành Giai đoạn 6. Firestore vẫn là nguồn kiểm soát chính (URL ảnh
+// nằm trong doc RFI mà chỉ thành viên mới đọc được).
+service firebase.storage {
+  match /b/{bucket}/o {
+    function signedIn() {
+      return request.auth != null && request.auth.token.email_verified == true;
+    }
+
+    match /projects/{pid}/rfis/{rfiId}/{imageId} {
+      allow read:  if signedIn();
+      // Giới hạn ảnh: ≤ 5MB và đúng kiểu image/*
+      allow write: if signedIn()
+                   && request.resource.size < 5 * 1024 * 1024
+                   && request.resource.contentType.matches('image/.*');
+      allow delete: if signedIn();
+    }
+  }
+}
