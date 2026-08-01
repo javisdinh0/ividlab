@@ -59,6 +59,13 @@ service cloud.firestore {
       allow write: if isOwner();
     }
 
+    // Cho phép truy vấn collectionGroup('members') liệt kê dự án của CHÍNH MÌNH.
+    // Collection-group query chỉ khớp rule khai báo bằng recursive wildcard {path=**},
+    // và phải là điều kiện field-based (không get/exists) mới hợp lệ khi list.
+    match /{path=**}/members/{emailKey} {
+      allow read: if signedIn() && resource.data.email == email();
+    }
+
     // ---- projects ----
     match /projects/{pid} {
       allow read:   if isMember(pid) || isOwner();
