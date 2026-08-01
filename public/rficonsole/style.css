@@ -168,3 +168,72 @@ code { background: var(--subtle); padding: 1px 5px; border-radius: 4px; font-siz
   .topbar { padding: 0.6rem 1rem; }
   .user-chip { max-width: 130px; }
 }
+
+/* ============ App RFI (bảng theo dự án) — scope trong #project-view ============ */
+#project-view .topbar-brand { gap: 10px; }
+#project-view .rfi-main { max-width: 1300px; margin: 0 auto; padding: 1.5rem; width: 100%; }
+#project-view .table-title {
+  background: #fff; color: #000; text-align: center; font-weight: bold; font-size: 1.1rem;
+  padding: 12px; border: 1px solid var(--border); border-bottom: none; border-radius: 8px 8px 0 0; text-transform: uppercase;
+}
+#project-view .excel-table-wrapper {
+  overflow: auto; max-height: calc(100vh - 220px); border: 1px solid var(--border);
+  border-radius: 0 0 8px 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); background: #fff;
+}
+#project-view table { width: 100%; border-collapse: separate; border-spacing: 0; background: #fff; color: #000; }
+#project-view th, #project-view td { border: 1px solid #d1d5db; padding: 8px 12px; text-align: left; vertical-align: top; }
+#project-view thead th { position: sticky; z-index: 10; background-clip: padding-box; border: 1px solid #9ca3af; background: #f3f4f6; color: #000; font-weight: bold; }
+#project-view thead tr:nth-child(1) th { top: 0; height: 40px; }
+#project-view thead tr:nth-child(2) th { top: 40px; }
+#project-view .bg-blue { background: #0070C0 !important; color: #fff; }
+#project-view .bg-green { background: #548235 !important; color: #fff; }
+#project-view .header-hr { border: none; border-top: 1px dotted #000; margin: 5px 0; }
+#project-view .border-dotted-top td { border-top: 2px dotted #888 !important; }
+#project-view .bg-orange-light { background: #fce4d6 !important; color: #000; }
+#project-view tbody tr { background: #fff; }
+#project-view tbody tr:nth-child(4n-1), #project-view tbody tr:nth-child(4n) { background: #f9fafb; }
+#project-view tbody tr:hover { background: #f1f5f9; }
+
+#project-view .editable-cell { cursor: text; min-height: 24px; position: relative; transition: background 0.15s; }
+#project-view .editable-cell:hover, #project-view .image-cell:hover { background: rgba(0,0,0,0.03); }
+#project-view .editable-cell[contenteditable="true"]:focus, #project-view .image-cell:focus { outline: 2px solid var(--primary); background: #fffbeb; color: #000; }
+#project-view .locked-cell, #project-view .locked-image-cell { cursor: not-allowed; min-height: 24px; color: #000; }
+#project-view .editable-cell[title]:hover::after {
+  content: attr(title); position: absolute; background: rgba(0,0,0,0.85); color: #fff; padding: 4px 8px;
+  border-radius: 4px; font-size: 12px; bottom: 100%; left: 50%; transform: translateX(-50%); white-space: nowrap; z-index: 20; pointer-events: none;
+}
+#project-view select.status-select { background: transparent; color: #000; border: 1px solid #d1d5db; padding: 4px; border-radius: 4px; font-family: inherit; font-weight: bold; cursor: pointer; width: 100%; }
+#project-view select.status-select:disabled { opacity: 0.6; cursor: not-allowed; }
+#project-view select.status-select.status-pending { background: #b91c1c !important; color: #fff !important; border-color: #991b1b !important; }
+#project-view select.status-select.status-done { background: #fff !important; color: #166534 !important; border: 2px solid #166534 !important; }
+#project-view select.status-select option { background: #fff; color: #000; }
+
+#project-view .image-cell { cursor: pointer; min-height: 40px; }
+#project-view .image-cell:empty::before { content: "Dán ảnh vào đây"; color: rgba(0,0,0,0.4); font-size: 0.8rem; font-style: italic; display: flex; justify-content: center; align-items: center; height: 100%; }
+#project-view .thumbnail-container { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+#project-view .thumbnail-wrapper { width: 60px; height: 60px; border-radius: 4px; overflow: hidden; border: 1px solid #d1d5db; cursor: zoom-in; position: relative; transition: transform 0.2s, border-color 0.2s; }
+#project-view .thumbnail-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+#project-view .thumbnail-wrapper:hover { transform: scale(1.1); border-color: var(--primary); }
+#project-view .delete-img-btn { position: absolute; top: 2px; right: 2px; background: rgba(239,68,68,0.9); color: #fff; border: none; border-radius: 50%; width: 16px; height: 16px; font-size: 10px; line-height: 16px; text-align: center; cursor: pointer; display: none; font-weight: bold; }
+#project-view .thumbnail-wrapper:hover .delete-img-btn { display: block; }
+#project-view .delete-img-btn:hover { background: red; transform: scale(1.2); }
+
+#project-view .trimble-viewer-container { margin-top: 2rem; width: 100%; height: 600px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); background: #fff; border: 1px solid var(--border); display: flex; flex-direction: column; }
+#project-view .viewer-header { background: #0f172a; color: #fff; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
+#project-view .viewer-header .btn-ghost { color: #fff; border-color: rgba(255,255,255,0.25); }
+#project-view .trimble-viewer-container iframe { width: 100%; flex-grow: 1; border: none; }
+#project-view .row-del { color: #64748b; }
+
+/* In PDF: chỉ hiện bảng */
+@media print {
+  @page { size: A4 landscape; margin: 10mm; }
+  body { background: #fff !important; }
+  #config-banner, #auth-view, #verify-view, #home-view { display: none !important; }
+  #project-view .topbar, #project-view .trimble-viewer-container, #toast { display: none !important; }
+  #project-view .rfi-main { max-width: 100%; padding: 0; }
+  #project-view .excel-table-wrapper { max-height: none; overflow: visible !important; border: none; box-shadow: none; }
+  #project-view thead th { position: static !important; }
+  #project-view tr { page-break-inside: avoid; }
+  #project-view .delete-img-btn, #project-view .row-del { display: none !important; }
+  #project-view select.status-select { appearance: none; -webkit-appearance: none; border: none !important; background: transparent !important; text-align: center; }
+}

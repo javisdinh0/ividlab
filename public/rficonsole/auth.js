@@ -37,7 +37,7 @@ function authErr(e) {
   return map[c] || (e && e.message) || 'Có lỗi xảy ra.';
 }
 
-const views = ['config-banner', 'auth-view', 'verify-view', 'home-view'];
+const views = ['config-banner', 'auth-view', 'verify-view', 'home-view', 'project-view'];
 function showView(id) {
   views.forEach(v => { const el = $(v); if (el) show(el, false); });
   if (id) show($(id), true);
@@ -54,8 +54,32 @@ if (!CONFIGURED) {
   onAuthStateChanged(auth, (user) => {
     if (!user) { showView('auth-view'); return; }
     if (!user.emailVerified) { renderVerify(user); return; }
-    renderHome(user);
+    route(user);
   });
+}
+
+// Định tuyến sau khi đã đăng nhập + xác minh.
+async function route(user) {
+  const pid = new URLSearchParams(location.search).get('project');
+  if (!pid) { renderHome(user); return; }
+  // Kiểm tra membership để lấy vai trò rồi mở app RFI.
+  try {
+    const m = await getDoc(doc(db, 'projects', pid, 'members', emailKey(user.email)));
+    if (!m.exists()) {
+      history.replaceState(null, '', './');
+      toast('Bạn không có quyền vào dự án này.', 'err');
+      renderHome(user);
+      return;
+    }
+    showView('project-view');
+    const mod = await import('./rfi.js');
+    await mod.initProject(user, pid, m.data().role);
+  } catch (e) {
+    console.error(e);
+    toast('Không mở được dự án: ' + (e.message || e.code), 'err');
+    history.replaceState(null, '', './');
+    renderHome(user);
+  }
 }
 
 /* =========================================================================
@@ -190,11 +214,7 @@ function renderProjectCards(items) {
         ${p.status && p.status !== 'open' ? '<span class="pc-status">Đã đóng</span>' : ''}
       </div>
     </a>`).join('');
-  // Giai đoạn 3 sẽ mở bảng RFI; hiện tại báo tạm.
-  grid.querySelectorAll('.project-card').forEach(a => a.addEventListener('click', (e) => {
-    e.preventDefault();
-    toast('Giao diện bảng RFI sẽ có ở Giai đoạn 3.', '');
-  }));
+  // Thẻ dự án điều hướng tới ./?project=<id> (route() sẽ mở bảng RFI).
 }
 
 function escapeHtml(s) {
