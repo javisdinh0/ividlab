@@ -36,7 +36,7 @@ Firestore giới hạn 1MB/doc → mỗi RFI là 1 document, ảnh nằm trong S
 ## Giai đoạn
 - [x] **0. Docs + Rules** — PLAN.md, DEPLOY.md, firestore.rules, storage.rules, firebase.js
 - [x] **1. Auth shell** — đăng ký/đăng nhập/xác minh/reset + màn hình "chưa có quyền"
-- [ ] **2. Tab Admin** — tạo dự án, cấu hình Trimble, cấp quyền theo email/vai trò
+- [x] **2. Tab Admin** — tạo dự án, cấu hình Trimble, cấp quyền theo email/vai trò
 - [ ] **3. App RFI** — chọn dự án + bảng Q&A (port UI từ RFI Web), vai trò từ Firestore
 - [ ] **4. Ảnh + di trú** — ảnh → Storage; nhập dữ liệu NAVY Hanoi hiện có
 - [ ] **5. Hoàn thiện** — Rules khóa 24h + field-level, đồng bộ giao diện portal, link từ trang chủ
