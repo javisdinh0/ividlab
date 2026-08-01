@@ -29,9 +29,12 @@ projects/{projectId}     { name, slug, trimbleUrl, description, status, createdB
                            yeuCauNote, traLoiNote, trangThai, ngayGhiNhan,
                            yeuCauImages:[{path,url}], traLoiImages:[{path,url}],
                            editors:{field:{email,ts}}, firstEditTime, order }
-Storage: projects/{projectId}/rfis/{rfiId}/{imageId}.jpg
 ```
-Firestore giới hạn 1MB/doc → mỗi RFI là 1 document, ảnh nằm trong Storage (không base64 trong DB).
+**Ảnh:** vì project Firebase mới bị **khóa Cloud Storage trên gói Spark** (đòi Blaze), ảnh
+được **nén (canvas → JPEG ~1400px) và lưu base64 NGAY trong document RFI** (mảng
+`yeuCauImages`/`traLoiImages` = `[{dataUrl}]`). Chặn tổng ~900KB/dòng để không vượt giới
+hạn 1MB/doc của Firestore. `storage.rules` giữ lại nhưng KHÔNG dùng cho tới khi nâng Blaze
+(Giai đoạn 6). Đổi quyết định: 2026-08-01.
 
 ## Giai đoạn
 - [x] **0. Docs + Rules** — PLAN.md, DEPLOY.md, firestore.rules, storage.rules, firebase.js
