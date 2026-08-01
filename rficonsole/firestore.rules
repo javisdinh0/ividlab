@@ -1,0 +1,93 @@
+rules_version = '2';
+
+// RFI Console — phân quyền phía server (thay cho permissions.js client cũ).
+// Model: config/owners; projects/{pid}; projects/{pid}/members/{emailKey}; projects/{pid}/rfis/{rfiId}
+// Vai trò: 1 = toàn quyền, 2 = chỉ trả lời (+ khóa 24h), 3 = chỉ xem.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---- Helpers ----
+    function signedIn() {
+      return request.auth != null && request.auth.token.email_verified == true;
+    }
+    function email() {
+      return request.auth.token.email.lower();
+    }
+    function owners() {
+      return get(/databases/$(database)/documents/config/owners).data.emails;
+    }
+    function isOwner() {
+      return signedIn() && email() in owners();
+    }
+    function memberRef(pid) {
+      return /databases/$(database)/documents/projects/$(pid)/members/$(email());
+    }
+    function isMember(pid) {
+      return signedIn() && exists(memberRef(pid));
+    }
+    function roleOf(pid) {
+      return get(memberRef(pid)).data.role;
+    }
+
+    // Các cột L2 (chỉ trả lời) được phép đổi; kèm metadata người sửa.
+    function answerFields() {
+      return ['traLoiNoiDung', 'traLoiImages', 'ghiChu', 'trangThai', 'traLoiNote', 'editors', 'firstEditTime'];
+    }
+    function changedKeys() {
+      return request.resource.data.diff(resource.data).affectedKeys();
+    }
+    // L2 chỉ đổi cột trả lời, và trong vòng 24h kể từ lần sửa đầu.
+    // firstEditTime bị cưỡng chế server-side: PHẢI == request.time ở lần đầu (dùng
+    // serverTimestamp() phía client), và BẤT BIẾN ở các lần sau -> L2 không thể tự
+    // để null hoặc đặt tương lai để lách khóa.
+    function l2CanEdit() {
+      return changedKeys().hasOnly(answerFields())
+        && (
+          (resource.data.get('firstEditTime', null) == null
+             && request.resource.data.firstEditTime == request.time)
+          || (resource.data.get('firstEditTime', null) != null
+             && request.resource.data.firstEditTime == resource.data.firstEditTime
+             && request.time < resource.data.firstEditTime + duration.value(24, 'h'))
+        );
+    }
+
+    // ---- config (owners) : chỉ owner ghi; mọi người đăng nhập đọc để biết mình có phải owner ----
+    // LƯU Ý: rules không map() được mảng, nên config/owners.emails PHẢI lưu ở dạng
+    // CHỮ THƯỜNG (isOwner so email().lower() với danh sách nguyên trạng). Xem DEPLOY.md.
+    match /config/{doc} {
+      allow read: if signedIn();
+      allow write: if isOwner();
+    }
+
+    // ---- projects ----
+    match /projects/{pid} {
+      allow read:   if isMember(pid) || isOwner();
+      allow create: if isOwner();
+      allow update, delete: if isOwner() || (isMember(pid) && roleOf(pid) == 1);
+
+      // Thành viên: owner hoặc L1 quản lý; member đọc được danh sách của dự án mình.
+      // Validate tận gốc: role ∈ {1,2,3}; email là chuỗi, == id document (emailKey đã
+      // lowercase) và đúng định dạng email (chặn nháy kép/thẻ -> chặn stored XSS tại nguồn).
+      match /members/{emailKey} {
+        allow read: if isMember(pid) || isOwner();
+        allow create, update:
+             if (isOwner() || (isMember(pid) && roleOf(pid) == 1))
+             && request.resource.data.role in [1, 2, 3]
+             && request.resource.data.email is string
+             && request.resource.data.email == emailKey
+             && request.resource.data.email.matches('^[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,}$');
+        allow delete: if isOwner() || (isMember(pid) && roleOf(pid) == 1);
+      }
+
+      // Dữ liệu RFI
+      match /rfis/{rfiId} {
+        allow read:          if isMember(pid) || isOwner();
+        allow create, delete: if isOwner() || (isMember(pid) && roleOf(pid) == 1);
+        allow update:
+             if isOwner()
+             || (isMember(pid) && roleOf(pid) == 1)
+             || (isMember(pid) && roleOf(pid) == 2 && l2CanEdit());
+      }
+    }
+  }
+}
