@@ -1,14 +1,15 @@
 // RFI Console — App bảng RFI theo dự án (Giai đoạn 3)
 // Port từ RFI Web, thay Firebase RTDB + permissions.js bằng Firestore + vai trò membership.
 // Ảnh lưu trên Storage (không base64 trong DB). Vai trò: 1 toàn quyền / 2 chỉ trả lời (+khóa 24h) / 3 chỉ xem.
-import { db, storage } from "./firebase.js";
+import { db } from "./firebase.js";
 import {
   doc, getDoc, collection, onSnapshot,
   addDoc, updateDoc, deleteDoc, serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-import {
-  ref as sRef, uploadBytes, getDownloadURL, deleteObject
-} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
+
+// Ảnh lưu base64 (nén) NGAY trong document RFI — không dùng Firebase Storage (Spark
+// plan bị khóa Storage). Firestore giới hạn 1MB/doc nên nén mạnh + chặn tổng theo dòng.
+const MAX_ROW_IMG_CHARS = 900000;
 
 const ANSWER_FIELDS = new Set(['traLoiNoiDung', 'traLoiImages', 'ghiChu', 'trangThai', 'traLoiNote']);
 const LOCK_MS = 24 * 60 * 60 * 1000;
@@ -22,7 +23,6 @@ function toast(msg, type) {
 function esc(v) { return String(v == null ? '' : v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 function escAttr(v) { return esc(v).replace(/"/g, '&quot;'); }
 function toMillis(ts) { return ts && typeof ts.toMillis === 'function' ? ts.toMillis() : (typeof ts === 'number' ? ts : null); }
-function uid() { try { return crypto.randomUUID(); } catch (e) { return 'img_' + Date.now() + '_' + Math.floor(Math.random() * 1e6); } }
 
 function loadScript(src) {
   return new Promise((resolve, reject) => {
@@ -160,8 +160,9 @@ function imagesHtml(arr, field, row) {
   const editable = canEdit(field, row);
   let html = '<div class="thumbnail-container">';
   arr.forEach((img, idx) => {
-    html += `<div class="thumbnail-wrapper" data-src="${escAttr(img.url)}" title="Bấm để xem cỡ lớn">
-      <img src="${escAttr(img.url)}" alt="RFI" loading="lazy" />
+    const src = img.dataUrl || img.url || '';
+    html += `<div class="thumbnail-wrapper" data-src="${escAttr(src)}" title="Bấm để xem cỡ lớn">
+      <img src="${escAttr(src)}" alt="RFI" loading="lazy" />
       ${editable ? `<button class="delete-img-btn" data-id="${row.id}" data-field="${field}" data-idx="${idx}" title="Xóa ảnh">X</button>` : ''}
     </div>`;
   });
@@ -285,29 +286,55 @@ async function onImagePaste(e) {
       e.preventDefault();
       const blob = it.getAsFile();
       try {
-        toast('Đang tải ảnh lên…');
-        const path = `projects/${PID}/rfis/${rfiId}/${uid()}.jpg`;
-        const r = sRef(storage, path);
-        await uploadBytes(r, blob, { contentType: blob.type || 'image/jpeg' });
-        const url = await getDownloadURL(r);
-        const row = rows.find(x => x.id === rfiId);
-        const cur = (row && row[field]) || [];
-        await applyEdit(rfiId, field, [...cur, { path, url }]);
+        toast('Đang xử lý ảnh…');
+        let dataUrl = await compressImage(blob, 1400, 0.6);
+        if (dataUrl.length > 500000) dataUrl = await compressImage(blob, 1100, 0.5); // còn to -> nén mạnh hơn
+        const row = rows.find(x => x.id === rfiId) || {};
+        if (imageCharsOfRow(row) + dataUrl.length > MAX_ROW_IMG_CHARS) {
+          toast('Dòng này đã quá nhiều ảnh (giới hạn ~1MB/dòng). Xoá bớt rồi thử lại.', 'err');
+          return;
+        }
+        const cur = row[field] || [];
+        await applyEdit(rfiId, field, [...cur, { dataUrl }]);
         toast('Đã thêm ảnh.', 'ok');
-      } catch (err) { console.error(err); toast('Lỗi tải ảnh: ' + (err.message || err.code), 'err'); }
+      } catch (err) { console.error(err); toast('Lỗi xử lý ảnh: ' + (err.message || err.code), 'err'); }
       break;
     }
   }
+}
+
+// Nén + thu nhỏ ảnh về JPEG dataURL bằng canvas (giảm dung lượng để lưu vào Firestore).
+function compressImage(blob, maxDim, quality) {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(blob);
+    const img = new Image();
+    img.onload = () => {
+      let w = img.naturalWidth, h = img.naturalHeight;
+      if (Math.max(w, h) > maxDim) { const s = maxDim / Math.max(w, h); w = Math.round(w * s); h = Math.round(h * s); }
+      const c = document.createElement('canvas');
+      c.width = w; c.height = h;
+      c.getContext('2d').drawImage(img, 0, 0, w, h);
+      URL.revokeObjectURL(url);
+      try { resolve(c.toDataURL('image/jpeg', quality)); } catch (err) { reject(err); }
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('Không đọc được ảnh')); };
+    img.src = url;
+  });
+}
+
+// Tổng độ dài base64 ảnh của 1 dòng (để chặn vượt 1MB/doc).
+function imageCharsOfRow(row) {
+  let n = 0;
+  ['yeuCauImages', 'traLoiImages'].forEach(f => (row[f] || []).forEach(im => { n += (im.dataUrl || im.url || '').length; }));
+  return n;
 }
 
 async function deleteImage(rfiId, field, idx) {
   if (!confirm('Xóa ảnh này?')) return;
   const row = rows.find(r => r.id === rfiId);
   const arr = (row && row[field]) || [];
-  const img = arr[idx];
-  if (!img) return;
+  if (!arr[idx]) return;
   try {
-    if (img.path) { try { await deleteObject(sRef(storage, img.path)); } catch (e) { /* ảnh có thể đã bị xóa */ } }
     await applyEdit(rfiId, field, arr.filter((_, i) => i !== idx));
   } catch (e) { toast('Lỗi xóa ảnh: ' + (e.message || e.code), 'err'); }
 }
@@ -359,10 +386,14 @@ async function exportZip() {
         const arr = row[field] || [];
         for (let i = 0; i < arr.length; i++) {
           try {
-            const resp = await fetch(arr[i].url);
-            const blob = await resp.blob();
-            zip.file(`${stt}_${tag}_${i + 1}.jpg`, blob);
-            count++;
+            const src = arr[i].dataUrl || arr[i].url || '';
+            if (src.startsWith('data:')) {
+              zip.file(`${stt}_${tag}_${i + 1}.jpg`, src.split(',')[1], { base64: true });
+              count++;
+            } else if (src) {
+              const resp = await fetch(src); const blob = await resp.blob();
+              zip.file(`${stt}_${tag}_${i + 1}.jpg`, blob); count++;
+            }
           } catch (e) { console.warn('Bỏ qua ảnh lỗi', e); }
         }
       }
