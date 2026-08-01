@@ -69,7 +69,9 @@ service cloud.firestore {
       // Validate tận gốc: role ∈ {1,2,3}; email là chuỗi, == id document (emailKey đã
       // lowercase) và đúng định dạng email (chặn nháy kép/thẻ -> chặn stored XSS tại nguồn).
       match /members/{emailKey} {
-        allow read: if isMember(pid) || isOwner();
+        // Điều kiện field-based (resource.data.email == email()) ĐẶT ĐẦU để truy vấn
+        // collectionGroup('members') where email==tôi hợp lệ (không cần get/exists).
+        allow read: if signedIn() && (resource.data.email == email() || isMember(pid) || isOwner());
         allow create, update:
              if (isOwner() || (isMember(pid) && roleOf(pid) == 1))
              && request.resource.data.role in [1, 2, 3]
