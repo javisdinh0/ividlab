@@ -10,12 +10,12 @@ import { getStorage } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-
 // │  Config này công khai được — bảo mật do Security Rules đảm bảo.        │
 // └───────────────────────────────────────────────────────────────────────┘
 export const firebaseConfig = {
-  apiKey: "PASTE_API_KEY",
-  authDomain: "PASTE.firebaseapp.com",
-  projectId: "PASTE_PROJECT_ID",
-  storageBucket: "PASTE.appspot.com",
-  messagingSenderId: "PASTE_SENDER_ID",
-  appId: "PASTE_APP_ID",
+  apiKey: "AIzaSyB8-vSVDKhOLuTA6xmYZzwHVrWX58eT3d4",
+  authDomain: "ividlab-rficonsole.firebaseapp.com",
+  projectId: "ividlab-rficonsole",
+  storageBucket: "ividlab-rficonsole.firebasestorage.app",
+  messagingSenderId: "447726977999",
+  appId: "1:447726977999:web:68355281ff424892ea48ba",
 };
 
 // true khi đã dán config thật (chưa dán thì UI báo "chưa cấu hình").
