@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RFI Console — ViDiLab</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📋</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem('rfiTheme'); } catch (e) {}
+      if (!saved) saved = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', saved);
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Banner: chưa cấu hình Firebase -->
+  <div id="config-banner" class="banner" style="display:none;">
+    ⚠️ Chưa cấu hình Firebase. Dán <code>firebaseConfig</code> vào <code>firebase.js</code> (xem <code>DEPLOY.md</code>).
+  </div>
+
+  <!-- ============ AUTH (đăng nhập / đăng ký / quên mật khẩu) ============ -->
+  <section id="auth-view" class="center-view" style="display:none;">
+    <div class="auth-card">
+      <div class="brand-mark">📋</div>
+      <h1>RFI Console</h1>
+      <p class="sub" id="auth-sub">Đăng nhập để quản lý RFI dự án</p>
+
+      <!-- Đăng nhập -->
+      <form id="login-form" class="auth-form">
+        <div class="field"><label>Email</label><input type="email" id="login-email" placeholder="name@example.com" autocomplete="email" required></div>
+        <div class="field"><label>Mật khẩu</label><input type="password" id="login-pwd" placeholder="••••••••" autocomplete="current-password" required></div>
+        <button class="btn btn-primary btn-block" type="submit">Đăng nhập</button>
+        <p class="form-err" id="login-err"></p>
+        <div class="auth-links">
+          <a href="#" id="link-forgot">Quên mật khẩu?</a>
+          <a href="#" id="link-to-signup">Tạo tài khoản mới</a>
+        </div>
+      </form>
+
+      <!-- Đăng ký -->
+      <form id="signup-form" class="auth-form" style="display:none;">
+        <div class="field"><label>Email</label><input type="email" id="signup-email" placeholder="name@example.com" autocomplete="email" required></div>
+        <div class="field"><label>Mật khẩu (≥ 6 ký tự)</label><input type="password" id="signup-pwd" placeholder="••••••••" autocomplete="new-password" required></div>
+        <div class="field"><label>Nhập lại mật khẩu</label><input type="password" id="signup-pwd2" placeholder="••••••••" autocomplete="new-password" required></div>
+        <button class="btn btn-primary btn-block" type="submit">Đăng ký</button>
+        <p class="form-err" id="signup-err"></p>
+        <div class="auth-links"><a href="#" id="link-to-login">← Đã có tài khoản? Đăng nhập</a></div>
+      </form>
+
+      <!-- Quên mật khẩu -->
+      <form id="forgot-form" class="auth-form" style="display:none;">
+        <div class="field"><label>Email khôi phục</label><input type="email" id="forgot-email" placeholder="name@example.com" autocomplete="email" required></div>
+        <button class="btn btn-primary btn-block" type="submit">Gửi link đặt lại mật khẩu</button>
+        <p class="form-err" id="forgot-err"></p>
+        <div class="auth-links"><a href="#" id="link-forgot-back">← Quay lại đăng nhập</a></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ CHƯA XÁC MINH EMAIL ============ -->
+  <section id="verify-view" class="center-view" style="display:none;">
+    <div class="auth-card">
+      <div class="brand-mark">✉️</div>
+      <h1>Xác minh email</h1>
+      <p class="sub">Chúng tôi đã gửi link xác minh tới<br><strong id="verify-email"></strong>.</p>
+      <p class="muted">Mở email, bấm link xác minh, rồi quay lại đây và bấm "Tôi đã xác minh".</p>
+      <button class="btn btn-primary btn-block" id="btn-verified">Tôi đã xác minh</button>
+      <button class="btn btn-ghost btn-block" id="btn-resend">Gửi lại email xác minh</button>
+      <button class="btn btn-ghost btn-block" id="btn-verify-logout">Đăng xuất</button>
+      <p class="form-err" id="verify-msg"></p>
+    </div>
+  </section>
+
+  <!-- ============ ĐÃ ĐĂNG NHẬP — danh sách dự án ============ -->
+  <section id="home-view" style="display:none;">
+    <header class="topbar">
+      <div class="topbar-brand"><span class="brand-mark sm">📋</span> RFI Console</div>
+      <div class="topbar-right">
+        <a href="./admin/" class="btn btn-ghost btn-sm" id="btn-admin" style="display:none;">⚙ Quản trị</a>
+        <button class="btn btn-ghost btn-sm btn-theme" id="btn-theme" title="Sáng/Tối">🌓</button>
+        <span class="user-chip" id="user-chip"></span>
+        <button class="btn btn-ghost btn-sm" id="btn-logout">Đăng xuất</button>
+      </div>
+    </header>
+
+    <main class="home-main">
+      <h2>Dự án của bạn</h2>
+      <div id="projects-loading" class="muted">Đang tải…</div>
+      <div id="projects-empty" class="empty-state" style="display:none;">
+        <p>Bạn chưa được cấp quyền vào dự án nào.</p>
+        <p class="muted">Liên hệ quản trị để được thêm vào dự án bằng email của bạn.</p>
+      </div>
+      <div id="projects-grid" class="projects-grid"></div>
+    </main>
+  </section>
+
+  <div id="toast"></div>
+
+  <script type="module" src="auth.js"></script>
+</body>
+</html>
