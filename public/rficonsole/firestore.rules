@@ -36,16 +36,24 @@ service cloud.firestore {
     function changedKeys() {
       return request.resource.data.diff(resource.data).affectedKeys();
     }
-    // L2 chỉ đổi cột trả lời, và trong vòng 24h kể từ lần sửa đầu (firstEditTime là Timestamp).
+    // L2 chỉ đổi cột trả lời, và trong vòng 24h kể từ lần sửa đầu.
+    // firstEditTime bị cưỡng chế server-side: PHẢI == request.time ở lần đầu (dùng
+    // serverTimestamp() phía client), và BẤT BIẾN ở các lần sau -> L2 không thể tự
+    // để null hoặc đặt tương lai để lách khóa.
     function l2CanEdit() {
       return changedKeys().hasOnly(answerFields())
         && (
-          resource.data.get('firstEditTime', null) == null
-          || request.time < resource.data.firstEditTime + duration.value(24, 'h')
+          (resource.data.get('firstEditTime', null) == null
+             && request.resource.data.firstEditTime == request.time)
+          || (resource.data.get('firstEditTime', null) != null
+             && request.resource.data.firstEditTime == resource.data.firstEditTime
+             && request.time < resource.data.firstEditTime + duration.value(24, 'h'))
         );
     }
 
     // ---- config (owners) : chỉ owner ghi; mọi người đăng nhập đọc để biết mình có phải owner ----
+    // LƯU Ý: rules không map() được mảng, nên config/owners.emails PHẢI lưu ở dạng
+    // CHỮ THƯỜNG (isOwner so email().lower() với danh sách nguyên trạng). Xem DEPLOY.md.
     match /config/{doc} {
       allow read: if signedIn();
       allow write: if isOwner();
@@ -58,9 +66,17 @@ service cloud.firestore {
       allow update, delete: if isOwner() || (isMember(pid) && roleOf(pid) == 1);
 
       // Thành viên: owner hoặc L1 quản lý; member đọc được danh sách của dự án mình.
+      // Validate tận gốc: role ∈ {1,2,3}; email là chuỗi, == id document (emailKey đã
+      // lowercase) và đúng định dạng email (chặn nháy kép/thẻ -> chặn stored XSS tại nguồn).
       match /members/{emailKey} {
-        allow read:  if isMember(pid) || isOwner();
-        allow write: if isOwner() || (isMember(pid) && roleOf(pid) == 1);
+        allow read: if isMember(pid) || isOwner();
+        allow create, update:
+             if (isOwner() || (isMember(pid) && roleOf(pid) == 1))
+             && request.resource.data.role in [1, 2, 3]
+             && request.resource.data.email is string
+             && request.resource.data.email == emailKey
+             && request.resource.data.email.matches('^[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,}$');
+        allow delete: if isOwner() || (isMember(pid) && roleOf(pid) == 1);
       }
 
       // Dữ liệu RFI

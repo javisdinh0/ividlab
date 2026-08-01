@@ -65,19 +65,21 @@ async function route(user) {
   // Kiểm tra membership để lấy vai trò rồi mở app RFI.
   try {
     const m = await getDoc(doc(db, 'projects', pid, 'members', emailKey(user.email)));
-    if (!m.exists()) {
-      history.replaceState(null, '', './');
+    let role = m.exists() ? sanitizeRole(m.data().role) : null;
+    if (role == null && await checkOwner(user.email)) role = 1; // owner không phải member vẫn mở được
+    if (role == null) {
+      history.replaceState(null, '', './');       // dứt khoát không có quyền -> bỏ deep-link
       toast('Bạn không có quyền vào dự án này.', 'err');
       renderHome(user);
       return;
     }
     showView('project-view');
     const mod = await import('./rfi.js');
-    await mod.initProject(user, pid, m.data().role);
+    await mod.initProject(user, pid, role);
   } catch (e) {
     console.error(e);
+    // Lỗi tạm thời (mạng/token/index) -> GIỮ ?project để tải lại là thử lại được.
     toast('Không mở được dự án: ' + (e.message || e.code), 'err');
-    history.replaceState(null, '', './');
     renderHome(user);
   }
 }
@@ -145,7 +147,10 @@ function renderVerify(user) {
     try {
       await reload(user);
       if (auth.currentUser && auth.currentUser.emailVerified) {
-        renderHome(auth.currentUser);
+        // reload() KHÔNG cấp token mới -> token cũ vẫn email_verified:false, mọi read
+        // Firestore sẽ bị từ chối. Ép làm mới token trước khi đọc.
+        await auth.currentUser.getIdToken(true);
+        route(auth.currentUser);                 // route() để tôn trọng ?project deep-link
       } else {
         $('verify-msg').textContent = 'Chưa thấy xác minh. Hãy bấm link trong email rồi thử lại.';
       }
@@ -168,12 +173,7 @@ async function renderHome(user) {
   wireTheme();
 
   // Owner? -> hiện nút Quản trị
-  let isOwner = false;
-  try {
-    const snap = await getDoc(doc(db, 'config', 'owners'));
-    const emails = (snap.exists() && snap.data().emails) || [];
-    isOwner = emails.map(x => (x || '').toLowerCase()).includes(emailKey(user.email));
-  } catch (e) { /* config/owners chưa seed hoặc rules — bỏ qua */ }
+  const isOwner = await checkOwner(user.email);
   show($('btn-admin'), isOwner);
 
   // Danh sách dự án mình là thành viên (collectionGroup trên "members")
@@ -205,20 +205,34 @@ async function renderHome(user) {
 const ROLE_LABEL = { 1: 'Toàn quyền', 2: 'Trả lời', 3: 'Chỉ xem' };
 function renderProjectCards(items) {
   const grid = $('projects-grid');
-  grid.innerHTML = items.map(p => `
-    <a class="project-card" href="./?project=${encodeURIComponent(p.id)}" data-id="${p.id}">
+  grid.innerHTML = items.map(p => {
+    const role = sanitizeRole(p.role);              // 1|2|3 -> chống XSS qua thuộc tính class
+    return `
+    <a class="project-card" href="./?project=${encodeURIComponent(p.id)}" data-id="${escAttr(p.id)}">
       <div class="pc-name">${escapeHtml(p.name || p.id)}</div>
       <div class="pc-desc">${escapeHtml(p.description || '')}</div>
       <div class="pc-foot">
-        <span class="pc-role role-${p.role}">${ROLE_LABEL[p.role] || 'Thành viên'}</span>
+        <span class="pc-role role-${role}">${ROLE_LABEL[role] || 'Thành viên'}</span>
         ${p.status && p.status !== 'open' ? '<span class="pc-status">Đã đóng</span>' : ''}
       </div>
-    </a>`).join('');
+    </a>`;
+  }).join('');
   // Thẻ dự án điều hướng tới ./?project=<id> (route() sẽ mở bảng RFI).
 }
 
 function escapeHtml(s) {
   return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+function escAttr(s) { return escapeHtml(s).replace(/"/g, '&quot;'); }
+// Ép vai trò về số nguyên trong danh sách trắng (chống chèn chuỗi độc vào class/nhãn).
+function sanitizeRole(r) { return ({ 1: 1, 2: 2, 3: 3 })[r] || null; }
+// Đọc config/owners (danh sách lưu lowercase) để biết user có phải owner.
+async function checkOwner(email) {
+  try {
+    const snap = await getDoc(doc(db, 'config', 'owners'));
+    const emails = (snap.exists() && snap.data().emails) || [];
+    return emails.map(x => (x || '').toLowerCase()).includes(emailKey(email));
+  } catch (e) { return false; }
 }
 
 /* =========================================================================

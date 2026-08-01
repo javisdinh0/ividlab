@@ -3,7 +3,7 @@
 // Ảnh lưu trên Storage (không base64 trong DB). Vai trò: 1 toàn quyền / 2 chỉ trả lời (+khóa 24h) / 3 chỉ xem.
 import { db, storage } from "./firebase.js";
 import {
-  doc, getDoc, collection, query, orderBy, onSnapshot,
+  doc, getDoc, collection, onSnapshot,
   addDoc, updateDoc, deleteDoc, serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 import {
@@ -41,7 +41,7 @@ let pendingRender = false;
 let unsub = null;
 
 export async function initProject(user, projectId, role) {
-  PID = projectId; ROLE = role; ME = user.email;
+  PID = projectId; ROLE = ({ 1: 1, 2: 2, 3: 3 })[role] || 3; ME = user.email;
   if (unsub) { unsub(); unsub = null; }
 
   const view = $('project-view');
@@ -59,10 +59,13 @@ export async function initProject(user, projectId, role) {
   renderTrimble();
   $('rfi-add-row').style.display = ROLE === 1 ? '' : 'none';
 
-  // Lắng nghe dữ liệu RFI realtime
-  const q = query(collection(db, 'projects', PID, 'rfis'), orderBy('order'));
-  unsub = onSnapshot(q, (snap) => {
-    rows = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  // Lắng nghe dữ liệu RFI realtime.
+  // KHÔNG dùng orderBy('order') vì Firestore sẽ LOẠI mọi doc thiếu field 'order'
+  // (dữ liệu di trú/nhập tay có thể thiếu) -> sắp xếp phía client, doc thiếu order xuống cuối.
+  unsub = onSnapshot(collection(db, 'projects', PID, 'rfis'), (snap) => {
+    rows = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+      .sort((a, b) => ((a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER))
+        || String(a.id).localeCompare(String(b.id)));
     if (editingActive) { pendingRender = true; return; }
     renderRows();
   }, (err) => {
@@ -123,7 +126,7 @@ function renderShell() {
 function renderTrimble() {
   const box = $('rfi-trimble');
   const url = (PROJECT.trimbleUrl || '').trim();
-  if (!url) { box.style.display = 'none'; return; }
+  if (!url || !/^https?:\/\//i.test(url)) { box.style.display = 'none'; return; } // chỉ http/https
   box.style.display = '';
   $('rfi-trimble-iframe').src = url;
   $('rfi-trimble-link').href = url;
@@ -214,10 +217,10 @@ function attachRowListeners() {
     cell.addEventListener('focus', (e) => { editingActive = true; e.target.setAttribute('data-old', e.target.innerHTML); });
     cell.addEventListener('blur', onCellBlur);
   });
+  // Ô ảnh KHÔNG bật cờ editingActive (không có caret cần bảo vệ); nhờ vậy snapshot
+  // sau khi dán/xoá ảnh sẽ re-render ngay để thumbnail hiện lập tức.
   body.querySelectorAll('.image-cell').forEach(cell => {
     cell.addEventListener('paste', onImagePaste);
-    cell.addEventListener('focus', () => { editingActive = true; });
-    cell.addEventListener('blur', afterEditFlush);
   });
   body.querySelectorAll('.status-select:not([disabled])').forEach(sel => {
     sel.addEventListener('change', () => applyEdit(sel.dataset.id, 'trangThai', sel.value));
@@ -229,11 +232,6 @@ function attachRowListeners() {
     b.addEventListener('click', (e) => { e.stopPropagation(); deleteImage(b.dataset.id, b.dataset.field, parseInt(b.dataset.idx)); });
   });
   body.querySelectorAll('.row-del').forEach(b => b.addEventListener('click', () => deleteRow(b.dataset.id)));
-}
-
-function afterEditFlush() {
-  editingActive = false;
-  if (pendingRender) { pendingRender = false; renderRows(); }
 }
 
 function onCellBlur(e) {

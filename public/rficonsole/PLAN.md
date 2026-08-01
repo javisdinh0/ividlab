@@ -42,6 +42,22 @@ Firestore giới hạn 1MB/doc → mỗi RFI là 1 document, ảnh nằm trong S
 - [ ] **5. Hoàn thiện** — Rules khóa 24h + field-level, đồng bộ giao diện portal, link từ trang chủ
 - [ ] **6. (Tùy chọn)** — Cloud Function (nếu sau này cần DB vật lý riêng / mời qua email)
 
+## Review đối kháng (workflow, 5 chiều) — đã xử lý
+
+**Đã vá:**
+- L2 khóa 24h giờ **cưỡng chế server-side** (rules: `firstEditTime` == request.time lần đầu, bất biến sau) — không lách bằng SDK được.
+- **Stored XSS**: escape nháy kép trong mọi thuộc tính (`escAttr` ở admin.js/auth.js); sanitize `role` về số; validate `role∈{1,2,3}` + regex email tại rules (chặn payload tại nguồn).
+- **Token cũ sau xác minh**: `getIdToken(true)` trước khi đọc Firestore; xác minh xong `route()` (giữ deep-link `?project`).
+- **`orderBy('order')`** bỏ đi → sort client-side (không ẩn doc thiếu `order`).
+- Owner không phải member vẫn mở được board; lỗi tạm thời không xóa `?project`; thumbnail ảnh hiện ngay sau dán; reset `_touched`; URL Trimble chỉ nhận http(s).
+
+**Rủi ro chấp nhận (đưa vào Giai đoạn 6):**
+- **Storage coarse**: Rules Storage không đọc được Firestore membership → mọi user đã xác minh có thể đọc/ghi/xóa ảnh nếu biết path. Firestore vẫn giấu URL (chỉ member đọc được doc). Khắc phục triệt để cần custom claims / Cloud Function.
+- **config/owners đọc được bởi mọi user đã đăng nhập** (để tự nhận biết owner) → lộ danh sách email admin. Thay bằng custom claim nếu cần.
+- Quản lý thành viên là **owner HOẶC L1** (đúng thiết kế "toàn quyền").
+
+**Lưu ý Giai đoạn 4 (di trú):** mọi doc RFI nhập vào PHẢI có field `order` (và `editors`), nếu không sẽ xuống cuối bảng.
+
 ## Việc cần chủ dự án làm (xem DEPLOY.md)
 1. Tạo Firebase project mới → bật Email/Password auth → tạo Firestore + Storage.
 2. Thêm `ividlab.com` vào Authorized domains.
