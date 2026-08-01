@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RFI Console — Quản trị</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <script>
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem('rfiTheme'); } catch (e) {}
+      if (!saved) saved = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', saved);
+    })();
+  </script>
+</head>
+<body>
+
+  <div id="config-banner" class="banner" style="display:none;">
+    ⚠️ Chưa cấu hình Firebase. Dán <code>firebaseConfig</code> vào <code>firebase.js</code> (xem <code>DEPLOY.md</code>).
+  </div>
+
+  <!-- Đang tải -->
+  <section id="loading-view" class="center-view"><div class="muted">Đang tải…</div></section>
+
+  <!-- Không có quyền -->
+  <section id="denied-view" class="center-view" style="display:none;">
+    <div class="auth-card">
+      <div class="brand-mark">🔒</div>
+      <h1>Không có quyền quản trị</h1>
+      <p class="sub" id="denied-msg">Chỉ tài khoản owner mới vào được trang này.</p>
+      <a class="btn btn-primary btn-block" href="../">← Về RFI Console</a>
+    </div>
+  </section>
+
+  <!-- Bảng điều khiển admin -->
+  <section id="admin-view" style="display:none;">
+    <header class="topbar">
+      <div class="topbar-brand"><span class="brand-mark sm">⚙️</span> RFI Console · Quản trị</div>
+      <div class="topbar-right">
+        <a href="../" class="btn btn-ghost btn-sm">← RFI Console</a>
+        <button class="btn btn-ghost btn-sm btn-theme" id="btn-theme" title="Sáng/Tối">🌓</button>
+        <span class="user-chip" id="user-chip"></span>
+        <button class="btn btn-ghost btn-sm" id="btn-logout">Đăng xuất</button>
+      </div>
+    </header>
+
+    <div class="admin-layout">
+      <!-- Cột trái: danh sách + tạo dự án -->
+      <aside class="admin-side">
+        <div class="side-head">
+          <h3>Dự án</h3>
+          <button class="btn btn-primary btn-sm" id="btn-new-project">+ Tạo dự án</button>
+        </div>
+        <div id="project-list" class="project-list"></div>
+      </aside>
+
+      <!-- Cột phải: chi tiết -->
+      <main class="admin-main">
+        <!-- Form tạo dự án -->
+        <div class="card" id="new-project-card" style="display:none;">
+          <h3>Tạo dự án mới</h3>
+          <div class="field"><label>Tên dự án</label><input type="text" id="np-name" placeholder="VD: AMC – NAVY Hanoi"></div>
+          <div class="field"><label>Mã dự án (slug — dùng trong URL)</label><input type="text" id="np-slug" placeholder="navy-hanoi"></div>
+          <div class="field"><label>Link Trimble Connect (viewer 3D) — tùy chọn</label><input type="text" id="np-trimble" placeholder="https://web.connect.trimble.com/projects/..."></div>
+          <div class="field"><label>Mô tả — tùy chọn</label><input type="text" id="np-desc" placeholder="Ghi chú ngắn về dự án"></div>
+          <div class="row-actions">
+            <button class="btn btn-ghost" id="np-cancel">Hủy</button>
+            <button class="btn btn-primary" id="np-create">Tạo dự án</button>
+          </div>
+          <p class="form-err" id="np-err"></p>
+        </div>
+
+        <!-- Chi tiết dự án đang chọn -->
+        <div id="detail" style="display:none;">
+          <div class="card">
+            <h3>Cấu hình dự án</h3>
+            <div class="field"><label>Tên dự án</label><input type="text" id="cfg-name"></div>
+            <div class="field"><label>Mã dự án (slug)</label><input type="text" id="cfg-slug" disabled></div>
+            <div class="field"><label>Link Trimble Connect (viewer 3D)</label><input type="text" id="cfg-trimble" placeholder="https://web.connect.trimble.com/projects/..."></div>
+            <div class="field"><label>Mô tả</label><input type="text" id="cfg-desc"></div>
+            <div class="field"><label>Trạng thái</label>
+              <select id="cfg-status"><option value="open">Đang mở</option><option value="closed">Đã đóng</option></select>
+            </div>
+            <div class="row-actions">
+              <button class="btn btn-danger-outline" id="cfg-delete">Xóa dự án</button>
+              <button class="btn btn-primary" id="cfg-save">Lưu cấu hình</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Cấp quyền thành viên</h3>
+            <p class="muted" style="margin-top:0;">Nhập email + chọn vai trò để cấp quyền vào dự án này.</p>
+            <div class="member-add">
+              <input type="email" id="m-email" placeholder="email@example.com">
+              <select id="m-role">
+                <option value="1">L1 · Toàn quyền</option>
+                <option value="2">L2 · Chỉ trả lời</option>
+                <option value="3">L3 · Chỉ xem</option>
+              </select>
+              <button class="btn btn-primary" id="m-add">Thêm</button>
+            </div>
+            <p class="form-err" id="m-err"></p>
+            <div class="table-wrap">
+              <table class="member-table">
+                <thead><tr><th>Email</th><th>Vai trò</th><th></th></tr></thead>
+                <tbody id="member-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div id="detail-empty" class="empty-state">
+          <p class="muted">Chọn một dự án bên trái, hoặc bấm <strong>+ Tạo dự án</strong>.</p>
+        </div>
+      </main>
+    </div>
+  </section>
+
+  <div id="toast"></div>
+  <script type="module" src="admin.js"></script>
+</body>
+</html>
