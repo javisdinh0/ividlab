@@ -35,10 +35,13 @@ Owner là người được tạo dự án và quản trị toàn portal.
 
 1. Vào `ividlab.com/rficonsole/` → **Đăng ký** bằng email owner (VD `dinhvietdung.amc@gmail.com`) → xác minh email.
 2. Vào **Firestore → Start collection** → Collection ID `config` → Document ID `owners`.
-3. Thêm field `emails` kiểu **array**, phần tử là email owner (chữ thường). VD:
+3. Thêm field `emails` kiểu **array**, phần tử là email owner. VD:
    ```
    emails: ["dinhvietdung.amc@gmail.com"]
    ```
+   > ⚠️ **BẮT BUỘC chữ thường.** Security Rules không chuẩn hóa được mảng, nên mỗi
+   > email phải lưu ở dạng lowercase; nếu để hoa (VD `Admin@Corp.com`) thì UI vẫn hiện
+   > nút quản trị nhưng **mọi thao tác ghi của owner sẽ bị từ chối** (permission-denied).
 4. Từ giờ owner đó có thể vào `/rficonsole/admin/` để tạo dự án & cấp quyền.
 
 ## Kiểm tra nhanh

@@ -21,6 +21,8 @@ function toast(msg, type) {
 function escapeHtml(s) {
   return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
+// Dùng cho giá trị đặt trong thuộc tính "..." — escape thêm nháy kép (chống stored XSS).
+function escAttr(s) { return escapeHtml(s).replace(/"/g, '&quot;'); }
 // Slug: bỏ dấu tiếng Việt, khoảng trắng -> gạch nối, chỉ còn a-z0-9-
 function slugify(s) {
   return (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '')
@@ -84,7 +86,7 @@ async function loadProjects(selectPid) {
       .sort((a, b) => (a.name || a.id).localeCompare(b.name || b.id));
     if (!items.length) { list.innerHTML = '<div class="muted" style="padding:0.6rem;">Chưa có dự án nào.</div>'; return; }
     list.innerHTML = items.map(p => `
-      <button class="proj-item${p.id === currentPid ? ' active' : ''}" data-id="${p.id}">
+      <button class="proj-item${p.id === currentPid ? ' active' : ''}" data-id="${escAttr(p.id)}">
         <span class="pi-name">${escapeHtml(p.name || p.id)}</span>
         <span class="pi-slug">${escapeHtml(p.id)}</span>
       </button>`).join('');
@@ -101,6 +103,7 @@ function wireNewProject() {
     show($('detail'), false); show($('detail-empty'), false);
     show($('new-project-card'), true);
     ['np-name', 'np-slug', 'np-trimble', 'np-desc'].forEach(id => $(id).value = '');
+    $('np-slug')._touched = false;   // cho auto-fill slug hoạt động lại ở lần tạo sau
     $('np-err').textContent = '';
     $('np-name').focus();
   };
@@ -203,13 +206,13 @@ async function loadMembers(pid) {
       <tr>
         <td>${escapeHtml(m.email)}${m.email === me.email ? ' <span class="you-tag">(bạn)</span>' : ''}</td>
         <td>
-          <select class="m-role-sel" data-email="${escapeHtml(m.email)}">
+          <select class="m-role-sel" data-email="${escAttr(m.email)}">
             <option value="1"${m.role === 1 ? ' selected' : ''}>L1 · Toàn quyền</option>
             <option value="2"${m.role === 2 ? ' selected' : ''}>L2 · Chỉ trả lời</option>
             <option value="3"${m.role === 3 ? ' selected' : ''}>L3 · Chỉ xem</option>
           </select>
         </td>
-        <td><button class="row-del" data-email="${escapeHtml(m.email)}" title="Gỡ khỏi dự án">✕</button></td>
+        <td><button class="row-del" data-email="${escAttr(m.email)}" title="Gỡ khỏi dự án">✕</button></td>
       </tr>`).join('');
     body.querySelectorAll('.m-role-sel').forEach(s => s.onchange = () => changeRole(s.dataset.email, parseInt(s.value)));
     body.querySelectorAll('.row-del').forEach(b => b.onclick = () => removeMember(b.dataset.email));
