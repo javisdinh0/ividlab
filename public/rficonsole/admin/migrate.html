@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RFI Console — Di trú dữ liệu</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📦</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <script>
+    (function () {
+      var saved = null; try { saved = localStorage.getItem('rfiTheme'); } catch (e) {}
+      if (!saved) saved = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', saved);
+    })();
+  </script>
+  <style>
+    #log { margin-top: 1rem; max-height: 340px; overflow-y: auto; background: var(--subtle); border: 1px solid var(--border); border-radius: 8px; padding: 0.8rem; font-family: ui-monospace, monospace; font-size: 0.82rem; }
+    #log div { padding: 1px 0; white-space: pre-wrap; }
+    #log .ok { color: var(--success); }
+    #log .err { color: var(--danger); }
+  </style>
+</head>
+<body>
+
+  <div id="config-banner" class="banner" style="display:none;">⚠️ Chưa cấu hình Firebase (xem DEPLOY.md).</div>
+  <section id="loading-view" class="center-view"><div class="muted">Đang tải…</div></section>
+
+  <section id="denied-view" class="center-view" style="display:none;">
+    <div class="auth-card">
+      <div class="brand-mark">🔒</div>
+      <h1>Chỉ owner</h1>
+      <p class="sub">Công cụ di trú chỉ dành cho tài khoản owner.</p>
+      <a class="btn btn-primary btn-block" href="../">← Về RFI Console</a>
+    </div>
+  </section>
+
+  <section id="tool-view" style="display:none;">
+    <header class="topbar">
+      <div class="topbar-brand"><span class="brand-mark sm">📦</span> Di trú dữ liệu RFI</div>
+      <div class="topbar-right"><a href="./" class="btn btn-ghost btn-sm">← Quản trị</a></div>
+    </header>
+    <main class="rfi-main" style="max-width:760px;">
+      <div class="card">
+        <h3>Nhập từ Firebase RTDB cũ → dự án mới</h3>
+        <p class="muted" style="margin-top:0;">Đọc dữ liệu RFI cũ (RTDB công khai), <strong>nén ảnh</strong> rồi ghi vào một dự án trên Console này. Chạy lại an toàn (dòng cùng ID bị ghi đè, không nhân bản).</p>
+        <div class="field"><label>URL Realtime Database cũ</label><input type="text" id="f-rtdb" value="https://navyhanoi-default-rtdb.asia-southeast1.firebasedatabase.app"></div>
+        <div class="field"><label>Đường dẫn dữ liệu (path)</label><input type="text" id="f-path" value="rfi_data_v4"></div>
+        <div class="field-row">
+          <div class="field"><label>Mã dự án đích (slug)</label><input type="text" id="f-slug" value="navy-hanoi"></div>
+          <div class="field"><label>Tên dự án</label><input type="text" id="f-name" value="AMC – NAVY Hanoi"></div>
+        </div>
+        <div class="field"><label>Link Trimble Connect (tùy chọn)</label><input type="text" id="f-trimble" value="https://web.connect.trimble.com/projects/25d59rtYuF0/viewer/3d/?modelId=K5idiOCHUIU"></div>
+        <div class="row-actions">
+          <button class="btn btn-primary" id="btn-run">Bắt đầu di trú</button>
+        </div>
+        <div id="log"></div>
+      </div>
+    </main>
+  </section>
+
+  <div id="toast"></div>
+  <script type="module" src="migrate.js"></script>
+</body>
+</html>

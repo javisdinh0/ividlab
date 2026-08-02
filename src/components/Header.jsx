@@ -111,6 +111,22 @@ export default function Header({ activeTab, setActiveTab, lang, setLang, theme, 
           >
             {t.nav.about}
           </button>
+
+          {/* Link tới app RFI Console (trang riêng, ngoài SPA) */}
+          <a
+            href="/rficonsole/"
+            title="Cổng quản lý RFI dự án"
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.85rem',
+              fontWeight: 600,
+              color: 'var(--accent-blue)',
+              textDecoration: 'none',
+              transition: 'opacity 0.2s ease'
+            }}
+          >
+            RFI Console ↗
+          </a>
         </nav>
 
         {/* Toggles (Theme & Language) */}
