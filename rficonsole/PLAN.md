@@ -1,7 +1,7 @@
 # RFI Console — Kế hoạch & Quyết định
 
 Cổng quản lý RFI (Request For Information) đa dự án tại `ividlab.com/rficonsole`.
-Kế thừa từ dự án **RFI Web** (`X:\iViDLab\RFI Web`), tổng quát hóa thành 1 app +
+Kế thừa từ dự án **RFI Web** (`T:\RFI Web`), tổng quát hóa thành 1 app +
 tab admin no-code.
 
 ## Quyết định đã chốt (2026-08-01)
