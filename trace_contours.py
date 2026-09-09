@@ -3,7 +3,7 @@ import numpy as np
 import svgwrite
 
 # Đọc hình ảnh logo.jpg
-img = cv2.imread('X:/iViDLab/ViDiLab Web/logo/logo.jpg')
+img = cv2.imread('T:/ViDiLab Web/logo/logo.jpg')
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 # Dùng Canny Edge Detection để tìm chính xác đường bao xung quanh tất cả các nét
@@ -13,7 +13,7 @@ edges = cv2.Canny(gray, 40, 120)
 contours, _ = cv2.findContours(edges, cv2.RETR_LIST, cv2.CHAIN_APPROX_TC89_KCOS)
 
 h, w = gray.shape
-dwg = svgwrite.Drawing('X:/iViDLab/ViDiLab Web/logo/logo-outline.svg', size=(w, h), viewBox=f"0 0 {w} {h}")
+dwg = svgwrite.Drawing('T:/ViDiLab Web/logo/logo-outline.svg', size=(w, h), viewBox=f"0 0 {w} {h}")
 
 # Vẽ các đường line bao kín quanh các nét
 for cnt in contours:
