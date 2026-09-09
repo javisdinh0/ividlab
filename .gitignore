@@ -24,4 +24,5 @@ dist-ssr
 *.sw?
 
 # Local survey sample data & heavy assets (contains PII — keep out of git)
-Data/
+# Anchored to repo root so it doesn't also ignore src/data/ on case-insensitive filesystems
+/Data/

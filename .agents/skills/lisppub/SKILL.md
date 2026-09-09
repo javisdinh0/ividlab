@@ -22,7 +22,7 @@ Khi người dùng gọi tên **LispPub** hoặc cung cấp 1 tệp tin AutoLISP
 3. **Chuẩn Hóa Đổi Tên File & Lưu vào Kho Tải Web:**
    - **Quy tắc viết lại Tên File (.lsp):** Tuyệt đối không giữ nguyên các tên file rườm rà, có dấu gạch ngang dư thừa, khoảng trắng hoặc chữ Tiếng Việt không dấu (như `BB - Tao block nhanh.lsp` hay `MH - Merge hatch.lsp`). Bắt buộc **viết lại / chuẩn hóa sang tên kỹ thuật Tiếng Anh** sắc sảo, dùng dấu gạch dưới `_` thay cho khoảng trắng để loại bỏ lỗi URL (ví dụ: `BB_Quick_Block_Creator.lsp` hoặc `MH_Merge_Hatch.lsp`, `L1_L2_L3_Layiso.lsp`).
    - Lưu tệp Lisp đã chuẩn hóa đặt thẳng vào kho tải xuống tĩnh của máy chủ tại:
-     `X:\OneDrive\05 CODI\ViDiLab Web\public\fordownload\<TenFileChuanHoa>.lsp`
+     `T:\ViDiLab Web\public\fordownload\<TenFileChuanHoa>.lsp`
 
 ## 🟡 Giai đoạn 2: Phác thảo Bố cục & Yêu cầu Cung cấp Hình Ảnh
 Agent **NGƯNG LẠI và ra thông báo rõ ràng cho người dùng**, liệt kê chính xác các hình ảnh minh họa cần thiết (kèm theo mô tả chi tiết nội dung bức ảnh và thứ tự mong muốn trong bài viết).
@@ -39,7 +39,7 @@ Agent **NGƯNG LẠI và ra thông báo rõ ràng cho người dùng**, liệt k
 ## 🟠 Giai đoạn 3: Tích hợp hình ảnh & Xây dựng Bài Viết HTML Chuẩn iViDLab
 Ngay sau khi nhận được đường dẫn ảnh từ người dùng:
 1. **Lưu và Tự Động Đổi Tên tệp ảnh vào hệ thống:**
-   - Copy tất cả ảnh vào thư mục chuyên nghiệp: `X:\OneDrive\05 CODI\ViDiLab Web\public\autocad\autolisp\Pic\`
+   - Copy tất cả ảnh vào thư mục chuyên nghiệp: `T:\ViDiLab Web\public\autocad\autolisp\Pic\`
    - **Quy tắc Tránh Trùng Tên & Chuẩn Hóa Tên Ảnh:** Không giữ nguyên tên file gốc của người dùng (như `1.png`, `zalo_123.jpg`). Bắt buộc **tự đổi tên tệp ảnh theo tên bài viết hoặc tên công cụ Lisp** kèm số thứ tự rõ ràng (Ví dụ: `DrawPurlin_01.png`, `DrawPurlin_02.jpg` hoặc `vexago_hero.png`). Nếu kiểm tra phát hiện thư mục đã có file cùng tên, hãy thêm tiền tố phiên bản (ví dụ: `_v2`, `_new`) để đảm bảo tuyệt đối không ghi đè vào ảnh của các bài viết cũ!
 2. **Tạo trang bài viết HTML mới:**
    Tạo tệp tại đường dẫn: `public/autocad/autolisp/<ten-bai-viet>.html` tuân thủ các quy tắc bất vi bất dịch của giao diện web iViDLab:
@@ -101,7 +101,7 @@ Tuyệt đối **KHÔNG** chèn thêm dải phân cách hay dòng chữ tín nhi
 
 ## 🔵 Giai đoạn 4: Cập Nhật Trang Chủ & Xuất Bản Website (Deploy)
 1. **Đăng ký công cụ ra Landing Page:**
-   - Mở file `X:\OneDrive\05 CODI\ViDiLab Web\src\data\tools.js`.
+   - Mở file `T:\ViDiLab Web\src\data\tools.js`.
    - Thêm 1 object thẻ bài viết Lisp mới vào **vị trí số 0 (trên cùng)** trong mảng `toolsData`, trang bị mô tả song ngữ VI/EN, nhãn chuyên môn `AutoCAD Lisp` và trạng thái `Release`.
 2. **Nạp Git & Đóng Gói Xuất Bản (Deployment):**
    - Chạy tập lệnh trong Terminal (bằng công cụ `run_command` hoặc tương tự):
