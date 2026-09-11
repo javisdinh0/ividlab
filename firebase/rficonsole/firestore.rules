@@ -53,7 +53,7 @@ service cloud.firestore {
 
     // ---- config (owners) : chỉ owner ghi; mọi người đăng nhập đọc để biết mình có phải owner ----
     // LƯU Ý: rules không map() được mảng, nên config/owners.emails PHẢI lưu ở dạng
-    // CHỮ THƯỜNG (isOwner so email().lower() với danh sách nguyên trạng). Xem DEPLOY.md.
+    // CHỮ THƯỜNG (isOwner so email().lower() với danh sách nguyên trạng). Xem docs/rficonsole/DEPLOY.md.
     match /config/{doc} {
       allow read: if signedIn();
       allow write: if isOwner();

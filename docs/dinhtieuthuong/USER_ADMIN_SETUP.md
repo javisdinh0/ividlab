@@ -26,8 +26,8 @@ ID bảng đã được ghi sẵn trong code (biến `USERS_SHEET_ID_DEFAULT`):
 ```
 ***REMOVED-SHEET-ID***
 ```
-Cả hai backend ([admin/Code.gs](./admin/Code.gs) và
-[congcuthongkediem/Code.gs](./congcuthongkediem/Code.gs)) mặc định dùng ID này, nên
+Cả hai backend ([admin/Code.gs](../../backend/dinhtieuthuong/admin/Code.gs) và
+[congcuthongkediem/Code.gs](../../backend/dinhtieuthuong/congcuthongkediem/Code.gs)) mặc định dùng ID này, nên
 **không bắt buộc** thêm Script property. Nếu sau này đổi sang bảng khác, chỉ cần sửa
 biến `USERS_SHEET_ID_DEFAULT` trong code, hoặc thêm Script property để ghi đè:
 

@@ -20,7 +20,7 @@ Tài liệu này giải thích cách bật **xác thực phía server** cho hệ
 - Menu **Extensions → Apps Script**.
 
 ### 2. Dán code server
-- Xoá code cũ trong file `Code.gs`, dán toàn bộ nội dung file [`Code.gs`](./Code.gs) vào.
+- Xoá code cũ trong file `Code.gs`, dán toàn bộ nội dung file [`Code.gs`](../../../backend/dinhtieuthuong/admin/Code.gs) vào.
 - Bấm **Save** (biểu tượng đĩa).
 
 ### 3. Đặt mật khẩu (Script properties)

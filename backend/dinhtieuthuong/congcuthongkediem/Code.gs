@@ -15,7 +15,7 @@
  *                   Tháng+Lớp+Môn rồi ghi lại) -> cho phép sửa & lưu đè.
  *   - deleteBatch : xóa 1 đợt Tháng+Lớp+Môn.
  *
- * CÀI ĐẶT (làm 1 lần) — xem chi tiết trong DEPLOY.md:
+ * CÀI ĐẶT (làm 1 lần) — xem chi tiết trong docs/dinhtieuthuong/congcuthongkediem/DEPLOY.md:
  *   1. Tạo Google Sheet MỚI (riêng, không dùng chung với khảo sát).
  *   2. Extensions -> Apps Script -> dán toàn bộ file này.
  *   3. Project Settings -> Script properties -> thêm:

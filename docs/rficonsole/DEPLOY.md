@@ -23,12 +23,12 @@ Làm **một lần**. Sau khi xong, gửi lại `firebaseConfig` để dán vào
 
 ## 5. Lấy firebaseConfig
 1. **Project settings (⚙) → General → Your apps → Web (</>)** → đăng ký app (VD `rficonsole`).
-2. Copy khối `firebaseConfig` → gửi lại để dán vào [firebase.js](./firebase.js) (biến `firebaseConfig`).
+2. Copy khối `firebaseConfig` → gửi lại để dán vào [firebase.js](../../public/rficonsole/firebase.js) (biến `firebaseConfig`).
    > Config này để **công khai** trong mã client là bình thường — bảo mật do Security Rules đảm bảo.
 
 ## 6. Deploy Security Rules
-**Firestore:** Firestore Database → tab **Rules** → dán nội dung [firestore.rules](./firestore.rules) → **Publish**.
-**Storage:** Storage → tab **Rules** → dán nội dung [storage.rules](./storage.rules) → **Publish**.
+**Firestore:** Firestore Database → tab **Rules** → dán nội dung [firestore.rules](../../firebase/rficonsole/firestore.rules) → **Publish**.
+**Storage:** Storage → tab **Rules** → dán nội dung [storage.rules](../../firebase/rficonsole/storage.rules) → **Publish**.
 
 ## 7. Seed tài khoản owner (super-admin)
 Owner là người được tạo dự án và quản trị toàn portal.

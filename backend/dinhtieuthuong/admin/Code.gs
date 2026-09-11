@@ -9,7 +9,7 @@
  *   - Bản cũ: GET /exec -> trả TOÀN BỘ dữ liệu, không cần mật khẩu (ai cũng lấy được).
  *   - Bản này: muốn lấy dữ liệu phải POST kèm mật khẩu đúng; sai -> 401, không trả gì.
  *
- * CÀI ĐẶT (làm 1 lần) — xem chi tiết trong DEPLOY_BAO_MAT.md:
+ * CÀI ĐẶT (làm 1 lần) — xem chi tiết trong docs/dinhtieuthuong/admin/DEPLOY_BAO_MAT.md:
  *   1. Mở Google Sheet chứa dữ liệu -> Extensions -> Apps Script.
  *   2. Dán toàn bộ file này vào (thay cho code cũ).
  *   3. Project Settings -> Script properties -> thêm:

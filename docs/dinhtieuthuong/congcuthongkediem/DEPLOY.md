@@ -10,7 +10,7 @@ Trang `dinhtieuthuong/congcuthongkediem` dùng **một deployment Google Apps Sc
 
 ## 2. Dán code backend
 1. Trong bảng tính vừa tạo: **Extensions → Apps Script**.
-2. Xóa hết code mẫu, dán **toàn bộ nội dung** file [`Code.gs`](./Code.gs).
+2. Xóa hết code mẫu, dán **toàn bộ nội dung** file [`Code.gs`](../../../backend/dinhtieuthuong/congcuthongkediem/Code.gs).
 3. Nhấn **Save** (biểu tượng đĩa).
 
 ## 3. Đặt mật khẩu (Script properties)
