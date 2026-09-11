@@ -26,3 +26,6 @@ dist-ssr
 # Local survey sample data & heavy assets (contains PII — keep out of git)
 # Anchored to repo root so it doesn't also ignore src/data/ on case-insensitive filesystems
 /Data/
+
+# Local-only agent handoff notes (repo is public — keep internal notes off GitHub)
+/docs/HANDOFF.md
