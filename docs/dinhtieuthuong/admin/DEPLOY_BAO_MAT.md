@@ -30,9 +30,10 @@ Tài liệu này giải thích cách bật **xác thực phía server** cho hệ
 
   | Property | Value | Bắt buộc |
   |---|---|---|
-  | `ADMIN_PASSWORD` | mật khẩu admin bạn muốn | ✅ Có |
+  | `ADMIN_PASSWORD` | mật khẩu admin bạn muốn | ✅ Có (nếu không dùng `USERS_SHEET_ID`) |
   | `ADMIN_EMAIL` | email admin (nếu muốn bắt buộc đúng cả email) | Tuỳ chọn |
   | `SHEET_NAME` | tên sheet chứa dữ liệu (bỏ trống = sheet đầu tiên) | Tuỳ chọn |
+  | `USERS_SHEET_ID` | ID bảng "User Admin" dùng chung (SSO) — xem [USER_ADMIN_SETUP.md](../USER_ADMIN_SETUP.md) | Khuyến nghị |
 
 - Bấm **Save script properties**.
 

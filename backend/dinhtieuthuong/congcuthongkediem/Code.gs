@@ -35,9 +35,11 @@ var HEADERS = [
 ];
 var DEFAULT_SHEET = 'DiemThi';
 
-// ID bảng "User Admin" dùng chung (SSO toàn portal). Có thể ghi đè bằng Script
-// property USERS_SHEET_ID; để trống chuỗi này nếu muốn quay lại ADMIN_PASSWORD cũ.
-var USERS_SHEET_ID_DEFAULT = '***REMOVED-SHEET-ID***';
+// ID bảng "User Admin" dùng chung (SSO toàn portal). KHÔNG hardcode ở đây vì
+// repo này public — bắt buộc cấu hình qua Script property USERS_SHEET_ID
+// (Project Settings -> Script properties, xem docs/dinhtieuthuong/USER_ADMIN_SETUP.md).
+// Để trống property này nếu muốn quay lại ADMIN_PASSWORD cũ.
+var USERS_SHEET_ID_DEFAULT = '';
 
 /** Lấy (hoặc tạo) sheet dữ liệu, đảm bảo có hàng tiêu đề. */
 function getSheet_() {

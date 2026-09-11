@@ -21,23 +21,25 @@ Sheet đầu tiên có hàng tiêu đề (đúng tên, không phân biệt hoa/t
 > (không lưu/không truyền mật khẩu gốc ra ngoài). Vì vậy **giữ bảng này ở chế độ
 > riêng tư** — chỉ chia sẻ cho tài khoản Google của bạn, không đặt "Anyone".
 
-## 2. ID của bảng "User Admin" — ĐÃ GẮN SẴN
-ID bảng đã được ghi sẵn trong code (biến `USERS_SHEET_ID_DEFAULT`):
-```
-***REMOVED-SHEET-ID***
-```
-Cả hai backend ([admin/Code.gs](../../backend/dinhtieuthuong/admin/Code.gs) và
-[congcuthongkediem/Code.gs](../../backend/dinhtieuthuong/congcuthongkediem/Code.gs)) mặc định dùng ID này, nên
-**không bắt buộc** thêm Script property. Nếu sau này đổi sang bảng khác, chỉ cần sửa
-biến `USERS_SHEET_ID_DEFAULT` trong code, hoặc thêm Script property để ghi đè:
+## 2. ID của bảng "User Admin" — BẮT BUỘC cấu hình qua Script property
+Repo này **public** trên GitHub nên ID bảng **không còn hardcode trong code**
+(biến `USERS_SHEET_ID_DEFAULT` để trống). Phải tự thêm Script property trong
+**cả hai** dự án Apps Script ([admin/Code.gs](../../backend/dinhtieuthuong/admin/Code.gs) và
+[congcuthongkediem/Code.gs](../../backend/dinhtieuthuong/congcuthongkediem/Code.gs)):
+**Project Settings → Script properties → Add script property**:
 
 | Property | Value |
 |---|---|
-| `USERS_SHEET_ID` | ID bảng khác (ghi đè giá trị mặc định) |
+| `USERS_SHEET_ID` | ID bảng tính "User Admin" (hỏi người quản trị hiện tại, hoặc mở chính bảng đó và lấy từ URL) |
 | `USERS_SHEET_NAME` | *(tuỳ chọn)* tên sheet chứa tài khoản; bỏ trống = sheet đầu tiên |
 
-> Khi có `USERS_SHEET_ID` (mặc định hoặc từ property), hệ thống **bỏ qua**
-> `ADMIN_PASSWORD` cũ và chỉ dùng bảng "User Admin".
+> Chưa cấu hình `USERS_SHEET_ID` → hệ thống tự **fallback về `ADMIN_PASSWORD`** cũ
+> (không lỗi, nhưng mất SSO dùng chung). Có `USERS_SHEET_ID` → hệ thống **bỏ qua**
+> `ADMIN_PASSWORD` và chỉ dùng bảng "User Admin".
+>
+> ID cũ từng hardcode trong code vẫn còn trong lịch sử git (`git log -p --all -S USERS_SHEET_ID_DEFAULT`)
+> vì repo public — nên coi ID đó là đã lộ; nếu muốn, tạo bảng "User Admin" mới và
+> cập nhật property sang ID mới.
 
 ## 4. Cấp quyền & deploy lại (QUAN TRỌNG)
 Vì backend giờ đọc **một bảng tính khác** qua `openById`, Apps Script cần quyền rộng hơn:

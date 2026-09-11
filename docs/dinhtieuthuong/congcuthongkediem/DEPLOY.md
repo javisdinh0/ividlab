@@ -19,9 +19,10 @@ Trang `dinhtieuthuong/congcuthongkediem` dùng **một deployment Google Apps Sc
 
 | Property | Value | Bắt buộc |
 |---|---|---|
-| `ADMIN_PASSWORD` | mật khẩu bạn muốn cho công cụ điểm | ✅ |
+| `ADMIN_PASSWORD` | mật khẩu bạn muốn cho công cụ điểm | ✅ (nếu không dùng `USERS_SHEET_ID`) |
 | `ADMIN_EMAIL` | email bắt buộc khi đăng nhập (bỏ trống = không kiểm tra email) | ⬜ |
 | `SHEET_NAME` | tên sheet dữ liệu (mặc định `DiemThi`) | ⬜ |
+| `USERS_SHEET_ID` | ID bảng "User Admin" dùng chung (SSO) — xem [USER_ADMIN_SETUP.md](../USER_ADMIN_SETUP.md) | Khuyến nghị |
 
 3. **Save script properties**.
 
