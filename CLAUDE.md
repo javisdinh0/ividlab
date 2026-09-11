@@ -33,8 +33,9 @@ This is **two things sharing one Vite build**, deployed together to GitHub Pages
 
 2. **Static sub-apps under `public/`** — plain HTML/JS (no React, no build step), copied byte-for-byte into `dist/` by Vite. Each is effectively an independent mini-app:
    - `public/autocad/**` — static AutoCAD/AutoLISP tutorial pages.
-   - `public/dinhtieuthuong/**` — a survey portal + admin dashboard + a grading tool (`congcuthongkediem`). Backend is **Google Apps Script** (not part of this repo's runtime), reached via a `SCRIPT_URL` `/exec` endpoint hardcoded into each page's JS.
    - `public/rficonsole/**` — multi-project RFI console using **Firebase** (Auth + Firestore) directly from client JS (`firebase.js`, `auth.js`, `admin/admin.js`).
+
+   The survey portal + grading tool that used to live at `public/dinhtieuthuong/**` (backend `backend/dinhtieuthuong/**`, docs `docs/dinhtieuthuong/**`) was split out to its own repo/domain — [github.com/javisdinh0/edupage](https://github.com/javisdinh0/edupage), `edupage.space`. Not part of this repo anymore.
 
    `vite.config.js` adds a second Rollup entry (`public/brand-guidelines.html`) beyond `index.html`; Vite emits it to `dist/public/brand-guidelines.html`, and the `postbuild` npm script copies it to `dist/brand-guidelines.html` too — both paths existing in `dist/` is expected, not a bug.
 
@@ -44,11 +45,10 @@ Anything placed under `public/` is served publicly at `ividlab.com/<path>` — t
 
 | Dir | What | How it reaches production |
 |---|---|---|
-| `backend/dinhtieuthuong/**/Code.gs` | Apps Script backend for the survey portal + grading tool | Pasted by hand into the Google Apps Script editor |
 | `firebase/rficonsole/*.rules` | Firestore/Storage security rules for RFI Console | Pasted by hand into Firebase Console |
 | `docs/**` | Deploy docs for each sub-app | Not deployed; reference only |
 
-Because the repo is public, **do not hardcode secrets/IDs in `backend/**/Code.gs`** — read them from Apps Script `PropertiesService.getScriptProperties()` instead (see `docs/dinhtieuthuong/USER_ADMIN_SETUP.md` for the pattern already used: `USERS_SHEET_ID` script property, no default constant baked into the committed file).
+Because the repo is public, **do not hardcode secrets/IDs in `backend/**/Code.gs`** — read them from Apps Script `PropertiesService.getScriptProperties()` instead.
 
 ### Local-only handoff notes
 
