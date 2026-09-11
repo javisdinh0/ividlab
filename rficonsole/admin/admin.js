@@ -38,7 +38,7 @@ if (!CONFIGURED) {
   show($('config-banner'), true);
   show($('loading-view'), false);
   show($('denied-view'), true);
-  $('denied-msg').textContent = 'Chưa cấu hình Firebase — xem DEPLOY.md';
+  $('denied-msg').textContent = 'Chưa cấu hình Firebase — xem docs/rficonsole/DEPLOY.md';
 } else {
   onAuthStateChanged(auth, async (user) => {
     if (!user || !user.emailVerified) {

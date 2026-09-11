@@ -6,7 +6,7 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.5/firebas
 import { getStorage } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
 
 // ┌───────────────────────────────────────────────────────────────────────┐
-// │  DÁN firebaseConfig CỦA BẠN VÀO ĐÂY (xem DEPLOY.md bước 5).            │
+// │  DÁN firebaseConfig CỦA BẠN VÀO ĐÂY (xem docs/rficonsole/DEPLOY.md).   │
 // │  Config này công khai được — bảo mật do Security Rules đảm bảo.        │
 // └───────────────────────────────────────────────────────────────────────┘
 export const firebaseConfig = {

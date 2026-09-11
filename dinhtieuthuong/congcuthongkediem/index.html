@@ -451,7 +451,7 @@
     /* =========================================================================
        CẤU HÌNH
        ========================================================================= */
-    // Dán URL /exec của deployment Apps Script MỚI (xem DEPLOY.md).
+    // Dán URL /exec của deployment Apps Script MỚI (xem docs/dinhtieuthuong/congcuthongkediem/DEPLOY.md).
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbweW0njas-YOLvUpalS0eV8Ash4gfh-wtUDsNmlDwmMxQYwsO075MF2u0CVSGLnREuUoA/exec';
     const AUTH_KEY = 'dinhtieuthuong_auth';   // phiên dùng chung toàn portal (SSO)
 
@@ -565,7 +565,7 @@
     let session = null; // { email, passHash }
 
     async function api(action, extra) {
-        if (!configured()) throw new Error('CHƯA CẤU HÌNH SCRIPT_URL — xem DEPLOY.md');
+        if (!configured()) throw new Error('CHƯA CẤU HÌNH SCRIPT_URL — xem docs/dinhtieuthuong/congcuthongkediem/DEPLOY.md');
         const body = Object.assign({ action, email: session ? session.email : '', passHash: session ? session.passHash : '' }, extra || {});
         const res = await fetch(SCRIPT_URL, {
             method: 'POST',
@@ -596,12 +596,12 @@
                 return;
             }
             if (result && result.error === 'SERVER_NOT_CONFIGURED') {
-                $('login-err').textContent = 'Server chưa đặt ADMIN_PASSWORD (xem DEPLOY.md).';
+                $('login-err').textContent = 'Server chưa đặt ADMIN_PASSWORD (xem docs/dinhtieuthuong/congcuthongkediem/DEPLOY.md).';
                 $('login-err').style.display = 'block';
             }
         } catch (e) {
             console.error(e);
-            $('login-err').textContent = configured() ? 'Email hoặc mật khẩu không đúng!' : 'Chưa cấu hình SCRIPT_URL — xem DEPLOY.md.';
+            $('login-err').textContent = configured() ? 'Email hoặc mật khẩu không đúng!' : 'Chưa cấu hình SCRIPT_URL — xem docs/dinhtieuthuong/congcuthongkediem/DEPLOY.md.';
             $('login-err').style.display = 'block';
         }
         session = null;

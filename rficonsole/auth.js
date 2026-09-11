@@ -48,7 +48,7 @@ if (!CONFIGURED) {
   show($('config-banner'), true);
   show($('auth-view'), true);
   document.querySelectorAll('#auth-view button, #auth-view input').forEach(el => el.disabled = true);
-  $('auth-sub').textContent = 'Chưa cấu hình Firebase — xem DEPLOY.md';
+  $('auth-sub').textContent = 'Chưa cấu hình Firebase — xem docs/rficonsole/DEPLOY.md';
 } else {
   wireAuthForms();
   onAuthStateChanged(auth, (user) => {
