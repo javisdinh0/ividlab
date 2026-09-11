@@ -131,9 +131,16 @@ export default function Header({ activeTab, setActiveTab, lang, setLang, theme, 
 
         {/* Toggles (Theme & Language) */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-          {/* Theme Toggle */}
-          <button onClick={toggleTheme} className="toggle-btn" title="Chuyển giao diện Sáng / Tối">
-            {theme === 'light' ? '☀️ LIGHT' : '🌙 DARK'}
+          {/* Theme Toggle — iOS-style switch */}
+          <button
+            onClick={toggleTheme}
+            className="theme-switch"
+            role="switch"
+            aria-checked={theme === 'dark'}
+            aria-label="Chuyển giao diện Sáng / Tối"
+            title="Chuyển giao diện Sáng / Tối"
+          >
+            <span className="theme-switch-thumb">{theme === 'light' ? '☀️' : '🌙'}</span>
           </button>
 
           {/* Language Toggle */}
