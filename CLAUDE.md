@@ -8,38 +8,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 npm run dev       # Vite dev server, http://localhost:5173
 npm run build     # Vite build → dist/ (also runs postbuild, see below)
 npm run preview   # Preview the production build locally
-npm run deploy    # BROKEN on Windows/Node 24 here — gh-pages's internal `git`
-                   # spawn exits 1 even though the identical git command works
-                   # fine run by hand. Deploy manually instead (see below).
+npm run deploy    # Build + push dist/ to gh-pages via scripts/deploy.cjs
+                   # (optional custom commit message: npm run deploy -- "message")
 ```
 
 There is no test suite and no lint config in this repo.
 
-### Manual deploy (until `npm run deploy` is fixed)
+### Deploy (`npm run deploy`)
 
-`npm run deploy` fails silently via the `gh-pages` package on this machine. Deploy by hand instead, run from Git Bash (not PowerShell — see Windows environment notes):
+Runs `scripts/deploy.cjs`: builds `dist/`, refuses to proceed if any `.rules`/`.gs`/`.md` leaked into it, replaces the content of a temp `gh-pages` worktree with the new `dist/`, and commits+pushes only if something actually changed.
 
-```bash
-npm run build   # in PowerShell, see below
-# then in Git Bash:
-TMP=$(mktemp -d)
-git fetch origin gh-pages
-git worktree add -B gh-pages "$TMP" origin/gh-pages
-find "$TMP" -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
-cp -a dist/. "$TMP"/
-git -C "$TMP" add -A
-git -C "$TMP" status --short          # review before pushing
-git -C "$TMP" -c core.autocrlf=false commit -m "Deploy: <mô tả> (main <hash>)"
-git -C "$TMP" push origin gh-pages
-git worktree remove "$TMP"
-git branch -D gh-pages
-```
-
-Before pushing, verify no internal files leaked into `dist/`:
-```bash
-find dist \( -name '*.rules' -o -name '*.gs' -o -name '*.md' \)
-# must be empty except dist/brand-guidelines.html / dist/public/brand-guidelines.html
-```
+The repo previously shipped the `gh-pages` npm package for this (`gh-pages -d dist`), which is **removed now** — it spawned `git` via `child_process.spawn()` with piped (non-inherited) stdio, which broke Git Credential Manager on this machine (`fatal: Cannot prompt because user interactivity has been disabled`) even though the exact same `git push` succeeds when run directly in a shell. `scripts/deploy.cjs` spawns git with `stdio: 'inherit'` instead, which fixes it — keep that when touching the script.
 
 ### Windows environment notes
 

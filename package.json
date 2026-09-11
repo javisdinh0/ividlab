@@ -9,7 +9,7 @@
     "postbuild": "node -e \"import('fs').then(fs => fs.copyFileSync('public/brand-guidelines.html', 'dist/brand-guidelines.html'))\"",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "node scripts/deploy.cjs"
   },
   "dependencies": {
     "lucide-react": "^0.469.0",
@@ -19,7 +19,6 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.4",
-    "gh-pages": "^6.3.0",
     "vite": "^6.0.7"
   }
 }
