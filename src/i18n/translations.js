@@ -3,7 +3,8 @@ export const translations = {
     nav: {
       home: '// TRANG CHỦ',
       tools: '// CÔNG CỤ',
-      guides: '// HƯỚNG Dẫn & CHIA SẺ',
+      guides: '// HƯỚNG DẪN & CHIA SẺ',
+      pebmember: '// PEB MEMBER',
       about: '// GIỚI THIỆU'
     },
     hero: {
@@ -26,6 +27,20 @@ export const translations = {
       items_count: 'bài viết',
       read_article: 'Đọc hướng dẫn →'
     },
+    pebmember: {
+      badge: 'TEKLA PLUGIN // PEB MEMBER',
+      title: 'PEB Member cho Tekla Structures',
+      desc: 'Plugin miễn phí giúp dựng và quản lý cấu kiện thép tiền chế (PEB) tiết diện tổ hợp, vát thuôn trong Tekla Structures: bảng dữ liệu kiểu Excel, xem trước 3D có kích thước, vẽ và cập nhật hàng loạt chỉ với một cú nhấp.',
+      highlights: ['Tekla 2016 – 2024', 'Bảng kiểu Excel', 'Xem trước 3D', 'Key miễn phí qua Zalo'],
+      btn_intro: 'Đọc giới thiệu →',
+      btn_download: '⬇ Tải về',
+      articles_title: 'Bài viết trong chuyên mục',
+      items_count: 'bài viết',
+      read_article: 'Đọc bài viết →',
+      loading: 'Đang tải danh sách bài viết…',
+      error: 'Không tải được danh sách bài viết. Vui lòng thử lại sau.',
+      empty: 'Chưa có bài viết nào trong chuyên mục.'
+    },
     about: {
       badge: 'ABOUT // IVIDLAB',
       title: 'Giới thiệu về iViDLab',
@@ -41,6 +56,7 @@ export const translations = {
       home: '// HOME',
       tools: '// TOOLS',
       guides: '// GUIDES & TIPS',
+      pebmember: '// PEB MEMBER',
       about: '// ABOUT'
     },
     hero: {
@@ -62,6 +78,20 @@ export const translations = {
       title: 'Knowledge Sharing & Technical Guides',
       items_count: 'articles',
       read_article: 'Read guide →'
+    },
+    pebmember: {
+      badge: 'TEKLA PLUGIN // PEB MEMBER',
+      title: 'PEB Member for Tekla Structures',
+      desc: 'A free plugin for modeling and managing pre-engineered building (PEB) built-up, tapered steel members in Tekla Structures: an Excel-like member table, dimensioned 3D preview, and one-click batch drawing and updating.',
+      highlights: ['Tekla 2016 – 2024', 'Excel-like table', '3D preview', 'Free key via Zalo'],
+      btn_intro: 'Read the overview →',
+      btn_download: '⬇ Download',
+      articles_title: 'Articles in this category',
+      items_count: 'articles',
+      read_article: 'Read article →',
+      loading: 'Loading articles…',
+      error: 'Could not load the article list. Please try again later.',
+      empty: 'No articles in this category yet.'
     },
     about: {
       badge: 'ABOUT // IVIDLAB',

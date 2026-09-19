@@ -48,69 +48,31 @@ export default function Header({ activeTab, setActiveTab, lang, setLang, theme, 
 
         {/* Navigation */}
         <nav style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-          <button
-            onClick={() => setActiveTab('all')}
-            style={{
-              background: 'none',
-              border: 'none',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.85rem',
-              fontWeight: activeTab === 'all' ? 700 : 500,
-              color: activeTab === 'all' ? 'var(--text-ink)' : 'var(--text-muted)',
-              cursor: 'pointer',
-              transition: 'color 0.2s ease'
-            }}
-          >
-            {t.nav.home}
-          </button>
-
-          <button
-            onClick={() => setActiveTab('tools')}
-            style={{
-              background: 'none',
-              border: 'none',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.85rem',
-              fontWeight: activeTab === 'tools' ? 700 : 500,
-              color: activeTab === 'tools' ? 'var(--text-ink)' : 'var(--text-muted)',
-              cursor: 'pointer',
-              transition: 'color 0.2s ease'
-            }}
-          >
-            {t.nav.tools}
-          </button>
-
-          <button
-            onClick={() => setActiveTab('guides')}
-            style={{
-              background: 'none',
-              border: 'none',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.85rem',
-              fontWeight: activeTab === 'guides' ? 700 : 500,
-              color: activeTab === 'guides' ? 'var(--text-ink)' : 'var(--text-muted)',
-              cursor: 'pointer',
-              transition: 'color 0.2s ease'
-            }}
-          >
-            {t.nav.guides}
-          </button>
-
-          <button
-            onClick={() => setActiveTab('about')}
-            style={{
-              background: 'none',
-              border: 'none',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.85rem',
-              fontWeight: activeTab === 'about' ? 700 : 500,
-              color: activeTab === 'about' ? 'var(--text-ink)' : 'var(--text-muted)',
-              cursor: 'pointer',
-              transition: 'color 0.2s ease'
-            }}
-          >
-            {t.nav.about}
-          </button>
+          {[
+            ['all', t.nav.home],
+            ['tools', t.nav.tools],
+            ['guides', t.nav.guides],
+            ['peb-member', t.nav.pebmember],
+            ['about', t.nav.about]
+          ].map(([tab, label]) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              aria-current={activeTab === tab ? 'page' : undefined}
+              style={{
+                background: 'none',
+                border: 'none',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.85rem',
+                fontWeight: activeTab === tab ? 700 : 500,
+                color: activeTab === tab ? 'var(--text-ink)' : 'var(--text-muted)',
+                cursor: 'pointer',
+                transition: 'color 0.2s ease'
+              }}
+            >
+              {label}
+            </button>
+          ))}
 
           {/* Link tới app RFI Console (trang riêng, ngoài SPA) */}
           <a

@@ -223,7 +223,8 @@ h1, h2, h3, h4, .font-display {
 /* Responsive Grid System */
 .tools-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  /* min(): trên màn hình < 368px, cột 320px cố định làm tràn ngang trang */
+  grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
   gap: 1.75rem;
 }
 
@@ -256,6 +257,66 @@ h1, h2, h3, h4, .font-display {
   border-radius: 4px;
   font-weight: 700;
   text-transform: uppercase;
+}
+
+/* PEB Member category (tab ?tab=peb-member) */
+.category-intro {
+  display: grid;
+  /* auto-fit: khi chưa có ảnh bìa, khối chữ tự chiếm cả chiều ngang */
+  grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr));
+  gap: 2rem;
+  align-items: center;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-rule);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2.75rem;
+}
+
+.category-intro__desc {
+  max-width: 68ch;
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: var(--text-ink);
+  margin-bottom: 1.25rem;
+}
+
+.category-intro__cover {
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--border-rule);
+  box-shadow: 0 12px 28px rgba(24, 43, 55, 0.18);
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.post-card {
+  text-decoration: none;
+  color: inherit;
+}
+
+.post-cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: top left;
+  border-radius: 8px;
+  border: 1px solid var(--border-rule);
+  background-color: var(--accent-blue-light);
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 860px) {
+  .category-intro {
+    padding: 1.5rem;
+  }
 }
 
 /* Animation utilities */
