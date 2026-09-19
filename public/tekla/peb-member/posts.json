@@ -1,0 +1,18 @@
+[
+  {
+    "id": "gioi-thieu-peb-member",
+    "link": "/tekla/peb-member/gioi-thieu-peb-member.html",
+    "title": {
+      "vi": "Giới thiệu PEB Member – Dựng cấu kiện PEB trong Tekla nhanh như nhập Excel",
+      "en": "Introducing PEB Member – Model PEB members in Tekla as fast as filling a spreadsheet"
+    },
+    "description": {
+      "vi": "Tổng quan và chi tiết mọi chức năng của PEB Member: bảng dữ liệu kiểu Excel, cú pháp tiết diện, mô phỏng 3D, Draw/Update hàng loạt, đặt tên tự động. Kèm hướng dẫn cài đặt và link tải theo phiên bản Tekla.",
+      "en": "Overview and a detailed tour of PEB Member: Excel-like member table, profile syntax, 3D preview, batch Draw/Update and automatic naming — plus installation steps and downloads for each Tekla version."
+    },
+    "tag": { "vi": "Giới thiệu", "en": "Overview" },
+    "date": "2026-09-19",
+    "cover": "/tekla/peb-member/img/01-tong-quan.png",
+    "featured": true
+  }
+]

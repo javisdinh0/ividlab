@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234924381658348" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-en="PEB Member – PEB member modeling plugin for Tekla Structures - iViDLab">PEB Member – Plugin dựng cấu kiện PEB cho Tekla Structures - iViDLab</title>
+  <meta name="description" content="PEB Member: plugin miễn phí dựng và quản lý cấu kiện thép tiền chế (PEB) tổ hợp, vát thuôn trong Tekla Structures 2016 – 2024. Bảng kiểu Excel, xem trước 3D, Draw/Update hàng loạt, đặt tên tự động. Nhận key miễn phí qua Zalo 0969683188." />
+  <link rel="canonical" href="https://ividlab.com/tekla/peb-member/gioi-thieu-peb-member.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="iViDLab" />
+  <meta property="og:locale" content="vi_VN" />
+  <meta property="og:title" content="PEB Member – Dựng cấu kiện PEB trong Tekla nhanh như nhập Excel" />
+  <meta property="og:description" content="Plugin miễn phí cho Tekla Structures 2016 – 2024: bảng cấu kiện kiểu Excel, xem trước 3D, vẽ và cập nhật hàng loạt. Nhận key miễn phí qua Zalo 0969683188." />
+  <meta property="og:url" content="https://ividlab.com/tekla/peb-member/gioi-thieu-peb-member.html" />
+  <meta property="og:image" content="https://ividlab.com/tekla/peb-member/img/01-tong-quan.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <script>
+    // Đặt theme + ngôn ngữ trước khi vẽ trang để không bị nháy; article.js lo phần còn lại.
+    (function () {
+      var root = document.documentElement;
+      try {
+        root.setAttribute('data-theme', localStorage.getItem('ividlab-theme') || 'light');
+        if (localStorage.getItem('ividlab-lang') === 'en') root.classList.add('lang-en');
+      } catch (e) {
+        root.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="/tekla/peb-member/assets/article.css" />
+  <script src="/tekla/peb-member/assets/article.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "PEB Member (PEB Tools VN)",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "Windows 10, Windows 11",
+    "description": "Plugin dựng và quản lý cấu kiện thép tiền chế (PEB) cho Tekla Structures 2016 – 2024.",
+    "url": "https://ividlab.com/tekla/peb-member/gioi-thieu-peb-member.html",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "VND" },
+    "publisher": { "@type": "Organization", "name": "iViDLab", "url": "https://ividlab.com" }
+  }
+  </script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/">iViD<span>Lab</span></a>
+      <nav class="site-nav" aria-label="Menu">
+        <a href="/"><span data-lang="vi">// TRANG CHỦ</span><span data-lang="en">// HOME</span></a>
+        <a href="/?tab=tools"><span data-lang="vi">// CÔNG CỤ</span><span data-lang="en">// TOOLS</span></a>
+        <a href="/?tab=guides"><span data-lang="vi">// HƯỚNG DẪN &amp; CHIA SẺ</span><span data-lang="en">// GUIDES &amp; TIPS</span></a>
+        <a href="/?tab=peb-member" aria-current="true">// PEB MEMBER</a>
+        <a href="/?tab=about"><span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en">// ABOUT</span></a>
+      </nav>
+      <div class="header-tools">
+        <button id="theme-toggle" type="button" class="theme-switch" role="switch" aria-checked="false" aria-label="Chuyển giao diện Sáng / Tối" title="Chuyển giao diện Sáng / Tối">
+          <span class="theme-switch-thumb">☀️</span>
+        </button>
+        <button id="lang-toggle" type="button" class="toggle-btn" title="Chuyển ngôn ngữ / Switch language">🌐 VI</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">iViDLab</a><span aria-hidden="true">›</span><a href="/?tab=peb-member">PEB Member</a><span aria-hidden="true">›</span><span data-lang="vi">Giới thiệu</span><span data-lang="en">Overview</span>
+    </nav>
+
+    <article class="article">
+
+      <!-- =================================================================== -->
+      <!-- TIẾNG VIỆT                                                           -->
+      <!-- =================================================================== -->
+      <div data-lang="vi">
+        <header class="article-hero">
+          <div class="eyebrow">Tekla Plugin // PEB Member</div>
+          <h1>PEB Member – Dựng cấu kiện thép tiền chế trong Tekla Structures nhanh như nhập Excel</h1>
+          <p class="lead"><strong>PEB Member</strong> (gói cài đặt <code>PEBToolsVN</code>) là plugin miễn phí của iViDLab dành cho kỹ sư mô hình hoá và chi tiết hoá kết cấu thép nhà xưởng tiền chế. Thay vì mở hộp thoại PEB Member của Tekla rồi gõ lại hàng chục ô thông số cho từng cấu kiện, bạn quản lý toàn bộ cột, kèo, dầm của dự án trong một bảng kiểu Excel, xem trước tiết diện 3D, rồi vẽ hoặc cập nhật hàng loạt vào model chỉ với một cú nhấp.</p>
+          <ul class="meta-row">
+            <li>Tekla Structures 2016 – 2024</li>
+            <li>Windows 10 / 11</li>
+            <li>Miễn phí · key qua Zalo</li>
+            <li>Cập nhật 19/09/2026</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn btn--primary" href="#tai-ve">⬇ Tải về ngay</a>
+            <a class="btn btn--zalo" href="https://zalo.me/0969683188" target="_blank" rel="noopener">Nhận key miễn phí qua Zalo</a>
+          </div>
+        </header>
+
+        <figure class="media">
+          <img src="img/01-tong-quan.png" width="1600" height="1025" alt="Giao diện PEB Member: bảng cấu kiện, mô phỏng 3D và các lệnh làm việc với Tekla">
+          <figcaption>Giao diện PEB Member: bảng cấu kiện bên trái, mô phỏng 3D và các lệnh làm việc với Tekla bên phải.</figcaption>
+        </figure>
+
+        <nav class="toc" aria-label="Mục lục">
+          <div class="toc__title">Nội dung bài viết</div>
+          <ol>
+            <li><a href="#gioi-thieu">PEB Member là gì?</a></li>
+            <li><a href="#diem-noi-bat">Điểm nổi bật</a></li>
+            <li><a href="#giao-dien">Giao diện tổng quan</a></li>
+            <li><a href="#chuc-nang">Chi tiết các chức năng</a></li>
+            <li><a href="#yeu-cau">Yêu cầu hệ thống</a></li>
+            <li><a href="#cai-dat">Cài đặt</a></li>
+            <li><a href="#kich-hoat">Kích hoạt key miễn phí</a></li>
+            <li><a href="#hoi-dap">Câu hỏi thường gặp</a></li>
+            <li><a href="#tai-ve">Tải về</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="gioi-thieu">1. PEB Member là gì?</h2>
+        <p>Trong Tekla Structures, các cấu kiện tổ hợp vát thuôn của nhà xưởng tiền chế — cột, kèo, dầm có chiều cao bụng thay đổi — thường được dựng bằng component <strong>PEB Member</strong>. Component này rất mạnh, nhưng mỗi lần dựng hay sửa một cấu kiện bạn phải điền tay nhiều nhóm thông số: các chiều cao bụng, bề rộng và chiều dày bản cánh, chiều dày bản bụng, vật liệu, rồi tên, prefix, class cho từng bản thép… Với dự án có hàng chục loại cột, kèo khác nhau, việc này vừa chậm, vừa dễ sai, lại khó giữ quy tắc đặt tên thống nhất giữa các thành viên trong nhóm.</p>
+        <p>PEB Member ra đời để giải quyết đúng vấn đề đó. Plugin chạy song song với Tekla, kết nối trực tiếp qua Tekla Open API và điều khiển component PEB Member gốc. Bạn chỉ cần mô tả tiết diện bằng một chuỗi ngắn gọn như <code>W(300-500)*6+F186*8</code> — phần mềm tự tách thông số, dựng hình 3D để bạn kiểm tra và ghi đầy đủ thuộc tính vào model.</p>
+        <div class="callout">
+          <p>💡 PEB Member không thay thế component PEB Member của Tekla mà giúp bạn dùng nó nhanh và nhất quán hơn. Mọi cấu kiện tạo ra vẫn là component PEB Member tiêu chuẩn — vẫn mở và chỉnh sửa được bằng hộp thoại gốc như bình thường.</p>
+        </div>
+
+        <h2 id="diem-noi-bat">2. Điểm nổi bật</h2>
+        <div class="feature-grid">
+          <div class="feature">
+            <div class="feature__icon" aria-hidden="true">📋</div>
+            <h3>Bảng dữ liệu kiểu Excel</h3>
+            <p>Sao chép, dán cả khối từ Excel, điền nhanh <kbd>Ctrl</kbd>+<kbd>D</kbd>, hoàn tác <kbd>Ctrl</kbd>+<kbd>Z</kbd>… quen thuộc như bảng tính.</p>
+          </div>
+          <div class="feature">
+            <div class="feature__icon" aria-hidden="true">✍️</div>
+            <h3>Cú pháp tiết diện ngắn gọn</h3>
+            <p>Một chuỗi như <code>W(300-500-300)*6+F186*8</code> mô tả trọn tiết diện vát thuôn nhiều đoạn.</p>
+          </div>
+          <div class="feature">
+            <div class="feature__icon" aria-hidden="true">🧊</div>
+            <h3>Xem trước 3D có kích thước</h3>
+            <p>Kiểm tra hình dạng, chiều cao bụng, tổng chiều cao, bề rộng cánh ngay trước khi vẽ.</p>
+          </div>
+          <div class="feature">
+            <div class="feature__icon" aria-hidden="true">⚡</div>
+            <h3>Vẽ và cập nhật hàng loạt</h3>
+            <p>Vẽ bằng 2 điểm, cập nhật đồng loạt nhiều cấu kiện đang chọn; xoay, đảo chiều, căn vị trí bằng một cú nhấp.</p>
+          </div>
+          <div class="feature">
+            <div class="feature__icon" aria-hidden="true">🏷️</div>
+            <h3>Tên, Prefix, Class tự động</h3>
+            <p>Đặt theo quy tắc chung của dự án — theo loại cấu kiện, theo chiều dày thép… thống nhất cho cả nhóm.</p>
+          </div>
+          <div class="feature">
+            <div class="feature__icon" aria-hidden="true">💾</div>
+            <h3>Lưu theo từng model</h3>
+            <p>Bảng cấu kiện lưu ngay trong thư mục model Tekla, mở lại là có; xuất được file thuộc tính cho hộp thoại PEB gốc.</p>
+          </div>
+        </div>
+
+        <h2 id="giao-dien">3. Giao diện tổng quan</h2>
+        <p>Cửa sổ PEB Member gồm bốn khu vực chính:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Khu vực</th><th>Chức năng</th></tr></thead>
+            <tbody>
+              <tr><td>① Project Settings</td><td>Ô <strong>Project Material</strong> — vật liệu dùng chung cho mọi cấu kiện; nút ⚙ mở cài đặt đặt tên; công tắc chuyển sang <strong>Lite Mode</strong>.</td></tr>
+              <tr><td>② Bảng PEB Member</td><td>Danh sách cấu kiện gồm các cột No., Type, Prefix, Profile, Material. Dòng đang chọn là dữ liệu cho mô phỏng 3D và các lệnh Draw/Update.</td></tr>
+              <tr><td>③ Nhóm lệnh</td><td><strong>Draw</strong>, <strong>Update</strong>, <strong>Update Null</strong>; nhóm Modify gồm <strong>Rotate</strong>, <strong>Reverse</strong>, <strong>Align</strong>; các nút ⓘ Section Information, ? Accepted Section Formats và 🗑 Clean All Data.</td></tr>
+              <tr><td>④ 3D Simulator</td><td>Mô phỏng tiết diện đang chọn kèm kích thước kiểu CAD; bên dưới là <strong>Load From Tekla</strong> và <strong>Export Attributes</strong>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <figure class="media">
+          <img src="img/02-giao-dien-chu-thich.png" width="1600" height="1025" alt="Bốn khu vực chính trên giao diện PEB Member" loading="lazy">
+          <figcaption>Bốn khu vực chính trên giao diện PEB Member.</figcaption>
+        </figure>
+
+        <h2 id="chuc-nang">4. Chi tiết các chức năng</h2>
+
+        <h3 id="bang-excel">4.1. Bảng PEB Member thao tác như Excel</h3>
+        <p>Mỗi dòng trong bảng là một loại cấu kiện của dự án. Cột <strong>Type</strong> có sẵn danh sách gợi ý — Column, Rafter, Canopy, Main Beam, Sub Beam, Jack Beam, Crane Beam, Strut, Tie, Purlin, Girt — mỗi loại được gắn một màu riêng để dễ nhận biết. Bạn có thể gõ trực tiếp, hoặc chuẩn bị danh sách trong Excel rồi dán cả khối vào bảng; bảng tự thêm dòng khi dữ liệu dán vào dài hơn số dòng hiện có.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Phím tắt</th><th>Tác dụng</th></tr></thead>
+            <tbody>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>C</kbd> / <kbd>X</kbd> / <kbd>V</kbd></td><td>Sao chép, cắt, dán vùng ô — trao đổi qua lại với Excel, Google Sheets.</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>V</kbd> trên vùng chọn</td><td>Dán một giá trị cho tất cả ô đang chọn.</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>D</kbd></td><td>Điền xuống: chép giá trị ô trên cùng xuống các ô bên dưới.</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>Enter</kbd></td><td>Điền giá trị ô hiện tại cho cả vùng chọn.</td></tr>
+              <tr><td><kbd>Delete</kbd></td><td>Xoá nội dung các ô đang chọn.</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>-</kbd></td><td>Xoá các dòng đang chọn.</td></tr>
+              <tr><td><kbd>Enter</kbd> <kbd>Shift</kbd>+<kbd>Enter</kbd> <kbd>↑</kbd> <kbd>↓</kbd></td><td>Di chuyển giữa các ô.</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>A</kbd></td><td>Chọn toàn bộ bảng.</td></tr>
+              <tr><td>Bấm tiêu đề cột</td><td>Chọn cả cột.</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd></td><td>Hoàn tác thao tác vừa làm.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Nhấp chuột phải vào một dòng để <em>Move Up / Move Down</em>, <em>Insert Above / Insert Below</em> hoặc <em>Delete Row</em>; nút <strong>＋</strong> dưới bảng thêm dòng mới; nút 🗑 <strong>Clean All Data</strong> xoá toàn bộ bảng (có hộp thoại xác nhận).</p>
+        <figure class="media">
+          <img src="img/03-bang-excel.gif" width="812" height="716" alt="Thêm dòng, dán khối dữ liệu, điền nhanh Ctrl + D và sắp xếp dòng bằng menu chuột phải" loading="lazy">
+          <figcaption>Thêm dòng, dán cả khối dữ liệu (Ctrl + V), điền nhanh Ctrl + D, hoàn tác Ctrl + Z và sắp xếp dòng bằng menu chuột phải.</figcaption>
+        </figure>
+
+        <h3 id="cu-phap">4.2. Cú pháp khai báo tiết diện</h3>
+        <p>Cột <strong>Profile</strong> nhận hai kiểu viết:</p>
+        <ul>
+          <li>Theo chiều cao bụng: <code>W(hw1-hw2-…)*Tw+FB*Tf</code></li>
+          <li>Theo tổng chiều cao: <code>H(H1-H2-…)*B*Tw*Tf</code> — phần mềm tự quy đổi về chiều cao bụng: hw = H − 2 × Tf.</li>
+        </ul>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Ví dụ</th><th>Ý nghĩa</th></tr></thead>
+            <tbody>
+              <tr><td><code>W300*6+F200*8</code></td><td>Tiết diện không đổi: bụng cao 300, dày 6; cánh rộng 200, dày 8.</td></tr>
+              <tr><td><code>H300*186*6*8</code></td><td>Tổng chiều cao 300, cánh rộng 186, bụng dày 6, cánh dày 8.</td></tr>
+              <tr><td><code>W(300-500)*6+F186*8</code></td><td>Bụng vát thuôn từ 300 lên 500.</td></tr>
+              <tr><td><code>H(300-500)*186*6*8</code></td><td>Tổng chiều cao thay đổi từ 300 lên 500.</td></tr>
+              <tr><td><code>W(300-500-600-300)*6+F186*8</code></td><td>Nhiều đoạn vát nối tiếp — thêm chiều cao, ngăn cách bằng dấu <code>-</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout callout--tip">
+          <p>✅ Dấu nhân dùng <code>*</code> hay <code>x</code> đều được; dấu <code>+</code> hoặc <code>-</code> trước chữ <code>F</code> chỉ để dễ đọc, không ảnh hưởng kết quả. Bấm nút <strong>?</strong> trên giao diện để xem lại bảng cú pháp; nút <strong>ⓘ Section Information</strong> cho biết loại tiết diện, các chiều cao bụng, chiều dày bụng và cánh, bề rộng cánh cùng tổng chiều cao lớn nhất của dòng đang chọn.</p>
+        </div>
+        <figure class="media">
+          <img src="img/04-cu-phap-tiet-dien.png" width="822" height="891" alt="Bảng Accepted Section Formats trong PEB Member" loading="lazy">
+          <figcaption>Bảng cú pháp tiết diện (Accepted Section Formats) ngay trong phần mềm.</figcaption>
+        </figure>
+
+        <h3 id="mo-phong-3d">4.3. Mô phỏng 3D và kích thước kiểu CAD</h3>
+        <p>Chọn một dòng, trình <strong>3D Simulator</strong> dựng ngay khối tiết diện để bạn kiểm tra trước khi đưa vào model:</p>
+        <ul>
+          <li>Bản bụng dựng đúng hình thang/đa giác theo các chiều cao vát; <strong>bản cánh trên luôn phẳng</strong>, bản cánh dưới bám theo độ dốc — đúng cấu tạo cột, kèo PEB thực tế.</li>
+          <li>Mỗi bản thép được tô màu theo chiều dày, tương ứng bảng màu Class tiêu chuẩn của Tekla — nhìn là biết tấm nào dày, tấm nào mỏng.</li>
+          <li>Tại mỗi vị trí đổi tiết diện, kích thước kiểu CAD được vẽ tự động: chiều cao bụng <code>H(w)</code>, tổng chiều cao <code>H(All)</code> và bề rộng cánh <code>B(f)</code>.</li>
+          <li>Nhấp vào một mặt bất kỳ để xem nhanh kích thước và chiều dày của bản thép đó.</li>
+          <li>Xoay, thu phóng, kéo mô hình bằng chuột; nút <strong>Orientation</strong> chuyển nhanh góc nhìn giữa phương ngang và phương đứng.</li>
+        </ul>
+        <figure class="media">
+          <img src="img/05-mo-phong-3d.gif" width="960" height="615" alt="Mô hình 3D cập nhật tức thì khi đổi tiết diện" loading="lazy">
+          <figcaption>Đổi tiết diện — mô hình 3D và kích thước cập nhật tức thì.</figcaption>
+        </figure>
+
+        <h3 id="draw">4.4. Draw — vẽ cấu kiện vào model</h3>
+        <ol class="steps">
+          <li>Mở model trong Tekla Structures.</li>
+          <li>Chọn dòng cấu kiện cần vẽ trong bảng PEB Member.</li>
+          <li>Bấm <strong>Draw</strong>, sau đó chọn <strong>điểm đầu</strong> và <strong>điểm cuối</strong> của cấu kiện trong Tekla.</li>
+        </ol>
+        <p>PEB Member chèn component PEB Member với đầy đủ thông số: chiều cao bụng, kích thước bản cánh và bản bụng, vật liệu, Prefix và tên cấu kiện (Assembly), tên – prefix – class của từng bản thép theo cài đặt dự án. Trạng thái Rotate/Reverse/Align đang bật trên giao diện cũng được áp dụng ngay khi vẽ.</p>
+        <figure class="media">
+          <img src="img/06-draw.gif" alt="Vẽ cột, kèo PEB bằng hai điểm chọn trong Tekla" loading="lazy">
+          <figcaption>Vẽ cột, kèo PEB chỉ bằng hai điểm chọn trong Tekla.</figcaption>
+        </figure>
+
+        <h3 id="update">4.5. Update và Update Null — cập nhật hàng loạt</h3>
+        <p><strong>Update</strong>: chọn một hoặc nhiều cấu kiện PEB Member trong model, chọn dòng dữ liệu mới trong bảng rồi bấm Update — toàn bộ cấu kiện đang chọn được cập nhật tiết diện, vật liệu, Prefix, tên và class theo dòng đó. Rất tiện khi phải đổi đồng loạt một loại kèo sau khi thiết kế thay đổi.</p>
+        <p><strong>Update Null</strong>: làm mới (tính lại) mọi cấu kiện PEB Member đang chọn mà <em>không</em> thay đổi bất kỳ thông số nào — tương tự thao tác bỏ chọn tất cả ô rồi bấm Modify trong hộp thoại PEB Member gốc, nhưng áp dụng cho nhiều cấu kiện cùng lúc.</p>
+        <figure class="media">
+          <img src="img/07-update.gif" alt="Cập nhật đồng loạt nhiều cấu kiện PEB đang chọn" loading="lazy">
+          <figcaption>Cập nhật đồng loạt nhiều kèo đang chọn chỉ với một cú nhấp.</figcaption>
+        </figure>
+
+        <h3 id="modify">4.6. Rotate, Reverse, Align — chỉnh hướng nhanh</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Lệnh</th><th>Tác dụng</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Rotate</strong></td><td>Xoay tiết diện quanh trục cấu kiện; mỗi lần bấm chuyển sang hướng kế tiếp (4 hướng).</td></tr>
+              <tr><td><strong>Reverse</strong></td><td>Đảo điểm đầu và điểm cuối của cấu kiện.</td></tr>
+              <tr><td><strong>Align</strong></td><td>Lần lượt chuyển giữa 3 kiểu căn vị trí (Position) của cấu kiện so với đường chọn điểm.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Lệnh áp dụng ngay cho các cấu kiện đang chọn trong Tekla, đồng thời trạng thái được ghi nhớ trên nút để tự áp dụng cho những lần <strong>Draw</strong> tiếp theo — không phải xoay lại từng cấu kiện sau khi vẽ.</p>
+        <figure class="media">
+          <img src="img/08-rotate-reverse-align.gif" alt="Rotate, Reverse và Align cấu kiện PEB đang chọn" loading="lazy">
+          <figcaption>Xoay, đảo chiều và căn vị trí cấu kiện đang chọn.</figcaption>
+        </figure>
+
+        <h3 id="load-from-tekla">4.7. Load From Tekla — đọc ngược từ model</h3>
+        <p>Cần chỉnh một cấu kiện đã có trong model? Chọn nó trong Tekla rồi bấm <strong>Load From Tekla</strong>: PEB Member đọc lại loại, Prefix, vật liệu và các kích thước của cấu kiện, chuyển thành chuỗi Profile và đưa vào bảng. Sửa ngay trên bảng, rồi dùng Update để ghi ngược lại model.</p>
+        <figure class="media">
+          <img src="img/09-load-from-tekla.gif" alt="Đọc cấu kiện có sẵn trong model vào bảng bằng Load From Tekla" loading="lazy">
+          <figcaption>Đọc cấu kiện có sẵn trong model vào bảng bằng Load From Tekla.</figcaption>
+        </figure>
+
+        <h3 id="export">4.8. Export Attributes — xuất file thuộc tính PEB</h3>
+        <p>Chọn các dòng cần xuất rồi bấm <strong>Export Attributes</strong>: mỗi dòng thành một file thuộc tính của component PEB Member (<code>*.Tekla.Structures.Plugins.India.Member.PEB.MainForm.xml</code>) trong thư mục <code>attributes</code> của model, nạp được ngay trong hộp thoại PEB Member gốc của Tekla. Nếu trong Tekla đang chọn sẵn cấu kiện PEB, lệnh sẽ xuất thuộc tính của chính các cấu kiện đó; khi chưa mở model, bạn tự chọn thư mục để lưu.</p>
+        <figure class="media">
+          <img src="img/10-export-attributes.gif" alt="Xuất file thuộc tính và nạp lại trong hộp thoại PEB Member gốc" loading="lazy">
+          <figcaption>Xuất file thuộc tính và nạp lại trong hộp thoại PEB Member gốc.</figcaption>
+        </figure>
+
+        <h3 id="dat-ten">4.9. Cài đặt đặt tên, Prefix, Class</h3>
+        <p>Nút ⚙ cạnh ô Project Material mở cửa sổ <strong>iViD PEB Part Settings</strong> — nơi thiết lập quy tắc đặt tên cho cả dự án:</p>
+        <ul>
+          <li><strong>Name By</strong> — tên cấu kiện (Assembly) lấy theo tiết diện (<em>Section</em>) hoặc theo loại (<em>Type</em>). Danh sách loại và ghi chú đi kèm (ví dụ CỘT, KÈO) quản lý ở <em>Manage Types…</em>.</li>
+          <li><strong>Part Name By</strong> — tên từng bản thép theo tên tuỳ chỉnh (FLANGE, WEB) hoặc theo tiết diện đầy đủ của cấu kiện.</li>
+          <li><strong>Flange / Web Name &amp; Prefix</strong> — tên và prefix cho bản cánh, bản bụng; có thể ghép thêm chiều dày thép hoặc ghi chú của loại cấu kiện vào trước/sau, với ký tự ngăn cách tuỳ chọn và ô xem trước kết quả.</li>
+          <li><strong>Class By</strong> — class theo chiều dày thép, hoặc một giá trị cố định do bạn đặt.</li>
+          <li><strong>Plate Profile / Folded Plate Profile</strong> — tên profile tấm và tấm gấp dùng cho component PEB (Tekla 2021 trở lên).</li>
+          <li><strong>Save / Save As / Load</strong> — lưu nhiều bộ cài đặt để dùng lại cho các dự án, các quy chuẩn đặt tên khác nhau.</li>
+        </ul>
+        <figure class="media">
+          <img src="img/11-cai-dat-dat-ten.png" alt="Cửa sổ iViD PEB Part Settings" loading="lazy">
+          <figcaption>Cửa sổ iViD PEB Part Settings.</figcaption>
+        </figure>
+
+        <h3 id="luu-du-lieu">4.10. Lưu dữ liệu theo model và Lite Mode</h3>
+        <p>Nút 💾 <strong>Save Data</strong> lưu toàn bộ bảng vào file <code>PEBToolsVNSession.xml</code> trong thư mục <code>attributes</code> của model đang mở. Lần sau mở PEB Member trên model đó, dữ liệu tự động được nạp lại — mỗi dự án giữ bảng cấu kiện riêng. Khi đóng cửa sổ mà còn thay đổi chưa lưu, phần mềm hỏi <em>Save / Don't Save / Cancel</em>; nếu không ghi được vào model (chẳng hạn Tekla đã đóng), bạn có thể lưu ra một file dự phòng.</p>
+        <p><strong>Lite Mode</strong> thu gọn cửa sổ chỉ còn danh sách Prefix (di chuột để xem Profile) cùng các nút Draw/Modify, bỏ phần 3D — cửa sổ nhỏ gọn đặt cạnh Tekla khi cần dựng hình liên tục.</p>
+        <figure class="media">
+          <img src="img/12-lite-mode.png" width="660" height="450" alt="Lite Mode: cửa sổ PEB Member thu gọn" loading="lazy">
+          <figcaption>Lite Mode — chỉ còn danh sách Prefix và các nút Draw/Modify, đủ gọn để đặt cạnh Tekla.</figcaption>
+        </figure>
+
+        <h2 id="yeu-cau">5. Yêu cầu hệ thống</h2>
+        <ul>
+          <li>Windows 10 hoặc Windows 11 (64-bit).</li>
+          <li>Tekla Structures 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023 hoặc 2024.</li>
+          <li>Component <strong>PEB Member</strong> (extension PEB của Trimble) đã có trong Tekla — tìm “PEB Member” trong Applications &amp; components để kiểm tra.</li>
+          <li>.NET Framework 4.8 — có sẵn trên Windows 10 đã cập nhật và Windows 11.</li>
+          <li>Microsoft Edge WebView2 Runtime — có sẵn trên hầu hết máy Windows 10/11; nếu thiếu, PEB Member sẽ hỏi và mở trang tải chính thức của Microsoft.</li>
+          <li>Khi dùng các lệnh làm việc với model (Draw, Update, Load From Tekla…), Tekla phải đang chạy và đã mở model.</li>
+        </ul>
+
+        <h2 id="cai-dat">6. Cài đặt</h2>
+        <ol class="steps">
+          <li>Ở mục <a href="#tai-ve">Tải về</a> cuối bài, chọn đúng phiên bản Tekla bạn đang dùng và tải gói <code>.tsep</code> tương ứng.</li>
+          <li>Đóng Tekla Structures (khuyến nghị).</li>
+          <li>Nhấp đúp vào file <code>.tsep</code> — <strong>Tekla Extension Manager</strong> mở ra và cài đặt gói. Nếu Tekla đang mở, việc cài đặt sẽ hoàn tất ở lần khởi động Tekla tiếp theo.</li>
+          <li>Mở Tekla, mở model, vào <strong>Applications &amp; components</strong>, tìm <code>PEBToolsVN</code> rồi nhấp đúp để chạy.</li>
+        </ol>
+        <div class="callout callout--warn">
+          <p>⚠️ Mỗi gói <code>.tsep</code> chỉ dành cho phiên bản Tekla ghi trên tên gói (ví dụ gói <code>2021_Higher</code> dùng chung cho Tekla 2021 – 2024). Nếu đã cài bản PEB Member cũ, nên gỡ bản cũ trong Tekla Extension Manager trước khi cài bản mới.</p>
+        </div>
+        <figure class="media">
+          <img src="img/13-cai-dat-tsep.gif" alt="Cài gói .tsep và mở PEB Member từ Applications &amp; components" loading="lazy">
+          <figcaption>Cài gói .tsep và mở PEB Member từ Applications &amp; components.</figcaption>
+        </figure>
+
+        <h2 id="kich-hoat">7. Kích hoạt key miễn phí</h2>
+        <p>PEB Member hoàn toàn miễn phí, bạn chỉ cần kích hoạt key một lần cho mỗi máy tính:</p>
+        <ol class="steps">
+          <li>Chạy PEB Member lần đầu, cửa sổ <strong>PEB Tools VN - License</strong> hiện ra.</li>
+          <li>Bấm <strong>Copy</strong> để chép <strong>Product Key</strong> (chuỗi bắt đầu bằng <code>PT1-</code>).</li>
+          <li>Gửi Product Key qua <strong>Zalo <a href="https://zalo.me/0969683188" target="_blank" rel="noopener">0969683188</a></strong> để nhận key miễn phí.</li>
+          <li>Dán nội dung key nhận được vào ô <strong>Active Key</strong> rồi bấm <strong>Activate</strong>.</li>
+        </ol>
+        <div class="callout">
+          <p>🔒 Key gắn với phần cứng của máy (bo mạch chủ và CPU). Khi đổi máy hoặc thay các linh kiện này, bạn chỉ cần gửi Product Key mới qua Zalo để được cấp lại key.</p>
+        </div>
+        <figure class="media">
+          <img src="img/14-kich-hoat-key.png" alt="Cửa sổ kích hoạt PEB Tools VN - License" loading="lazy">
+          <figcaption>Cửa sổ kích hoạt: chép Product Key, dán Active Key rồi bấm Activate.</figcaption>
+        </figure>
+
+        <h2 id="hoi-dap">8. Câu hỏi thường gặp</h2>
+        <div class="faq">
+          <details>
+            <summary>PEB Member có mất phí không?</summary>
+            <div><p>Không. PEB Member hoàn toàn miễn phí — bạn chỉ cần liên hệ Zalo <a href="https://zalo.me/0969683188" target="_blank" rel="noopener">0969683188</a> để nhận key kích hoạt.</p></div>
+          </details>
+          <details>
+            <summary>Bấm lệnh thì báo “Tekla Not Connected”?</summary>
+            <div><p>Hãy chắc chắn Tekla Structures đang chạy và đã mở model. Nên mở PEB Member từ Applications &amp; components của chính phiên bản Tekla đang dùng, thay vì chạy trực tiếp file <code>.exe</code>.</p></div>
+          </details>
+          <details>
+            <summary>Cài xong nhưng không thấy PEBToolsVN trong Tekla?</summary>
+            <div><p>Khởi động lại Tekla, rồi kiểm tra đã tải đúng gói cho phiên bản Tekla đang dùng — mỗi gói chỉ cài được vào phiên bản tương ứng.</p></div>
+          </details>
+          <details>
+            <summary>Máy báo thiếu WebView2?</summary>
+            <div><p>Chọn đồng ý để PEB Member mở trang tải <strong>Microsoft Edge WebView2 Runtime</strong>, cài đặt xong thì chạy lại phần mềm.</p></div>
+          </details>
+          <details>
+            <summary>Dữ liệu bảng được lưu ở đâu?</summary>
+            <div><p>Trong file <code>attributes\PEBToolsVNSession.xml</code> của thư mục model. Sao chép cả thư mục model là mang theo được bảng cấu kiện.</p></div>
+          </details>
+          <details>
+            <summary>Tôi dùng Tekla 2025 trở lên thì sao?</summary>
+            <div><p>Hiện chưa có gói cài đặt chính thức cho Tekla 2025 trở lên. Vui lòng liên hệ Zalo <a href="https://zalo.me/0969683188" target="_blank" rel="noopener">0969683188</a> để được hỗ trợ.</p></div>
+          </details>
+        </div>
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- ENGLISH                                                              -->
+      <!-- =================================================================== -->
+      <div data-lang="en">
+        <header class="article-hero">
+          <div class="eyebrow">Tekla Plugin // PEB Member</div>
+          <h1>PEB Member – Model pre-engineered steel members in Tekla Structures as fast as filling a spreadsheet</h1>
+          <p class="lead"><strong>PEB Member</strong> (installed as the <code>PEBToolsVN</code> package) is a free plugin by iViDLab for engineers who model and detail pre-engineered steel buildings. Instead of opening Tekla's PEB Member dialog and retyping dozens of fields for every member, you manage all of the project's columns, rafters and beams in an Excel-like table, preview each section in 3D, then draw or batch-update them in the model with a single click.</p>
+          <ul class="meta-row">
+            <li>Tekla Structures 2016 – 2024</li>
+            <li>Windows 10 / 11</li>
+            <li>Free · key via Zalo</li>
+            <li>Updated Sep 19, 2026</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn btn--primary" href="#tai-ve">⬇ Download now</a>
+            <a class="btn btn--zalo" href="https://zalo.me/0969683188" target="_blank" rel="noopener">Get a free key on Zalo</a>
+          </div>
+        </header>
+
+        <figure class="media">
+          <img src="img/01-tong-quan.png" width="1600" height="1025" alt="PEB Member window: member table, 3D preview and Tekla commands">
+          <figcaption>The PEB Member window: the member table on the left, the 3D preview and Tekla commands on the right.</figcaption>
+        </figure>
+
+        <nav class="toc" aria-label="Contents">
+          <div class="toc__title">In this article</div>
+          <ol>
+            <li><a href="#overview">What is PEB Member?</a></li>
+            <li><a href="#highlights">Highlights</a></li>
+            <li><a href="#interface">Interface overview</a></li>
+            <li><a href="#features">Features in detail</a></li>
+            <li><a href="#requirements">System requirements</a></li>
+            <li><a href="#installation">Installation</a></li>
+            <li><a href="#activation">Free key activation</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#tai-ve">Download</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="overview">1. What is PEB Member?</h2>
+        <p>In Tekla Structures, the tapered built-up members of a pre-engineered building — columns, rafters and beams with a varying web depth — are usually modeled with the <strong>PEB Member</strong> component. It is a powerful component, but every time you create or edit a member you have to fill in many groups of parameters by hand: web depths, flange widths and thicknesses, web thickness, material, and then the name, prefix and class of every plate… On a project with dozens of column and rafter types this is slow, error-prone, and makes it hard to keep naming consistent across the team.</p>
+        <p>PEB Member was built to solve exactly that. It runs alongside Tekla, connects directly through the Tekla Open API and drives the original PEB Member component. Describe a section with a short string such as <code>W(300-500)*6+F186*8</code> — the plugin parses the dimensions, builds a 3D preview for you to check, and writes every attribute into the model.</p>
+        <div class="callout">
+          <p>💡 PEB Member does not replace Tekla's PEB Member component — it helps you use it faster and more consistently. Every member it creates is a standard PEB Member component that you can still open and edit with the original dialog.</p>
+        </div>
+
+        <h2 id="highlights">2. Highlights</h2>
+        <div class="feature-grid">
+          <div class="feature">
+            <div class="feature__icon" aria-hidden="true">📋</div>
+            <h3>Excel-like table</h3>
+            <p>Copy, paste whole blocks from Excel, fill down with <kbd>Ctrl</kbd>+<kbd>D</kbd>, undo with <kbd>Ctrl</kbd>+<kbd>Z</kbd>… just like a spreadsheet.</p>
+          </div>
+          <div class="feature">
+            <div class="feature__icon" aria-hidden="true">✍️</div>
+            <h3>Compact profile syntax</h3>
+            <p>A single string such as <code>W(300-500-300)*6+F186*8</code> fully describes a multi-segment tapered section.</p>
+          </div>
+          <div class="feature">
+            <div class="feature__icon" aria-hidden="true">🧊</div>
+            <h3>Dimensioned 3D preview</h3>
+            <p>Check the shape, web depth, total depth and flange width before you draw.</p>
+          </div>
+          <div class="feature">
+            <div class="feature__icon" aria-hidden="true">⚡</div>
+            <h3>Batch draw and update</h3>
+            <p>Draw with two points, update many selected members at once; rotate, reverse and align with one click.</p>
+          </div>
+          <div class="feature">
+            <div class="feature__icon" aria-hidden="true">🏷️</div>
+            <h3>Automatic name, prefix, class</h3>
+            <p>Follow one project-wide rule — by member type, by plate thickness… — consistent for the whole team.</p>
+          </div>
+          <div class="feature">
+            <div class="feature__icon" aria-hidden="true">💾</div>
+            <h3>Saved per model</h3>
+            <p>The member table is stored in the Tekla model folder and reloads automatically; export attribute files for the original PEB dialog.</p>
+          </div>
+        </div>
+
+        <h2 id="interface">3. Interface overview</h2>
+        <p>The PEB Member window has four main areas:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Area</th><th>Purpose</th></tr></thead>
+            <tbody>
+              <tr><td>① Project Settings</td><td><strong>Project Material</strong> — the material shared by all members; the ⚙ button opens the naming settings; the switch toggles <strong>Lite Mode</strong>.</td></tr>
+              <tr><td>② PEB Member table</td><td>The member list with No., Type, Prefix, Profile and Material columns. The selected row feeds the 3D preview and the Draw/Update commands.</td></tr>
+              <tr><td>③ Commands</td><td><strong>Draw</strong>, <strong>Update</strong>, <strong>Update Null</strong>; the Modify group with <strong>Rotate</strong>, <strong>Reverse</strong>, <strong>Align</strong>; plus ⓘ Section Information, ? Accepted Section Formats and 🗑 Clean All Data.</td></tr>
+              <tr><td>④ 3D Simulator</td><td>A dimensioned 3D preview of the selected section, with <strong>Load From Tekla</strong> and <strong>Export Attributes</strong> underneath.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <figure class="media">
+          <img src="img/02-giao-dien-chu-thich.png" width="1600" height="1025" alt="The four main areas of the PEB Member window" loading="lazy">
+          <figcaption>The four main areas of the PEB Member window.</figcaption>
+        </figure>
+
+        <h2 id="features">4. Features in detail</h2>
+
+        <h3 id="excel-table">4.1. An Excel-like PEB Member table</h3>
+        <p>Each row in the table is one member type of your project. The <strong>Type</strong> column offers a suggestion list — Column, Rafter, Canopy, Main Beam, Sub Beam, Jack Beam, Crane Beam, Strut, Tie, Purlin, Girt — and each type gets its own color. Type directly, or prepare the list in Excel and paste the whole block; the table adds rows automatically when the pasted block is longer than the current table.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Shortcut</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>C</kbd> / <kbd>X</kbd> / <kbd>V</kbd></td><td>Copy, cut and paste cell ranges — works both ways with Excel and Google Sheets.</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>V</kbd> on a selection</td><td>Paste one value into every selected cell.</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>D</kbd></td><td>Fill down: copy the top cell's value into the cells below.</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>Enter</kbd></td><td>Fill the whole selection with the current cell's value.</td></tr>
+              <tr><td><kbd>Delete</kbd></td><td>Clear the contents of the selected cells.</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>-</kbd></td><td>Delete the selected rows.</td></tr>
+              <tr><td><kbd>Enter</kbd> <kbd>Shift</kbd>+<kbd>Enter</kbd> <kbd>↑</kbd> <kbd>↓</kbd></td><td>Move between cells.</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>A</kbd></td><td>Select the whole table.</td></tr>
+              <tr><td>Click a column header</td><td>Select the whole column.</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd></td><td>Undo the last action.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Right-click a row to <em>Move Up / Move Down</em>, <em>Insert Above / Insert Below</em> or <em>Delete Row</em>; the <strong>＋</strong> button under the table adds a new row; 🗑 <strong>Clean All Data</strong> clears the whole table (after a confirmation).</p>
+        <figure class="media">
+          <img src="img/03-bang-excel.gif" width="812" height="716" alt="Adding a row, pasting a block, filling down with Ctrl + D and reordering rows from the right-click menu" loading="lazy">
+          <figcaption>Add a row, paste a whole block (Ctrl + V), fill down with Ctrl + D, undo with Ctrl + Z and reorder rows from the right-click menu.</figcaption>
+        </figure>
+
+        <h3 id="profile-syntax">4.2. Profile syntax</h3>
+        <p>The <strong>Profile</strong> column accepts two notations:</p>
+        <ul>
+          <li>By web depth: <code>W(hw1-hw2-…)*Tw+FB*Tf</code></li>
+          <li>By total depth: <code>H(H1-H2-…)*B*Tw*Tf</code> — converted to web depth automatically: hw = H − 2 × Tf.</li>
+        </ul>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Example</th><th>Meaning</th></tr></thead>
+            <tbody>
+              <tr><td><code>W300*6+F200*8</code></td><td>Constant section: web 300 deep, 6 thick; flange 200 wide, 8 thick.</td></tr>
+              <tr><td><code>H300*186*6*8</code></td><td>Total depth 300, flange width 186, web thickness 6, flange thickness 8.</td></tr>
+              <tr><td><code>W(300-500)*6+F186*8</code></td><td>Web tapering from 300 to 500.</td></tr>
+              <tr><td><code>H(300-500)*186*6*8</code></td><td>Total depth varying from 300 to 500.</td></tr>
+              <tr><td><code>W(300-500-600-300)*6+F186*8</code></td><td>Several tapered segments in a row — add depths separated by <code>-</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout callout--tip">
+          <p>✅ Use either <code>*</code> or <code>x</code> as the multiplication sign; a <code>+</code> or <code>-</code> before <code>F</code> is only for readability. Click the <strong>?</strong> button to see the syntax table in the app; <strong>ⓘ Section Information</strong> shows the section type, web depths, web and flange thicknesses, flange width and maximum total depth of the selected row.</p>
+        </div>
+        <figure class="media">
+          <img src="img/04-cu-phap-tiet-dien.png" width="822" height="891" alt="Accepted Section Formats table in PEB Member" loading="lazy">
+          <figcaption>The built-in Accepted Section Formats table.</figcaption>
+        </figure>
+
+        <h3 id="preview-3d">4.3. 3D preview and CAD-style dimensions</h3>
+        <p>Select a row and the <strong>3D Simulator</strong> immediately builds the section so you can check it before it goes into the model:</p>
+        <ul>
+          <li>The web is built as the exact trapezoid/polygon of its tapered depths; <strong>the top flange always stays flat</strong> and the bottom flange follows the slope — just like real PEB columns and rafters.</li>
+          <li>Every plate is colored by thickness using Tekla's standard class colors — thick and thin plates stand out at a glance.</li>
+          <li>At every change of section, CAD-style dimensions are drawn automatically: web depth <code>H(w)</code>, total depth <code>H(All)</code> and flange width <code>B(f)</code>.</li>
+          <li>Click any face to see the dimensions and thickness of that plate.</li>
+          <li>Orbit, zoom and pan with the mouse; the <strong>Orientation</strong> button switches the view between horizontal and vertical.</li>
+        </ul>
+        <figure class="media">
+          <img src="img/05-mo-phong-3d.gif" width="960" height="615" alt="The 3D model updates instantly when the profile changes" loading="lazy">
+          <figcaption>Change the profile — the 3D model and its dimensions update instantly.</figcaption>
+        </figure>
+
+        <h3 id="draw-en">4.4. Draw — place members in the model</h3>
+        <ol class="steps">
+          <li>Open a model in Tekla Structures.</li>
+          <li>Select the member row to draw in the PEB Member table.</li>
+          <li>Click <strong>Draw</strong>, then pick the <strong>start point</strong> and <strong>end point</strong> of the member in Tekla.</li>
+        </ol>
+        <p>PEB Member inserts a PEB Member component with every parameter filled in: web depths, flange and web plate sizes, material, assembly prefix and name, and each plate's name, prefix and class according to your project settings. The current Rotate/Reverse/Align state is applied right away as well.</p>
+        <figure class="media">
+          <img src="img/06-draw.gif" alt="Drawing PEB columns and rafters with two picked points in Tekla" loading="lazy">
+          <figcaption>Draw PEB columns and rafters with just two picked points in Tekla.</figcaption>
+        </figure>
+
+        <h3 id="update-en">4.5. Update and Update Null — batch updates</h3>
+        <p><strong>Update</strong>: select one or more PEB Member components in the model, pick the new data row in the table and click Update — all selected members get that row's section, material, prefix, names and classes. Perfect when a rafter type changes after a design revision.</p>
+        <p><strong>Update Null</strong>: refreshes (recomputes) every selected PEB Member <em>without</em> changing a single parameter — like unchecking every field and clicking Modify in the original PEB Member dialog, but for many members at once.</p>
+        <figure class="media">
+          <img src="img/07-update.gif" alt="Batch-updating several selected PEB members" loading="lazy">
+          <figcaption>Update many selected rafters with one click.</figcaption>
+        </figure>
+
+        <h3 id="modify-en">4.6. Rotate, Reverse, Align — quick orientation</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Command</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Rotate</strong></td><td>Rotates the section about the member axis; each click moves to the next of 4 orientations.</td></tr>
+              <tr><td><strong>Reverse</strong></td><td>Swaps the member's start and end points.</td></tr>
+              <tr><td><strong>Align</strong></td><td>Cycles through the 3 position (alignment) options relative to the picked line.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The command applies immediately to the members selected in Tekla, and its state is remembered on the button so it is applied to your next <strong>Draw</strong> as well — no need to re-rotate every member after drawing.</p>
+        <figure class="media">
+          <img src="img/08-rotate-reverse-align.gif" alt="Rotate, Reverse and Align applied to selected PEB members" loading="lazy">
+          <figcaption>Rotate, Reverse and Align applied to the selected members.</figcaption>
+        </figure>
+
+        <h3 id="load-en">4.7. Load From Tekla — read back from the model</h3>
+        <p>Need to edit a member that is already in the model? Select it in Tekla and click <strong>Load From Tekla</strong>: PEB Member reads back its type, prefix, material and dimensions, converts them into a Profile string and puts it in the table. Edit it right in the table, then use Update to write it back to the model.</p>
+        <figure class="media">
+          <img src="img/09-load-from-tekla.gif" alt="Reading an existing member back into the table with Load From Tekla" loading="lazy">
+          <figcaption>Read an existing member back into the table with Load From Tekla.</figcaption>
+        </figure>
+
+        <h3 id="export-en">4.8. Export Attributes — PEB attribute files</h3>
+        <p>Select the rows to export and click <strong>Export Attributes</strong>: each row becomes a PEB Member attribute file (<code>*.Tekla.Structures.Plugins.India.Member.PEB.MainForm.xml</code>) in the model's <code>attributes</code> folder, ready to load in Tekla's original PEB Member dialog. If PEB members are selected in Tekla, their own attributes are exported instead; with no model open, you choose the folder to save to.</p>
+        <figure class="media">
+          <img src="img/10-export-attributes.gif" alt="Exporting attribute files and loading them in the original PEB Member dialog" loading="lazy">
+          <figcaption>Export attribute files and load them in the original PEB Member dialog.</figcaption>
+        </figure>
+
+        <h3 id="naming">4.9. Naming, prefix and class settings</h3>
+        <p>The ⚙ button next to Project Material opens <strong>iViD PEB Part Settings</strong>, where you define the naming rules for the whole project:</p>
+        <ul>
+          <li><strong>Name By</strong> — the assembly name comes from the section (<em>Section</em>) or the member type (<em>Type</em>). Types and their notes are managed in <em>Manage Types…</em>.</li>
+          <li><strong>Part Name By</strong> — each plate is named with custom names (FLANGE, WEB) or with the member's full profile.</li>
+          <li><strong>Flange / Web Name &amp; Prefix</strong> — names and prefixes for flange and web plates; optionally add the plate thickness or the member type's note before or after them, with a separator of your choice and a live preview.</li>
+          <li><strong>Class By</strong> — class by plate thickness, or a fixed value you choose.</li>
+          <li><strong>Plate Profile / Folded Plate Profile</strong> — the plate and folded-plate profile names used by the PEB component (Tekla 2021 and newer).</li>
+          <li><strong>Save / Save As / Load</strong> — keep several settings sets for different projects or naming standards.</li>
+        </ul>
+        <figure class="media">
+          <img src="img/11-cai-dat-dat-ten.png" alt="The iViD PEB Part Settings window" loading="lazy">
+          <figcaption>The iViD PEB Part Settings window.</figcaption>
+        </figure>
+
+        <h3 id="saving">4.10. Per-model data and Lite Mode</h3>
+        <p>The 💾 <strong>Save Data</strong> button stores the whole table in <code>PEBToolsVNSession.xml</code> inside the <code>attributes</code> folder of the open model. The next time you open PEB Member on that model, the data loads automatically — every project keeps its own member table. If you close the window with unsaved changes you are asked <em>Save / Don't Save / Cancel</em>; if the data cannot be written to the model (for example because Tekla is already closed), you can save a backup file instead.</p>
+        <p><strong>Lite Mode</strong> shrinks the window to a list of prefixes (hover to see the profile) plus the Draw/Modify buttons, without the 3D view — a compact window to keep next to Tekla while you model.</p>
+        <figure class="media">
+          <img src="img/12-lite-mode.png" width="660" height="450" alt="Lite Mode: the compact PEB Member window" loading="lazy">
+          <figcaption>Lite Mode — just the prefix list and the Draw/Modify buttons, compact enough to sit next to Tekla.</figcaption>
+        </figure>
+
+        <h2 id="requirements">5. System requirements</h2>
+        <ul>
+          <li>Windows 10 or Windows 11 (64-bit).</li>
+          <li>Tekla Structures 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023 or 2024.</li>
+          <li>The <strong>PEB Member</strong> component (Trimble's PEB extension) available in Tekla — search for “PEB Member” in Applications &amp; components to check.</li>
+          <li>.NET Framework 4.8 — included in up-to-date Windows 10 and in Windows 11.</li>
+          <li>Microsoft Edge WebView2 Runtime — present on most Windows 10/11 PCs; if it is missing, PEB Member offers to open Microsoft's official download page.</li>
+          <li>Tekla must be running with a model open for the model commands (Draw, Update, Load From Tekla…).</li>
+        </ul>
+
+        <h2 id="installation">6. Installation</h2>
+        <ol class="steps">
+          <li>In the <a href="#tai-ve">Download</a> section at the end of this article, select your Tekla version and download the matching <code>.tsep</code> package.</li>
+          <li>Close Tekla Structures (recommended).</li>
+          <li>Double-click the <code>.tsep</code> file — <strong>Tekla Extension Manager</strong> opens and installs the package. If Tekla is running, the installation completes the next time Tekla starts.</li>
+          <li>Start Tekla, open a model, go to <strong>Applications &amp; components</strong>, search for <code>PEBToolsVN</code> and double-click it to run.</li>
+        </ol>
+        <div class="callout callout--warn">
+          <p>⚠️ Each <code>.tsep</code> package is only for the Tekla version(s) in its name (for example <code>2021_Higher</code> covers Tekla 2021 – 2024). If an older PEB Member version is installed, uninstall it in Tekla Extension Manager before installing the new one.</p>
+        </div>
+        <figure class="media">
+          <img src="img/13-cai-dat-tsep.gif" alt="Installing the .tsep package and launching PEB Member from Applications &amp; components" loading="lazy">
+          <figcaption>Installing the .tsep package and launching PEB Member from Applications &amp; components.</figcaption>
+        </figure>
+
+        <h2 id="activation">7. Free key activation</h2>
+        <p>PEB Member is completely free; you only need to activate a key once per computer:</p>
+        <ol class="steps">
+          <li>The first time PEB Member runs, the <strong>PEB Tools VN - License</strong> window appears.</li>
+          <li>Click <strong>Copy</strong> to copy the <strong>Product Key</strong> (a string starting with <code>PT1-</code>).</li>
+          <li>Send the Product Key via <strong>Zalo <a href="https://zalo.me/0969683188" target="_blank" rel="noopener">0969683188</a></strong> to receive your free key.</li>
+          <li>Paste the key you receive into the <strong>Active Key</strong> box and click <strong>Activate</strong>.</li>
+        </ol>
+        <div class="callout">
+          <p>🔒 The key is bound to the computer's hardware (motherboard and CPU). If you change computers or replace these parts, just send the new Product Key via Zalo to get a new key.</p>
+        </div>
+        <figure class="media">
+          <img src="img/14-kich-hoat-key.png" alt="The PEB Tools VN - License activation window" loading="lazy">
+          <figcaption>The activation window: copy the Product Key, paste the Active Key, click Activate.</figcaption>
+        </figure>
+
+        <h2 id="faq">8. FAQ</h2>
+        <div class="faq">
+          <details>
+            <summary>Is PEB Member free?</summary>
+            <div><p>Yes. PEB Member is completely free — just contact Zalo <a href="https://zalo.me/0969683188" target="_blank" rel="noopener">0969683188</a> to get your activation key.</p></div>
+          </details>
+          <details>
+            <summary>A command says “Tekla Not Connected”?</summary>
+            <div><p>Make sure Tekla Structures is running with a model open. Launch PEB Member from Applications &amp; components of the Tekla version you are using rather than running the <code>.exe</code> file directly.</p></div>
+          </details>
+          <details>
+            <summary>Installed, but PEBToolsVN does not show up in Tekla?</summary>
+            <div><p>Restart Tekla, then check that you downloaded the package for the Tekla version you use — each package only installs into its matching version.</p></div>
+          </details>
+          <details>
+            <summary>WebView2 is missing?</summary>
+            <div><p>Accept the prompt so PEB Member opens the <strong>Microsoft Edge WebView2 Runtime</strong> download page, install it, then run the plugin again.</p></div>
+          </details>
+          <details>
+            <summary>Where is the table data stored?</summary>
+            <div><p>In <code>attributes\PEBToolsVNSession.xml</code> inside the model folder. Copy the model folder and the member table goes with it.</p></div>
+          </details>
+          <details>
+            <summary>What about Tekla 2025 or newer?</summary>
+            <div><p>There is no official package for Tekla 2025 or newer yet. Please contact Zalo <a href="https://zalo.me/0969683188" target="_blank" rel="noopener">0969683188</a> for support.</p></div>
+          </details>
+        </div>
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- TẢI VỀ — dùng chung 2 ngôn ngữ; danh sách gói đọc từ downloads.json    -->
+      <!-- =================================================================== -->
+      <section aria-labelledby="tai-ve">
+        <h2 id="tai-ve"><span data-lang="vi">9. Tải về</span><span data-lang="en">9. Download</span></h2>
+        <p data-lang="vi">Chọn phiên bản Tekla Structures bạn đang dùng — nút tải sẽ tự trỏ tới đúng gói cài đặt.</p>
+        <p data-lang="en">Select the Tekla Structures version you use — the download button points to the matching package.</p>
+
+        <div data-peb-download="/tekla/peb-member/downloads.json">
+          <noscript>
+            <div class="download-info download-info--warn">
+              <p>Vui lòng bật JavaScript để chọn phiên bản Tekla và tải về, hoặc liên hệ Zalo 0969683188. / Please enable JavaScript to choose your Tekla version, or contact Zalo 0969683188.</p>
+            </div>
+          </noscript>
+        </div>
+
+        <div class="key-card">
+          <div class="key-card__icon" aria-hidden="true">🔑</div>
+          <div class="key-card__body">
+            <p class="key-card__title"><span data-lang="vi">Nhận key kích hoạt miễn phí</span><span data-lang="en">Get your free activation key</span></p>
+            <p data-lang="vi">Sau khi cài đặt, nhắn Zalo <span class="key-card__phone">0969683188</span> và gửi Product Key để nhận key miễn phí.</p>
+            <p data-lang="en">After installing, message Zalo <span class="key-card__phone">0969683188</span> with your Product Key to receive a free key.</p>
+          </div>
+          <div class="key-card__actions">
+            <a class="btn btn--zalo" href="https://zalo.me/0969683188" target="_blank" rel="noopener"><span data-lang="vi">Nhắn Zalo</span><span data-lang="en">Chat on Zalo</span></a>
+            <button type="button" class="btn btn--ghost" data-copy="0969683188"><span data-lang="vi">Chép số</span><span data-lang="en">Copy number</span></button>
+          </div>
+        </div>
+
+        <p class="outro">
+          <span data-lang="vi">Chúc bạn làm việc hiệu quả với PEB Member! Mọi góp ý, báo lỗi hay đề xuất tính năng, vui lòng nhắn Zalo 0969683188.</span>
+          <span data-lang="en">Enjoy working with PEB Member! For feedback, bug reports or feature requests, message Zalo 0969683188.</span>
+        </p>
+      </section>
+    </article>
+
+    <!-- Tự điền từ posts.json (bỏ bài đang xem); ẩn nếu chuyên mục chưa có bài khác -->
+    <section class="related" hidden>
+      <div class="related__head">
+        <h2><span data-lang="vi">Bài viết khác trong chuyên mục</span><span data-lang="en">More in this category</span></h2>
+        <a class="related__all" href="/?tab=peb-member"><span data-lang="vi">Xem tất cả →</span><span data-lang="en">View all →</span></a>
+      </div>
+      <div class="related-grid" data-peb-posts="/tekla/peb-member/posts.json"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand" href="/">iViD<span>Lab</span></a>
+    <p>© 2026 iViDLab. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

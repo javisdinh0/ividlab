@@ -1,5 +1,18 @@
 export const toolsData = [
   {
+    id: 'peb-member-tekla',
+    title: 'PEB Member - Dựng Cấu Kiện PEB Cho Tekla',
+    category: 'Tekla Plugin',
+    tag: 'Tekla Automation',
+    description: {
+      vi: 'Plugin dựng cột, kèo, dầm tổ hợp vát thuôn nhà xưởng tiền chế trong Tekla Structures 2016 – 2024: bảng kiểu Excel, xem trước 3D, vẽ và cập nhật hàng loạt. Miễn phí, nhận key qua Zalo.',
+      en: 'Tekla Structures 2016 – 2024 plugin for modeling tapered built-up PEB columns, rafters and beams: Excel-like table, 3D preview, one-click batch draw and update. Free, key via Zalo.'
+    },
+    status: 'Release',
+    link: '/tekla/peb-member/gioi-thieu-peb-member.html',
+    featured: true
+  },
+  {
     id: 'quick-block-creator-bb',
     title: 'Quick Block - Tạo Block Nhanh (BB)',
     category: 'AutoCAD Lisp',

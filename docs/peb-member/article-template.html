@@ -1,0 +1,155 @@
+<!doctype html>
+<!--
+  MẪU BÀI VIẾT CHUYÊN MỤC PEB MEMBER — xem docs/peb-member/README.md
+  1. Chép file này thành public/tekla/peb-member/<slug>.html (slug không dấu, nối bằng gạch ngang).
+  2. Thay mọi chỗ ghi TODO; xoá các khối không dùng.
+  3. Thêm 1 mục vào public/tekla/peb-member/posts.json để bài hiện trong chuyên mục.
+-->
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234924381658348" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- data-en: tiêu đề tab khi người đọc chuyển sang EN (bỏ nếu bài không có bản EN) -->
+  <title data-en="TODO English title - iViDLab">TODO Tiêu đề bài viết - iViDLab</title>
+  <meta name="description" content="TODO Mô tả ngắn 1–2 câu (hiện trên Google và khi chia sẻ link)." />
+  <link rel="canonical" href="https://ividlab.com/tekla/peb-member/TODO-slug.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="iViDLab" />
+  <meta property="og:title" content="TODO Tiêu đề khi chia sẻ Zalo/Facebook" />
+  <meta property="og:description" content="TODO Mô tả khi chia sẻ" />
+  <meta property="og:url" content="https://ividlab.com/tekla/peb-member/TODO-slug.html" />
+  <meta property="og:image" content="https://ividlab.com/tekla/peb-member/img/TODO-anh-bia.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <script>
+    // Đặt theme + ngôn ngữ trước khi vẽ trang để không bị nháy; article.js lo phần còn lại.
+    (function () {
+      var root = document.documentElement;
+      try {
+        root.setAttribute('data-theme', localStorage.getItem('ividlab-theme') || 'light');
+        if (localStorage.getItem('ividlab-lang') === 'en') root.classList.add('lang-en');
+      } catch (e) {
+        root.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="/tekla/peb-member/assets/article.css" />
+  <script src="/tekla/peb-member/assets/article.js" defer></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/">iViD<span>Lab</span></a>
+      <nav class="site-nav" aria-label="Menu">
+        <a href="/"><span data-lang="vi">// TRANG CHỦ</span><span data-lang="en">// HOME</span></a>
+        <a href="/?tab=tools"><span data-lang="vi">// CÔNG CỤ</span><span data-lang="en">// TOOLS</span></a>
+        <a href="/?tab=guides"><span data-lang="vi">// HƯỚNG DẪN &amp; CHIA SẺ</span><span data-lang="en">// GUIDES &amp; TIPS</span></a>
+        <a href="/?tab=peb-member" aria-current="true">// PEB MEMBER</a>
+        <a href="/?tab=about"><span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en">// ABOUT</span></a>
+      </nav>
+      <div class="header-tools">
+        <button id="theme-toggle" type="button" class="theme-switch" role="switch" aria-checked="false" aria-label="Chuyển giao diện Sáng / Tối" title="Chuyển giao diện Sáng / Tối">
+          <span class="theme-switch-thumb">☀️</span>
+        </button>
+        <button id="lang-toggle" type="button" class="toggle-btn" title="Chuyển ngôn ngữ / Switch language">🌐 VI</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">iViDLab</a><span aria-hidden="true">›</span><a href="/?tab=peb-member">PEB Member</a><span aria-hidden="true">›</span><span data-lang="vi">TODO Tên ngắn</span><span data-lang="en">TODO Short name</span>
+    </nav>
+
+    <article class="article">
+      <!--
+        Chỉ viết tiếng Việt? Xoá khối data-lang="en" bên dưới VÀ bỏ thuộc tính data-lang="vi"
+        ở khối này — khi đó nội dung luôn hiện dù người đọc chọn VI hay EN.
+      -->
+      <div data-lang="vi">
+        <header class="article-hero">
+          <div class="eyebrow">Tekla Plugin // PEB Member</div>
+          <h1>TODO Tiêu đề bài viết</h1>
+          <p class="lead">TODO Đoạn mở đầu 2–3 câu.</p>
+          <ul class="meta-row">
+            <li>Cập nhật TODO dd/mm/yyyy</li>
+          </ul>
+        </header>
+
+        <h2 id="phan-1">1. TODO Tiêu đề mục</h2>
+        <p>TODO Nội dung. Mã/tiết diện đặt trong <code>W(300-500)*6+F186*8</code>, phím tắt dùng <kbd>Ctrl</kbd>+<kbd>D</kbd>.</p>
+
+        <!-- Ảnh hoặc GIF: đặt file vào public/tekla/peb-member/img/ ; ảnh thiếu sẽ tự ẩn trên site thật -->
+        <figure class="media">
+          <img src="img/TODO-ten-anh.gif" alt="TODO mô tả ảnh" loading="lazy">
+          <figcaption>TODO Chú thích ảnh.</figcaption>
+        </figure>
+
+        <!-- Các khối có sẵn (xoá nếu không dùng) -->
+        <ol class="steps">
+          <li>TODO Bước 1.</li>
+          <li>TODO Bước 2.</li>
+        </ol>
+        <div class="callout"><p>💡 TODO Ghi chú.</p></div>
+        <div class="callout callout--tip"><p>✅ TODO Mẹo.</p></div>
+        <div class="callout callout--warn"><p>⚠️ TODO Lưu ý quan trọng.</p></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>TODO Cột 1</th><th>TODO Cột 2</th></tr></thead>
+            <tbody><tr><td>…</td><td>…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div data-lang="en">
+        <header class="article-hero">
+          <div class="eyebrow">Tekla Plugin // PEB Member</div>
+          <h1>TODO English title</h1>
+          <p class="lead">TODO Intro paragraph.</p>
+        </header>
+        <h2 id="part-1">1. TODO Section title</h2>
+        <p>TODO Content.</p>
+      </div>
+
+      <!-- Hộp Tải về dùng chung (tuỳ chọn): combobox phiên bản Tekla đọc từ downloads.json -->
+      <section aria-labelledby="tai-ve">
+        <h2 id="tai-ve"><span data-lang="vi">Tải về</span><span data-lang="en">Download</span></h2>
+        <div data-peb-download="/tekla/peb-member/downloads.json"></div>
+        <div class="key-card">
+          <div class="key-card__icon" aria-hidden="true">🔑</div>
+          <div class="key-card__body">
+            <p class="key-card__title"><span data-lang="vi">Nhận key kích hoạt miễn phí</span><span data-lang="en">Get your free activation key</span></p>
+            <p data-lang="vi">Sau khi cài đặt, nhắn Zalo <span class="key-card__phone">0969683188</span> và gửi Product Key để nhận key miễn phí.</p>
+            <p data-lang="en">After installing, message Zalo <span class="key-card__phone">0969683188</span> with your Product Key to receive a free key.</p>
+          </div>
+          <div class="key-card__actions">
+            <a class="btn btn--zalo" href="https://zalo.me/0969683188" target="_blank" rel="noopener"><span data-lang="vi">Nhắn Zalo</span><span data-lang="en">Chat on Zalo</span></a>
+            <button type="button" class="btn btn--ghost" data-copy="0969683188"><span data-lang="vi">Chép số</span><span data-lang="en">Copy number</span></button>
+          </div>
+        </div>
+      </section>
+    </article>
+
+    <!-- Tự điền từ posts.json (bỏ bài đang xem); ẩn nếu chuyên mục chưa có bài khác -->
+    <section class="related" hidden>
+      <div class="related__head">
+        <h2><span data-lang="vi">Bài viết khác trong chuyên mục</span><span data-lang="en">More in this category</span></h2>
+        <a class="related__all" href="/?tab=peb-member"><span data-lang="vi">Xem tất cả →</span><span data-lang="en">View all →</span></a>
+      </div>
+      <div class="related-grid" data-peb-posts="/tekla/peb-member/posts.json"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand" href="/">iViD<span>Lab</span></a>
+    <p>© 2026 iViDLab. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
