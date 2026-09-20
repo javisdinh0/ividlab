@@ -6,31 +6,37 @@
     "2016": {
       "file": "PEBToolsVN_2016_v1.3.20.tsep",
       "size": "692 KB",
+      "bytes": 708617,
       "range": "2016 / 2016i"
     },
     "2017": {
       "file": "PEBToolsVN_2017_v1.3.20.tsep",
       "size": "689 KB",
+      "bytes": 705101,
       "range": "2017 / 2017i"
     },
     "2018": {
       "file": "PEBToolsVN_2018_v1.3.20.tsep",
       "size": "689 KB",
+      "bytes": 705469,
       "range": "2018 / 2018i"
     },
     "2019": {
       "file": "PEBToolsVN_2019_v1.3.20.tsep",
       "size": "692 KB",
+      "bytes": 708603,
       "range": "2019 / 2019i"
     },
     "2020": {
       "file": "PEBToolsVN_2020_v1.3.20.tsep",
       "size": "704 KB",
+      "bytes": 721330,
       "range": "2020"
     },
     "2021_Higher": {
       "file": "PEBToolsVN_2021_Higher_v1.3.20.tsep",
       "size": "1.31 MB",
+      "bytes": 1369971,
       "range": "2021 – 2024"
     }
   },

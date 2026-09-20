@@ -59,6 +59,22 @@ service cloud.firestore {
       allow write: if isOwner();
     }
 
+    // ---- trafficHits : bộ đếm lượt xem/tải của toàn site (trang /admin), xem docs/admin/README.md ----
+    // Ghi công khai (traffic-track.js chạy trên MỌI khách, không đăng nhập) nên chỉ cho
+    // "create" với hình dạng cố định — không update/delete để khách không sửa/xoá được dữ liệu
+    // đã ghi. ts ép bằng request.time (giống l2CanEdit ở trên) để không giả mạo thời gian.
+    match /trafficHits/{hitId} {
+      allow read: if isOwner();
+      allow create: if request.resource.data.keys().hasOnly(['path', 'type', 'ts'])
+                    && request.resource.data.type in ['view', 'download']
+                    && request.resource.data.path is string
+                    && request.resource.data.path.size() > 0
+                    && request.resource.data.path.size() < 200
+                    && request.resource.data.path.matches('^/.*')
+                    && request.resource.data.ts == request.time;
+      allow update, delete: if false;
+    }
+
     // Cho phép truy vấn collectionGroup('members') liệt kê dự án của CHÍNH MÌNH.
     // Collection-group query chỉ khớp rule khai báo bằng recursive wildcard {path=**},
     // và phải là điều kiện field-based (không get/exists) mới hợp lệ khi list.
