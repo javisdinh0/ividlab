@@ -674,6 +674,16 @@ ol.steps > li::before {
   font-size: 2rem;
   line-height: 1;
 }
+/* 180px: mã QR ~43 ô nên mỗi ô >= 4px, điện thoại quét từ màn hình vẫn bắt được */
+.key-card__qr {
+  flex-shrink: 0;
+  width: 180px;
+  height: 180px;
+  padding: 8px;
+  border-radius: 10px;
+  background: #FFFFFF;
+  border: 1px solid var(--zalo-border);
+}
 .key-card__body { flex: 1 1 260px; }
 .key-card__title {
   font-family: 'Plus Jakarta Sans', sans-serif;
