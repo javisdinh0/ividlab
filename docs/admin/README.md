@@ -14,7 +14,8 @@ cùng danh sách `config/owners`). Không cần tạo Firebase project hay tài 
   `packageKey` là mã gói ổn định (vd. `2021_Higher`), không phải tên file theo version, để
   lịch sử không bị phân mảnh mỗi lần ra bản mới.
 - Không thu thập IP, cookie, hay bất kỳ định danh cá nhân nào — chỉ path + loại + thời gian.
-- `public/admin/admin.js` đọc tối đa 20.000 bản ghi gần nhất (`HIT_LIMIT`), tự tổng hợp theo
+- `public/admin/admin.js` đọc tối đa 10.000 bản ghi gần nhất (`HIT_LIMIT` — đúng bằng mức
+  `limit()` tối đa Firestore cho phép trong 1 structured query, không phải số tự chọn), tự tổng hợp theo
   trang/gói × (tổng / 7 ngày / 30 ngày). Dung lượng tải ước tính = số lượt tải × kích thước
   file thật (field `bytes` trong `downloads.json`) — chỉ tính được cho download vì GitHub
   **không hề công khai số GB băng thông đã dùng ở bất kỳ đâu**; lượt xem trang chỉ hiển thị
@@ -37,8 +38,8 @@ sửa file này, dán lại toàn bộ nội dung vào **Firestore Database → 
   **Firebase App Check** (reCAPTCHA) cho project — chưa làm vì chưa cần.
 - **Không phải số liệu chính thức của GitHub**: đây là site tự đếm qua Firestore, không phải
   số GitHub đo (GitHub Traffic API cũng chỉ có views/clones 14 ngày gần nhất, không có số GB).
-- **HIT_LIMIT 20.000 bản ghi**: đủ dùng nhiều năm ở traffic hiện tại. Nếu số "Tổng" bắt đầu bị
-  cảnh báo "đã chạm giới hạn" trong `scope-note`, cần chuyển sang rollup theo ngày (không làm
-  trước vì chưa cần).
+- **HIT_LIMIT 10.000 bản ghi** (mức trần cứng của Firestore, không thể tăng bằng cách sửa số):
+  đủ dùng nhiều năm ở traffic hiện tại. Nếu số "Tổng" bắt đầu bị cảnh báo "đã chạm giới hạn"
+  trong `scope-note`, cần chuyển sang rollup theo ngày (không làm trước vì chưa cần).
 - Dashboard hiện **chỉ theo dõi** — không có công tắc chủ động tắt/giới hạn tải xuống. Nếu cần,
   thêm sau bằng cách đọc thêm 1 document cấu hình (vd. `config/siteControl`) từ các trang công khai.

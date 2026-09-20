@@ -11,10 +11,11 @@ import {
 const $ = (id) => document.getElementById(id);
 const show = (el, on) => { if (el) el.style.display = on ? '' : 'none'; };
 
-// Đủ cho quy mô site này trong nhiều năm ở tần suất truy cập hiện tại. Nếu sau này lượng
-// bản ghi vượt mức này, "Tổng" sẽ chỉ còn tính trên HIT_LIMIT bản ghi gần nhất (có cảnh
-// báo ở scope-note) — cần chuyển sang rollup theo ngày lúc đó, chưa cần làm ngay.
-const HIT_LIMIT = 20000;
+// 10000 là mức limit() tối đa Firestore cho phép trong 1 structured query — vượt số này
+// server từ chối thẳng cả câu query (không phải giới hạn tự chọn để "đủ dùng nhiều năm").
+// Nếu sau này lượng bản ghi vượt mức này, "Tổng" sẽ chỉ còn tính trên HIT_LIMIT bản ghi gần
+// nhất (có cảnh báo ở scope-note) — cần chuyển sang rollup theo ngày lúc đó, chưa cần làm ngay.
+const HIT_LIMIT = 10000;
 const DAY_MS = 86400000;
 
 function toast(msg, type) {
