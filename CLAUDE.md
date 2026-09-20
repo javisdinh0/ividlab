@@ -35,6 +35,7 @@ This is **two things sharing one Vite build**, deployed together to GitHub Pages
    - `public/autocad/**` — static AutoCAD/AutoLISP tutorial pages.
    - `public/tekla/peb-member/**` — the **PEB Member** category (Tekla plugin). Articles share `assets/article.css|js`; `posts.json` is the single list of the category's articles (read at runtime by both the SPA tab `?tab=peb-member` and each article's "more in this category" block); `downloads.json` maps each Tekla version to a `.tsep` package in `public/fordownload/peb-member/` for the download combobox. How to add an article / publish a new plugin version: `docs/peb-member/README.md`.
    - `public/rficonsole/**` — multi-project RFI console using **Firebase** (Auth + Firestore) directly from client JS (`firebase.js`, `auth.js`, `admin/admin.js`).
+   - `public/admin/**` — **traffic dashboard** (`ividlab.com/admin/`), owner-only, reusing the RFI Console's Firebase project/`config/owners` allowlist rather than a separate login. Data source is `public/traffic-track.js`, a single shared script included on every public page (`<script type="module" src="/traffic-track.js">` in each page's `<head>`) that writes one `trafficHits` doc per page load; the PEB Member download button additionally calls `window.iViDTrack.download(packageKey)`. Details: `docs/admin/README.md`.
 
    The survey portal + grading tool that used to live at `public/dinhtieuthuong/**` (backend `backend/dinhtieuthuong/**`, docs `docs/dinhtieuthuong/**`) was split out to its own repo/domain — [github.com/javisdinh0/edupage](https://github.com/javisdinh0/edupage), `edupage.space`. Not part of this repo anymore.
 
@@ -46,7 +47,7 @@ Anything placed under `public/` is served publicly at `ividlab.com/<path>` — t
 
 | Dir | What | How it reaches production |
 |---|---|---|
-| `firebase/rficonsole/*.rules` | Firestore/Storage security rules for RFI Console | Pasted by hand into Firebase Console |
+| `firebase/rficonsole/*.rules` | Firestore/Storage security rules — covers RFI Console **and** the `/admin` traffic dashboard (same Firebase project) | Pasted by hand into Firebase Console |
 | `docs/**` | Deploy docs for each sub-app | Not deployed; reference only |
 
 Because the repo is public, **do not hardcode secrets/IDs in `backend/**/Code.gs`** — read them from Apps Script `PropertiesService.getScriptProperties()` instead.
