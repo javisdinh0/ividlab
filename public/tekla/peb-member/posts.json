@@ -1,5 +1,20 @@
 [
   {
+    "id": "huong-dan-settings-peb-member",
+    "link": "/tekla/peb-member/huong-dan-settings-peb-member.html",
+    "title": {
+      "vi": "Hướng dẫn chi tiết các cài đặt trong PEB Member",
+      "en": "PEB Member settings explained, option by option"
+    },
+    "description": {
+      "vi": "Giải thích từng ô trong cửa sổ iViD PEB Part Settings: Plate Profile, Part Name By, tên – prefix – class của bản cánh và bản bụng, Name By, danh sách Type, cách lưu nhiều bộ cài đặt; kèm ví dụ kết quả thực tế trong Tekla.",
+      "en": "Every field in the iViD PEB Part Settings window: Plate Profile, Part Name By, plate names, prefixes and classes, Name By, the Type list and multiple settings sets — with worked examples of the result in Tekla."
+    },
+    "tag": { "vi": "Hướng dẫn", "en": "Guide" },
+    "date": "2026-09-21",
+    "cover": "/tekla/peb-member/img/11-cai-dat-dat-ten.jpg"
+  },
+  {
     "id": "gioi-thieu-peb-member",
     "link": "/tekla/peb-member/gioi-thieu-peb-member.html",
     "title": {
