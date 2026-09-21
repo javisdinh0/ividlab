@@ -189,14 +189,14 @@
         <p>Chiều dày lấy phần nguyên theo mm (8.0 → <code>8</code>).</p>
 
         <h3 id="name-modifier">3.5. Name Modifier — ghép ghi chú loại vào tên</h3>
-        <p>Tương tự nhóm trên nhưng áp dụng cho <em>tên</em> bản thép, và thứ được ghép vào là <strong>ghi chú của loại cấu kiện</strong> khai báo trong danh sách Type (mục 4.2). Ví dụ loại <em>Rafter</em> có ghi chú <code>KÈO</code>:</p>
+        <p>Tương tự nhóm trên nhưng áp dụng cho <em>tên</em> bản thép, và thứ được ghép vào là <strong>ghi chú của loại cấu kiện</strong> khai báo trong danh sách Type (mục 4.2). Ví dụ loại <em>Rafter</em> có ghi chú <code>KEO</code>:</p>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Modifier</th><th>Pos</th><th>Separator</th><th>Tên bản cánh</th><th>Tên bản bụng</th></tr></thead>
             <tbody>
               <tr><td>None</td><td>—</td><td>—</td><td><code>FLANGE</code></td><td><code>WEB</code></td></tr>
-              <tr><td>Type Note</td><td>Prefix</td><td><code>-</code></td><td><code>KÈO-FLANGE</code></td><td><code>KÈO-WEB</code></td></tr>
-              <tr><td>Type Note</td><td>Suffix</td><td><code>_</code></td><td><code>FLANGE_KÈO</code></td><td><code>WEB_KÈO</code></td></tr>
+              <tr><td>Type Note</td><td>Prefix</td><td><code>-</code></td><td><code>KEO-FLANGE</code></td><td><code>KEO-WEB</code></td></tr>
+              <tr><td>Type Note</td><td>Suffix</td><td><code>_</code></td><td><code>FLANGE_KEO</code></td><td><code>WEB_KEO</code></td></tr>
             </tbody>
           </table>
         </div>
@@ -239,7 +239,7 @@
         <p>Bấm <strong>Manage Types…</strong> để mở bảng danh sách loại cấu kiện gồm hai cột:</p>
         <ul>
           <li><strong>Type Name</strong> — tên loại, trùng với giá trị bạn gõ ở cột <em>Type</em> trong bảng PEB Member (Column, Rafter, Canopy…).</li>
-          <li><strong>Note</strong> — ghi chú đi kèm, ví dụ <code>CỘT</code>, <code>KÈO</code>. Ghi chú này chính là thứ được ghép vào tên bản thép khi <em>Name Modifier</em> = <em>Type Note</em>.</li>
+          <li><strong>Note</strong> — ghi chú đi kèm, ví dụ <code>COT</code>, <code>KEO</code>. Ghi chú này chính là thứ được ghép vào tên bản thép khi <em>Name Modifier</em> = <em>Type Note</em>.</li>
         </ul>
         <p>Các nút <strong>Add Row</strong> thêm dòng mới, <strong>Delete Row</strong> xoá dòng đang chọn, <strong>OK</strong> giữ thay đổi (nhớ bấm tiếp <em>Save Settings</em> để ghi xuống file), <strong>Cancel</strong> bỏ qua.</p>
         <figure class="media">
@@ -248,13 +248,13 @@
         </figure>
 
         <h2 id="vi-du">5. Ví dụ hoàn chỉnh</h2>
-        <p>Cấu kiện <code>W(300-500)x6+F186x8</code>, cột Type là <em>Rafter</em> (ghi chú <code>KÈO</code>), cột Prefix là <code>RF1</code>, vật liệu <code>SS400</code>. Với cài đặt: Part Name By = <em>Custom</em>, Prefix Modifier = <em>Thickness</em> / <em>Prefix</em> / không ngăn cách, Name Modifier = <em>Type Note</em> / <em>Prefix</em> / ngăn cách <code>-</code>, Class By = <em>By Thickness</em>, Name By = <em>Section</em>:</p>
+        <p>Cấu kiện <code>W(300-500)x6+F186x8</code>, cột Type là <em>Rafter</em> (ghi chú <code>KEO</code>), cột Prefix là <code>RF1</code>, vật liệu <code>SS400</code>. Với cài đặt: Part Name By = <em>Custom</em>, Prefix Modifier = <em>Thickness</em> / <em>Prefix</em> / không ngăn cách, Name Modifier = <em>Type Note</em> / <em>Prefix</em> / ngăn cách <code>-</code>, Class By = <em>By Thickness</em>, Name By = <em>Section</em>:</p>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Đối tượng</th><th>Name</th><th>Prefix</th><th>Class</th></tr></thead>
             <tbody>
-              <tr><td>Bản cánh trên và dưới (dày 8)</td><td><code>KÈO-FLANGE</code></td><td><code>8F</code></td><td><code>8</code></td></tr>
-              <tr><td>Bản bụng (dày 6)</td><td><code>KÈO-WEB</code></td><td><code>6W</code></td><td><code>6</code></td></tr>
+              <tr><td>Bản cánh trên và dưới (dày 8)</td><td><code>KEO-FLANGE</code></td><td><code>8F</code></td><td><code>8</code></td></tr>
+              <tr><td>Bản bụng (dày 6)</td><td><code>KEO-WEB</code></td><td><code>6W</code></td><td><code>6</code></td></tr>
               <tr><td>Cấu kiện (Assembly)</td><td><code>W(300-500)x6+F186x8</code></td><td><code>RF1</code></td><td>—</td></tr>
             </tbody>
           </table>
@@ -410,14 +410,14 @@
         <p>The thickness is used as a whole number of millimetres (8.0 → <code>8</code>).</p>
 
         <h3 id="name-modifier-en">3.5. Name Modifier — adding the type note to the name</h3>
-        <p>The same idea applied to plate <em>names</em>, where what gets attached is the <strong>note of the member type</strong> defined in the Type list (see 4.2). With the <em>Rafter</em> type carrying the note <code>KÈO</code>:</p>
+        <p>The same idea applied to plate <em>names</em>, where what gets attached is the <strong>note of the member type</strong> defined in the Type list (see 4.2). With the <em>Rafter</em> type carrying the note <code>KEO</code>:</p>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Modifier</th><th>Pos</th><th>Separator</th><th>Flange name</th><th>Web name</th></tr></thead>
             <tbody>
               <tr><td>None</td><td>—</td><td>—</td><td><code>FLANGE</code></td><td><code>WEB</code></td></tr>
-              <tr><td>Type Note</td><td>Prefix</td><td><code>-</code></td><td><code>KÈO-FLANGE</code></td><td><code>KÈO-WEB</code></td></tr>
-              <tr><td>Type Note</td><td>Suffix</td><td><code>_</code></td><td><code>FLANGE_KÈO</code></td><td><code>WEB_KÈO</code></td></tr>
+              <tr><td>Type Note</td><td>Prefix</td><td><code>-</code></td><td><code>KEO-FLANGE</code></td><td><code>KEO-WEB</code></td></tr>
+              <tr><td>Type Note</td><td>Suffix</td><td><code>_</code></td><td><code>FLANGE_KEO</code></td><td><code>WEB_KEO</code></td></tr>
             </tbody>
           </table>
         </div>
@@ -460,7 +460,7 @@
         <p>Click <strong>Manage Types…</strong> to open the member-type list with two columns:</p>
         <ul>
           <li><strong>Type Name</strong> — the type, matching what you type in the <em>Type</em> column of the PEB Member table (Column, Rafter, Canopy…).</li>
-          <li><strong>Note</strong> — the note that goes with it, e.g. <code>CỘT</code>, <code>KÈO</code>. This is exactly what gets attached to plate names when <em>Name Modifier</em> = <em>Type Note</em>.</li>
+          <li><strong>Note</strong> — the note that goes with it, e.g. <code>COT</code>, <code>KEO</code>. This is exactly what gets attached to plate names when <em>Name Modifier</em> = <em>Type Note</em>.</li>
         </ul>
         <p><strong>Add Row</strong> adds an entry, <strong>Delete Row</strong> removes the selected one, <strong>OK</strong> keeps the changes (click <em>Save Settings</em> afterwards to write them to disk) and <strong>Cancel</strong> discards them.</p>
         <figure class="media">
@@ -469,13 +469,13 @@
         </figure>
 
         <h2 id="example-en">5. A worked example</h2>
-        <p>A member <code>W(300-500)x6+F186x8</code>, Type <em>Rafter</em> (note <code>KÈO</code>), Prefix <code>RF1</code>, material <code>SS400</code>. With Part Name By = <em>Custom</em>, Prefix Modifier = <em>Thickness</em> / <em>Prefix</em> / no separator, Name Modifier = <em>Type Note</em> / <em>Prefix</em> / separator <code>-</code>, Class By = <em>By Thickness</em> and Name By = <em>Section</em>:</p>
+        <p>A member <code>W(300-500)x6+F186x8</code>, Type <em>Rafter</em> (note <code>KEO</code>), Prefix <code>RF1</code>, material <code>SS400</code>. With Part Name By = <em>Custom</em>, Prefix Modifier = <em>Thickness</em> / <em>Prefix</em> / no separator, Name Modifier = <em>Type Note</em> / <em>Prefix</em> / separator <code>-</code>, Class By = <em>By Thickness</em> and Name By = <em>Section</em>:</p>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Object</th><th>Name</th><th>Prefix</th><th>Class</th></tr></thead>
             <tbody>
-              <tr><td>Top and bottom flange (8 thick)</td><td><code>KÈO-FLANGE</code></td><td><code>8F</code></td><td><code>8</code></td></tr>
-              <tr><td>Web (6 thick)</td><td><code>KÈO-WEB</code></td><td><code>6W</code></td><td><code>6</code></td></tr>
+              <tr><td>Top and bottom flange (8 thick)</td><td><code>KEO-FLANGE</code></td><td><code>8F</code></td><td><code>8</code></td></tr>
+              <tr><td>Web (6 thick)</td><td><code>KEO-WEB</code></td><td><code>6W</code></td><td><code>6</code></td></tr>
               <tr><td>Assembly</td><td><code>W(300-500)x6+F186x8</code></td><td><code>RF1</code></td><td>—</td></tr>
             </tbody>
           </table>
