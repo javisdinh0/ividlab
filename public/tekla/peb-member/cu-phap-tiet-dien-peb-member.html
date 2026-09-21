@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234924381658348" crossorigin="anonymous"></script>
+  <script type="module" src="/traffic-track.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-en="PEB Member profile syntax in depth - iViDLab">Cú pháp khai báo tiết diện trong PEB Member — hướng dẫn chi tiết - iViDLab</title>
+  <meta name="description" content="Cách viết chuỗi tiết diện trong PEB Member: kiểu W theo chiều cao bụng, kiểu H theo tổng chiều cao, tiết diện vát nhiều đoạn, quy tắc gõ, bảng tra ví dụ và các lỗi thường gặp." />
+  <link rel="canonical" href="https://ividlab.com/tekla/peb-member/cu-phap-tiet-dien-peb-member.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="iViDLab" />
+  <meta property="og:locale" content="vi_VN" />
+  <meta property="og:title" content="Cú pháp khai báo tiết diện trong PEB Member" />
+  <meta property="og:description" content="Kiểu W và kiểu H, tiết diện vát nhiều đoạn, quy tắc gõ, bảng tra ví dụ kèm hình 3D và cách xử lý khi gõ sai." />
+  <meta property="og:url" content="https://ividlab.com/tekla/peb-member/cu-phap-tiet-dien-peb-member.html" />
+  <meta property="og:image" content="https://ividlab.com/tekla/peb-member/img/profile-03-multi.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <script>
+    // Đặt theme + ngôn ngữ trước khi vẽ trang để không bị nháy; article.js lo phần còn lại.
+    (function () {
+      var root = document.documentElement;
+      try {
+        root.setAttribute('data-theme', localStorage.getItem('ividlab-theme') || 'light');
+        if (localStorage.getItem('ividlab-lang') === 'en') root.classList.add('lang-en');
+      } catch (e) {
+        root.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="/tekla/peb-member/assets/article.css" />
+  <script src="/tekla/peb-member/assets/article.js" defer></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/">iViD<span>Lab</span></a>
+      <nav class="site-nav" aria-label="Menu">
+        <a href="/"><span data-lang="vi">// TRANG CHỦ</span><span data-lang="en">// HOME</span></a>
+        <a href="/?tab=tools"><span data-lang="vi">// CÔNG CỤ</span><span data-lang="en">// TOOLS</span></a>
+        <a href="/?tab=guides"><span data-lang="vi">// HƯỚNG DẪN &amp; CHIA SẺ</span><span data-lang="en">// GUIDES &amp; TIPS</span></a>
+        <a href="/?tab=peb-member" aria-current="true">// PEB MEMBER</a>
+        <a href="/?tab=about"><span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en">// ABOUT</span></a>
+      </nav>
+      <div class="header-tools">
+        <button id="theme-toggle" type="button" class="theme-switch" role="switch" aria-checked="false" aria-label="Chuyển giao diện Sáng / Tối" title="Chuyển giao diện Sáng / Tối">
+          <span class="theme-switch-thumb">☀️</span>
+        </button>
+        <button id="lang-toggle" type="button" class="toggle-btn" title="Chuyển ngôn ngữ / Switch language">🌐 VI</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">iViDLab</a><span aria-hidden="true">›</span><a href="/?tab=peb-member">PEB Member</a><span aria-hidden="true">›</span><span data-lang="vi">Cú pháp tiết diện</span><span data-lang="en">Profile syntax</span>
+    </nav>
+
+    <article class="article">
+
+      <!-- =================================================================== -->
+      <!-- TIẾNG VIỆT                                                           -->
+      <!-- =================================================================== -->
+      <div data-lang="vi">
+        <header class="article-hero">
+          <div class="eyebrow">Tekla Plugin // PEB Member</div>
+          <h1>Cú pháp khai báo tiết diện trong PEB Member</h1>
+          <p class="lead">Cả cấu kiện PEB — cao bao nhiêu, vát mấy đoạn, cánh rộng dày bao nhiêu — được mô tả bằng <strong>một dòng chữ duy nhất</strong> trong cột Profile, ví dụ <code>W(300-500)*6+F186*8</code>. Bài này đi hết mọi cách viết được chấp nhận, kèm hình 3D của từng ví dụ, bảng tra nhanh và cách xử lý khi gõ sai.</p>
+          <ul class="meta-row">
+            <li>PEB Member 1.3.20</li>
+            <li>Kiểu W và kiểu H</li>
+            <li>Cập nhật 21/09/2026</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn btn--ghost" href="/tekla/peb-member/gioi-thieu-peb-member.html">Xem bài giới thiệu PEB Member</a>
+            <a class="btn btn--primary" href="#tai-ve">⬇ Tải về</a>
+          </div>
+        </header>
+
+        <figure class="media">
+          <img src="img/profile-03-multi.png" width="608" height="465" alt="Mô phỏng 3D của tiết diện vát nhiều đoạn W(300-500-600-300)*6+F186*8">
+          <figcaption>Một dòng <code>W(300-500-600-300)*6+F186*8</code> và hình 3D mà PEB Member dựng ra từ nó.</figcaption>
+        </figure>
+
+        <nav class="toc" aria-label="Mục lục">
+          <div class="toc__title">Nội dung bài viết</div>
+          <ol>
+            <li><a href="#dung-o-dau">Chuỗi tiết diện dùng ở đâu</a></li>
+            <li><a href="#kieu-w">Kiểu W — theo chiều cao bụng</a></li>
+            <li><a href="#kieu-h">Kiểu H — theo tổng chiều cao</a></li>
+            <li><a href="#vat">Tiết diện vát nhiều đoạn</a></li>
+            <li><a href="#quy-tac">Quy tắc gõ</a></li>
+            <li><a href="#vi-du">Bảng tra nhanh</a></li>
+            <li><a href="#kiem-tra">Kiểm tra trước khi vẽ</a></li>
+            <li><a href="#loi">Lỗi thường gặp</a></li>
+            <li><a href="#excel">Ghép chuỗi từ Excel</a></li>
+            <li><a href="#tai-ve">Tải về</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="dung-o-dau">1. Chuỗi tiết diện dùng ở đâu</h2>
+        <p>Giá trị trong cột <strong>Profile</strong> của bảng PEB Member được dùng cho bốn việc:</p>
+        <ul>
+          <li>Dựng hình <strong>mô phỏng 3D</strong> và các đường kích thước bên phải giao diện.</li>
+          <li>Ghi kích thước thật vào model khi bấm <strong>Draw</strong> hoặc <strong>Update</strong>.</li>
+          <li>Làm <strong>tên cấu kiện</strong> (khi Name By = <em>Section</em>) hoặc <strong>tên bản thép</strong> (khi Part Name By = <em>Full Assembly Profile</em>) — xem <a href="/tekla/peb-member/huong-dan-settings-peb-member.html">bài hướng dẫn cài đặt</a>.</li>
+          <li>Làm <strong>tên file</strong> khi Export Attributes (dấu <code>*</code> được đổi thành <code>x</code> cho hợp lệ với tên file Windows).</li>
+        </ul>
+
+        <h2 id="kieu-w">2. Kiểu W — khai theo chiều cao bụng</h2>
+        <p>Đây là cách viết thường dùng nhất, vì bản vẽ gia công thường ghi theo chiều cao bản bụng:</p>
+        <p><code>W&lt;chiều cao bụng&gt;*&lt;dày bụng&gt;+F&lt;rộng cánh&gt;*&lt;dày cánh&gt;</code></p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Thành phần</th><th>Ý nghĩa</th><th>Ví dụ <code>W300*6+F200*8</code></th></tr></thead>
+            <tbody>
+              <tr><td><code>W…</code></td><td>Chiều cao bản bụng hW (mm)</td><td>300</td></tr>
+              <tr><td><code>*…</code></td><td>Chiều dày bản bụng Tw</td><td>6</td></tr>
+              <tr><td><code>F…</code></td><td>Bề rộng bản cánh B</td><td>200</td></tr>
+              <tr><td><code>*…</code> (sau F)</td><td>Chiều dày bản cánh Tf</td><td>8</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Tổng chiều cao tiết diện khi đó là hW + 2 × Tf = 300 + 16 = <strong>316 mm</strong>. Bản cánh trên và bản cánh dưới luôn dùng chung bề rộng và chiều dày.</p>
+        <figure class="media">
+          <img src="img/profile-01-constant.png" width="608" height="465" alt="Mô phỏng 3D tiết diện không đổi W300*6+F200*8" loading="lazy">
+          <figcaption><code>W300*6+F200*8</code> — tiết diện không đổi suốt chiều dài.</figcaption>
+        </figure>
+
+        <h2 id="kieu-h">3. Kiểu H — khai theo tổng chiều cao</h2>
+        <p>Khi bản vẽ ghi <strong>tổng chiều cao</strong> tiết diện (đã gồm hai bản cánh), dùng kiểu H:</p>
+        <p><code>H&lt;tổng chiều cao&gt;*&lt;rộng cánh&gt;*&lt;dày bụng&gt;*&lt;dày cánh&gt;</code></p>
+        <p>Phần mềm tự quy đổi về chiều cao bụng: <strong>hW = H − 2 × Tf</strong>. Ví dụ <code>H300*186*6*8</code> cho bụng cao 300 − 16 = 284 mm.</p>
+        <div class="callout callout--warn">
+          <p>⚠️ Thứ tự tham số của kiểu H <strong>khác</strong> kiểu W — rất dễ nhầm:</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Kiểu</th><th>Số thứ 1</th><th>Số thứ 2</th><th>Số thứ 3</th><th>Số thứ 4</th></tr></thead>
+              <tbody>
+                <tr><td><code>W</code></td><td>Cao bụng</td><td>Dày bụng</td><td>Rộng cánh (sau F)</td><td>Dày cánh</td></tr>
+                <tr><td><code>H</code></td><td>Tổng chiều cao</td><td><strong>Rộng cánh</strong></td><td><strong>Dày bụng</strong></td><td>Dày cánh</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <figure class="media">
+          <img src="img/profile-04-total-height.png" width="608" height="465" alt="Mô phỏng 3D của H(300-500)*186*6*8" loading="lazy">
+          <figcaption><code>H(300-500)*186*6*8</code> — tổng chiều cao đổi từ 300 lên 500, bụng tương ứng 284 → 484.</figcaption>
+        </figure>
+
+        <h2 id="vat">4. Tiết diện vát nhiều đoạn</h2>
+        <p>Muốn tiết diện thay đổi dọc theo cấu kiện, liệt kê các chiều cao cách nhau bằng dấu <code>-</code>. Dấu ngoặc đơn giúp dễ đọc nhưng <strong>không bắt buộc</strong>: <code>W(300-500)*6+F186*8</code> và <code>W300-500*6+F186*8</code> cho kết quả như nhau.</p>
+        <figure class="media">
+          <img src="img/profile-02-tapered.png" width="608" height="465" alt="Mô phỏng 3D tiết diện vát W(300-500)*6+F186*8" loading="lazy">
+          <figcaption><code>W(300-500)*6+F186*8</code> — bụng vát từ 300 lên 500; bản cánh trên phẳng, bản cánh dưới bám theo độ dốc.</figcaption>
+        </figure>
+        <p>Thêm bao nhiêu chiều cao thì tiết diện có bấy nhiêu điểm gãy — ví dụ <code>W(300-500-600-300)*6+F186*8</code> tạo cấu kiện gãy khúc ba đoạn như hình đầu bài. Các chiều cao được chia đều theo chiều dài cấu kiện.</p>
+        <div class="callout callout--warn">
+          <p>⚠️ Component PEB của Tekla chỉ có <strong>6 ô chiều cao</strong> (Depth1 – Depth6), nên đừng khai quá 6 chiều cao. Ngoài ra, với tiết diện từ <strong>3 chiều cao trở lên</strong>, sau khi <em>Draw</em> hãy chọn cấu kiện đó rồi bấm <em>Update</em> — lệnh Update ghi đủ toàn bộ các chiều cao vào component.</p>
+        </div>
+
+        <h2 id="quy-tac">5. Quy tắc gõ</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Quy tắc</th><th>Chi tiết</th></tr></thead>
+            <tbody>
+              <tr><td>Dấu nhân</td><td>Dùng <code>*</code> hoặc <code>x</code> đều được: <code>W300x6+F200x8</code> = <code>W300*6+F200*8</code>.</td></tr>
+              <tr><td>Dấu trước chữ F</td><td><code>+</code> hay <code>-</code> chỉ để dễ đọc, không ảnh hưởng kết quả: <code>W(300-500)x6-F186x8</code> vẫn hiểu đúng.</td></tr>
+              <tr><td>Chữ hoa / thường</td><td>Không phân biệt: <code>w300*6+f200*8</code> vẫn chạy.</td></tr>
+              <tr><td>Dấu ngoặc đơn</td><td>Tuỳ chọn, chỉ để dễ nhìn khi có nhiều chiều cao.</td></tr>
+              <tr><td>Khoảng trắng</td><td><strong>Không được dùng.</strong> <code>W 300 * 6 + F200*8</code> sẽ bị đọc sai hoàn toàn.</td></tr>
+              <tr><td>Số</td><td>Số nguyên, đơn vị mm. Phần thập phân bị cắt bỏ: <code>W300.5*6</code> hiểu thành 300 và 6.</td></tr>
+              <tr><td>Chữ đầu</td><td>Phải là <code>W</code> hoặc <code>H</code>. Các chữ khác (kể cả <code>I</code>) không được hiểu.</td></tr>
+              <tr><td>Thiếu phần cánh</td><td><code>W300*6</code> vẫn vẽ được nhưng lấy cánh mặc định 200 × 10.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="vi-du">6. Bảng tra nhanh</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Chuỗi</th><th>Cao bụng hW</th><th>Dày bụng</th><th>Rộng cánh</th><th>Dày cánh</th><th>Tổng cao lớn nhất</th></tr></thead>
+            <tbody>
+              <tr><td><code>W300*6+F200*8</code></td><td>300</td><td>6</td><td>200</td><td>8</td><td>316</td></tr>
+              <tr><td><code>W850*6+F250*12</code></td><td>850</td><td>6</td><td>250</td><td>12</td><td>874</td></tr>
+              <tr><td><code>W(300-500)*6+F186*8</code></td><td>300 → 500</td><td>6</td><td>186</td><td>8</td><td>516</td></tr>
+              <tr><td><code>W(1050-850)*8+F300*12</code></td><td>1050 → 850</td><td>8</td><td>300</td><td>12</td><td>1074</td></tr>
+              <tr><td><code>W(300-500-600-300)*6+F186*8</code></td><td>300 → 500 → 600 → 300</td><td>6</td><td>186</td><td>8</td><td>616</td></tr>
+              <tr><td><code>H300*186*6*8</code></td><td>284</td><td>6</td><td>186</td><td>8</td><td>300</td></tr>
+              <tr><td><code>H(300-500)*186*6*8</code></td><td>284 → 484</td><td>6</td><td>186</td><td>8</td><td>500</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="kiem-tra">7. Kiểm tra trước khi vẽ</h2>
+        <ul>
+          <li>Nhìn <strong>mô phỏng 3D</strong>: kích thước H(w), H(All), B(f) hiện ngay trên hình.</li>
+          <li>Bấm <strong>ⓘ Section Information</strong> để xem phần mềm đã hiểu chuỗi như thế nào — loại tiết diện, các chiều cao bụng, chiều dày và tổng chiều cao lớn nhất.</li>
+          <li>Bấm <strong>?</strong> để mở lại bảng cú pháp ngay trong phần mềm.</li>
+        </ul>
+        <figure class="media">
+          <img src="img/profile-05-section-info.png" width="552" height="443" alt="Hộp Section Information hiển thị các thông số đọc được từ chuỗi tiết diện" loading="lazy">
+          <figcaption>Section Information của <code>W(1050-850)*8+F300*12</code> — cách nhanh nhất để biết chuỗi đã được hiểu đúng chưa.</figcaption>
+        </figure>
+        <figure class="media">
+          <img src="img/04-cu-phap-tiet-dien.png" width="822" height="891" alt="Bảng Accepted Section Formats trong PEB Member" loading="lazy">
+          <figcaption>Bảng cú pháp có sẵn trong phần mềm (nút <strong>?</strong>).</figcaption>
+        </figure>
+
+        <h2 id="loi">8. Lỗi thường gặp</h2>
+        <div class="callout">
+          <p>💡 Dấu hiệu nhận biết gõ sai: hình 3D hiện một cấu kiện <strong>bụng cao 400, dày 6, cánh 200 × 10</strong> — đó là giá trị mặc định khi phần mềm không đọc được chuỗi.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Gõ thế này</th><th>Phần mềm hiểu thành</th><th>Sửa thành</th></tr></thead>
+            <tbody>
+              <tr><td><code>W 300 * 6 + F200*8</code></td><td>Bụng 400 × 8 (sai) — vì có khoảng trắng</td><td><code>W300*6+F200*8</code></td></tr>
+              <tr><td><code>300*6+F200*8</code></td><td>Bụng cao 400 (mặc định) — thiếu chữ W</td><td><code>W300*6+F200*8</code></td></tr>
+              <tr><td><code>I300*186*6*8</code></td><td>Không hiểu — chữ đầu phải là W hoặc H</td><td><code>H300*186*6*8</code></td></tr>
+              <tr><td><code>H300*6*186*8</code></td><td>Nhầm thứ tự: 6 thành bề rộng cánh</td><td><code>H300*186*6*8</code></td></tr>
+              <tr><td><code>W300.5*6+F200*8</code></td><td>Bụng 300 (phần thập phân bị cắt)</td><td>Làm tròn trước khi nhập</td></tr>
+              <tr><td><code>W300*6</code></td><td>Cánh mặc định 200 × 10</td><td><code>W300*6+F200*8</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="excel">9. Ghép chuỗi từ Excel</h2>
+        <p>Nếu bảng thống kê tiết diện của bạn đang ở Excel dưới dạng các cột rời (cao bụng, dày bụng, rộng cánh, dày cánh), dùng công thức ghép rồi dán cả cột vào bảng PEB Member:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Trường hợp</th><th>Công thức Excel</th></tr></thead>
+            <tbody>
+              <tr><td>Tiết diện không đổi</td><td><code>="W"&amp;A2&amp;"*"&amp;B2&amp;"+F"&amp;C2&amp;"*"&amp;D2</code></td></tr>
+              <tr><td>Tiết diện vát 2 đoạn</td><td><code>="W("&amp;A2&amp;"-"&amp;B2&amp;")*"&amp;C2&amp;"+F"&amp;D2&amp;"*"&amp;E2</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Sau đó copy cả cột kết quả và dán thẳng vào cột Profile — bảng tự tạo thêm dòng nếu khối dán dài hơn số dòng hiện có.</p>
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- ENGLISH                                                              -->
+      <!-- =================================================================== -->
+      <div data-lang="en">
+        <header class="article-hero">
+          <div class="eyebrow">Tekla Plugin // PEB Member</div>
+          <h1>PEB Member profile syntax in depth</h1>
+          <p class="lead">A whole PEB member — how deep it is, how many tapered segments it has, how wide and thick its flanges are — is described by <strong>one short string</strong> in the Profile column, for example <code>W(300-500)*6+F186*8</code>. This article covers every accepted way of writing it, with a 3D view of each example, a lookup table and what to do when a string is mistyped.</p>
+          <ul class="meta-row">
+            <li>PEB Member 1.3.20</li>
+            <li>W and H notations</li>
+            <li>Updated Sep 21, 2026</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn btn--ghost" href="/tekla/peb-member/gioi-thieu-peb-member.html">Read the PEB Member overview</a>
+            <a class="btn btn--primary" href="#tai-ve">⬇ Download</a>
+          </div>
+        </header>
+
+        <figure class="media">
+          <img src="img/profile-03-multi.png" width="608" height="465" alt="3D preview of the multi-segment section W(300-500-600-300)*6+F186*8">
+          <figcaption>One line, <code>W(300-500-600-300)*6+F186*8</code>, and the 3D shape PEB Member builds from it.</figcaption>
+        </figure>
+
+        <nav class="toc" aria-label="Contents">
+          <div class="toc__title">In this article</div>
+          <ol>
+            <li><a href="#where-en">Where the string is used</a></li>
+            <li><a href="#w-en">The W notation — by web depth</a></li>
+            <li><a href="#h-en">The H notation — by total depth</a></li>
+            <li><a href="#taper-en">Multi-segment tapers</a></li>
+            <li><a href="#rules-en">Typing rules</a></li>
+            <li><a href="#table-en">Lookup table</a></li>
+            <li><a href="#check-en">Checking before you draw</a></li>
+            <li><a href="#errors-en">Common mistakes</a></li>
+            <li><a href="#excel-en">Building strings in Excel</a></li>
+            <li><a href="#tai-ve">Download</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="where-en">1. Where the string is used</h2>
+        <p>The value in the <strong>Profile</strong> column of the PEB Member table drives four things:</p>
+        <ul>
+          <li>The <strong>3D preview</strong> and its dimension lines on the right of the window.</li>
+          <li>The real dimensions written into the model by <strong>Draw</strong> and <strong>Update</strong>.</li>
+          <li>The <strong>assembly name</strong> (when Name By = <em>Section</em>) or the <strong>plate names</strong> (when Part Name By = <em>Full Assembly Profile</em>) — see the <a href="/tekla/peb-member/huong-dan-settings-peb-member.html">settings guide</a>.</li>
+          <li>The <strong>file name</strong> used by Export Attributes (<code>*</code> becomes <code>x</code> so the name is valid on Windows).</li>
+        </ul>
+
+        <h2 id="w-en">2. The W notation — by web depth</h2>
+        <p>The most common form, because shop drawings usually give the web depth:</p>
+        <p><code>W&lt;web depth&gt;*&lt;web thickness&gt;+F&lt;flange width&gt;*&lt;flange thickness&gt;</code></p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Part</th><th>Meaning</th><th>In <code>W300*6+F200*8</code></th></tr></thead>
+            <tbody>
+              <tr><td><code>W…</code></td><td>Web depth hW (mm)</td><td>300</td></tr>
+              <tr><td><code>*…</code></td><td>Web thickness Tw</td><td>6</td></tr>
+              <tr><td><code>F…</code></td><td>Flange width B</td><td>200</td></tr>
+              <tr><td><code>*…</code> (after F)</td><td>Flange thickness Tf</td><td>8</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The total section depth is then hW + 2 × Tf = 300 + 16 = <strong>316 mm</strong>. The top and bottom flange always share the same width and thickness.</p>
+        <figure class="media">
+          <img src="img/profile-01-constant.png" width="608" height="465" alt="3D preview of the constant section W300*6+F200*8" loading="lazy">
+          <figcaption><code>W300*6+F200*8</code> — constant along the whole member.</figcaption>
+        </figure>
+
+        <h2 id="h-en">3. The H notation — by total depth</h2>
+        <p>When the drawing gives the <strong>total depth</strong> (flanges included), use the H notation:</p>
+        <p><code>H&lt;total depth&gt;*&lt;flange width&gt;*&lt;web thickness&gt;*&lt;flange thickness&gt;</code></p>
+        <p>It is converted to a web depth automatically: <strong>hW = H − 2 × Tf</strong>. So <code>H300*186*6*8</code> gives a web of 300 − 16 = 284 mm.</p>
+        <div class="callout callout--warn">
+          <p>⚠️ The parameter order of the H notation <strong>differs</strong> from the W notation — an easy mistake to make:</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Notation</th><th>1st number</th><th>2nd number</th><th>3rd number</th><th>4th number</th></tr></thead>
+              <tbody>
+                <tr><td><code>W</code></td><td>Web depth</td><td>Web thickness</td><td>Flange width (after F)</td><td>Flange thickness</td></tr>
+                <tr><td><code>H</code></td><td>Total depth</td><td><strong>Flange width</strong></td><td><strong>Web thickness</strong></td><td>Flange thickness</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <figure class="media">
+          <img src="img/profile-04-total-height.png" width="608" height="465" alt="3D preview of H(300-500)*186*6*8" loading="lazy">
+          <figcaption><code>H(300-500)*186*6*8</code> — total depth going from 300 to 500, so the web runs 284 → 484.</figcaption>
+        </figure>
+
+        <h2 id="taper-en">4. Multi-segment tapers</h2>
+        <p>To make the section change along the member, list the depths separated by <code>-</code>. The brackets only help readability and are <strong>optional</strong>: <code>W(300-500)*6+F186*8</code> and <code>W300-500*6+F186*8</code> give the same result.</p>
+        <figure class="media">
+          <img src="img/profile-02-tapered.png" width="608" height="465" alt="3D preview of the tapered section W(300-500)*6+F186*8" loading="lazy">
+          <figcaption><code>W(300-500)*6+F186*8</code> — the web tapers from 300 to 500; the top flange stays flat and the bottom flange follows the slope.</figcaption>
+        </figure>
+        <p>Every extra depth adds another break point — <code>W(300-500-600-300)*6+F186*8</code> builds the three-segment member shown at the top of this article. The depths are spread evenly along the member.</p>
+        <div class="callout callout--warn">
+          <p>⚠️ Tekla's PEB component only has <strong>six depth fields</strong> (Depth1 – Depth6), so do not list more than six depths. Also, for sections with <strong>three or more depths</strong>, select the member after <em>Draw</em> and click <em>Update</em> — the Update command writes the complete set of depths into the component.</p>
+        </div>
+
+        <h2 id="rules-en">5. Typing rules</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Rule</th><th>Detail</th></tr></thead>
+            <tbody>
+              <tr><td>Multiplication sign</td><td>Either <code>*</code> or <code>x</code>: <code>W300x6+F200x8</code> = <code>W300*6+F200*8</code>.</td></tr>
+              <tr><td>Sign before F</td><td><code>+</code> or <code>-</code> is only for readability: <code>W(300-500)x6-F186x8</code> still parses correctly.</td></tr>
+              <tr><td>Upper / lower case</td><td>Ignored: <code>w300*6+f200*8</code> works.</td></tr>
+              <tr><td>Brackets</td><td>Optional, purely for readability with several depths.</td></tr>
+              <tr><td>Spaces</td><td><strong>Not allowed.</strong> <code>W 300 * 6 + F200*8</code> is parsed completely wrong.</td></tr>
+              <tr><td>Numbers</td><td>Whole millimetres. Decimals are cut off: <code>W300.5*6</code> is read as 300 and 6.</td></tr>
+              <tr><td>First letter</td><td>Must be <code>W</code> or <code>H</code>. Anything else (including <code>I</code>) is not understood.</td></tr>
+              <tr><td>Missing flange part</td><td><code>W300*6</code> still draws, but with the default 200 × 10 flange.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="table-en">6. Lookup table</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>String</th><th>Web depth hW</th><th>Web thk</th><th>Flange width</th><th>Flange thk</th><th>Max total depth</th></tr></thead>
+            <tbody>
+              <tr><td><code>W300*6+F200*8</code></td><td>300</td><td>6</td><td>200</td><td>8</td><td>316</td></tr>
+              <tr><td><code>W850*6+F250*12</code></td><td>850</td><td>6</td><td>250</td><td>12</td><td>874</td></tr>
+              <tr><td><code>W(300-500)*6+F186*8</code></td><td>300 → 500</td><td>6</td><td>186</td><td>8</td><td>516</td></tr>
+              <tr><td><code>W(1050-850)*8+F300*12</code></td><td>1050 → 850</td><td>8</td><td>300</td><td>12</td><td>1074</td></tr>
+              <tr><td><code>W(300-500-600-300)*6+F186*8</code></td><td>300 → 500 → 600 → 300</td><td>6</td><td>186</td><td>8</td><td>616</td></tr>
+              <tr><td><code>H300*186*6*8</code></td><td>284</td><td>6</td><td>186</td><td>8</td><td>300</td></tr>
+              <tr><td><code>H(300-500)*186*6*8</code></td><td>284 → 484</td><td>6</td><td>186</td><td>8</td><td>500</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="check-en">7. Checking before you draw</h2>
+        <ul>
+          <li>Look at the <strong>3D preview</strong>: the H(w), H(All) and B(f) dimensions are drawn right on the shape.</li>
+          <li>Click <strong>ⓘ Section Information</strong> to see exactly how the string was understood — section type, web depths, thicknesses and the maximum total depth.</li>
+          <li>Click <strong>?</strong> to reopen the syntax table inside the app.</li>
+        </ul>
+        <figure class="media">
+          <img src="img/profile-05-section-info.png" width="552" height="443" alt="The Section Information box listing the values parsed from the profile string" loading="lazy">
+          <figcaption>Section Information for <code>W(1050-850)*8+F300*12</code> — the fastest way to confirm the string was read correctly.</figcaption>
+        </figure>
+        <figure class="media">
+          <img src="img/04-cu-phap-tiet-dien.png" width="822" height="891" alt="The Accepted Section Formats table in PEB Member" loading="lazy">
+          <figcaption>The syntax table built into the app (the <strong>?</strong> button).</figcaption>
+        </figure>
+
+        <h2 id="errors-en">8. Common mistakes</h2>
+        <div class="callout">
+          <p>💡 A quick tell that a string is wrong: the 3D view shows a member with a <strong>400 deep, 6 thick web and a 200 × 10 flange</strong> — those are the fallback values used when the string cannot be parsed.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Typed</th><th>Parsed as</th><th>Should be</th></tr></thead>
+            <tbody>
+              <tr><td><code>W 300 * 6 + F200*8</code></td><td>Web 400 × 8 (wrong) — because of the spaces</td><td><code>W300*6+F200*8</code></td></tr>
+              <tr><td><code>300*6+F200*8</code></td><td>Web depth 400 (default) — the W is missing</td><td><code>W300*6+F200*8</code></td></tr>
+              <tr><td><code>I300*186*6*8</code></td><td>Not understood — the first letter must be W or H</td><td><code>H300*186*6*8</code></td></tr>
+              <tr><td><code>H300*6*186*8</code></td><td>Wrong order: 6 is taken as the flange width</td><td><code>H300*186*6*8</code></td></tr>
+              <tr><td><code>W300.5*6+F200*8</code></td><td>Web 300 (the decimal is cut off)</td><td>Round the value before entering it</td></tr>
+              <tr><td><code>W300*6</code></td><td>Default 200 × 10 flange</td><td><code>W300*6+F200*8</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="excel-en">9. Building strings in Excel</h2>
+        <p>If your section schedule lives in Excel as separate columns (web depth, web thickness, flange width, flange thickness), build the string with a formula and paste the whole column into the PEB Member table:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Case</th><th>Excel formula</th></tr></thead>
+            <tbody>
+              <tr><td>Constant section</td><td><code>="W"&amp;A2&amp;"*"&amp;B2&amp;"+F"&amp;C2&amp;"*"&amp;D2</code></td></tr>
+              <tr><td>Two-depth taper</td><td><code>="W("&amp;A2&amp;"-"&amp;B2&amp;")*"&amp;C2&amp;"+F"&amp;D2&amp;"*"&amp;E2</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Then copy the result column and paste it straight into the Profile column — the table creates extra rows if the pasted block is longer than the current one.</p>
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- TẢI VỀ — dùng chung 2 ngôn ngữ                                       -->
+      <!-- =================================================================== -->
+      <section aria-labelledby="tai-ve">
+        <h2 id="tai-ve"><span data-lang="vi">10. Tải về</span><span data-lang="en">10. Download</span></h2>
+        <p data-lang="vi">Chọn phiên bản Tekla Structures bạn đang dùng — nút tải sẽ tự trỏ tới đúng gói cài đặt.</p>
+        <p data-lang="en">Select the Tekla Structures version you use — the download button points to the matching package.</p>
+
+        <div data-peb-download="/tekla/peb-member/downloads.json">
+          <noscript>
+            <div class="download-info download-info--warn">
+              <p>Vui lòng bật JavaScript để chọn phiên bản Tekla và tải về, hoặc liên hệ Zalo 0969683188. / Please enable JavaScript to choose your Tekla version, or contact Zalo 0969683188.</p>
+            </div>
+          </noscript>
+        </div>
+
+        <div class="key-card">
+          <img class="key-card__qr" src="img/zalo-group-qr.png" width="516" height="516" alt="Mã QR nhóm Zalo người dùng PEB Member" loading="lazy">
+          <div class="key-card__body">
+            <p class="key-card__title"><span data-lang="vi">Nhóm Zalo người dùng PEB Member</span><span data-lang="en">PEB Member user group on Zalo</span></p>
+            <p data-lang="vi">Quét mã QR hoặc bấm nút để vào nhóm: hỏi đáp khi sử dụng, báo lỗi và nhận thông báo bản cập nhật mới.</p>
+            <p data-lang="en">Scan the QR code or use the button to join the group: usage questions, bug reports and new release announcements.</p>
+          </div>
+          <div class="key-card__actions">
+            <a class="btn btn--zalo" href="https://zalo.me/g/jqsxa7ptubdcqxf5inwz" target="_blank" rel="noopener"><span data-lang="vi">Vào nhóm Zalo</span><span data-lang="en">Join the Zalo group</span></a>
+            <button type="button" class="btn btn--ghost" data-copy="https://zalo.me/g/jqsxa7ptubdcqxf5inwz"><span data-lang="vi">Chép link nhóm</span><span data-lang="en">Copy group link</span></button>
+          </div>
+        </div>
+
+        <p class="outro">
+          <span data-lang="vi">Quen tay rồi thì khai cả bảng tiết diện chỉ mất vài phút. Có chuỗi nào phần mềm đọc chưa đúng ý, bạn cứ gửi vào nhóm Zalo để được hỗ trợ.</span>
+          <span data-lang="en">Once the syntax clicks, a whole section schedule takes only minutes. If a string is not read the way you expect, post it in the Zalo group and we will help.</span>
+        </p>
+      </section>
+    </article>
+
+    <!-- Tự điền từ posts.json (bỏ bài đang xem); ẩn nếu chuyên mục chưa có bài khác -->
+    <section class="related" hidden>
+      <div class="related__head">
+        <h2><span data-lang="vi">Bài viết khác trong chuyên mục</span><span data-lang="en">More in this category</span></h2>
+        <a class="related__all" href="/?tab=peb-member"><span data-lang="vi">Xem tất cả →</span><span data-lang="en">View all →</span></a>
+      </div>
+      <div class="related-grid" data-peb-posts="/tekla/peb-member/posts.json"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand" href="/">iViD<span>Lab</span></a>
+    <p>© 2026 iViDLab. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
