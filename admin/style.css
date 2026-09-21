@@ -45,6 +45,15 @@ code { background: var(--subtle); padding: 1px 5px; border-radius: 4px; font-siz
 .auth-card h1 { margin: 0.6rem 0 0.3rem; font-size: 1.5rem; font-weight: 700; }
 .auth-card .sub { color: var(--text-muted); margin: 0 0 1.6rem; font-size: 0.95rem; }
 
+.auth-form { text-align: left; }
+.field { margin-bottom: 1rem; }
+.field label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.35rem; }
+.field input {
+  width: 100%; padding: 0.7rem 0.85rem; border: 1px solid var(--border); border-radius: 9px;
+  background: var(--subtle); color: var(--text-main); font-family: inherit; font-size: 0.95rem;
+}
+.field input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(60,80,224,0.14); }
+
 .btn {
   padding: 0.65rem 1.1rem; border: none; border-radius: 9px; font-weight: 600; cursor: pointer;
   font-family: inherit; font-size: 0.92rem; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
