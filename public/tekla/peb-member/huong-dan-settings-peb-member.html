@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234924381658348" crossorigin="anonymous"></script>
+  <script type="module" src="/traffic-track.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-en="PEB Member settings explained – iViD PEB Part Settings - iViDLab">Hướng dẫn chi tiết các cài đặt trong PEB Member (iViD PEB Part Settings) - iViDLab</title>
+  <meta name="description" content="Giải thích từng tuỳ chọn trong cửa sổ iViD PEB Part Settings của PEB Member: Plate Profile, Part Name By, tên và prefix bản cánh – bản bụng, Prefix/Name Modifier, Class By, Name By, danh sách Type và cách lưu nhiều bộ cài đặt." />
+  <link rel="canonical" href="https://ividlab.com/tekla/peb-member/huong-dan-settings-peb-member.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="iViDLab" />
+  <meta property="og:locale" content="vi_VN" />
+  <meta property="og:title" content="Hướng dẫn chi tiết các cài đặt trong PEB Member" />
+  <meta property="og:description" content="Từng tuỳ chọn trong iViD PEB Part Settings: đặt tên, prefix, class cho bản cánh – bản bụng, tên assembly, danh sách Type và cách lưu nhiều bộ cài đặt cho nhiều dự án." />
+  <meta property="og:url" content="https://ividlab.com/tekla/peb-member/huong-dan-settings-peb-member.html" />
+  <meta property="og:image" content="https://ividlab.com/tekla/peb-member/img/11-cai-dat-dat-ten.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <script>
+    // Đặt theme + ngôn ngữ trước khi vẽ trang để không bị nháy; article.js lo phần còn lại.
+    (function () {
+      var root = document.documentElement;
+      try {
+        root.setAttribute('data-theme', localStorage.getItem('ividlab-theme') || 'light');
+        if (localStorage.getItem('ividlab-lang') === 'en') root.classList.add('lang-en');
+      } catch (e) {
+        root.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="/tekla/peb-member/assets/article.css" />
+  <script src="/tekla/peb-member/assets/article.js" defer></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/">iViD<span>Lab</span></a>
+      <nav class="site-nav" aria-label="Menu">
+        <a href="/"><span data-lang="vi">// TRANG CHỦ</span><span data-lang="en">// HOME</span></a>
+        <a href="/?tab=tools"><span data-lang="vi">// CÔNG CỤ</span><span data-lang="en">// TOOLS</span></a>
+        <a href="/?tab=guides"><span data-lang="vi">// HƯỚNG DẪN &amp; CHIA SẺ</span><span data-lang="en">// GUIDES &amp; TIPS</span></a>
+        <a href="/?tab=peb-member" aria-current="true">// PEB MEMBER</a>
+        <a href="/?tab=about"><span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en">// ABOUT</span></a>
+      </nav>
+      <div class="header-tools">
+        <button id="theme-toggle" type="button" class="theme-switch" role="switch" aria-checked="false" aria-label="Chuyển giao diện Sáng / Tối" title="Chuyển giao diện Sáng / Tối">
+          <span class="theme-switch-thumb">☀️</span>
+        </button>
+        <button id="lang-toggle" type="button" class="toggle-btn" title="Chuyển ngôn ngữ / Switch language">🌐 VI</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">iViDLab</a><span aria-hidden="true">›</span><a href="/?tab=peb-member">PEB Member</a><span aria-hidden="true">›</span><span data-lang="vi">Cài đặt</span><span data-lang="en">Settings</span>
+    </nav>
+
+    <article class="article">
+
+      <!-- =================================================================== -->
+      <!-- TIẾNG VIỆT                                                           -->
+      <!-- =================================================================== -->
+      <div data-lang="vi">
+        <header class="article-hero">
+          <div class="eyebrow">Tekla Plugin // PEB Member</div>
+          <h1>Hướng dẫn chi tiết các cài đặt trong PEB Member</h1>
+          <p class="lead">Cửa sổ <strong>iViD PEB Part Settings</strong> quyết định tên, prefix và class mà PEB Member ghi vào từng bản thép khi bạn bấm <strong>Draw</strong> hay <strong>Update</strong>. Đặt đúng một lần, cả dự án sẽ có quy ước đặt tên thống nhất — không phải sửa tay từng cấu kiện trong Tekla. Bài này giải thích lần lượt từng ô trong cửa sổ đó, kèm ví dụ kết quả thực tế.</p>
+          <ul class="meta-row">
+            <li>PEB Member 1.3.20</li>
+            <li>Áp dụng cho mọi model trên máy</li>
+            <li>Cập nhật 21/09/2026</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn btn--ghost" href="/tekla/peb-member/gioi-thieu-peb-member.html">Xem bài giới thiệu PEB Member</a>
+            <a class="btn btn--primary" href="#tai-ve">⬇ Tải về</a>
+          </div>
+        </header>
+
+        <figure class="media">
+          <img src="img/11-cai-dat-dat-ten.jpg" width="1614" height="999" alt="Cửa sổ iViD PEB Part Settings của PEB Member">
+          <figcaption>Cửa sổ iViD PEB Part Settings — nơi đặt quy ước tên, prefix và class cho cả dự án.</figcaption>
+        </figure>
+
+        <nav class="toc" aria-label="Mục lục">
+          <div class="toc__title">Nội dung bài viết</div>
+          <ol>
+            <li><a href="#mo-cai-dat">Mở cửa sổ cài đặt</a></li>
+            <li><a href="#bo-cai-dat">Quản lý bộ cài đặt</a></li>
+            <li><a href="#part-attributes">Nhóm Part Attributes</a></li>
+            <li><a href="#assembly">Nhóm Assembly &amp; General</a></li>
+            <li><a href="#vi-du">Ví dụ hoàn chỉnh</a></li>
+            <li><a href="#thuoc-tinh">Thuộc tính Tekla tương ứng</a></li>
+            <li><a href="#luu-y">Mẹo và lưu ý</a></li>
+            <li><a href="#tai-ve">Tải về</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="mo-cai-dat">1. Mở cửa sổ cài đặt</h2>
+        <p>Trên giao diện PEB Member, bấm nút <strong>⚙</strong> cạnh ô <em>Project Material</em> để mở cửa sổ <strong>iViD PEB Part Settings</strong>.</p>
+        <ul>
+          <li>Cài đặt lưu trong <code>%AppData%\PEBToolsVN\Attributes\standard.xml</code> — theo <strong>máy tính</strong>, không theo model. Mở model nào cũng dùng chung bộ cài đặt này.</li>
+          <li>Phần mềm đọc lại cài đặt ở <strong>mỗi lần bấm Draw hoặc Update</strong>, nên sửa xong bấm <em>Save Settings</em> là dùng được ngay, không cần khởi động lại.</li>
+          <li>Cài đặt chỉ ảnh hưởng tới cấu kiện <strong>vẽ mới</strong> hoặc cấu kiện bạn <strong>Update</strong> — cấu kiện đã có trong model không tự đổi tên.</li>
+        </ul>
+
+        <h2 id="bo-cai-dat">2. Quản lý bộ cài đặt (Save / Load / Save As)</h2>
+        <p>Hàng nút trên cùng cho phép giữ nhiều bộ cài đặt khác nhau — ví dụ mỗi khách hàng, mỗi tiêu chuẩn đặt tên một bộ.</p>
+        <figure class="media">
+          <img src="img/settings-01-toolbar.png" width="654" height="70" alt="Hàng nút Save, Load, danh sách bộ cài đặt, Save As và nút xoá" loading="lazy">
+          <figcaption>Thanh quản lý bộ cài đặt ở đầu cửa sổ.</figcaption>
+        </figure>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Nút</th><th>Tác dụng</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Danh sách</strong></td><td>Liệt kê các bộ cài đặt đã lưu (mỗi bộ là một file XML trong thư mục <code>Attributes</code>).</td></tr>
+              <tr><td><strong>Save</strong></td><td>Ghi các giá trị đang hiển thị vào <em>bộ đang chọn</em> trong danh sách.</td></tr>
+              <tr><td><strong>Load</strong></td><td>Nạp bộ đang chọn lên cửa sổ để xem hoặc sửa.</td></tr>
+              <tr><td><strong>Save As</strong></td><td>Gõ tên vào ô bên cạnh rồi bấm để tạo một bộ mới.</td></tr>
+              <tr><td><strong>🗑 (nút đỏ)</strong></td><td>Xoá bộ đang chọn. Riêng bộ <code>standard</code> không xoá được.</td></tr>
+              <tr><td><strong>Save Settings</strong></td><td>Nút xanh cuối cửa sổ: lưu vào bộ <code>standard</code> và đóng cửa sổ.</td></tr>
+              <tr><td><strong>Cancel</strong></td><td>Đóng, bỏ mọi thay đổi chưa lưu.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout callout--warn">
+          <p>⚠️ Lệnh Draw và Update <strong>luôn dùng bộ <code>standard</code></strong>. Muốn áp dụng một bộ khác, hãy chọn bộ đó trong danh sách → bấm <strong>Load</strong> → rồi bấm <strong>Save Settings</strong> để ghi đè lên <code>standard</code>.</p>
+        </div>
+
+        <h2 id="part-attributes">3. Nhóm Part Attributes</h2>
+        <p>Nhóm này quyết định mọi thứ liên quan tới <strong>từng bản thép</strong> (bản cánh trên, bản cánh dưới, bản bụng) bên trong cấu kiện PEB.</p>
+        <figure class="media">
+          <img src="img/settings-02-part-attributes.png" width="654" height="446" alt="Các ô Plate Profile, Folded Plate Profile, Part Name By, tên và prefix bản cánh, bản bụng" loading="lazy">
+          <figcaption>Phần đầu nhóm Part Attributes.</figcaption>
+        </figure>
+
+        <h3 id="plate-profile">3.1. Plate Profile và Folded Plate Profile</h3>
+        <p>Hai ô này chọn <strong>tên profile tấm</strong> mà component PEB dùng để tạo bản thép — tương ứng hai ô <em>Plate profile name</em> và <em>Folded plate profile name</em> trong hộp thoại PEB Member gốc.</p>
+        <ul>
+          <li><code>Default</code>: để component tự lấy theo <em>Tekla Options &gt; Components</em> (thường là <code>PL</code>).</li>
+          <li>Danh sách còn lại là các prefix profile tấm đọc từ <strong>catalog của Tekla đang mở</strong> (PL, PLT, FPL, BL…). Khi Tekla chưa chạy, phần mềm hiển thị danh sách thông dụng để bạn vẫn chọn được.</li>
+          <li>Ô cho phép gõ tay, hữu ích khi prefix chỉ có trong catalog riêng của công ty.</li>
+        </ul>
+        <div class="callout">
+          <p>💡 Hai ô này chỉ có tác dụng với <strong>PEB 2021 trở lên</strong> — bản PEB của Tekla 2016 – 2020 không có hai thuộc tính đó và sẽ bỏ qua. Tên profile phân biệt chữ hoa/thường: nên chọn trong danh sách; nếu gõ sai tên, component sẽ quay về giá trị mặc định của Tekla.</p>
+        </div>
+
+        <h3 id="part-name-by">3.2. Part Name By — cách đặt tên bản thép</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Lựa chọn</th><th>Kết quả</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Custom</strong></td><td>Tên bản thép lấy theo hai ô <em>Flange Name</em> và <em>Web Name</em> bên dưới (có thể ghép thêm ghi chú loại — xem mục 3.5).</td></tr>
+              <tr><td><strong>Full Assembly Profile</strong></td><td>Tên mọi bản thép là <strong>chuỗi tiết diện đầy đủ</strong> của cấu kiện, ví dụ <code>W(300-500)x6+F186x8</code>. Khi chọn mục này, các ô Flange Name, Web Name và nhóm Name Modifier bị mờ đi vì không còn tác dụng.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="ten-prefix">3.3. Tên và prefix cho bản cánh, bản bụng</h3>
+        <ul>
+          <li><strong>Flange Name</strong> / <strong>Web Name</strong> — tên bản cánh và bản bụng, mặc định <code>FLANGE</code> và <code>WEB</code>. Cả bản cánh trên và bản cánh dưới dùng chung tên này.</li>
+          <li><strong>Flange Prefix</strong> / <strong>Web Prefix</strong> — prefix đánh số bản thép trong Tekla, mặc định <code>F</code> và <code>W</code>.</li>
+        </ul>
+
+        <h3 id="prefix-modifier">3.4. Prefix Modifier — ghép chiều dày vào prefix</h3>
+        <figure class="media">
+          <img src="img/settings-03-modifier-preview.png" width="654" height="356" alt="Các ô Prefix Modifier, Name Modifier, vị trí, ký tự ngăn cách và ô Preview" loading="lazy">
+          <figcaption>Nhóm Modifier và ô Preview xem trước kết quả.</figcaption>
+        </figure>
+        <p>Ba ô <strong>Prefix Modifier</strong>, <strong>Prefix Modifier Pos</strong> và <strong>Prefix Separator</strong> làm việc cùng nhau: chọn <em>Thickness</em> để ghép chiều dày của chính bản thép đó vào prefix, chọn vị trí đặt trước (<em>Prefix</em>) hay sau (<em>Suffix</em>), và ký tự ngăn cách nếu cần. Ví dụ với bản cánh dày 8 mm, bản bụng dày 6 mm:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Modifier</th><th>Pos</th><th>Separator</th><th>Prefix bản cánh</th><th>Prefix bản bụng</th></tr></thead>
+            <tbody>
+              <tr><td>None</td><td>—</td><td>—</td><td><code>F</code></td><td><code>W</code></td></tr>
+              <tr><td>Thickness</td><td>Prefix</td><td>(để trống)</td><td><code>8F</code></td><td><code>6W</code></td></tr>
+              <tr><td>Thickness</td><td>Prefix</td><td><code>-</code></td><td><code>8-F</code></td><td><code>6-W</code></td></tr>
+              <tr><td>Thickness</td><td>Suffix</td><td><code>.</code></td><td><code>F.8</code></td><td><code>W.6</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Chiều dày lấy phần nguyên theo mm (8.0 → <code>8</code>).</p>
+
+        <h3 id="name-modifier">3.5. Name Modifier — ghép ghi chú loại vào tên</h3>
+        <p>Tương tự nhóm trên nhưng áp dụng cho <em>tên</em> bản thép, và thứ được ghép vào là <strong>ghi chú của loại cấu kiện</strong> khai báo trong danh sách Type (mục 4.2). Ví dụ loại <em>Rafter</em> có ghi chú <code>KEO</code>:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Modifier</th><th>Pos</th><th>Separator</th><th>Tên bản cánh</th><th>Tên bản bụng</th></tr></thead>
+            <tbody>
+              <tr><td>None</td><td>—</td><td>—</td><td><code>FLANGE</code></td><td><code>WEB</code></td></tr>
+              <tr><td>Type Note</td><td>Prefix</td><td><code>-</code></td><td><code>KEO-FLANGE</code></td><td><code>KEO-WEB</code></td></tr>
+              <tr><td>Type Note</td><td>Suffix</td><td><code>_</code></td><td><code>FLANGE_KEO</code></td><td><code>WEB_KEO</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Nếu loại cấu kiện của dòng đang vẽ chưa có ghi chú trong danh sách Type, tên giữ nguyên như khi chọn <em>None</em>.</p>
+
+        <h3 id="preview">3.6. Ô Preview</h3>
+        <p>Dải màu xanh <strong>Preview</strong> hiển thị ngay kết quả dạng <code>Prefix: … | Name: …</code> mỗi khi bạn đổi một ô. Đây là ví dụ minh hoạ cho <em>bản bụng</em>, lấy chiều dày mẫu 8 mm và ghi chú của loại đầu tiên trong danh sách Type — dùng để kiểm tra nhanh quy tắc trước khi lưu.</p>
+
+        <h3 id="class-by">3.7. Class By và User Class</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Lựa chọn</th><th>Class ghi vào bản thép</th></tr></thead>
+            <tbody>
+              <tr><td><strong>By Thickness</strong></td><td>Bằng chiều dày của chính bản thép đó — bản cánh dày 8 được class <code>8</code>, bản bụng dày 6 được class <code>6</code>. Nhờ vậy màu trong model phản ánh đúng chiều dày thép.</td></tr>
+              <tr><td><strong>By User</strong></td><td>Tất cả bản thép dùng chung giá trị gõ trong ô <em>User Class</em> (mặc định <code>99</code>). Ô này chỉ mở khi chọn <em>By User</em>.</td></tr>
+              <tr><td><strong>By Section</strong>, <strong>By Prefix</strong></td><td>Đang hoàn thiện — hiện tại cho kết quả giống <em>By User</em>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="assembly">4. Nhóm Assembly &amp; General</h2>
+        <figure class="media">
+          <img src="img/settings-04-assembly.png" width="651" height="164" alt="Nhóm Assembly &amp; General với ô Name By và nút Manage Types" loading="lazy">
+          <figcaption>Nhóm Assembly &amp; General ở cuối cửa sổ cài đặt.</figcaption>
+        </figure>
+
+        <h3 id="name-by">4.1. Name By — tên cấu kiện (Assembly)</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Lựa chọn</th><th>Tên assembly trong Tekla</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Section</strong></td><td>Chuỗi tiết diện của dòng, ví dụ <code>W(300-500)x6+F186x8</code>.</td></tr>
+              <tr><td><strong>Type</strong></td><td>Tên loại viết hoa, ví dụ <code>RAFTER</code>, <code>COLUMN</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Prefix của assembly luôn lấy từ cột <strong>Prefix</strong> trong bảng PEB Member (ví dụ <code>RF1</code>), không phụ thuộc cài đặt này.</p>
+
+        <h3 id="type-list">4.2. Type List — Manage Types…</h3>
+        <p>Bấm <strong>Manage Types…</strong> để mở bảng danh sách loại cấu kiện gồm hai cột:</p>
+        <ul>
+          <li><strong>Type Name</strong> — tên loại, trùng với giá trị bạn gõ ở cột <em>Type</em> trong bảng PEB Member (Column, Rafter, Canopy…).</li>
+          <li><strong>Note</strong> — ghi chú đi kèm, ví dụ <code>COT</code>, <code>KEO</code>. Ghi chú này chính là thứ được ghép vào tên bản thép khi <em>Name Modifier</em> = <em>Type Note</em>.</li>
+        </ul>
+        <p>Các nút <strong>Add Row</strong> thêm dòng mới, <strong>Delete Row</strong> xoá dòng đang chọn, <strong>OK</strong> giữ thay đổi (nhớ bấm tiếp <em>Save Settings</em> để ghi xuống file), <strong>Cancel</strong> bỏ qua.</p>
+        <figure class="media">
+          <img src="img/settings-05-type-list.png" width="383" height="385" alt="Cửa sổ Type List Settings quản lý loại cấu kiện và ghi chú" loading="lazy">
+          <figcaption>Cửa sổ Type List Settings — khai báo loại cấu kiện và ghi chú đi kèm.</figcaption>
+        </figure>
+
+        <h2 id="vi-du">5. Ví dụ hoàn chỉnh</h2>
+        <p>Cấu kiện <code>W(300-500)x6+F186x8</code>, cột Type là <em>Rafter</em> (ghi chú <code>KEO</code>), cột Prefix là <code>RF1</code>, vật liệu <code>SS400</code>. Với cài đặt: Part Name By = <em>Custom</em>, Prefix Modifier = <em>Thickness</em> / <em>Prefix</em> / không ngăn cách, Name Modifier = <em>Type Note</em> / <em>Prefix</em> / ngăn cách <code>-</code>, Class By = <em>By Thickness</em>, Name By = <em>Section</em>:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Đối tượng</th><th>Name</th><th>Prefix</th><th>Class</th></tr></thead>
+            <tbody>
+              <tr><td>Bản cánh trên và dưới (dày 8)</td><td><code>KEO-FLANGE</code></td><td><code>8F</code></td><td><code>8</code></td></tr>
+              <tr><td>Bản bụng (dày 6)</td><td><code>KEO-WEB</code></td><td><code>6W</code></td><td><code>6</code></td></tr>
+              <tr><td>Cấu kiện (Assembly)</td><td><code>W(300-500)x6+F186x8</code></td><td><code>RF1</code></td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Đổi Name By sang <em>Type</em> thì tên assembly thành <code>RAFTER</code>; đổi Part Name By sang <em>Full Assembly Profile</em> thì cả ba bản thép mang tên <code>W(300-500)x6+F186x8</code>.</p>
+
+        <h2 id="thuoc-tinh">6. Thuộc tính Tekla tương ứng</h2>
+        <p>Dành cho người cần đối chiếu với hộp thoại PEB Member gốc hoặc file thuộc tính xuất ra:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Cài đặt</th><th>Thuộc tính component PEB</th></tr></thead>
+            <tbody>
+              <tr><td>Flange Name / Prefix / Class</td><td><code>TopFlg1Name</code>, <code>BotFlg1Name</code> / <code>TopFlg1Prefix</code>, <code>BotFlg1Prefix</code> / <code>TopFlg1Class</code>, <code>BotFlg1Class</code></td></tr>
+              <tr><td>Web Name / Prefix / Class</td><td><code>Web1Name</code> / <code>Web1Prefix</code> / <code>Web1Class</code></td></tr>
+              <tr><td>Name By + cột Prefix của bảng</td><td><code>MainAsmbName</code>, <code>MainAsmbPrefix</code></td></tr>
+              <tr><td>Plate Profile / Folded Plate Profile</td><td><code>PlatePrefix</code> / <code>FPlatePrefix</code> (chỉ PEB 2021+)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="luu-y">7. Mẹo và lưu ý</h2>
+        <ul>
+          <li><strong>Áp dụng cho cấu kiện đã vẽ:</strong> chọn chúng trong Tekla rồi bấm <em>Update</em> — tên, prefix và class sẽ được ghi lại theo cài đặt mới.</li>
+          <li><strong>Dùng chung cho cả nhóm:</strong> chép file <code>%AppData%\PEBToolsVN\Attributes\standard.xml</code> sang máy khác (cùng đường dẫn) là cả nhóm có chung quy ước đặt tên.</li>
+          <li><strong>Mỗi dự án một bộ:</strong> dùng <em>Save As</em> đặt tên theo dự án, khi cần thì <em>Load</em> rồi <em>Save Settings</em>.</li>
+          <li><strong>Danh sách profile tấm:</strong> mở Tekla và mở model trước khi vào Settings thì danh sách Plate Profile mới đầy đủ theo catalog của bạn.</li>
+          <li><strong>Class theo chiều dày</strong> giúp model tự phân màu theo chiều dày thép, rất tiện khi kiểm tra bản vẽ và bóc tách.</li>
+        </ul>
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- ENGLISH                                                              -->
+      <!-- =================================================================== -->
+      <div data-lang="en">
+        <header class="article-hero">
+          <div class="eyebrow">Tekla Plugin // PEB Member</div>
+          <h1>PEB Member settings explained, option by option</h1>
+          <p class="lead">The <strong>iViD PEB Part Settings</strong> window decides the name, prefix and class PEB Member writes into every plate when you click <strong>Draw</strong> or <strong>Update</strong>. Set it once and the whole project follows the same naming convention — no more renaming parts by hand in Tekla. This article walks through every field in that window with real result examples.</p>
+          <ul class="meta-row">
+            <li>PEB Member 1.3.20</li>
+            <li>Applies to every model on the computer</li>
+            <li>Updated Sep 21, 2026</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn btn--ghost" href="/tekla/peb-member/gioi-thieu-peb-member.html">Read the PEB Member overview</a>
+            <a class="btn btn--primary" href="#tai-ve">⬇ Download</a>
+          </div>
+        </header>
+
+        <figure class="media">
+          <img src="img/11-cai-dat-dat-ten.jpg" width="1614" height="999" alt="The iViD PEB Part Settings window of PEB Member">
+          <figcaption>The iViD PEB Part Settings window — where the project's naming, prefix and class rules live.</figcaption>
+        </figure>
+
+        <nav class="toc" aria-label="Contents">
+          <div class="toc__title">In this article</div>
+          <ol>
+            <li><a href="#open-settings">Opening the settings window</a></li>
+            <li><a href="#config-sets">Managing settings sets</a></li>
+            <li><a href="#part-attributes-en">Part Attributes</a></li>
+            <li><a href="#assembly-en">Assembly &amp; General</a></li>
+            <li><a href="#example-en">A worked example</a></li>
+            <li><a href="#attributes-en">Matching Tekla attributes</a></li>
+            <li><a href="#tips-en">Tips and notes</a></li>
+            <li><a href="#tai-ve">Download</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="open-settings">1. Opening the settings window</h2>
+        <p>In the PEB Member window, click the <strong>⚙</strong> button next to <em>Project Material</em> to open <strong>iViD PEB Part Settings</strong>.</p>
+        <ul>
+          <li>Settings are stored in <code>%AppData%\PEBToolsVN\Attributes\standard.xml</code> — per <strong>computer</strong>, not per model, so every model you open uses the same set.</li>
+          <li>They are re-read on <strong>every Draw and Update</strong>, so a change takes effect as soon as you click <em>Save Settings</em> — no restart needed.</li>
+          <li>They affect members you <strong>draw next</strong> or explicitly <strong>Update</strong>; members already in the model are not renamed on their own.</li>
+        </ul>
+
+        <h2 id="config-sets">2. Managing settings sets (Save / Load / Save As)</h2>
+        <p>The button row at the top keeps several settings sets side by side — one per client or per naming standard, for example.</p>
+        <figure class="media">
+          <img src="img/settings-01-toolbar.png" width="654" height="70" alt="The Save, Load, settings list, Save As and delete buttons" loading="lazy">
+          <figcaption>The settings-set toolbar at the top of the window.</figcaption>
+        </figure>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Button</th><th>What it does</th></tr></thead>
+            <tbody>
+              <tr><td><strong>The list</strong></td><td>All saved sets (each one is an XML file in the <code>Attributes</code> folder).</td></tr>
+              <tr><td><strong>Save</strong></td><td>Writes the values currently on screen into the <em>selected</em> set.</td></tr>
+              <tr><td><strong>Load</strong></td><td>Loads the selected set into the window for review or editing.</td></tr>
+              <tr><td><strong>Save As</strong></td><td>Type a name in the box next to it to create a new set.</td></tr>
+              <tr><td><strong>🗑 (red button)</strong></td><td>Deletes the selected set. The <code>standard</code> set cannot be deleted.</td></tr>
+              <tr><td><strong>Save Settings</strong></td><td>The blue button at the bottom: saves into the <code>standard</code> set and closes the window.</td></tr>
+              <tr><td><strong>Cancel</strong></td><td>Closes and discards unsaved changes.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout callout--warn">
+          <p>⚠️ Draw and Update <strong>always use the <code>standard</code> set</strong>. To apply a different one, select it in the list → click <strong>Load</strong> → then click <strong>Save Settings</strong> so it overwrites <code>standard</code>.</p>
+        </div>
+
+        <h2 id="part-attributes-en">3. Part Attributes</h2>
+        <p>This group controls everything about the <strong>individual plates</strong> (top flange, bottom flange, web) inside the PEB member.</p>
+        <figure class="media">
+          <img src="img/settings-02-part-attributes.png" width="654" height="446" alt="Plate Profile, Folded Plate Profile, Part Name By and the flange/web name and prefix fields" loading="lazy">
+          <figcaption>The first half of the Part Attributes group.</figcaption>
+        </figure>
+
+        <h3 id="plate-profile-en">3.1. Plate Profile and Folded Plate Profile</h3>
+        <p>These two fields choose the <strong>plate profile name</strong> the PEB component builds its plates with — the same <em>Plate profile name</em> and <em>Folded plate profile name</em> fields as in the original PEB Member dialog.</p>
+        <ul>
+          <li><code>Default</code>: let the component follow <em>Tekla Options &gt; Components</em> (usually <code>PL</code>).</li>
+          <li>The rest of the list are plate profile prefixes read from the <strong>catalog of the running Tekla</strong> (PL, PLT, FPL, BL…). With Tekla closed, a list of common prefixes is shown instead.</li>
+          <li>The field is editable, which helps when a prefix only exists in your own company catalog.</li>
+        </ul>
+        <div class="callout">
+          <p>💡 These two fields only apply to <strong>PEB 2021 and newer</strong>; the PEB core shipped with Tekla 2016 – 2020 has no such attributes and ignores them. Profile names are case-sensitive, so pick from the list — a name that is not in the catalog falls back to Tekla's default.</p>
+        </div>
+
+        <h3 id="part-name-by-en">3.2. Part Name By</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Option</th><th>Result</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Custom</strong></td><td>Plate names come from the <em>Flange Name</em> and <em>Web Name</em> fields below (optionally with the type note attached — see 3.5).</td></tr>
+              <tr><td><strong>Full Assembly Profile</strong></td><td>Every plate is named with the member's <strong>full profile string</strong>, e.g. <code>W(300-500)x6+F186x8</code>. Choosing this greys out Flange Name, Web Name and the Name Modifier fields, which no longer apply.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="names-en">3.3. Flange and web names and prefixes</h3>
+        <ul>
+          <li><strong>Flange Name</strong> / <strong>Web Name</strong> — plate names, <code>FLANGE</code> and <code>WEB</code> by default. Both the top and bottom flange use the same name.</li>
+          <li><strong>Flange Prefix</strong> / <strong>Web Prefix</strong> — the part-numbering prefixes in Tekla, <code>F</code> and <code>W</code> by default.</li>
+        </ul>
+
+        <h3 id="prefix-modifier-en">3.4. Prefix Modifier — adding the thickness to the prefix</h3>
+        <figure class="media">
+          <img src="img/settings-03-modifier-preview.png" width="654" height="356" alt="Prefix Modifier, Name Modifier, position, separator fields and the Preview box" loading="lazy">
+          <figcaption>The modifier fields and the live Preview box.</figcaption>
+        </figure>
+        <p><strong>Prefix Modifier</strong>, <strong>Prefix Modifier Pos</strong> and <strong>Prefix Separator</strong> work together: pick <em>Thickness</em> to attach the plate's own thickness to the prefix, choose whether it goes before (<em>Prefix</em>) or after (<em>Suffix</em>), and add a separator if you want one. With an 8 mm flange and a 6 mm web:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Modifier</th><th>Pos</th><th>Separator</th><th>Flange prefix</th><th>Web prefix</th></tr></thead>
+            <tbody>
+              <tr><td>None</td><td>—</td><td>—</td><td><code>F</code></td><td><code>W</code></td></tr>
+              <tr><td>Thickness</td><td>Prefix</td><td>(empty)</td><td><code>8F</code></td><td><code>6W</code></td></tr>
+              <tr><td>Thickness</td><td>Prefix</td><td><code>-</code></td><td><code>8-F</code></td><td><code>6-W</code></td></tr>
+              <tr><td>Thickness</td><td>Suffix</td><td><code>.</code></td><td><code>F.8</code></td><td><code>W.6</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The thickness is used as a whole number of millimetres (8.0 → <code>8</code>).</p>
+
+        <h3 id="name-modifier-en">3.5. Name Modifier — adding the type note to the name</h3>
+        <p>The same idea applied to plate <em>names</em>, where what gets attached is the <strong>note of the member type</strong> defined in the Type list (see 4.2). With the <em>Rafter</em> type carrying the note <code>KEO</code>:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Modifier</th><th>Pos</th><th>Separator</th><th>Flange name</th><th>Web name</th></tr></thead>
+            <tbody>
+              <tr><td>None</td><td>—</td><td>—</td><td><code>FLANGE</code></td><td><code>WEB</code></td></tr>
+              <tr><td>Type Note</td><td>Prefix</td><td><code>-</code></td><td><code>KEO-FLANGE</code></td><td><code>KEO-WEB</code></td></tr>
+              <tr><td>Type Note</td><td>Suffix</td><td><code>_</code></td><td><code>FLANGE_KEO</code></td><td><code>WEB_KEO</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>If the row's member type has no note in the Type list, the name stays exactly as with <em>None</em>.</p>
+
+        <h3 id="preview-en">3.6. The Preview box</h3>
+        <p>The blue <strong>Preview</strong> strip shows the result as <code>Prefix: … | Name: …</code> every time you change a field. It illustrates the <em>web</em> plate using a sample thickness of 8 mm and the note of the first type in the list — a quick way to check the rule before saving.</p>
+
+        <h3 id="class-by-en">3.7. Class By and User Class</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Option</th><th>Class written to the plate</th></tr></thead>
+            <tbody>
+              <tr><td><strong>By Thickness</strong></td><td>The plate's own thickness — an 8 mm flange gets class <code>8</code>, a 6 mm web gets class <code>6</code>, so model colors follow plate thickness.</td></tr>
+              <tr><td><strong>By User</strong></td><td>Every plate uses the value typed in <em>User Class</em> (<code>99</code> by default). The field is only enabled for this option.</td></tr>
+              <tr><td><strong>By Section</strong>, <strong>By Prefix</strong></td><td>Still being finished — they currently behave like <em>By User</em>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="assembly-en">4. Assembly &amp; General</h2>
+        <figure class="media">
+          <img src="img/settings-04-assembly.png" width="651" height="164" alt="The Assembly &amp; General group with the Name By field and the Manage Types button" loading="lazy">
+          <figcaption>The Assembly &amp; General group at the bottom of the settings window.</figcaption>
+        </figure>
+
+        <h3 id="name-by-en">4.1. Name By — the assembly name</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Option</th><th>Assembly name in Tekla</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Section</strong></td><td>The row's profile string, e.g. <code>W(300-500)x6+F186x8</code>.</td></tr>
+              <tr><td><strong>Type</strong></td><td>The member type in capitals, e.g. <code>RAFTER</code>, <code>COLUMN</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The assembly prefix always comes from the <strong>Prefix</strong> column of the PEB Member table (e.g. <code>RF1</code>), regardless of this setting.</p>
+
+        <h3 id="type-list-en">4.2. Type List — Manage Types…</h3>
+        <p>Click <strong>Manage Types…</strong> to open the member-type list with two columns:</p>
+        <ul>
+          <li><strong>Type Name</strong> — the type, matching what you type in the <em>Type</em> column of the PEB Member table (Column, Rafter, Canopy…).</li>
+          <li><strong>Note</strong> — the note that goes with it, e.g. <code>COT</code>, <code>KEO</code>. This is exactly what gets attached to plate names when <em>Name Modifier</em> = <em>Type Note</em>.</li>
+        </ul>
+        <p><strong>Add Row</strong> adds an entry, <strong>Delete Row</strong> removes the selected one, <strong>OK</strong> keeps the changes (click <em>Save Settings</em> afterwards to write them to disk) and <strong>Cancel</strong> discards them.</p>
+        <figure class="media">
+          <img src="img/settings-05-type-list.png" width="383" height="385" alt="The Type List Settings window with member types and notes" loading="lazy">
+          <figcaption>Type List Settings — member types and the notes attached to them.</figcaption>
+        </figure>
+
+        <h2 id="example-en">5. A worked example</h2>
+        <p>A member <code>W(300-500)x6+F186x8</code>, Type <em>Rafter</em> (note <code>KEO</code>), Prefix <code>RF1</code>, material <code>SS400</code>. With Part Name By = <em>Custom</em>, Prefix Modifier = <em>Thickness</em> / <em>Prefix</em> / no separator, Name Modifier = <em>Type Note</em> / <em>Prefix</em> / separator <code>-</code>, Class By = <em>By Thickness</em> and Name By = <em>Section</em>:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Object</th><th>Name</th><th>Prefix</th><th>Class</th></tr></thead>
+            <tbody>
+              <tr><td>Top and bottom flange (8 thick)</td><td><code>KEO-FLANGE</code></td><td><code>8F</code></td><td><code>8</code></td></tr>
+              <tr><td>Web (6 thick)</td><td><code>KEO-WEB</code></td><td><code>6W</code></td><td><code>6</code></td></tr>
+              <tr><td>Assembly</td><td><code>W(300-500)x6+F186x8</code></td><td><code>RF1</code></td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Switch Name By to <em>Type</em> and the assembly becomes <code>RAFTER</code>; switch Part Name By to <em>Full Assembly Profile</em> and all three plates are named <code>W(300-500)x6+F186x8</code>.</p>
+
+        <h2 id="attributes-en">6. Matching Tekla attributes</h2>
+        <p>For anyone cross-checking with the original PEB Member dialog or an exported attribute file:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Setting</th><th>PEB component attribute</th></tr></thead>
+            <tbody>
+              <tr><td>Flange Name / Prefix / Class</td><td><code>TopFlg1Name</code>, <code>BotFlg1Name</code> / <code>TopFlg1Prefix</code>, <code>BotFlg1Prefix</code> / <code>TopFlg1Class</code>, <code>BotFlg1Class</code></td></tr>
+              <tr><td>Web Name / Prefix / Class</td><td><code>Web1Name</code> / <code>Web1Prefix</code> / <code>Web1Class</code></td></tr>
+              <tr><td>Name By + the table's Prefix column</td><td><code>MainAsmbName</code>, <code>MainAsmbPrefix</code></td></tr>
+              <tr><td>Plate Profile / Folded Plate Profile</td><td><code>PlatePrefix</code> / <code>FPlatePrefix</code> (PEB 2021+ only)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="tips-en">7. Tips and notes</h2>
+        <ul>
+          <li><strong>Applying to existing members:</strong> select them in Tekla and click <em>Update</em> — names, prefixes and classes are rewritten with the new settings.</li>
+          <li><strong>Sharing with the team:</strong> copy <code>%AppData%\PEBToolsVN\Attributes\standard.xml</code> to the same path on another computer and the whole team follows one convention.</li>
+          <li><strong>One set per project:</strong> use <em>Save As</em> with the project name, then <em>Load</em> + <em>Save Settings</em> when you switch back to it.</li>
+          <li><strong>Plate profile list:</strong> start Tekla and open a model before opening Settings to get the full list from your own catalog.</li>
+          <li><strong>Class by thickness</strong> makes the model color itself by plate thickness — handy when checking drawings and take-offs.</li>
+        </ul>
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- TẢI VỀ — dùng chung 2 ngôn ngữ                                       -->
+      <!-- =================================================================== -->
+      <section aria-labelledby="tai-ve">
+        <h2 id="tai-ve"><span data-lang="vi">8. Tải về</span><span data-lang="en">8. Download</span></h2>
+        <p data-lang="vi">Chọn phiên bản Tekla Structures bạn đang dùng — nút tải sẽ tự trỏ tới đúng gói cài đặt.</p>
+        <p data-lang="en">Select the Tekla Structures version you use — the download button points to the matching package.</p>
+
+        <div data-peb-download="/tekla/peb-member/downloads.json">
+          <noscript>
+            <div class="download-info download-info--warn">
+              <p>Vui lòng bật JavaScript để chọn phiên bản Tekla và tải về, hoặc liên hệ Zalo 0969683188. / Please enable JavaScript to choose your Tekla version, or contact Zalo 0969683188.</p>
+            </div>
+          </noscript>
+        </div>
+
+        <div class="key-card">
+          <img class="key-card__qr" src="img/zalo-group-qr.png" width="516" height="516" alt="Mã QR nhóm Zalo người dùng PEB Member" loading="lazy">
+          <div class="key-card__body">
+            <p class="key-card__title"><span data-lang="vi">Nhóm Zalo người dùng PEB Member</span><span data-lang="en">PEB Member user group on Zalo</span></p>
+            <p data-lang="vi">Quét mã QR hoặc bấm nút để vào nhóm: hỏi đáp khi sử dụng, báo lỗi và nhận thông báo bản cập nhật mới.</p>
+            <p data-lang="en">Scan the QR code or use the button to join the group: usage questions, bug reports and new release announcements.</p>
+          </div>
+          <div class="key-card__actions">
+            <a class="btn btn--zalo" href="https://zalo.me/g/jqsxa7ptubdcqxf5inwz" target="_blank" rel="noopener"><span data-lang="vi">Vào nhóm Zalo</span><span data-lang="en">Join the Zalo group</span></a>
+            <button type="button" class="btn btn--ghost" data-copy="https://zalo.me/g/jqsxa7ptubdcqxf5inwz"><span data-lang="vi">Chép link nhóm</span><span data-lang="en">Copy group link</span></button>
+          </div>
+        </div>
+
+        <p class="outro">
+          <span data-lang="vi">Cài đặt xong một lần là cả dự án có chung quy ước đặt tên. Có ô nào chưa rõ, bạn cứ hỏi trong nhóm Zalo hoặc nhắn Zalo 0969683188.</span>
+          <span data-lang="en">Set it up once and the whole project shares one naming convention. If any field is unclear, ask in the Zalo group or message Zalo 0969683188.</span>
+        </p>
+      </section>
+    </article>
+
+    <!-- Tự điền từ posts.json (bỏ bài đang xem); ẩn nếu chuyên mục chưa có bài khác -->
+    <section class="related" hidden>
+      <div class="related__head">
+        <h2><span data-lang="vi">Bài viết khác trong chuyên mục</span><span data-lang="en">More in this category</span></h2>
+        <a class="related__all" href="/?tab=peb-member"><span data-lang="vi">Xem tất cả →</span><span data-lang="en">View all →</span></a>
+      </div>
+      <div class="related-grid" data-peb-posts="/tekla/peb-member/posts.json"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand" href="/">iViD<span>Lab</span></a>
+    <p>© 2026 iViDLab. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
