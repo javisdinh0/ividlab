@@ -1,8 +1,8 @@
 // Trang Admin — Kiểm soát lưu lượng truy cập. Đọc trafficHits do public/traffic-track.js
 // ghi (mọi khách, không đăng nhập) và tổng hợp lại; chỉ owner (config/owners) xem được.
-import { auth, db, emailKey } from "./firebase.js";
+import { auth, db, googleProvider, emailKey } from "./firebase.js";
 import {
-  onAuthStateChanged, signInWithEmailAndPassword, signOut
+  onAuthStateChanged, signInWithPopup, signOut
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import {
   collection, query, orderBy, limit, getDocs, doc, getDoc
@@ -47,24 +47,21 @@ async function isOwner(email) {
 
 function authErr(e) {
   const map = {
-    'auth/invalid-email': 'Email không hợp lệ.',
-    'auth/invalid-credential': 'Email hoặc mật khẩu không đúng.',
-    'auth/wrong-password': 'Mật khẩu không đúng.',
-    'auth/user-not-found': 'Không tìm thấy tài khoản với email này.',
-    'auth/too-many-requests': 'Thử quá nhiều lần. Vui lòng đợi rồi thử lại.',
+    'auth/popup-closed-by-user': 'Đã đóng cửa sổ đăng nhập trước khi hoàn tất.',
+    'auth/cancelled-popup-request': 'Đã huỷ yêu cầu đăng nhập trước đó.',
+    'auth/popup-blocked': 'Trình duyệt chặn popup — cho phép popup rồi thử lại.',
     'auth/network-request-failed': 'Lỗi mạng. Kiểm tra kết nối.',
   };
   return map[(e && e.code) || ''] || (e && e.message) || 'Có lỗi xảy ra.';
 }
 
 function wireLogin() {
-  $('login-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
+  $('btn-google-login').onclick = async () => {
     $('login-err').textContent = '';
     try {
-      await signInWithEmailAndPassword(auth, $('login-email').value.trim(), $('login-pwd').value);
+      await signInWithPopup(auth, googleProvider);
     } catch (err) { $('login-err').textContent = authErr(err); }
-  });
+  };
   $('btn-denied-logout').onclick = () => signOut(auth);
 }
 

@@ -2,7 +2,7 @@
 // (cùng tài khoản owner qua config/owners, xem docs/admin/README.md). Config public được,
 // bảo mật do Security Rules đảm bảo — xem firebase/rficonsole/firestore.rules.
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import { getAuth, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 export const firebaseConfig = {
@@ -17,6 +17,7 @@ export const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+export const googleProvider = new GoogleAuthProvider();
 
 // Chuẩn hóa email làm khóa so khớp config/owners (chữ thường, cắt khoảng trắng).
 export function emailKey(email) {
