@@ -316,7 +316,7 @@
         <h2 id="yeu-cau">5. Yêu cầu hệ thống</h2>
         <ul>
           <li>Windows 10 hoặc Windows 11 (64-bit).</li>
-          <li>Tekla Structures 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023 hoặc 2024.</li>
+          <li>Tekla Structures 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023 hoặc 2024. Từ bản 1.3.23, gói cài đặt còn cài được trên Tekla 2025 và 2026.</li>
           <li>Component <strong>PEB Member</strong> (extension PEB của Trimble) đã có trong Tekla — tìm “PEB Member” trong Applications &amp; components để kiểm tra.</li>
           <li>.NET Framework 4.8 — có sẵn trên Windows 10 đã cập nhật và Windows 11.</li>
           <li>Microsoft Edge WebView2 Runtime — có sẵn trên hầu hết máy Windows 10/11; nếu thiếu, PEB Member sẽ hỏi và mở trang tải chính thức của Microsoft.</li>
@@ -331,7 +331,7 @@
           <li>Mở Tekla, mở model, vào <strong>Applications &amp; components</strong>, tìm <code>PEBToolsVN</code> rồi nhấp đúp để chạy.</li>
         </ol>
         <div class="callout callout--warn">
-          <p>⚠️ Mỗi gói <code>.tsep</code> chỉ dành cho phiên bản Tekla ghi trên tên gói (ví dụ gói <code>2021_Higher</code> dùng chung cho Tekla 2021 – 2024). Nếu đã cài bản PEB Member cũ, nên gỡ bản cũ trong Tekla Extension Manager trước khi cài bản mới.</p>
+          <p>⚠️ Mỗi gói <code>.tsep</code> chỉ dành cho phiên bản Tekla ghi trên tên gói (ví dụ gói <code>2021_Higher</code> cài được trên Tekla 2021 – 2026). Nếu đã cài bản PEB Member cũ, nên gỡ bản cũ trong Tekla Extension Manager trước khi cài bản mới.</p>
         </div>
         <figure class="media">
           <img src="img/13-cai-dat-tsep.gif" width="720" height="480" alt="Nhấp đúp file .tsep, tick phiên bản Tekla rồi bấm Import trong Tekla Extension Manager" loading="lazy">
@@ -373,8 +373,8 @@
             <div><p>Trong file <code>attributes\PEBToolsVNSession.xml</code> của thư mục model. Sao chép cả thư mục model là mang theo được bảng cấu kiện.</p></div>
           </details>
           <details>
-            <summary>Tôi dùng Tekla 2025 trở lên thì sao?</summary>
-            <div><p>Hiện chưa có gói cài đặt chính thức cho Tekla 2025 trở lên. Vui lòng liên hệ Zalo <a href="https://zalo.me/0969683188" target="_blank" rel="noopener">0969683188</a> để được hỗ trợ.</p></div>
+            <summary>Tôi dùng Tekla 2025 hoặc 2026 thì sao?</summary>
+            <div><p>Từ bản 1.3.23, gói <code>2021_Higher</code> cài đặt được trên Tekla 2025 và 2026. Nếu gặp lỗi khi dùng, vui lòng báo trong nhóm Zalo người dùng hoặc nhắn Zalo <a href="https://zalo.me/0969683188" target="_blank" rel="noopener">0969683188</a> để được hỗ trợ.</p></div>
           </details>
         </div>
       </div>
@@ -618,7 +618,7 @@
         <h2 id="requirements">5. System requirements</h2>
         <ul>
           <li>Windows 10 or Windows 11 (64-bit).</li>
-          <li>Tekla Structures 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023 or 2024.</li>
+          <li>Tekla Structures 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023 or 2024. From 1.3.23 the package also installs on Tekla 2025 and 2026.</li>
           <li>The <strong>PEB Member</strong> component (Trimble's PEB extension) available in Tekla — search for “PEB Member” in Applications &amp; components to check.</li>
           <li>.NET Framework 4.8 — included in up-to-date Windows 10 and in Windows 11.</li>
           <li>Microsoft Edge WebView2 Runtime — present on most Windows 10/11 PCs; if it is missing, PEB Member offers to open Microsoft's official download page.</li>
@@ -633,7 +633,7 @@
           <li>Start Tekla, open a model, go to <strong>Applications &amp; components</strong>, search for <code>PEBToolsVN</code> and double-click it to run.</li>
         </ol>
         <div class="callout callout--warn">
-          <p>⚠️ Each <code>.tsep</code> package is only for the Tekla version(s) in its name (for example <code>2021_Higher</code> covers Tekla 2021 – 2024). If an older PEB Member version is installed, uninstall it in Tekla Extension Manager before installing the new one.</p>
+          <p>⚠️ Each <code>.tsep</code> package is only for the Tekla version(s) in its name (for example <code>2021_Higher</code> installs on Tekla 2021 – 2026). If an older PEB Member version is installed, uninstall it in Tekla Extension Manager before installing the new one.</p>
         </div>
         <figure class="media">
           <img src="img/13-cai-dat-tsep.gif" width="720" height="480" alt="Double-click the .tsep file, tick your Tekla version and click Import in Tekla Extension Manager" loading="lazy">
@@ -675,8 +675,8 @@
             <div><p>In <code>attributes\PEBToolsVNSession.xml</code> inside the model folder. Copy the model folder and the member table goes with it.</p></div>
           </details>
           <details>
-            <summary>What about Tekla 2025 or newer?</summary>
-            <div><p>There is no official package for Tekla 2025 or newer yet. Please contact Zalo <a href="https://zalo.me/0969683188" target="_blank" rel="noopener">0969683188</a> for support.</p></div>
+            <summary>What about Tekla 2025 or 2026?</summary>
+            <div><p>From 1.3.23, the <code>2021_Higher</code> package installs on Tekla 2025 and 2026. If you run into a problem, please report it in the Zalo user group or message Zalo <a href="https://zalo.me/0969683188" target="_blank" rel="noopener">0969683188</a>.</p></div>
           </details>
         </div>
       </div>

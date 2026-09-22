@@ -1,5 +1,23 @@
 [
   {
+    "id": "cap-nhat-v1-3-23",
+    "link": "/tekla/peb-member/cap-nhat-v1-3-23.html",
+    "title": {
+      "vi": "PEB Tools VN v1.3.23 — có gì mới",
+      "en": "PEB Tools VN v1.3.23 — what's new"
+    },
+    "description": {
+      "vi": "Chọn Plate profile / Folded plate profile ngay trong Settings, đường gióng kèm độ dài khi chọn điểm vẽ, gói cho Tekla 2021 trở lên cài được tới Tekla 2026, cửa sổ Settings gọn hơn.",
+      "en": "Plate and folded plate profiles right in Settings, a rubber-band line with its length while picking points, a Tekla 2021+ package that installs up to Tekla 2026, and a tidier Settings window."
+    },
+    "tag": {
+      "vi": "Cập nhật",
+      "en": "Release"
+    },
+    "date": "2026-09-21",
+    "cover": "/tekla/peb-member/img/v1323-settings-plate-profile.png"
+  },
+  {
     "id": "cu-phap-tiet-dien-peb-member",
     "link": "/tekla/peb-member/cu-phap-tiet-dien-peb-member.html",
     "title": {
@@ -10,7 +28,10 @@
       "vi": "Mọi cách viết chuỗi tiết diện: kiểu W theo chiều cao bụng, kiểu H theo tổng chiều cao, tiết diện vát nhiều đoạn, quy tắc gõ, bảng tra nhanh kèm hình 3D từng ví dụ và cách xử lý khi gõ sai.",
       "en": "Every accepted way to write a profile string: the W notation by web depth, the H notation by total depth, multi-segment tapers, typing rules, a lookup table with a 3D view of each example and how to fix mistyped strings."
     },
-    "tag": { "vi": "Hướng dẫn", "en": "Guide" },
+    "tag": {
+      "vi": "Hướng dẫn",
+      "en": "Guide"
+    },
     "date": "2026-09-21",
     "cover": "/tekla/peb-member/img/profile-03-multi.png"
   },
@@ -25,7 +46,10 @@
       "vi": "Giải thích từng ô trong cửa sổ iViD PEB Part Settings: Plate Profile, Part Name By, tên – prefix – class của bản cánh và bản bụng, Name By, danh sách Type, cách lưu nhiều bộ cài đặt; kèm ví dụ kết quả thực tế trong Tekla.",
       "en": "Every field in the iViD PEB Part Settings window: Plate Profile, Part Name By, plate names, prefixes and classes, Name By, the Type list and multiple settings sets — with worked examples of the result in Tekla."
     },
-    "tag": { "vi": "Hướng dẫn", "en": "Guide" },
+    "tag": {
+      "vi": "Hướng dẫn",
+      "en": "Guide"
+    },
     "date": "2026-09-21",
     "cover": "/tekla/peb-member/img/11-cai-dat-dat-ten.jpg"
   },
@@ -40,7 +64,10 @@
       "vi": "Tổng quan và chi tiết mọi chức năng của PEB Member: bảng dữ liệu kiểu Excel, cú pháp tiết diện, mô phỏng 3D, Draw/Update hàng loạt, đặt tên tự động. Kèm hướng dẫn cài đặt và link tải theo phiên bản Tekla.",
       "en": "Overview and a detailed tour of PEB Member: Excel-like member table, profile syntax, 3D preview, batch Draw/Update and automatic naming — plus installation steps and downloads for each Tekla version."
     },
-    "tag": { "vi": "Giới thiệu", "en": "Overview" },
+    "tag": {
+      "vi": "Giới thiệu",
+      "en": "Overview"
+    },
     "date": "2026-09-19",
     "cover": "/tekla/peb-member/img/01-tong-quan.png",
     "featured": true
