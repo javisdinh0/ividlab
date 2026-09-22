@@ -1,46 +1,56 @@
 {
-  "version": "1.3.20",
-  "released": "2026-09-19",
+  "version": "1.3.23",
+  "released": "2026-09-21",
   "baseUrl": "/fordownload/peb-member/",
   "packages": {
     "2016": {
-      "file": "PEBToolsVN_2016_v1.3.20.tsep",
-      "size": "692 KB",
-      "bytes": 708617,
+      "file": "PEBToolsVN_2016_v1.3.23.tsep",
+      "size": "702 KB",
+      "bytes": 719153,
       "range": "2016 / 2016i"
     },
     "2017": {
-      "file": "PEBToolsVN_2017_v1.3.20.tsep",
-      "size": "689 KB",
-      "bytes": 705101,
+      "file": "PEBToolsVN_2017_v1.3.23.tsep",
+      "size": "699 KB",
+      "bytes": 715419,
       "range": "2017 / 2017i"
     },
     "2018": {
-      "file": "PEBToolsVN_2018_v1.3.20.tsep",
-      "size": "689 KB",
-      "bytes": 705469,
+      "file": "PEBToolsVN_2018_v1.3.23.tsep",
+      "size": "699 KB",
+      "bytes": 715762,
       "range": "2018 / 2018i"
     },
     "2019": {
-      "file": "PEBToolsVN_2019_v1.3.20.tsep",
-      "size": "692 KB",
-      "bytes": 708603,
+      "file": "PEBToolsVN_2019_v1.3.23.tsep",
+      "size": "702 KB",
+      "bytes": 719191,
       "range": "2019 / 2019i"
     },
     "2020": {
-      "file": "PEBToolsVN_2020_v1.3.20.tsep",
-      "size": "704 KB",
-      "bytes": 721330,
+      "file": "PEBToolsVN_2020_v1.3.23.tsep",
+      "size": "714 KB",
+      "bytes": 731639,
       "range": "2020"
     },
     "2021_Higher": {
-      "file": "PEBToolsVN_2021_Higher_v1.3.20.tsep",
-      "size": "1.31 MB",
-      "bytes": 1369971,
-      "range": "2021 – 2024"
+      "file": "PEBToolsVN_2021_Higher_v1.3.23.tsep",
+      "size": "1.33 MB",
+      "bytes": 1390707,
+      "range": "2021 – 2026"
     }
   },
   "tekla": [
+    {
+      "value": "2026",
+      "label": "Tekla Structures 2026",
+      "package": "2021_Higher"
+    },
+    {
+      "value": "2025",
+      "label": "Tekla Structures 2025",
+      "package": "2021_Higher"
+    },
     {
       "value": "2024",
       "label": "Tekla Structures 2024",
@@ -87,21 +97,25 @@
       "package": "2016"
     },
     {
-      "value": "2025+",
+      "value": "2027+",
       "label": {
-        "vi": "Tekla Structures 2025 trở lên",
-        "en": "Tekla Structures 2025 or newer"
+        "vi": "Tekla Structures 2027 trở lên",
+        "en": "Tekla Structures 2027 or newer"
       },
       "package": null
     }
   ],
   "notes": {
     "vi": [
-      "Thêm tuỳ chọn Plate profile và Folded plate profile cho component PEB (Tekla 2021 trở lên).",
+      "Chọn Plate profile và Folded plate profile ngay trong Settings (Tekla dùng lõi PEB 2021 trở lên).",
+      "Đường gióng kèm độ dài chạy theo chuột khi chọn điểm vẽ, giống PEB Member gốc của Tekla.",
+      "Gói cho Tekla 2021 trở lên cài đặt được trên Tekla 2021 – 2026.",
       "Sửa lỗi lệnh Update không đổi vật liệu của cấu kiện."
     ],
     "en": [
-      "Added Plate profile and Folded plate profile options for the PEB component (Tekla 2021 and newer).",
+      "Pick the Plate profile and Folded plate profile right in Settings (Tekla with the PEB 2021+ core).",
+      "A rubber-band line with its live length follows the cursor while picking points, just like Tekla's own PEB Member.",
+      "The Tekla 2021+ package now installs on Tekla 2021 – 2026.",
       "Fixed the Update command not changing the member's material."
     ]
   }

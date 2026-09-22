@@ -74,8 +74,11 @@ function main() {
   for (const id of packageIds) {
     const name = fileName(id, version);
     fs.copyFileSync(path.join(publishDir, name), path.join(DEST_DIR, name));
+    const bytes = fs.statSync(path.join(DEST_DIR, name)).size;
     manifest.packages[id].file = name;
-    manifest.packages[id].size = formatSize(fs.statSync(path.join(DEST_DIR, name)).size);
+    manifest.packages[id].size = formatSize(bytes);
+    // Dashboard /admin (public/admin/admin.js) nhân số byte này với số lượt tải để ước tính dung lượng.
+    manifest.packages[id].bytes = bytes;
     console.log(`  + ${name} (${manifest.packages[id].size})`);
   }
 

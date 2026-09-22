@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234924381658348" crossorigin="anonymous"></script>
+  <script type="module" src="/traffic-track.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-en="PEB Tools VN v1.3.23 – what's new - iViDLab">PEB Tools VN v1.3.23 — có gì mới - iViDLab</title>
+  <meta name="description" content="PEB Tools VN v1.3.23: chọn Plate profile và Folded plate profile ngay trong Settings, đường gióng kèm độ dài khi chọn điểm vẽ, gói cài đặt cho Tekla 2021 trở lên cài được tới Tekla 2026, cửa sổ Settings gọn hơn." />
+  <link rel="canonical" href="https://ividlab.com/tekla/peb-member/cap-nhat-v1-3-23.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="iViDLab" />
+  <meta property="og:locale" content="vi_VN" />
+  <meta property="og:title" content="PEB Tools VN v1.3.23 — có gì mới" />
+  <meta property="og:description" content="Chọn profile bản mã ngay trong Settings, đường gióng kèm độ dài khi vẽ, cài được trên Tekla 2021 – 2026." />
+  <meta property="og:url" content="https://ividlab.com/tekla/peb-member/cap-nhat-v1-3-23.html" />
+  <meta property="og:image" content="https://ividlab.com/tekla/peb-member/img/v1323-settings-plate-profile.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <script>
+    // Đặt theme + ngôn ngữ trước khi vẽ trang để không bị nháy; article.js lo phần còn lại.
+    (function () {
+      var root = document.documentElement;
+      try {
+        root.setAttribute('data-theme', localStorage.getItem('ividlab-theme') || 'light');
+        if (localStorage.getItem('ividlab-lang') === 'en') root.classList.add('lang-en');
+      } catch (e) {
+        root.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="/tekla/peb-member/assets/article.css" />
+  <script src="/tekla/peb-member/assets/article.js" defer></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/">iViD<span>Lab</span></a>
+      <nav class="site-nav" aria-label="Menu">
+        <a href="/"><span data-lang="vi">// TRANG CHỦ</span><span data-lang="en">// HOME</span></a>
+        <a href="/?tab=tools"><span data-lang="vi">// CÔNG CỤ</span><span data-lang="en">// TOOLS</span></a>
+        <a href="/?tab=guides"><span data-lang="vi">// HƯỚNG DẪN &amp; CHIA SẺ</span><span data-lang="en">// GUIDES &amp; TIPS</span></a>
+        <a href="/?tab=peb-member" aria-current="true">// PEB MEMBER</a>
+        <a href="/?tab=about"><span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en">// ABOUT</span></a>
+      </nav>
+      <div class="header-tools">
+        <button id="theme-toggle" type="button" class="theme-switch" role="switch" aria-checked="false" aria-label="Chuyển giao diện Sáng / Tối" title="Chuyển giao diện Sáng / Tối">
+          <span class="theme-switch-thumb">☀️</span>
+        </button>
+        <button id="lang-toggle" type="button" class="toggle-btn" title="Chuyển ngôn ngữ / Switch language">🌐 VI</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">iViDLab</a><span aria-hidden="true">›</span><a href="/?tab=peb-member">PEB Member</a><span aria-hidden="true">›</span><span data-lang="vi">Bản cập nhật 1.3.23</span><span data-lang="en">Release 1.3.23</span>
+    </nav>
+
+    <article class="article">
+
+      <!-- =================================================================== -->
+      <!-- TIẾNG VIỆT                                                           -->
+      <!-- =================================================================== -->
+      <div data-lang="vi">
+        <header class="article-hero">
+          <div class="eyebrow">Bản cập nhật // v1.3.23</div>
+          <h1>PEB Tools VN v1.3.23 — có gì mới</h1>
+          <p class="lead">Bản <strong>1.3.23</strong> phát hành ngày 21/09/2026, gom các thay đổi kể từ bản 1.3.19: chọn profile bản mã ngay trong Settings, đường gióng kèm độ dài khi chọn điểm vẽ, gói cài đặt cho Tekla 2021 trở lên nay cài được tới Tekla 2026, cùng cửa sổ Settings gọn hơn.</p>
+          <ul class="meta-row">
+            <li>Phiên bản 1.3.23</li>
+            <li>Phát hành 21/09/2026</li>
+            <li>Thay đổi kể từ bản 1.3.19</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn btn--primary" href="#tai-ve">⬇ Tải bản 1.3.23</a>
+            <a class="btn btn--ghost" href="/tekla/peb-member/gioi-thieu-peb-member.html">Xem bài giới thiệu PEB Member</a>
+          </div>
+        </header>
+
+        <div class="callout">
+          <p><strong>Tóm tắt nhanh</strong></p>
+          <ul>
+            <li>Chọn <strong>Plate profile / Folded plate profile</strong> ngay trong Settings — áp dụng khi vẽ mới, khi Update và khi xuất file attribute.</li>
+            <li><strong>Đường gióng kèm độ dài</strong> chạy theo chuột khi chọn điểm vẽ, giống PEB Member gốc của Tekla.</li>
+            <li>Gói cho Tekla 2021 trở lên <strong>cài đặt được trên Tekla 2021 – 2026</strong> (trước đây tới 2024).</li>
+            <li>Cửa sổ Settings gọn hơn, cùng một số sửa lỗi.</li>
+          </ul>
+        </div>
+
+        <h2 id="plate-profile">1. Chọn profile bản mã ngay trong Settings</h2>
+        <p>Cửa sổ Settings có thêm hai ô <strong>Plate Profile</strong> và <strong>Folded Plate Profile</strong>:</p>
+        <ul>
+          <li><strong>Plate Profile</strong> — tiền tố profile bản mã (PL, PLT, BPL, FL, FPL…) dùng cho bản bụng và bản cánh.</li>
+          <li><strong>Folded Plate Profile</strong> — tiền tố riêng cho bản cánh gập.</li>
+          <li>Danh sách lấy từ <strong>catalog của Tekla đang mở</strong>; để <em>Default</em> thì theo cài đặt trong Tekla Options.</li>
+          <li>Lựa chọn được áp dụng khi <strong>vẽ mới</strong>, khi <strong>Update</strong> member đã vẽ và khi <strong>xuất file attribute</strong>.</li>
+        </ul>
+        <p><strong>Lợi ích:</strong> profile bản mã đúng tiêu chuẩn công ty ngay từ lúc vẽ, không phải mở hộp thoại PEB chỉnh tay từng member.</p>
+        <div class="callout callout--warn">
+          <p>⚠️ Tính năng này chỉ có tác dụng với Tekla dùng <strong>lõi PEB 2021 trở lên</strong>. Trên Tekla 2016 – 2020, lõi PEB cũ không có hai tuỳ chọn này nên sẽ bỏ qua.</p>
+        </div>
+        <figure class="media">
+          <img src="img/v1323-settings-plate-profile.png" width="920" height="985" alt="Cửa sổ Settings với hai ô Plate Profile và Folded Plate Profile" loading="lazy">
+          <figcaption>Hai ô Plate Profile và Folded Plate Profile mới ở đầu nhóm Part Attributes.</figcaption>
+        </figure>
+        <p>Chi tiết từng ô trong cửa sổ cài đặt: xem <a href="/tekla/peb-member/huong-dan-settings-peb-member.html">bài hướng dẫn cài đặt</a>.</p>
+
+        <h2 id="duong-giong">2. Đường gióng kèm độ dài khi chọn điểm vẽ</h2>
+        <p>Khi bấm <strong>Draw</strong>, sau khi chọn điểm đầu, một <strong>đường màu tím kèm độ dài</strong> chạy theo con trỏ tới vị trí điểm cuối — giống hệt khi vẽ bằng PEB Member gốc của Tekla. Nhìn được ngay chiều dài cấu kiện trước khi chốt điểm, đặt cấu kiện trực quan và chính xác hơn.</p>
+        <figure class="media">
+          <img src="img/v1323-duong-giong.gif" alt="Đường gióng màu tím kèm độ dài khi chọn điểm vẽ cấu kiện" loading="lazy">
+          <figcaption>Sau điểm đầu, đường gióng kèm độ dài chạy theo chuột tới điểm cuối.</figcaption>
+        </figure>
+
+        <h2 id="tekla-2026">3. Cài được trên Tekla 2021 đến 2026</h2>
+        <p>Gói cài đặt dành cho Tekla 2021 trở lên trước đây chỉ cài được tới Tekla 2024. Từ bản 1.3.23, gói này <strong>cài đặt được trên Tekla 2021 đến 2026</strong>. Nếu gặp lỗi khi dùng trên Tekla 2025 hoặc 2026, vui lòng báo qua nhóm Zalo để được hỗ trợ.</p>
+
+        <h2 id="settings-gon">4. Cửa sổ Settings gọn hơn</h2>
+        <p>Ô <strong>Profile Type</strong> cũ đã được bỏ, thay bằng hai ô Plate Profile và Folded Plate Profile ở mục 1 — ít ô hơn, đúng thứ cần chỉnh hơn.</p>
+
+        <h2 id="sua-loi">5. Sửa lỗi và cải tiến khác</h2>
+        <ul>
+          <li>Lệnh <strong>Update</strong> nay đổi đúng vật liệu của cấu kiện theo dòng dữ liệu (trước đây vật liệu cũ được giữ lại).</li>
+          <li>Cập nhật cơ chế quản lý bản quyền.</li>
+        </ul>
+
+        <h2 id="goi-cai-dat">6. Gói cài đặt và cách nâng cấp</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Tekla Structures</th><th>Gói cài đặt</th></tr></thead>
+            <tbody>
+              <tr><td>2016, 2017, 2018, 2019, 2020</td><td>Gói riêng cho từng năm</td></tr>
+              <tr><td>2021 – 2026</td><td>Gói <code>2021_Higher</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ol class="steps">
+          <li>Ở mục <a href="#tai-ve">Tải về</a> bên dưới, chọn phiên bản Tekla đang dùng để tải đúng gói <code>.tsep</code>.</li>
+          <li>Nếu đã cài bản cũ, gỡ bản cũ trong <strong>Tekla Extension Manager</strong> trước.</li>
+          <li>Nhấp đúp file <code>.tsep</code>, tick phiên bản Tekla rồi bấm <strong>Import</strong>. Gói được cài khi Tekla khởi động lần tiếp theo.</li>
+        </ol>
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- ENGLISH                                                              -->
+      <!-- =================================================================== -->
+      <div data-lang="en">
+        <header class="article-hero">
+          <div class="eyebrow">Release // v1.3.23</div>
+          <h1>PEB Tools VN v1.3.23 — what's new</h1>
+          <p class="lead">Version <strong>1.3.23</strong>, released on September 21, 2026, rolls up everything since 1.3.19: plate profiles chosen right in Settings, a rubber-band line with its live length while picking points, a Tekla 2021+ package that now installs up to Tekla 2026, and a tidier Settings window.</p>
+          <ul class="meta-row">
+            <li>Version 1.3.23</li>
+            <li>Released Sep 21, 2026</li>
+            <li>Changes since 1.3.19</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn btn--primary" href="#tai-ve">⬇ Download 1.3.23</a>
+            <a class="btn btn--ghost" href="/tekla/peb-member/gioi-thieu-peb-member.html">Read the PEB Member overview</a>
+          </div>
+        </header>
+
+        <div class="callout">
+          <p><strong>At a glance</strong></p>
+          <ul>
+            <li>Choose the <strong>Plate profile / Folded plate profile</strong> right in Settings — applied on new draws, on Update and when exporting attribute files.</li>
+            <li>A <strong>rubber-band line with its length</strong> follows the cursor while picking points, just like Tekla's own PEB Member.</li>
+            <li>The Tekla 2021+ package <strong>installs on Tekla 2021 – 2026</strong> (previously up to 2024).</li>
+            <li>A tidier Settings window, plus a few fixes.</li>
+          </ul>
+        </div>
+
+        <h2 id="plate-profile-en">1. Plate profiles right in Settings</h2>
+        <p>The Settings window gains two fields, <strong>Plate Profile</strong> and <strong>Folded Plate Profile</strong>:</p>
+        <ul>
+          <li><strong>Plate Profile</strong> — the plate profile prefix (PL, PLT, BPL, FL, FPL…) used for the web and flange plates.</li>
+          <li><strong>Folded Plate Profile</strong> — a separate prefix for folded flanges.</li>
+          <li>The list comes from the <strong>catalog of the running Tekla</strong>; leave it on <em>Default</em> to follow Tekla Options.</li>
+          <li>Your choice is applied to <strong>new draws</strong>, to members you <strong>Update</strong> and to <strong>exported attribute files</strong>.</li>
+        </ul>
+        <p><strong>Why it helps:</strong> plates carry your company's standard profile from the moment they are drawn — no more opening the PEB dialog to fix each member by hand.</p>
+        <div class="callout callout--warn">
+          <p>⚠️ This only applies to Tekla versions with the <strong>PEB 2021+ core</strong>. On Tekla 2016 – 2020 the older PEB core has no such options, so they are ignored.</p>
+        </div>
+        <figure class="media">
+          <img src="img/v1323-settings-plate-profile.png" width="920" height="985" alt="The Settings window with the Plate Profile and Folded Plate Profile fields" loading="lazy">
+          <figcaption>The new Plate Profile and Folded Plate Profile fields at the top of Part Attributes.</figcaption>
+        </figure>
+        <p>For every field in the settings window, see the <a href="/tekla/peb-member/huong-dan-settings-peb-member.html">settings guide</a>.</p>
+
+        <h2 id="rubber-band-en">2. Rubber-band line with length while picking points</h2>
+        <p>After you click <strong>Draw</strong> and pick the start point, a <strong>purple line with its live length</strong> follows the cursor to the end point — exactly like drawing with Tekla's own PEB Member. You see the member length before committing the point, so placing members is more visual and more precise.</p>
+        <figure class="media">
+          <img src="img/v1323-duong-giong.gif" alt="The purple rubber-band line with its length while picking the member's points" loading="lazy">
+          <figcaption>After the first point, the rubber-band line and its length follow the cursor to the end point.</figcaption>
+        </figure>
+
+        <h2 id="tekla-2026-en">3. Installs on Tekla 2021 through 2026</h2>
+        <p>The package for Tekla 2021 and newer used to install only up to Tekla 2024. From 1.3.23 it <strong>installs on Tekla 2021 through 2026</strong>. If you run into a problem on Tekla 2025 or 2026, please report it in the Zalo group.</p>
+
+        <h2 id="settings-en">4. A tidier Settings window</h2>
+        <p>The old <strong>Profile Type</strong> field is gone, replaced by the Plate Profile and Folded Plate Profile fields from section 1 — fewer fields, and the ones that matter.</p>
+
+        <h2 id="fixes-en">5. Fixes and other improvements</h2>
+        <ul>
+          <li><strong>Update</strong> now changes the member's material to match the data row (the old material used to be kept).</li>
+          <li>Updated license management.</li>
+        </ul>
+
+        <h2 id="packages-en">6. Packages and how to upgrade</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Tekla Structures</th><th>Package</th></tr></thead>
+            <tbody>
+              <tr><td>2016, 2017, 2018, 2019, 2020</td><td>One package per year</td></tr>
+              <tr><td>2021 – 2026</td><td>The <code>2021_Higher</code> package</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ol class="steps">
+          <li>In the <a href="#tai-ve">Download</a> section below, select your Tekla version to get the matching <code>.tsep</code> package.</li>
+          <li>If an older version is installed, uninstall it in <strong>Tekla Extension Manager</strong> first.</li>
+          <li>Double-click the <code>.tsep</code> file, tick your Tekla version and click <strong>Import</strong>. The package is installed the next time Tekla starts.</li>
+        </ol>
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- TẢI VỀ — dùng chung 2 ngôn ngữ                                       -->
+      <!-- =================================================================== -->
+      <section aria-labelledby="tai-ve">
+        <h2 id="tai-ve"><span data-lang="vi">7. Tải về</span><span data-lang="en">7. Download</span></h2>
+        <p data-lang="vi">Chọn phiên bản Tekla Structures bạn đang dùng — nút tải sẽ tự trỏ tới đúng gói cài đặt.</p>
+        <p data-lang="en">Select the Tekla Structures version you use — the download button points to the matching package.</p>
+
+        <div data-peb-download="/tekla/peb-member/downloads.json">
+          <noscript>
+            <div class="download-info download-info--warn">
+              <p>Vui lòng bật JavaScript để chọn phiên bản Tekla và tải về, hoặc liên hệ Zalo 0969683188. / Please enable JavaScript to choose your Tekla version, or contact Zalo 0969683188.</p>
+            </div>
+          </noscript>
+        </div>
+
+        <div class="key-card">
+          <img class="key-card__qr" src="img/zalo-group-qr.png" width="516" height="516" alt="Mã QR nhóm Zalo người dùng PEB Member" loading="lazy">
+          <div class="key-card__body">
+            <p class="key-card__title"><span data-lang="vi">Nhóm Zalo người dùng PEB Member</span><span data-lang="en">PEB Member user group on Zalo</span></p>
+            <p data-lang="vi">Quét mã QR hoặc bấm nút để vào nhóm: hỏi đáp khi sử dụng, báo lỗi và nhận thông báo bản cập nhật mới.</p>
+            <p data-lang="en">Scan the QR code or use the button to join the group: usage questions, bug reports and new release announcements.</p>
+          </div>
+          <div class="key-card__actions">
+            <a class="btn btn--zalo" href="https://zalo.me/g/jqsxa7ptubdcqxf5inwz" target="_blank" rel="noopener"><span data-lang="vi">Vào nhóm Zalo</span><span data-lang="en">Join the Zalo group</span></a>
+            <button type="button" class="btn btn--ghost" data-copy="https://zalo.me/g/jqsxa7ptubdcqxf5inwz"><span data-lang="vi">Chép link nhóm</span><span data-lang="en">Copy group link</span></button>
+          </div>
+        </div>
+
+        <p class="outro">
+          <span data-lang="vi">Cảm ơn bạn đã dùng PEB Tools VN! Góp ý và báo lỗi cho bản 1.3.23 xin gửi vào nhóm Zalo người dùng hoặc nhắn Zalo 0969683188.</span>
+          <span data-lang="en">Thanks for using PEB Tools VN! Please send feedback and bug reports for 1.3.23 to the Zalo user group or message Zalo 0969683188.</span>
+        </p>
+      </section>
+    </article>
+
+    <!-- Tự điền từ posts.json (bỏ bài đang xem); ẩn nếu chuyên mục chưa có bài khác -->
+    <section class="related" hidden>
+      <div class="related__head">
+        <h2><span data-lang="vi">Bài viết khác trong chuyên mục</span><span data-lang="en">More in this category</span></h2>
+        <a class="related__all" href="/?tab=peb-member"><span data-lang="vi">Xem tất cả →</span><span data-lang="en">View all →</span></a>
+      </div>
+      <div class="related-grid" data-peb-posts="/tekla/peb-member/posts.json"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand" href="/">iViD<span>Lab</span></a>
+    <p>© 2026 iViDLab. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

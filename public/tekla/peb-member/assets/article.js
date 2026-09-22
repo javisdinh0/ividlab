@@ -26,7 +26,8 @@
       dlButton: 'Tải về cho {tekla}',
       dlNoPackage: 'Chưa có gói cho phiên bản này',
       dlPackage: 'Gói cài đặt',
-      dlCompat: 'Dùng cho',
+      // "Cài được trên": đúng nghĩa khoảng phiên bản khai trong gói .tsep (chưa hẳn là đã kiểm thử hết).
+      dlCompat: 'Cài được trên',
       dlSize: 'Dung lượng',
       dlUnsupported: 'Hiện chưa có gói cài đặt chính thức cho phiên bản Tekla này. Vui lòng liên hệ',
       dlUnsupportedEnd: 'để được hỗ trợ.',
@@ -44,7 +45,7 @@
       dlButton: 'Download for {tekla}',
       dlNoPackage: 'No package for this version yet',
       dlPackage: 'Package',
-      dlCompat: 'For',
+      dlCompat: 'Installs on',
       dlSize: 'Size',
       dlUnsupported: 'There is no official package for this Tekla version yet. Please contact',
       dlUnsupportedEnd: 'for support.',
