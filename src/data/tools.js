@@ -5,8 +5,8 @@ export const toolsData = [
     category: 'Tekla Plugin',
     tag: 'Tekla Automation',
     description: {
-      vi: 'Plugin dựng cột, kèo, dầm tổ hợp vát thuôn nhà xưởng tiền chế trong Tekla Structures 2016 – 2024: bảng kiểu Excel, xem trước 3D, vẽ và cập nhật hàng loạt. Miễn phí, nhận key qua Zalo.',
-      en: 'Tekla Structures 2016 – 2024 plugin for modeling tapered built-up PEB columns, rafters and beams: Excel-like table, 3D preview, one-click batch draw and update. Free, key via Zalo.'
+      vi: 'Plugin dựng cột, kèo, dầm tổ hợp vát thuôn nhà xưởng tiền chế trong Tekla Structures 2016 – 2024 (cài đặt được trên 2025, 2026): bảng kiểu Excel, xem trước 3D, vẽ và cập nhật hàng loạt. Dùng thử 90 ngày, tự kích hoạt ngay trên trang.',
+      en: 'Tekla Structures 2016 – 2024 plugin (also installs on 2025 and 2026) for modeling tapered built-up PEB columns, rafters and beams: Excel-like table, 3D preview, one-click batch draw and update. 90-day free trial, self-activated on the page.'
     },
     status: 'Release',
     link: '/tekla/peb-member/gioi-thieu-peb-member.html',
