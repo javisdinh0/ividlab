@@ -658,7 +658,7 @@ ol.steps > li::before {
   font-size: 0.95rem;
 }
 
-/* Hộp nhận key qua Zalo */
+/* Thẻ nhóm Zalo người dùng (QR + nút) */
 .key-card {
   display: flex;
   align-items: center;
@@ -703,6 +703,103 @@ ol.steps > li::before {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+/* Tự kích hoạt dùng thử 90 ngày — nội dung do article.js vẽ vào [data-trial-activate] */
+.activate-card {
+  margin: 20px 0;
+  padding: 22px;
+  border-radius: 14px;
+  border: 2px solid var(--tip-border);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-card);
+  scroll-margin-top: 96px;
+}
+.activate-card__head {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+.activate-card__icon {
+  font-size: 1.9rem;
+  line-height: 1;
+}
+.activate-card .activate-card__title {
+  margin: 0 0 4px;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+.activate-card__head p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+.activate-form {
+  display: grid;
+  gap: 8px;
+  max-width: 560px;
+}
+.activate-form label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  margin-top: 4px;
+}
+.activate-form textarea,
+.activate-form input,
+.activate-output {
+  width: 100%;
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border-color);
+  background: var(--bg-soft);
+  color: var(--text-primary);
+  resize: vertical;
+}
+.activate-form textarea,
+.activate-output {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+}
+.activate-form textarea:focus,
+.activate-form input:focus {
+  outline: 2px solid var(--link-color);
+  outline-offset: 1px;
+}
+.activate-form .btn {
+  justify-self: start;
+  margin-top: 8px;
+}
+.activate-form .btn[disabled] {
+  opacity: 0.6;
+  cursor: wait;
+}
+.activate-error {
+  margin: 4px 0 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--warn-bg);
+  color: var(--warn-text);
+  font-size: 0.9rem;
+}
+.activate-done {
+  margin: 0 0 8px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.activate-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+.activate-note,
+.activate-alt {
+  margin: 12px 0 0;
+  font-size: 0.88rem;
+  color: var(--text-muted);
 }
 
 /* Hỏi đáp */

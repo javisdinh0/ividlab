@@ -119,21 +119,12 @@
         <p>TODO Content.</p>
       </div>
 
-      <!-- Hộp Tải về dùng chung (tuỳ chọn): combobox phiên bản Tekla đọc từ downloads.json -->
+      <!-- Hộp Tải về + khối Tự kích hoạt dùng thử 90 ngày (tuỳ chọn); nội dung do article.js vẽ -->
       <section aria-labelledby="tai-ve">
         <h2 id="tai-ve"><span data-lang="vi">Tải về</span><span data-lang="en">Download</span></h2>
         <div data-peb-download="/tekla/peb-member/downloads.json"></div>
-        <div class="key-card">
-          <div class="key-card__icon" aria-hidden="true">🔑</div>
-          <div class="key-card__body">
-            <p class="key-card__title"><span data-lang="vi">Nhận key kích hoạt miễn phí</span><span data-lang="en">Get your free activation key</span></p>
-            <p data-lang="vi">Sau khi cài đặt, nhắn Zalo <span class="key-card__phone">0969683188</span> và gửi Product Key để nhận key miễn phí.</p>
-            <p data-lang="en">After installing, message Zalo <span class="key-card__phone">0969683188</span> with your Product Key to receive a free key.</p>
-          </div>
-          <div class="key-card__actions">
-            <a class="btn btn--zalo" href="https://zalo.me/0969683188" target="_blank" rel="noopener"><span data-lang="vi">Nhắn Zalo</span><span data-lang="en">Chat on Zalo</span></a>
-            <button type="button" class="btn btn--ghost" data-copy="0969683188"><span data-lang="vi">Chép số</span><span data-lang="en">Copy number</span></button>
-          </div>
+        <div class="activate-card" id="tu-kich-hoat" data-trial-activate>
+          <noscript><p>Vui lòng bật JavaScript để tự kích hoạt, hoặc mở <a href="/trial/">trang dùng thử</a>. / Please enable JavaScript to activate here, or open the <a href="/trial/">trial page</a>.</p></noscript>
         </div>
 
         <!-- Nhóm Zalo người dùng (tuỳ chọn) -->

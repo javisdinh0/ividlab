@@ -14,9 +14,9 @@ Chuyên mục giới thiệu plugin **PEB Member** (gói `PEBToolsVN`) cho Tekla
 |---|---|
 | `posts.json` | **Danh sách bài của chuyên mục** — tab PEB Member và mục "Bài viết khác" cuối mỗi bài đều đọc file này |
 | `downloads.json` | Phiên bản plugin, gói `.tsep` theo từng bản Tekla, ghi chú "Có gì mới" — hộp Tải về đọc file này |
-| `assets/article.css`, `assets/article.js` | Giao diện + hành vi dùng chung (theme, VN/EN, combobox tải về, phóng to ảnh…) |
+| `assets/article.css`, `assets/article.js` | Giao diện + hành vi dùng chung (theme, VN/EN, combobox tải về, khối tự kích hoạt, phóng to ảnh…) |
 | `img/` | Ảnh PNG và GIF minh hoạ |
-| `gioi-thieu-peb-member.html` | Bài giới thiệu tổng quan |
+| `*.html` | Các bài viết (bài tổng quan: `gioi-thieu-peb-member.html`) |
 
 Gói cài đặt nằm ở `public/fordownload/peb-member/` (chỉ giữ bản mới nhất).
 
@@ -45,6 +45,19 @@ Gói cài đặt nằm ở `public/fordownload/peb-member/` (chỉ giữ bản m
 4. Chỉ viết tiếng Việt: xoá khối `data-lang="en"` và bỏ `data-lang="vi"` ở khối nội dung (xem ghi chú trong mẫu).
 5. `npm run dev` → kiểm tra `http://localhost:5173/?tab=peb-member` và trang bài viết, rồi `npm run deploy`.
 
+## Tự kích hoạt dùng thử 90 ngày
+
+Khối `<div class="activate-card" id="tu-kich-hoat" data-trial-activate>` (có sẵn trong mẫu, ngay dưới hộp
+Tải về) cho người dùng dán Product Key + email để nhận Active Key 90 ngày ngay trên trang — không cần
+liên hệ. `article.js` gọi cùng API với trang `/trial/` (A-Soft License):
+
+- `POST https://license.ividlab.com/api/keygen/trial` với `productOverride: "PEBToolsVN"` — key PEB dạng
+  cũ (không có tiền tố `PT1-`) vẫn kích hoạt được, key của phần mềm khác bị báo lỗi rõ ràng.
+- Máy chủ chặn trùng theo máy và theo email, giới hạn 5 lần/phút mỗi IP; các lỗi tiếng Anh hay gặp được
+  đổi sang lời dễ hiểu (bảng `TRIAL_ERRORS` + chuỗi `err…` trong `article.js`).
+- CORS chỉ cho `https://ividlab.com` → chạy `npm run dev` bấm Nhận key sẽ báo "Không kết nối được máy chủ",
+  đó là bình thường; muốn thử giao diện thì giả lập `window.fetch` trong DevTools.
+
 ## Video → GIF
 
 Cần `ffmpeg` trên PATH (`winget install Gyan.FFmpeg`).
@@ -70,7 +83,7 @@ Nên giữ mỗi GIF dưới ~3 MB; quay cửa sổ ở độ phân giải vừa
 3. Sửa tay trong `downloads.json`:
    - `notes` — mục "Có gì mới" (vi/en);
    - `tekla` — nếu thay đổi phạm vi hỗ trợ (vd. có gói cho Tekla 2025 thì thêm gói vào `packages`
-     và trỏ mục `2025+` sang gói đó thay vì `null`).
+     và trỏ mục `2027+` sang gói đó thay vì `null`).
 4. Kiểm tra hộp Tải về trên `npm run dev`, rồi deploy.
 
 Gói `2020_Under` (bản dùng chung 2017–2020 có Auto-Launcher) cố ý không đưa lên web: mỗi năm 2016–2020
