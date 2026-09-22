@@ -109,14 +109,12 @@
     "vi": [
       "Chọn Plate profile và Folded plate profile ngay trong Settings (Tekla dùng lõi PEB 2021 trở lên).",
       "Đường gióng kèm độ dài chạy theo chuột khi chọn điểm vẽ, giống PEB Member gốc của Tekla.",
-      "Gói cho Tekla 2021 trở lên cài đặt được trên Tekla 2021 – 2026.",
-      "Sửa lỗi lệnh Update không đổi vật liệu của cấu kiện."
+      "Gói cho Tekla 2021 trở lên cài đặt được trên Tekla 2021 – 2026."
     ],
     "en": [
       "Pick the Plate profile and Folded plate profile right in Settings (Tekla with the PEB 2021+ core).",
       "A rubber-band line with its live length follows the cursor while picking points, just like Tekla's own PEB Member.",
-      "The Tekla 2021+ package now installs on Tekla 2021 – 2026.",
-      "Fixed the Update command not changing the member's material."
+      "The Tekla 2021+ package now installs on Tekla 2021 – 2026."
     ]
   }
 }
