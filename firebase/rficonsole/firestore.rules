@@ -99,6 +99,16 @@ service cloud.firestore {
         allow write: if isOwner();
       }
     }
+    // amcFiles/{fileId} (metadata) + amcFiles/{fileId}/chunks/{i} (dữ liệu chia khúc ≤ 900 KB): GIF lớn,
+    // bộ cài, file thiết lập. Chỉ người đọc được cấp quyền mới tải được — không có link công khai.
+    match /amcFiles/{fileId} {
+      allow read: if isAmcReader() || isOwner();
+      allow write: if isOwner();
+      match /chunks/{i} {
+        allow read: if isAmcReader() || isOwner();
+        allow write: if isOwner();
+      }
+    }
 
     // Cho phép truy vấn collectionGroup('members') liệt kê dự án của CHÍNH MÌNH.
     // Collection-group query chỉ khớp rule khai báo bằng recursive wildcard {path=**},

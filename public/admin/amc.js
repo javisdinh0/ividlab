@@ -5,7 +5,7 @@ import {
   onAuthStateChanged, signInWithPopup, signOut
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import {
-  collection, getDocs, doc, getDoc, setDoc, deleteDoc, serverTimestamp, writeBatch
+  collection, getDocs, doc, getDoc, setDoc, deleteDoc, serverTimestamp, writeBatch, Bytes
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 const $ = (id) => document.getElementById(id);
@@ -175,6 +175,7 @@ async function uploadFolder() {
         if (!keep.has(d.id)) { await deleteDoc(d.ref); log(`   – xoá ảnh cũ ${d.id}`); }
       }
     }
+    await uploadFiles(files);
     toast('Tải lên xong', 'ok');
     loadPosts();
   } catch (err) {
@@ -182,6 +183,53 @@ async function uploadFolder() {
     toast('Tải lên lỗi', 'err');
   } finally {
     $('btn-upload').disabled = false;
+  }
+}
+
+/* ---------- File lớn (thư mục files/): GIF, bộ cài, file thiết lập -> amcFiles chia khúc ----------
+   id = tên file. Mỗi khúc ≤ CHUNK byte lưu dạng Bytes (không base64) để vừa giới hạn 1 MiB/document.
+   File không đổi (cùng sha256) thì bỏ qua cho đỡ ghi; file không còn trong thư mục thì xoá. */
+const CHUNK = 900000;
+
+async function sha256(buf) {
+  const h = await crypto.subtle.digest('SHA-256', buf);
+  return [...new Uint8Array(h)].map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function deleteFile(fileId) {
+  const chunks = await getDocs(collection(db, 'amcFiles', fileId, 'chunks'));
+  await Promise.all(chunks.docs.map(d => deleteDoc(d.ref)));
+  await deleteDoc(doc(db, 'amcFiles', fileId));
+}
+
+async function uploadFiles(files) {
+  const list = files.filter(f => relPath(f).startsWith('files/') && relPath(f).split('/').length === 2);
+  const keep = new Set();
+  for (const f of list) {
+    const id = f.name;
+    keep.add(id);
+    const buf = await f.arrayBuffer();
+    const hash = await sha256(buf);
+    const old = await getDoc(doc(db, 'amcFiles', id));
+    if (old.exists() && old.data().sha256 === hash) { log(`= file ${id} không đổi`); continue; }
+    if (old.exists()) await deleteFile(id);
+    const bytes = new Uint8Array(buf);
+    const n = Math.max(1, Math.ceil(bytes.length / CHUNK));
+    for (let i = 0; i < n; i++) {
+      const part = bytes.subarray(i * CHUNK, Math.min(bytes.length, (i + 1) * CHUNK));
+      await setDoc(doc(db, 'amcFiles', id, 'chunks', String(i).padStart(3, '0')), { data: Bytes.fromUint8Array(part) });
+    }
+    // Ghi metadata SAU CÙNG: trang đọc chỉ thấy file khi đã đủ khúc.
+    await setDoc(doc(db, 'amcFiles', id), {
+      name: f.name, type: f.type || 'application/octet-stream', size: bytes.length,
+      chunks: n, sha256: hash, updatedAt: serverTimestamp(),
+    });
+    log(`✓ file ${id} (${(bytes.length / 1048576).toFixed(2)} MB, ${n} khúc)`);
+  }
+  if (!list.length) return; // không chọn kèm thư mục files/ thì giữ nguyên file cũ
+  const all = await getDocs(collection(db, 'amcFiles'));
+  for (const d of all.docs) {
+    if (!keep.has(d.id)) { await deleteFile(d.id); log(`– xoá file cũ ${d.id}`); }
   }
 }
 

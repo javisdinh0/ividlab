@@ -19,6 +19,7 @@ Nên chỉ có **khung trang** ở đây; nội dung nằm trong Firestore proje
 | Người đọc | `amcReaders/{email chữ thường}` = `{ email, name, addedAt }` | Người đọc chỉ đọc doc của mình; owner đọc/ghi hết |
 | Bài | `amcPosts/{slug}` = `{ title, description, tag, date, order, html, updatedAt }` | Người đọc + owner đọc; owner ghi |
 | Ảnh | `amcPosts/{slug}/img/{tên file}` = `{ data: data URL, bytes }` | Như bài |
+| File lớn (GIF thao tác, bộ cài, bộ thiết lập) | `amcFiles/{tên file}` = `{ name, type, size, chunks, sha256 }` + `amcFiles/{tên}/chunks/{000…}` = `{ data: Bytes ≤ 900 KB }` | Như bài |
 
 Ảnh để trong Firestore (base64, < 1 MB/ảnh) thay vì Storage: không phải cấu hình CORS bucket, không cần rules chéo
 Storage→Firestore, và không có link tải công khai kiểu `getDownloadURL()` có token.
@@ -52,3 +53,12 @@ Google provider và authorized domain `ividlab.com` đã bật sẵn từ trang 
 - `html` của bài được chèn thẳng bằng `innerHTML` — an toàn vì chỉ owner ghi được `amcPosts` (rules).
 - Trang `/amc-private/` và `/admin/amc.html` có `noindex` và không gắn `traffic-track.js`.
 - Đổi quyền có hiệu lực ngay (rules đọc `amcReaders` mỗi lần truy vấn); người bị xoá chỉ cần tải lại trang.
+
+## File lớn và nút tải (amcFiles)
+
+- Trong html bài: GIF `<img data-amc-media="<tên>">` (tải khi cuộn gần tới), nút tải
+  `<a class="btn btn--primary" data-amc-download="<tên>">Nhãn</a>` (tự hiện dung lượng, bấm thì ghép khúc và lưu với tên gốc).
+- Nguồn là thư mục `files/` trong thư mục bài (repo SDU). Trang `/admin/amc.html` tải lên theo khúc; file cùng sha256 thì
+  bỏ qua, file không còn trong thư mục thì xoá (chỉ khi thư mục chọn có `files/`).
+- Không có URL công khai: file chỉ tải được qua Firestore SDK sau khi đăng nhập và có trong `amcReaders`.
+- Đổi rules (thêm `amcFiles`) → phải dán lại `firestore.rules` vào Console và Publish.
