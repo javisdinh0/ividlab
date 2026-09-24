@@ -4,12 +4,13 @@ import Hero from './components/Hero';
 import ToolsSection from './components/ToolsSection';
 import GuidesSection from './components/GuidesSection';
 import PebMemberSection from './components/PebMemberSection';
+import AmcPrivateSection from './components/AmcPrivateSection';
 import AboutSection from './components/AboutSection';
 import Footer from './components/Footer';
 import { translations } from './i18n/translations';
 import './index.css';
 
-const TABS = ['all', 'tools', 'guides', 'peb-member', 'about'];
+const TABS = ['all', 'tools', 'guides', 'peb-member', 'amc-private', 'about'];
 
 // Các trang tĩnh (public/**) link về SPA bằng /?tab=<id>, nên tab ban đầu lấy từ URL.
 function tabFromUrl() {
@@ -94,6 +95,12 @@ export default function App() {
         {activeTab === 'peb-member' && (
           <div style={{ paddingTop: '2rem' }}>
             <PebMemberSection t={t} lang={lang} />
+          </div>
+        )}
+
+        {activeTab === 'amc-private' && (
+          <div style={{ paddingTop: '2rem' }}>
+            <AmcPrivateSection t={t} />
           </div>
         )}
 

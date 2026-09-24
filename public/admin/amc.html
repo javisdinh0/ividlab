@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>AMC Private tools — iViDLab Admin</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔒</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .amc-form { display: grid; gap: 10px; }
+    .amc-form textarea { width: 100%; min-height: 120px; font: inherit; padding: 10px; border-radius: 8px;
+      border: 1px solid rgba(127,127,127,.4); background: transparent; color: inherit; box-sizing: border-box; }
+    .amc-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .amc-log { font-family: ui-monospace, Consolas, monospace; font-size: .8rem; white-space: pre-wrap;
+      max-height: 260px; overflow: auto; margin: 0; }
+  </style>
+  <script>
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem('ividlab-theme'); } catch (e) {}
+      if (!saved) saved = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', saved);
+    })();
+  </script>
+</head>
+<body>
+
+  <section id="loading-view" class="center-view"><div class="muted">Đang tải…</div></section>
+
+  <section id="login-view" class="center-view" style="display:none;">
+    <div class="auth-card">
+      <div class="brand-mark">🔒</div>
+      <h1>AMC Private tools</h1>
+      <p class="sub">Quản lý người đọc và bài viết. Đăng nhập bằng tài khoản Google của owner.</p>
+      <button class="btn btn-primary btn-block" id="btn-google-login">Đăng nhập bằng Google</button>
+      <p class="form-err" id="login-err"></p>
+    </div>
+  </section>
+
+  <section id="denied-view" class="center-view" style="display:none;">
+    <div class="auth-card">
+      <div class="brand-mark">⛔</div>
+      <h1>Không có quyền quản trị</h1>
+      <p class="sub">Chỉ tài khoản owner mới quản lý được chuyên mục này.</p>
+      <button class="btn btn-ghost btn-block" id="btn-denied-logout">Đăng xuất</button>
+    </div>
+  </section>
+
+  <section id="admin-view" style="display:none;">
+    <header class="topbar">
+      <div class="topbar-brand"><span class="brand-mark sm">🔒</span> iViDLab · AMC Private tools</div>
+      <div class="topbar-right">
+        <a class="btn btn-ghost btn-sm" href="/admin/">← Lưu lượng</a>
+        <a class="btn btn-ghost btn-sm" href="/amc-private/" target="_blank" rel="noopener">Xem trang đọc ↗</a>
+        <button class="btn btn-ghost btn-sm btn-theme" id="btn-theme" title="Sáng/Tối">🌓</button>
+        <span class="user-chip" id="user-chip"></span>
+        <button class="btn btn-ghost btn-sm" id="btn-logout">Đăng xuất</button>
+      </div>
+    </header>
+
+    <main class="dash-main">
+      <div class="card">
+        <h3>Người được đọc (amcReaders)</h3>
+        <div class="amc-form">
+          <p class="muted">Mỗi dòng: <code>email, họ tên</code> (họ tên tuỳ chọn). Email phải là tài khoản Google người đó dùng để đăng nhập.</p>
+          <textarea id="readers-input" placeholder="ten.nguoi@gmail.com, Nguyễn Văn A"></textarea>
+          <div class="amc-row"><button class="btn btn-primary btn-sm" id="btn-add-readers">Thêm / cập nhật</button></div>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Email</th><th>Họ tên</th><th></th></tr></thead>
+            <tbody id="readers-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Bài viết (amcPosts)</h3>
+        <div class="amc-form">
+          <p class="muted">Chọn <strong>thư mục nguồn bài</strong> (trong repo SDU: <code>Docs/Web-AMC-Private</code>) — gồm
+            <code>posts.json</code>, <code>&lt;slug&gt;.html</code> và <code>img/&lt;slug&gt;/*</code>. Mọi bài có trong posts.json được ghi đè
+            bằng bản mới; ảnh lớn được tự nén về &lt; 1 MB.</p>
+          <div class="amc-row">
+            <input type="file" id="src-folder" webkitdirectory multiple>
+            <button class="btn btn-primary btn-sm" id="btn-upload" disabled>Tải lên</button>
+          </div>
+          <pre class="amc-log" id="upload-log"></pre>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Slug</th><th>Tiêu đề</th><th>Thứ tự</th><th>Ngày</th><th></th></tr></thead>
+            <tbody id="posts-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </section>
+
+  <div id="toast"></div>
+  <script type="module" src="amc.js"></script>
+</body>
+</html>

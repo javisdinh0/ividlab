@@ -1,0 +1,55 @@
+/* AMC Private tools — bổ sung cho /tekla/peb-member/assets/article.css (dùng lại biến màu + khối bài). */
+[hidden] { display: none !important; }
+
+.amc-center {
+  display: flex;
+  justify-content: center;
+  padding: 48px 0;
+}
+.amc-card {
+  width: 100%;
+  max-width: 440px;
+  padding: 32px 28px;
+  border-radius: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-card);
+  text-align: center;
+}
+.amc-card h1 { margin: 8px 0 12px; font-size: 1.5rem; }
+.amc-card p { color: var(--text-body); }
+.amc-mark { font-size: 2.4rem; }
+.amc-block {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 8px;
+  cursor: pointer;
+}
+.amc-err { min-height: 1.2em; margin-top: 12px; color: var(--warn-text); font-size: 0.9rem; }
+.amc-muted { color: var(--text-muted); }
+.amc-date {
+  margin-top: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+.amc-user {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#post-body figure.media img { cursor: zoom-in; }
+
+/* Bảng lệnh có icon ribbon */
+.cmd-icon { width: 32px; height: 32px; vertical-align: middle; }
+
+@media (max-width: 640px) {
+  .amc-user { display: none; }
+}

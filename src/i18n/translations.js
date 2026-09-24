@@ -5,6 +5,7 @@ export const translations = {
       tools: '// CÔNG CỤ',
       guides: '// HƯỚNG DẪN & CHIA SẺ',
       pebmember: '// PEB MEMBER',
+      amcprivate: '// AMC PRIVATE',
       about: '// GIỚI THIỆU'
     },
     hero: {
@@ -41,6 +42,14 @@ export const translations = {
       error: 'Không tải được danh sách bài viết. Vui lòng thử lại sau.',
       empty: 'Chưa có bài viết nào trong chuyên mục.'
     },
+    amcprivate: {
+      badge: 'AMC // PRIVATE TOOLS',
+      title: 'AMC Private tools',
+      desc: 'Chuyên mục nội bộ dành riêng cho thành viên AMC: giới thiệu và hướng dẫn sử dụng các công cụ iViDLab phát triển cho AMC, trước hết là Steel Design Universe (SDU) — plugin AutoCAD dựng mặt bằng mái, cột, dầm và mặt cắt khung thép tiền chế trực tiếp từ mô hình SAP2000.',
+      highlights: ['Steel Design Universe', 'AutoCAD + SAP2000', 'Chỉ thành viên AMC'],
+      note: 'Nội dung chỉ hiển thị sau khi đăng nhập bằng tài khoản Google đã được cấp quyền.',
+      btn_login: '🔒 Đăng nhập để đọc →'
+    },
     about: {
       badge: 'ABOUT // IVIDLAB',
       title: 'Giới thiệu về iViDLab',
@@ -57,6 +66,7 @@ export const translations = {
       tools: '// TOOLS',
       guides: '// GUIDES & TIPS',
       pebmember: '// PEB MEMBER',
+      amcprivate: '// AMC PRIVATE',
       about: '// ABOUT'
     },
     hero: {
@@ -92,6 +102,14 @@ export const translations = {
       loading: 'Loading articles…',
       error: 'Could not load the article list. Please try again later.',
       empty: 'No articles in this category yet.'
+    },
+    amcprivate: {
+      badge: 'AMC // PRIVATE TOOLS',
+      title: 'AMC Private tools',
+      desc: 'An internal category for AMC members only: introductions and user guides for tools iViDLab builds for AMC, starting with Steel Design Universe (SDU) — an AutoCAD plugin that draws roof, column, beam plans and PEB frame sections straight from the SAP2000 model.',
+      highlights: ['Steel Design Universe', 'AutoCAD + SAP2000', 'AMC members only'],
+      note: 'Content is shown only after signing in with an authorized Google account.',
+      btn_login: '🔒 Sign in to read →'
     },
     about: {
       badge: 'ABOUT // IVIDLAB',
