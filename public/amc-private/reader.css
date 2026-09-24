@@ -47,6 +47,25 @@
 }
 #post-body figure.media img { cursor: zoom-in; }
 
+/* GIF lớn đang tải (loadMedia) */
+figure.amc-media-loading { position: relative; min-height: 180px; }
+figure.amc-media-loading::before {
+  content: 'Đang tải ảnh động…';
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  border: 2px dashed var(--border-color); border-radius: 10px; background: var(--bg-soft);
+  color: var(--text-muted); font-size: 0.95rem;
+}
+
+/* Hộp tải về trong bài: <div class="amc-download"> … <a class="btn btn--primary" data-amc-download> */
+.amc-download {
+  margin: 24px 0; padding: 20px; border-radius: 12px;
+  background: var(--bg-soft); border: 1px solid var(--border-soft);
+}
+.amc-download h3 { margin-top: 0; }
+.amc-download__actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 12px 0; }
+.amc-download .btn { cursor: pointer; }
+.amc-size { opacity: 0.8; font-weight: 400; }
+
 /* Bảng lệnh có icon ribbon */
 .cmd-icon { width: 32px; height: 32px; vertical-align: middle; }
 

@@ -128,6 +128,8 @@ async function openPost(id) {
   $('crumb-title').textContent = post.title || id;
   $('crumb-post').hidden = false;
   loadImages(id, body);
+  loadMedia(body);
+  wireDownloads(body);
   if (location.hash) document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView();
   loadOthers(id);
 }
@@ -153,6 +155,108 @@ function loadImages(id, root) {
       ph.append(code);
       img.replaceWith(ph);
     }
+  });
+}
+
+/* ---------- File lớn chia khúc: amcFiles/{id} + amcFiles/{id}/chunks/{000,001…} ----------
+   Dùng cho GIF thao tác, bộ cài, file thiết lập. Tải qua Firestore (đi qua rules) nên chỉ người
+   đọc được cấp quyền mới lấy được — không có URL công khai nào để chia sẻ ra ngoài. */
+const fileCache = new Map();
+
+function fetchMeta(fileId) {
+  return getDoc(doc(db, 'amcFiles', fileId)).then((s) => (s.exists() ? s.data() : null));
+}
+
+function fetchFile(fileId) {
+  if (!fileCache.has(fileId)) {
+    fileCache.set(fileId, (async () => {
+      const meta = await fetchMeta(fileId);
+      if (!meta) throw new Error('missing');
+      const snap = await getDocs(collection(db, 'amcFiles', fileId, 'chunks'));
+      const parts = snap.docs.sort((a, b) => a.id.localeCompare(b.id)).map((d) => d.data().data.toUint8Array());
+      if (parts.length !== meta.chunks) throw new Error('incomplete');
+      return { meta, blob: new Blob(parts, { type: meta.type || 'application/octet-stream' }) };
+    })());
+  }
+  return fileCache.get(fileId);
+}
+
+function formatSize(bytes) {
+  return bytes >= 1048576 ? (bytes / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(bytes / 1024)) + ' KB';
+}
+
+// GIF lớn: chỉ tải khi người đọc cuộn gần tới, để mở bài không phải kéo cả chục MB một lúc.
+function loadMedia(root) {
+  const imgs = [...root.querySelectorAll('img[data-amc-media]')];
+  if (!imgs.length) return;
+  const load = async (img) => {
+    const figure = img.closest('figure');
+    figure?.classList.add('amc-media-loading');
+    try {
+      const { blob } = await fetchFile(img.dataset.amcMedia);
+      img.src = URL.createObjectURL(blob);
+      img.addEventListener('click', () => openLightbox(img.src, img.alt));
+    } catch (e) {
+      if (!isOwnerUser) { if (figure) figure.hidden = true; else img.remove(); return; }
+      const ph = document.createElement('div');
+      ph.className = 'media-placeholder';
+      ph.innerHTML = '<strong>🎞 Chưa có file</strong>';
+      const code = document.createElement('code');
+      code.textContent = img.dataset.amcMedia;
+      ph.append(code);
+      img.replaceWith(ph);
+    } finally {
+      figure?.classList.remove('amc-media-loading');
+    }
+  };
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((en) => { if (en.isIntersecting) { io.unobserve(en.target); load(en.target); } });
+  }, { rootMargin: '400px 0px' });
+  imgs.forEach((img) => io.observe(img));
+}
+
+// Nút tải: <a class="btn btn--primary" data-amc-download="<fileId>">…</a> — hiện dung lượng, bấm thì
+// ghép khúc thành file rồi cho trình duyệt lưu với tên gốc.
+function wireDownloads(root) {
+  root.querySelectorAll('[data-amc-download]').forEach(async (btn) => {
+    const fileId = btn.dataset.amcDownload;
+    const label = btn.innerHTML;
+    btn.setAttribute('href', '#');
+    let meta = null;
+    try { meta = await fetchMeta(fileId); } catch (e) { /* xử lý bên dưới */ }
+    if (!meta) {
+      if (!isOwnerUser) { btn.hidden = true; return; }
+      btn.setAttribute('aria-disabled', 'true');
+      btn.textContent = '⚠ Chưa có file ' + fileId;
+      return;
+    }
+    const size = document.createElement('span');
+    size.className = 'amc-size';
+    size.textContent = ` (${formatSize(meta.size)})`;
+    btn.append(size);
+    btn.addEventListener('click', async (ev) => {
+      ev.preventDefault();
+      if (btn.dataset.busy) return;
+      btn.dataset.busy = '1';
+      btn.textContent = 'Đang tải…';
+      try {
+        const { blob } = await fetchFile(fileId);
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = meta.name || fileId;
+        document.body.append(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 60000);
+      } catch (e) {
+        alert('Không tải được file (' + (e.code || e.message) + ').');
+      } finally {
+        btn.innerHTML = label;
+        btn.append(size);
+        delete btn.dataset.busy;
+      }
+    });
   });
 }
 
