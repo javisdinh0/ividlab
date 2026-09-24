@@ -53,6 +53,7 @@ export default function Header({ activeTab, setActiveTab, lang, setLang, theme, 
             ['tools', t.nav.tools],
             ['guides', t.nav.guides],
             ['peb-member', t.nav.pebmember],
+            ['amc-private', t.nav.amcprivate],
             ['about', t.nav.about]
           ].map(([tab, label]) => (
             <button

@@ -1,0 +1,115 @@
+<!doctype html>
+<!--
+  AMC Private tools — trang đọc có khoá. Trang này chỉ là KHUNG: nội dung bài (amcPosts) và danh sách
+  người đọc (amcReaders) nằm trong Firestore, chỉ tải về sau khi đăng nhập Google và được rules cho phép.
+  Repo public nên TUYỆT ĐỐI không chép nội dung bài vào đây. Xem docs/amc-private/README.md.
+  Không gắn traffic-track.js (giống /admin/).
+-->
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>AMC Private tools - iViDLab</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <script>
+    (function () {
+      var root = document.documentElement;
+      try { root.setAttribute('data-theme', localStorage.getItem('ividlab-theme') || 'light'); }
+      catch (e) { root.setAttribute('data-theme', 'light'); }
+    })();
+  </script>
+  <link rel="stylesheet" href="/tekla/peb-member/assets/article.css" />
+  <link rel="stylesheet" href="reader.css" />
+  <!-- article.js: chỉ dùng phần nút Sáng/Tối của header; phần ảnh/lightbox của bài do reader.js lo -->
+  <script src="/tekla/peb-member/assets/article.js" defer></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/">iViD<span>Lab</span></a>
+      <nav class="site-nav" aria-label="Menu">
+        <a href="/">// TRANG CHỦ</a>
+        <a href="/?tab=tools">// CÔNG CỤ</a>
+        <a href="/?tab=peb-member">// PEB MEMBER</a>
+        <a href="/?tab=amc-private" aria-current="true">// AMC PRIVATE</a>
+      </nav>
+      <div class="header-tools">
+        <span class="amc-user" id="user-chip" hidden></span>
+        <button type="button" class="toggle-btn" id="btn-logout" hidden>Đăng xuất</button>
+        <button id="theme-toggle" type="button" class="theme-switch" role="switch" aria-checked="false" aria-label="Chuyển giao diện Sáng / Tối" title="Chuyển giao diện Sáng / Tối">
+          <span class="theme-switch-thumb">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">iViDLab</a><span aria-hidden="true">›</span><a href="/amc-private/">AMC Private tools</a><span id="crumb-post" hidden><span aria-hidden="true">›</span><span id="crumb-title"></span></span>
+    </nav>
+
+    <!-- Đang kiểm tra đăng nhập -->
+    <section id="loading-view" class="amc-center"><p class="amc-muted">Đang tải…</p></section>
+
+    <!-- Chưa đăng nhập -->
+    <section id="login-view" class="amc-center" hidden>
+      <div class="amc-card">
+        <div class="amc-mark">🔒</div>
+        <h1>AMC Private tools</h1>
+        <p>Chuyên mục nội bộ dành cho thành viên AMC. Đăng nhập bằng tài khoản Google đã được cấp quyền để đọc bài.</p>
+        <button type="button" class="btn btn--primary amc-block" id="btn-google-login">
+          <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.91c1.7-1.57 2.69-3.88 2.69-6.62z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.91-2.26c-.81.54-1.84.86-3.05.86-2.35 0-4.34-1.58-5.05-3.71H.96v2.33A9 9 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.95 10.71A5.4 5.4 0 0 1 3.68 9c0-.59.1-1.17.27-1.71V4.96H.96A9 9 0 0 0 0 9c0 1.45.35 2.83.96 4.04l2.99-2.33z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.51.45 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .96 4.96l2.99 2.33C4.66 5.16 6.65 3.58 9 3.58z"/></svg>
+          Đăng nhập bằng Google
+        </button>
+        <p class="amc-err" id="login-err"></p>
+      </div>
+    </section>
+
+    <!-- Đã đăng nhập nhưng không có trong danh sách -->
+    <section id="denied-view" class="amc-center" hidden>
+      <div class="amc-card">
+        <div class="amc-mark">⛔</div>
+        <h1>Chưa được cấp quyền</h1>
+        <p>Tài khoản <strong id="denied-email"></strong> chưa có trong danh sách đọc chuyên mục này.
+          Nếu bạn là thành viên AMC, hãy đăng nhập bằng đúng email đã đăng ký hoặc liên hệ iViDLab để được thêm.</p>
+        <button type="button" class="btn btn--ghost amc-block" id="btn-denied-logout">Đăng xuất / đổi tài khoản</button>
+      </div>
+    </section>
+
+    <!-- Danh sách bài -->
+    <section id="list-view" hidden>
+      <header class="article-hero">
+        <div class="eyebrow">AMC // Private tools</div>
+        <h1>AMC Private tools</h1>
+        <p class="lead">Giới thiệu và hướng dẫn sử dụng các công cụ iViDLab phát triển cho AMC.</p>
+      </header>
+      <p class="amc-muted" id="list-status">Đang tải danh sách bài…</p>
+      <div class="related-grid" id="post-list"></div>
+    </section>
+
+    <!-- Một bài -->
+    <section id="post-view" hidden>
+      <article class="article" id="post-body"></article>
+      <section class="related" id="post-others" hidden>
+        <div class="related__head">
+          <h2>Bài viết khác trong chuyên mục</h2>
+          <a class="related__all" href="/amc-private/">Xem tất cả →</a>
+        </div>
+        <div class="related-grid" id="post-others-list"></div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand" href="/">iViD<span>Lab</span></a>
+    <p>© 2026 iViDLab. Nội dung nội bộ — vui lòng không chia sẻ ra ngoài.</p>
+  </footer>
+
+  <script type="module" src="reader.js"></script>
+</body>
+</html>

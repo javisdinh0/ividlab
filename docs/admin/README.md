@@ -50,3 +50,8 @@ sửa file này, dán lại toàn bộ nội dung vào **Firestore Database → 
   trong `scope-note`, cần chuyển sang rollup theo ngày (không làm trước vì chưa cần).
 - Dashboard hiện **chỉ theo dõi** — không có công tắc chủ động tắt/giới hạn tải xuống. Nếu cần,
   thêm sau bằng cách đọc thêm 1 document cấu hình (vd. `config/siteControl`) từ các trang công khai.
+
+## Trang con
+
+- `/admin/amc.html` — quản lý chuyên mục **AMC Private tools** (người đọc + tải bài), cùng cách đăng nhập owner.
+  Xem [docs/amc-private/README.md](../amc-private/README.md).

@@ -75,6 +75,31 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
+    // ---- AMC Private tools : chuyên mục chỉ người trong danh sách đọc được, xem docs/amc-private/README.md ----
+    // amcReaders/{emailKey}: 1 doc / người đọc (id = email chữ thường). Người đọc chỉ đọc được doc CỦA MÌNH
+    // (để trang /amc-private/ biết mình có quyền) — không liệt kê được danh sách người khác.
+    // KHÔNG để danh sách này trong config/* vì config ai đăng nhập cũng đọc được.
+    function isAmcReader() {
+      return signedIn() && exists(/databases/$(database)/documents/amcReaders/$(email()));
+    }
+    match /amcReaders/{emailKey} {
+      allow read: if isOwner() || (signedIn() && emailKey == email());
+      allow create, update: if isOwner()
+                            && request.resource.data.email is string
+                            && request.resource.data.email == emailKey
+                            && request.resource.data.email.matches('^[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,}$');
+      allow delete: if isOwner();
+    }
+    // amcPosts/{slug} (bài, html) + amcPosts/{slug}/img/{name} (ảnh base64): chỉ owner ghi.
+    match /amcPosts/{slug} {
+      allow read: if isAmcReader() || isOwner();
+      allow write: if isOwner();
+      match /img/{name} {
+        allow read: if isAmcReader() || isOwner();
+        allow write: if isOwner();
+      }
+    }
+
     // Cho phép truy vấn collectionGroup('members') liệt kê dự án của CHÍNH MÌNH.
     // Collection-group query chỉ khớp rule khai báo bằng recursive wildcard {path=**},
     // và phải là điều kiện field-based (không get/exists) mới hợp lệ khi list.
