@@ -63,36 +63,59 @@ document.addEventListener('DOMContentLoaded', () => {
             callback: async (tokenResponse) => {
                 if (tokenResponse && tokenResponse.access_token) {
                     accessToken = tokenResponse.access_token;
-                    loginScreen.classList.add('hidden');
-                    loginBtn.classList.add('hidden');
-                    logoutBtn.classList.remove('hidden');
-                    gallery.classList.remove('hidden');
                     
-                    // Kiểm tra email xem có phải Admin không
-                    try {
-                        const userInfoRes = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
-                            headers: { 'Authorization': `Bearer ${accessToken}` }
-                        });
-                        if (userInfoRes.ok) {
-                            const userInfo = await userInfoRes.json();
-                            if (userInfo.email === 'dinhvietdung.vn@gmail.com') {
-                                settingsBtn.classList.remove('hidden');
-                            }
-                        }
-                    } catch (e) {
-                        console.error('Không lấy được thông tin user');
-                    }
+                    // Lưu token vào localStorage (hết hạn sau 1 tiếng)
+                    const expiry = Date.now() + (tokenResponse.expires_in * 1000) - 60000; // Trừ hao 1 phút
+                    localStorage.setItem('vd_photo_access_token', accessToken);
+                    localStorage.setItem('vd_photo_token_expiry', expiry.toString());
 
-                    fetchImages();
+                    handleSuccessfulLogin();
                 }
             },
         });
+    }
+    
+    async function handleSuccessfulLogin() {
+        loginScreen.classList.add('hidden');
+        loginBtn.classList.add('hidden');
+        logoutBtn.classList.remove('hidden');
+        gallery.classList.remove('hidden');
+        
+        // Kiểm tra email xem có phải Admin không
+        try {
+            const userInfoRes = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+                headers: { 'Authorization': `Bearer ${accessToken}` }
+            });
+            if (userInfoRes.ok) {
+                const userInfo = await userInfoRes.json();
+                if (userInfo.email === 'dinhvietdung.vn@gmail.com') {
+                    settingsBtn.classList.remove('hidden');
+                }
+            }
+        } catch (e) {
+            console.error('Không lấy được thông tin user');
+        }
+
+        fetchImages();
     }
 
     // Đợi thư viện Google load xong
     window.onload = () => {
         if (clientId) {
             initGoogleClient();
+            
+            // Kiểm tra xem token cũ còn hạn không
+            const storedToken = localStorage.getItem('vd_photo_access_token');
+            const storedExpiry = localStorage.getItem('vd_photo_token_expiry');
+            
+            if (storedToken && storedExpiry && Date.now() < parseInt(storedExpiry, 10)) {
+                accessToken = storedToken;
+                handleSuccessfulLogin();
+            } else {
+                // Token hết hạn hoặc chưa đăng nhập
+                localStorage.removeItem('vd_photo_access_token');
+                localStorage.removeItem('vd_photo_token_expiry');
+            }
         } else {
             loginScreen.classList.add('hidden');
             emptyState.classList.remove('hidden');
@@ -119,10 +142,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             accessToken = null;
         }
+        localStorage.removeItem('vd_photo_access_token');
+        localStorage.removeItem('vd_photo_token_expiry');
+        
         logoutBtn.classList.add('hidden');
         loginBtn.classList.remove('hidden');
         gallery.classList.add('hidden');
         gallery.innerHTML = '';
+        timeline.innerHTML = '';
+        timeline.classList.add('hidden');
         loginScreen.classList.remove('hidden');
     });
 
