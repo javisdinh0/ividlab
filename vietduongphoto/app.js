@@ -223,19 +223,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 allFiles.forEach(file => {
                     const match = file.name.match(/^(.*)\.([a-zA-Z0-9]+)$/);
                     if (match) {
-                        const baseName = match[1];
+                        let baseName = match[1];
                         const ext = match[2].toLowerCase();
                         
+                        // Nếu đã có file trùng tên CHÍNH XÁC (ví dụ 2 file IMG_01.JPG), đổi tên nhóm để không bị ghi đè
+                        if (fileMap.has(baseName)) {
+                            const existing = fileMap.get(baseName);
+                            // Nếu đã có file standard trùng extension, nghĩa là đây là 1 file độc lập khác (trùng tên hoàn toàn)
+                            if (existing.standard && existing.ext.toLowerCase() === ext) {
+                                baseName = baseName + '_' + file.id; // Tạo key mới cho file bị trùng tên
+                            }
+                        }
+
                         if (!fileMap.has(baseName)) {
                             fileMap.set(baseName, { standard: null, raw: null });
                         }
                         
                         const isRaw = ['arw', 'cr2', 'cr3', 'nef', 'dng', 'raf', 'orf', 'rw2'].includes(ext);
-                        const isStandard = ['jpg', 'jpeg', 'png'].includes(ext);
+                        const isStandard = ['jpg', 'jpeg', 'png', 'heic', 'heif', 'webp', 'gif', 'bmp'].includes(ext);
                         
                         if (isRaw) {
                             fileMap.get(baseName).raw = file;
                         } else if (isStandard) {
+                            fileMap.get(baseName).standard = file;
+                            fileMap.get(baseName).ext = ext.toUpperCase();
+                        } else {
+                            // Nếu đuôi lạ nhưng bản chất là ảnh, cứ cho vào standard
                             fileMap.get(baseName).standard = file;
                             fileMap.get(baseName).ext = ext.toUpperCase();
                         }
