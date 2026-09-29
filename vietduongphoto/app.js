@@ -1,0 +1,332 @@
+document.addEventListener('DOMContentLoaded', () => {
+    // DOM Elements
+    const settingsBtn = document.getElementById('settingsBtn');
+    const settingsModal = document.getElementById('settingsModal');
+    const closeSettings = document.getElementById('closeSettings');
+    const saveSettingsBtn = document.getElementById('saveSettings');
+    
+    const clientIdInput = document.getElementById('clientId');
+    const apiKeyInput = document.getElementById('apiKey');
+    const folderIdInput = document.getElementById('folderId');
+    
+    const gallery = document.getElementById('gallery');
+    const loader = document.getElementById('loader');
+    const emptyState = document.getElementById('emptyState');
+    const errorMessage = document.getElementById('errorMessage');
+    
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const closeLightbox = document.getElementById('closeLightbox');
+    const downloadBtn = document.getElementById('downloadBtn');
+    
+    const loginScreen = document.getElementById('loginScreen');
+    const loginScreenBtn = document.getElementById('loginScreenBtn');
+    const loginBtn = document.getElementById('loginBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    
+    const errorText = document.getElementById('errorText');
+    const requestAccessBtn = document.getElementById('requestAccessBtn');
+
+    // Load settings from localStorage
+    let clientId = localStorage.getItem('vd_photo_client_id') || '';
+    let apiKey = localStorage.getItem('vd_photo_api_key') || '';
+    let folderId = localStorage.getItem('vd_photo_folder_id') || '';
+
+    // Initialize inputs
+    clientIdInput.value = clientId;
+    apiKeyInput.value = apiKey;
+    folderIdInput.value = folderId;
+
+    let accessToken = null;
+    let tokenClient = null;
+
+    // Khởi tạo Google Identity Services
+    function initGoogleClient() {
+        if (!clientId) return;
+        
+        tokenClient = google.accounts.oauth2.initTokenClient({
+            client_id: clientId,
+            scope: 'https://www.googleapis.com/auth/drive.readonly',
+            callback: (tokenResponse) => {
+                if (tokenResponse && tokenResponse.access_token) {
+                    accessToken = tokenResponse.access_token;
+                    loginScreen.classList.add('hidden');
+                    loginBtn.classList.add('hidden');
+                    logoutBtn.classList.remove('hidden');
+                    gallery.classList.remove('hidden');
+                    fetchImages();
+                }
+            },
+        });
+    }
+
+    // Đợi thư viện Google load xong
+    window.onload = () => {
+        if (clientId) {
+            initGoogleClient();
+        } else {
+            loginScreen.classList.add('hidden');
+            emptyState.classList.remove('hidden');
+        }
+    };
+
+    function requestLogin() {
+        if (!tokenClient) {
+            alert('Vui lòng vào Cài đặt để nhập OAuth Client ID trước.');
+            return;
+        }
+        tokenClient.requestAccessToken();
+    }
+
+    loginScreenBtn.addEventListener('click', requestLogin);
+    loginBtn.addEventListener('click', requestLogin);
+    
+    logoutBtn.addEventListener('click', () => {
+        if (accessToken) {
+            google.accounts.oauth2.revoke(accessToken, () => {
+                console.log('Revoked token');
+            });
+            accessToken = null;
+        }
+        logoutBtn.classList.add('hidden');
+        loginBtn.classList.remove('hidden');
+        gallery.classList.add('hidden');
+        gallery.innerHTML = '';
+        loginScreen.classList.remove('hidden');
+    });
+
+    // Modal Events
+    settingsBtn.addEventListener('click', () => {
+        settingsModal.classList.remove('hidden');
+    });
+
+    closeSettings.addEventListener('click', () => {
+        settingsModal.classList.add('hidden');
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+        if (e.target === settingsModal) {
+            settingsModal.classList.add('hidden');
+        }
+        if (e.target === lightbox) {
+            lightbox.classList.add('hidden');
+        }
+    });
+
+    saveSettingsBtn.addEventListener('click', () => {
+        clientId = clientIdInput.value.trim();
+        apiKey = apiKeyInput.value.trim();
+        folderId = folderIdInput.value.trim();
+        
+        if (folderId.includes('drive.google.com')) {
+            const match = folderId.match(/folders\/([a-zA-Z0-9-_]+)/);
+            if (match && match[1]) {
+                folderId = match[1];
+                folderIdInput.value = folderId;
+            }
+        }
+
+        localStorage.setItem('vd_photo_client_id', clientId);
+        localStorage.setItem('vd_photo_api_key', apiKey);
+        localStorage.setItem('vd_photo_folder_id', folderId);
+        
+        settingsModal.classList.add('hidden');
+        
+        if (clientId) {
+            initGoogleClient();
+            emptyState.classList.add('hidden');
+            loginScreen.classList.remove('hidden');
+        } else {
+            loginScreen.classList.add('hidden');
+            emptyState.classList.remove('hidden');
+        }
+    });
+
+    // Lightbox Events
+    closeLightbox.addEventListener('click', () => {
+        lightbox.classList.add('hidden');
+    });
+
+    // Fetch Images from Google Drive
+    async function fetchImages() {
+        gallery.innerHTML = '';
+        emptyState.classList.add('hidden');
+        errorMessage.classList.add('hidden');
+        requestAccessBtn.style.display = 'none';
+        loader.classList.remove('hidden');
+
+        try {
+            const query = encodeURIComponent(`'${folderId}' in parents and mimeType contains 'image/' and trashed=false`);
+            let url = `https://www.googleapis.com/drive/v3/files?q=${query}&fields=files(id,name,thumbnailLink,webContentLink)&pageSize=100`;
+            if (apiKey) url += `&key=${apiKey}`;
+
+            const response = await fetch(url, {
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            });
+            
+            if (!response.ok) {
+                if (response.status === 403 || response.status === 404) {
+                    throw new Error('PERMISSION_DENIED');
+                }
+                const errData = await response.json();
+                throw new Error(errData.error?.message || 'Lỗi không xác định.');
+            }
+
+            const data = await response.json();
+
+            
+            if (data.files && data.files.length > 0) {
+                // Phân nhóm file theo tên gốc (bỏ đuôi) để tìm file RAW tương ứng
+                const fileMap = new Map();
+                data.files.forEach(file => {
+                    const match = file.name.match(/^(.*)\.([a-zA-Z0-9]+)$/);
+                    if (match) {
+                        const baseName = match[1];
+                        const ext = match[2].toLowerCase();
+                        
+                        if (!fileMap.has(baseName)) {
+                            fileMap.set(baseName, { standard: null, raw: null });
+                        }
+                        
+                        const isRaw = ['arw', 'cr2', 'cr3', 'nef', 'dng', 'raf', 'orf', 'rw2'].includes(ext);
+                        if (isRaw) {
+                            fileMap.get(baseName).raw = file;
+                        } else {
+                            fileMap.get(baseName).standard = file;
+                        }
+                    } else {
+                        // File không có đuôi, tạm coi là standard
+                        if (!fileMap.has(file.name)) fileMap.set(file.name, { standard: file, raw: null });
+                    }
+                });
+
+                const renderList = [];
+                fileMap.forEach((val) => {
+                    if (val.standard) {
+                        // Gắn thông tin file RAW vào file standard nếu có
+                        if (val.raw) {
+                            val.standard.rawFile = val.raw;
+                        }
+                        renderList.push(val.standard);
+                    }
+                });
+                
+                // Sắp xếp lại theo tên (hoặc mặc định theo Drive)
+                renderList.sort((a, b) => a.name.localeCompare(b.name));
+
+                if (renderList.length > 0) {
+                    renderGallery(renderList);
+                } else {
+                    emptyState.classList.remove('hidden');
+                    emptyState.innerHTML = '<i class="fas fa-images"></i><p>Không tìm thấy ảnh thường (JPG/PNG) nào trong thư mục.</p>';
+                }
+            } else {
+                emptyState.classList.remove('hidden');
+                emptyState.innerHTML = '<i class="fas fa-images"></i><p>Thư mục trống hoặc không có ảnh nào.</p>';
+            }
+        } catch (error) {
+            errorMessage.classList.remove('hidden');
+            if (error.message === 'PERMISSION_DENIED') {
+                errorText.textContent = 'Bạn chưa có quyền truy cập vào thư mục ảnh này.';
+                requestAccessBtn.style.display = 'inline-flex';
+                // Lấy email người gửi nếu có thể (nhưng Google Identity không trả về email trong tokenResponse mặc định trừ khi dùng OpenID, ta cứ để trống cho họ tự gửi)
+                requestAccessBtn.href = 'mailto:dinhvietdung.vn@gmail.com?subject=Yêu cầu truy cập VietDuong Photo&body=Chào Dũng,%0D%0A%0D%0AVui lòng cấp quyền truy cập thư viện ảnh cho email Google của tôi là: [Điền email của bạn vào đây]%0D%0A%0D%0ACảm ơn bạn!';
+            } else {
+                errorText.textContent = error.message;
+            }
+        } finally {
+            loader.classList.add('hidden');
+        }
+    }
+
+    // Render Gallery
+    function renderGallery(files) {
+        files.forEach(file => {
+            // Sử dụng thumbnailLink an toàn nhất
+            let thumbUrl = file.thumbnailLink || `https://drive.google.com/uc?id=${file.id}`;
+            let highResUrl = file.thumbnailLink || `https://drive.google.com/uc?id=${file.id}`;
+            
+            // Xóa tham số =s... đi để lấy ảnh gốc/hoặc đổi size nếu có
+            if (thumbUrl && thumbUrl.includes('=s')) {
+                highResUrl = thumbUrl.replace(/=s\d+.*/, '=s2000');
+                thumbUrl = thumbUrl.replace(/=s\d+.*/, '=s600'); 
+            }
+
+            // Link tải trực tiếp
+            const downloadUrl = file.webContentLink;
+
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            
+            const img = document.createElement('img');
+            img.src = thumbUrl;
+            img.alt = file.name;
+            img.loading = 'lazy'; // Tối ưu tải ảnh
+            
+            // Nếu ảnh thumbnailLink bị lỗi (Google chặn referer hoặc hết hạn)
+            // Fallback sang link direct download (uc?id=)
+            img.onerror = () => {
+                const directLink = `https://drive.google.com/uc?id=${file.id}`;
+                if (img.src !== directLink) {
+                    img.src = directLink;
+                }
+            };
+
+            const overlay = document.createElement('div');
+            overlay.className = 'gallery-item-overlay';
+            
+            const title = document.createElement('div');
+            title.className = 'gallery-item-title';
+            title.textContent = file.name;
+            
+            const icon = document.createElement('i');
+            icon.className = 'fas fa-search-plus';
+
+            overlay.appendChild(title);
+            overlay.appendChild(icon);
+            
+            item.appendChild(img);
+            item.appendChild(overlay);
+
+            item.addEventListener('click', () => {
+                const rawUrl = file.rawFile ? file.rawFile.webContentLink : null;
+                const rawName = file.rawFile ? file.rawFile.name : null;
+                openLightbox(highResUrl, downloadUrl, file.name, rawUrl, rawName);
+            });
+
+            gallery.appendChild(item);
+        });
+    }
+
+    // Open Lightbox
+    const downloadRawBtn = document.getElementById('downloadRawBtn');
+    
+    function openLightbox(imgSrc, downloadUrl, fileName, rawUrl, rawName) {
+        lightboxImg.src = ''; // reset
+        lightboxImg.src = imgSrc;
+        
+        // Đặt thuộc tính cho nút download JPG
+        if (downloadUrl) {
+            downloadBtn.href = downloadUrl;
+            downloadBtn.download = fileName;
+            downloadBtn.style.display = 'inline-flex';
+        } else {
+            downloadBtn.href = imgSrc;
+            downloadBtn.download = fileName;
+        }
+        
+        // Nút tải RAW
+        if (rawUrl) {
+            downloadRawBtn.href = rawUrl;
+            downloadRawBtn.download = rawName || '';
+            downloadRawBtn.classList.remove('hidden');
+        } else {
+            downloadRawBtn.classList.add('hidden');
+        }
+
+        lightbox.classList.remove('hidden');
+    }
+});
