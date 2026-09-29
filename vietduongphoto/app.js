@@ -247,6 +247,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         val.standard.displayExt = val.ext || 'JPG';
                         renderList.push(val.standard);
+                    } else if (val.raw) {
+                        // Nếu chỉ có file RAW, lấy file RAW để hiển thị
+                        const rawExt = val.raw.name.split('.').pop().toUpperCase();
+                        val.raw.displayExt = rawExt;
+                        val.raw.isOnlyRaw = true;
+                        renderList.push(val.raw);
                     }
                 });
                 
@@ -257,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     renderGallery(renderList);
                 } else {
                     emptyState.classList.remove('hidden');
-                    emptyState.innerHTML = '<i class="fas fa-images"></i><p>Không tìm thấy ảnh thường (JPG/JPEG/PNG) nào trong thư mục.</p>';
+                    emptyState.innerHTML = '<i class="fas fa-images"></i><p>Thư mục trống hoặc không có ảnh nào.</p>';
                 }
             } else {
                 emptyState.classList.remove('hidden');
