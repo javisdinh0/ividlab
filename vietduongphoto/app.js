@@ -1,4 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // =========================================================================
+    // CẤU HÌNH MẶC ĐỊNH TẠI ĐÂY (Để người khác vào không cần tự nhập)
+    // Thay thế đoạn chữ bên trong dấu ngoặc kép bằng thông tin thật của bạn
+    // =========================================================================
+    const DEFAULT_CLIENT_ID = "110344757733-bnomi4d63vsrb144pt5qpss8246supmd.apps.googleusercontent.com";
+    const DEFAULT_FOLDER_ID = "1MurjCwIStG_1KkT8Au492FT9_2-rPSP6";
+    const DEFAULT_API_KEY   = ""; // Không bắt buộc nếu đã dùng OAuth
+    // =========================================================================
+
     // DOM Elements
     const settingsBtn = document.getElementById('settingsBtn');
     const settingsModal = document.getElementById('settingsModal');
@@ -27,10 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const errorText = document.getElementById('errorText');
     const requestAccessBtn = document.getElementById('requestAccessBtn');
 
-    // Load settings from localStorage
-    let clientId = localStorage.getItem('vd_photo_client_id') || '';
-    let apiKey = localStorage.getItem('vd_photo_api_key') || '';
-    let folderId = localStorage.getItem('vd_photo_folder_id') || '';
+    // Load settings from localStorage hoặc lấy từ Cấu hình mặc định
+    let clientId = localStorage.getItem('vd_photo_client_id') || (DEFAULT_CLIENT_ID.includes('ĐIỀN') ? '' : DEFAULT_CLIENT_ID);
+    let folderId = localStorage.getItem('vd_photo_folder_id') || (DEFAULT_FOLDER_ID.includes('ĐIỀN') ? '' : DEFAULT_FOLDER_ID);
+    let apiKey = localStorage.getItem('vd_photo_api_key') || DEFAULT_API_KEY;
 
     // Initialize inputs
     clientIdInput.value = clientId;
