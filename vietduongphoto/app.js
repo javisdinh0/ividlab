@@ -188,30 +188,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             const query = encodeURIComponent(`'${folderId}' in parents and mimeType contains 'image/' and trashed=false`);
-            let url = `https://www.googleapis.com/drive/v3/files?q=${query}&fields=files(id,name,thumbnailLink,webContentLink)&pageSize=100`;
-            if (apiKey) url += `&key=${apiKey}`;
+            let allFiles = [];
+            let pageToken = '';
 
-            const response = await fetch(url, {
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`
+            do {
+                let url = `https://www.googleapis.com/drive/v3/files?q=${query}&fields=nextPageToken,files(id,name,thumbnailLink,webContentLink,mimeType)&pageSize=1000`;
+                if (apiKey) url += `&key=${apiKey}`;
+                if (pageToken) url += `&pageToken=${pageToken}`;
+
+                const response = await fetch(url, {
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+                });
+                
+                if (!response.ok) {
+                    if (response.status === 403 || response.status === 404) {
+                        throw new Error('PERMISSION_DENIED');
+                    }
+                    const errData = await response.json();
+                    throw new Error(errData.error?.message || 'Lỗi không xác định.');
                 }
-            });
-            
-            if (!response.ok) {
-                if (response.status === 403 || response.status === 404) {
-                    throw new Error('PERMISSION_DENIED');
+
+                const data = await response.json();
+                if (data.files && data.files.length > 0) {
+                    allFiles = allFiles.concat(data.files);
                 }
-                const errData = await response.json();
-                throw new Error(errData.error?.message || 'Lỗi không xác định.');
-            }
+                pageToken = data.nextPageToken;
+            } while (pageToken);
 
-            const data = await response.json();
-
-            
-            if (data.files && data.files.length > 0) {
+            if (allFiles.length > 0) {
                 // Phân nhóm file theo tên gốc (bỏ đuôi) để tìm file RAW tương ứng
                 const fileMap = new Map();
-                data.files.forEach(file => {
+                allFiles.forEach(file => {
                     const match = file.name.match(/^(.*)\.([a-zA-Z0-9]+)$/);
                     if (match) {
                         const baseName = match[1];
