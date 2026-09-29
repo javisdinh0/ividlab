@@ -222,14 +222,19 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         
                         const isRaw = ['arw', 'cr2', 'cr3', 'nef', 'dng', 'raf', 'orf', 'rw2'].includes(ext);
+                        const isStandard = ['jpg', 'jpeg', 'png'].includes(ext);
+                        
                         if (isRaw) {
                             fileMap.get(baseName).raw = file;
-                        } else {
+                        } else if (isStandard) {
                             fileMap.get(baseName).standard = file;
+                            fileMap.get(baseName).ext = ext.toUpperCase();
                         }
                     } else {
-                        // File không có đuôi, tạm coi là standard
-                        if (!fileMap.has(file.name)) fileMap.set(file.name, { standard: file, raw: null });
+                        // File không có đuôi, kiểm tra mimeType
+                        if (file.mimeType === 'image/jpeg' || file.mimeType === 'image/png') {
+                            if (!fileMap.has(file.name)) fileMap.set(file.name, { standard: file, raw: null, ext: file.mimeType === 'image/png' ? 'PNG' : 'JPG' });
+                        }
                     }
                 });
 
@@ -240,6 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (val.raw) {
                             val.standard.rawFile = val.raw;
                         }
+                        val.standard.displayExt = val.ext || 'JPG';
                         renderList.push(val.standard);
                     }
                 });
@@ -251,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     renderGallery(renderList);
                 } else {
                     emptyState.classList.remove('hidden');
-                    emptyState.innerHTML = '<i class="fas fa-images"></i><p>Không tìm thấy ảnh thường (JPG/PNG) nào trong thư mục.</p>';
+                    emptyState.innerHTML = '<i class="fas fa-images"></i><p>Không tìm thấy ảnh thường (JPG/JPEG/PNG) nào trong thư mục.</p>';
                 }
             } else {
                 emptyState.classList.remove('hidden');
@@ -324,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
             item.addEventListener('click', () => {
                 const rawUrl = file.rawFile ? file.rawFile.webContentLink : null;
                 const rawName = file.rawFile ? file.rawFile.name : null;
-                openLightbox(highResUrl, downloadUrl, file.name, rawUrl, rawName);
+                openLightbox(highResUrl, downloadUrl, file.name, rawUrl, rawName, file.displayExt);
             });
 
             gallery.appendChild(item);
@@ -334,11 +340,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Open Lightbox
     const downloadRawBtn = document.getElementById('downloadRawBtn');
     
-    function openLightbox(imgSrc, downloadUrl, fileName, rawUrl, rawName) {
+    function openLightbox(imgSrc, downloadUrl, fileName, rawUrl, rawName, displayExt = 'JPG') {
         lightboxImg.src = ''; // reset
         lightboxImg.src = imgSrc;
         
-        // Đặt thuộc tính cho nút download JPG
+        // Đặt thuộc tính cho nút download JPG/PNG
+        downloadBtn.innerHTML = `<i class="fas fa-download"></i> Tải ảnh (${displayExt === 'JPEG' ? 'JPG' : displayExt})`;
         if (downloadUrl) {
             downloadBtn.href = downloadUrl;
             downloadBtn.download = fileName;
