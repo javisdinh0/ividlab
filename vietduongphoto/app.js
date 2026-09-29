@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const folderIdInput = document.getElementById('folderId');
     
     const gallery = document.getElementById('gallery');
+    const timeline = document.getElementById('timeline');
     const loader = document.getElementById('loader');
     const emptyState = document.getElementById('emptyState');
     const errorMessage = document.getElementById('errorMessage');
@@ -192,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let pageToken = '';
 
             do {
-                let url = `https://www.googleapis.com/drive/v3/files?q=${query}&fields=nextPageToken,files(id,name,thumbnailLink,webContentLink,mimeType)&pageSize=1000`;
+                let url = `https://www.googleapis.com/drive/v3/files?q=${query}&fields=nextPageToken,files(id,name,thumbnailLink,webContentLink,mimeType,createdTime)&pageSize=1000`;
                 if (apiKey) url += `&key=${apiKey}`;
                 if (pageToken) url += `&pageToken=${pageToken}`;
 
@@ -278,8 +279,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
                 
-                // Sắp xếp lại theo tên (hoặc mặc định theo Drive)
-                renderList.sort((a, b) => a.name.localeCompare(b.name));
+                // Sắp xếp lại theo ngày tạo (Mới nhất lên trên)
+                renderList.sort((a, b) => {
+                    const timeA = a.createdTime ? new Date(a.createdTime).getTime() : 0;
+                    const timeB = b.createdTime ? new Date(b.createdTime).getTime() : 0;
+                    return timeB - timeA;
+                });
 
                 if (renderList.length > 0) {
                     renderGallery(renderList);
@@ -308,7 +313,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Render Gallery
     function renderGallery(files) {
+        gallery.innerHTML = '';
+        timeline.innerHTML = '';
+        timeline.classList.remove('hidden');
+        gallery.classList.remove('hidden');
+
+        let currentGroup = '';
+
         files.forEach(file => {
+            // Phân nhóm theo Tháng/Năm
+            const dateObj = file.createdTime ? new Date(file.createdTime) : new Date();
+            const month = dateObj.getMonth() + 1;
+            const year = dateObj.getFullYear();
+            const groupName = `Tháng ${month}, ${year}`;
+            const groupId = `group-${year}-${month}`;
+
+            if (groupName !== currentGroup) {
+                currentGroup = groupName;
+
+                // Render Header
+                const header = document.createElement('h2');
+                header.className = 'date-header';
+                header.id = groupId;
+                header.textContent = groupName;
+                gallery.appendChild(header);
+
+                // Render Timeline Item
+                const tlItem = document.createElement('a');
+                tlItem.href = `#${groupId}`;
+                tlItem.textContent = `${month}/${year}`;
+                tlItem.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    timeline.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+                    tlItem.classList.add('active');
+                    document.getElementById(groupId).scrollIntoView({ behavior: 'smooth' });
+                });
+                timeline.appendChild(tlItem);
+            }
+
             // Sử dụng thumbnailLink an toàn nhất
             let thumbUrl = file.thumbnailLink || `https://drive.google.com/uc?id=${file.id}`;
             let highResUrl = file.thumbnailLink || `https://drive.google.com/uc?id=${file.id}`;
@@ -363,6 +405,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             gallery.appendChild(item);
         });
+
+        // Set active for the first timeline item
+        if (timeline.firstElementChild) {
+            timeline.firstElementChild.classList.add('active');
+        }
     }
 
     // Open Lightbox
