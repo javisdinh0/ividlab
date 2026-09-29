@@ -53,16 +53,35 @@ document.addEventListener('DOMContentLoaded', () => {
     function initGoogleClient() {
         if (!clientId) return;
         
+        // Ẩn nút cài đặt cho đến khi xác minh được là admin
+        settingsBtn.classList.add('hidden');
+        
         tokenClient = google.accounts.oauth2.initTokenClient({
             client_id: clientId,
-            scope: 'https://www.googleapis.com/auth/drive.readonly',
-            callback: (tokenResponse) => {
+            scope: 'https://www.googleapis.com/auth/drive.readonly email',
+            callback: async (tokenResponse) => {
                 if (tokenResponse && tokenResponse.access_token) {
                     accessToken = tokenResponse.access_token;
                     loginScreen.classList.add('hidden');
                     loginBtn.classList.add('hidden');
                     logoutBtn.classList.remove('hidden');
                     gallery.classList.remove('hidden');
+                    
+                    // Kiểm tra email xem có phải Admin không
+                    try {
+                        const userInfoRes = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+                            headers: { 'Authorization': `Bearer ${accessToken}` }
+                        });
+                        if (userInfoRes.ok) {
+                            const userInfo = await userInfoRes.json();
+                            if (userInfo.email === 'dinhvietdung.vn@gmail.com') {
+                                settingsBtn.classList.remove('hidden');
+                            }
+                        }
+                    } catch (e) {
+                        console.error('Không lấy được thông tin user');
+                    }
+
                     fetchImages();
                 }
             },
@@ -76,6 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             loginScreen.classList.add('hidden');
             emptyState.classList.remove('hidden');
+            // Nếu chưa cấu hình, luôn hiện nút cài đặt để Admin thiết lập
+            settingsBtn.classList.remove('hidden');
         }
     };
 
