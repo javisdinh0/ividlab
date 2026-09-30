@@ -29,3 +29,6 @@ dist-ssr
 
 # Local-only agent handoff notes (repo is public — keep internal notes off GitHub)
 /docs/HANDOFF.md
+
+# wrangler local state
+.wrangler/
