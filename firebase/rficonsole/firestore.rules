@@ -59,6 +59,19 @@ service cloud.firestore {
       allow write: if isOwner();
     }
 
+    // ---- VietDuong Photo (/vietduongphoto): album ảo + yêu cầu truy cập, xem docs/vietduongphoto/README.md ----
+    // photoAlbums chỉ chứa tên + id file Drive (không lộ ảnh: quyền xem ảnh do Drive quyết định).
+    match /photoAlbums/{id} {
+      allow read: if signedIn();
+      allow write: if isOwner();
+    }
+    match /photoRequests/{emailKey} {
+      allow create, update: if signedIn() && emailKey == email()
+                            && request.resource.data.keys().hasOnly(['email', 'note', 'ts'])
+                            && request.resource.data.email == emailKey;
+      allow read, delete: if isOwner();
+    }
+
     // ---- trafficHits : bộ đếm lượt xem/tải của toàn site (trang /admin), xem docs/admin/README.md ----
     // Ghi công khai (traffic-track.js chạy trên MỌI khách, không đăng nhập) nên chỉ cho
     // "create" với hình dạng cố định — không update/delete để khách không sửa/xoá được dữ liệu
