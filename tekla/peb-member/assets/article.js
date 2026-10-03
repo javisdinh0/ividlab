@@ -300,7 +300,7 @@
         h('div', { class: 'download-card__head' },
           h('div', {},
             h('div', { class: 'eyebrow', text: t('dlEyebrow') }),
-            h('h3', { class: 'download-card__title', text: t('dlTitle') })),
+            h('h3', { class: 'download-card__title', text: data.title ? pick(data.title) : t('dlTitle') })),
           h('span', { class: 'pill', text: `v${data.version} · ${formatDate(data.released)}` })),
         h('label', { class: 'field-label', for: select.id, text: t('dlChoose') }),
         h('div', { class: 'select-wrap' }, select),

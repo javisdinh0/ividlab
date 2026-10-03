@@ -1,0 +1,21 @@
+[
+  {
+    "id": "anti-sag-2v-cross",
+    "link": "/tekla/component/anti-sag-2v-cross.html",
+    "title": {
+      "vi": "2V Cross Anti-Sag Roof – Giằng chéo chữ X giữa các xà gồ trong Tekla",
+      "en": "2V Cross Anti-Sag Roof – X bracing between purlins in Tekla"
+    },
+    "description": {
+      "vi": "Chọn các xà gồ, component tự dựng giằng chéo hai thanh V bằng thép góc kèm klip và bu-lông giữa từng cặp xà gồ kề nhau. Giải thích từng tab Picture, Parts, Bolts, mặc định và hướng dẫn cài đặt cho Tekla 2016 – 2026.",
+      "en": "Pick the purlins and the component builds an X of two angle diagonals with clips and bolts between each pair of adjacent purlins. Every tab explained (Picture, Parts, Bolts), the defaults and install steps for Tekla 2016 – 2026."
+    },
+    "tag": {
+      "vi": "Giới thiệu",
+      "en": "Overview"
+    },
+    "date": "2026-10-03",
+    "cover": "/tekla/component/img/2v-cross-cover.png",
+    "featured": true
+  }
+]
