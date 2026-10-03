@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>VietDuong Photo Gallery</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Identity Services -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <h1><i class="fas fa-camera-retro"></i> VietDuong Photo Gallery</h1>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <button id="loginBtn" class="btn btn-primary hidden"><i class="fab fa-google"></i> Đăng nhập</button>
+                <button id="logoutBtn" class="btn hidden"><i class="fas fa-sign-out-alt"></i> Đăng xuất</button>
+                <button id="settingsBtn" class="icon-btn hidden" title="Cài đặt">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Màn hình yêu cầu đăng nhập -->
+        <div id="loginScreen" class="empty-state">
+            <i class="fab fa-google" style="color: #4285F4;"></i>
+            <h2>Yêu cầu Đăng nhập</h2>
+            <p>Trang web này yêu cầu đăng nhập bằng tài khoản Google để kiểm tra quyền truy cập thư viện ảnh.</p>
+            <button id="loginScreenBtn" class="btn btn-primary" style="margin-top: 1rem;">Đăng nhập bằng Google</button>
+        </div>
+
+        <div id="loader" class="loader hidden">
+            <div class="spinner"></div>
+            <p>Đang tải ảnh...</p>
+        </div>
+        
+        <div id="errorMessage" class="error-message hidden">
+            <p id="errorText"></p>
+            <a id="requestAccessBtn" href="#" class="btn btn-primary" style="margin-top: 1rem; display: none;">
+                <i class="fas fa-envelope"></i> Gửi email xin truy cập
+            </a>
+        </div>
+
+        <div id="timeline" class="timeline hidden"></div>
+
+        <div id="gallery" class="gallery hidden">
+            <!-- Images will be injected here -->
+        </div>
+        
+        <div id="emptyState" class="empty-state hidden">
+            <i class="fas fa-images"></i>
+            <p>Chưa có ảnh nào hoặc chưa cấu hình OAuth. Vui lòng bấm vào Cài đặt để thiết lập.</p>
+        </div>
+    </main>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Cài đặt Google Drive API</h2>
+                <span class="close-btn" id="closeSettings">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p class="help-text">Nhập thông tin OAuth để kết nối với Google Drive.</p>
+                <div class="form-group">
+                    <label for="clientId">OAuth Client ID</label>
+                    <input type="text" id="clientId" placeholder="VD: 123456789-abc...apps.googleusercontent.com">
+                    <small>Dùng để hiển thị bảng đăng nhập Google.</small>
+                </div>
+                <div class="form-group">
+                    <label for="apiKey">Google API Key</label>
+                    <input type="password" id="apiKey" placeholder="Nhập Google API Key">
+                </div>
+                <div class="form-group">
+                    <label for="folderId">Google Drive Folder ID</label>
+                    <input type="text" id="folderId" placeholder="VD: 1aB2c3D4e5F6g7H8i9J0...">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="saveSettings" class="btn btn-primary">Lưu cấu hình</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox hidden">
+        <span class="lightbox-close" id="closeLightbox">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightboxImg" src="" alt="Preview">
+        </div>
+        <div class="lightbox-controls">
+            <a id="downloadBtn" href="#" target="_blank" class="btn btn-download">
+                <i class="fas fa-download"></i> Tải ảnh (JPG)
+            </a>
+            <a id="downloadRawBtn" href="#" target="_blank" class="btn btn-download btn-raw hidden" style="margin-left: 10px; background-color: #333; color: white;">
+                <i class="fas fa-file-image"></i> Tải file RAW
+            </a>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
