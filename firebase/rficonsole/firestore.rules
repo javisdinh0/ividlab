@@ -78,13 +78,32 @@ service cloud.firestore {
     // đã ghi. ts ép bằng request.time (giống l2CanEdit ở trên) để không giả mạo thời gian.
     match /trafficHits/{hitId} {
       allow read: if isOwner();
-      allow create: if request.resource.data.keys().hasOnly(['path', 'type', 'ts', 'country'])
+      allow create: if request.resource.data.keys().hasOnly(['path', 'type', 'ts', 'country', 'sid'])
                     && request.resource.data.type in ['view', 'download']
                     && request.resource.data.get('country', 'VN').matches('^[A-Z]{2}$')
+                    && request.resource.data.get('sid', 'abcdef').matches('^[A-Za-z0-9]{6,40}$')
                     && request.resource.data.path is string
                     && request.resource.data.path.size() > 0
                     && request.resource.data.path.size() < 200
                     && request.resource.data.path.matches('^/.*')
+                    && request.resource.data.ts == request.time;
+      allow update, delete: if false;
+    }
+
+    // ---- trafficReads : mốc thời gian đọc của từng lượt xem (traffic-track.js), nối với trafficHits qua sid ----
+    match /trafficReads/{readId} {
+      allow read: if isOwner();
+      allow create: if request.resource.data.keys().hasOnly(['path', 'sid', 'secs', 'ts', 'country'])
+                    && request.resource.data.path is string
+                    && request.resource.data.path.size() > 0
+                    && request.resource.data.path.size() < 200
+                    && request.resource.data.path.matches('^/.*')
+                    && request.resource.data.sid is string
+                    && request.resource.data.sid.matches('^[A-Za-z0-9]{6,40}$')
+                    && request.resource.data.secs is int
+                    && request.resource.data.secs >= 1
+                    && request.resource.data.secs <= 7200
+                    && request.resource.data.get('country', 'VN').matches('^[A-Z]{2}$')
                     && request.resource.data.ts == request.time;
       allow update, delete: if false;
     }

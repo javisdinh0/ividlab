@@ -23,6 +23,12 @@ từng bật trước đây). Không cần đổi gì ở RFI Console — nó v�
 - Lượt tải có thêm `country` (mã quốc gia ISO 2 chữ cái). Giá trị lấy từ `/cdn-cgi/trace` — endpoint
   Cloudflare phục vụ cùng origin vì ividlab.com đứng sau Cloudflare — nên không gọi dịch vụ bên thứ ba.
   Không có (chạy local, bị chặn, quá 2,5 giây) thì lượt tải vẫn được ghi, chỉ thiếu quốc gia.
+- **Mã phiên + thời gian đọc**: mỗi lượt xem/tải có thêm `sid` (chuỗi ngẫu nhiên theo từng lần mở trang, không gắn với người)
+  và quốc gia. Thời gian đọc ghi ở collection `trafficReads` (`{path, sid, secs, country, ts}`) tại mốc 15/45/120/300 giây,
+  chỉ đếm khi tab hiện và có focus. Dashboard nối hai collection qua `sid`. **Sau khi sửa rules (trafficReads, field sid)
+  phải dán lại vào Firebase Console**; chưa dán thì lượt xem vẫn ghi (bản tối thiểu) nhưng chưa có thời gian đọc.
+- **Thời gian thực**: `admin.js` dùng `onSnapshot` trên 300 bản ghi gần nhất của `trafficHits`/`trafficReads`, không cần bấm
+  Tải lại. Mỗi lần sửa `admin.js`/`style.css` đổi số `?v=` trong `public/admin/index.html` để vượt cache CDN.
 - Không thu thập IP, cookie, hay bất kỳ định danh cá nhân nào — chỉ path + loại + thời gian (+ quốc gia cho lượt tải).
   **Sau khi sửa rules (cho phép field `country`) phải dán lại vào Firebase Console**; chưa dán thì `traffic-track.js`
   tự ghi lại không kèm quốc gia, nên không mất số liệu nhưng cũng chưa có thống kê quốc gia.
