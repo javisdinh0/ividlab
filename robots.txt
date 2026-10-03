@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /rficonsole/admin/
+Disallow: /vietduongphoto/
+
+Sitemap: https://ividlab.com/sitemap.xml
