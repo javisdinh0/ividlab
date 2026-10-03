@@ -1,6 +1,8 @@
 import React from 'react';
 import { guidesData } from '../data/guides';
 
+const pick = (v, lang) => (v && typeof v === 'object' ? v[lang] || v.vi : v);
+
 export default function GuidesSection({ t, lang }) {
   return (
     <section id="guides" style={{ padding: '3rem 0' }}>
@@ -31,7 +33,7 @@ export default function GuidesSection({ t, lang }) {
             <div key={guide.id} className="card">
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                  <span className="tag-pill" style={{ backgroundColor: 'var(--accent-blue-light)' }}>{guide.tag}</span>
+                  <span className="tag-pill" style={{ backgroundColor: 'var(--accent-blue-light)' }}>{pick(guide.tag, lang)}</span>
                   <span className="font-mono" style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
                     {guide.date}
                   </span>
@@ -48,7 +50,7 @@ export default function GuidesSection({ t, lang }) {
 
               <div style={{ borderTop: '1px solid var(--border-rule)', paddingTop: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span className="font-mono" style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-                  {guide.category}
+                  {pick(guide.category, lang)}
                 </span>
                 <a 
                   href={guide.link} 
