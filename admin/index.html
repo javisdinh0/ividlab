@@ -8,7 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261003b">
+  <link rel="stylesheet" href="style.css?v=20261003c">
   <script>
     (function () {
       var saved = null;
@@ -76,6 +76,90 @@
         </div>
       </div>
 
+      <h2 class="section-title">Lượt xem</h2>
+
+      <div class="card live-card">
+        <div class="live-head">
+          <h3><span class="live-dot"></span>Thời gian thực <span class="muted small" id="live-status">đang kết nối…</span></h3>
+        </div>
+        <div class="live-grid">
+          <div class="live-stats">
+            <div class="live-big"><span id="live-online">—</span><small>đang trực tuyến (5 phút qua)</small></div>
+            <div class="live-mini"><span id="live-30m">—</span><small>lượt xem 30 phút qua</small></div>
+            <div class="live-mini"><span id="live-today">—</span><small>lượt xem hôm nay</small></div>
+          </div>
+          <div class="live-right">
+            <div id="live-chart" class="live-chart"></div>
+            <p class="muted small">Lượt xem mỗi phút trong 30 phút gần nhất.</p>
+            <ul id="live-feed" class="live-feed"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-tile">
+          <span class="stat-label">Lượt xem trong kỳ</span>
+          <span class="stat-value" id="v-views">—</span>
+          <span class="stat-sub" id="v-views-sub"></span>
+        </div>
+        <div class="stat-tile">
+          <span class="stat-label">Quốc gia đã xem</span>
+          <span class="stat-value" id="v-countries">—</span>
+          <span class="stat-sub" id="v-countries-sub"></span>
+        </div>
+        <div class="stat-tile">
+          <span class="stat-label">Thời gian đọc trung bình</span>
+          <span class="stat-value" id="v-read">—</span>
+          <span class="stat-sub" id="v-read-sub"></span>
+        </div>
+        <div class="stat-tile">
+          <span class="stat-label">Đọc kỹ (từ 45 giây)</span>
+          <span class="stat-value" id="v-deep">—</span>
+          <span class="stat-sub">tỷ lệ lượt xem ở lại trang từ 45 giây trở lên</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Lượt xem theo thời gian</h3>
+        <div id="vchart" class="chart"></div>
+        <p class="muted small" id="vchart-note"></p>
+      </div>
+
+      <div class="card">
+        <h3>Lượt xem theo vị trí địa lý (quốc gia)</h3>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th class="num">#</th><th>Quốc gia</th><th class="num">Lượt xem</th><th>Tỷ trọng</th><th class="num">Gần nhất</th></tr></thead>
+            <tbody id="vcountries-body"></tbody>
+          </table>
+        </div>
+        <p class="muted small" id="vcountry-note"></p>
+      </div>
+
+      <div class="card">
+        <h3>Thời gian đọc</h3>
+        <div id="read-buckets" class="hbars"></div>
+        <p class="muted small">Phân bố lượt xem theo thời gian ở lại trang (chỉ tính lúc tab đang hiện và có focus). Số liệu theo mốc 15 / 45 / 120 / 300 giây, nên thời gian trung bình là ước tính theo khoảng giữa mỗi nhóm. Lượt xem trong 5 phút gần nhất và lượt xem ghi trước khi có tính năng này không được tính.</p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Trang (≥ 2 lượt)</th><th class="num">Lượt xem</th><th class="num">Đọc TB</th><th class="num">Đọc kỹ</th></tr></thead>
+            <tbody id="read-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Lượt xem theo trang (top 25, trong kỳ)</h3>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Trang</th><th class="num">Lượt xem</th><th>Tỷ trọng</th></tr></thead>
+            <tbody id="views-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <h2 class="section-title">Lượt tải</h2>
+
       <div class="stat-grid">
         <div class="stat-tile">
           <span class="stat-label">Lượt tải trong kỳ</span>
@@ -88,14 +172,9 @@
           <span class="stat-sub" id="k-countries-sub"></span>
         </div>
         <div class="stat-tile">
-          <span class="stat-label">Lượt xem trang trong kỳ</span>
-          <span class="stat-value" id="k-views">—</span>
-          <span class="stat-sub" id="k-views-sub"></span>
-        </div>
-        <div class="stat-tile">
           <span class="stat-label">Tỷ lệ tải / xem bài Tekla</span>
           <span class="stat-value" id="k-conv">—</span>
-          <span class="stat-sub">lượt tải ÷ lượt xem các trang dưới /tekla/ (xấp xỉ, không phải tỷ lệ theo người)</span>
+          <span class="stat-sub" id="k-conv-sub"></span>
         </div>
         <div class="stat-tile">
           <span class="stat-label">Dung lượng tải ước tính</span>
@@ -131,29 +210,20 @@
         </div>
       </div>
 
-      <div class="card">
-        <h3>Lượt xem theo trang (top 25, trong kỳ)</h3>
-        <div class="table-wrap">
-          <table class="data-table">
-            <thead><tr><th>Trang</th><th class="num">Lượt xem</th><th>Tỷ trọng</th></tr></thead>
-            <tbody id="views-body"></tbody>
-          </table>
-        </div>
-      </div>
-
       <div class="card notes">
         <h3>Cách đọc số liệu</h3>
         <ul>
-          <li><strong>Lượt tải</strong> là số lần bấm nút Tải, không phải số người: một người tải nhiều lần hoặc nhiều gói sẽ tính nhiều lượt; bot không bấm nút nên gần như không lẫn vào.</li>
-          <li><strong>Quốc gia</strong> lấy từ Cloudflare của chính ividlab.com (<code>/cdn-cgi/trace</code>, dựa trên IP) tại thời điểm bấm tải; chỉ lưu mã quốc gia 2 chữ cái, không lưu IP. VPN/proxy sẽ cho quốc gia của máy chủ VPN.</li>
-          <li>Ngày được tính theo giờ Việt Nam (UTC+7). Cột "Gần nhất" là lần tải gần nhất từ quốc gia đó.</li>
-          <li>Dữ liệu gồm tối đa 10.000 bản ghi mỗi loại (giới hạn của Firestore); lượt tải được đọc riêng nên không bị lượt xem đẩy ra.</li>
+          <li><strong>Thời gian thực</strong> cập nhật tự động khi có bản ghi mới (không cần bấm Tải lại). "Đang trực tuyến" = số lần mở trang có hoạt động trong 5 phút gần nhất (ước tính, một người mở nhiều tab tính nhiều).</li>
+          <li><strong>Lượt tải</strong> là số lần bấm nút Tải, không phải số người: một người tải nhiều lần hoặc nhiều gói sẽ tính nhiều lượt.</li>
+          <li><strong>Quốc gia</strong> lấy từ Cloudflare của chính ividlab.com (<code>/cdn-cgi/trace</code>, dựa trên IP) tại thời điểm xem/tải; chỉ lưu mã quốc gia 2 chữ cái, không lưu IP. VPN/proxy sẽ cho quốc gia của máy chủ VPN.</li>
+          <li><strong>Thời gian đọc</strong> chỉ đếm khi tab đang hiện và cửa sổ có focus; mỗi lượt xem có một mã phiên ngẫu nhiên dùng để nối với các mốc đọc, không gắn với danh tính người dùng.</li>
+          <li>Ngày được tính theo giờ Việt Nam (UTC+7). Dữ liệu gồm tối đa 10.000 bản ghi mỗi loại (giới hạn của Firestore); lượt tải được đọc riêng nên không bị lượt xem đẩy ra.</li>
         </ul>
       </div>
     </main>
   </section>
 
   <div id="toast"></div>
-  <script type="module" src="admin.js?v=20261003b"></script>
+  <script type="module" src="admin.js?v=20261003c"></script>
 </body>
 </html>
