@@ -10,11 +10,12 @@ import Footer from './components/Footer';
 import { translations } from './i18n/translations';
 import './index.css';
 
-const TABS = ['all', 'tools', 'guides', 'peb-member', 'amc-private', 'about'];
+const TABS = ['all', 'tools', 'guides', 'tekla-component', 'amc-private', 'about'];
 
 // Các trang tĩnh (public/**) link về SPA bằng /?tab=<id>, nên tab ban đầu lấy từ URL.
 function tabFromUrl() {
-  const tab = new URLSearchParams(window.location.search).get('tab');
+  let tab = new URLSearchParams(window.location.search).get('tab');
+  if (tab === 'peb-member') tab = 'tekla-component'; // chuyên mục PEB Member đã gom vào Tekla App & Component
   return TABS.includes(tab) ? tab : 'all';
 }
 
@@ -92,7 +93,7 @@ export default function App() {
           </div>
         )}
 
-        {activeTab === 'peb-member' && (
+        {activeTab === 'tekla-component' && (
           <div style={{ paddingTop: '2rem' }}>
             <PebMemberSection t={t} lang={lang} />
           </div>

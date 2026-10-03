@@ -52,7 +52,7 @@ export default function Header({ activeTab, setActiveTab, lang, setLang, theme, 
             ['all', t.nav.home],
             ['tools', t.nav.tools],
             ['guides', t.nav.guides],
-            ['peb-member', t.nav.pebmember],
+            ['tekla-component', t.nav.teklacomponent],
             ['amc-private', t.nav.amcprivate],
             ['about', t.nav.about]
           ].map(([tab, label]) => (

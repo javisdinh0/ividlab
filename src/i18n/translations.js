@@ -4,7 +4,7 @@ export const translations = {
       home: '// TRANG CHỦ',
       tools: '// CÔNG CỤ',
       guides: '// HƯỚNG DẪN & CHIA SẺ',
-      pebmember: '// PEB MEMBER',
+      teklacomponent: '// TEKLA APP & COMPONENT',
       amcprivate: '// AMC PRIVATE',
       about: '// GIỚI THIỆU'
     },
@@ -28,13 +28,15 @@ export const translations = {
       items_count: 'bài viết',
       read_article: 'Đọc hướng dẫn →'
     },
-    pebmember: {
-      badge: 'TEKLA PLUGIN // PEB MEMBER',
-      title: 'PEB Member cho Tekla Structures',
-      desc: 'Plugin miễn phí giúp dựng và quản lý cấu kiện thép tiền chế (PEB) tiết diện tổ hợp, vát thuôn trong Tekla Structures: bảng dữ liệu kiểu Excel, xem trước 3D có kích thước, vẽ và cập nhật hàng loạt chỉ với một cú nhấp.',
-      highlights: ['Tekla 2016 – 2024', 'Bảng kiểu Excel', 'Xem trước 3D', 'Dùng thử 90 ngày'],
-      btn_intro: 'Đọc giới thiệu →',
-      btn_download: '⬇ Tải về',
+    teklacomponent: {
+      badge: 'TEKLA PLUGIN // APPLICATION & COMPONENT',
+      title: 'Tekla Application & Component',
+      desc: 'Các plugin và component iViDLab phát triển cho Tekla Structures: PEB Member dựng cấu kiện thép tiền chế tiết diện tổ hợp, vát thuôn (bảng kiểu Excel, xem trước 3D, vẽ và cập nhật hàng loạt) và nhóm component giằng xà gồ Anti-Sag, hiện có 2V Cross cho giằng chéo chữ X giữa các xà gồ. Mỗi sản phẩm đóng gói riêng một gói .tsep, cài chung nhóm iViDLab.',
+      highlights: ['Tekla 2016 – 2026', 'PEB Member', 'Anti-Sag 2V Cross', 'Một gói .tsep mỗi sản phẩm'],
+      btn_intro_peb: 'Giới thiệu PEB Member →',
+      btn_download_peb: '⬇ Tải PEB Member',
+      btn_intro_2v: 'Giới thiệu 2V Cross →',
+      btn_download_2v: '⬇ Tải 2V Cross',
       articles_title: 'Bài viết trong chuyên mục',
       items_count: 'bài viết',
       read_article: 'Đọc bài viết →',
@@ -65,7 +67,7 @@ export const translations = {
       home: '// HOME',
       tools: '// TOOLS',
       guides: '// GUIDES & TIPS',
-      pebmember: '// PEB MEMBER',
+      teklacomponent: '// TEKLA APP & COMPONENT',
       amcprivate: '// AMC PRIVATE',
       about: '// ABOUT'
     },
@@ -89,13 +91,15 @@ export const translations = {
       items_count: 'articles',
       read_article: 'Read guide →'
     },
-    pebmember: {
-      badge: 'TEKLA PLUGIN // PEB MEMBER',
-      title: 'PEB Member for Tekla Structures',
-      desc: 'A free plugin for modeling and managing pre-engineered building (PEB) built-up, tapered steel members in Tekla Structures: an Excel-like member table, dimensioned 3D preview, and one-click batch drawing and updating.',
-      highlights: ['Tekla 2016 – 2024', 'Excel-like table', '3D preview', '90-day free trial'],
-      btn_intro: 'Read the overview →',
-      btn_download: '⬇ Download',
+    teklacomponent: {
+      badge: 'TEKLA PLUGIN // APPLICATION & COMPONENT',
+      title: 'Tekla Application & Component',
+      desc: 'Plugins and components iViDLab builds for Tekla Structures: PEB Member for pre-engineered built-up, tapered members (Excel-like table, 3D preview, batch draw and update) and the Anti-Sag purlin bracing family, starting with 2V Cross for X bracing between purlins. Each product is its own .tsep package, installed into the shared iViDLab group.',
+      highlights: ['Tekla 2016 – 2026', 'PEB Member', 'Anti-Sag 2V Cross', 'One .tsep per product'],
+      btn_intro_peb: 'PEB Member overview →',
+      btn_download_peb: '⬇ Download PEB Member',
+      btn_intro_2v: '2V Cross overview →',
+      btn_download_2v: '⬇ Download 2V Cross',
       articles_title: 'Articles in this category',
       items_count: 'articles',
       read_article: 'Read article →',

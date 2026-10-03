@@ -1,5 +1,18 @@
 export const toolsData = [
   {
+    id: 'asoft-license-trial',
+    title: 'Dùng thử miễn phí 90 ngày - A-Soft License',
+    category: 'A-Soft License',
+    tag: 'Free Trial',
+    description: {
+      vi: 'Nhập Product Key từ hộp thoại License của plugin A-Soft (DrawSteels, Purlin Shopdrawing, SDU, CADToon, PEB Tools VN), nhận ngay license dùng thử 90 ngày - không cần chờ, không cần liên hệ.',
+      en: 'Enter the Product Key from any A-Soft plugin\'s License dialog (DrawSteels, Purlin Shopdrawing, SDU, CADToon, PEB Tools VN) and get a 90-day trial license instantly - no waiting, no contact needed.'
+    },
+    status: 'Release',
+    link: '/trial/index.html',
+    featured: true
+  },
+  {
     id: 'peb-member-tekla',
     title: 'PEB Member - Dựng Cấu Kiện PEB Cho Tekla',
     category: 'Tekla Plugin',
@@ -10,6 +23,19 @@ export const toolsData = [
     },
     status: 'Release',
     link: '/tekla/peb-member/gioi-thieu-peb-member.html',
+    featured: true
+  },
+  {
+    id: 'anti-sag-2v-cross-tekla',
+    title: '2V Cross Anti-Sag Roof - Giằng Chéo Xà Gồ Cho Tekla',
+    category: 'Tekla Plugin',
+    tag: 'Tekla Component',
+    description: {
+      vi: 'Component Tekla dựng giằng chéo chữ X giữa các xà gồ: hai thanh V thép góc, klip và bu-lông chỉ với một lần chọn xà gồ. Tekla 2016 – 2026.',
+      en: 'Tekla component that builds X bracing between purlins: two angle diagonals, clips and bolts from a single purlin pick. Tekla 2016 – 2026.'
+    },
+    status: 'Release',
+    link: '/tekla/component/anti-sag-2v-cross.html',
     featured: true
   },
   {

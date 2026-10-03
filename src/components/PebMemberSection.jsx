@@ -2,8 +2,17 @@ import React, { useEffect, useState } from 'react';
 
 // Danh sách bài viết của chuyên mục nằm trong public/ để các trang bài viết tĩnh dùng chung
 // (mục "Bài viết khác"). Thêm bài mới chỉ cần sửa posts.json — xem docs/peb-member/README.md.
-const POSTS_URL = '/tekla/peb-member/posts.json';
-const INTRO_URL = '/tekla/peb-member/gioi-thieu-peb-member.html';
+// Cùng component dùng cho chuyên mục Tekla Component qua prop `category` (xem CATEGORIES bên dưới).
+// Chuyên mục 'tekla-component' gom bài của PEB Member và Tekla Component: đọc nhiều posts.json, gộp, xếp mới nhất trước.
+const SOURCES = [
+  { url: '/tekla/peb-member/posts.json', label: 'PEB Member' },
+  { url: '/tekla/component/posts.json', label: 'Tekla Component' }
+];
+const INTROS = [
+  { url: '/tekla/peb-member/gioi-thieu-peb-member.html', key: 'btn_intro_peb', dlKey: 'btn_download_peb' },
+  { url: '/tekla/component/anti-sag-2v-cross.html', key: 'btn_intro_2v', dlKey: 'btn_download_2v' }
+];
+const NS = 'teklacomponent';
 
 // Trường song ngữ trong posts.json có dạng { vi, en } hoặc là chuỗi dùng chung.
 const pick = (value, lang) => (value && typeof value === 'object' ? value[lang] || value.vi : value);
@@ -24,17 +33,22 @@ function Cover({ src, alt, className }) {
 }
 
 export default function PebMemberSection({ t, lang }) {
+  const tx = t[NS];
   const [posts, setPosts] = useState(null);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
-    fetch(POSTS_URL)
+    Promise.all(SOURCES.map((source) => fetch(source.url)
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
       })
-      .then((data) => { if (!cancelled) setPosts(Array.isArray(data) ? data : []); })
+      .then((data) => (Array.isArray(data) ? data : []).map((post) => ({ ...post, product: source.label })))))
+      .then((lists) => {
+        if (cancelled) return;
+        setPosts(lists.flat().sort((a, b) => String(b.date).localeCompare(String(a.date))));
+      })
       .catch(() => { if (!cancelled) setFailed(true); });
     return () => { cancelled = true; };
   }, []);
@@ -42,7 +56,7 @@ export default function PebMemberSection({ t, lang }) {
   const featured = posts && (posts.find((post) => post.featured) || posts[0]);
 
   return (
-    <section id="peb-member" style={{ padding: '3rem 0' }}>
+    <section id="tekla-component" style={{ padding: '3rem 0' }}>
       <div className="container">
         <div style={{
           display: 'flex',
@@ -54,30 +68,34 @@ export default function PebMemberSection({ t, lang }) {
         }}>
           <div>
             <div className="section-label">
-              {t.pebmember.badge}
+              {tx.badge}
             </div>
             <h2 style={{ fontSize: '2rem', letterSpacing: '-0.02em' }}>
-              {t.pebmember.title}
+              {tx.title}
             </h2>
           </div>
           {posts && (
             <span className="font-mono" style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-              {posts.length} {t.pebmember.items_count}
+              {posts.length} {tx.items_count}
             </span>
           )}
         </div>
 
         <div className="category-intro">
           <div>
-            <p className="category-intro__desc">{t.pebmember.desc}</p>
+            <p className="category-intro__desc">{tx.desc}</p>
             <div className="chip-row">
-              {t.pebmember.highlights.map((item) => (
+              {tx.highlights.map((item) => (
                 <span key={item} className="tag-pill">{item}</span>
               ))}
             </div>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-              <a href={INTRO_URL} className="btn btn-primary">{t.pebmember.btn_intro}</a>
-              <a href={`${INTRO_URL}#tai-ve`} className="btn btn-secondary">{t.pebmember.btn_download}</a>
+              {INTROS.map((intro, index) => (
+                <React.Fragment key={intro.url}>
+                  <a href={intro.url} className={index === 0 ? 'btn btn-primary' : 'btn btn-secondary'}>{tx[intro.key]}</a>
+                  <a href={`${intro.url}#tai-ve`} className="btn btn-secondary">{tx[intro.dlKey]}</a>
+                </React.Fragment>
+              ))}
             </div>
           </div>
           {featured && (
@@ -86,17 +104,17 @@ export default function PebMemberSection({ t, lang }) {
         </div>
 
         <h3 style={{ fontSize: '1.35rem', marginBottom: '1.25rem' }}>
-          {t.pebmember.articles_title}
+          {tx.articles_title}
         </h3>
 
         {!posts && !failed && (
-          <p className="font-mono" style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>{t.pebmember.loading}</p>
+          <p className="font-mono" style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>{tx.loading}</p>
         )}
         {failed && (
-          <p style={{ color: 'var(--text-muted)' }}>{t.pebmember.error}</p>
+          <p style={{ color: 'var(--text-muted)' }}>{tx.error}</p>
         )}
         {posts && posts.length === 0 && (
-          <p style={{ color: 'var(--text-muted)' }}>{t.pebmember.empty}</p>
+          <p style={{ color: 'var(--text-muted)' }}>{tx.empty}</p>
         )}
 
         {posts && posts.length > 0 && (
@@ -123,7 +141,7 @@ export default function PebMemberSection({ t, lang }) {
 
                 <div style={{ borderTop: '1px solid var(--border-rule)', paddingTop: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <span className="font-mono" style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-                    PEB Member
+                    {post.product}
                   </span>
                   <span style={{
                     fontFamily: 'var(--font-mono)',
@@ -131,7 +149,7 @@ export default function PebMemberSection({ t, lang }) {
                     color: 'var(--text-ink)',
                     fontWeight: 700
                   }}>
-                    {t.pebmember.read_article}
+                    {tx.read_article}
                   </span>
                 </div>
               </a>

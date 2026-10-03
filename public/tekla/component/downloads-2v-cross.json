@@ -1,0 +1,98 @@
+{
+  "version": "1.20",
+  "released": "2026-10-03",
+  "baseUrl": "/fordownload/tekla-component/",
+  "title": {
+    "vi": "Tải 2V Cross Anti-Sag Roof",
+    "en": "Download 2V Cross Anti-Sag Roof"
+  },
+  "packages": {
+    "2v-cross": {
+      "file": "iVidLab.AntiSag2VCross_1.20.tsep",
+      "size": "141 KB",
+      "bytes": 144751,
+      "range": "2016 – 2026"
+    }
+  },
+  "tekla": [
+    {
+      "value": "2026",
+      "label": "Tekla Structures 2026",
+      "package": "2v-cross"
+    },
+    {
+      "value": "2025",
+      "label": "Tekla Structures 2025",
+      "package": "2v-cross"
+    },
+    {
+      "value": "2024",
+      "label": "Tekla Structures 2024",
+      "package": "2v-cross"
+    },
+    {
+      "value": "2023",
+      "label": "Tekla Structures 2023",
+      "package": "2v-cross"
+    },
+    {
+      "value": "2022",
+      "label": "Tekla Structures 2022",
+      "package": "2v-cross"
+    },
+    {
+      "value": "2021",
+      "label": "Tekla Structures 2021",
+      "package": "2v-cross"
+    },
+    {
+      "value": "2020",
+      "label": "Tekla Structures 2020",
+      "package": "2v-cross"
+    },
+    {
+      "value": "2019",
+      "label": "Tekla Structures 2019 / 2019i",
+      "package": "2v-cross"
+    },
+    {
+      "value": "2018",
+      "label": "Tekla Structures 2018 / 2018i",
+      "package": "2v-cross"
+    },
+    {
+      "value": "2017",
+      "label": "Tekla Structures 2017 / 2017i",
+      "package": "2v-cross"
+    },
+    {
+      "value": "2016",
+      "label": "Tekla Structures 2016 / 2016i",
+      "package": "2v-cross"
+    },
+    {
+      "value": "2027+",
+      "label": {
+        "vi": "Tekla Structures 2027 trở lên",
+        "en": "Tekla Structures 2027 or newer"
+      },
+      "package": "2v-cross"
+    }
+  ],
+  "notes": {
+    "vi": [
+      "Combo hình V layout ở tab Parts: 2 V bắt chéo, 2 V song song, hoặc 1 V chạy thẳng giữa hai xà gồ.",
+      "V end spacing = 0 hợp lệ: hai thanh V song song và trùng nhau, kẹp hai mặt chân klip.",
+      "Thanh V thép máng (C/U) áp lưng vào klip; thép góc đặt chân ngang ở phía trên.",
+      "Klip thép góc không đều cạnh theo đúng số trong tên profile, đối xứng gương hai bên bụng xà gồ.",
+      "Thêm tab About (giới thiệu iViDLab, liên hệ)."
+    ],
+    "en": [
+      "V layout image combo on the Parts tab: 2 V crossed, 2 V parallel, or 1 V straight between the two purlins.",
+      "V end spacing = 0 is valid: the two V bars run parallel and coincide, one on each face of the clip leg.",
+      "Channel (C/U) braces lie with their back against the clip; angle braces have the horizontal leg on top.",
+      "Unequal-leg clips follow the numbers in the profile name and are mirrored on the two sides of the purlin web.",
+      "New About tab (iViDLab introduction and contact)."
+    ]
+  }
+}
