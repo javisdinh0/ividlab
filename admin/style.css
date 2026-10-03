@@ -107,6 +107,30 @@ code { background: var(--subtle); padding: 1px 5px; border-radius: 4px; font-siz
 .data-table td:first-child { white-space: normal; word-break: break-word; }
 .data-table th { color: var(--text-muted); font-weight: 600; }
 
+/* ---- Thống kê tải về ---- */
+.toolbar-right { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+.period-label { font-size: 0.82rem; color: var(--text-muted); font-weight: 600; }
+.period-select {
+  padding: 0.42rem 0.6rem; border: 1px solid var(--border); border-radius: 9px; background: var(--bg-card);
+  color: var(--text-main); font-family: inherit; font-size: 0.85rem;
+}
+.small { font-size: 0.78rem; }
+.num { text-align: right !important; font-variant-numeric: tabular-nums; }
+.delta { font-weight: 700; }
+.delta.up { color: var(--success); }
+.delta.down { color: var(--danger); }
+.chart svg { width: 100%; height: auto; display: block; }
+.chart .bar { fill: var(--primary); }
+.chart .bar:hover { fill: var(--primary-hover); }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.chart .axis { fill: var(--text-muted); font-size: 10px; font-family: inherit; }
+.chart .ma { stroke: var(--warning); stroke-width: 2; stroke-linejoin: round; }
+.bar-cell { position: relative; min-width: 120px; height: 22px; background: var(--subtle); border-radius: 5px; overflow: hidden; }
+.bar-fill { position: absolute; inset: 0 auto 0 0; background: color-mix(in srgb, var(--primary) 28%, transparent); }
+.bar-cell span { position: relative; z-index: 1; display: block; padding: 0 8px; line-height: 22px; font-size: 0.8rem; font-weight: 600; }
+.data-table td.share { width: 190px; }
+.notes ul { margin: 0; padding-left: 1.2rem; color: var(--text-muted); font-size: 0.86rem; line-height: 1.6; }
+
 @media (max-width: 640px) {
   .topbar { padding: 0.6rem 1rem; }
   .user-chip { max-width: 130px; }

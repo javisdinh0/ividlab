@@ -63,45 +63,92 @@
     <main class="dash-main">
       <div class="dash-toolbar">
         <p class="muted" id="scope-note">Đang tải…</p>
-        <button class="btn btn-ghost btn-sm" id="btn-refresh">↻ Tải lại</button>
+        <div class="toolbar-right">
+          <label class="period-label" for="period">Khoảng thời gian</label>
+          <select id="period" class="period-select">
+            <option value="7">7 ngày</option>
+            <option value="30" selected>30 ngày</option>
+            <option value="90">90 ngày</option>
+            <option value="365">365 ngày</option>
+            <option value="all">Toàn bộ</option>
+          </select>
+          <button class="btn btn-ghost btn-sm" id="btn-refresh">↻ Tải lại</button>
+        </div>
       </div>
 
       <div class="stat-grid">
         <div class="stat-tile">
-          <span class="stat-label">Tổng lượt xem trang</span>
-          <span class="stat-value" id="stat-views">—</span>
-          <span class="stat-sub" id="stat-views-sub"></span>
+          <span class="stat-label">Lượt tải trong kỳ</span>
+          <span class="stat-value" id="k-dl">—</span>
+          <span class="stat-sub" id="k-dl-sub"></span>
         </div>
         <div class="stat-tile">
-          <span class="stat-label">Tổng lượt tải</span>
-          <span class="stat-value" id="stat-downloads">—</span>
-          <span class="stat-sub" id="stat-downloads-sub"></span>
+          <span class="stat-label">Quốc gia đã tải</span>
+          <span class="stat-value" id="k-countries">—</span>
+          <span class="stat-sub" id="k-countries-sub"></span>
+        </div>
+        <div class="stat-tile">
+          <span class="stat-label">Lượt xem trang trong kỳ</span>
+          <span class="stat-value" id="k-views">—</span>
+          <span class="stat-sub" id="k-views-sub"></span>
+        </div>
+        <div class="stat-tile">
+          <span class="stat-label">Tỷ lệ tải / xem bài Tekla</span>
+          <span class="stat-value" id="k-conv">—</span>
+          <span class="stat-sub">lượt tải ÷ lượt xem các trang dưới /tekla/ (xấp xỉ, không phải tỷ lệ theo người)</span>
         </div>
         <div class="stat-tile">
           <span class="stat-label">Dung lượng tải ước tính</span>
-          <span class="stat-value" id="stat-bytes">—</span>
-          <span class="stat-sub">chỉ tính file .tsep đã tải — GitHub Pages giới hạn mềm ~100GB/tháng cho cả site</span>
+          <span class="stat-value" id="k-bytes">—</span>
+          <span class="stat-sub">số lượt × kích thước file .tsep; GitHub Pages giới hạn mềm ~100GB/tháng cho cả site</span>
         </div>
       </div>
 
       <div class="card">
-        <h3>Lượt xem theo trang</h3>
+        <h3>Lượt tải theo thời gian</h3>
+        <div id="chart" class="chart"></div>
+        <p class="muted small" id="chart-note"></p>
+      </div>
+
+      <div class="card">
+        <h3>Lượt tải theo vị trí địa lý (quốc gia)</h3>
         <div class="table-wrap">
           <table class="data-table">
-            <thead><tr><th>Trang</th><th>Tổng</th><th>7 ngày</th><th>30 ngày</th></tr></thead>
+            <thead><tr><th class="num">#</th><th>Quốc gia</th><th class="num">Lượt tải</th><th>Tỷ trọng</th><th class="num">Gần nhất</th></tr></thead>
+            <tbody id="countries-body"></tbody>
+          </table>
+        </div>
+        <p class="muted small" id="country-note"></p>
+      </div>
+
+      <div class="card">
+        <h3>Lượt tải theo sản phẩm và gói</h3>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Sản phẩm / gói</th><th class="num">Trong kỳ</th><th>Tỷ trọng</th><th class="num">7 ngày</th><th class="num">30 ngày</th><th class="num">Tổng</th><th class="num">Dung lượng (kỳ)</th></tr></thead>
+            <tbody id="products-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Lượt xem theo trang (top 25, trong kỳ)</h3>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Trang</th><th class="num">Lượt xem</th><th>Tỷ trọng</th></tr></thead>
             <tbody id="views-body"></tbody>
           </table>
         </div>
       </div>
 
-      <div class="card">
-        <h3>Lượt tải theo gói Tekla (PEB Member)</h3>
-        <div class="table-wrap">
-          <table class="data-table">
-            <thead><tr><th>Gói</th><th>Tổng</th><th>7 ngày</th><th>30 ngày</th><th>Ước tính dung lượng</th></tr></thead>
-            <tbody id="downloads-body"></tbody>
-          </table>
-        </div>
+      <div class="card notes">
+        <h3>Cách đọc số liệu</h3>
+        <ul>
+          <li><strong>Lượt tải</strong> là số lần bấm nút Tải, không phải số người: một người tải nhiều lần hoặc nhiều gói sẽ tính nhiều lượt; bot không bấm nút nên gần như không lẫn vào.</li>
+          <li><strong>Quốc gia</strong> lấy từ Cloudflare của chính ividlab.com (<code>/cdn-cgi/trace</code>, dựa trên IP) tại thời điểm bấm tải; chỉ lưu mã quốc gia 2 chữ cái, không lưu IP. VPN/proxy sẽ cho quốc gia của máy chủ VPN.</li>
+          <li>Ngày được tính theo giờ Việt Nam (UTC+7). Cột "Gần nhất" là lần tải gần nhất từ quốc gia đó.</li>
+          <li>Dữ liệu gồm tối đa 10.000 bản ghi mỗi loại (giới hạn của Firestore); lượt tải được đọc riêng nên không bị lượt xem đẩy ra.</li>
+        </ul>
       </div>
     </main>
   </section>
