@@ -78,8 +78,11 @@ service cloud.firestore {
     // đã ghi. ts ép bằng request.time (giống l2CanEdit ở trên) để không giả mạo thời gian.
     match /trafficHits/{hitId} {
       allow read: if isOwner();
-      allow create: if request.resource.data.keys().hasOnly(['path', 'type', 'ts'])
+      allow create: if request.resource.data.keys().hasOnly(['path', 'type', 'ts', 'country'])
                     && request.resource.data.type in ['view', 'download']
+                    && (!('country' in request.resource.data)
+                        || (request.resource.data.country is string
+                            && request.resource.data.country.matches('^[A-Z]{2}$')))
                     && request.resource.data.path is string
                     && request.resource.data.path.size() > 0
                     && request.resource.data.path.size() < 200

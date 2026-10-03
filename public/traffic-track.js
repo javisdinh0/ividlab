@@ -1,7 +1,7 @@
 // Bộ đếm lượt xem/tải dùng chung cho toàn site — ghi vào Firestore (project Firebase
-// của RFI Console, xem docs/admin/README.md). Chỉ ghi path + loại + thời gian, không
-// thu thập IP/cookie/fingerprint. Luôn fire-and-forget: lỗi mạng/ad-blocker không
-// được phép làm hỏng trang.
+// của RFI Console, xem docs/admin/README.md). Ghi path + loại + thời gian; riêng lượt TẢI
+// có thêm mã quốc gia 2 chữ cái (lấy từ Cloudflare của chính site, không lưu IP), không
+// cookie/fingerprint. Luôn fire-and-forget: lỗi mạng/ad-blocker không được làm hỏng trang.
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
@@ -17,11 +17,28 @@ const firebaseConfig = {
 let db = null;
 try { db = getFirestore(initializeApp(firebaseConfig)); } catch (e) { /* bỏ qua */ }
 
-function logHit(path, type) {
+function logHit(path, type, country) {
   if (!db) return;
+  const write = (data) => addDoc(collection(db, 'trafficHits'), { path, type, ts: serverTimestamp(), ...data });
   try {
-    addDoc(collection(db, 'trafficHits'), { path, type, ts: serverTimestamp() }).catch(() => {});
+    // Rules cũ (chưa cho field `country`) sẽ từ chối bản có quốc gia → ghi lại không kèm quốc gia để không mất lượt tải.
+    const p = country ? write({ country }).catch(() => write({})) : write({});
+    p.catch(() => {});
   } catch (e) { /* bỏ qua */ }
+}
+
+// Quốc gia của khách: /cdn-cgi/trace do Cloudflare (đứng trước ividlab.com) phục vụ cùng origin, trả `loc=VN`.
+// Không có (chạy local, bị chặn, quá 2,5 giây) thì trả '' — lượt tải vẫn được ghi.
+async function visitorCountry() {
+  try {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 2500);
+    const res = await fetch('/cdn-cgi/trace', { cache: 'no-store', signal: ctrl.signal });
+    clearTimeout(timer);
+    if (!res.ok) return '';
+    const m = (await res.text()).match(/^loc=([A-Z]{2})$/m);
+    return m && m[1] !== 'XX' && m[1] !== 'T1' ? m[1] : '';
+  } catch (e) { return ''; }
 }
 
 logHit(location.pathname + location.search, 'view');
@@ -30,5 +47,7 @@ logHit(location.pathname + location.search, 'view');
 // khi khách bấm nút tải — key là mã gói ổn định (vd. "2021_Higher"), không phải tên file
 // theo version, để lịch sử không bị phân mảnh mỗi lần ra bản mới.
 window.iViDTrack = {
-  download(packageKey) { logHit('/download/' + packageKey, 'download'); }
+  download(packageKey) {
+    visitorCountry().then((country) => logHit('/download/' + packageKey, 'download', country));
+  }
 };

@@ -20,7 +20,12 @@ từng bật trước đây). Không cần đổi gì ở RFI Console — nó v�
   `window.iViDTrack.download(packageKey)` khi bấm tải, ghi `{ path: '/download/<key>', type: 'download', ts }`.
   `packageKey` là mã gói ổn định (vd. `2021_Higher`), không phải tên file theo version, để
   lịch sử không bị phân mảnh mỗi lần ra bản mới.
-- Không thu thập IP, cookie, hay bất kỳ định danh cá nhân nào — chỉ path + loại + thời gian.
+- Lượt tải có thêm `country` (mã quốc gia ISO 2 chữ cái). Giá trị lấy từ `/cdn-cgi/trace` — endpoint
+  Cloudflare phục vụ cùng origin vì ividlab.com đứng sau Cloudflare — nên không gọi dịch vụ bên thứ ba.
+  Không có (chạy local, bị chặn, quá 2,5 giây) thì lượt tải vẫn được ghi, chỉ thiếu quốc gia.
+- Không thu thập IP, cookie, hay bất kỳ định danh cá nhân nào — chỉ path + loại + thời gian (+ quốc gia cho lượt tải).
+  **Sau khi sửa rules (cho phép field `country`) phải dán lại vào Firebase Console**; chưa dán thì `traffic-track.js`
+  tự ghi lại không kèm quốc gia, nên không mất số liệu nhưng cũng chưa có thống kê quốc gia.
 - `public/admin/admin.js` đọc tối đa 10.000 bản ghi gần nhất (`HIT_LIMIT` — đúng bằng mức
   `limit()` tối đa Firestore cho phép trong 1 structured query, không phải số tự chọn), tự tổng hợp theo
   trang/gói × (tổng / 7 ngày / 30 ngày). Dung lượng tải ước tính = số lượt tải × kích thước
