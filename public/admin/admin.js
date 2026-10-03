@@ -92,13 +92,23 @@ async function fetchHits() {
   return res.docs.map(d => d.data());
 }
 
+// Gói tải của mọi sản phẩm: mỗi downloads.json khai `packages`; khoá gói trùng khoá gửi lên khi bấm Tải.
+const DOWNLOAD_MANIFESTS = [
+  '/tekla/peb-member/downloads.json',
+  '/tekla/component/downloads-2v-cross.json'
+];
+
 async function fetchPackages() {
-  try {
-    const res = await fetch('/tekla/peb-member/downloads.json', { cache: 'no-cache' });
-    if (!res.ok) return {};
-    const data = await res.json();
-    return data.packages || {};
-  } catch (e) { return {}; }
+  const merged = {};
+  await Promise.all(DOWNLOAD_MANIFESTS.map(async (url) => {
+    try {
+      const res = await fetch(url, { cache: 'no-cache' });
+      if (!res.ok) return;
+      const data = await res.json();
+      Object.assign(merged, data.packages || {});
+    } catch (e) { /* bỏ qua manifest lỗi */ }
+  }));
+  return merged;
 }
 
 function emptyBucket() { return { total: 0, d7: 0, d30: 0 }; }
