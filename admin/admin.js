@@ -93,14 +93,14 @@ async function loadData() {
 const toHit = (d) => {
   const x = d.data();
   const t = x.ts && typeof x.ts.toMillis === 'function' ? x.ts.toMillis() : null;
-  return t == null ? null : { t, path: x.path || '', country: typeof x.country === 'string' ? x.country : '' };
+  return t == null ? null : { t, type: x.type, path: x.path || '', country: typeof x.country === 'string' ? x.country : '' };
 };
 
-// Lượt xem: HIT_LIMIT bản ghi gần nhất (lượt xem rất nhiều nên có thể bị cắt).
+// Lượt xem: HIT_LIMIT bản ghi gần nhất. Chỉ orderBy (không where) để khỏi cần chỉ mục kép; lượt tải lẫn trong đó được lọc ra ở client.
 async function fetchViews() {
-  const q = query(collection(db, 'trafficHits'), where('type', '==', 'view'), orderBy('ts', 'desc'), limit(HIT_LIMIT));
+  const q = query(collection(db, 'trafficHits'), orderBy('ts', 'desc'), limit(HIT_LIMIT));
   const res = await getDocs(q);
-  return { hits: res.docs.map(toHit).filter(Boolean), truncated: res.size >= HIT_LIMIT };
+  return { hits: res.docs.map(toHit).filter((h) => h && h.type !== 'download'), truncated: res.size >= HIT_LIMIT };
 }
 
 // Lượt tải: lấy riêng (chỉ lọc bằng ==, không cần chỉ mục kép) để lượt xem không đẩy lượt tải cũ ra khỏi giới hạn.
