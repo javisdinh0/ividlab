@@ -46,5 +46,41 @@ export const guidesData = [
     },
     date: 'July 2026',
     link: '/autocad/chiase/phan-biet-appload-va-netload-trong-autocad.html'
+  },
+  {
+    id: 'lisp-khong-chay-unknown-command-autocad',
+    title: 'Lisp Không Chạy, Báo "Unknown Command" Trong AutoCAD: Nguyên Nhân & Cách Sửa',
+    category: 'AutoLISP Tutorial',
+    tag: 'Sửa Lỗi',
+    description: {
+      vi: 'Nạp file .lsp bằng APPLOAD xong nhưng gõ lệnh vẫn báo Unknown command? Danh sách nguyên nhân thường gặp và cách kiểm tra từng bước, từ tên lệnh c: đến cảnh báo bảo mật.',
+      en: 'Loaded a .lsp file with APPLOAD but the command still says Unknown command? Common causes and a step-by-step checklist.'
+    },
+    date: 'October 2026',
+    link: '/autocad/chiase/lisp-khong-chay-unknown-command-autocad.html'
+  },
+  {
+    id: 'trusted-paths-secureload-autocad',
+    title: 'Cảnh Báo Bảo Mật Khi Nạp Lisp/DLL Trong AutoCAD: TRUSTEDPATHS & SECURELOAD',
+    category: 'Kiến Thức CAD',
+    tag: 'Cài Đặt',
+    description: {
+      vi: 'Giải thích biến SECURELOAD và TRUSTEDPATHS, cách thêm thư mục vào vùng tin cậy (Trusted Locations) để nạp Lisp, DLL không bị cảnh báo hoặc chặn.',
+      en: 'What the SECURELOAD and TRUSTEDPATHS variables do and how to add a folder to Trusted Locations so Lisp and DLL files load without warnings.'
+    },
+    date: 'October 2026',
+    link: '/autocad/chiase/trusted-paths-secureload-autocad.html'
+  },
+  {
+    id: 'giam-dung-luong-file-dwg-autocad',
+    title: 'Cách Giảm Dung Lượng File DWG Nặng Và Làm AutoCAD Chạy Nhanh Hơn',
+    category: 'Kiến Thức CAD',
+    tag: 'Mẹo Hiệu Suất',
+    description: {
+      vi: 'Các bước dọn file DWG nặng, chậm: PURGE, AUDIT, OVERKILL, WBLOCK sang file mới, xử lý Xref, ảnh và block thừa. Làm đúng thứ tự để giảm dung lượng an toàn.',
+      en: 'Steps to clean up a heavy, slow DWG: PURGE, AUDIT, OVERKILL, WBLOCK to a new file, handling Xrefs, images and unused blocks.'
+    },
+    date: 'October 2026',
+    link: '/autocad/chiase/giam-dung-luong-file-dwg-autocad.html'
   }
 ];
