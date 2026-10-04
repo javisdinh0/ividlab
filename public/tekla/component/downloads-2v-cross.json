@@ -1,6 +1,6 @@
 {
-  "version": "1.20",
-  "released": "2026-10-03",
+  "version": "1.30",
+  "released": "2026-10-04",
   "baseUrl": "/fordownload/tekla-component/",
   "title": {
     "vi": "Tải 2V Cross Anti-Sag Roof",
@@ -8,9 +8,9 @@
   },
   "packages": {
     "2v-cross": {
-      "file": "iVidLab.AntiSag2VCross_1.20.tsep",
-      "size": "141 KB",
-      "bytes": 144751,
+      "file": "iVidLab.AntiSag2VCross_1.30.tsep",
+      "size": "148 KB",
+      "bytes": 151077,
       "range": "2016 – 2026"
     }
   },
@@ -81,18 +81,18 @@
   ],
   "notes": {
     "vi": [
-      "Combo hình V layout ở tab Parts: 2 V bắt chéo, 2 V song song, hoặc 1 V chạy thẳng giữa hai xà gồ.",
-      "V end spacing = 0 hợp lệ: hai thanh V song song và trùng nhau, kẹp hai mặt chân klip.",
-      "Thanh V thép máng (C/U) áp lưng vào klip; thép góc đặt chân ngang ở phía trên.",
-      "Klip thép góc không đều cạnh theo đúng số trong tên profile, đối xứng gương hai bên bụng xà gồ.",
-      "Thêm tab About (giới thiệu iViDLab, liên hệ)."
+      "Tab V Bolts mới: thanh giằng bắt vào klip bằng bu-lông Site hoặc Workshop, đủ thông số như Clip angle của Tekla.",
+      "Đặt vị trí bu-lông bằng hai khoảng cách (mép thanh giằng, mép klip); ô Bolt spacing nhận dãy như 20 30 hoặc 2*20.",
+      "Bu-lông tại điểm giao hai thanh chéo; thanh giằng và klip tách assembly riêng (GXA, GXC) khi dùng bu-lông Site.",
+      "Giằng profile thép hình: lưng áp phẳng vào klip kể cả xà gồ tường đảo chiều; có thể bắt 2 hàng bu-lông.",
+      "Cảnh báo ngay khi bố trí bu-lông không vừa klip."
     ],
     "en": [
-      "V layout image combo on the Parts tab: 2 V crossed, 2 V parallel, or 1 V straight between the two purlins.",
-      "V end spacing = 0 is valid: the two V bars run parallel and coincide, one on each face of the clip leg.",
-      "Channel (C/U) braces lie with their back against the clip; angle braces have the horizontal leg on top.",
-      "Unequal-leg clips follow the numbers in the profile name and are mirrored on the two sides of the purlin web.",
-      "New About tab (iViDLab introduction and contact)."
+      "New V Bolts tab: braces are bolted to the clips (Site or Workshop bolts) with the same options as Tekla's Clip angle.",
+      "Bolt position from two distances (brace edge, clip edge); the Bolt spacing field accepts lists such as 20 30 or 2*20.",
+      "A bolt where the two crossing braces meet; braces and clips get separate assemblies (GXA, GXC) with Site bolts.",
+      "Section-profile braces: the back lies flat on the clip even on reversed wall purlins; up to 2 bolt rows.",
+      "An immediate warning when the bolt layout does not fit the clip."
     ]
   }
 }
