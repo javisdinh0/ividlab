@@ -8,7 +8,7 @@ const ORIGIN = 'https://ividlab.com';
 const root = path.join(__dirname, '..');
 const pub = path.join(root, 'public');
 // Không đưa vào sitemap: khu vực quản trị/đăng nhập, trang chuyển hướng, trang nội bộ.
-const SKIP = [/^admin\//, /^rficonsole\//, /^vietduongphoto\//, /^amc-private\//, /^brand-guidelines\.html$/,
+const SKIP = [/^admin\//, /^rficonsole\//, /^amc-private\//, /^brand-guidelines\.html$/,
   /^tekla\/component\/index\.html$/, /^tekla\/peb-member\/index\.html$/];
 
 function walk(dir, out = []) {
