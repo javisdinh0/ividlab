@@ -87,20 +87,6 @@ export default function PebMemberSection({ t, lang }) {
           )}
         </div>
 
-        <div className="category-intro">
-          <div>
-            <p className="category-intro__desc">{tx.desc}</p>
-            <div className="chip-row" style={{ marginBottom: 0 }}>
-              {tx.highlights.map((item) => (
-                <span key={item} className="tag-pill">{item}</span>
-              ))}
-            </div>
-          </div>
-          {featured && (
-            <Cover className="category-intro__cover" src={featured.cover} alt={pick(featured.title, lang)} />
-          )}
-        </div>
-
         <h3 style={{ fontSize: '1.35rem', marginBottom: '0.5rem' }}>
           {tx.products_title}
         </h3>
@@ -129,6 +115,20 @@ export default function PebMemberSection({ t, lang }) {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="category-intro" style={{ marginTop: '2.75rem', marginBottom: 0 }}>
+          <div>
+            <p className="category-intro__desc">{tx.desc}</p>
+            <div className="chip-row" style={{ marginBottom: 0 }}>
+              {tx.highlights.map((item) => (
+                <span key={item} className="tag-pill">{item}</span>
+              ))}
+            </div>
+          </div>
+          {featured && (
+            <Cover className="category-intro__cover" src={featured.cover} alt={pick(featured.title, lang)} />
+          )}
         </div>
 
         <h3 id="tekla-articles" style={{ fontSize: '1.35rem', margin: '2.75rem 0 1.25rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
