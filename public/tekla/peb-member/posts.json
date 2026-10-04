@@ -1,5 +1,23 @@
 [
   {
+    "id": "cap-nhat-v1-3-28",
+    "link": "/tekla/peb-member/cap-nhat-v1-3-28.html",
+    "title": {
+      "vi": "PEB Tools VN v1.3.29 — Thao tác chuẩn excel thông minh trong Peb Tools VN",
+      "en": "PEB Tools VN v1.3.29 — Smart Excel-style editing in PEB Tools VN"
+    },
+    "description": {
+      "vi": "Bảng PEB Member thao tác như Excel: copy và dán cả hàng, di chuyển bằng phím mũi tên, kéo điền, Ctrl+Z hoàn tác và cột Type gợi ý tự điền khi gõ, kèm hình động minh hoạ.",
+      "en": "The PEB Member table works like Excel: copy and paste whole rows, arrow-key navigation, drag-fill, Ctrl+Z undo and Type autocomplete, with animated demos."
+    },
+    "tag": {
+      "vi": "Cập nhật",
+      "en": "Release"
+    },
+    "date": "2026-10-04",
+    "cover": "/tekla/peb-member/img/v1329-keo-dien.gif"
+  },
+  {
     "id": "bang-peb-member-giong-excel",
     "link": "/tekla/peb-member/bang-peb-member-giong-excel.html",
     "title": {
