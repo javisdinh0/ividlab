@@ -18,24 +18,6 @@
     "cover": "/tekla/peb-member/img/v1329-keo-dien.gif"
   },
   {
-    "id": "bang-peb-member-giong-excel",
-    "link": "/tekla/peb-member/bang-peb-member-giong-excel.html",
-    "title": {
-      "vi": "Bảng PEB Member nay thao tác như Excel",
-      "en": "The PEB Member table now works like Excel"
-    },
-    "description": {
-      "vi": "Copy, dán, chọn cả hàng, di chuyển bằng phím mũi tên, kéo điền, Ctrl+Z hoàn tác và gợi ý tự điền cột Type khi gõ, ngay trong bảng PEB Member.",
-      "en": "Copy, paste, select whole rows, move with the arrow keys, drag-fill, Ctrl+Z undo and Type autocomplete, right in the PEB Member table."
-    },
-    "tag": {
-      "vi": "Hướng dẫn",
-      "en": "Guide"
-    },
-    "date": "2026-10-04",
-    "cover": "/tekla/peb-member/img/03-bang-excel.gif"
-  },
-  {
     "id": "cap-nhat-v1-3-23",
     "link": "/tekla/peb-member/cap-nhat-v1-3-23.html",
     "title": {
