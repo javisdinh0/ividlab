@@ -1,5 +1,22 @@
 [
   {
+    "id": "cap-nhat-2v-cross-1-30",
+    "link": "/tekla/component/cap-nhat-2v-cross-1-30.html",
+    "title": {
+      "vi": "2V Cross Anti-Sag Roof 1.30 — có gì mới",
+      "en": "2V Cross Anti-Sag Roof 1.30 — what's new"
+    },
+    "description": {
+      "vi": "Bu-lông bắt thanh giằng vào klip (tab V Bolts), giằng profile thép hình, xà gồ tường, cảnh báo sớm.",
+      "en": "Bolted brace-to-clip connections (V Bolts tab), section-profile braces, wall purlins, early warnings."
+    },
+    "tag": {
+      "vi": "Cập nhật",
+      "en": "Release"
+    },
+    "date": "2026-10-04"
+  },
+  {
     "id": "anti-sag-2v-cross",
     "link": "/tekla/component/anti-sag-2v-cross.html",
     "title": {
