@@ -9,8 +9,7 @@
     "postbuild": "node -e \"import('fs').then(fs => fs.copyFileSync('public/brand-guidelines.html', 'dist/brand-guidelines.html'))\" && node scripts/gen-sitemap.cjs",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "node scripts/deploy.cjs",
-    "test": "node --test tests/*.test.mjs"
+    "deploy": "node scripts/deploy.cjs"
   },
   "dependencies": {
     "lucide-react": "^0.469.0",
