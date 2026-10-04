@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 // Danh sách bài viết của chuyên mục nằm trong public/ để các trang bài viết tĩnh dùng chung
 // (mục "Bài viết khác"). Thêm bài mới chỉ cần sửa posts.json — xem docs/peb-member/README.md.
@@ -39,6 +39,12 @@ export default function PebMemberSection({ t, lang }) {
   const [posts, setPosts] = useState(null);
   const [failed, setFailed] = useState(false);
   const [selected, setSelected] = useState(null);
+  const articlesRef = useRef(null);
+
+  // Chọn một sản phẩm thì cuộn tới danh sách bài viết (nằm dưới khối giới thiệu, nếu không sẽ không thấy gì đổi).
+  useEffect(() => {
+    if (selected && articlesRef.current) articlesRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [selected]);
 
   useEffect(() => {
     let cancelled = false;
@@ -131,7 +137,7 @@ export default function PebMemberSection({ t, lang }) {
           )}
         </div>
 
-        <h3 id="tekla-articles" style={{ fontSize: '1.35rem', margin: '2.75rem 0 1.25rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+        <h3 id="tekla-articles" ref={articlesRef} style={{ scrollMarginTop: '6rem', fontSize: '1.35rem', margin: '2.75rem 0 1.25rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
           <span>{product ? `${tx.articles_of} ${tx[`product_${product.key}_name`]}` : tx.articles_title}</span>
           {product && (
             <button type="button" className="btn btn-secondary" onClick={() => setSelected(null)}>{tx.show_all}</button>
