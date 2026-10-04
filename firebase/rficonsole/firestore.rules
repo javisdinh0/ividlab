@@ -59,7 +59,7 @@ service cloud.firestore {
       allow write: if isOwner();
     }
 
-    // ---- VietDuong Photo (/vietduongphoto): album ảo + yêu cầu truy cập, xem docs/vietduongphoto/README.md ----
+    // ---- VietDuong Photo (/vietduongphoto): album ảo + yêu cầu truy cập; app ở repo javisdinh0/vietduongphoto, rules vẫn đặt ở đây vì chung Firebase project ----
     // photoAlbums chỉ chứa tên + id file Drive (không lộ ảnh: quyền xem ảnh do Drive quyết định).
     match /photoAlbums/{id} {
       allow read: if signedIn();
