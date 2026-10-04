@@ -705,6 +705,23 @@ ol.steps > li::before {
   gap: 10px;
 }
 
+/* Khối liên hệ iViDLab (fanpage Facebook + email), đặt cạnh nhóm Zalo */
+.contact-card {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px 18px;
+  padding: 18px 22px;
+  margin: 20px 0;
+  border-radius: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+}
+.contact-card__body { flex: 1 1 260px; }
+.contact-card__body p { margin: 0; }
+.btn--facebook { background: #1877F2; color: #FFFFFF; }
+.btn--facebook:hover { background: #1464CF; color: #FFFFFF; }
+
 /* Tự kích hoạt dùng thử 90 ngày — nội dung do article.js vẽ vào [data-trial-activate] */
 .activate-card {
   margin: 20px 0;
