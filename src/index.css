@@ -313,6 +313,57 @@ h1, h2, h3, h4, .font-display {
   margin-bottom: 1.25rem;
 }
 
+/* Thẻ sản phẩm của chuyên mục Tekla App & Component: bấm để lọc bài viết */
+.product-card {
+  gap: 1.25rem;
+}
+
+.product-card--active {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 2px var(--accent-blue);
+}
+
+.product-card__select {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0;
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.product-card__name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-ink);
+}
+
+.product-card__desc {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.product-card__count {
+  font-size: 0.8rem;
+  color: var(--text-ink);
+  font-weight: 700;
+}
+
+.product-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  border-top: 1px solid var(--border-rule);
+  padding-top: 1rem;
+}
+
 @media (max-width: 860px) {
   .category-intro {
     padding: 1.5rem;
