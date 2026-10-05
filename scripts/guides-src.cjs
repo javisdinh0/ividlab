@@ -1,5 +1,5 @@
 // Nội dung các bài hướng dẫn AutoCAD (song ngữ vi/en). Sinh HTML bằng: node scripts/build-guides.cjs
-// Mỗi khối: [loại, vi, en]. Loại: p, h2, h3, ul (vi/en là mảng <li>), tip (vi/en = [tiêu đề, nội dung]).
+// Mỗi khối: [loại, vi, en]. Loại: p, h2, h3, ul (vi/en là mảng <li>), tip (tham số 1 = [tiêu đề vi, en], tham số 2 = [nội dung vi, en]).
 const p = (vi, en) => ['p', vi, en];
 const h2 = (vi, en) => ['h2', vi, en];
 const h3 = (vi, en) => ['h3', vi, en];

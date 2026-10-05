@@ -30,8 +30,11 @@ function renderBlock([type, vi, en]) {
     return `    <ul>\n${li}\n    </ul>`;
   }
   if (type === 'tip') {
-    return `    <div class="tip-box">\n      <strong data-lang="vi">${vi[0]}</strong>\n      <strong data-lang="en">${en[0]}</strong>\n` +
-      `      <p data-lang="vi">${vi[1]}</p>\n      <p data-lang="en">${en[1]}</p>\n    </div>`;
+    // tip(titles, contents): titles = [tiêu đề vi, en], contents = [nội dung vi, en]
+    const [titleVi, titleEn] = vi;
+    const [textVi, textEn] = en;
+    return `    <div class="tip-box">\n      <strong data-lang="vi">${titleVi}</strong>\n      <strong data-lang="en">${titleEn}</strong>\n` +
+      `      <p data-lang="vi">${textVi}</p>\n      <p data-lang="en">${textEn}</p>\n    </div>`;
   }
   throw new Error('block type ' + type);
 }
