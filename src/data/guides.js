@@ -94,5 +94,17 @@ export const guidesData = [
     },
     date: 'October 2026',
     link: '/autocad/chiase/loi-netload-autocad-khong-nap-duoc-dll.html'
+  },
+  {
+    id: 'phan-biet-layiso-layoff-layfrz-laylck-autocad',
+    title: 'Phân Biệt LAYISO, LAYOFF, LAYFRZ, LAYLCK, LAYWALK Trong AutoCAD: Khi Nào Dùng Lệnh Nào?',
+    category: 'Kiến Thức CAD',
+    tag: 'So Sánh',
+    description: {
+      vi: 'Bảng so sánh các lệnh quản lý layer theo đối tượng: LAYISO, LAYOFF, LAYFRZ, LAYLCK, LAYWALK. Khác nhau giữa tắt, đóng băng và khóa layer, cách khôi phục và mẹo chọn lệnh nhanh.',
+      en: 'Comparison of the object-based layer commands LAYISO, LAYOFF, LAYFRZ, LAYLCK and LAYWALK: off vs freeze vs lock, how to restore, and how to choose.'
+    },
+    date: 'October 2026',
+    link: '/autocad/chiase/phan-biet-layiso-layoff-layfrz-laylck-autocad.html'
   }
 ];
