@@ -142,5 +142,17 @@ export const guidesData = [
     },
     date: 'October 2026',
     link: '/autocad/chiase/huong-dan-lenh-laydel-xoa-layer-autocad.html'
+  },
+  {
+    id: 'huong-dan-lenh-laymcur-autocad',
+    title: 'Hướng Dẫn Lệnh LAYMCUR Trong AutoCAD: Chọn Đối Tượng Để Đặt Layer Hiện Hành',
+    category: 'Kiến Thức CAD',
+    tag: 'Hướng Dẫn Lệnh',
+    description: {
+      vi: 'Cách dùng lệnh LAYMCUR để đặt layer hiện hành bằng cách chọn một đối tượng, không cần tìm tên trong danh sách. Kèm LAYCUR, LAYMCH và LAYERP để vẽ đúng layer nhanh hơn.',
+      en: 'How to use LAYMCUR to make a layer current by picking an object, with no hunting through the list. Includes LAYCUR, LAYMCH and LAYERP for drawing on the right layer faster.'
+    },
+    date: 'October 2026',
+    link: '/autocad/chiase/huong-dan-lenh-laymcur-autocad.html'
   }
 ];
