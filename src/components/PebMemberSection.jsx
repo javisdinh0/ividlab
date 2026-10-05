@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 // Danh sách bài viết của chuyên mục nằm trong public/ để các trang bài viết tĩnh dùng chung
 // (mục "Bài viết khác"). Thêm bài mới chỉ cần sửa posts.json — xem docs/peb-member/README.md.
@@ -8,9 +8,11 @@ const SOURCES = [
   { url: '/tekla/peb-member/posts.json', label: 'PEB Member' },
   { url: '/tekla/component/posts.json', label: 'Tekla Component' }
 ];
-const INTROS = [
-  { url: '/tekla/peb-member/gioi-thieu-peb-member.html', key: 'btn_intro_peb', dlKey: 'btn_download_peb' },
-  { url: '/tekla/component/anti-sag-2v-cross.html', key: 'btn_intro_2v', dlKey: 'btn_download_2v' }
+// Sản phẩm của chuyên mục: bấm thẻ để lọc bài viết theo sản phẩm (khớp `label` của SOURCES).
+// Thêm sản phẩm mới: thêm một mục ở đây, một nguồn ở SOURCES và chuỗi tên/mô tả trong translations.js.
+const PRODUCTS = [
+  { key: 'peb', label: 'PEB Member', cover: '/tekla/peb-member/img/01-tong-quan.png', intro: '/tekla/peb-member/gioi-thieu-peb-member.html' },
+  { key: '2v', label: 'Tekla Component', cover: '/tekla/component/img/2v-cross-cover.png', intro: '/tekla/component/anti-sag-2v-cross.html' }
 ];
 const NS = 'teklacomponent';
 
@@ -36,6 +38,13 @@ export default function PebMemberSection({ t, lang }) {
   const tx = t[NS];
   const [posts, setPosts] = useState(null);
   const [failed, setFailed] = useState(false);
+  const [selected, setSelected] = useState(null);
+  const articlesRef = useRef(null);
+
+  // Chọn một sản phẩm thì cuộn tới danh sách bài viết (nằm dưới khối giới thiệu, nếu không sẽ không thấy gì đổi).
+  useEffect(() => {
+    if (selected && articlesRef.current) articlesRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [selected]);
 
   useEffect(() => {
     let cancelled = false;
@@ -53,6 +62,9 @@ export default function PebMemberSection({ t, lang }) {
     return () => { cancelled = true; };
   }, []);
 
+  const product = PRODUCTS.find((item) => item.key === selected);
+  const visible = posts && (product ? posts.filter((post) => post.product === product.label) : posts);
+  const countOf = (item) => (posts ? posts.filter((post) => post.product === item.label).length : 0);
   const featured = posts && (posts.find((post) => post.featured) || posts[0]);
 
   return (
@@ -81,20 +93,42 @@ export default function PebMemberSection({ t, lang }) {
           )}
         </div>
 
-        <div className="category-intro">
+        <h3 style={{ fontSize: '1.35rem', marginBottom: '0.5rem' }}>
+          {tx.products_title}
+        </h3>
+        <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '1.25rem' }}>
+          {tx.products_hint}
+        </p>
+        <div className="tools-grid product-grid">
+          {PRODUCTS.map((item) => (
+            <div key={item.key} className={`card product-card${selected === item.key ? ' product-card--active' : ''}`}>
+              <button
+                type="button"
+                className="product-card__select"
+                aria-pressed={selected === item.key}
+                onClick={() => setSelected(selected === item.key ? null : item.key)}
+              >
+                <Cover className="post-cover" src={item.cover} alt="" />
+                <span className="product-card__name">{tx[`product_${item.key}_name`]}</span>
+                <span className="product-card__desc">{tx[`product_${item.key}_desc`]}</span>
+                <span className="font-mono product-card__count">
+                  {countOf(item)} {tx.items_count} · {selected === item.key ? tx.product_hide : tx.product_show}
+                </span>
+              </button>
+              <div className="product-card__links">
+                <a href={item.intro} className="btn btn-secondary">{tx[`btn_intro_${item.key}`]}</a>
+                <a href={`${item.intro}#tai-ve`} className="btn btn-secondary">{tx[`btn_download_${item.key}`]}</a>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="category-intro" style={{ marginTop: '2.75rem', marginBottom: 0 }}>
           <div>
             <p className="category-intro__desc">{tx.desc}</p>
-            <div className="chip-row">
+            <div className="chip-row" style={{ marginBottom: 0 }}>
               {tx.highlights.map((item) => (
                 <span key={item} className="tag-pill">{item}</span>
-              ))}
-            </div>
-            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-              {INTROS.map((intro, index) => (
-                <React.Fragment key={intro.url}>
-                  <a href={intro.url} className={index === 0 ? 'btn btn-primary' : 'btn btn-secondary'}>{tx[intro.key]}</a>
-                  <a href={`${intro.url}#tai-ve`} className="btn btn-secondary">{tx[intro.dlKey]}</a>
-                </React.Fragment>
               ))}
             </div>
           </div>
@@ -103,8 +137,11 @@ export default function PebMemberSection({ t, lang }) {
           )}
         </div>
 
-        <h3 style={{ fontSize: '1.35rem', marginBottom: '1.25rem' }}>
-          {tx.articles_title}
+        <h3 id="tekla-articles" ref={articlesRef} style={{ scrollMarginTop: '6rem', fontSize: '1.35rem', margin: '2.75rem 0 1.25rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+          <span>{product ? `${tx.articles_of} ${tx[`product_${product.key}_name`]}` : tx.articles_title}</span>
+          {product && (
+            <button type="button" className="btn btn-secondary" onClick={() => setSelected(null)}>{tx.show_all}</button>
+          )}
         </h3>
 
         {!posts && !failed && (
@@ -113,13 +150,13 @@ export default function PebMemberSection({ t, lang }) {
         {failed && (
           <p style={{ color: 'var(--text-muted)' }}>{tx.error}</p>
         )}
-        {posts && posts.length === 0 && (
+        {posts && visible.length === 0 && (
           <p style={{ color: 'var(--text-muted)' }}>{tx.empty}</p>
         )}
 
-        {posts && posts.length > 0 && (
+        {posts && visible.length > 0 && (
           <div className="tools-grid">
-            {posts.map((post) => (
+            {visible.map((post) => (
               <a key={post.id} href={post.link} className="card post-card">
                 <div>
                   <Cover className="post-cover" src={post.cover} alt="" />

@@ -1,42 +1,42 @@
 {
-  "version": "1.3.23",
-  "released": "2026-09-21",
+  "version": "1.3.29",
+  "released": "2026-10-04",
   "baseUrl": "/fordownload/peb-member/",
   "packages": {
     "2016": {
-      "file": "PEBToolsVN_2016_v1.3.23.tsep",
-      "size": "702 KB",
-      "bytes": 719153,
+      "file": "PEBToolsVN_2016_v1.3.29.tsep",
+      "size": "710 KB",
+      "bytes": 726698,
       "range": "2016 / 2016i"
     },
     "2017": {
-      "file": "PEBToolsVN_2017_v1.3.23.tsep",
-      "size": "699 KB",
-      "bytes": 715419,
+      "file": "PEBToolsVN_2017_v1.3.29.tsep",
+      "size": "705 KB",
+      "bytes": 722408,
       "range": "2017 / 2017i"
     },
     "2018": {
-      "file": "PEBToolsVN_2018_v1.3.23.tsep",
-      "size": "699 KB",
-      "bytes": 715762,
+      "file": "PEBToolsVN_2018_v1.3.29.tsep",
+      "size": "706 KB",
+      "bytes": 722883,
       "range": "2018 / 2018i"
     },
     "2019": {
-      "file": "PEBToolsVN_2019_v1.3.23.tsep",
-      "size": "702 KB",
-      "bytes": 719191,
+      "file": "PEBToolsVN_2019_v1.3.29.tsep",
+      "size": "710 KB",
+      "bytes": 726669,
       "range": "2019 / 2019i"
     },
     "2020": {
-      "file": "PEBToolsVN_2020_v1.3.23.tsep",
-      "size": "714 KB",
-      "bytes": 731639,
+      "file": "PEBToolsVN_2020_v1.3.29.tsep",
+      "size": "721 KB",
+      "bytes": 738643,
       "range": "2020"
     },
     "2021_Higher": {
-      "file": "PEBToolsVN_2021_Higher_v1.3.23.tsep",
-      "size": "1.33 MB",
-      "bytes": 1390707,
+      "file": "PEBToolsVN_2021_Higher_v1.3.29.tsep",
+      "size": "1.34 MB",
+      "bytes": 1403519,
       "range": "2021 – 2026"
     }
   },
@@ -107,14 +107,14 @@
   ],
   "notes": {
     "vi": [
-      "Chọn Plate profile và Folded plate profile ngay trong Settings (Tekla dùng lõi PEB 2021 trở lên).",
-      "Đường gióng kèm độ dài chạy theo chuột khi chọn điểm vẽ, giống PEB Member gốc của Tekla.",
-      "Gói cho Tekla 2021 trở lên cài đặt được trên Tekla 2021 – 2026."
+      "Bảng PEB Member thao tác như Excel: Ctrl+A/C/X/V theo từng ô, chọn (Shift, Ctrl hoặc kéo chuột), copy và dán cả hàng, dán vùng ô từ Excel.",
+      "Di chuyển bằng mũi tên, Enter, Ctrl+mũi tên, Shift để chọn vùng; kéo điền (Prefix tự tăng số), Ctrl+D, Ctrl+R.",
+      "Ctrl+Z hoàn tác, Esc huỷ chỉnh sửa; cột Type gợi ý tự điền khi gõ."
     ],
     "en": [
-      "Pick the Plate profile and Folded plate profile right in Settings (Tekla with the PEB 2021+ core).",
-      "A rubber-band line with its live length follows the cursor while picking points, just like Tekla's own PEB Member.",
-      "The Tekla 2021+ package now installs on Tekla 2021 – 2026."
+      "The PEB Member table works like Excel: per-cell Ctrl+A/C/X/V, select rows (Shift, Ctrl or drag), copy and paste whole rows, paste a block of cells from Excel.",
+      "Move with the arrows, Enter, Ctrl+arrows and Shift to select a range; drag-fill (a Prefix counts up), Ctrl+D, Ctrl+R.",
+      "Ctrl+Z undo, Esc cancels an edit; the Type column autocompletes as you type."
     ]
   }
 }
