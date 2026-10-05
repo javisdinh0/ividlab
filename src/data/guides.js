@@ -118,5 +118,17 @@ export const guidesData = [
     },
     date: 'October 2026',
     link: '/autocad/chiase/huong-dan-lenh-laywalk-autocad.html'
+  },
+  {
+    id: 'huong-dan-lenh-laymrg-gop-layer-autocad',
+    title: 'Hướng Dẫn Lệnh LAYMRG Trong AutoCAD: Gộp Nhiều Layer Thành Một',
+    category: 'Kiến Thức CAD',
+    tag: 'Hướng Dẫn Lệnh',
+    description: {
+      vi: 'Cách dùng lệnh LAYMRG để gộp nhiều layer trùng lặp hoặc thừa vào một layer đích, chuẩn hóa bản vẽ nhận từ nơi khác. Các bước, lưu ý về màu/linetype ByLayer và cách hoàn tác.',
+      en: 'How to use LAYMRG to merge duplicate or unwanted layers into a target layer and standardize drawings from other sources, with notes on ByLayer properties and undo.'
+    },
+    date: 'October 2026',
+    link: '/autocad/chiase/huong-dan-lenh-laymrg-gop-layer-autocad.html'
   }
 ];
