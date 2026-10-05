@@ -82,5 +82,17 @@ export const guidesData = [
     },
     date: 'October 2026',
     link: '/autocad/chiase/giam-dung-luong-file-dwg-autocad.html'
+  },
+  {
+    id: 'loi-netload-autocad-khong-nap-duoc-dll',
+    title: 'Các Lỗi NETLOAD Thường Gặp Trong AutoCAD: Không Nạp Được File DLL',
+    category: 'Plugin .NET',
+    tag: 'Sửa Lỗi',
+    description: {
+      vi: 'Tổng hợp các lỗi khi NETLOAD plugin .DLL: FileLoadException 0x80131515, BadImageFormatException, thiếu DLL phụ thuộc, sai phiên bản .NET và file bị khóa. Cách nhận biết và sửa từng lỗi.',
+      en: 'The usual errors when running NETLOAD on a .DLL plugin: FileLoadException 0x80131515, BadImageFormatException, missing dependencies, .NET version mismatch and locked files.'
+    },
+    date: 'October 2026',
+    link: '/autocad/chiase/loi-netload-autocad-khong-nap-duoc-dll.html'
   }
 ];
