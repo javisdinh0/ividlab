@@ -166,5 +166,17 @@ export const guidesData = [
     },
     date: 'October 2026',
     link: '/autocad/chiase/huong-dan-lenh-laycur-autocad.html'
+  },
+  {
+    id: 'huong-dan-lenh-laymch-autocad',
+    title: 'Hướng Dẫn Lệnh LAYMCH Trong AutoCAD: Đổi Layer Cho Đối Tượng Theo Một Đối Tượng Mẫu',
+    category: 'Kiến Thức CAD',
+    tag: 'Hướng Dẫn Lệnh',
+    description: {
+      vi: 'Cách dùng lệnh LAYMCH (Layer Match) để chuyển đối tượng sang layer của một đối tượng mẫu mà không đổi layer hiện hành. So sánh với LAYCUR, MATCHPROP và các ví dụ chuẩn hóa layer thực tế.',
+      en: 'How to use LAYMCH (Layer Match) to move objects to the layer of a sample object without changing the current layer. Compared with LAYCUR and MATCHPROP, with practical layer-standardizing examples.'
+    },
+    date: 'October 2026',
+    link: '/autocad/chiase/huong-dan-lenh-laymch-autocad.html'
   }
 ];
