@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234924381658348" crossorigin="anonymous"></script>
+  <script type="module" src="/traffic-track.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hướng Dẫn Lệnh LAYMCH Trong AutoCAD: Đổi Layer Cho Đối Tượng Theo Một Đối Tượng Mẫu - iViDLab</title>
+  <meta name="description" content="Cách dùng lệnh LAYMCH (Layer Match) để chuyển đối tượng sang layer của một đối tượng mẫu mà không đổi layer hiện hành. So sánh với LAYCUR, MATCHPROP và các ví dụ chuẩn hóa layer thực tế." />
+  <link rel="canonical" href="https://ividlab.com/autocad/chiase/huong-dan-lenh-laymch-autocad.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="iViDLab" />
+  <meta property="og:locale" content="vi_VN" />
+  <meta property="og:title" content="Hướng Dẫn Lệnh LAYMCH Trong AutoCAD: Đổi Layer Cho Đối Tượng Theo Một Đối Tượng Mẫu" />
+  <meta property="og:description" content="Cách dùng lệnh LAYMCH (Layer Match) để chuyển đối tượng sang layer của một đối tượng mẫu mà không đổi layer hiện hành. So sánh với LAYCUR, MATCHPROP và các ví dụ chuẩn hóa layer thực tế." />
+  <meta property="og:url" content="https://ividlab.com/autocad/chiase/huong-dan-lenh-laymch-autocad.html" />
+  <meta property="og:image" content="https://ividlab.com/og-default.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Hướng Dẫn Lệnh LAYMCH Trong AutoCAD: Đổi Layer Cho Đối Tượng Theo Một Đối Tượng Mẫu","url":"https://ividlab.com/autocad/chiase/huong-dan-lenh-laymch-autocad.html","description":"Cách dùng lệnh LAYMCH (Layer Match) để chuyển đối tượng sang layer của một đối tượng mẫu mà không đổi layer hiện hành. So sánh với LAYCUR, MATCHPROP và các ví dụ chuẩn hóa layer thực tế.","image":"https://ividlab.com/og-default.png","inLanguage":"vi","datePublished":"2026-10-03","author":{"@type":"Organization","name":"iViDLab","url":"https://ividlab.com"},"publisher":{"@type":"Organization","name":"iViDLab","url":"https://ividlab.com"}}</script>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #A2BFC7; --bg-card: #FFFFFF; --text-primary: #2B4E64; --text-body: #334155; --text-muted: #4F7C91; --border-color: #6F9AAB;
+      --link-color: #2563eb; --link-hover: #1d4ed8; --code-bg: #f3f4f6; --code-text: #dc2626;
+      --tip-bg: #f0fdf4; --tip-border: #22c55e; --tip-text: #166534;
+      --table-header: #2B4E64; --table-header-text: #FFFFFF; --table-row-alt: #f8fafc;
+      --btn-bg: #FFFFFF; --btn-text: #2B4E64; --badge-bg: #e0e7ff; --badge-text: #4338ca;
+    }
+    [data-theme="dark"] {
+      --bg-page: #182B37; --bg-card: #223B4B; --text-primary: #F0F6F8; --text-body: #E2E8F0; --text-muted: #A2BFC7; --border-color: #365B6F;
+      --link-color: #60A5FA; --link-hover: #93C5FD; --code-bg: #1e293b; --code-text: #f87171;
+      --tip-bg: #14532d; --tip-border: #4ade80; --tip-text: #dcfce7;
+      --table-header: #182B37; --table-header-text: #F0F6F8; --table-row-alt: #1e293b;
+      --btn-bg: #223B4B; --btn-text: #F0F6F8; --badge-bg: #312e81; --badge-text: #c7d2fe;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif; line-height: 1.7; color: var(--text-body);
+      background-color: var(--bg-page); max-width: 940px; margin: 0 auto; padding: 30px 20px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; flex-wrap: wrap; gap: 12px; }
+    .nav-links { display: flex; align-items: center; gap: 12px; }
+    .back-link { color: var(--text-primary); text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: color 0.2s; }
+    .back-link:hover { text-decoration: underline; color: var(--link-color); }
+    .toggle-btn {
+      background: var(--btn-bg); border: 1px solid var(--border-color); color: var(--btn-text);
+      font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 700;
+      padding: 6px 14px; border-radius: 20px; cursor: pointer; display: inline-flex;
+      align-items: center; gap: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s;
+    }
+    .toggle-btn:hover { border-color: var(--link-color); transform: translateY(-1px); }
+    .article-container {
+      background: var(--bg-card); padding: 45px; border-radius: 16px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15); border: 1px solid var(--border-color);
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+    h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text-primary); margin-top: 1.6em; margin-bottom: 0.6em; }
+    h1 { font-size: 2.2rem; line-height: 1.25; margin-top: 0; color: var(--link-color); }
+    h2 { font-size: 1.55rem; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; }
+    h3 { font-size: 1.25rem; }
+    p { margin-bottom: 1.3em; }
+    ul, ol { margin-bottom: 1.5em; padding-left: 1.6em; }
+    li { margin-bottom: 0.7em; }
+    a { color: var(--link-color); text-decoration: none; font-weight: 600; }
+    a:hover { color: var(--link-hover); text-decoration: underline; }
+    code { background-color: var(--code-bg); padding: 3px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; color: var(--code-text); font-size: 0.88em; font-weight: 600; }
+    
+    table { width: 100%; border-collapse: collapse; margin: 30px 0; font-size: 0.95rem; }
+    th, td { padding: 14px 18px; text-align: left; border: 1px solid var(--border-color); }
+    th { background-color: var(--table-header); color: var(--table-header-text); font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 1rem; }
+    tr:nth-child(even) { background-color: var(--table-row-alt); }
+    
+    .tip-box { background-color: var(--tip-bg); border-left: 4px solid var(--tip-border); padding: 18px 22px; border-radius: 0 12px 12px 0; margin: 25px 0; color: var(--tip-text); }
+    .tip-box strong { display: block; margin-bottom: 6px; font-size: 1.05em; }
+    .badge { display: inline-block; background-color: var(--badge-bg); color: var(--badge-text); font-size: 0.78rem; font-weight: 700; padding: 4px 10px; border-radius: 9999px; text-transform: uppercase; margin-bottom: 12px; }
+    
+    @media (max-width: 600px) { .article-container { padding: 25px 15px; } h1 { font-size: 1.75rem; } table { font-size: 0.82rem; } th, td { padding: 8px 10px; } }
+  
+    .related-container { margin-top: 45px; background: var(--bg-card); padding: 40px; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.15); transition: background-color 0.3s ease, border-color 0.3s ease; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 25px; }
+    .related-card { display: flex; flex-direction: column; text-decoration: none; background: var(--bg-page); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; transition: transform 0.2s, border-color 0.2s; }
+    .related-card:hover { transform: translateY(-3px); border-color: var(--link-color); }
+    .related-card .badge { align-self: flex-start; background: var(--badge-bg); color: var(--badge-text); font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; font-family: 'JetBrains Mono', monospace; }
+    .related-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.1rem; margin: 0; color: var(--text-primary); line-height: 1.4; transition: color 0.2s; }
+    .related-card:hover h3 { color: var(--link-color); }
+  
+    /* Language Toggle Styles */
+    [data-lang="vi"] { display: block !important; }
+    [data-lang="en"] { display: none !important; }
+    body.lang-en [data-lang="vi"] { display: none !important; }
+    body.lang-en [data-lang="en"] { display: block !important; }
+    
+    /* Fix inline elements */
+    span[data-lang="vi"], strong[data-lang="vi"], em[data-lang="vi"], a[data-lang="vi"], figcaption[data-lang="vi"] { display: inline !important; }
+    span[data-lang="en"], strong[data-lang="en"], em[data-lang="en"], a[data-lang="en"], figcaption[data-lang="en"] { display: none !important; }
+    body.lang-en span[data-lang="vi"], body.lang-en strong[data-lang="vi"], body.lang-en em[data-lang="vi"], body.lang-en a[data-lang="vi"], body.lang-en figcaption[data-lang="vi"] { display: none !important; }
+    body.lang-en span[data-lang="en"], body.lang-en strong[data-lang="en"], body.lang-en em[data-lang="en"], body.lang-en a[data-lang="en"], body.lang-en figcaption[data-lang="en"] { display: inline !important; }
+  </style>
+</head>
+<body>
+  
+  <header style="position: sticky; top: 0; z-index: 100; background-color: var(--bg-page); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 15px 0; transition: background-color 0.3s ease; margin-bottom: 30px;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+      <a href="/" style="text-decoration: none; display: flex; align-items: center;">
+        <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.45rem; font-weight: 900; letter-spacing: -0.02em; color: var(--text-primary);">
+          iViD<span style="color: #2E6583;">Lab</span>
+        </span>
+      </a>
+      <nav style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+        <a href="/?tab=all" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); transition: color 0.2s ease;">
+          <span data-lang="vi">// TRANG CHỦ</span><span data-lang="en" >// HOME</span>
+        </a>
+        <a href="/?tab=tools" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// CÔNG CỤ</span><span data-lang="en" >// TOOLS</span>
+        </a>
+        <a href="/?tab=guides" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span data-lang="en" >// GUIDES</span>
+        </a>
+        <a href="/?tab=tekla-component" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          // TEKLA APP &amp; COMPONENT
+        </a>
+        <a href="/?tab=about" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en" >// ABOUT</span>
+        </a>
+      </nav>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button id="theme-toggle" class="toggle-btn" title="Chuyển giao diện Sáng / Tối" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; padding: 6px 14px; border-radius: 20px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s;">
+          ☀️ LIGHT
+        </button>
+        <button id="lang-toggle" class="toggle-btn" title="Chuyển Ngôn Ngữ / Toggle Language" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; padding: 6px 14px; border-radius: 20px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s;">
+          🌐 VN / EN
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="article-container">
+    <span class="badge" data-lang="vi">Hướng Dẫn Lệnh</span>
+    <span class="badge" data-lang="en">Command Guide</span>
+
+    <h1 data-lang="vi">Hướng Dẫn Lệnh LAYMCH Trong AutoCAD: Đổi Layer Cho Đối Tượng Theo Một Đối Tượng Mẫu</h1>
+    <h1 data-lang="en">LAYMCH in AutoCAD: Change Objects to Match Another Object's Layer</h1>
+
+    <p data-lang="vi"><code>LAYMCH</code> (Layer Match) có công dụng giống một "cây cọ layer": bạn chọn các đối tượng cần đổi, rồi bấm vào một đối tượng mẫu đã nằm đúng layer, thế là toàn bộ đối tượng vừa chọn chuyển sang layer của đối tượng mẫu. Khác với <a href="/autocad/chiase/huong-dan-lenh-laycur-autocad.html">LAYCUR</a>, bạn không cần đổi layer hiện hành trước.</p>
+    <p data-lang="en"><code>LAYMCH</code> (Layer Match) works like a "layer paintbrush": select the objects to change, then click a sample object that already sits on the right layer, and everything you selected moves to the sample's layer. Unlike <a href="/autocad/chiase/huong-dan-lenh-laycur-autocad.html">LAYCUR</a>, you do not need to change the current layer first.</p>
+
+    <h2 data-lang="vi">Cách dùng LAYMCH</h2>
+    <h2 data-lang="en">How to use LAYMCH</h2>
+
+    <ul>
+      <li><span data-lang="vi">Gõ <code>LAYMCH</code> rồi nhấn Enter.</span><span data-lang="en">Type <code>LAYMCH</code> and press Enter.</span></li>
+      <li><span data-lang="vi">Chọn các đối tượng cần đổi layer, sau đó nhấn Enter.</span><span data-lang="en">Select the objects whose layer you want to change, then press Enter.</span></li>
+      <li><span data-lang="vi">Bấm chọn một đối tượng đang nằm trên layer đích. Hoặc dùng tùy chọn <strong>Name</strong> để gõ tên layer đích khi không có sẵn đối tượng mẫu.</span><span data-lang="en">Click an object that already sits on the destination layer. Or use the <strong>Name</strong> option to type the destination layer name when there is no sample object.</span></li>
+      <li><span data-lang="vi">AutoCAD chuyển các đối tượng đã chọn sang layer đích và báo kết quả trong Command line.</span><span data-lang="en">AutoCAD moves the selected objects to the destination layer and reports the result in the Command line.</span></li>
+    </ul>
+
+    <h2 data-lang="vi">Khi nào LAYMCH tiện hơn các lệnh khác?</h2>
+    <h2 data-lang="en">When LAYMCH beats the other commands</h2>
+
+    <ul>
+      <li><span data-lang="vi"><strong>Không muốn đổi layer hiện hành:</strong> bạn đang vẽ ở layer A nhưng muốn chuyển nhanh vài đối tượng sang layer B. Dùng LAYMCH thì layer hiện hành vẫn giữ nguyên, còn LAYCUR buộc phải đổi layer hiện hành trước.</span><span data-lang="en"><strong>You do not want to change the current layer:</strong> you are drawing on layer A but want to quickly move a few objects to layer B. LAYMCH leaves the current layer alone, while LAYCUR requires you to change it first.</span></li>
+      <li><span data-lang="vi"><strong>Có đối tượng mẫu ngay trên màn hình:</strong> bấm vào là xong, không phải nhớ tên layer.</span><span data-lang="en"><strong>A sample object is already on screen:</strong> just click it, with no layer name to remember.</span></li>
+      <li><span data-lang="vi"><strong>Chỉ muốn đổi layer, giữ nguyên thuộc tính khác:</strong> <code>MATCHPROP</code> (lệnh <code>MA</code>) sao chép cả màu, linetype, lineweight… còn LAYMCH chỉ tác động lên layer.</span><span data-lang="en"><strong>You only want the layer to change:</strong> <code>MATCHPROP</code> (command <code>MA</code>) copies color, linetype, lineweight and more, whereas LAYMCH only affects the layer.</span></li>
+    </ul>
+
+    <h2 data-lang="vi">Ví dụ thực tế</h2>
+    <h2 data-lang="en">Practical examples</h2>
+
+    <h3 data-lang="vi">Chuẩn hóa text, hatch, kích thước trong bản vẽ nhận được</h3>
+    <h3 data-lang="en">Standardizing text, hatches and dimensions in a received drawing</h3>
+
+    <p data-lang="vi">Bản vẽ nhận từ nơi khác có ghi chú nằm lẫn trong layer của đường nét. Chọn tất cả dòng text (dùng <code>SELECTSIMILAR</code> để chọn nhanh), gõ <code>LAYMCH</code>, chọn đúng layer ghi chú bằng cách bấm vào một dòng text đã đúng layer. Lặp lại cho hatch và kích thước.</p>
+    <p data-lang="en">A drawing from elsewhere has notes mixed into line layers. Select all text lines (use <code>SELECTSIMILAR</code> for speed), type <code>LAYMCH</code>, and click one text line already on the right layer. Repeat for hatches and dimensions.</p>
+
+    <h3 data-lang="vi">Đưa đối tượng từ layer 0 về layer đúng</h3>
+    <h3 data-lang="en">Moving objects from layer 0 to the right layer</h3>
+
+    <p data-lang="vi">Đối tượng vẽ nhầm trên layer <code>0</code> thường được phát hiện khi kiểm tra bản vẽ. Chọn chúng, dùng LAYMCH và bấm vào một đối tượng tương tự đã đúng layer.</p>
+    <p data-lang="en">Objects drawn on layer <code>0</code> by mistake usually surface when you review the drawing. Select them, run LAYMCH and click a similar object that is already on the right layer.</p>
+
+    <h3 data-lang="vi">Layer đích chưa có đối tượng nào</h3>
+    <h3 data-lang="en">The destination layer has no objects yet</h3>
+
+    <p data-lang="vi">Dùng tùy chọn <strong>Name</strong> để gõ tên layer đích. Cách này cũng hữu ích khi layer đích đang bị tắt hoặc đóng băng nên bạn không bấm vào đối tượng mẫu được.</p>
+    <p data-lang="en">Use the <strong>Name</strong> option to type the destination layer name. This also helps when the destination layer is off or frozen and you cannot click a sample object on it.</p>
+
+    <div class="tip-box">
+      <strong data-lang="vi">Nên kiểm tra sau khi đổi</strong>
+      <strong data-lang="en">Check the result afterwards</strong>
+      <p data-lang="vi">Màu, linetype hoặc lineweight đặt ở ByLayer sẽ lấy theo layer đích nên hình hiển thị có thể thay đổi. Dùng <a href="/autocad/chiase/huong-dan-lenh-laywalk-autocad.html">LAYWALK</a> để duyệt lại từng layer sau khi chuẩn hóa.</p>
+      <p data-lang="en">Color, linetype and lineweight set to ByLayer follow the destination layer, so the look can change. Use <a href="/autocad/chiase/huong-dan-lenh-laywalk-autocad.html">LAYWALK</a> to walk through the layers again after standardizing.</p>
+    </div>
+
+    <h2 data-lang="vi">Lưu ý khi dùng</h2>
+    <h2 data-lang="en">Things to watch for</h2>
+
+    <ul>
+      <li><span data-lang="vi"><strong>Block:</strong> chọn Block thì lệnh đổi layer của chính Block đó, không đổi layer của các đối tượng bên trong định nghĩa Block.</span><span data-lang="en"><strong>Blocks:</strong> selecting a Block changes the Block's own layer, not the layers of the objects inside its definition.</span></li>
+      <li><span data-lang="vi"><strong>Layer khóa:</strong> đối tượng ở layer khóa thường không sửa được; mở khóa trước nếu lệnh không có tác dụng.</span><span data-lang="en"><strong>Locked layers:</strong> objects on locked layers usually cannot be changed; unlock first if the command has no effect.</span></li>
+      <li><span data-lang="vi"><strong>Xref:</strong> không thể đổi layer của đối tượng thuộc Xref, và layer của Xref (dạng <code>Xref|Layer</code>) không dùng làm layer đích được.</span><span data-lang="en"><strong>Xrefs:</strong> you cannot change the layer of Xref objects, and an Xref layer (the <code>Xref|Layer</code> form) cannot be the destination.</span></li>
+      <li><span data-lang="vi"><strong>Hoàn tác:</strong> nếu chuyển nhầm, dùng <code>U</code> hoặc Ctrl+Z ngay.</span><span data-lang="en"><strong>Undo:</strong> if you moved the wrong things, use <code>U</code> or Ctrl+Z right away.</span></li>
+    </ul>
+
+    <h2 data-lang="vi">Bộ lệnh layer đi cùng</h2>
+    <h2 data-lang="en">Related layer commands</h2>
+
+    <ul>
+      <li><span data-lang="vi"><a href="/autocad/chiase/huong-dan-lenh-laymcur-autocad.html">LAYMCUR</a>: lấy layer của một đối tượng làm layer hiện hành.</span><span data-lang="en"><a href="/autocad/chiase/huong-dan-lenh-laymcur-autocad.html">LAYMCUR</a>: makes an object's layer current.</span></li>
+      <li><span data-lang="vi"><a href="/autocad/chiase/huong-dan-lenh-laycur-autocad.html">LAYCUR</a>: chuyển đối tượng chọn sang layer hiện hành.</span><span data-lang="en"><a href="/autocad/chiase/huong-dan-lenh-laycur-autocad.html">LAYCUR</a>: moves selected objects to the current layer.</span></li>
+      <li><span data-lang="vi"><a href="/autocad/chiase/huong-dan-lenh-laymrg-gop-layer-autocad.html">LAYMRG</a>: gộp toàn bộ layer này vào layer khác và xóa layer nguồn.</span><span data-lang="en"><a href="/autocad/chiase/huong-dan-lenh-laymrg-gop-layer-autocad.html">LAYMRG</a>: merges an entire layer into another and deletes the source layer.</span></li>
+    </ul>
+
+    <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--border-color);">
+    <p style="text-align: center; font-style: italic; color: var(--text-muted); margin-bottom: 0;">
+      <span data-lang="vi">Tài liệu được nghiên cứu và tổng hợp bởi đội ngũ kỹ thuật <a href="https://ividlab.com/">iViDLab.com</a>.</span>
+      <span data-lang="en">Document researched and compiled by the <a href="https://ividlab.com/">iViDLab.com</a> technical team.</span>
+    </p>
+  </div>
+  <div class="related-container">
+    <h2 data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
+    <h2 data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">You might also be interested in</h2>
+    <div class="related-grid">
+      <a class="related-card" href="/autocad/chiase/huong-dan-lenh-laycur-autocad.html">
+        <span class="badge">Knowledge Share</span>
+        <h3><span data-lang="vi">Hướng Dẫn Lệnh LAYCUR Trong AutoCAD: Chuyển Đối Tượng Sang Layer Hiện Hành</span><span data-lang="en">LAYCUR in AutoCAD: Move Objects to the Current Layer</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/chiase/huong-dan-lenh-laymcur-autocad.html">
+        <span class="badge">Knowledge Share</span>
+        <h3><span data-lang="vi">Hướng Dẫn Lệnh LAYMCUR Trong AutoCAD: Chọn Đối Tượng Để Đặt Layer Hiện Hành</span><span data-lang="en">LAYMCUR in AutoCAD: Set the Current Layer by Picking an Object</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/chiase/huong-dan-lenh-laymrg-gop-layer-autocad.html">
+        <span class="badge">Knowledge Share</span>
+        <h3><span data-lang="vi">Hướng Dẫn Lệnh LAYMRG Trong AutoCAD: Gộp Nhiều Layer Thành Một</span><span data-lang="en">LAYMRG in AutoCAD: Merge Multiple Layers into One</span></h3>
+      </a>
+    </div>
+  </div>
+
+  <footer style="border-top: 1px solid var(--border-color); padding: 3rem 0; background-color: var(--bg-page); margin-top: 4rem; text-align: center;">
+    <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--text-primary);">
+      iViD<span style="color: #2E6583;">Lab</span>
+    </div>
+    <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">
+      © 2026 iViDLab. All rights reserved.
+    </p>
+  </footer>
+
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('ividlab-theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      const themeBtn = document.getElementById('theme-toggle');
+      function updateBtnText(theme) { themeBtn.textContent = theme === 'light' ? '☀️ LIGHT' : '🌙 DARK'; }
+      updateBtnText(savedTheme);
+      themeBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('ividlab-theme', nextTheme);
+        updateBtnText(nextTheme);
+      });
+
+      // --- Language Logic ---
+      const savedLang = localStorage.getItem('ividlab-lang') || 'vi';
+      if (savedLang === 'en') document.body.classList.add('lang-en');
+      const langBtn = document.getElementById('lang-toggle');
+      if (langBtn) {
+        langBtn.addEventListener('click', () => {
+          document.body.classList.toggle('lang-en');
+          const isEn = document.body.classList.contains('lang-en');
+          localStorage.setItem('ividlab-lang', isEn ? 'en' : 'vi');
+        });
+      }
+
+    })();
+  </script>
+</body>
+</html>

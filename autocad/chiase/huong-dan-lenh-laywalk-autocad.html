@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234924381658348" crossorigin="anonymous"></script>
+  <script type="module" src="/traffic-track.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hướng Dẫn Lệnh LAYWALK Trong AutoCAD: Duyệt Từng Layer Để Kiểm Tra Bản Vẽ - iViDLab</title>
+  <meta name="description" content="Cách dùng lệnh LAYWALK để xem từng layer riêng lẻ, tìm đối tượng lạ, kiểm tra bản vẽ nhận từ người khác và dọn layer thừa. Có mẹo khôi phục khi layer bị tắt nhầm." />
+  <link rel="canonical" href="https://ividlab.com/autocad/chiase/huong-dan-lenh-laywalk-autocad.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="iViDLab" />
+  <meta property="og:locale" content="vi_VN" />
+  <meta property="og:title" content="Hướng Dẫn Lệnh LAYWALK Trong AutoCAD: Duyệt Từng Layer Để Kiểm Tra Bản Vẽ" />
+  <meta property="og:description" content="Cách dùng lệnh LAYWALK để xem từng layer riêng lẻ, tìm đối tượng lạ, kiểm tra bản vẽ nhận từ người khác và dọn layer thừa. Có mẹo khôi phục khi layer bị tắt nhầm." />
+  <meta property="og:url" content="https://ividlab.com/autocad/chiase/huong-dan-lenh-laywalk-autocad.html" />
+  <meta property="og:image" content="https://ividlab.com/og-default.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Hướng Dẫn Lệnh LAYWALK Trong AutoCAD: Duyệt Từng Layer Để Kiểm Tra Bản Vẽ","url":"https://ividlab.com/autocad/chiase/huong-dan-lenh-laywalk-autocad.html","description":"Cách dùng lệnh LAYWALK để xem từng layer riêng lẻ, tìm đối tượng lạ, kiểm tra bản vẽ nhận từ người khác và dọn layer thừa. Có mẹo khôi phục khi layer bị tắt nhầm.","image":"https://ividlab.com/og-default.png","inLanguage":"vi","datePublished":"2026-10-03","author":{"@type":"Organization","name":"iViDLab","url":"https://ividlab.com"},"publisher":{"@type":"Organization","name":"iViDLab","url":"https://ividlab.com"}}</script>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #A2BFC7; --bg-card: #FFFFFF; --text-primary: #2B4E64; --text-body: #334155; --text-muted: #4F7C91; --border-color: #6F9AAB;
+      --link-color: #2563eb; --link-hover: #1d4ed8; --code-bg: #f3f4f6; --code-text: #dc2626;
+      --tip-bg: #f0fdf4; --tip-border: #22c55e; --tip-text: #166534;
+      --table-header: #2B4E64; --table-header-text: #FFFFFF; --table-row-alt: #f8fafc;
+      --btn-bg: #FFFFFF; --btn-text: #2B4E64; --badge-bg: #e0e7ff; --badge-text: #4338ca;
+    }
+    [data-theme="dark"] {
+      --bg-page: #182B37; --bg-card: #223B4B; --text-primary: #F0F6F8; --text-body: #E2E8F0; --text-muted: #A2BFC7; --border-color: #365B6F;
+      --link-color: #60A5FA; --link-hover: #93C5FD; --code-bg: #1e293b; --code-text: #f87171;
+      --tip-bg: #14532d; --tip-border: #4ade80; --tip-text: #dcfce7;
+      --table-header: #182B37; --table-header-text: #F0F6F8; --table-row-alt: #1e293b;
+      --btn-bg: #223B4B; --btn-text: #F0F6F8; --badge-bg: #312e81; --badge-text: #c7d2fe;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif; line-height: 1.7; color: var(--text-body);
+      background-color: var(--bg-page); max-width: 940px; margin: 0 auto; padding: 30px 20px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; flex-wrap: wrap; gap: 12px; }
+    .nav-links { display: flex; align-items: center; gap: 12px; }
+    .back-link { color: var(--text-primary); text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: color 0.2s; }
+    .back-link:hover { text-decoration: underline; color: var(--link-color); }
+    .toggle-btn {
+      background: var(--btn-bg); border: 1px solid var(--border-color); color: var(--btn-text);
+      font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 700;
+      padding: 6px 14px; border-radius: 20px; cursor: pointer; display: inline-flex;
+      align-items: center; gap: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s;
+    }
+    .toggle-btn:hover { border-color: var(--link-color); transform: translateY(-1px); }
+    .article-container {
+      background: var(--bg-card); padding: 45px; border-radius: 16px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15); border: 1px solid var(--border-color);
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+    h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text-primary); margin-top: 1.6em; margin-bottom: 0.6em; }
+    h1 { font-size: 2.2rem; line-height: 1.25; margin-top: 0; color: var(--link-color); }
+    h2 { font-size: 1.55rem; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; }
+    h3 { font-size: 1.25rem; }
+    p { margin-bottom: 1.3em; }
+    ul, ol { margin-bottom: 1.5em; padding-left: 1.6em; }
+    li { margin-bottom: 0.7em; }
+    a { color: var(--link-color); text-decoration: none; font-weight: 600; }
+    a:hover { color: var(--link-hover); text-decoration: underline; }
+    code { background-color: var(--code-bg); padding: 3px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; color: var(--code-text); font-size: 0.88em; font-weight: 600; }
+    
+    table { width: 100%; border-collapse: collapse; margin: 30px 0; font-size: 0.95rem; }
+    th, td { padding: 14px 18px; text-align: left; border: 1px solid var(--border-color); }
+    th { background-color: var(--table-header); color: var(--table-header-text); font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 1rem; }
+    tr:nth-child(even) { background-color: var(--table-row-alt); }
+    
+    .tip-box { background-color: var(--tip-bg); border-left: 4px solid var(--tip-border); padding: 18px 22px; border-radius: 0 12px 12px 0; margin: 25px 0; color: var(--tip-text); }
+    .tip-box strong { display: block; margin-bottom: 6px; font-size: 1.05em; }
+    .badge { display: inline-block; background-color: var(--badge-bg); color: var(--badge-text); font-size: 0.78rem; font-weight: 700; padding: 4px 10px; border-radius: 9999px; text-transform: uppercase; margin-bottom: 12px; }
+    
+    @media (max-width: 600px) { .article-container { padding: 25px 15px; } h1 { font-size: 1.75rem; } table { font-size: 0.82rem; } th, td { padding: 8px 10px; } }
+  
+    .related-container { margin-top: 45px; background: var(--bg-card); padding: 40px; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.15); transition: background-color 0.3s ease, border-color 0.3s ease; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 25px; }
+    .related-card { display: flex; flex-direction: column; text-decoration: none; background: var(--bg-page); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; transition: transform 0.2s, border-color 0.2s; }
+    .related-card:hover { transform: translateY(-3px); border-color: var(--link-color); }
+    .related-card .badge { align-self: flex-start; background: var(--badge-bg); color: var(--badge-text); font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; font-family: 'JetBrains Mono', monospace; }
+    .related-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.1rem; margin: 0; color: var(--text-primary); line-height: 1.4; transition: color 0.2s; }
+    .related-card:hover h3 { color: var(--link-color); }
+  
+    /* Language Toggle Styles */
+    [data-lang="vi"] { display: block !important; }
+    [data-lang="en"] { display: none !important; }
+    body.lang-en [data-lang="vi"] { display: none !important; }
+    body.lang-en [data-lang="en"] { display: block !important; }
+    
+    /* Fix inline elements */
+    span[data-lang="vi"], strong[data-lang="vi"], em[data-lang="vi"], a[data-lang="vi"], figcaption[data-lang="vi"] { display: inline !important; }
+    span[data-lang="en"], strong[data-lang="en"], em[data-lang="en"], a[data-lang="en"], figcaption[data-lang="en"] { display: none !important; }
+    body.lang-en span[data-lang="vi"], body.lang-en strong[data-lang="vi"], body.lang-en em[data-lang="vi"], body.lang-en a[data-lang="vi"], body.lang-en figcaption[data-lang="vi"] { display: none !important; }
+    body.lang-en span[data-lang="en"], body.lang-en strong[data-lang="en"], body.lang-en em[data-lang="en"], body.lang-en a[data-lang="en"], body.lang-en figcaption[data-lang="en"] { display: inline !important; }
+  </style>
+</head>
+<body>
+  
+  <header style="position: sticky; top: 0; z-index: 100; background-color: var(--bg-page); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 15px 0; transition: background-color 0.3s ease; margin-bottom: 30px;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+      <a href="/" style="text-decoration: none; display: flex; align-items: center;">
+        <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.45rem; font-weight: 900; letter-spacing: -0.02em; color: var(--text-primary);">
+          iViD<span style="color: #2E6583;">Lab</span>
+        </span>
+      </a>
+      <nav style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+        <a href="/?tab=all" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); transition: color 0.2s ease;">
+          <span data-lang="vi">// TRANG CHỦ</span><span data-lang="en" >// HOME</span>
+        </a>
+        <a href="/?tab=tools" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// CÔNG CỤ</span><span data-lang="en" >// TOOLS</span>
+        </a>
+        <a href="/?tab=guides" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span data-lang="en" >// GUIDES</span>
+        </a>
+        <a href="/?tab=tekla-component" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          // TEKLA APP &amp; COMPONENT
+        </a>
+        <a href="/?tab=about" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en" >// ABOUT</span>
+        </a>
+      </nav>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button id="theme-toggle" class="toggle-btn" title="Chuyển giao diện Sáng / Tối" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; padding: 6px 14px; border-radius: 20px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s;">
+          ☀️ LIGHT
+        </button>
+        <button id="lang-toggle" class="toggle-btn" title="Chuyển Ngôn Ngữ / Toggle Language" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; padding: 6px 14px; border-radius: 20px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s;">
+          🌐 VN / EN
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="article-container">
+    <span class="badge" data-lang="vi">Hướng Dẫn Lệnh</span>
+    <span class="badge" data-lang="en">Command Guide</span>
+
+    <h1 data-lang="vi">Hướng Dẫn Lệnh LAYWALK Trong AutoCAD: Duyệt Từng Layer Để Kiểm Tra Bản Vẽ</h1>
+    <h1 data-lang="en">LAYWALK in AutoCAD: Walk Through Layers to Audit a Drawing</h1>
+
+    <p data-lang="vi">Nhận một bản vẽ có hàng chục, thậm chí hàng trăm layer, bạn thường chẳng biết layer nào chứa gì. Mở bảng Layer rồi bật tắt từng cái rất mất thời gian. <code>LAYWALK</code> giải quyết việc này: nó cho bạn "đi dạo" qua từng layer, chọn layer nào thì bản vẽ chỉ hiện layer đó.</p>
+    <p data-lang="en">When you receive a drawing with dozens or even hundreds of layers, you rarely know what each one holds, and toggling layers one by one in the Layer palette is slow. <code>LAYWALK</code> lets you "walk" through the layers: select a layer and the drawing shows only that layer.</p>
+
+    <h2 data-lang="vi">Cách dùng LAYWALK cơ bản</h2>
+    <h2 data-lang="en">Basic use of LAYWALK</h2>
+
+    <ul>
+      <li><span data-lang="vi">Gõ <code>LAYWALK</code> và nhấn Enter để mở hộp thoại Layer Walk.</span><span data-lang="en">Type <code>LAYWALK</code> and press Enter to open the Layer Walk dialog.</span></li>
+      <li><span data-lang="vi">Hộp thoại liệt kê các layer trong bản vẽ. Bấm vào một layer thì chỉ layer đó hiển thị trên màn hình.</span><span data-lang="en">The dialog lists the layers in the drawing. Click a layer and only that layer is displayed.</span></li>
+      <li><span data-lang="vi">Giữ <code>Ctrl</code> hoặc <code>Shift</code> để chọn nhiều layer cùng lúc và xem chúng cùng nhau.</span><span data-lang="en">Hold <code>Ctrl</code> or <code>Shift</code> to select several layers and view them together.</span></li>
+      <li><span data-lang="vi">Nút <strong>Select Objects</strong> cho phép bạn chọn đối tượng ngay trên bản vẽ, hộp thoại sẽ chọn các layer chứa đối tượng đó. Rất tiện để tìm "đối tượng này nằm ở layer nào".</span><span data-lang="en">The <strong>Select Objects</strong> button lets you pick objects in the drawing and the dialog selects the layers that contain them. Handy for answering "which layer is this object on?".</span></li>
+      <li><span data-lang="vi">Xong việc, đóng hộp thoại để trở về trạng thái layer ban đầu (nếu ô <strong>Restore on exit</strong> được tích).</span><span data-lang="en">When finished, close the dialog to return to the original layer state (if <strong>Restore on exit</strong> is ticked).</span></li>
+    </ul>
+
+    <div class="tip-box">
+      <strong data-lang="vi">Luôn kiểm tra ô Restore on exit</strong>
+      <strong data-lang="en">Always check Restore on exit</strong>
+      <p data-lang="vi">Khi duyệt, LAYWALK tạm thời thay đổi trạng thái hiển thị của layer. Giữ ô <strong>Restore on exit</strong> được tích để AutoCAD trả mọi thứ về như cũ khi bạn đóng hộp thoại.</p>
+      <p data-lang="en">While walking, LAYWALK temporarily changes layer visibility. Keep <strong>Restore on exit</strong> ticked so AutoCAD puts everything back when you close the dialog.</p>
+    </div>
+
+    <h2 data-lang="vi">Những việc LAYWALK làm rất tốt</h2>
+    <h2 data-lang="en">What LAYWALK does best</h2>
+
+    <h3 data-lang="vi">1. Khám phá bản vẽ nhận từ người khác</h3>
+    <h3 data-lang="en">1. Explore a drawing from someone else</h3>
+
+    <p data-lang="vi">Duyệt lần lượt các layer để biết cấu trúc: layer nào là trục, kích thước, ghi chú, kết cấu... Từ đó bạn dễ quyết định layer nào cần ẩn, khóa hay giữ lại.</p>
+    <p data-lang="en">Step through the layers to learn the structure: which are grids, dimensions, notes, structure and so on. You can then decide which to hide, lock or keep.</p>
+
+    <h3 data-lang="vi">2. Tìm đối tượng lạ hoặc nằm sai layer</h3>
+    <h3 data-lang="en">2. Find stray objects or objects on the wrong layer</h3>
+
+    <p data-lang="vi">Thấy một đường line hay text không rõ nguồn gốc? Dùng <strong>Select Objects</strong> để biết nó thuộc layer nào, rồi xem layer đó còn chứa những gì khác. Rất hữu ích khi chuẩn hóa bản vẽ theo tiêu chuẩn layer của công ty.</p>
+    <p data-lang="en">See a mystery line or text? Use <strong>Select Objects</strong> to learn its layer, then see what else is on that layer. Very useful when cleaning a drawing to match a company layer standard.</p>
+
+    <h3 data-lang="vi">3. Tìm layer trống để dọn</h3>
+    <h3 data-lang="en">3. Spot empty layers to clean up</h3>
+
+    <p data-lang="vi">Layer nào khi chọn mà màn hình không hiện gì thường là layer trống hoặc chỉ chứa đối tượng ngoài vùng nhìn. Kết hợp với <code>PURGE</code> để xóa layer không dùng. Xem thêm quy trình dọn bản vẽ ở bài <a href="/autocad/chiase/giam-dung-luong-file-dwg-autocad.html">giảm dung lượng file DWG</a>.</p>
+    <p data-lang="en">A layer that shows nothing when selected is usually empty or holds objects outside the current view. Combine this with <code>PURGE</code> to remove unused layers. See the cleanup routine in the guide to <a href="/autocad/chiase/giam-dung-luong-file-dwg-autocad.html">reducing DWG size</a>.</p>
+
+    <h2 data-lang="vi">LAYWALK khác LAYISO ở điểm nào?</h2>
+    <h2 data-lang="en">How is LAYWALK different from LAYISO?</h2>
+
+    <ul>
+      <li><span data-lang="vi"><strong>LAYISO</strong>: bạn chọn <em>đối tượng</em> trên bản vẽ, các layer khác bị tắt hoặc khóa và làm mờ. Hợp để tập trung làm việc trên một nhóm đối tượng.</span><span data-lang="en"><strong>LAYISO</strong>: you pick <em>objects</em> in the drawing and other layers are turned off or locked and faded. Best for focusing on a group of objects.</span></li>
+      <li><span data-lang="vi"><strong>LAYWALK</strong>: bạn chọn <em>layer</em> trong danh sách và xem trực tiếp kết quả. Hợp để khám phá và kiểm tra.</span><span data-lang="en"><strong>LAYWALK</strong>: you pick <em>layers</em> from a list and see the result live. Best for exploring and auditing.</span></li>
+    </ul>
+
+    <p data-lang="vi">So sánh đầy đủ các lệnh quản lý layer ở bài <a href="/autocad/chiase/phan-biet-layiso-layoff-layfrz-laylck-autocad.html">phân biệt LAYISO, LAYOFF, LAYFRZ, LAYLCK, LAYWALK</a>, và cách dùng chi tiết LAYISO ở <a href="/autocad/chiase/huong-dan-lenh-layiso-autocad.html">hướng dẫn LAYISO</a>.</p>
+    <p data-lang="en">For a full comparison of the layer commands see <a href="/autocad/chiase/phan-biet-layiso-layoff-layfrz-laylck-autocad.html">LAYISO vs LAYOFF, LAYFRZ, LAYLCK and LAYWALK</a>, and for LAYISO in detail see the <a href="/autocad/chiase/huong-dan-lenh-layiso-autocad.html">LAYISO guide</a>.</p>
+
+    <h2 data-lang="vi">Nếu layer bị tắt nhầm sau khi dùng</h2>
+    <h2 data-lang="en">If layers are left off after using it</h2>
+
+    <ul>
+      <li><span data-lang="vi">Dùng <code>LAYERP</code> (Layer Previous) để quay về trạng thái layer trước đó.</span><span data-lang="en">Use <code>LAYERP</code> (Layer Previous) to return to the previous layer state.</span></li>
+      <li><span data-lang="vi">Gõ <code>LAYON</code> để bật lại tất cả layer đang tắt, và <code>LAYTHW</code> để rã băng tất cả layer đang đóng băng.</span><span data-lang="en">Type <code>LAYON</code> to turn all layers back on and <code>LAYTHW</code> to thaw every frozen layer.</span></li>
+      <li><span data-lang="vi">Với bản vẽ hay phải kiểm tra, lưu trước một trạng thái layer bằng <code>LAS</code> (Layer States Manager) để khôi phục chỉ bằng một cú bấm.</span><span data-lang="en">For drawings you audit often, save a layer state first with <code>LAS</code> (Layer States Manager) so you can restore it in one click.</span></li>
+    </ul>
+
+    <div class="tip-box">
+      <strong data-lang="vi">Lưu ý về phiên bản</strong>
+      <strong data-lang="en">A note on versions</strong>
+      <p data-lang="vi">Lệnh này nằm trong nhóm công cụ Layer Tools. Tùy bản AutoCAD và việc cài đặt Express Tools mà bạn có thể không thấy nó, nhất là trên AutoCAD LT. Nếu gõ lệnh báo <code>Unknown command</code>, hãy kiểm tra Express Tools đã được cài chưa.</p>
+      <p data-lang="en">This command belongs to the Layer Tools group. Depending on your AutoCAD version and whether Express Tools is installed you may not see it, especially on AutoCAD LT. If it reports <code>Unknown command</code>, check that Express Tools is installed.</p>
+    </div>
+
+    <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--border-color);">
+    <p style="text-align: center; font-style: italic; color: var(--text-muted); margin-bottom: 0;">
+      <span data-lang="vi">Tài liệu được nghiên cứu và tổng hợp bởi đội ngũ kỹ thuật <a href="https://ividlab.com/">iViDLab.com</a>.</span>
+      <span data-lang="en">Document researched and compiled by the <a href="https://ividlab.com/">iViDLab.com</a> technical team.</span>
+    </p>
+  </div>
+  <div class="related-container">
+    <h2 data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
+    <h2 data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">You might also be interested in</h2>
+    <div class="related-grid">
+      <a class="related-card" href="/autocad/chiase/phan-biet-layiso-layoff-layfrz-laylck-autocad.html">
+        <span class="badge">Knowledge Share</span>
+        <h3><span data-lang="vi">Phân Biệt LAYISO, LAYOFF, LAYFRZ, LAYLCK, LAYWALK Trong AutoCAD: Khi Nào Dùng Lệnh Nào?</span><span data-lang="en">LAYISO vs LAYOFF, LAYFRZ, LAYLCK and LAYWALK in AutoCAD: Which One to Use?</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/chiase/huong-dan-lenh-layiso-autocad.html">
+        <span class="badge">Knowledge Share</span>
+        <h3><span data-lang="vi">Hướng Dẫn Toàn Tập Lệnh LAYISO</span><span data-lang="en">Complete Guide to LAYISO</span></h3>
+      </a>
+      <a class="related-card" href="/autocad/chiase/giam-dung-luong-file-dwg-autocad.html">
+        <span class="badge">Knowledge Share</span>
+        <h3><span data-lang="vi">Cách Giảm Dung Lượng File DWG Nặng Và Làm AutoCAD Chạy Nhanh Hơn</span><span data-lang="en">How to Reduce a Heavy DWG File Size and Speed Up AutoCAD</span></h3>
+      </a>
+    </div>
+  </div>
+
+  <footer style="border-top: 1px solid var(--border-color); padding: 3rem 0; background-color: var(--bg-page); margin-top: 4rem; text-align: center;">
+    <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--text-primary);">
+      iViD<span style="color: #2E6583;">Lab</span>
+    </div>
+    <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">
+      © 2026 iViDLab. All rights reserved.
+    </p>
+  </footer>
+
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('ividlab-theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      const themeBtn = document.getElementById('theme-toggle');
+      function updateBtnText(theme) { themeBtn.textContent = theme === 'light' ? '☀️ LIGHT' : '🌙 DARK'; }
+      updateBtnText(savedTheme);
+      themeBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('ividlab-theme', nextTheme);
+        updateBtnText(nextTheme);
+      });
+
+      // --- Language Logic ---
+      const savedLang = localStorage.getItem('ividlab-lang') || 'vi';
+      if (savedLang === 'en') document.body.classList.add('lang-en');
+      const langBtn = document.getElementById('lang-toggle');
+      if (langBtn) {
+        langBtn.addEventListener('click', () => {
+          document.body.classList.toggle('lang-en');
+          const isEn = document.body.classList.contains('lang-en');
+          localStorage.setItem('ividlab-lang', isEn ? 'en' : 'vi');
+        });
+      }
+
+    })();
+  </script>
+</body>
+</html>
