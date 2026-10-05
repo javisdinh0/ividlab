@@ -6,18 +6,18 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234924381658348" crossorigin="anonymous"></script>
   <script type="module" src="/traffic-track.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hướng Dẫn Lệnh LAYWALK Trong AutoCAD: Duyệt Từng Layer Để Kiểm Tra Bản Vẽ - iViDLab</title>
-  <meta name="description" content="Cách dùng lệnh LAYWALK để xem từng layer riêng lẻ, tìm đối tượng lạ, kiểm tra bản vẽ nhận từ người khác và dọn layer thừa. Có mẹo khôi phục khi layer bị tắt nhầm." />
-  <link rel="canonical" href="https://ividlab.com/autocad/chiase/huong-dan-lenh-laywalk-autocad.html" />
+  <title>Hướng Dẫn Lệnh LAYMCUR Trong AutoCAD: Chọn Đối Tượng Để Đặt Layer Hiện Hành - iViDLab</title>
+  <meta name="description" content="Cách dùng lệnh LAYMCUR để đặt layer hiện hành bằng cách chọn một đối tượng, không cần tìm tên trong danh sách. Kèm LAYCUR, LAYMCH và LAYERP để vẽ đúng layer nhanh hơn." />
+  <link rel="canonical" href="https://ividlab.com/autocad/chiase/huong-dan-lenh-laymcur-autocad.html" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="iViDLab" />
   <meta property="og:locale" content="vi_VN" />
-  <meta property="og:title" content="Hướng Dẫn Lệnh LAYWALK Trong AutoCAD: Duyệt Từng Layer Để Kiểm Tra Bản Vẽ" />
-  <meta property="og:description" content="Cách dùng lệnh LAYWALK để xem từng layer riêng lẻ, tìm đối tượng lạ, kiểm tra bản vẽ nhận từ người khác và dọn layer thừa. Có mẹo khôi phục khi layer bị tắt nhầm." />
-  <meta property="og:url" content="https://ividlab.com/autocad/chiase/huong-dan-lenh-laywalk-autocad.html" />
+  <meta property="og:title" content="Hướng Dẫn Lệnh LAYMCUR Trong AutoCAD: Chọn Đối Tượng Để Đặt Layer Hiện Hành" />
+  <meta property="og:description" content="Cách dùng lệnh LAYMCUR để đặt layer hiện hành bằng cách chọn một đối tượng, không cần tìm tên trong danh sách. Kèm LAYCUR, LAYMCH và LAYERP để vẽ đúng layer nhanh hơn." />
+  <meta property="og:url" content="https://ividlab.com/autocad/chiase/huong-dan-lenh-laymcur-autocad.html" />
   <meta property="og:image" content="https://ividlab.com/og-default.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Hướng Dẫn Lệnh LAYWALK Trong AutoCAD: Duyệt Từng Layer Để Kiểm Tra Bản Vẽ","url":"https://ividlab.com/autocad/chiase/huong-dan-lenh-laywalk-autocad.html","description":"Cách dùng lệnh LAYWALK để xem từng layer riêng lẻ, tìm đối tượng lạ, kiểm tra bản vẽ nhận từ người khác và dọn layer thừa. Có mẹo khôi phục khi layer bị tắt nhầm.","image":"https://ividlab.com/og-default.png","inLanguage":"vi","datePublished":"2026-10-03","author":{"@type":"Organization","name":"iViDLab","url":"https://ividlab.com"},"publisher":{"@type":"Organization","name":"iViDLab","url":"https://ividlab.com"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Hướng Dẫn Lệnh LAYMCUR Trong AutoCAD: Chọn Đối Tượng Để Đặt Layer Hiện Hành","url":"https://ividlab.com/autocad/chiase/huong-dan-lenh-laymcur-autocad.html","description":"Cách dùng lệnh LAYMCUR để đặt layer hiện hành bằng cách chọn một đối tượng, không cần tìm tên trong danh sách. Kèm LAYCUR, LAYMCH và LAYERP để vẽ đúng layer nhanh hơn.","image":"https://ividlab.com/og-default.png","inLanguage":"vi","datePublished":"2026-10-03","author":{"@type":"Organization","name":"iViDLab","url":"https://ividlab.com"},"publisher":{"@type":"Organization","name":"iViDLab","url":"https://ividlab.com"}}</script>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -142,77 +142,59 @@
     <span class="badge" data-lang="vi">Hướng Dẫn Lệnh</span>
     <span class="badge" data-lang="en">Command Guide</span>
 
-    <h1 data-lang="vi">Hướng Dẫn Lệnh LAYWALK Trong AutoCAD: Duyệt Từng Layer Để Kiểm Tra Bản Vẽ</h1>
-    <h1 data-lang="en">LAYWALK in AutoCAD: Walk Through Layers to Audit a Drawing</h1>
+    <h1 data-lang="vi">Hướng Dẫn Lệnh LAYMCUR Trong AutoCAD: Chọn Đối Tượng Để Đặt Layer Hiện Hành</h1>
+    <h1 data-lang="en">LAYMCUR in AutoCAD: Set the Current Layer by Picking an Object</h1>
 
-    <p data-lang="vi">Nhận một bản vẽ có hàng chục, thậm chí hàng trăm layer, bạn thường chẳng biết layer nào chứa gì. Mở bảng Layer rồi bật tắt từng cái rất mất thời gian. <code>LAYWALK</code> giải quyết việc này: nó cho bạn "đi dạo" qua từng layer, chọn layer nào thì bản vẽ chỉ hiện layer đó.</p>
-    <p data-lang="en">When you receive a drawing with dozens or even hundreds of layers, you rarely know what each one holds, and toggling layers one by one in the Layer palette is slow. <code>LAYWALK</code> lets you "walk" through the layers: select a layer and the drawing shows only that layer.</p>
+    <p data-lang="vi">Vẽ đúng layer là nền tảng của bản vẽ gọn gàng. Nhưng với bản vẽ có hàng chục layer, việc mở danh sách rồi dò tên layer mỗi lần đổi loại đối tượng rất tốn thời gian. <code>LAYMCUR</code> (Make Object's Layer Current) giải quyết bằng cách khác: bạn chỉ cần bấm vào một đối tượng có sẵn, layer của nó trở thành layer hiện hành.</p>
+    <p data-lang="en">Drawing on the right layer is the foundation of a tidy drawing. In a file with dozens of layers, opening the list and hunting for a name each time you change object type wastes time. <code>LAYMCUR</code> (Make Object's Layer Current) takes a different approach: click an existing object and its layer becomes the current layer.</p>
 
-    <h2 data-lang="vi">Cách dùng LAYWALK cơ bản</h2>
-    <h2 data-lang="en">Basic use of LAYWALK</h2>
-
-    <ul>
-      <li><span data-lang="vi">Gõ <code>LAYWALK</code> và nhấn Enter để mở hộp thoại Layer Walk.</span><span data-lang="en">Type <code>LAYWALK</code> and press Enter to open the Layer Walk dialog.</span></li>
-      <li><span data-lang="vi">Hộp thoại liệt kê các layer trong bản vẽ. Bấm vào một layer thì chỉ layer đó hiển thị trên màn hình.</span><span data-lang="en">The dialog lists the layers in the drawing. Click a layer and only that layer is displayed.</span></li>
-      <li><span data-lang="vi">Giữ <code>Ctrl</code> hoặc <code>Shift</code> để chọn nhiều layer cùng lúc và xem chúng cùng nhau.</span><span data-lang="en">Hold <code>Ctrl</code> or <code>Shift</code> to select several layers and view them together.</span></li>
-      <li><span data-lang="vi">Nút <strong>Select Objects</strong> cho phép bạn chọn đối tượng ngay trên bản vẽ, hộp thoại sẽ chọn các layer chứa đối tượng đó. Rất tiện để tìm "đối tượng này nằm ở layer nào".</span><span data-lang="en">The <strong>Select Objects</strong> button lets you pick objects in the drawing and the dialog selects the layers that contain them. Handy for answering "which layer is this object on?".</span></li>
-      <li><span data-lang="vi">Xong việc, đóng hộp thoại để trở về trạng thái layer ban đầu (nếu ô <strong>Restore on exit</strong> được tích).</span><span data-lang="en">When finished, close the dialog to return to the original layer state (if <strong>Restore on exit</strong> is ticked).</span></li>
-    </ul>
-
-    <div class="tip-box">
-      <strong data-lang="vi">Luôn kiểm tra ô Restore on exit</strong>
-      <strong data-lang="en">Always check Restore on exit</strong>
-      <p data-lang="vi">Khi duyệt, LAYWALK tạm thời thay đổi trạng thái hiển thị của layer. Giữ ô <strong>Restore on exit</strong> được tích để AutoCAD trả mọi thứ về như cũ khi bạn đóng hộp thoại.</p>
-      <p data-lang="en">While walking, LAYWALK temporarily changes layer visibility. Keep <strong>Restore on exit</strong> ticked so AutoCAD puts everything back when you close the dialog.</p>
-    </div>
-
-    <h2 data-lang="vi">Những việc LAYWALK làm rất tốt</h2>
-    <h2 data-lang="en">What LAYWALK does best</h2>
-
-    <h3 data-lang="vi">1. Khám phá bản vẽ nhận từ người khác</h3>
-    <h3 data-lang="en">1. Explore a drawing from someone else</h3>
-
-    <p data-lang="vi">Duyệt lần lượt các layer để biết cấu trúc: layer nào là trục, kích thước, ghi chú, kết cấu... Từ đó bạn dễ quyết định layer nào cần ẩn, khóa hay giữ lại.</p>
-    <p data-lang="en">Step through the layers to learn the structure: which are grids, dimensions, notes, structure and so on. You can then decide which to hide, lock or keep.</p>
-
-    <h3 data-lang="vi">2. Tìm đối tượng lạ hoặc nằm sai layer</h3>
-    <h3 data-lang="en">2. Find stray objects or objects on the wrong layer</h3>
-
-    <p data-lang="vi">Thấy một đường line hay text không rõ nguồn gốc? Dùng <strong>Select Objects</strong> để biết nó thuộc layer nào, rồi xem layer đó còn chứa những gì khác. Rất hữu ích khi chuẩn hóa bản vẽ theo tiêu chuẩn layer của công ty.</p>
-    <p data-lang="en">See a mystery line or text? Use <strong>Select Objects</strong> to learn its layer, then see what else is on that layer. Very useful when cleaning a drawing to match a company layer standard.</p>
-
-    <h3 data-lang="vi">3. Tìm layer trống để dọn</h3>
-    <h3 data-lang="en">3. Spot empty layers to clean up</h3>
-
-    <p data-lang="vi">Layer nào khi chọn mà màn hình không hiện gì thường là layer trống hoặc chỉ chứa đối tượng ngoài vùng nhìn. Kết hợp với <code>PURGE</code> để xóa layer không dùng. Xem thêm quy trình dọn bản vẽ ở bài <a href="/autocad/chiase/giam-dung-luong-file-dwg-autocad.html">giảm dung lượng file DWG</a>.</p>
-    <p data-lang="en">A layer that shows nothing when selected is usually empty or holds objects outside the current view. Combine this with <code>PURGE</code> to remove unused layers. See the cleanup routine in the guide to <a href="/autocad/chiase/giam-dung-luong-file-dwg-autocad.html">reducing DWG size</a>.</p>
-
-    <h2 data-lang="vi">LAYWALK khác LAYISO ở điểm nào?</h2>
-    <h2 data-lang="en">How is LAYWALK different from LAYISO?</h2>
+    <h2 data-lang="vi">Cách dùng LAYMCUR</h2>
+    <h2 data-lang="en">How to use LAYMCUR</h2>
 
     <ul>
-      <li><span data-lang="vi"><strong>LAYISO</strong>: bạn chọn <em>đối tượng</em> trên bản vẽ, các layer khác bị tắt hoặc khóa và làm mờ. Hợp để tập trung làm việc trên một nhóm đối tượng.</span><span data-lang="en"><strong>LAYISO</strong>: you pick <em>objects</em> in the drawing and other layers are turned off or locked and faded. Best for focusing on a group of objects.</span></li>
-      <li><span data-lang="vi"><strong>LAYWALK</strong>: bạn chọn <em>layer</em> trong danh sách và xem trực tiếp kết quả. Hợp để khám phá và kiểm tra.</span><span data-lang="en"><strong>LAYWALK</strong>: you pick <em>layers</em> from a list and see the result live. Best for exploring and auditing.</span></li>
+      <li><span data-lang="vi">Gõ <code>LAYMCUR</code> rồi nhấn Enter.</span><span data-lang="en">Type <code>LAYMCUR</code> and press Enter.</span></li>
+      <li><span data-lang="vi">Bấm chọn một đối tượng nằm trên layer bạn muốn vẽ tiếp.</span><span data-lang="en">Click an object on the layer you want to keep drawing on.</span></li>
+      <li><span data-lang="vi">AutoCAD đặt layer của đối tượng đó làm layer hiện hành và báo tên layer trong Command line.</span><span data-lang="en">AutoCAD makes that object's layer the current layer and reports the layer name in the Command line.</span></li>
+      <li><span data-lang="vi">Vẽ tiếp: các đối tượng mới sẽ nằm trên layer vừa chọn.</span><span data-lang="en">Keep drawing: new objects go on the layer you just picked.</span></li>
     </ul>
 
-    <p data-lang="vi">So sánh đầy đủ các lệnh quản lý layer ở bài <a href="/autocad/chiase/phan-biet-layiso-layoff-layfrz-laylck-autocad.html">phân biệt LAYISO, LAYOFF, LAYFRZ, LAYLCK, LAYWALK</a>, và cách dùng chi tiết LAYISO ở <a href="/autocad/chiase/huong-dan-lenh-layiso-autocad.html">hướng dẫn LAYISO</a>.</p>
-    <p data-lang="en">For a full comparison of the layer commands see <a href="/autocad/chiase/phan-biet-layiso-layoff-layfrz-laylck-autocad.html">LAYISO vs LAYOFF, LAYFRZ, LAYLCK and LAYWALK</a>, and for LAYISO in detail see the <a href="/autocad/chiase/huong-dan-lenh-layiso-autocad.html">LAYISO guide</a>.</p>
+    <p data-lang="vi">Ví dụ: bạn muốn vẽ thêm một đường tim. Thay vì mở danh sách tìm layer tim, chỉ cần gõ <code>LAYMCUR</code> và bấm vào một đường tim có sẵn, rồi vẽ.</p>
+    <p data-lang="en">Example: you want to add another centerline. Instead of opening the list to find the centerline layer, just type <code>LAYMCUR</code>, click an existing centerline and start drawing.</p>
 
-    <h2 data-lang="vi">Nếu layer bị tắt nhầm sau khi dùng</h2>
-    <h2 data-lang="en">If layers are left off after using it</h2>
+    <p data-lang="vi">Trên thanh Ribbon, nút tương ứng nằm ở nhóm Layers với tên <strong>Make Current</strong>. Biến hệ thống <code>CLAYER</code> lưu tên layer hiện hành nếu bạn cần xem nhanh.</p>
+    <p data-lang="en">On the Ribbon the matching button is in the Layers panel, named <strong>Make Current</strong>. The <code>CLAYER</code> system variable stores the current layer name if you need to check it.</p>
+
+    <h2 data-lang="vi">Bộ lệnh đi kèm giúp vẽ đúng layer</h2>
+    <h2 data-lang="en">Companion commands for drawing on the right layer</h2>
 
     <ul>
-      <li><span data-lang="vi">Dùng <code>LAYERP</code> (Layer Previous) để quay về trạng thái layer trước đó.</span><span data-lang="en">Use <code>LAYERP</code> (Layer Previous) to return to the previous layer state.</span></li>
-      <li><span data-lang="vi">Gõ <code>LAYON</code> để bật lại tất cả layer đang tắt, và <code>LAYTHW</code> để rã băng tất cả layer đang đóng băng.</span><span data-lang="en">Type <code>LAYON</code> to turn all layers back on and <code>LAYTHW</code> to thaw every frozen layer.</span></li>
-      <li><span data-lang="vi">Với bản vẽ hay phải kiểm tra, lưu trước một trạng thái layer bằng <code>LAS</code> (Layer States Manager) để khôi phục chỉ bằng một cú bấm.</span><span data-lang="en">For drawings you audit often, save a layer state first with <code>LAS</code> (Layer States Manager) so you can restore it in one click.</span></li>
+      <li><span data-lang="vi"><code>LAYMCUR</code>: lấy layer của một đối tượng làm layer hiện hành.</span><span data-lang="en"><code>LAYMCUR</code>: makes an object's layer current.</span></li>
+      <li><span data-lang="vi"><code>LAYCUR</code>: chuyển các đối tượng được chọn sang layer hiện hành. Dùng khi lỡ vẽ nhầm layer.</span><span data-lang="en"><code>LAYCUR</code>: moves the selected objects to the current layer. Use it when you drew on the wrong layer.</span></li>
+      <li><span data-lang="vi"><code>LAYMCH</code> (Layer Match): chọn đối tượng cần đổi, rồi chọn một đối tượng đích; đối tượng đầu chuyển sang layer của đối tượng đích.</span><span data-lang="en"><code>LAYMCH</code> (Layer Match): select the objects to change, then a destination object; the first objects move to the destination's layer.</span></li>
+      <li><span data-lang="vi"><code>LAYERP</code> (Layer Previous): quay lại trạng thái layer trước đó.</span><span data-lang="en"><code>LAYERP</code> (Layer Previous): returns to the previous layer state.</span></li>
     </ul>
 
-    <div class="tip-box">
-      <strong data-lang="vi">Lưu ý về phiên bản</strong>
-      <strong data-lang="en">A note on versions</strong>
-      <p data-lang="vi">Lệnh này nằm trong nhóm công cụ Layer Tools. Tùy bản AutoCAD và việc cài đặt Express Tools mà bạn có thể không thấy nó, nhất là trên AutoCAD LT. Nếu gõ lệnh báo <code>Unknown command</code>, hãy kiểm tra Express Tools đã được cài chưa.</p>
-      <p data-lang="en">This command belongs to the Layer Tools group. Depending on your AutoCAD version and whether Express Tools is installed you may not see it, especially on AutoCAD LT. If it reports <code>Unknown command</code>, check that Express Tools is installed.</p>
-    </div>
+    <p data-lang="vi">Nhờ vậy bạn gần như không cần mở danh sách layer: chọn layer bằng <code>LAYMCUR</code>, sửa lỗi bằng <code>LAYCUR</code> hoặc <code>LAYMCH</code>. Các lệnh quản lý hiển thị layer được so sánh ở bài <a href="/autocad/chiase/phan-biet-layiso-layoff-layfrz-laylck-autocad.html">phân biệt LAYISO, LAYOFF, LAYFRZ, LAYLCK, LAYWALK</a>.</p>
+    <p data-lang="en">That way you rarely need the layer list at all: choose layers with <code>LAYMCUR</code> and fix mistakes with <code>LAYCUR</code> or <code>LAYMCH</code>. The commands that control layer visibility are compared in <a href="/autocad/chiase/phan-biet-layiso-layoff-layfrz-laylck-autocad.html">LAYISO vs LAYOFF, LAYFRZ, LAYLCK and LAYWALK</a>.</p>
+
+    <h2 data-lang="vi">Lưu ý khi dùng</h2>
+    <h2 data-lang="en">Things to watch for</h2>
+
+    <ul>
+      <li><span data-lang="vi"><strong>Layer hiện hành đang tắt:</strong> đối tượng mới vẽ ra sẽ không nhìn thấy; hãy bật lại layer.</span><span data-lang="en"><strong>Current layer turned off:</strong> new objects will not be visible; turn the layer back on.</span></li>
+      <li><span data-lang="vi"><strong>Layer của Xref</strong> (dạng <code>Xref|Layer</code>) không thể đặt làm layer hiện hành.</span><span data-lang="en"><strong>Xref layers</strong> (the <code>Xref|Layer</code> form) cannot be made current.</span></li>
+      <li><span data-lang="vi"><strong>Đối tượng nằm trong Block:</strong> khi chọn một Block, bạn nhận layer của chính Block đó chứ không phải layer của các đối tượng bên trong.</span><span data-lang="en"><strong>Objects inside Blocks:</strong> when you pick a Block you get the Block's own layer, not the layers of the objects inside it.</span></li>
+      <li><span data-lang="vi"><strong>Đối tượng ở layer khóa:</strong> vẫn có thể lấy layer làm hiện hành bằng LAYMCUR, nhưng bạn sẽ không sửa được đối tượng cũ trên layer đó cho tới khi mở khóa.</span><span data-lang="en"><strong>Objects on locked layers:</strong> you can still make the layer current with LAYMCUR, but you cannot edit existing objects on it until it is unlocked.</span></li>
+    </ul>
+
+    <h2 data-lang="vi">Mẹo làm việc nhanh hơn</h2>
+    <h2 data-lang="en">Tips to work faster</h2>
+
+    <ul>
+      <li><span data-lang="vi">Gán tên lệnh tắt ngắn cho <code>LAYMCUR</code>, <code>LAYCUR</code>, <code>LAYMCH</code> trong Command Aliases Editor (thẻ Manage trên Ribbon) để thao tác chỉ bằng một hai phím. Với lệnh Lisp thì xem bài <a href="/autocad/chiase/tuy-chinh-lenh-autolisp.html">đổi tên lệnh AutoLISP</a>.</span><span data-lang="en">Give <code>LAYMCUR</code>, <code>LAYCUR</code> and <code>LAYMCH</code> short aliases in the Command Aliases Editor (Manage tab on the Ribbon) so each takes only a keystroke or two. For Lisp commands see <a href="/autocad/chiase/tuy-chinh-lenh-autolisp.html">how to rename AutoLISP commands</a>.</span></li>
+      <li><span data-lang="vi">Dùng <a href="/autocad/chiase/huong-dan-lenh-laywalk-autocad.html">LAYWALK</a> để xem từng layer chứa gì trước khi quyết định vẽ vào layer nào.</span><span data-lang="en">Use <a href="/autocad/chiase/huong-dan-lenh-laywalk-autocad.html">LAYWALK</a> to see what each layer holds before deciding where to draw.</span></li>
+      <li><span data-lang="vi">Khi gộp layer trùng lặp cho gọn, xem <a href="/autocad/chiase/huong-dan-lenh-laymrg-gop-layer-autocad.html">hướng dẫn LAYMRG</a>.</span><span data-lang="en">To consolidate duplicate layers, see the <a href="/autocad/chiase/huong-dan-lenh-laymrg-gop-layer-autocad.html">LAYMRG guide</a>.</span></li>
+    </ul>
 
     <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--border-color);">
     <p style="text-align: center; font-style: italic; color: var(--text-muted); margin-bottom: 0;">
@@ -224,17 +206,17 @@
     <h2 data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
     <h2 data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">You might also be interested in</h2>
     <div class="related-grid">
+      <a class="related-card" href="/autocad/chiase/huong-dan-lenh-laywalk-autocad.html">
+        <span class="badge">Knowledge Share</span>
+        <h3><span data-lang="vi">Hướng Dẫn Lệnh LAYWALK Trong AutoCAD: Duyệt Từng Layer Để Kiểm Tra Bản Vẽ</span><span data-lang="en">LAYWALK in AutoCAD: Walk Through Layers to Audit a Drawing</span></h3>
+      </a>
       <a class="related-card" href="/autocad/chiase/phan-biet-layiso-layoff-layfrz-laylck-autocad.html">
         <span class="badge">Knowledge Share</span>
         <h3><span data-lang="vi">Phân Biệt LAYISO, LAYOFF, LAYFRZ, LAYLCK, LAYWALK Trong AutoCAD: Khi Nào Dùng Lệnh Nào?</span><span data-lang="en">LAYISO vs LAYOFF, LAYFRZ, LAYLCK and LAYWALK in AutoCAD: Which One to Use?</span></h3>
       </a>
-      <a class="related-card" href="/autocad/chiase/huong-dan-lenh-layiso-autocad.html">
+      <a class="related-card" href="/autocad/chiase/huong-dan-lenh-laymrg-gop-layer-autocad.html">
         <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Hướng Dẫn Toàn Tập Lệnh LAYISO</span><span data-lang="en">Complete Guide to LAYISO</span></h3>
-      </a>
-      <a class="related-card" href="/autocad/chiase/giam-dung-luong-file-dwg-autocad.html">
-        <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Cách Giảm Dung Lượng File DWG Nặng Và Làm AutoCAD Chạy Nhanh Hơn</span><span data-lang="en">How to Reduce a Heavy DWG File Size and Speed Up AutoCAD</span></h3>
+        <h3><span data-lang="vi">Hướng Dẫn Lệnh LAYMRG Trong AutoCAD: Gộp Nhiều Layer Thành Một</span><span data-lang="en">LAYMRG in AutoCAD: Merge Multiple Layers into One</span></h3>
       </a>
     </div>
   </div>
