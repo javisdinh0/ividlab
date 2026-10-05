@@ -130,5 +130,17 @@ export const guidesData = [
     },
     date: 'October 2026',
     link: '/autocad/chiase/huong-dan-lenh-laymrg-gop-layer-autocad.html'
+  },
+  {
+    id: 'huong-dan-lenh-laydel-xoa-layer-autocad',
+    title: 'Hướng Dẫn Lệnh LAYDEL Trong AutoCAD: Xóa Layer Kèm Toàn Bộ Đối Tượng An Toàn',
+    category: 'Kiến Thức CAD',
+    tag: 'Hướng Dẫn Lệnh',
+    description: {
+      vi: 'Cách dùng lệnh LAYDEL để xóa hẳn một layer cùng mọi đối tượng trên đó, vì sao nút xóa trong bảng Layer báo layer đang dùng, và quy trình kiểm tra, sao lưu trước khi xóa để không mất dữ liệu.',
+      en: 'How to use LAYDEL to remove a layer together with every object on it, why the delete button in the Layer palette refuses, and a check-and-backup routine so you do not lose data.'
+    },
+    date: 'October 2026',
+    link: '/autocad/chiase/huong-dan-lenh-laydel-xoa-layer-autocad.html'
   }
 ];
