@@ -106,5 +106,17 @@ export const guidesData = [
     },
     date: 'October 2026',
     link: '/autocad/chiase/phan-biet-layiso-layoff-layfrz-laylck-autocad.html'
+  },
+  {
+    id: 'huong-dan-lenh-laywalk-autocad',
+    title: 'Hướng Dẫn Lệnh LAYWALK Trong AutoCAD: Duyệt Từng Layer Để Kiểm Tra Bản Vẽ',
+    category: 'Kiến Thức CAD',
+    tag: 'Hướng Dẫn Lệnh',
+    description: {
+      vi: 'Cách dùng lệnh LAYWALK để xem từng layer riêng lẻ, tìm đối tượng lạ, kiểm tra bản vẽ nhận từ người khác và dọn layer thừa. Có mẹo khôi phục khi layer bị tắt nhầm.',
+      en: 'How to use LAYWALK to view layers one at a time, find stray objects, audit a drawing from someone else and clean up unused layers, with tips for recovering layers left off by mistake.'
+    },
+    date: 'October 2026',
+    link: '/autocad/chiase/huong-dan-lenh-laywalk-autocad.html'
   }
 ];
