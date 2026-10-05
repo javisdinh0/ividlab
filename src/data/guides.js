@@ -154,5 +154,17 @@ export const guidesData = [
     },
     date: 'October 2026',
     link: '/autocad/chiase/huong-dan-lenh-laymcur-autocad.html'
+  },
+  {
+    id: 'huong-dan-lenh-laycur-autocad',
+    title: 'Hướng Dẫn Lệnh LAYCUR Trong AutoCAD: Chuyển Đối Tượng Sang Layer Hiện Hành',
+    category: 'Kiến Thức CAD',
+    tag: 'Hướng Dẫn Lệnh',
+    description: {
+      vi: 'Cách dùng lệnh LAYCUR để chuyển nhanh các đối tượng vẽ nhầm sang layer hiện hành. Kết hợp với LAYMCUR, SELECTSIMILAR để sửa layer hàng loạt, cùng các lưu ý về ByLayer và Block.',
+      en: 'How to use LAYCUR to quickly move objects drawn on the wrong layer to the current layer. Combine it with LAYMCUR and SELECTSIMILAR for bulk fixes, plus notes on ByLayer and Blocks.'
+    },
+    date: 'October 2026',
+    link: '/autocad/chiase/huong-dan-lenh-laycur-autocad.html'
   }
 ];
