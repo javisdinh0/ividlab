@@ -12,7 +12,8 @@ const SOURCES = [
 // Thêm sản phẩm mới: thêm một mục ở đây, một nguồn ở SOURCES và chuỗi tên/mô tả trong translations.js.
 const PRODUCTS = [
   { key: 'peb', label: 'PEB Member', cover: '/tekla/peb-member/img/01-tong-quan.png', intro: '/tekla/peb-member/gioi-thieu-peb-member.html' },
-  { key: '2v', label: 'Tekla Component', cover: '/tekla/component/img/2v-cross-cover.png', intro: '/tekla/component/anti-sag-2v-cross.html' }
+  { key: '2v', label: '2V Cross', cover: '/tekla/component/img/2v-cross-cover.png', intro: '/tekla/component/anti-sag-2v-cross.html' },
+  { key: 'tube', label: 'Tube Round Connect', cover: '/tekla/component/img/tube-round-connect-radii.png', intro: '/tekla/component/tube-round-connect.html' }
 ];
 const NS = 'teklacomponent';
 
@@ -53,7 +54,7 @@ export default function PebMemberSection({ t, lang }) {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
       })
-      .then((data) => (Array.isArray(data) ? data : []).map((post) => ({ ...post, product: source.label })))))
+      .then((data) => (Array.isArray(data) ? data : []).map((post) => ({ ...post, product: post.product || source.label })))))
       .then((lists) => {
         if (cancelled) return;
         setPosts(lists.flat().sort((a, b) => String(b.date).localeCompare(String(a.date))));

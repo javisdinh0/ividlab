@@ -1,5 +1,24 @@
 [
   {
+    "id": "tube-round-connect",
+    "link": "/tekla/component/tube-round-connect.html",
+    "product": "Tube Round Connect",
+    "title": {
+      "vi": "iVidLab Tube Round Connect — Nối ống tròn trong Tekla ở mọi góc, chỉ một thao tác",
+      "en": "iVidLab Tube Round Connect — Joining round tubes in Tekla at any angle, in one step"
+    },
+    "description": {
+      "vi": "Chọn hai ống, component tự dựng chi tiết nối: ống lồng hoặc cút ở mọi góc, kể cả quay đầu 180 độ. Tự tính kích thước và bán kính cong, có mối hàn tự động.",
+      "en": "Pick two tubes and the component builds the joint: a straight sleeve or a bend at any angle, even a 180-degree return. Size and bend radius are calculated, with an optional automatic weld."
+    },
+    "tag": {
+      "vi": "Giới thiệu",
+      "en": "Overview"
+    },
+    "date": "2026-10-06",
+    "cover": "/tekla/component/img/tube-round-connect-radii.png"
+  },
+  {
     "id": "cap-nhat-2v-cross-1-30",
     "link": "/tekla/component/cap-nhat-2v-cross-1-30.html",
     "title": {
@@ -15,7 +34,8 @@
       "en": "Release"
     },
     "date": "2026-10-04",
-    "cover": "/tekla/component/img/2v-cross-cover.png"
+    "cover": "/tekla/component/img/2v-cross-cover.png",
+    "product": "2V Cross"
   },
   {
     "id": "anti-sag-2v-cross",
@@ -34,6 +54,7 @@
     },
     "date": "2026-10-03",
     "cover": "/tekla/component/img/2v-cross-cover.png",
-    "featured": true
+    "featured": true,
+    "product": "2V Cross"
   }
 ]
