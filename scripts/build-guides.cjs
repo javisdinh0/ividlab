@@ -23,6 +23,7 @@ for (const a of articles) CARDS[a.slug] = [a.title, a.titleEn];
 
 function renderBlock([type, vi, en]) {
   const both = (tag, v, e, attr = '') => `    <${tag} data-lang="vi"${attr}>${v}</${tag}>\n    <${tag} data-lang="en"${attr}>${e}</${tag}>`;
+  if (type === 'raw') return vi.replace('<figure ', '<figure data-lang="vi" ') + '\n' + en.replace('<figure ', '<figure data-lang="en" ');
   if (type === 'p') return both('p', vi, en);
   if (type === 'h2' || type === 'h3') return both(type, vi, en);
   if (type === 'ul') {
