@@ -7,15 +7,15 @@
   <!-- Ghi lượt xem cho dashboard /admin — giữ dòng này ở mọi trang công khai -->
   <script type="module" src="/traffic-track.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-en="iVidLab Tube Round Connect 1.12 – Joining round tubes in any direction in space - iViDLab">iVidLab Tube Round Connect 1.12 — Nối ống tròn ở mọi hướng trong không gian - iViDLab</title>
-  <meta name="description" content="Bản 1.12 nối ống tròn ở mọi hướng trong không gian, kể cả ống dựng đứng, xiên hoặc chéo nhau, và cho đặt tên, số assembly cho đoạn nối. Tekla 2016 trở lên." />
+  <title data-en="iVidLab Tube Round Connect – Joining round tubes in Tekla at any angle, in one step - iViDLab">iVidLab Tube Round Connect — Nối ống tròn trong Tekla ở mọi góc, chỉ một thao tác - iViDLab</title>
+  <meta name="description" content="Component Tekla mới nối hai ống tròn bằng ống lồng hoặc cút ở mọi góc, kể cả quay đầu 180 độ: chọn hai ống, component tự dựng chi tiết nối và tự tính kích thước. Tekla 2016 trở lên." />
   <link rel="canonical" href="https://ividlab.com/tekla/component/tube-round-connect.html" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="iViDLab" />
-  <meta property="og:title" content="iVidLab Tube Round Connect 1.12 — Nối ống tròn ở mọi hướng trong không gian" />
-  <meta property="og:description" content="Ống nằm ngang, dựng đứng hay chéo nhau: chọn hai ống, component tự nối. Thêm đặt tên và số assembly cho đoạn nối." />
+  <meta property="og:title" content="iVidLab Tube Round Connect — Nối ống tròn trong Tekla ở mọi góc, chỉ một thao tác" />
+  <meta property="og:description" content="Chọn hai ống, component tự dựng chi tiết nối: ống lồng hoặc cút ở mọi góc, kể cả quay đầu 180 độ." />
   <meta property="og:url" content="https://ividlab.com/tekla/component/tube-round-connect.html" />
-  <meta property="og:image" content="https://ividlab.com/tekla/component/img/tube-round-connect-1-12.png" />
+  <meta property="og:image" content="https://ividlab.com/tekla/component/img/tube-round-connect-radii.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -66,64 +66,68 @@
       <div data-lang="vi">
         <header class="article-hero">
           <div class="eyebrow">Tekla Plugin // Tekla Component</div>
-          <h1>iVidLab Tube Round Connect 1.12 — Nối ống tròn ở mọi hướng trong không gian</h1>
-          <p class="lead">Ống nằm ngang, dựng đứng hay chéo nhau: chọn hai ống, component tự nối. Bản 1.12 còn cho đặt tên và số assembly cho đoạn nối ngay trong hộp thoại.</p>
+          <h1>iVidLab Tube Round Connect — Nối ống tròn trong Tekla ở mọi góc, chỉ một thao tác</h1>
+          <p class="lead">Nối hai ống tròn trong Tekla, dù nối thẳng hay nối ở bất kỳ góc nào, kể cả quay đầu 180 độ: chọn hai ống, component tự dựng chi tiết nối và tự tính kích thước, không phải đo tay.</p>
           <ul class="meta-row">
-            <li>Phiên bản 1.12</li>
+            <li>Phiên bản 1.11</li>
+            <li>Component mới</li>
             <li>Tekla 2016 trở lên</li>
           </ul>
           <div class="cta-row">
-            <a class="btn btn--primary" href="#tai-ve">⬇ Tải Tube Round Connect 1.12</a>
+            <a class="btn btn--primary" href="#tai-ve">⬇ Tải Tube Round Connect</a>
             <a class="btn btn--ghost" href="/tekla/component/anti-sag-2v-cross.html">Xem thêm 2V Cross</a>
           </div>
         </header>
 
         <div class="callout">
-          <p><strong>Có gì mới trong 1.12</strong></p>
+          <p><strong>Tóm tắt nhanh</strong></p>
           <ul>
-            <li><strong>Nối ống ở mọi hướng:</strong> ống dựng đứng, ống xiên, hai ống lệch hoặc chéo nhau.</li>
-            <li><strong>Đặt tên và số assembly</strong> cho đoạn nối khi không dùng mối hàn.</li>
+            <li><strong>Hai chế độ nối:</strong> ống lồng (Straight sleeve) và cút (Bend).</li>
+            <li>Cút nối ở <strong>mọi góc</strong>, kể cả <strong>quay đầu 180 độ</strong> như cút chữ U.</li>
+            <li><strong>Tự tính</strong> kích thước ống nối và bán kính cong; vẫn nhập tay được.</li>
+            <li><strong>Mối hàn tự động</strong> nếu cần.</li>
           </ul>
         </div>
 
+        <h2 id="hai-che-do">1. Hai chế độ nối</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Chế độ</th><th>Làm gì</th><th>Khi nào dùng</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Straight sleeve</strong> (ống lồng)</td><td>Lồng một đoạn ống nhỏ hơn vào bên trong, bọc quanh mối nối, giữ hai ống thẳng hàng</td><td>Nối dài một đường ống thẳng</td></tr>
+              <tr><td><strong>Bend</strong> (cút)</td><td>Dựng một đoạn cong nối hai ống ở bất kỳ góc nào, kể cả quay đầu 180 độ</td><td>Đổi hướng ống, bẻ góc, làm vòng khép kín</td></tr>
+            </tbody>
+          </table>
+        </div>
         <figure class="media">
-          <img src="img/tube-round-connect-1-12.png" width="942" height="660" alt="Hộp thoại Tube Round Connect 1.12 với các ô Assembly và Assembly name, phía sau là các ống nối ở nhiều hướng trong Tekla" loading="lazy">
-          <figcaption>Tube Round Connect 1.12: ống nối ở nhiều hướng trong model, hộp thoại có thêm ô Assembly và Assembly name.</figcaption>
-        </figure>
-
-        <h2 id="moi-huong">1. Nối ống ở mọi hướng trong không gian</h2>
-        <p>Trước đây ống nằm trên mặt phẳng ngang nối thuận tiện, còn ống dựng đứng hoặc lệch hướng thì khó hơn. Từ 1.12, bạn chọn hai ống bất kỳ: ống thẳng đứng, ống xiên, hai ống vẽ tay lệch nhau vài centimet, hay chéo nhau hẳn. Component tự tìm đường nối mượt, tiếp xúc cả hai ống.</p>
-        <ul>
-          <li>Hai ống <strong>không đồng phẳng</strong>, không giao nhau vẫn nối được.</li>
-          <li>Hai ống <strong>song song nhưng lệch trục</strong> được nối thành đoạn chữ S.</li>
-          <li>Vẫn đủ hai chế độ: ống lồng (Straight sleeve) và cút (Bend), cút ở mọi góc kể cả quay đầu 180 độ.</li>
-        </ul>
-
-        <figure class="media">
-          <video src="video/tube-round-connect-1-12.mp4" controls preload="metadata" playsinline style="display:block;margin:0 auto;max-width:100%;height:auto;border-radius:10px"></video>
-          <figcaption>Video: nối ống ở nhiều hướng bằng Tube Round Connect 1.12.</figcaption>
-        </figure>
-
-        <figure class="media">
-          <img src="img/tube-round-connect-radii.png" width="1740" height="710" alt="Cùng một góc nối với năm bán kính cong khác nhau" loading="lazy">
-          <figcaption>Cùng một góc nối, so sánh năm bán kính cong khác nhau (mặt bằng dựng từ model Tekla).</figcaption>
-        </figure>
-
-        <figure class="media">
-          <img src="img/tube-round-connect-dialog-bend.png" width="620" height="295" alt="Hộp thoại ở chế độ Bend, có sơ đồ minh hoạ" loading="lazy">
+          <img src="img/tube-round-connect-dialog-bend.png" width="620" height="295" alt="Hộp thoại Tube Round Connect ở chế độ Bend, có sơ đồ minh hoạ" loading="lazy">
           <figcaption>Chế độ Bend: sơ đồ minh hoạ ngay trong hộp thoại.</figcaption>
         </figure>
-
         <figure class="media">
-          <img src="img/tube-round-connect-dialog-sleeve.png" width="620" height="295" alt="Hộp thoại ở chế độ Straight sleeve" loading="lazy">
+          <img src="img/tube-round-connect-dialog-sleeve.png" width="620" height="295" alt="Hộp thoại Tube Round Connect ở chế độ Straight sleeve" loading="lazy">
           <figcaption>Chế độ Straight sleeve.</figcaption>
         </figure>
 
-        <h2 id="assembly">2. Đặt tên và số assembly cho đoạn nối</h2>
-        <p>Khi không dùng mối hàn (Weld size = 0), đoạn nối là một assembly riêng. Hộp thoại có thêm ô <strong>Assembly</strong> (prefix, số bắt đầu) và <strong>Assembly name</strong> để bản vẽ và danh sách chi tiết gọn, đúng quy ước công ty. Giá trị mặc định đặt sẵn, sửa được.</p>
-        <p>Khi có mối hàn, đoạn nối thuộc assembly của ống nên các ô này tự mờ đi.</p>
+        <h2 id="moi-goc">2. Nối ở mọi góc, kể cả quay đầu 180 độ</h2>
+        <p>Trước đây component chỉ nối thẳng được; giờ nối được ở mọi góc mà hình học vẫn được tính tự động: đường cong tiếp xúc cả hai ống, hai đầu ống được cắt gọn, không cần dựng tay.</p>
+        <figure class="media">
+          <img src="img/tube-round-connect-radii.png" width="1740" height="710" alt="Cùng một góc nối 135 độ với năm bán kính cong khác nhau: 60, 114,3, 200, 350 và 600 mm" loading="lazy">
+          <figcaption>Cùng một góc nối, so sánh năm bán kính cong khác nhau (mặt bằng dựng từ model Tekla).</figcaption>
+        </figure>
+        <figure class="media">
+          <img src="img/tube-round-connect-model.png" width="1440" height="753" alt="Mối nối cút trong khung nhìn 3D của Tekla" loading="lazy">
+          <figcaption>Mối nối cút trong khung nhìn 3D của Tekla.</figcaption>
+        </figure>
 
-        <h2 id="cai-dat">3. Cài đặt</h2>
+        <h2 id="tu-dong">3. Tự động hoá những việc hay phải làm tay</h2>
+        <ul>
+          <li><strong>Tự tính kích thước ống nối</strong> theo ống chính đang chọn, không cần tra bảng hay đo.</li>
+          <li><strong>Tự tính bán kính cong</strong> ở chế độ Bend: mặc định 1,5 lần đường kính ống; khi quay đầu 180 độ thì tự theo khoảng cách giữa hai ống. Bạn vẫn có thể nhập tay nếu muốn.</li>
+          <li><strong>Mối hàn tự động</strong> nếu cần.</li>
+          <li>Vật liệu, tên, số thứ tự, mã hiệu đã đặt sẵn mặc định hợp lý, sửa được.</li>
+        </ul>
+
+        <h2 id="cai-dat">4. Cài đặt</h2>
         <ol class="steps">
           <li>Ở mục <a href="#tai-ve">Tải về</a> bên dưới, chọn phiên bản Tekla đang dùng để tải gói <code>.tsep</code> (từ Tekla 2016 trở lên).</li>
           <li>Nếu đã cài bản cũ, gỡ trong <strong>Tekla Extension Manager</strong> trước.</li>
@@ -134,71 +138,74 @@
       <div data-lang="en">
         <header class="article-hero">
           <div class="eyebrow">Tekla Plugin // Tekla Component</div>
-          <h1>iVidLab Tube Round Connect 1.12 — Joining round tubes in any direction in space</h1>
-          <p class="lead">Horizontal, vertical or crossing: pick two tubes and the component joins them. Version 1.12 also lets you set the assembly prefix and name of the joint right in the dialog.</p>
+          <h1>iVidLab Tube Round Connect — Joining round tubes in Tekla at any angle, in one step</h1>
+          <p class="lead">Join two round tubes in Tekla, straight or at any angle, even a 180-degree return: pick the two tubes and the component builds the connecting part and works out its size, no hand measuring.</p>
           <ul class="meta-row">
-            <li>Version 1.12</li>
+            <li>Version 1.11</li>
+            <li>New component</li>
             <li>Tekla 2016 or newer</li>
           </ul>
           <div class="cta-row">
-            <a class="btn btn--primary" href="#tai-ve">⬇ Download Tube Round Connect 1.12</a>
+            <a class="btn btn--primary" href="#tai-ve">⬇ Download Tube Round Connect</a>
             <a class="btn btn--ghost" href="/tekla/component/anti-sag-2v-cross.html">See also 2V Cross</a>
           </div>
         </header>
 
         <div class="callout">
-          <p><strong>What is new in 1.12</strong></p>
+          <p><strong>At a glance</strong></p>
           <ul>
-            <li><strong>Join tubes in any direction:</strong> vertical tubes, sloped tubes, offset or crossing tubes.</li>
-            <li><strong>Assembly prefix and name</strong> for the joint when no weld is used.</li>
+            <li><strong>Two ways to join:</strong> straight sleeve and bend.</li>
+            <li>The bend works at <strong>any angle</strong>, including a <strong>180-degree return</strong> like a U bend.</li>
+            <li>Sleeve size and bend radius are <strong>calculated for you</strong> and can still be typed in.</li>
+            <li><strong>Automatic weld</strong> if you need it.</li>
           </ul>
         </div>
 
+        <h2 id="two-modes">1. Two ways to join</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Mode</th><th>What it does</th><th>When to use it</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Straight sleeve</strong></td><td>Slides a smaller tube inside and wraps the joint, keeping the two tubes in line</td><td>Extending a straight run</td></tr>
+              <tr><td><strong>Bend</strong></td><td>Builds a curved piece joining the two tubes at any angle, even a 180-degree return</td><td>Changing direction, turning a corner, closing a loop</td></tr>
+            </tbody>
+          </table>
+        </div>
         <figure class="media">
-          <img src="img/tube-round-connect-1-12.png" width="942" height="660" alt="Tube Round Connect 1.12 dialog with the Assembly and Assembly name fields, with tubes joined in several directions behind it in Tekla" loading="lazy">
-          <figcaption>Tube Round Connect 1.12: tubes joined in several directions in the model, and the dialog with the new Assembly and Assembly name fields.</figcaption>
-        </figure>
-
-        <h2 id="any-direction">1. Joining tubes in any direction in space</h2>
-        <p>Tubes lying on a horizontal plane used to be the easy case; vertical or off-direction tubes were harder. From 1.12 you can pick any two tubes: vertical, sloped, hand-drawn a few centimetres out of line, or fully crossing. The component finds a smooth path that meets both tubes.</p>
-        <ul>
-          <li>Two tubes that are <strong>not in the same plane</strong> and do not intersect can still be joined.</li>
-          <li>Two <strong>parallel tubes with offset axes</strong> are joined with an S-shaped piece.</li>
-          <li>Both modes remain: straight sleeve and bend, with the bend working at any angle including a 180-degree return.</li>
-        </ul>
-
-        <figure class="media">
-          <video src="video/tube-round-connect-1-12.mp4" controls preload="metadata" playsinline style="display:block;margin:0 auto;max-width:100%;height:auto;border-radius:10px"></video>
-          <figcaption>Video: joining tubes in several directions with Tube Round Connect 1.12.</figcaption>
-        </figure>
-
-        <figure class="media">
-          <img src="img/tube-round-connect-radii.png" width="1740" height="710" alt="The same joint with five different bend radii" loading="lazy">
-          <figcaption>The same joint with five different bend radii (plan view built from a Tekla model).</figcaption>
-        </figure>
-
-        <figure class="media">
-          <img src="img/tube-round-connect-dialog-bend.png" width="620" height="295" alt="Dialog in Bend mode with a diagram" loading="lazy">
+          <img src="img/tube-round-connect-dialog-bend.png" width="620" height="295" alt="Tube Round Connect dialog in Bend mode with a diagram" loading="lazy">
           <figcaption>Bend mode: a diagram right in the dialog.</figcaption>
         </figure>
-
         <figure class="media">
-          <img src="img/tube-round-connect-dialog-sleeve.png" width="620" height="295" alt="Dialog in Straight sleeve mode" loading="lazy">
+          <img src="img/tube-round-connect-dialog-sleeve.png" width="620" height="295" alt="Tube Round Connect dialog in Straight sleeve mode" loading="lazy">
           <figcaption>Straight sleeve mode.</figcaption>
         </figure>
 
-        <h2 id="assembly-naming">2. Assembly prefix and name for the joint</h2>
-        <p>When no weld is used (Weld size = 0), the joint is its own assembly. The dialog now has <strong>Assembly</strong> (prefix, start number) and <strong>Assembly name</strong> fields, so drawings and part lists stay tidy and follow your company convention. Sensible defaults are preset and can be changed.</p>
-        <p>With a weld, the joint belongs to the tube assembly, so these fields are greyed out.</p>
+        <h2 id="any-angle">2. Any angle, even a 180-degree return</h2>
+        <p>The component used to join tubes in a straight line only. It now joins them at any angle and still works out the geometry for you: the curve meets both tubes, both tube ends are trimmed cleanly, nothing to build by hand.</p>
+        <figure class="media">
+          <img src="img/tube-round-connect-radii.png" width="1740" height="710" alt="The same 135-degree joint with five different bend radii: 60, 114.3, 200, 350 and 600 mm" loading="lazy">
+          <figcaption>The same joint with five different bend radii (plan view built from a Tekla model).</figcaption>
+        </figure>
+        <figure class="media">
+          <img src="img/tube-round-connect-model.png" width="1440" height="753" alt="The bend joint in Tekla's 3D view" loading="lazy">
+          <figcaption>The bend joint in Tekla's 3D view.</figcaption>
+        </figure>
 
-        <h2 id="install">3. Installing</h2>
+        <h2 id="automation">3. Automating what you usually do by hand</h2>
+        <ul>
+          <li><strong>Sleeve size is calculated</strong> from the main tube you pick, no tables or measuring.</li>
+          <li><strong>Bend radius is calculated</strong> in Bend mode: 1.5 times the tube diameter by default; for a 180-degree return it follows the distance between the two tubes. You can still type your own.</li>
+          <li><strong>Automatic weld</strong> if you need it.</li>
+          <li>Material, name, number and prefix come with sensible defaults you can change.</li>
+        </ul>
+
+        <h2 id="install">4. Installing</h2>
         <ol class="steps">
           <li>In the <a href="#tai-ve">Download</a> section below, select your Tekla version to get the <code>.tsep</code> package (Tekla 2016 or newer).</li>
           <li>If an older version is installed, uninstall it in <strong>Tekla Extension Manager</strong> first.</li>
           <li>Double-click the <code>.tsep</code> file, tick your Tekla version and click <strong>Import</strong>. The package is installed the next time Tekla starts.</li>
         </ol>
       </div>
-
 
       <section aria-labelledby="tai-ve">
         <h2 id="tai-ve"><span data-lang="vi">Tải về</span><span data-lang="en">Download</span></h2>

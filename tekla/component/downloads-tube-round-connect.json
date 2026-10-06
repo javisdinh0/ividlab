@@ -1,5 +1,5 @@
 {
-  "version": "1.12",
+  "version": "1.11",
   "released": "2026-10-06",
   "baseUrl": "/fordownload/tekla-component/",
   "title": {
@@ -8,9 +8,9 @@
   },
   "packages": {
     "tube": {
-      "file": "iVidLab.TubeRoundConnect_1.12P.tsep",
+      "file": "iVidLab.TubeRoundConnect_1.11_protected.tsep",
       "size": "98 KB",
-      "bytes": 99790,
+      "bytes": 99989,
       "range": "2016+"
     }
   },
