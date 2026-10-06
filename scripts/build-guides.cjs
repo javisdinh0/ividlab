@@ -23,6 +23,7 @@ for (const a of articles) CARDS[a.slug] = [a.title, a.titleEn];
 
 function renderBlock([type, vi, en]) {
   const both = (tag, v, e, attr = '') => `    <${tag} data-lang="vi"${attr}>${v}</${tag}>\n    <${tag} data-lang="en"${attr}>${e}</${tag}>`;
+  if (type === 'raw') return vi.replace('<figure ', '<figure data-lang="vi" ') + '\n' + en.replace('<figure ', '<figure data-lang="en" ');
   if (type === 'p') return both('p', vi, en);
   if (type === 'h2' || type === 'h3') return both(type, vi, en);
   if (type === 'ul') {
@@ -41,7 +42,8 @@ function renderBlock([type, vi, en]) {
 
 function build(a) {
   let html = fs.readFileSync(SHELL, 'utf8').replace(/\r\n/g, '\n');
-  const url = `${ORIGIN}/autocad/chiase/${a.slug}.html`;
+  const dir = a.dir || 'autocad/chiase';
+  const url = `${ORIGIN}/${dir}/${a.slug}.html`;
   const ld = JSON.stringify({ '@context': 'https://schema.org', '@type': 'Article', headline: a.title, url, description: a.desc,
     image: `${ORIGIN}/og-default.png`, inLanguage: 'vi', datePublished: a.date || '2026-10-03',
     author: { '@type': 'Organization', name: 'iViDLab', url: ORIGIN }, publisher: { '@type': 'Organization', name: 'iViDLab', url: ORIGIN } });
@@ -78,14 +80,14 @@ function build(a) {
     `      <span data-lang="en">Document researched and compiled by the <a href="https://ividlab.com/">iViDLab.com</a> technical team.</span>`,
     `    </p>`,
     `  </div>`,
-    `  <div class="related-container">`,
+    ...(a.related.length ? [`  <div class="related-container">`,
     `    <h2 data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>`,
     `    <h2 data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">You might also be interested in</h2>`,
     `    <div class="related-grid">`,
     ...a.related.map((s) => `      <a class="related-card" href="/autocad/chiase/${s}.html">\n        <span class="badge">Knowledge Share</span>\n` +
       `        <h3><span data-lang="vi">${CARDS[s][0]}</span><span data-lang="en">${CARDS[s][1]}</span></h3>\n      </a>`),
     `    </div>`,
-    `  </div>`,
+    `  </div>`] : []),
     '',
   ].join('\n');
   html = html.replace(/  <div class="article-container">[\s\S]*?(?=  <footer)/, body + '\n');
@@ -93,7 +95,8 @@ function build(a) {
 }
 
 for (const a of articles) {
-  const out = path.join(root, 'public/autocad/chiase', `${a.slug}.html`);
+  const out = path.join(root, 'public', a.dir || 'autocad/chiase', `${a.slug}.html`);
+  fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.writeFileSync(out, build(a));
   console.log('wrote', path.relative(root, out));
 }
