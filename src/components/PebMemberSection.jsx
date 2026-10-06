@@ -13,7 +13,7 @@ const SOURCES = [
 const PRODUCTS = [
   { key: 'peb', label: 'PEB Member', cover: '/tekla/peb-member/img/01-tong-quan.png', intro: '/tekla/peb-member/gioi-thieu-peb-member.html' },
   { key: '2v', label: '2V Cross', cover: '/tekla/component/img/2v-cross-cover.png', intro: '/tekla/component/anti-sag-2v-cross.html' },
-  { key: 'tube', label: 'Tube Round Connect', cover: '/tekla/component/img/tube-round-connect-radii.png', intro: '/tekla/component/tube-round-connect.html' }
+  { key: 'tube', label: 'Tube Round Connect', cover: '/tekla/component/img/tube-round-connect-1-12.png', intro: '/tekla/component/tube-round-connect.html' }
 ];
 const NS = 'teklacomponent';
 
