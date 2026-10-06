@@ -26,7 +26,12 @@ export const translations = {
       badge: 'KNOWLEDGE // GUIDES & TIPS',
       title: 'Chia Sẻ Kiến Thức & Hướng Dẫn Kỹ Thuật',
       items_count: 'bài viết',
-      read_article: 'Đọc hướng dẫn →'
+      read_article: 'Đọc hướng dẫn →',
+      group_label: 'Nhóm',
+      tag_label: 'Thẻ',
+      all: 'Tất cả',
+      clear: 'Bỏ lọc',
+      empty: 'Chưa có bài viết nào khớp bộ lọc.'
     },
     teklacomponent: {
       badge: 'TEKLA PLUGIN // APPLICATION & COMPONENT',
@@ -103,7 +108,12 @@ export const translations = {
       badge: 'KNOWLEDGE // GUIDES & TIPS',
       title: 'Knowledge Sharing & Technical Guides',
       items_count: 'articles',
-      read_article: 'Read guide →'
+      read_article: 'Read guide →',
+      group_label: 'Group',
+      tag_label: 'Tags',
+      all: 'All',
+      clear: 'Clear filter',
+      empty: 'No articles match this filter.'
     },
     teklacomponent: {
       badge: 'TEKLA PLUGIN // APPLICATION & COMPONENT',

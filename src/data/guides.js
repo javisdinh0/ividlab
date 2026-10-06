@@ -1,4 +1,4 @@
-export const guidesData = [
+const baseGuides = [
   {
     id: 'tuy-chinh-lenh-autolisp',
     title: 'Hướng Dẫn Tùy Chỉnh & Đổi Tên Lệnh AutoLISP (.lsp)',
@@ -192,3 +192,26 @@ export const guidesData = [
     link: '/tekla/chiase/phim-tat-ctrl-shift-c-tekla-structures.html'
   }
 ];
+
+// Nhóm (cad / tekla) và hashtag của từng bài, dùng cho thanh lọc ở tab Hướng dẫn.
+// Thêm bài mới: khai báo id ở trên rồi thêm một dòng ở đây. Tag viết thường, không dấu, nối bằng '-'.
+const guideMeta = {
+  'tuy-chinh-lenh-autolisp': { group: 'cad', tags: ['cad', 'autolisp', 'lisp'] },
+  'huong-dan-appload': { group: 'cad', tags: ['cad', 'autolisp', 'lisp', 'appload'] },
+  'huong-dan-netload': { group: 'cad', tags: ['cad', 'dotnet', 'plugin', 'netload'] },
+  'phan-biet-appload-netload': { group: 'cad', tags: ['cad', 'lisp', 'dotnet', 'appload', 'netload'] },
+  'lisp-khong-chay-unknown-command-autocad': { group: 'cad', tags: ['cad', 'autolisp', 'lisp', 'sua-loi'] },
+  'trusted-paths-secureload-autocad': { group: 'cad', tags: ['cad', 'bao-mat', 'netload'] },
+  'giam-dung-luong-file-dwg-autocad': { group: 'cad', tags: ['cad', 'dwg', 'toi-uu'] },
+  'loi-netload-autocad-khong-nap-duoc-dll': { group: 'cad', tags: ['cad', 'dotnet', 'netload', 'sua-loi'] },
+  'phan-biet-layiso-layoff-layfrz-laylck-autocad': { group: 'cad', tags: ['cad', 'layer'] },
+  'huong-dan-lenh-laywalk-autocad': { group: 'cad', tags: ['cad', 'layer'] },
+  'huong-dan-lenh-laymrg-gop-layer-autocad': { group: 'cad', tags: ['cad', 'layer'] },
+  'huong-dan-lenh-laydel-xoa-layer-autocad': { group: 'cad', tags: ['cad', 'layer'] },
+  'huong-dan-lenh-laymcur-autocad': { group: 'cad', tags: ['cad', 'layer'] },
+  'huong-dan-lenh-laycur-autocad': { group: 'cad', tags: ['cad', 'layer'] },
+  'huong-dan-lenh-laymch-autocad': { group: 'cad', tags: ['cad', 'layer'] },
+  'phim-tat-ctrl-shift-c-tekla-structures': { group: 'tekla', tags: ['tekla', 'phim-tat'] },
+};
+
+export const guidesData = baseGuides.map((g) => ({ group: 'cad', tags: [], ...guideMeta[g.id], ...g }));
