@@ -4,12 +4,12 @@
     "link": "/tekla/component/tube-round-connect.html",
     "product": "Tube Round Connect",
     "title": {
-      "vi": "iVidLab Tube Round Connect — Nối ống tròn trong Tekla ở mọi góc, chỉ một thao tác",
-      "en": "iVidLab Tube Round Connect — Joining round tubes in Tekla at any angle, in one step"
+      "vi": "iVidLab Tube Round Connect 1.12 — Nối ống tròn ở mọi hướng trong không gian",
+      "en": "iVidLab Tube Round Connect 1.12 — Joining round tubes in any direction in space"
     },
     "description": {
-      "vi": "Chọn hai ống, component tự dựng chi tiết nối: ống lồng hoặc cút ở mọi góc, kể cả quay đầu 180 độ. Tự tính kích thước và bán kính cong, có mối hàn tự động.",
-      "en": "Pick two tubes and the component builds the joint: a straight sleeve or a bend at any angle, even a 180-degree return. Size and bend radius are calculated, with an optional automatic weld."
+      "vi": "Ống nằm ngang, dựng đứng hay chéo nhau: chọn hai ống, component tự nối. Thêm đặt tên và số assembly cho đoạn nối.",
+      "en": "Horizontal, vertical or crossing: pick two tubes and the component joins them. Plus assembly prefix and name for the joint."
     },
     "tag": {
       "vi": "Giới thiệu",
