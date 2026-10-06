@@ -178,5 +178,17 @@ export const guidesData = [
     },
     date: 'October 2026',
     link: '/autocad/chiase/huong-dan-lenh-laymch-autocad.html'
+  },
+  {
+    id: 'phim-tat-ctrl-shift-c-tekla-structures',
+    title: 'Phím Tắt Ctrl+Shift+C Trong Tekla Structures: Mở Bảng Keyboard Shortcuts Và Tự Gán Phím Tắt',
+    category: 'Kiến Thức CAD',
+    tag: { vi: 'Hướng Dẫn Tekla', en: 'Tekla Guide' },
+    description: {
+      vi: 'Ctrl+Shift+C mở hộp thoại Keyboard shortcuts của Tekla Structures. Cách xem danh sách phím tắt, gán phím cho lệnh, macro, component, kiểm tra trùng phím, xuất/nhập để chia sẻ cho cả nhóm.',
+      en: 'Ctrl+Shift+C opens the Keyboard shortcuts dialog in Tekla Structures. How to browse shortcuts, assign keys to commands, macros and components, check conflicts, and export/import them for your team.'
+    },
+    date: 'October 2026',
+    link: '/tekla/chiase/phim-tat-ctrl-shift-c-tekla-structures.html'
   }
 ];
