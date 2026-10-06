@@ -138,7 +138,7 @@ export const translations = {
     amcprivate: {
       badge: 'PRIVATE // TOOLS',
       title: 'Private tools',
-      desc: 'An internal category: tools iViDLab builds specifically to each company's own standards, with introductions and user guides.',
+      desc: 'An internal category: tools iViDLab builds specifically to the standards of each company, with introductions and user guides.',
       highlights: ['Built to order', 'Company-specific standards', 'Authorized readers only'],
       note: 'Content is shown only after signing in with an authorized Google account.',
       btn_login: '🔒 Sign in to read →'
