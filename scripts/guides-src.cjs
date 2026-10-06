@@ -719,6 +719,14 @@ module.exports = [
          ['<strong>Do not confuse it with Ctrl+C:</strong> copying objects is still <code>Ctrl+C</code>; <code>Ctrl+Shift+C</code> only opens the shortcuts dialog.',
           '<strong>Keyboard layouts differ:</strong> some combinations may behave differently on different keyboard layouts; test after assigning.',
           '<strong>Back up before big changes:</strong> export your current shortcuts so you can restore them if you assign something wrong.']),
+
+      h2('Nguồn tham khảo', 'References'),
+      ul(['<a href="https://support.tekla.com/doc/tekla-structures/2025/gen_keyboard_shortcuts" target="_blank" rel="noopener">Default keyboard shortcuts</a> – Tekla Structures Help (Trimble).',
+          '<a href="https://support.tekla.com/doc/tekla-structures/2025/gen_customize_keyboard_shortcuts" target="_blank" rel="noopener">Customize the keyboard shortcuts</a> – Tekla Structures Help (Trimble); ảnh hộp thoại trong bài lấy từ trang này.',
+          'Tekla và Tekla Structures là thương hiệu của Trimble Inc.; iViDLab không liên kết với Trimble.'],
+         ['<a href="https://support.tekla.com/doc/tekla-structures/2025/gen_keyboard_shortcuts" target="_blank" rel="noopener">Default keyboard shortcuts</a> – Tekla Structures Help (Trimble).',
+          '<a href="https://support.tekla.com/doc/tekla-structures/2025/gen_customize_keyboard_shortcuts" target="_blank" rel="noopener">Customize the keyboard shortcuts</a> – Tekla Structures Help (Trimble); the dialog screenshot in this article comes from this page.',
+          'Tekla and Tekla Structures are trademarks of Trimble Inc.; iViDLab is not affiliated with Trimble.']),
     ],
   },
 ];
