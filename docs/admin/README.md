@@ -3,7 +3,7 @@
 `ividlab.com/admin/` — dashboard xem lượt xem trang + lượt tải PEB Member, đăng nhập bằng
 **Google Sign-In**, cùng project Firebase `ividlab-rficonsole` với RFI Console và cùng danh
 sách allowlist `config/owners` (giống pattern đăng nhập của `asoft-license-web`, xem
-`T:\asoft-license-web\src\App.jsx`). Đăng nhập Google thành công không tự nhiên có quyền — vẫn
+`T:\Web\ViDiLab Web\asoft-license-web\src\App.jsx`). Đăng nhập Google thành công không tự nhiên có quyền — vẫn
 phải nằm trong `config/owners` mới qua được màn "Không có quyền quản trị".
 
 **Cần bật 1 lần:** Firebase Console → project `ividlab-rficonsole` → Authentication → Sign-in
