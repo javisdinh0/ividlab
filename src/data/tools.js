@@ -65,6 +65,19 @@ export const toolsData = [
     featured: true
   },
   {
+    id: 'xbc-explode-clipped-block',
+    title: 'XBC - Explode Block Đã XClip',
+    category: 'AutoCAD Tool',
+    tag: 'CAD Automation',
+    description: {
+      vi: 'Phá (explode) block đã XClip mà vẫn giữ nguyên phạm vi cắt: cắt hình theo biên clip rồi mới explode, cho cả một block hoặc toàn bản vẽ (XBC, XBCC, XBCA, XBCCA, XBCI).',
+      en: 'Explode an XClipped block while keeping the clipped area: geometry is trimmed to the clip boundary first, for one block or a whole drawing (XBC, XBCC, XBCA, XBCCA, XBCI).'
+    },
+    status: 'Release',
+    link: '/autocad/autolisp/autolisp-xbc-explode-clipped-block.html',
+    featured: true
+  },
+  {
     id: 'layiso-layer-manager',
     title: 'Layiso Layer Manager Suite',
     category: 'AutoCAD Lisp',

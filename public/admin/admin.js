@@ -132,7 +132,10 @@ async function fetchReads() {
 // Gói tải của mọi sản phẩm: mỗi downloads.json khai `packages`; khoá gói trùng khoá gửi lên khi bấm Tải.
 const DOWNLOAD_MANIFESTS = [
   { url: '/tekla/peb-member/downloads.json', product: 'PEB Member' },
-  { url: '/tekla/component/downloads-2v-cross.json', product: '2V Cross Anti-Sag' }
+  { url: '/tekla/component/downloads-2v-cross.json', product: '2V Cross Anti-Sag' },
+  { url: '/tekla/component/downloads-tube-round-connect.json', product: 'Tube Round Connect' },
+  { url: '/tekla/component/downloads-bolt-quick-dim.json', product: 'Bolt Quick Dim' },
+  { url: '/autocad/downloads-xbc.json', product: 'XBC Explode Clipped Block' }
 ];
 
 async function fetchPackages() {
