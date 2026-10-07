@@ -32,3 +32,6 @@ dist-ssr
 
 # wrangler local state
 .wrangler/
+
+# Dự án riêng (repo github.com/vid84/asoft-license-web), không thuộc repo này
+/asoft-license-web/
