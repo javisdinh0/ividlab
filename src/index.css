@@ -259,6 +259,87 @@ h1, h2, h3, h4, .font-display {
   text-transform: uppercase;
 }
 
+/* Thanh lọc tab Hướng dẫn: nhóm (AutoCAD/Tekla) + hashtag */
+.guide-filter {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-rule);
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.guide-filter__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.guide-filter__tab,
+.guide-hashtag {
+  font-family: var(--font-mono);
+  cursor: pointer;
+  border: 1px solid var(--border-rule);
+  background-color: var(--bg-card);
+  color: var(--text-ink);
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.guide-filter__tab {
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+}
+
+.guide-hashtag {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+}
+
+.guide-hashtag--sm {
+  font-size: 0.72rem;
+  padding: 0.15rem 0.5rem;
+  background-color: var(--accent-blue-light);
+  border-color: transparent;
+}
+
+.guide-filter__tab:hover,
+.guide-hashtag:hover {
+  border-color: var(--accent-blue);
+}
+
+.guide-filter__tab.is-active,
+.guide-hashtag.is-active {
+  background-color: var(--text-ink);
+  border-color: var(--text-ink);
+  color: var(--bg-card);
+}
+
+.guide-hashtag--clear {
+  border-style: dashed;
+}
+
+.guide-filter__count {
+  margin-left: 0.4rem;
+  opacity: 0.6;
+  font-weight: 400;
+}
+
+.guide-filter__tags {
+  margin-bottom: 0;
+}
+
+.guide-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 1.25rem;
+}
+
 /* PEB Member category (tab ?tab=peb-member) */
 .category-intro {
   display: grid;

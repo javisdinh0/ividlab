@@ -5,7 +5,7 @@ export const translations = {
       tools: '// CÔNG CỤ',
       guides: '// HƯỚNG DẪN & CHIA SẺ',
       teklacomponent: '// TEKLA APP & COMPONENT',
-      amcprivate: '// AMC PRIVATE',
+      amcprivate: '// PRIVATE',
       about: '// GIỚI THIỆU'
     },
     hero: {
@@ -26,7 +26,12 @@ export const translations = {
       badge: 'KNOWLEDGE // GUIDES & TIPS',
       title: 'Chia Sẻ Kiến Thức & Hướng Dẫn Kỹ Thuật',
       items_count: 'bài viết',
-      read_article: 'Đọc hướng dẫn →'
+      read_article: 'Đọc hướng dẫn →',
+      group_label: 'Nhóm',
+      tag_label: 'Thẻ',
+      all: 'Tất cả',
+      clear: 'Bỏ lọc',
+      empty: 'Chưa có bài viết nào khớp bộ lọc.'
     },
     teklacomponent: {
       badge: 'TEKLA PLUGIN // APPLICATION & COMPONENT',
@@ -59,10 +64,10 @@ export const translations = {
       empty: 'Chưa có bài viết nào trong chuyên mục.'
     },
     amcprivate: {
-      badge: 'AMC // PRIVATE TOOLS',
-      title: 'AMC Private tools',
-      desc: 'Chuyên mục nội bộ dành riêng cho thành viên AMC: giới thiệu và hướng dẫn sử dụng các công cụ iViDLab phát triển cho AMC, trước hết là Steel Design Universe (SDU) — plugin AutoCAD dựng mặt bằng mái, cột, dầm và mặt cắt khung thép tiền chế trực tiếp từ mô hình SAP2000.',
-      highlights: ['Steel Design Universe', 'AutoCAD + SAP2000', 'Chỉ thành viên AMC'],
+      badge: 'PRIVATE // TOOLS',
+      title: 'Private tools',
+      desc: 'Chuyên mục nội bộ: các công cụ iViDLab phát triển riêng theo tiêu chuẩn của từng công ty, kèm giới thiệu và hướng dẫn sử dụng.',
+      highlights: ['Phát triển riêng', 'Theo tiêu chuẩn công ty', 'Chỉ người được cấp quyền'],
       note: 'Nội dung chỉ hiển thị sau khi đăng nhập bằng tài khoản Google đã được cấp quyền.',
       btn_login: '🔒 Đăng nhập để đọc →'
     },
@@ -82,7 +87,7 @@ export const translations = {
       tools: '// TOOLS',
       guides: '// GUIDES & TIPS',
       teklacomponent: '// TEKLA APP & COMPONENT',
-      amcprivate: '// AMC PRIVATE',
+      amcprivate: '// PRIVATE',
       about: '// ABOUT'
     },
     hero: {
@@ -103,7 +108,12 @@ export const translations = {
       badge: 'KNOWLEDGE // GUIDES & TIPS',
       title: 'Knowledge Sharing & Technical Guides',
       items_count: 'articles',
-      read_article: 'Read guide →'
+      read_article: 'Read guide →',
+      group_label: 'Group',
+      tag_label: 'Tags',
+      all: 'All',
+      clear: 'Clear filter',
+      empty: 'No articles match this filter.'
     },
     teklacomponent: {
       badge: 'TEKLA PLUGIN // APPLICATION & COMPONENT',
@@ -136,10 +146,10 @@ export const translations = {
       empty: 'No articles in this category yet.'
     },
     amcprivate: {
-      badge: 'AMC // PRIVATE TOOLS',
-      title: 'AMC Private tools',
-      desc: 'An internal category for AMC members only: introductions and user guides for tools iViDLab builds for AMC, starting with Steel Design Universe (SDU) — an AutoCAD plugin that draws roof, column, beam plans and PEB frame sections straight from the SAP2000 model.',
-      highlights: ['Steel Design Universe', 'AutoCAD + SAP2000', 'AMC members only'],
+      badge: 'PRIVATE // TOOLS',
+      title: 'Private tools',
+      desc: 'An internal category: tools iViDLab builds specifically to the standards of each company, with introductions and user guides.',
+      highlights: ['Built to order', 'Company-specific standards', 'Authorized readers only'],
       note: 'Content is shown only after signing in with an authorized Google account.',
       btn_login: '🔒 Sign in to read →'
     },
