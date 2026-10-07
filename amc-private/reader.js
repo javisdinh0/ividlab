@@ -124,7 +124,7 @@ async function openPost(id) {
   }
   // html do owner soạn và chỉ owner ghi được (rules) nên chèn thẳng.
   body.innerHTML = post.html || '';
-  document.title = `${post.title || id} - AMC Private tools`;
+  document.title = `${post.title || id} - Private tools`;
   $('crumb-title').textContent = post.title || id;
   $('crumb-post').hidden = false;
   loadImages(id, body);
