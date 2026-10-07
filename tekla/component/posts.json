@@ -1,5 +1,24 @@
 [
   {
+    "id": "bolt-quick-dim",
+    "link": "/tekla/component/bolt-quick-dim.html",
+    "product": "Bolt Quick Dim",
+    "title": {
+      "vi": "iVidLab Bolt Quick Dim — Đo bu-lông và đánh số hiệu trong bản vẽ Tekla, chọn hai cái là xong",
+      "en": "iVidLab Bolt Quick Dim — Dimension bolts and add marks in Tekla drawings with two picks"
+    },
+    "description": {
+      "vi": "Chọn một nhóm bu-lông và một cấu kiện, công cụ tự vẽ kích thước và đánh số hiệu bu-lông, cấu kiện. Dùng cho dầm lẫn bản mã, chọn được kiểu trình bày.",
+      "en": "Pick a bolt group and a part and the tool draws the dimensions and adds the bolt and part marks. Works on beams and plates, with a choice of presentation style."
+    },
+    "tag": {
+      "vi": "Giới thiệu",
+      "en": "Overview"
+    },
+    "date": "2026-10-07",
+    "cover": "/tekla/component/img/bolt-quick-dim-dialog.png"
+  },
+  {
     "id": "tube-round-connect",
     "link": "/tekla/component/tube-round-connect.html",
     "product": "Tube Round Connect",

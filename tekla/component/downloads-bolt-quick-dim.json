@@ -1,0 +1,94 @@
+{
+  "version": "1.0.0",
+  "released": "2026-10-07",
+  "baseUrl": "/fordownload/tekla-component/",
+  "title": {
+    "vi": "Tải iVidLab Bolt Quick Dim",
+    "en": "Download iVidLab Bolt Quick Dim"
+  },
+  "packages": {
+    "bolt": {
+      "file": "iVidLab.AutoBoltDim_1.0.0P.tsep",
+      "size": "26 KB",
+      "bytes": 26831,
+      "range": "2016+"
+    }
+  },
+  "tekla": [
+    {
+      "value": "2026",
+      "label": "Tekla Structures 2026",
+      "package": "bolt"
+    },
+    {
+      "value": "2025",
+      "label": "Tekla Structures 2025",
+      "package": "bolt"
+    },
+    {
+      "value": "2024",
+      "label": "Tekla Structures 2024",
+      "package": "bolt"
+    },
+    {
+      "value": "2023",
+      "label": "Tekla Structures 2023",
+      "package": "bolt"
+    },
+    {
+      "value": "2022",
+      "label": "Tekla Structures 2022",
+      "package": "bolt"
+    },
+    {
+      "value": "2021",
+      "label": "Tekla Structures 2021",
+      "package": "bolt"
+    },
+    {
+      "value": "2020",
+      "label": "Tekla Structures 2020",
+      "package": "bolt"
+    },
+    {
+      "value": "2019",
+      "label": "Tekla Structures 2019 / 2019i",
+      "package": "bolt"
+    },
+    {
+      "value": "2018",
+      "label": "Tekla Structures 2018 / 2018i",
+      "package": "bolt"
+    },
+    {
+      "value": "2017",
+      "label": "Tekla Structures 2017 / 2017i",
+      "package": "bolt"
+    },
+    {
+      "value": "2016",
+      "label": "Tekla Structures 2016 / 2016i",
+      "package": "bolt"
+    },
+    {
+      "value": "2027+",
+      "label": {
+        "vi": "Tekla Structures 2027 trở lên",
+        "en": "Tekla Structures 2027 or newer"
+      },
+      "package": "bolt"
+    }
+  ],
+  "notes": {
+    "vi": [
+      "Nối hai ống tròn bằng ống lồng (Straight sleeve) hoặc cút (Bend), chỉ cần chọn hai ống.",
+      "Cút nối ở mọi góc, kể cả quay đầu 180 độ như cút chữ U.",
+      "Tự tính kích thước ống nối và bán kính cong; vẫn nhập tay được. Có mối hàn tự động nếu cần."
+    ],
+    "en": [
+      "Join two round tubes with a straight sleeve or a bend: just pick the two tubes.",
+      "The bend works at any angle, including a 180-degree return like a U bend.",
+      "Sleeve size and bend radius are calculated for you and can still be typed in. Optional automatic weld."
+    ]
+  }
+}
