@@ -3,8 +3,8 @@
   "released": "2026-10-08",
   "baseUrl": "/fordownload/tekla-component/",
   "title": {
-    "vi": "Tải iVidLab Bolt Quick Dim",
-    "en": "Download iVidLab Bolt Quick Dim"
+    "vi": "Tải iVidLab Bolt Quick Dim V2",
+    "en": "Download iVidLab Bolt Quick Dim V2"
   },
   "packages": {
     "bolt": {
@@ -81,14 +81,14 @@
   ],
   "notes": {
     "vi": [
-      "Nối hai ống tròn bằng ống lồng (Straight sleeve) hoặc cút (Bend), chỉ cần chọn hai ống.",
-      "Cút nối ở mọi góc, kể cả quay đầu 180 độ như cút chữ U.",
-      "Tự tính kích thước ống nối và bán kính cong; vẫn nhập tay được. Có mối hàn tự động nếu cần."
+      "Bấm một lần là chạy: chọn nhóm bu-lông và cấu kiện, kích thước và số hiệu được vẽ xếp gọn.",
+      "Nhớ thiết lập: chọn kiểu số hiệu và kiểu kích thước từ bộ chuẩn công ty, bấm Save một lần.",
+      "Kết quả là đối tượng bản vẽ bình thường, sửa hoặc xoá được."
     ],
     "en": [
-      "Join two round tubes with a straight sleeve or a bend: just pick the two tubes.",
-      "The bend works at any angle, including a 180-degree return like a U bend.",
-      "Sleeve size and bend radius are calculated for you and can still be typed in. Optional automatic weld."
+      "One click to run: pick the bolt group and the part, and tidy dimensions and marks are drawn.",
+      "Remembers your settings: choose the mark and dimension styles from your company standards and click Save once.",
+      "The result is ordinary drawing objects you can edit or delete."
     ]
   }
 }
