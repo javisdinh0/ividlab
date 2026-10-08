@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0",
-  "released": "2026-10-07",
+  "version": "2.0",
+  "released": "2026-10-08",
   "baseUrl": "/fordownload/tekla-component/",
   "title": {
     "vi": "Tải iVidLab Bolt Quick Dim",
@@ -8,9 +8,9 @@
   },
   "packages": {
     "bolt": {
-      "file": "iVidLab.AutoBoltDim_1.0.0P.tsep",
-      "size": "26 KB",
-      "bytes": 26831,
+      "file": "iVidLab.BoltQuickDimV2_2.0P.tsep",
+      "size": "77 KB",
+      "bytes": 78540,
       "range": "2016+"
     }
   },
