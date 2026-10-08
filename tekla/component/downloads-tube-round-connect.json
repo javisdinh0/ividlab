@@ -1,6 +1,6 @@
 {
-  "version": "1.13",
-  "released": "2026-10-06",
+  "version": "1.14",
+  "released": "2026-10-08",
   "baseUrl": "/fordownload/tekla-component/",
   "title": {
     "vi": "Tải iVidLab Tube Round Connect",
@@ -8,9 +8,9 @@
   },
   "packages": {
     "tube": {
-      "file": "iVidLab.TubeRoundConnect_1.13P.tsep",
-      "size": "98 KB",
-      "bytes": 100274,
+      "file": "iVidLab.TubeRoundConnect_1.14P.tsep",
+      "size": "101 KB",
+      "bytes": 103050,
       "range": "2016+"
     }
   },
