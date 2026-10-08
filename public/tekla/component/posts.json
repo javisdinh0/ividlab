@@ -1,5 +1,24 @@
 [
   {
+    "id": "cap-nhat-tube-round-connect-1-14",
+    "link": "/tekla/component/cap-nhat-tube-round-connect-1-14.html",
+    "title": {
+      "vi": "Tube Round Connect 1.14 — Đoạn nối khớp đúng vị trí với chi tiết chính",
+      "en": "Tube Round Connect 1.14 — The joint now matches the main part's position"
+    },
+    "description": {
+      "vi": "Đoạn nối lấy đúng cách đặt của ống hoặc tấm chính: nối thêm plate vào đoạn nối là được, không phải chỉnh tay.",
+      "en": "The joint takes the main tube or plate's exact placement: add plates to it straight away, no hand-adjusting."
+    },
+    "tag": {
+      "vi": "Cập nhật",
+      "en": "Release"
+    },
+    "date": "2026-10-08",
+    "cover": "/tekla/component/img/tube-round-connect-1-12.png",
+    "product": "Tube Round Connect"
+  },
+  {
     "id": "bolt-quick-dim",
     "link": "/tekla/component/bolt-quick-dim.html",
     "product": "Bolt Quick Dim",
