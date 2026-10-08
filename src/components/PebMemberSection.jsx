@@ -14,7 +14,7 @@ const PRODUCTS = [
   { key: 'peb', label: 'PEB Member', cover: '/tekla/peb-member/img/01-tong-quan.png', intro: '/tekla/peb-member/gioi-thieu-peb-member.html' },
   { key: '2v', label: '2V Cross', cover: '/tekla/component/img/2v-cross-cover.png', intro: '/tekla/component/anti-sag-2v-cross.html' },
   { key: 'tube', label: 'Tube Round Connect', cover: '/tekla/component/img/tube-round-connect-1-12.png', intro: '/tekla/component/tube-round-connect.html' },
-  { key: 'bolt', label: 'Bolt Quick Dim', cover: '/tekla/component/img/bolt-quick-dim-dialog.png', intro: '/tekla/component/bolt-quick-dim.html' }
+  { key: 'bolt', label: 'Bolt Quick Dim V2', cover: '/tekla/component/img/bolt-quick-dim-v2-drawing.png', intro: '/tekla/component/bolt-quick-dim.html' }
 ];
 const NS = 'teklacomponent';
 

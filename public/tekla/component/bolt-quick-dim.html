@@ -7,15 +7,15 @@
   <!-- Ghi lượt xem cho dashboard /admin — giữ dòng này ở mọi trang công khai -->
   <script type="module" src="/traffic-track.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-en="iVidLab Bolt Quick Dim – Dimension bolts and add marks in Tekla drawings with two picks - iViDLab">iVidLab Bolt Quick Dim — Đo bu-lông và đánh số hiệu trong bản vẽ Tekla, chọn hai cái là xong - iViDLab</title>
-  <meta name="description" content="Macro Tekla đo kích thước bu-lông và đánh số hiệu bu-lông, cấu kiện trong bản vẽ chỉ với một lần chọn, cho cả dầm lẫn bản mã, chọn được kiểu trình bày. Tekla 2016 trở lên." />
+  <title data-en="iVidLab Bolt Quick Dim V2 – One click, and the drawing gets its bolt dimensions and marks - iViDLab">iVidLab Bolt Quick Dim V2 — Bấm một lần, bản vẽ có đủ kích thước và số hiệu bu-lông - iViDLab</title>
+  <meta name="description" content="Bolt Quick Dim V2: chọn nhóm bu-lông và cấu kiện, kích thước và số hiệu được vẽ xếp gọn trong bản vẽ Tekla. Nhớ thiết lập, chọn kiểu từ bộ chuẩn công ty. Tekla 2016 trở lên." />
   <link rel="canonical" href="https://ividlab.com/tekla/component/bolt-quick-dim.html" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="iViDLab" />
-  <meta property="og:title" content="iVidLab Bolt Quick Dim — Đo bu-lông và đánh số hiệu trong bản vẽ Tekla, chọn hai cái là xong" />
-  <meta property="og:description" content="Chọn một nhóm bu-lông và một cấu kiện, công cụ tự vẽ kích thước và đánh số hiệu trong bản vẽ Tekla." />
+  <meta property="og:title" content="iVidLab Bolt Quick Dim V2 — Bấm một lần, bản vẽ có đủ kích thước và số hiệu bu-lông" />
+  <meta property="og:description" content="Chọn nhóm bu-lông và cấu kiện: kích thước và số hiệu xếp gọn, nhớ thiết lập của bạn." />
   <meta property="og:url" content="https://ividlab.com/tekla/component/bolt-quick-dim.html" />
-  <meta property="og:image" content="https://ividlab.com/tekla/component/img/bolt-quick-dim-dialog.png" />
+  <meta property="og:image" content="https://ividlab.com/tekla/component/img/bolt-quick-dim-v2-drawing.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -58,23 +58,22 @@
 
   <main class="page">
     <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="/">iViDLab</a><span aria-hidden="true">›</span><a href="/?tab=tekla-component">Tekla App &amp; Component</a><span aria-hidden="true">›</span><span data-lang="vi">Bolt Quick Dim</span><span data-lang="en">Bolt Quick Dim</span>
+      <a href="/">iViDLab</a><span aria-hidden="true">›</span><a href="/?tab=tekla-component">Tekla App &amp; Component</a><span aria-hidden="true">›</span><span data-lang="vi">Bolt Quick Dim V2</span><span data-lang="en">Bolt Quick Dim V2</span>
     </nav>
 
     <article class="article">
 
       <div data-lang="vi">
         <header class="article-hero">
-          <div class="eyebrow">Tekla Macro // Tekla Drawing</div>
-          <h1>iVidLab Bolt Quick Dim — Đo bu-lông và đánh số hiệu trong bản vẽ Tekla, chọn hai cái là xong</h1>
-          <p class="lead">Mở bản vẽ, chọn một nhóm bu-lông và một cấu kiện: công cụ tự vẽ toàn bộ kích thước và đánh số hiệu, không cần dựng tay từng đường kích thước.</p>
+          <div class="eyebrow">Tekla Component // Tekla Drawing</div>
+          <h1>iVidLab Bolt Quick Dim V2 — Bấm một lần, bản vẽ có đủ kích thước và số hiệu bu-lông</h1>
+          <p class="lead">Chọn một nhóm bu-lông và một cấu kiện: kích thước và số hiệu được vẽ xếp gọn ngoài cấu kiện. Thiết lập của bạn được nhớ, lần sau chạy luôn.</p>
           <ul class="meta-row">
-            <li>Phiên bản 1.0.0</li>
-            <li>Công cụ mới</li>
+            <li>Phiên bản 2.0</li>
             <li>Tekla 2016 trở lên</li>
           </ul>
           <div class="cta-row">
-            <a class="btn btn--primary" href="#tai-ve">⬇ Tải Bolt Quick Dim</a>
+            <a class="btn btn--primary" href="#tai-ve">⬇ Tải Bolt Quick Dim V2</a>
             <a class="btn btn--ghost" href="/tekla/component/tube-round-connect.html">Xem thêm Tube Round Connect</a>
           </div>
         </header>
@@ -82,65 +81,90 @@
         <div class="callout">
           <p><strong>Tóm tắt nhanh</strong></p>
           <ul>
-            <li><strong>Tự đo kích thước bu-lông</strong> theo cấu kiện đã chọn, cho cả dầm lẫn bản mã.</li>
-            <li><strong>Tự đánh số hiệu</strong> cho nhóm bu-lông và cho cấu kiện, cùng một lần bấm.</li>
-            <li><strong>Chọn được kiểu trình bày</strong>, dùng đúng bộ chuẩn công ty có sẵn trong Tekla.</li>
+            <li><strong>Bấm một lần là chạy:</strong> chọn nhóm bu-lông, chọn cấu kiện, xong.</li>
+            <li><strong>Nhớ thiết lập:</strong> chọn kiểu một lần, bấm Save, lần sau chạy theo đó.</li>
+            <li><strong>Kích thước xếp gọn</strong> ngoài cấu kiện, không đè lên nhau.</li>
+            <li>Kết quả là <strong>đối tượng bản vẽ bình thường</strong>, sửa hoặc xoá như thường.</li>
           </ul>
         </div>
 
+        <figure class="media">
+          <img src="img/bolt-quick-dim-v2-drawing.png" width="1135" height="634" alt="Bản mã trong bản vẽ Tekla với kích thước ngang, dọc, tổng thể, số hiệu cấu kiện và số hiệu bu-lông" loading="lazy">
+          <figcaption>Kết quả trong bản vẽ: kích thước ngang, dọc, tổng thể cùng số hiệu cấu kiện và số hiệu bu-lông.</figcaption>
+        </figure>
+
         <h2 id="cach-dung">1. Cách dùng</h2>
         <ol class="steps">
-          <li>Mở bản vẽ cần đo trong Tekla.</li>
-          <li>Chạy macro <strong>Bolt Quick Dim</strong>.</li>
-          <li>Chọn một nhóm bu-lông, rồi chọn một cấu kiện (dầm hoặc bản mã) để đo theo.</li>
+          <li>Mở bản vẽ cần ghi kích thước trong Tekla.</li>
+          <li>Bấm <strong>Bolt Quick Dim V2</strong> trong nhóm iViDLab của bảng <em>Applications &amp; components</em>.</li>
+          <li>Chọn một nhóm bu-lông, rồi chọn một cấu kiện (dầm hoặc bản mã).</li>
         </ol>
-        <p>Công cụ vẽ xong kích thước và số hiệu chỉ trong vài giây, thay cho chuỗi thao tác chọn lệnh, chọn bu-lông, mở hộp thoại mark rồi bấm OK.</p>
+        <p>Muốn đổi thiết lập thì nháy đúp vào component để mở hộp thoại.</p>
+
+        <figure class="media">
+          <video src="video/bolt-quick-dim-v2.mp4" controls preload="metadata" playsinline style="display:block;margin:0 auto;max-width:100%;height:auto;border-radius:10px"></video>
+          <figcaption>Video: bấm component, chọn nhóm bu-lông và cấu kiện.</figcaption>
+        </figure>
 
         <h2 id="lam-duoc-gi">2. Làm được gì</h2>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Tính năng</th><th>Mô tả</th></tr></thead>
             <tbody>
-              <tr><td><strong>Tự đo kích thước bu-lông</strong></td><td>Vẽ đầy đủ các đường kích thước định vị từng bu-lông theo cấu kiện đã chọn, cả hai phương, cộng thêm kích thước tổng thể bao quanh</td></tr>
-              <tr><td><strong>Dầm lẫn bản mã</strong></td><td>Nhận ra loại cấu kiện (Beam / Contour Plate) và tự chọn cách đo phù hợp</td></tr>
-              <tr><td><strong>Đánh số hiệu bu-lông</strong></td><td>Tạo luôn ký hiệu (mark) cho nhóm bu-lông vừa đo, không cần gọi lệnh riêng</td></tr>
-              <tr><td><strong>Đánh số hiệu cấu kiện</strong></td><td>Đồng thời tạo ký hiệu (mark) cho cấu kiện được chọn</td></tr>
-              <tr><td><strong>Chọn kiểu trình bày</strong></td><td>Hộp thoại nhỏ cho chọn kiểu số hiệu bu-lông, số hiệu cấu kiện và kiểu đường kích thước</td></tr>
+              <tr><td><strong>Bấm một lần là chạy</strong></td><td>Chọn nhóm bu-lông và cấu kiện là xong, không phải mở hộp thoại mỗi lần</td></tr>
+              <tr><td><strong>Nhớ thiết lập</strong></td><td>Chọn kiểu số hiệu và kiểu kích thước một lần, bấm Save; lần sau chạy theo đó</td></tr>
+              <tr><td><strong>Chọn từ bộ chuẩn công ty</strong></td><td>Ba ô chọn lấy trực tiếp danh sách kiểu trình bày có sẵn trong Tekla, không bị ép một kiểu cố định</td></tr>
+              <tr><td><strong>Bật hoặc tắt số hiệu</strong></td><td>Hai ô tích: có hoặc không đánh số hiệu bu-lông, có hoặc không đánh số hiệu cấu kiện</td></tr>
+              <tr><td><strong>Kích thước xếp gọn</strong></td><td>Kích thước chi tiết nằm sát cấu kiện, kích thước tổng thể ngoài cùng; ngang phía dưới, dọc bên phải</td></tr>
+              <tr><td><strong>Dầm lẫn bản mã</strong></td><td>Tự nhận loại cấu kiện và chọn cách đo phù hợp</td></tr>
+              <tr><td><strong>Sửa được như thường</strong></td><td>Kích thước và số hiệu là đối tượng độc lập: sửa, xoá, di chuyển tuỳ ý</td></tr>
             </tbody>
           </table>
         </div>
         <figure class="media">
-          <img src="img/bolt-quick-dim-dialog.png" width="535" height="356" alt="Hộp thoại Bolt Quick Dim để chọn kiểu Bolt mark, Part mark và Dimension" loading="lazy">
-          <figcaption>Chọn kiểu số hiệu bu-lông, số hiệu cấu kiện và kiểu đường kích thước.</figcaption>
+          <img src="img/bolt-quick-dim-v2-dialog.png" width="649" height="427" alt="Hộp thoại Bolt Quick Dim V2: chọn kiểu số hiệu bu-lông, số hiệu cấu kiện, kiểu kích thước, hai ô tích bật tắt số hiệu và nút Save" loading="lazy">
+          <figcaption>Hộp thoại: chọn kiểu, bật hoặc tắt số hiệu, bấm Save để nhớ.</figcaption>
         </figure>
 
         <h2 id="vi-sao">3. Vì sao đáng dùng</h2>
         <ul>
-          <li>Gộp hai thao tác hay làm riêng lẻ, đo kích thước và đánh mark, thành <strong>một lần bấm</strong>.</li>
-          <li>Không phải nhớ quy trình nhiều bước như làm tay.</li>
-          <li>Vẫn theo kiểu trình bày riêng của từng công ty và dự án, không ép một style cố định.</li>
+          <li>Gộp ghi kích thước và đánh số hiệu thành <strong>một lần bấm</strong>.</li>
+          <li>Thiết lập một lần, dùng mãi: không phải chọn lại kiểu ở mỗi bản vẽ.</li>
+          <li>Vẫn theo kiểu trình bày riêng của từng công ty và dự án.</li>
         </ul>
 
-        <h2 id="cai-dat">4. Cài đặt</h2>
+        <h2 id="phim-tat">4. Gán phím tắt để chạy nhanh hơn</h2>
+        <p>Dùng nhiều thì nên gán phím tắt, khỏi phải tìm component trong danh sách. Trong bản vẽ, nhấn <strong>Ctrl+Shift+C</strong> để mở bảng <em>Keyboard shortcuts</em>:</p>
+        <ol class="steps">
+          <li>Ở ô <strong>Group</strong>, chọn <strong>Drawing</strong>.</li>
+          <li>Gõ <code>Quick</code> vào ô <strong>Filter</strong>, rồi chọn dòng <strong>Plugin.iVidLab Bolt Quick Dim V2</strong>.</li>
+          <li>Nhấp vào ô <strong>Shortcut</strong>, nhấn phím muốn dùng (ví dụ <code>A</code> rồi <code>B</code>), bấm <strong>Assign</strong>.</li>
+        </ol>
+        <figure class="media">
+          <img src="img/bolt-quick-dim-v2-shortcut.png" width="1433" height="746" alt="Bảng Keyboard shortcuts của Tekla: nhóm Drawing, lọc Quick, chọn Plugin.iVidLab Bolt Quick Dim V2 và gán phím tắt" loading="lazy">
+          <figcaption>Gán phím tắt cho Bolt Quick Dim V2 trong bảng Keyboard shortcuts.</figcaption>
+        </figure>
+        <p>Hướng dẫn chi tiết cách mở bảng và gán phím tắt: <a href="/tekla/chiase/phim-tat-ctrl-shift-c-tekla-structures.html">Phím tắt Ctrl+Shift+C trong Tekla Structures</a>.</p>
+
+        <h2 id="cai-dat">5. Cài đặt</h2>
         <ol class="steps">
           <li>Ở mục <a href="#tai-ve">Tải về</a> bên dưới, chọn phiên bản Tekla đang dùng để tải gói <code>.tsep</code> (từ Tekla 2016 trở lên).</li>
-          <li>Nếu đã cài bản cũ, gỡ trong <strong>Tekla Extension Manager</strong> trước.</li>
           <li>Nhấp đúp file <code>.tsep</code>, tick phiên bản Tekla rồi bấm <strong>Import</strong>. Gói được cài khi Tekla khởi động lần tiếp theo.</li>
+          <li>Đã cài bản Bolt Quick Dim cũ (macro)? Cài đè gói mới là được.</li>
         </ol>
       </div>
 
       <div data-lang="en">
         <header class="article-hero">
-          <div class="eyebrow">Tekla Macro // Tekla Drawing</div>
-          <h1>iVidLab Bolt Quick Dim — Dimension bolts and add marks in Tekla drawings with two picks</h1>
-          <p class="lead">Open a drawing, pick a bolt group and a part: the tool draws all the dimensions and adds the marks, with no need to build each dimension line by hand.</p>
+          <div class="eyebrow">Tekla Component // Tekla Drawing</div>
+          <h1>iVidLab Bolt Quick Dim V2 — One click, and the drawing gets its bolt dimensions and marks</h1>
+          <p class="lead">Pick a bolt group and a part: the dimensions and marks are laid out tidily outside the part. Your settings are remembered, so next time it just runs.</p>
           <ul class="meta-row">
-            <li>Version 1.0.0</li>
-            <li>New tool</li>
+            <li>Version 2.0</li>
             <li>Tekla 2016 or newer</li>
           </ul>
           <div class="cta-row">
-            <a class="btn btn--primary" href="#tai-ve">⬇ Download Bolt Quick Dim</a>
+            <a class="btn btn--primary" href="#tai-ve">⬇ Download Bolt Quick Dim V2</a>
             <a class="btn btn--ghost" href="/tekla/component/tube-round-connect.html">See also Tube Round Connect</a>
           </div>
         </header>
@@ -148,50 +172,76 @@
         <div class="callout">
           <p><strong>At a glance</strong></p>
           <ul>
-            <li><strong>Bolt dimensions are drawn for you</strong> relative to the part you pick, for beams and plates alike.</li>
-            <li><strong>Bolt and part marks are added</strong> in the same single run.</li>
-            <li><strong>Choose the presentation style</strong>, using your company standards already in Tekla.</li>
+            <li><strong>One click to run:</strong> pick the bolt group, pick the part, done.</li>
+            <li><strong>Remembers your settings:</strong> choose the styles once, click Save, and it runs that way next time.</li>
+            <li><strong>Tidy dimensions</strong> outside the part, with nothing overlapping.</li>
+            <li>The result is <strong>ordinary drawing objects</strong>, editable and deletable as usual.</li>
           </ul>
         </div>
+
+        <figure class="media">
+          <img src="img/bolt-quick-dim-v2-drawing.png" width="1135" height="634" alt="A plate in a Tekla drawing with horizontal, vertical and overall dimensions plus the part mark and bolt mark" loading="lazy">
+          <figcaption>The result in the drawing: horizontal, vertical and overall dimensions, with the part mark and bolt mark.</figcaption>
+        </figure>
 
         <h2 id="how-to-use">1. How to use it</h2>
         <ol class="steps">
           <li>Open the drawing you want to dimension in Tekla.</li>
-          <li>Run the <strong>Bolt Quick Dim</strong> macro.</li>
-          <li>Pick a bolt group, then pick a part (beam or plate) to dimension against.</li>
+          <li>Click <strong>Bolt Quick Dim V2</strong> in the iViDLab group of the <em>Applications &amp; components</em> panel.</li>
+          <li>Pick a bolt group, then pick a part (beam or plate).</li>
         </ol>
-        <p>The dimensions and marks are drawn in seconds, in place of the usual chain of choosing a command, picking the bolts, opening the mark dialog and clicking OK.</p>
+        <p>To change the settings, double-click the component to open the dialog.</p>
+
+        <figure class="media">
+          <video src="video/bolt-quick-dim-v2.mp4" controls preload="metadata" playsinline style="display:block;margin:0 auto;max-width:100%;height:auto;border-radius:10px"></video>
+          <figcaption>Video: click the component, pick the bolt group and the part.</figcaption>
+        </figure>
 
         <h2 id="what-it-does">2. What it does</h2>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Feature</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td><strong>Automatic bolt dimensions</strong></td><td>Draws the dimension lines that locate each bolt relative to the picked part, in both directions, plus the overall dimension around the group</td></tr>
-              <tr><td><strong>Beams and plates</strong></td><td>Recognises the part type (Beam / Contour Plate) and picks the matching way to dimension it</td></tr>
-              <tr><td><strong>Bolt marks</strong></td><td>Creates the mark for the bolt group you just dimensioned, no separate command</td></tr>
-              <tr><td><strong>Part marks</strong></td><td>Creates the mark for the picked part at the same time</td></tr>
-              <tr><td><strong>Choose the style</strong></td><td>A small dialog to pick the bolt mark style, part mark style and dimension style</td></tr>
+              <tr><td><strong>One click to run</strong></td><td>Pick the bolt group and the part and you are done, with no dialog each time</td></tr>
+              <tr><td><strong>Remembers your settings</strong></td><td>Choose the mark and dimension styles once and click Save; it runs that way next time</td></tr>
+              <tr><td><strong>Pick from company standards</strong></td><td>Three drop-downs read the presentation styles already in Tekla, so you are not forced into one fixed style</td></tr>
+              <tr><td><strong>Marks on or off</strong></td><td>Two check boxes: bolt mark or not, part mark or not</td></tr>
+              <tr><td><strong>Tidy dimensions</strong></td><td>Detail dimensions sit next to the part and the overall dimension outermost; horizontal below, vertical on the right</td></tr>
+              <tr><td><strong>Beams and plates</strong></td><td>Recognises the part type and picks the matching way to dimension it</td></tr>
+              <tr><td><strong>Editable as usual</strong></td><td>Dimensions and marks are independent objects: edit, delete or move them freely</td></tr>
             </tbody>
           </table>
         </div>
         <figure class="media">
-          <img src="img/bolt-quick-dim-dialog.png" width="535" height="356" alt="Bolt Quick Dim dialog for choosing the Bolt mark, Part mark and Dimension styles" loading="lazy">
-          <figcaption>Choose the bolt mark, part mark and dimension styles.</figcaption>
+          <img src="img/bolt-quick-dim-v2-dialog.png" width="649" height="427" alt="Bolt Quick Dim V2 dialog: bolt mark, part mark and dimension styles, two check boxes for the marks and a Save button" loading="lazy">
+          <figcaption>The dialog: choose the styles, switch marks on or off, click Save to remember.</figcaption>
         </figure>
 
         <h2 id="why">3. Why use it</h2>
         <ul>
-          <li>Two jobs you usually do separately, dimensioning and marking, become <strong>one click</strong>.</li>
-          <li>No multi-step routine to remember as when working by hand.</li>
-          <li>It still follows each company or project presentation style instead of forcing one fixed style.</li>
+          <li>Dimensioning and marking become <strong>one click</strong>.</li>
+          <li>Set it up once and keep using it: no re-choosing styles in every drawing.</li>
+          <li>It still follows each company or project presentation style.</li>
         </ul>
 
-        <h2 id="install">4. Installing</h2>
+        <h2 id="shortcut">4. Assign a keyboard shortcut to run it faster</h2>
+        <p>If you use it a lot, assign a shortcut so you do not have to look for the component in the list. In a drawing, press <strong>Ctrl+Shift+C</strong> to open the <em>Keyboard shortcuts</em> dialog:</p>
+        <ol class="steps">
+          <li>Set <strong>Group</strong> to <strong>Drawing</strong>.</li>
+          <li>Type <code>Quick</code> in the <strong>Filter</strong> box, then select <strong>Plugin.iVidLab Bolt Quick Dim V2</strong>.</li>
+          <li>Click the <strong>Shortcut</strong> box, press the keys you want (for example <code>A</code> then <code>B</code>) and click <strong>Assign</strong>.</li>
+        </ol>
+        <figure class="media">
+          <img src="img/bolt-quick-dim-v2-shortcut.png" width="1433" height="746" alt="Tekla Keyboard shortcuts dialog: Drawing group, filter Quick, Plugin.iVidLab Bolt Quick Dim V2 selected and a shortcut assigned" loading="lazy">
+          <figcaption>Assigning a shortcut to Bolt Quick Dim V2 in the Keyboard shortcuts dialog.</figcaption>
+        </figure>
+        <p>Step-by-step guide to opening the dialog and assigning shortcuts: <a href="/tekla/chiase/phim-tat-ctrl-shift-c-tekla-structures.html">Ctrl+Shift+C in Tekla Structures</a>.</p>
+
+        <h2 id="install">5. Installing</h2>
         <ol class="steps">
           <li>In the <a href="#tai-ve">Download</a> section below, select your Tekla version to get the <code>.tsep</code> package (Tekla 2016 or newer).</li>
-          <li>If an older version is installed, uninstall it in <strong>Tekla Extension Manager</strong> first.</li>
           <li>Double-click the <code>.tsep</code> file, tick your Tekla version and click <strong>Import</strong>. The package is installed the next time Tekla starts.</li>
+          <li>Already have the old Bolt Quick Dim macro? Just install the new package over it.</li>
         </ol>
       </div>
 
