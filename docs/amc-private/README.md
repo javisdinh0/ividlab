@@ -27,7 +27,7 @@ Storage→Firestore, và không có link tải công khai kiểu `getDownloadURL
 Danh sách người đọc **không** để trong `config/*` vì `config` ai đăng nhập cũng đọc được (xem rules).
 
 **Nguồn bài viết** (html + ảnh + `posts.json`) nằm trong repo SDU (private):
-`X:\OneDrive\000 iViDLab\AutoCAD\Steel Design Universe\Docs\Web-AMC-Private\` — cách viết bài xem README ở đó.
+`%OneDrive%\000 iViDLab\AutoCAD\Steel Design Universe\Docs\Web-AMC-Private\` — cách viết bài xem README ở đó.
 
 ## Cài đặt lần đầu (làm 1 lần, bằng tay)
 
