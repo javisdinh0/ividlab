@@ -54,6 +54,12 @@ Owner là người được tạo dự án và quản trị toàn portal.
 - Chưa được gán dự án → thấy màn hình "Bạn chưa được cấp quyền vào dự án nào".
 - Owner cấp quyền (Giai đoạn 2) → tải lại → thấy dự án.
 
+## Cache khi deploy
+File `.js/.css` của site được Cloudflare cache ở trình duyệt 4 giờ. Mọi tham chiếu nội bộ trong
+`public/rficonsole/**` (script, stylesheet, import) phải kèm `?v=__BUILD__`; bước `postbuild`
+(`scripts/stamp-rficonsole.cjs`) thay bằng hash nội dung trong `dist/`. Sau deploy, người dùng nhận bản mới
+trong ≤ ~10 phút (thời hạn cache của `index.html`) mà không cần hard reload. Thêm file/import mới thì nhớ gắn `?v=__BUILD__`.
+
 ## Chi phí
 Gói **Spark (miễn phí)** đủ cho Auth + Firestore + Storage ở quy mô RFI. Chỉ cần nâng
 **Blaze** nếu sau này chọn phương án DB vật lý riêng (Cloud Function) — xem PLAN.md giai đoạn 6.

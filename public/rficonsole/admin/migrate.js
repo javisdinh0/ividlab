@@ -1,6 +1,6 @@
 // RFI Console — Công cụ di trú (Giai đoạn 4). Owner-only.
 // Đọc RFI cũ từ Firebase RTDB (REST công khai) -> nén ảnh (canvas) -> ghi Firestore.
-import { auth, db, CONFIGURED, emailKey } from "../firebase.js";
+import { auth, db, CONFIGURED, emailKey } from "../firebase.js?v=__BUILD__";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import { doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
