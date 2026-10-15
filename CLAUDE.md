@@ -1,5 +1,12 @@
 # CLAUDE.md
 
+## Khôi phục sau sự cố 2026-10-10 — đọc trước khi làm tiếp
+
+- Dự án đã được khôi phục sau sự cố máy ngày 2026-10-10. Gốc dự án: `%OneDrive%\000 iViDLab\`; không viết cứng ổ đĩa (dùng đường dẫn tương đối hoặc biến môi trường `OneDrive`).
+- WIP trong worktree đã commit local: `github-limits-website-faa283` (nhánh `claude/admin-traffic-control-page-01041c`, **đi trước origin 18 commit, chưa push**), `light-dark-mode-toggle-208673` (`vid/light-dark-mode-toggle-208673`), `silly-mclaren-c6f848` → nhánh mới `claude/silly-mclaren-c6f848`. Chưa push.
+- Build thử 2026-10-10: `vite build` OK.
+- Chi tiết đợt khôi phục: `%OneDrive%\000 iViDLab\_migration\RESTORE-2026-10-10-VIDPC.md` · rule chung: `%OneDrive%\000 iViDLab\_AgentRules\CLAUDE.md`.
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Commands

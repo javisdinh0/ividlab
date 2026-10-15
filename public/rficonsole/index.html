@@ -97,10 +97,53 @@
       <div id="projects-loading" class="muted">Đang tải…</div>
       <div id="projects-empty" class="empty-state" style="display:none;">
         <p>Bạn chưa được cấp quyền vào dự án nào.</p>
-        <p class="muted">Liên hệ quản trị để được thêm vào dự án bằng email của bạn.</p>
+        <p class="muted">Nhập mã dự án bên dưới để gửi yêu cầu, hoặc liên hệ quản trị để được thêm bằng email của bạn.</p>
       </div>
       <div id="projects-grid" class="projects-grid"></div>
+
+      <!-- Xin quyền vào dự án -->
+      <form id="req-home-form" class="card request-card">
+        <h3>Xin quyền vào dự án</h3>
+        <p class="muted" style="margin-top:0;">Nhập mã dự án (hoặc dán link dự án do quản trị gửi) để gửi yêu cầu cấp quyền.</p>
+        <div class="member-add">
+          <input type="text" id="req-home-pid" placeholder="VD: navy-hanoi" autocomplete="off" required>
+          <button class="btn btn-primary" type="submit">Tiếp tục</button>
+        </div>
+      </form>
     </main>
+  </section>
+
+  <!-- ============ XIN QUYỀN VÀO DỰ ÁN ============ -->
+  <section id="request-view" class="center-view" style="display:none;">
+    <div class="auth-card">
+      <div class="brand-mark">🔑</div>
+      <h1>Xin quyền vào dự án</h1>
+      <p class="sub">Bạn chưa được cấp quyền vào dự án<br><strong id="req-pid"></strong></p>
+
+      <!-- Chưa gửi yêu cầu -->
+      <div id="req-new" class="auth-form">
+        <div class="field">
+          <label>Lời nhắn cho quản trị (tùy chọn, tối đa 300 ký tự)</label>
+          <textarea id="req-note" maxlength="300" rows="3" placeholder="VD: Tôi là kỹ sư kết cấu bên nhà thầu…"></textarea>
+        </div>
+        <button class="btn btn-primary btn-block" id="btn-req-send">Gửi yêu cầu</button>
+      </div>
+
+      <!-- Đã gửi, chờ duyệt -->
+      <div id="req-pending" style="display:none;">
+        <p class="muted" id="req-pending-msg"></p>
+        <button class="btn btn-primary btn-block" id="btn-req-check">Kiểm tra lại</button>
+        <button class="btn btn-ghost btn-block" id="btn-req-cancel">Hủy yêu cầu</button>
+      </div>
+
+      <!-- Bị từ chối -->
+      <div id="req-rejected" style="display:none;">
+        <p class="muted">Yêu cầu của bạn đã bị từ chối. Hãy liên hệ quản trị dự án nếu cần được xem xét lại.</p>
+      </div>
+
+      <p class="form-err" id="req-err"></p>
+      <a class="btn btn-ghost btn-block" href="./">← Về danh sách dự án</a>
+    </div>
   </section>
 
   <!-- ============ APP RFI (bảng theo dự án — do rfi.js dựng) ============ -->
