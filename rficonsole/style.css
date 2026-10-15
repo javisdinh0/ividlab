@@ -59,6 +59,11 @@ code { background: var(--subtle); padding: 1px 5px; border-radius: 4px; font-siz
   background: var(--subtle); color: var(--text-main); font-family: inherit; font-size: 0.95rem;
 }
 .field input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(60,80,224,0.14); }
+.field textarea {
+  width: 100%; padding: 0.7rem 0.85rem; border: 1px solid var(--border); border-radius: 9px; resize: vertical;
+  background: var(--subtle); color: var(--text-main); font-family: inherit; font-size: 0.95rem;
+}
+.field textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(60,80,224,0.14); }
 
 .btn {
   padding: 0.65rem 1.1rem; border: none; border-radius: 9px; font-weight: 600; cursor: pointer;
@@ -157,6 +162,11 @@ code { background: var(--subtle); padding: 1px 5px; border-radius: 4px; font-siz
 .member-table th, .member-table td { text-align: left; padding: 0.6rem 0.7rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
 .member-table th { color: var(--text-muted); font-weight: 600; }
 .you-tag { color: var(--primary); font-size: 0.8rem; }
+.request-card { margin-top: 2rem; max-width: 560px; }
+.req-badge { background: var(--danger); color: #fff; font-size: 0.7rem; font-weight: 700; padding: 0.05rem 0.45rem; border-radius: 999px; margin-left: 6px; }
+.req-note { color: var(--text-muted); font-size: 0.82rem; margin-top: 2px; white-space: pre-wrap; word-break: break-word; }
+.req-actions { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.req-rejected-tag { color: var(--danger); font-size: 0.8rem; font-weight: 600; }
 .row-del { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 1rem; padding: 0.2rem 0.45rem; border-radius: 6px; }
 .row-del:hover { color: var(--danger); background: rgba(239,68,68,0.1); }
 
