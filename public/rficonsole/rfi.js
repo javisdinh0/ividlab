@@ -1,7 +1,7 @@
 // RFI Console — App bảng RFI theo dự án (Giai đoạn 3)
 // Port từ RFI Web, thay Firebase RTDB + permissions.js bằng Firestore + vai trò membership.
 // Ảnh lưu base64 nén ngay trong doc RFI (Spark khóa Storage). Vai trò: 1 toàn quyền / 2 chỉ trả lời (+khóa 24h) / 3 chỉ xem.
-import { db } from "./firebase.js";
+import { db } from "./firebase.js?v=__BUILD__";
 import {
   doc, getDoc, collection, onSnapshot,
   addDoc, updateDoc, deleteDoc, serverTimestamp

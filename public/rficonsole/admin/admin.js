@@ -1,6 +1,6 @@
 // RFI Console — Tab Admin (Giai đoạn 2)
 // Owner: tạo/cấu hình dự án, cấp quyền thành viên theo email + vai trò.
-import { auth, db, CONFIGURED, emailKey } from "../firebase.js";
+import { auth, db, CONFIGURED, emailKey } from "../firebase.js?v=__BUILD__";
 import {
   onAuthStateChanged, signOut
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";

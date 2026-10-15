@@ -1,6 +1,6 @@
 // RFI Console — Auth shell (Giai đoạn 1)
 // Đăng ký / đăng nhập / xác minh email / quên mật khẩu + danh sách dự án của người dùng.
-import { auth, db, CONFIGURED, emailKey } from "./firebase.js";
+import { auth, db, CONFIGURED, emailKey } from "./firebase.js?v=__BUILD__";
 import {
   createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut,
   sendEmailVerification, sendPasswordResetEmail, onAuthStateChanged, reload
@@ -84,7 +84,7 @@ async function route(user) {
     if (role == null && await checkOwner(user.email)) role = 1; // owner không phải member vẫn mở được
     if (role == null) { renderRequest(user, pid); return; }     // chưa có quyền -> màn hình xin quyền
     showView('project-view');
-    const mod = await import('./rfi.js');
+    const mod = await import('./rfi.js?v=__BUILD__');
     await mod.initProject(user, pid, role);
   } catch (e) {
     console.error(e);
