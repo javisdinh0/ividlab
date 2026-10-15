@@ -1,7 +1,8 @@
 rules_version = '2';
 
 // RFI Console — phân quyền phía server (thay cho permissions.js client cũ).
-// Model: config/owners; projects/{pid}; projects/{pid}/members/{emailKey}; projects/{pid}/rfis/{rfiId}
+// Model: config/owners; projects/{pid}; projects/{pid}/members/{emailKey}; projects/{pid}/rfis/{rfiId};
+//        accessRequests/{pid__emailKey}
 // Vai trò: 1 = toàn quyền, 2 = chỉ trả lời (+ khóa 24h), 3 = chỉ xem.
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -143,6 +144,40 @@ service cloud.firestore {
       }
     }
 
+    // ---- accessRequests : người dùng xin quyền vào dự án (RFI Console) ----
+    // 1 doc / (dự án, người xin): id = "<pid>__<email chữ thường>". Người xin chỉ tạo/đọc/sửa
+    // note/hủy doc CỦA MÌNH khi còn 'pending'; owner liệt kê, từ chối (status='rejected') và xóa.
+    // Duyệt = owner tạo members/{email} rồi xóa request (client dùng writeBatch).
+    // Dự án phải tồn tại và người xin chưa là thành viên -> không rác dữ liệu / không spam dự án ảo.
+    match /accessRequests/{reqId} {
+      allow get: if isOwner()
+                 || (signedIn() && (resource == null || resource.data.email == email()));
+      allow list: if isOwner();
+      allow create: if signedIn()
+                    && request.resource.data.keys().hasOnly(['pid', 'email', 'note', 'status', 'ts'])
+                    && request.resource.data.keys().hasAll(['pid', 'email', 'status', 'ts'])
+                    && request.resource.data.email == email()
+                    && request.resource.data.status == 'pending'
+                    && request.resource.data.pid is string
+                    && request.resource.data.pid.matches('^[A-Za-z0-9_-]{1,60}$')
+                    && reqId == request.resource.data.pid + '__' + request.resource.data.email
+                    && request.resource.data.get('note', '') is string
+                    && request.resource.data.get('note', '').size() <= 300
+                    && request.resource.data.ts == request.time
+                    && exists(/databases/$(database)/documents/projects/$(request.resource.data.pid))
+                    && !exists(memberRef(request.resource.data.pid));
+      allow update: if isOwner()
+                    || (signedIn()
+                        && resource.data.email == email()
+                        && resource.data.status == 'pending'
+                        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['note', 'ts'])
+                        && request.resource.data.get('note', '') is string
+                        && request.resource.data.get('note', '').size() <= 300
+                        && request.resource.data.ts == request.time);
+      allow delete: if isOwner()
+                    || (signedIn() && resource.data.email == email() && resource.data.status == 'pending');
+    }
+
     // Cho phép truy vấn collectionGroup('members') liệt kê dự án của CHÍNH MÌNH.
     // Collection-group query chỉ khớp rule khai báo bằng recursive wildcard {path=**},
     // và phải là điều kiện field-based (không get/exists) mới hợp lệ khi list.
@@ -161,6 +196,9 @@ service cloud.firestore {
       // lowercase) và đúng định dạng email (chặn nháy kép/thẻ -> chặn stored XSS tại nguồn).
       match /members/{emailKey} {
         allow read: if isMember(pid) || isOwner();
+        // Người dùng đọc được doc thành viên CỦA MÌNH (kể cả khi chưa tồn tại) để app
+        // phân biệt "chưa được cấp quyền" với lỗi quyền -> mở màn hình xin quyền.
+        allow get: if signedIn() && emailKey == email();
         allow create, update:
              if (isOwner() || (isMember(pid) && roleOf(pid) == 1))
              && request.resource.data.role in [1, 2, 3]

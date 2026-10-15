@@ -5,7 +5,8 @@ import {
   onAuthStateChanged, signOut
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import {
-  doc, getDoc, setDoc, updateDoc, deleteDoc, collection, getDocs, serverTimestamp
+  doc, getDoc, setDoc, updateDoc, deleteDoc, collection, getDocs, serverTimestamp,
+  query, where, writeBatch
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 const $ = (id) => document.getElementById(id);
@@ -85,9 +86,15 @@ async function loadProjects(selectPid) {
     const items = res.docs.map(d => ({ id: d.id, ...d.data() }))
       .sort((a, b) => (a.name || a.id).localeCompare(b.name || b.id));
     if (!items.length) { list.innerHTML = '<div class="muted" style="padding:0.6rem;">Chưa có dự án nào.</div>'; return; }
+    // Số yêu cầu truy cập đang chờ duyệt theo dự án (lỗi/chưa deploy rules -> bỏ qua badge).
+    const pending = {};
+    try {
+      const rs = await getDocs(query(collection(db, 'accessRequests'), where('status', '==', 'pending')));
+      rs.docs.forEach(d => { const k = d.data().pid; pending[k] = (pending[k] || 0) + 1; });
+    } catch (e) { console.warn('Không tải được yêu cầu truy cập:', e.code || e.message); }
     list.innerHTML = items.map(p => `
       <button class="proj-item${p.id === currentPid ? ' active' : ''}" data-id="${escAttr(p.id)}">
-        <span class="pi-name">${escapeHtml(p.name || p.id)}</span>
+        <span class="pi-name">${escapeHtml(p.name || p.id)}${pending[p.id] ? ` <span class="req-badge">${pending[p.id]}</span>` : ''}</span>
         <span class="pi-slug">${escapeHtml(p.id)}</span>
       </button>`).join('');
     list.querySelectorAll('.proj-item').forEach(b => b.onclick = () => openProject(b.dataset.id));
@@ -157,6 +164,7 @@ async function openProject(pid) {
     $('cfg-desc').value = p.description || '';
     $('cfg-status').value = p.status || 'open';
     loadMembers(pid);
+    loadRequests(pid);
   } catch (e) { toast('Lỗi mở dự án: ' + (e.message || e.code), 'err'); }
 }
 
@@ -250,6 +258,94 @@ async function removeMember(email) {
     toast('Đã gỡ ' + email + '.', 'ok');
     loadMembers(currentPid);
   } catch (e) { toast('Lỗi gỡ: ' + (e.message || e.code), 'err'); }
+}
+
+/* ---------- Yêu cầu truy cập (accessRequests) ---------- */
+async function loadRequests(pid) {
+  const body = $('req-body');
+  const badge = $('req-count');
+  body.innerHTML = '<tr><td colspan="3" class="muted">Đang tải…</td></tr>';
+  show(badge, false);
+  try {
+    const res = await getDocs(query(collection(db, 'accessRequests'), where('pid', '==', pid)));
+    if (pid !== currentPid) return;   // đã chuyển sang dự án khác trong lúc tải
+    const items = res.docs.map(d => ({ id: d.id, ...d.data() }))
+      .sort((a, b) => (a.status === 'pending' ? 0 : 1) - (b.status === 'pending' ? 0 : 1)
+        || String(a.email).localeCompare(String(b.email)));
+    const nPending = items.filter(r => r.status === 'pending').length;
+    if (nPending) { badge.textContent = nPending; show(badge, true); }
+    if (!items.length) { body.innerHTML = '<tr><td colspan="3" class="muted">Không có yêu cầu nào.</td></tr>'; return; }
+    body.innerHTML = items.map(r => {
+      const when = r.ts && typeof r.ts.toDate === 'function' ? r.ts.toDate().toLocaleString('vi-VN') : '';
+      const info = `<div>${escapeHtml(r.email)}</div>`
+        + (r.note ? `<div class="req-note">${escapeHtml(r.note)}</div>` : '')
+        + (when ? `<div class="req-note">${escapeHtml(when)}</div>` : '');
+      if (r.status === 'pending') {
+        return `<tr>
+          <td>${info}</td>
+          <td><select class="m-role-sel" data-rid="${escAttr(r.id)}">
+            <option value="3" selected>L3 · Chỉ xem</option>
+            <option value="2">L2 · Chỉ trả lời</option>
+            <option value="1">L1 · Toàn quyền</option>
+          </select></td>
+          <td><div class="req-actions">
+            <button class="btn btn-primary btn-sm req-approve" data-rid="${escAttr(r.id)}" data-email="${escAttr(r.email)}">Duyệt</button>
+            <button class="btn btn-ghost btn-sm req-reject" data-rid="${escAttr(r.id)}">Từ chối</button>
+          </div></td>
+        </tr>`;
+      }
+      return `<tr>
+        <td>${info}</td>
+        <td><span class="req-rejected-tag">Đã từ chối</span></td>
+        <td><button class="row-del req-del" data-rid="${escAttr(r.id)}" title="Xóa yêu cầu (cho phép gửi lại)">✕</button></td>
+      </tr>`;
+    }).join('');
+    body.querySelectorAll('.req-approve').forEach(b => b.onclick = () => {
+      const sel = body.querySelector('.m-role-sel[data-rid="' + CSS.escape(b.dataset.rid) + '"]');
+      approveRequest(b.dataset.rid, b.dataset.email, parseInt(sel ? sel.value : 3));
+    });
+    body.querySelectorAll('.req-reject').forEach(b => b.onclick = () => rejectRequest(b.dataset.rid));
+    body.querySelectorAll('.req-del').forEach(b => b.onclick = () => deleteRequest(b.dataset.rid));
+  } catch (e) {
+    body.innerHTML = '<tr><td colspan="3" class="form-err">Lỗi tải: ' + escapeHtml(e.message || e.code)
+      + ' (đã deploy rules mới chưa? xem DEPLOY.md)</td></tr>';
+  }
+}
+
+// Duyệt = tạo member + xóa request trong 1 batch (nguyên tử).
+async function approveRequest(rid, email, role) {
+  if (![1, 2, 3].includes(role)) return;
+  const pid = currentPid;
+  try {
+    const batch = writeBatch(db);
+    batch.set(doc(db, 'projects', pid, 'members', email), {
+      email, role, status: 'active', addedBy: me.email, addedAt: serverTimestamp()
+    });
+    batch.delete(doc(db, 'accessRequests', rid));
+    await batch.commit();
+    toast('Đã cấp quyền ' + ROLE_LABEL[role] + ' cho ' + email + '.', 'ok');
+  } catch (e) { toast('Lỗi duyệt yêu cầu: ' + (e.message || e.code), 'err'); }
+  if (pid === currentPid) { loadMembers(pid); loadRequests(pid); }
+  loadProjects();
+}
+
+async function rejectRequest(rid) {
+  const pid = currentPid;
+  try {
+    await updateDoc(doc(db, 'accessRequests', rid), { status: 'rejected' });
+    toast('Đã từ chối yêu cầu.', 'ok');
+  } catch (e) { toast('Lỗi từ chối: ' + (e.message || e.code), 'err'); }
+  if (pid === currentPid) loadRequests(pid);
+  loadProjects();
+}
+
+async function deleteRequest(rid) {
+  const pid = currentPid;
+  try {
+    await deleteDoc(doc(db, 'accessRequests', rid));
+    toast('Đã xóa yêu cầu.', 'ok');
+  } catch (e) { toast('Lỗi xóa: ' + (e.message || e.code), 'err'); }
+  if (pid === currentPid) loadRequests(pid);
 }
 
 /* ---------- Theme ---------- */

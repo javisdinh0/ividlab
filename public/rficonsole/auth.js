@@ -6,11 +6,13 @@ import {
   sendEmailVerification, sendPasswordResetEmail, onAuthStateChanged, reload
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import {
-  doc, getDoc, collectionGroup, query, where, getDocs
+  doc, getDoc, setDoc, deleteDoc, collectionGroup, query, where, getDocs, serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 const $ = (id) => document.getElementById(id);
 const show = (el, on) => { el.style.display = on ? '' : 'none'; };
+// Mã dự án hợp lệ (khớp rules accessRequests); slug do admin tạo chỉ gồm a-z0-9-.
+const PID_RE = /^[A-Za-z0-9_-]{1,60}$/;
 
 function toast(msg, type) {
   const t = $('toast');
@@ -37,7 +39,7 @@ function authErr(e) {
   return map[c] || (e && e.message) || 'Có lỗi xảy ra.';
 }
 
-const views = ['config-banner', 'auth-view', 'verify-view', 'home-view', 'project-view'];
+const views = ['config-banner', 'auth-view', 'verify-view', 'home-view', 'request-view', 'project-view'];
 function showView(id) {
   views.forEach(v => { const el = $(v); if (el) show(el, false); });
   if (id) show($(id), true);
@@ -62,17 +64,25 @@ if (!CONFIGURED) {
 async function route(user) {
   const pid = new URLSearchParams(location.search).get('project');
   if (!pid) { renderHome(user); return; }
+  if (!PID_RE.test(pid)) {
+    history.replaceState(null, '', './');
+    toast('Mã dự án không hợp lệ.', 'err');
+    renderHome(user);
+    return;
+  }
   // Kiểm tra membership để lấy vai trò rồi mở app RFI.
   try {
-    const m = await getDoc(doc(db, 'projects', pid, 'members', emailKey(user.email)));
-    let role = m.exists() ? sanitizeRole(m.data().role) : null;
-    if (role == null && await checkOwner(user.email)) role = 1; // owner không phải member vẫn mở được
-    if (role == null) {
-      history.replaceState(null, '', './');       // dứt khoát không có quyền -> bỏ deep-link
-      toast('Bạn không có quyền vào dự án này.', 'err');
-      renderHome(user);
-      return;
+    let role = null;
+    try {
+      const m = await getDoc(doc(db, 'projects', pid, 'members', emailKey(user.email)));
+      role = m.exists() ? sanitizeRole(m.data().role) : null;
+    } catch (e) {
+      // Rules cũ (chưa có `allow get` cho doc thành viên của chính mình) trả permission-denied
+      // cho người chưa là thành viên -> coi như chưa có quyền; lỗi khác (mạng/token) thì ném tiếp.
+      if (!e || e.code !== 'permission-denied') throw e;
     }
+    if (role == null && await checkOwner(user.email)) role = 1; // owner không phải member vẫn mở được
+    if (role == null) { renderRequest(user, pid); return; }     // chưa có quyền -> màn hình xin quyền
     showView('project-view');
     const mod = await import('./rfi.js');
     await mod.initProject(user, pid, role);
@@ -164,6 +174,73 @@ function renderVerify(user) {
 }
 
 /* =========================================================================
+   VIEW: xin quyền vào dự án (accessRequests/{pid__email})
+   ========================================================================= */
+function requestRef(pid, email) {
+  return doc(db, 'accessRequests', pid + '__' + emailKey(email));
+}
+
+async function renderRequest(user, pid) {
+  showView('request-view');
+  $('req-pid').textContent = pid;
+  $('req-err').textContent = '';
+  $('req-note').value = '';
+  const ref = requestRef(pid, user.email);
+
+  // Vẽ theo trạng thái yêu cầu: null (chưa gửi) | 'pending' | 'rejected'.
+  const paint = (data) => {
+    const status = data ? data.status : null;
+    show($('req-new'), status == null);
+    show($('req-pending'), status === 'pending');
+    show($('req-rejected'), status === 'rejected');
+    if (status === 'pending') {
+      const when = data.ts && typeof data.ts.toDate === 'function'
+        ? ' lúc ' + data.ts.toDate().toLocaleString('vi-VN') : '';
+      $('req-pending-msg').textContent = 'Đã gửi yêu cầu' + when + '. Đang chờ quản trị duyệt — '
+        + 'khi được cấp quyền, bấm "Kiểm tra lại".';
+    }
+  };
+
+  let data = null;
+  try {
+    const snap = await getDoc(ref);
+    data = snap.exists() ? snap.data() : null;
+  } catch (e) {
+    console.error(e);
+    $('req-err').textContent = 'Không đọc được trạng thái yêu cầu: ' + (e.message || e.code);
+  }
+  paint(data);
+
+  $('btn-req-send').onclick = async () => {
+    $('req-err').textContent = '';
+    $('btn-req-send').disabled = true;
+    try {
+      await setDoc(ref, {
+        pid, email: emailKey(user.email), status: 'pending',
+        note: $('req-note').value.trim().slice(0, 300), ts: serverTimestamp()
+      });
+      toast('Đã gửi yêu cầu. Vui lòng chờ quản trị duyệt.', 'ok');
+      const snap = await getDoc(ref);
+      paint(snap.exists() ? snap.data() : null);
+    } catch (e) {
+      console.error(e);
+      $('req-err').textContent = (e && e.code === 'permission-denied')
+        ? 'Không gửi được yêu cầu. Kiểm tra lại mã dự án (dự án phải tồn tại) hoặc yêu cầu trước đó đã bị từ chối.'
+        : 'Lỗi gửi yêu cầu: ' + (e.message || e.code);
+    }
+    $('btn-req-send').disabled = false;
+  };
+
+  $('btn-req-check').onclick = () => route(auth.currentUser || user);   // đã được duyệt -> vào thẳng dự án
+
+  $('btn-req-cancel').onclick = async () => {
+    if (!confirm('Hủy yêu cầu xin quyền vào dự án này?')) return;
+    try { await deleteDoc(ref); paint(null); toast('Đã hủy yêu cầu.', 'ok'); }
+    catch (e) { $('req-err').textContent = 'Lỗi hủy yêu cầu: ' + (e.message || e.code); }
+  };
+}
+
+/* =========================================================================
    VIEW: đã đăng nhập — danh sách dự án
    ========================================================================= */
 async function renderHome(user) {
@@ -171,6 +248,16 @@ async function renderHome(user) {
   $('user-chip').textContent = user.email;
   $('btn-logout').onclick = () => signOut(auth);
   wireTheme();
+
+  // Form "Xin quyền vào dự án": nhận mã dự án hoặc link ...?project=<mã>, rồi mở màn hình xin quyền.
+  $('req-home-form').onsubmit = (e) => {
+    e.preventDefault();
+    let v = $('req-home-pid').value.trim();
+    const m = v.match(/[?&]project=([^&#\s]+)/);
+    if (m) { try { v = decodeURIComponent(m[1]); } catch (err) { v = m[1]; } }
+    if (!PID_RE.test(v)) { toast('Mã dự án không hợp lệ (chỉ gồm chữ, số, gạch nối).', 'err'); return; }
+    location.href = './?project=' + encodeURIComponent(v);
+  };
 
   // Owner? -> hiện nút Quản trị
   const isOwner = await checkOwner(user.email);

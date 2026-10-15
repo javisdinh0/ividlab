@@ -30,6 +30,20 @@ projects/{projectId}     { name, slug, trimbleUrl, description, status, createdB
                            yeuCauImages:[{path,url}], traLoiImages:[{path,url}],
                            editors:{field:{email,ts}}, firstEditTime, order }
 ```
+```
+accessRequests/{pid__emailKey}  { pid, email, note(≤300), status:"pending"|"rejected", ts }   // xin quyền vào dự án
+```
+**Xin quyền (2026-10-15):** người dùng đã đăng nhập + xác minh mà chưa là thành viên → màn hình
+"Xin quyền vào dự án" (từ deep-link `?project=<mã>` hoặc nhập mã ở trang chủ). Chỉ người xin tạo/sửa
+note/hủy request CỦA MÌNH khi còn `pending`; owner liệt kê, `rejected`, xóa, hoặc **Duyệt** (batch:
+tạo `members/{email}` với vai trò chọn + xóa request) tại `/rficonsole/admin/`. Rules bắt buộc dự án
+tồn tại và người xin chưa là thành viên. Không cần index mới (query 1 trường). Chưa có email thông báo
+(cần Cloud Function/Blaze) — owner thấy badge số yêu cầu chờ duyệt cạnh tên dự án.
+
+**Xuất Excel (2026-10-15):** nút "Tải Excel" trong bảng RFI (mọi vai trò). ExcelJS 4.4.0 tải lười từ
+cdnjs có SRI; 1 RFI = 1 hàng, ảnh nhúng vào ô (mỗi ảnh 1 cột), có lọc, đóng băng tiêu đề, cột
+"Sửa lần cuối". Nội dung luôn ghi dạng chuỗi nên không bị Excel hiểu thành công thức.
+
 **Ảnh:** vì project Firebase mới bị **khóa Cloud Storage trên gói Spark** (đòi Blaze), ảnh
 được **nén (canvas → JPEG ~1400px) và lưu base64 NGAY trong document RFI** (mảng
 `yeuCauImages`/`traLoiImages` = `[{dataUrl}]`). Chặn tổng ~900KB/dòng để không vượt giới

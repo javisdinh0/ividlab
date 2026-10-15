@@ -1,6 +1,6 @@
 // RFI Console — App bảng RFI theo dự án (Giai đoạn 3)
 // Port từ RFI Web, thay Firebase RTDB + permissions.js bằng Firestore + vai trò membership.
-// Ảnh lưu trên Storage (không base64 trong DB). Vai trò: 1 toàn quyền / 2 chỉ trả lời (+khóa 24h) / 3 chỉ xem.
+// Ảnh lưu base64 nén ngay trong doc RFI (Spark khóa Storage). Vai trò: 1 toàn quyền / 2 chỉ trả lời (+khóa 24h) / 3 chỉ xem.
 import { db } from "./firebase.js";
 import {
   doc, getDoc, collection, onSnapshot,
@@ -24,10 +24,11 @@ function esc(v) { return String(v == null ? '' : v).replace(/&/g, '&amp;').repla
 function escAttr(v) { return esc(v).replace(/"/g, '&quot;'); }
 function toMillis(ts) { return ts && typeof ts.toMillis === 'function' ? ts.toMillis() : (typeof ts === 'number' ? ts : null); }
 
-function loadScript(src) {
+function loadScript(src, integrity) {
   return new Promise((resolve, reject) => {
     if (document.querySelector(`script[src="${src}"]`)) return resolve();
     const s = document.createElement('script'); s.src = src;
+    if (integrity) { s.integrity = integrity; s.crossOrigin = 'anonymous'; }   // SRI: chặn script CDN bị thay đổi
     s.onload = resolve; s.onerror = () => reject(new Error('Không tải được: ' + src));
     document.head.appendChild(s);
   });
@@ -85,6 +86,7 @@ function renderShell() {
       </div>
       <div class="topbar-right">
         <button class="btn btn-ghost btn-sm" id="rfi-add-row">+ Thêm dòng</button>
+        <button class="btn btn-ghost btn-sm" id="rfi-xlsx">Tải Excel</button>
         <button class="btn btn-ghost btn-sm" id="rfi-zip">Tải ảnh (ZIP)</button>
         <button class="btn btn-ghost btn-sm" id="rfi-pdf">In PDF</button>
         <button class="btn btn-ghost btn-sm btn-theme" id="rfi-theme" title="Sáng/Tối">🌓</button>
@@ -366,6 +368,7 @@ function wireToolbar() {
   $('rfi-add-row').onclick = addRow;
   $('rfi-pdf').onclick = () => window.print();
   $('rfi-zip').onclick = exportZip;
+  $('rfi-xlsx').onclick = exportExcel;
   const bt = $('rfi-theme');
   if (bt) bt.onclick = () => {
     const root = document.documentElement;
@@ -407,6 +410,194 @@ async function exportZip() {
     a.click();
     toast('Đã tải ' + count + ' ảnh.', 'ok');
   } catch (e) { toast('Lỗi tạo ZIP: ' + (e.message || e.code), 'err'); }
+}
+
+/* ============================ XUẤT EXCEL ============================ */
+// ExcelJS (tải lười từ cdnjs, có SRI) — hỗ trợ nhúng ảnh + định dạng; SheetJS bản cộng đồng thì không.
+const EXCELJS_URL = 'https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js';
+const EXCELJS_SRI = 'sha384-Pqp51FUN2/qzfxZxBCtF0stpc9ONI6MYZpVqmo8m20SoaQCzf+arZvACkLkirlPz';
+const XL_IMG_W = 150, XL_IMG_H = 110;     // khung ảnh trong 1 ô (px)
+
+// Đọc ảnh -> { dataUrl, ext, w, h }. Định dạng ExcelJS không hỗ trợ (webp…) thì re-encode JPEG.
+async function prepareXlsxImage(im) {
+  let src = (im && (im.dataUrl || im.url)) || '';
+  if (!src) return null;
+  if (!src.startsWith('data:')) {                       // ảnh dạng URL (dữ liệu cũ) -> tải về
+    const blob = await (await fetch(src)).blob();
+    src = await new Promise((res, rej) => {
+      const fr = new FileReader(); fr.onload = () => res(fr.result); fr.onerror = rej; fr.readAsDataURL(blob);
+    });
+  }
+  const img = await new Promise((res, rej) => {
+    const i = new Image(); i.onload = () => res(i); i.onerror = () => rej(new Error('Không đọc được ảnh')); i.src = src;
+  });
+  const w = img.naturalWidth || 4, h = img.naturalHeight || 3;
+  const m = /^data:image\/(png|jpeg|gif);base64,/i.exec(src);
+  if (m) return { dataUrl: src, ext: m[1].toLowerCase(), w, h };
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  const ctx = c.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, w, h); ctx.drawImage(img, 0, 0);
+  return { dataUrl: c.toDataURL('image/jpeg', 0.85), ext: 'jpeg', w, h };
+}
+
+// Người + thời điểm sửa gần nhất của 1 dòng (từ map editors).
+function lastEditorText(row) {
+  let best = null;
+  Object.values(row.editors || {}).forEach(ed => {
+    if (!ed) return;
+    if (typeof ed === 'string') { if (!best) best = { email: ed, ms: 0 }; return; }
+    const ms = toMillis(ed.ts) || (typeof ed.ts === 'number' ? ed.ts : 0);
+    if (ed.email && (!best || ms >= best.ms)) best = { email: ed.email, ms };
+  });
+  if (!best) return '';
+  return best.email + (best.ms ? ' · ' + new Date(best.ms).toLocaleString('vi-VN') : '');
+}
+
+async function exportExcel() {
+  if (!rows.length) { toast('Chưa có RFI để xuất.', 'err'); return; }
+  const btn = $('rfi-xlsx'); btn.disabled = true;
+  try {
+    if (typeof ExcelJS === 'undefined') { toast('Đang tải thư viện Excel…'); await loadScript(EXCELJS_URL, EXCELJS_SRI); }
+    if (typeof ExcelJS === 'undefined') throw new Error('Không tải được thư viện Excel');
+    toast('Đang tạo file Excel…');
+
+    // Giải mã ảnh trước: số cột ảnh = số ảnh nhiều nhất của 1 dòng (mỗi ảnh 1 ô, không chồng nhau).
+    const prepared = [];
+    for (const row of rows) {
+      const entry = { yc: [], tl: [] };
+      for (const [key, field] of [['yc', 'yeuCauImages'], ['tl', 'traLoiImages']]) {
+        for (const im of (row[field] || [])) {
+          try { const p = await prepareXlsxImage(im); if (p) entry[key].push(p); }
+          catch (e) { console.warn('Bỏ qua ảnh lỗi', e); }
+        }
+      }
+      prepared.push(entry);
+    }
+    const nYC = Math.max(1, ...prepared.map(p => p.yc.length));
+    const nTL = Math.max(1, ...prepared.map(p => p.tl.length));
+    const imgColW = Math.ceil((XL_IMG_W + 5) / 7);      // px -> độ rộng cột (ký tự)
+    const range = (n) => Array.from({ length: n }, (_, i) => i);
+
+    // g: nhóm tiêu đề — yc (xanh dương) / tl (xanh lá) / x (xám)
+    const cols = [
+      { k: 'stt', label: 'STT', w: 7, g: 'yc', center: true },
+      { k: 'trangThai', label: 'Trạng thái', w: 12, g: 'yc', center: true },
+      { k: 'banVe', label: 'Bản vẽ / Chỉ dẫn KT', w: 20, g: 'yc', center: true },
+      { k: 'ngay', label: 'Ngày ghi nhận', w: 14, g: 'yc', center: true },
+      { k: 'ycNd', label: 'Nội dung yêu cầu', w: 45, g: 'yc' },
+      { k: 'ycNote', label: 'Ghi chú yêu cầu', w: 25, g: 'yc' },
+      ...range(nYC).map(i => ({ k: 'ycImg' + i, label: nYC > 1 ? 'Hình ảnh ' + (i + 1) : 'Hình ảnh', w: imgColW, g: 'yc', img: true })),
+      { k: 'tlNd', label: 'Nội dung trả lời', w: 45, g: 'tl' },
+      { k: 'tlNote', label: 'Ghi chú trả lời', w: 25, g: 'tl' },
+      ...range(nTL).map(i => ({ k: 'tlImg' + i, label: nTL > 1 ? 'Hình ảnh ' + (i + 1) : 'Hình ảnh', w: imgColW, g: 'tl', img: true })),
+      { k: 'ghiChu', label: 'Ghi chú', w: 25, g: 'tl' },
+      { k: 'editor', label: 'Sửa lần cuối', w: 30, g: 'x' },
+    ];
+    const N = cols.length;
+    const GROUP = {
+      yc: { text: 'YÊU CẦU / QUESTION INFO', fill: 'FF0070C0', font: 'FFFFFFFF' },
+      tl: { text: 'TRẢ LỜI / ANSWER INFO', fill: 'FF548235', font: 'FFFFFFFF' },
+      x: { text: '', fill: 'FFE5E7EB', font: 'FF000000' },
+    };
+    const thin = { style: 'thin', color: { argb: 'FF9CA3AF' } };
+    const BORDER = { top: thin, left: thin, bottom: thin, right: thin };
+
+    const wb = new ExcelJS.Workbook();
+    wb.creator = ME; wb.created = new Date();
+    const ws = wb.addWorksheet('RFI', {
+      views: [{ state: 'frozen', xSplit: 1, ySplit: 4 }],
+      pageSetup: { orientation: 'landscape', paperSize: 9, fitToPage: true, fitToWidth: 1, fitToHeight: 0, printTitlesRow: '1:4' }
+    });
+    ws.columns = cols.map(c => ({ width: c.w }));
+
+    // Hàng 1-2: tiêu đề + thông tin xuất
+    ws.mergeCells(1, 1, 1, N);
+    const t = ws.getCell(1, 1);
+    t.value = 'BẢNG GHI NHẬN YÊU CẦU LÀM RÕ THÔNG TIN / ANSWER AND QUESTION INFO';
+    t.font = { bold: true, size: 14 }; t.alignment = { horizontal: 'center', vertical: 'middle' };
+    ws.getRow(1).height = 28;
+    ws.mergeCells(2, 1, 2, N);
+    const sub = ws.getCell(2, 1);
+    sub.value = 'Dự án: ' + (PROJECT.name || PID) + '  —  Xuất ngày ' + new Date().toLocaleDateString('vi-VN')
+      + '  —  ' + rows.length + ' RFI';
+    sub.font = { italic: true, color: { argb: 'FF475569' } }; sub.alignment = { horizontal: 'left', vertical: 'middle' };
+
+    // Hàng 3: nhóm (gộp ô theo cụm liên tiếp cùng nhóm); hàng 4: nhãn cột
+    for (let s = 0; s < N;) {
+      let e = s; while (e + 1 < N && cols[e + 1].g === cols[s].g) e++;
+      if (e > s) ws.mergeCells(3, s + 1, 3, e + 1);
+      const gc = ws.getCell(3, s + 1), g = GROUP[cols[s].g];
+      gc.value = g.text;
+      gc.font = { bold: true, color: { argb: g.font } };
+      gc.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: g.fill } };
+      gc.alignment = { horizontal: 'center', vertical: 'middle' };
+      for (let c = s; c <= e; c++) ws.getCell(3, c + 1).border = BORDER;
+      s = e + 1;
+    }
+    ws.getRow(3).height = 22;
+    cols.forEach((c, i) => {
+      const cell = ws.getCell(4, i + 1);
+      cell.value = c.label;
+      cell.font = { bold: true };
+      cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF3F4F6' } };
+      cell.alignment = { horizontal: 'center', vertical: 'middle', wrapText: true };
+      cell.border = BORDER;
+    });
+    ws.getRow(4).height = 30;
+    ws.autoFilter = { from: { row: 4, column: 1 }, to: { row: 4, column: N } };
+
+    // Dữ liệu: 1 RFI = 1 hàng
+    const linesOf = (s, w) => String(s || '').split('\n')
+      .reduce((n, ln) => n + Math.max(1, Math.ceil(ln.length / (w * 0.9))), 0);
+    const colIdx = Object.fromEntries(cols.map((c, i) => [c.k, i]));
+    rows.forEach((row, i) => {
+      const r = 5 + i;
+      const val = {
+        stt: row.stt, trangThai: row.trangThai === 'Done' ? 'Done' : 'Pending', banVe: row.banVe,
+        ngay: row.ngayGhiNhan, ycNd: row.yeuCauNoiDung, ycNote: row.yeuCauNote,
+        tlNd: row.traLoiNoiDung, tlNote: row.traLoiNote, ghiChu: row.ghiChu, editor: lastEditorText(row)
+      };
+      let heightPt = 30;
+      cols.forEach((c, ci) => {
+        const cell = ws.getCell(r, ci + 1);
+        cell.border = BORDER;
+        cell.alignment = { vertical: 'top', horizontal: c.center ? 'center' : 'left', wrapText: true };
+        if (c.img) return;
+        const v = val[c.k] == null ? '' : String(val[c.k]);
+        cell.value = v;                                   // luôn là chuỗi -> không bị Excel hiểu thành công thức
+        heightPt = Math.max(heightPt, linesOf(v, c.w) * 15 + 4);
+        if (c.k === 'trangThai') {
+          cell.font = { bold: true, color: { argb: v === 'Done' ? 'FF166534' : 'FFFFFFFF' } };
+          if (v !== 'Done') cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFB91C1C' } };
+        } else if (c.center) cell.font = { bold: true };
+      });
+      [['yc', 'ycImg'], ['tl', 'tlImg']].forEach(([key, prefix]) => {
+        prepared[i][key].forEach((p, k) => {
+          const s = Math.min(XL_IMG_W / p.w, XL_IMG_H / p.h, 1);
+          const iw = Math.max(1, Math.round(p.w * s)), ih = Math.max(1, Math.round(p.h * s));
+          const id = wb.addImage({ base64: p.dataUrl, extension: p.ext });
+          ws.addImage(id, { tl: { col: colIdx[prefix + k] + 0.03, row: (r - 1) + 0.03 }, ext: { width: iw, height: ih }, editAs: 'oneCell' });
+          heightPt = Math.max(heightPt, (ih + 8) * 0.75);
+        });
+      });
+      ws.getRow(r).height = Math.min(409, heightPt);       // 409pt = trần chiều cao hàng của Excel
+    });
+
+    const buf = await wb.xlsx.writeBuffer();
+    const blob = new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    const a = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    const safe = String(PROJECT.slug || PID).replace(/[^A-Za-z0-9_-]/g, '_');
+    a.href = url;
+    a.download = 'RFI_' + safe + '_' + new Date().toISOString().slice(0, 10) + '.xlsx';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 60000);
+    toast('Đã tải file Excel (' + rows.length + ' RFI).', 'ok');
+  } catch (e) {
+    console.error(e);
+    toast('Lỗi xuất Excel: ' + (e.message || e.code), 'err');
+  } finally {
+    btn.disabled = false;
+  }
 }
 
 /* ============================ MODAL ẢNH ============================ */

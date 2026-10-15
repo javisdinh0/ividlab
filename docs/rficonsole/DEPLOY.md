@@ -30,6 +30,11 @@ Làm **một lần**. Sau khi xong, gửi lại `firebaseConfig` để dán vào
 **Firestore:** Firestore Database → tab **Rules** → dán nội dung [firestore.rules](../../firebase/rficonsole/firestore.rules) → **Publish**.
 **Storage:** Storage → tab **Rules** → dán nội dung [storage.rules](../../firebase/rficonsole/storage.rules) → **Publish**.
 
+> **Cập nhật rules (2026-10-15):** `firestore.rules` có thêm `accessRequests/{...}` và
+> `allow get` cho doc thành viên của chính mình (tính năng "Xin quyền vào dự án"). Publish lại
+> rules; nếu chưa publish, app vẫn chạy nhưng gửi/duyệt yêu cầu bị `permission-denied`
+> (badge ở trang quản trị im lặng bỏ qua). Không cần tạo index mới.
+
 ## 7. Seed tài khoản owner (super-admin)
 Owner là người được tạo dự án và quản trị toàn portal.
 
