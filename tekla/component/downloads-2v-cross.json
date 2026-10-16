@@ -1,6 +1,6 @@
 {
-  "version": "1.30",
-  "released": "2026-10-04",
+  "version": "1.39",
+  "released": "2026-10-16",
   "baseUrl": "/fordownload/tekla-component/",
   "title": {
     "vi": "Tải 2V Cross Anti-Sag Roof",
@@ -8,10 +8,10 @@
   },
   "packages": {
     "2v-cross": {
-      "file": "iVidLab.AntiSag2VCross_1.30P.tsep",
-      "size": "151 KB",
-      "bytes": 154471,
-      "range": "2016 – 2026"
+      "file": "iVidLab.AntiSag2VCross_1.39P.tsep",
+      "size": "152 KB",
+      "bytes": 155517,
+      "range": "2016+"
     }
   },
   "tekla": [
@@ -81,18 +81,14 @@
   ],
   "notes": {
     "vi": [
-      "Tab V Bolts mới: thanh giằng bắt vào klip bằng bu-lông Site hoặc Workshop, đủ thông số như Clip angle của Tekla.",
-      "Đặt vị trí bu-lông bằng hai khoảng cách (mép thanh giằng, mép klip); ô Bolt spacing nhận dãy như 20 30 hoặc 2*20.",
-      "Bu-lông tại điểm giao hai thanh chéo; thanh giằng và klip tách assembly riêng (GXA, GXC) khi dùng bu-lông Site.",
-      "Giằng profile thép hình: lưng áp phẳng vào klip kể cả xà gồ tường đảo chiều; có thể bắt 2 hàng bu-lông.",
-      "Cảnh báo ngay khi bố trí bu-lông không vừa klip."
+      "Lỗ slot chọn theo vai trò: Default / Klip / Purlin / All.",
+      "Across row: hàng bu-lông thứ hai ngang thanh giằng, dùng cho mọi kiểu bố trí.",
+      "Sửa lỗi Modify làm kiểu giằng nhảy về chữ X. Thử trong Tekla 2017 SP4."
     ],
     "en": [
-      "New V Bolts tab: braces are bolted to the clips (Site or Workshop bolts) with the same options as Tekla's Clip angle.",
-      "Bolt position from two distances (brace edge, clip edge); the Bolt spacing field accepts lists such as 20 30 or 2*20.",
-      "A bolt where the two crossing braces meet; braces and clips get separate assemblies (GXA, GXC) with Site bolts.",
-      "Section-profile braces: the back lies flat on the clip even on reversed wall purlins; up to 2 bolt rows.",
-      "An immediate warning when the bolt layout does not fit the clip."
+      "Slotted holes by role: Default / Klip / Purlin / All.",
+      "Across row: a second bolt row across the brace, for every layout.",
+      "Fixed Modify resetting the brace layout to X. Tested in Tekla 2017 SP4."
     ]
   }
 }
