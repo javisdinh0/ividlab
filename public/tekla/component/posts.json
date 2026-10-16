@@ -1,5 +1,42 @@
 [
   {
+    "id": "cap-nhat-2v-cross-1-39",
+    "link": "/tekla/component/cap-nhat-2v-cross-1-39.html",
+    "product": "2V Cross",
+    "title": {
+      "vi": "2V Cross Anti-Sag Roof 1.39 — có gì mới",
+      "en": "2V Cross Anti-Sag Roof 1.39 — what's new"
+    },
+    "description": {
+      "vi": "Lỗ slot chọn theo Klip/Purlin/All, thêm hàng bu-lông thứ hai ngang thanh giằng (Across row), sửa lỗi Modify.",
+      "en": "Slotted holes by Klip/Purlin/All, a second bolt row across the brace (Across row), Modify fix."
+    },
+    "tag": {
+      "vi": "Cập nhật",
+      "en": "Release"
+    },
+    "date": "2026-10-16",
+    "cover": "/tekla/component/img/2v-cross-cover.png"
+  },
+  {
+    "id": "stay-hole",
+    "link": "/tekla/component/stay-hole.html",
+    "product": "Stay Hole",
+    "title": {
+      "vi": "iVidLab Stay Hole (CC2) — Mọi line xà gồ giống hệt nhau, cùng một mã chi tiết",
+      "en": "iVidLab Stay Hole (CC2) — Every purlin line identical, one part mark"
+    },
+    "description": {
+      "vi": "Tự tạo lỗ (và bu-lông) stay trên xà gồ ở những chỗ không có thanh chống, quét chọn hàng loạt component Cold rolled overlap.",
+      "en": "Automatically creates stay holes (and bolts) on purlins where there is no strut, across many Cold rolled overlap components at once."
+    },
+    "tag": {
+      "vi": "Giới thiệu",
+      "en": "Overview"
+    },
+    "date": "2026-10-16"
+  },
+  {
     "id": "cap-nhat-tube-round-connect-1-14",
     "link": "/tekla/component/cap-nhat-tube-round-connect-1-14.html",
     "title": {
