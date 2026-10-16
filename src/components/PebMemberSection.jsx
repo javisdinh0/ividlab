@@ -15,7 +15,7 @@ const PRODUCTS = [
   { key: '2v', label: '2V Cross', cover: '/tekla/component/img/2v-cross-cover.png', intro: '/tekla/component/anti-sag-2v-cross.html' },
   { key: 'tube', label: 'Tube Round Connect', cover: '/tekla/component/img/tube-round-connect-1-12.png', intro: '/tekla/component/tube-round-connect.html' },
   { key: 'bolt', label: 'Bolt Quick Dim V2', cover: '/tekla/component/img/bolt-quick-dim-v2-drawing.png', intro: '/tekla/component/bolt-quick-dim.html' },
-  { key: 'stay', label: 'Stay Hole', cover: '', intro: '/tekla/component/stay-hole.html' }
+  { key: 'stay', label: 'Stay Hole', cover: '/tekla/component/img/stay-hole-icon.png', intro: '/tekla/component/stay-hole.html' }
 ];
 const NS = 'teklacomponent';
 
@@ -113,15 +113,7 @@ export default function PebMemberSection({ t, lang }) {
               >
                 <Cover className="post-cover" src={item.cover} alt="" />
                 <span className="product-card__name">{tx[`product_${item.key}_name`]}</span>
-                <span className="product-card__desc">{tx[`product_${item.key}_desc`]}</span>
-                <span className="font-mono product-card__count">
-                  {countOf(item)} {tx.items_count} · {selected === item.key ? tx.product_hide : tx.product_show}
-                </span>
               </button>
-              <div className="product-card__links">
-                <a href={item.intro} className="btn btn-secondary">{tx[`btn_intro_${item.key}`]}</a>
-                <a href={`${item.intro}#tai-ve`} className="btn btn-secondary">{tx[`btn_download_${item.key}`]}</a>
-              </div>
             </div>
           ))}
         </div>
