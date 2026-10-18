@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <script type="module" src="/traffic-track.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Tải về - iViDLab</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <script>
+    (function () {
+      var root = document.documentElement;
+      try {
+        root.setAttribute('data-theme', localStorage.getItem('ividlab-theme') || 'light');
+        if (localStorage.getItem('ividlab-lang') === 'en') root.classList.add('lang-en');
+      } catch (e) { root.setAttribute('data-theme', 'light'); }
+    })();
+  </script>
+  <link rel="stylesheet" href="/tekla/peb-member/assets/article.css" />
+</head>
+<body data-slug="stayhole">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/">iViD<span>Lab</span></a>
+    </div>
+  </header>
+  <main class="page">
+    <article class="article" style="max-width:640px;margin:3rem auto;text-align:center">
+      <p class="eyebrow" id="eyebrow">Tải về</p>
+      <h1 id="name">…</h1>
+      <p class="lead" id="note"></p>
+      <p><strong id="ver"></strong> <span id="size" style="color:var(--text-muted,#667)"></span></p>
+      <p><a class="btn btn--primary" id="dl" href="#" style="pointer-events:none;opacity:.5">⬇ Tải về</a></p>
+      <p id="hint" style="font-size:.9rem;color:var(--text-muted,#667)">Cài: nhấp đúp file .tsep, tick phiên bản Tekla rồi bấm Import.</p>
+    </article>
+  </main>
+  <script>
+    (function () {
+      var slug = document.body.getAttribute('data-slug');
+      var en = document.documentElement.classList.contains('lang-en');
+      fetch('/tai/downloads.json?_=' + Date.now()).then(function (r) { return r.json(); }).then(function (all) {
+        var d = all[slug];
+        if (!d) throw new Error('missing');
+        document.title = d.name + ' ' + d.version + ' - iViDLab';
+        document.getElementById('name').textContent = d.name;
+        document.getElementById('note').textContent = d.note[en ? 'en' : 'vi'] || d.note.vi;
+        document.getElementById('ver').textContent = (en ? 'Version ' : 'Phiên bản ') + d.version;
+        document.getElementById('size').textContent = '· ' + d.size;
+        var a = document.getElementById('dl');
+        a.href = d.file; a.setAttribute('download', d.saveAs);
+        a.textContent = (en ? '⬇ Download ' : '⬇ Tải ') + d.saveAs;
+        a.style.pointerEvents = ''; a.style.opacity = '';
+        document.getElementById('eyebrow').textContent = en ? 'Download' : 'Tải về';
+        document.getElementById('hint').textContent = en ? 'Install: double-click the .tsep file, tick your Tekla version and click Import.' : 'Cài: nhấp đúp file .tsep, tick phiên bản Tekla rồi bấm Import.';
+      }).catch(function () { document.getElementById('name').textContent = en ? 'Could not load' : 'Không tải được thông tin'; });
+    })();
+  </script>
+</body>
+</html>
