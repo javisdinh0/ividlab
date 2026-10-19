@@ -82,13 +82,11 @@
   "notes": {
     "vi": [
       "Slots in chọn theo vai trò: Default / Klip / Purlin / All, đúng trên xà gồ giữa và đầu/cuối.",
-      "Xà gồ đầu/cuối (End purlins, Disconnect) chỉ khoét lỗ klip; lỗ slot không còn nhảy khi đổi tuỳ chọn.",
-      "Thử trong Tekla 2017 SP4: 40/40 kịch bản đạt."
+      "Xà gồ đầu/cuối (End purlins, Disconnect) chỉ khoét lỗ klip; lỗ slot không còn nhảy khi đổi tuỳ chọn."
     ],
     "en": [
       "Slots in by role: Default / Klip / Purlin / All, correct on middle and first/last purlins.",
-      "First/last purlins (End purlins, Disconnect) only drill clip holes; slots no longer jump when options change.",
-      "Tested in Tekla 2017 SP4: 40/40 scenarios pass."
+      "First/last purlins (End purlins, Disconnect) only drill clip holes; slots no longer jump when options change."
     ]
   }
 }
