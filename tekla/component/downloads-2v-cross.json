@@ -1,6 +1,6 @@
 {
-  "version": "1.39",
-  "released": "2026-10-16",
+  "version": "1.44",
+  "released": "2026-10-19",
   "baseUrl": "/fordownload/tekla-component/",
   "title": {
     "vi": "Tải 2V Cross Anti-Sag Roof",
@@ -8,9 +8,9 @@
   },
   "packages": {
     "2v-cross": {
-      "file": "iVidLab.AntiSag2VCross_1.39P.tsep",
+      "file": "iVidLab.AntiSag2VCross_1.44P.tsep",
       "size": "152 KB",
-      "bytes": 155517,
+      "bytes": 155555,
       "range": "2016+"
     }
   },
@@ -81,14 +81,14 @@
   ],
   "notes": {
     "vi": [
-      "Lỗ slot chọn theo vai trò: Default / Klip / Purlin / All.",
-      "Across row: hàng bu-lông thứ hai ngang thanh giằng, dùng cho mọi kiểu bố trí.",
-      "Sửa lỗi Modify làm kiểu giằng nhảy về chữ X. Thử trong Tekla 2017 SP4."
+      "Slots in chọn theo vai trò: Default / Klip / Purlin / All, đúng trên xà gồ giữa và đầu/cuối.",
+      "Xà gồ đầu/cuối (End purlins, Disconnect) chỉ khoét lỗ klip; lỗ slot không còn nhảy khi đổi tuỳ chọn.",
+      "Thử trong Tekla 2017 SP4: 40/40 kịch bản đạt."
     ],
     "en": [
-      "Slotted holes by role: Default / Klip / Purlin / All.",
-      "Across row: a second bolt row across the brace, for every layout.",
-      "Fixed Modify resetting the brace layout to X. Tested in Tekla 2017 SP4."
+      "Slots in by role: Default / Klip / Purlin / All, correct on middle and first/last purlins.",
+      "First/last purlins (End purlins, Disconnect) only drill clip holes; slots no longer jump when options change.",
+      "Tested in Tekla 2017 SP4: 40/40 scenarios pass."
     ]
   }
 }

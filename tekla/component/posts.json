@@ -1,5 +1,24 @@
 [
   {
+    "id": "cap-nhat-2v-cross-1-44",
+    "link": "/tekla/component/cap-nhat-2v-cross-1-44.html",
+    "product": "2V Cross",
+    "title": {
+      "vi": "2V Cross Anti-Sag Roof 1.44 — có gì mới",
+      "en": "2V Cross Anti-Sag Roof 1.44 — what's new"
+    },
+    "description": {
+      "vi": "Slots in chính xác theo Klip/Purlin/All trên xà gồ giữa và đầu/cuối; lỗ slot không còn nhảy khi đổi tuỳ chọn.",
+      "en": "Slots in is correct by Klip/Purlin/All on middle and first/last purlins; slots no longer jump when options change."
+    },
+    "tag": {
+      "vi": "Cập nhật",
+      "en": "Release"
+    },
+    "date": "2026-10-19",
+    "cover": "/tekla/component/img/2v-cross-cover.png"
+  },
+  {
     "id": "cap-nhat-2v-cross-1-39",
     "link": "/tekla/component/cap-nhat-2v-cross-1-39.html",
     "product": "2V Cross",
