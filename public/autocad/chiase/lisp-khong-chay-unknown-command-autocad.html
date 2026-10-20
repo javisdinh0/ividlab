@@ -101,6 +101,7 @@
     body.lang-en span[data-lang="vi"], body.lang-en strong[data-lang="vi"], body.lang-en em[data-lang="vi"], body.lang-en a[data-lang="vi"], body.lang-en figcaption[data-lang="vi"] { display: none !important; }
     body.lang-en span[data-lang="en"], body.lang-en strong[data-lang="en"], body.lang-en em[data-lang="en"], body.lang-en a[data-lang="en"], body.lang-en figcaption[data-lang="en"] { display: inline !important; }
   </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"iViDLab","item":"https://ividlab.com/"},{"@type":"ListItem","position":2,"name":"Hướng dẫn & Chia sẻ","item":"https://ividlab.com/guides/"},{"@type":"ListItem","position":3,"name":"Lisp Không Chạy, Báo \"Unknown Command\" Trong AutoCAD: Nguyên Nhân & Cách Sửa","item":"https://ividlab.com/autocad/chiase/lisp-khong-chay-unknown-command-autocad.html"}]}</script>
 </head>
 <body>
   
@@ -113,19 +114,19 @@
       </a>
       <nav style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
         <a href="/?tab=all" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); transition: color 0.2s ease;">
-          <span data-lang="vi">// TRANG CHỦ</span><span data-lang="en" >// HOME</span>
+          <span lang="vi" data-lang="vi">// TRANG CHỦ</span><span lang="en" data-lang="en" >// HOME</span>
         </a>
         <a href="/?tab=tools" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// CÔNG CỤ</span><span data-lang="en" >// TOOLS</span>
+          <span lang="vi" data-lang="vi">// CÔNG CỤ</span><span lang="en" data-lang="en" >// TOOLS</span>
         </a>
         <a href="/?tab=guides" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span data-lang="en" >// GUIDES</span>
+          <span lang="vi" data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span lang="en" data-lang="en" >// GUIDES</span>
         </a>
         <a href="/?tab=tekla-component" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
           // TEKLA APP &amp; COMPONENT
         </a>
         <a href="/?tab=about" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en" >// ABOUT</span>
+          <span lang="vi" data-lang="vi">// GIỚI THIỆU</span><span lang="en" data-lang="en" >// ABOUT</span>
         </a>
       </nav>
       <div style="display: flex; align-items: center; gap: 10px;">
@@ -139,91 +140,91 @@
     </div>
   </header>
   <div class="article-container">
-    <span class="badge" data-lang="vi">Sửa Lỗi</span>
-    <span class="badge" data-lang="en">Troubleshooting</span>
+    <span class="badge" lang="vi" data-lang="vi">Sửa Lỗi</span>
+    <span class="badge" lang="en" data-lang="en">Troubleshooting</span>
 
-    <h1 data-lang="vi">Lisp Không Chạy, Báo "Unknown Command" Trong AutoCAD: Nguyên Nhân & Cách Sửa</h1>
-    <h1 data-lang="en">AutoCAD Lisp Not Running or "Unknown Command": Causes & Fixes</h1>
+    <h1 lang="vi" data-lang="vi">Lisp Không Chạy, Báo "Unknown Command" Trong AutoCAD: Nguyên Nhân & Cách Sửa</h1>
+    <h1 lang="en" data-lang="en">AutoCAD Lisp Not Running or "Unknown Command": Causes & Fixes</h1>
 
-    <p data-lang="vi">Bạn tải một file Lisp về, nạp vào AutoCAD, gõ lệnh thì nhận được <code>Unknown command</code>. Đây là lỗi gặp nhiều nhất khi mới dùng Lisp, và gần như luôn rơi vào một trong các nguyên nhân dưới đây. Hãy kiểm tra theo thứ tự.</p>
-    <p data-lang="en">You download a Lisp file, load it into AutoCAD, type the command and get <code>Unknown command</code>. This is the most common beginner problem and it almost always comes down to one of the causes below. Check them in order.</p>
+    <p lang="vi" data-lang="vi">Bạn tải một file Lisp về, nạp vào AutoCAD, gõ lệnh thì nhận được <code>Unknown command</code>. Đây là lỗi gặp nhiều nhất khi mới dùng Lisp, và gần như luôn rơi vào một trong các nguyên nhân dưới đây. Hãy kiểm tra theo thứ tự.</p>
+    <p lang="en" data-lang="en">You download a Lisp file, load it into AutoCAD, type the command and get <code>Unknown command</code>. This is the most common beginner problem and it almost always comes down to one of the causes below. Check them in order.</p>
 
-    <h2 data-lang="vi">1. File chưa được nạp thành công</h2>
-    <h2 data-lang="en">1. The file was not actually loaded</h2>
+    <h2 lang="vi" data-lang="vi">1. File chưa được nạp thành công</h2>
+    <h2 lang="en" data-lang="en">1. The file was not actually loaded</h2>
 
-    <p data-lang="vi">Sau khi chọn file trong hộp thoại <code>APPLOAD</code>, bạn phải bấm <strong>Load</strong> rồi xem dòng thông báo ở cuối hộp thoại và trong Command line. Nếu có chữ <code>loaded successfully</code> hoặc tương tự là file đã nạp. Chỉ chọn file mà chưa bấm Load thì lệnh chưa tồn tại.</p>
-    <p data-lang="en">After choosing the file in the <code>APPLOAD</code> dialog you must click <strong>Load</strong> and read the message at the bottom of the dialog and in the Command line. Selecting the file without clicking Load does nothing.</p>
+    <p lang="vi" data-lang="vi">Sau khi chọn file trong hộp thoại <code>APPLOAD</code>, bạn phải bấm <strong>Load</strong> rồi xem dòng thông báo ở cuối hộp thoại và trong Command line. Nếu có chữ <code>loaded successfully</code> hoặc tương tự là file đã nạp. Chỉ chọn file mà chưa bấm Load thì lệnh chưa tồn tại.</p>
+    <p lang="en" data-lang="en">After choosing the file in the <code>APPLOAD</code> dialog you must click <strong>Load</strong> and read the message at the bottom of the dialog and in the Command line. Selecting the file without clicking Load does nothing.</p>
 
-    <p data-lang="vi">Xem thêm cách làm đúng tại <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html">Hướng dẫn APPLOAD &amp; Startup Suite</a>.</p>
-    <p data-lang="en">See the proper workflow in the <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html">APPLOAD &amp; Startup Suite guide</a>.</p>
+    <p lang="vi" data-lang="vi">Xem thêm cách làm đúng tại <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html">Hướng dẫn APPLOAD &amp; Startup Suite</a>.</p>
+    <p lang="en" data-lang="en">See the proper workflow in the <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html">APPLOAD &amp; Startup Suite guide</a>.</p>
 
-    <h2 data-lang="vi">2. Gõ sai tên lệnh</h2>
-    <h2 data-lang="en">2. You typed the wrong command name</h2>
+    <h2 lang="vi" data-lang="vi">2. Gõ sai tên lệnh</h2>
+    <h2 lang="en" data-lang="en">2. You typed the wrong command name</h2>
 
-    <p data-lang="vi">Tên file không phải là tên lệnh. Lệnh được định nghĩa bên trong file, dạng <code>(defun c:TENLENH ()</code>. Mở file <code>.lsp</code> bằng Notepad, tìm các dòng <code>defun c:</code>: phần sau <code>c:</code> chính là lệnh bạn phải gõ. Ví dụ <code>(defun c:MH ()</code> thì gõ <code>MH</code>.</p>
-    <p data-lang="en">The file name is not the command name. The command is defined inside the file as <code>(defun c:COMMANDNAME ()</code>. Open the <code>.lsp</code> file in Notepad and search for <code>defun c:</code>; the text after <code>c:</code> is what you type. For example <code>(defun c:MH ()</code> means you type <code>MH</code>.</p>
+    <p lang="vi" data-lang="vi">Tên file không phải là tên lệnh. Lệnh được định nghĩa bên trong file, dạng <code>(defun c:TENLENH ()</code>. Mở file <code>.lsp</code> bằng Notepad, tìm các dòng <code>defun c:</code>: phần sau <code>c:</code> chính là lệnh bạn phải gõ. Ví dụ <code>(defun c:MH ()</code> thì gõ <code>MH</code>.</p>
+    <p lang="en" data-lang="en">The file name is not the command name. The command is defined inside the file as <code>(defun c:COMMANDNAME ()</code>. Open the <code>.lsp</code> file in Notepad and search for <code>defun c:</code>; the text after <code>c:</code> is what you type. For example <code>(defun c:MH ()</code> means you type <code>MH</code>.</p>
 
-    <p data-lang="vi">Nếu hàm được khai báo <strong>không có</strong> tiền tố <code>c:</code> thì nó chỉ gọi được dưới dạng hàm Lisp có ngoặc, ví dụ <code>(tenham)</code>, chứ không gõ như một lệnh thường.</p>
-    <p data-lang="en">If the function is declared <strong>without</strong> the <code>c:</code> prefix it can only be called as a Lisp function in parentheses, such as <code>(functionname)</code>, not typed like a normal command.</p>
+    <p lang="vi" data-lang="vi">Nếu hàm được khai báo <strong>không có</strong> tiền tố <code>c:</code> thì nó chỉ gọi được dưới dạng hàm Lisp có ngoặc, ví dụ <code>(tenham)</code>, chứ không gõ như một lệnh thường.</p>
+    <p lang="en" data-lang="en">If the function is declared <strong>without</strong> the <code>c:</code> prefix it can only be called as a Lisp function in parentheses, such as <code>(functionname)</code>, not typed like a normal command.</p>
 
-    <p data-lang="vi">Muốn đổi tên lệnh cho dễ nhớ, xem <a href="/autocad/chiase/tuy-chinh-lenh-autolisp.html">Hướng dẫn tùy chỉnh &amp; đổi tên lệnh AutoLISP</a>.</p>
-    <p data-lang="en">To rename a command, see <a href="/autocad/chiase/tuy-chinh-lenh-autolisp.html">How to customize AutoLISP command names</a>.</p>
+    <p lang="vi" data-lang="vi">Muốn đổi tên lệnh cho dễ nhớ, xem <a href="/autocad/chiase/tuy-chinh-lenh-autolisp.html">Hướng dẫn tùy chỉnh &amp; đổi tên lệnh AutoLISP</a>.</p>
+    <p lang="en" data-lang="en">To rename a command, see <a href="/autocad/chiase/tuy-chinh-lenh-autolisp.html">How to customize AutoLISP command names</a>.</p>
 
-    <h2 data-lang="vi">3. File bị chặn bởi cảnh báo bảo mật</h2>
-    <h2 data-lang="en">3. The file is blocked by the security setting</h2>
+    <h2 lang="vi" data-lang="vi">3. File bị chặn bởi cảnh báo bảo mật</h2>
+    <h2 lang="en" data-lang="en">3. The file is blocked by the security setting</h2>
 
-    <p data-lang="vi">Các bản AutoCAD mới có cơ chế an toàn cho việc nạp mã. Nếu thư mục chứa file không nằm trong danh sách tin cậy, AutoCAD có thể hiện cảnh báo hoặc từ chối nạp. Cách xử lý chi tiết ở bài <a href="/autocad/chiase/trusted-paths-secureload-autocad.html">TRUSTEDPATHS &amp; SECURELOAD</a>.</p>
-    <p data-lang="en">Recent AutoCAD versions restrict code loading. If the folder is not in the trusted list, AutoCAD may warn or refuse to load the file. See the <a href="/autocad/chiase/trusted-paths-secureload-autocad.html">TRUSTEDPATHS &amp; SECURELOAD</a> guide for the fix.</p>
+    <p lang="vi" data-lang="vi">Các bản AutoCAD mới có cơ chế an toàn cho việc nạp mã. Nếu thư mục chứa file không nằm trong danh sách tin cậy, AutoCAD có thể hiện cảnh báo hoặc từ chối nạp. Cách xử lý chi tiết ở bài <a href="/autocad/chiase/trusted-paths-secureload-autocad.html">TRUSTEDPATHS &amp; SECURELOAD</a>.</p>
+    <p lang="en" data-lang="en">Recent AutoCAD versions restrict code loading. If the folder is not in the trusted list, AutoCAD may warn or refuse to load the file. See the <a href="/autocad/chiase/trusted-paths-secureload-autocad.html">TRUSTEDPATHS &amp; SECURELOAD</a> guide for the fix.</p>
 
-    <h2 data-lang="vi">4. File bị lỗi cú pháp hoặc lưu sai định dạng</h2>
-    <h2 data-lang="en">4. Syntax error or wrong file encoding</h2>
+    <h2 lang="vi" data-lang="vi">4. File bị lỗi cú pháp hoặc lưu sai định dạng</h2>
+    <h2 lang="en" data-lang="en">4. Syntax error or wrong file encoding</h2>
 
     <ul>
-      <li><span data-lang="vi">Thiếu hoặc thừa dấu ngoặc: Command line thường hiện dòng báo lỗi bắt đầu bằng <code>; error:</code> ngay khi nạp.</span><span data-lang="en">Missing or extra parentheses: the Command line usually prints an error starting with <code>; error:</code> as soon as you load.</span></li>
-      <li><span data-lang="vi">Lưu file bằng Word hoặc trình soạn thảo thêm định dạng: file <code>.lsp</code> phải là văn bản thuần (plain text), nên dùng Notepad.</span><span data-lang="en">Saving with Word or a rich editor: a <code>.lsp</code> file must be plain text, so use Notepad.</span></li>
-      <li><span data-lang="vi">Đuôi file bị thành <code>.lsp.txt</code> khi tải về: bật hiển thị phần mở rộng trong Windows để kiểm tra và đổi lại tên.</span><span data-lang="en">The extension became <code>.lsp.txt</code> after download: show file extensions in Windows and rename it.</span></li>
+      <li><span lang="vi" data-lang="vi">Thiếu hoặc thừa dấu ngoặc: Command line thường hiện dòng báo lỗi bắt đầu bằng <code>; error:</code> ngay khi nạp.</span><span lang="en" data-lang="en">Missing or extra parentheses: the Command line usually prints an error starting with <code>; error:</code> as soon as you load.</span></li>
+      <li><span lang="vi" data-lang="vi">Lưu file bằng Word hoặc trình soạn thảo thêm định dạng: file <code>.lsp</code> phải là văn bản thuần (plain text), nên dùng Notepad.</span><span lang="en" data-lang="en">Saving with Word or a rich editor: a <code>.lsp</code> file must be plain text, so use Notepad.</span></li>
+      <li><span lang="vi" data-lang="vi">Đuôi file bị thành <code>.lsp.txt</code> khi tải về: bật hiển thị phần mở rộng trong Windows để kiểm tra và đổi lại tên.</span><span lang="en" data-lang="en">The extension became <code>.lsp.txt</code> after download: show file extensions in Windows and rename it.</span></li>
     </ul>
 
-    <h2 data-lang="vi">5. Lisp phụ thuộc file khác</h2>
-    <h2 data-lang="en">5. The Lisp depends on another file</h2>
+    <h2 lang="vi" data-lang="vi">5. Lisp phụ thuộc file khác</h2>
+    <h2 lang="en" data-lang="en">5. The Lisp depends on another file</h2>
 
-    <p data-lang="vi">Một số bộ Lisp gọi thêm file khác (hàm dùng chung, file dữ liệu, hộp thoại <code>.dcl</code>). Nếu bạn chỉ copy riêng một file ra khỏi bộ thì lệnh có thể nạp được nhưng chạy báo lỗi. Hãy giữ nguyên cả thư mục như bản gốc và thêm thư mục đó vào đường dẫn tìm kiếm của AutoCAD.</p>
-    <p data-lang="en">Some Lisp packages call other files (shared functions, data files, <code>.dcl</code> dialogs). If you copy a single file out of the set, the command may load but fail when it runs. Keep the whole folder together and add it to AutoCAD's search path.</p>
+    <p lang="vi" data-lang="vi">Một số bộ Lisp gọi thêm file khác (hàm dùng chung, file dữ liệu, hộp thoại <code>.dcl</code>). Nếu bạn chỉ copy riêng một file ra khỏi bộ thì lệnh có thể nạp được nhưng chạy báo lỗi. Hãy giữ nguyên cả thư mục như bản gốc và thêm thư mục đó vào đường dẫn tìm kiếm của AutoCAD.</p>
+    <p lang="en" data-lang="en">Some Lisp packages call other files (shared functions, data files, <code>.dcl</code> dialogs). If you copy a single file out of the set, the command may load but fail when it runs. Keep the whole folder together and add it to AutoCAD's search path.</p>
 
-    <h2 data-lang="vi">6. Lisp mất sau khi đóng AutoCAD</h2>
-    <h2 data-lang="en">6. The Lisp disappears when AutoCAD restarts</h2>
+    <h2 lang="vi" data-lang="vi">6. Lisp mất sau khi đóng AutoCAD</h2>
+    <h2 lang="en" data-lang="en">6. The Lisp disappears when AutoCAD restarts</h2>
 
-    <p data-lang="vi">Lisp nạp bằng APPLOAD chỉ tồn tại trong phiên làm việc hiện tại. Để tự nạp mỗi lần mở AutoCAD, thêm file vào <strong>Startup Suite</strong> (nút Contents trong hộp thoại APPLOAD).</p>
-    <p data-lang="en">Lisp loaded with APPLOAD only lasts for the current session. To load it every time AutoCAD starts, add the file to the <strong>Startup Suite</strong> (the Contents button in the APPLOAD dialog).</p>
+    <p lang="vi" data-lang="vi">Lisp nạp bằng APPLOAD chỉ tồn tại trong phiên làm việc hiện tại. Để tự nạp mỗi lần mở AutoCAD, thêm file vào <strong>Startup Suite</strong> (nút Contents trong hộp thoại APPLOAD).</p>
+    <p lang="en" data-lang="en">Lisp loaded with APPLOAD only lasts for the current session. To load it every time AutoCAD starts, add the file to the <strong>Startup Suite</strong> (the Contents button in the APPLOAD dialog).</p>
 
     <div class="tip-box">
-      <strong data-lang="vi">Danh sách kiểm tra nhanh</strong>
-      <strong data-lang="en">Quick checklist</strong>
-      <p data-lang="vi">Đã bấm Load và thấy thông báo thành công? Đã mở file kiểm tra đúng tên <code>defun c:</code>? Thư mục đã nằm trong vùng tin cậy? Không có dòng <code>; error:</code> khi nạp? Nếu cả bốn đều ổn mà vẫn lỗi, thử mở bản vẽ mới và nạp lại để loại trừ lỗi riêng của bản vẽ.</p>
-      <p data-lang="en">Did you click Load and see success? Did you check the exact <code>defun c:</code> name? Is the folder trusted? No <code>; error:</code> line on load? If all four are fine and it still fails, try a new drawing and load again to rule out a drawing-specific problem.</p>
+      <strong lang="vi" data-lang="vi">Danh sách kiểm tra nhanh</strong>
+      <strong lang="en" data-lang="en">Quick checklist</strong>
+      <p lang="vi" data-lang="vi">Đã bấm Load và thấy thông báo thành công? Đã mở file kiểm tra đúng tên <code>defun c:</code>? Thư mục đã nằm trong vùng tin cậy? Không có dòng <code>; error:</code> khi nạp? Nếu cả bốn đều ổn mà vẫn lỗi, thử mở bản vẽ mới và nạp lại để loại trừ lỗi riêng của bản vẽ.</p>
+      <p lang="en" data-lang="en">Did you click Load and see success? Did you check the exact <code>defun c:</code> name? Is the folder trusted? No <code>; error:</code> line on load? If all four are fine and it still fails, try a new drawing and load again to rule out a drawing-specific problem.</p>
     </div>
 
     <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--border-color);">
     <p style="text-align: center; font-style: italic; color: var(--text-muted); margin-bottom: 0;">
-      <span data-lang="vi">Tài liệu được nghiên cứu và tổng hợp bởi đội ngũ kỹ thuật <a href="https://ividlab.com/">iViDLab.com</a>.</span>
-      <span data-lang="en">Document researched and compiled by the <a href="https://ividlab.com/">iViDLab.com</a> technical team.</span>
+      <span lang="vi" data-lang="vi">Tài liệu được nghiên cứu và tổng hợp bởi đội ngũ kỹ thuật <a href="https://ividlab.com/">iViDLab.com</a>.</span>
+      <span lang="en" data-lang="en">Document researched and compiled by the <a href="https://ividlab.com/">iViDLab.com</a> technical team.</span>
     </p>
   </div>
   <div class="related-container">
-    <h2 data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
-    <h2 data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">You might also be interested in</h2>
+    <h2 lang="vi" data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
+    <h2 lang="en" data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">You might also be interested in</h2>
     <div class="related-grid">
       <a class="related-card" href="/autocad/chiase/huong-dan-appload-lisp-autocad.html">
         <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Hướng Dẫn Nạp Lisp Bằng APPLOAD</span><span data-lang="en">Guide to Load Lisp via APPLOAD</span></h3>
+        <h3><span lang="vi" data-lang="vi">Hướng Dẫn Nạp Lisp Bằng APPLOAD</span><span lang="en" data-lang="en">Guide to Load Lisp via APPLOAD</span></h3>
       </a>
       <a class="related-card" href="/autocad/chiase/tuy-chinh-lenh-autolisp.html">
         <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Cách Tùy Chỉnh Phím Tắt Lệnh AutoLISP</span><span data-lang="en">How to Customize AutoLISP Commands</span></h3>
+        <h3><span lang="vi" data-lang="vi">Cách Tùy Chỉnh Phím Tắt Lệnh AutoLISP</span><span lang="en" data-lang="en">How to Customize AutoLISP Commands</span></h3>
       </a>
       <a class="related-card" href="/autocad/chiase/phan-biet-appload-va-netload-trong-autocad.html">
         <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Phân Biệt APPLOAD và NETLOAD</span><span data-lang="en">APPLOAD vs NETLOAD</span></h3>
+        <h3><span lang="vi" data-lang="vi">Phân Biệt APPLOAD và NETLOAD</span><span lang="en" data-lang="en">APPLOAD vs NETLOAD</span></h3>
       </a>
     </div>
   </div>

@@ -101,6 +101,7 @@
     body.lang-en span[data-lang="vi"], body.lang-en strong[data-lang="vi"], body.lang-en em[data-lang="vi"], body.lang-en a[data-lang="vi"], body.lang-en figcaption[data-lang="vi"] { display: none !important; }
     body.lang-en span[data-lang="en"], body.lang-en strong[data-lang="en"], body.lang-en em[data-lang="en"], body.lang-en a[data-lang="en"], body.lang-en figcaption[data-lang="en"] { display: inline !important; }
   </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"iViDLab","item":"https://ividlab.com/"},{"@type":"ListItem","position":2,"name":"Hướng dẫn & Chia sẻ","item":"https://ividlab.com/guides/"},{"@type":"ListItem","position":3,"name":"Phân Biệt LAYISO, LAYOFF, LAYFRZ, LAYLCK, LAYWALK Trong AutoCAD: Khi Nào Dùng Lệnh Nào?","item":"https://ividlab.com/autocad/chiase/phan-biet-layiso-layoff-layfrz-laylck-autocad.html"}]}</script>
 </head>
 <body>
   
@@ -113,19 +114,19 @@
       </a>
       <nav style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
         <a href="/?tab=all" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); transition: color 0.2s ease;">
-          <span data-lang="vi">// TRANG CHỦ</span><span data-lang="en" >// HOME</span>
+          <span lang="vi" data-lang="vi">// TRANG CHỦ</span><span lang="en" data-lang="en" >// HOME</span>
         </a>
         <a href="/?tab=tools" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// CÔNG CỤ</span><span data-lang="en" >// TOOLS</span>
+          <span lang="vi" data-lang="vi">// CÔNG CỤ</span><span lang="en" data-lang="en" >// TOOLS</span>
         </a>
         <a href="/?tab=guides" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span data-lang="en" >// GUIDES</span>
+          <span lang="vi" data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span lang="en" data-lang="en" >// GUIDES</span>
         </a>
         <a href="/?tab=tekla-component" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
           // TEKLA APP &amp; COMPONENT
         </a>
         <a href="/?tab=about" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en" >// ABOUT</span>
+          <span lang="vi" data-lang="vi">// GIỚI THIỆU</span><span lang="en" data-lang="en" >// ABOUT</span>
         </a>
       </nav>
       <div style="display: flex; align-items: center; gap: 10px;">
@@ -139,105 +140,105 @@
     </div>
   </header>
   <div class="article-container">
-    <span class="badge" data-lang="vi">So Sánh</span>
-    <span class="badge" data-lang="en">Comparison</span>
+    <span class="badge" lang="vi" data-lang="vi">So Sánh</span>
+    <span class="badge" lang="en" data-lang="en">Comparison</span>
 
-    <h1 data-lang="vi">Phân Biệt LAYISO, LAYOFF, LAYFRZ, LAYLCK, LAYWALK Trong AutoCAD: Khi Nào Dùng Lệnh Nào?</h1>
-    <h1 data-lang="en">LAYISO vs LAYOFF, LAYFRZ, LAYLCK and LAYWALK in AutoCAD: Which One to Use?</h1>
+    <h1 lang="vi" data-lang="vi">Phân Biệt LAYISO, LAYOFF, LAYFRZ, LAYLCK, LAYWALK Trong AutoCAD: Khi Nào Dùng Lệnh Nào?</h1>
+    <h1 lang="en" data-lang="en">LAYISO vs LAYOFF, LAYFRZ, LAYLCK and LAYWALK in AutoCAD: Which One to Use?</h1>
 
-    <p data-lang="vi">Trong AutoCAD, bạn có thể quản lý layer mà không cần mở bảng Layer Properties: chỉ cần chọn một đối tượng rồi dùng các lệnh <code>LAY...</code>. Nhưng có khá nhiều lệnh na ná nhau, dễ nhầm. Bài này so sánh các lệnh hay dùng nhất để bạn chọn đúng lệnh cho từng việc. Nếu muốn đi sâu riêng lệnh LAYISO, xem <a href="/autocad/chiase/huong-dan-lenh-layiso-autocad.html">Hướng dẫn toàn tập về lệnh LAYISO</a>.</p>
-    <p data-lang="en">In AutoCAD you can manage layers without opening the Layer Properties palette: pick an object and use the <code>LAY...</code> commands. There are several similar-looking commands that are easy to mix up. This guide compares the most useful ones so you pick the right command for each job. For a deep dive on LAYISO itself, see the <a href="/autocad/chiase/huong-dan-lenh-layiso-autocad.html">complete LAYISO guide</a>.</p>
+    <p lang="vi" data-lang="vi">Trong AutoCAD, bạn có thể quản lý layer mà không cần mở bảng Layer Properties: chỉ cần chọn một đối tượng rồi dùng các lệnh <code>LAY...</code>. Nhưng có khá nhiều lệnh na ná nhau, dễ nhầm. Bài này so sánh các lệnh hay dùng nhất để bạn chọn đúng lệnh cho từng việc. Nếu muốn đi sâu riêng lệnh LAYISO, xem <a href="/autocad/chiase/huong-dan-lenh-layiso-autocad.html">Hướng dẫn toàn tập về lệnh LAYISO</a>.</p>
+    <p lang="en" data-lang="en">In AutoCAD you can manage layers without opening the Layer Properties palette: pick an object and use the <code>LAY...</code> commands. There are several similar-looking commands that are easy to mix up. This guide compares the most useful ones so you pick the right command for each job. For a deep dive on LAYISO itself, see the <a href="/autocad/chiase/huong-dan-lenh-layiso-autocad.html">complete LAYISO guide</a>.</p>
 
-    <h2 data-lang="vi">Bảng so sánh nhanh</h2>
-    <h2 data-lang="en">Quick comparison</h2>
+    <h2 lang="vi" data-lang="vi">Bảng so sánh nhanh</h2>
+    <h2 lang="en" data-lang="en">Quick comparison</h2>
 
-    <p data-lang="vi">Tất cả lệnh dưới đây tác động lên layer của đối tượng bạn chọn:</p>
-    <p data-lang="en">All of the commands below act on the layer of the object you select:</p>
-
-    <ul>
-      <li><span data-lang="vi"><code>LAYISO</code>: giữ layer của đối tượng được chọn, xử lý (tắt hoặc khóa và làm mờ) mọi layer còn lại. Hoàn tác bằng <code>LAYUNISO</code>.</span><span data-lang="en"><code>LAYISO</code>: keeps the layer of the selected objects and handles (turns off, or locks and fades) every other layer. Undo with <code>LAYUNISO</code>.</span></li>
-      <li><span data-lang="vi"><code>LAYOFF</code>: tắt layer của đối tượng được chọn. Bật lại tất cả bằng <code>LAYON</code>.</span><span data-lang="en"><code>LAYOFF</code>: turns off the layer of the selected object. Turn everything back on with <code>LAYON</code>.</span></li>
-      <li><span data-lang="vi"><code>LAYFRZ</code>: đóng băng (Freeze) layer của đối tượng được chọn. Rã băng tất cả bằng <code>LAYTHW</code>.</span><span data-lang="en"><code>LAYFRZ</code>: freezes the layer of the selected object. Thaw everything with <code>LAYTHW</code>.</span></li>
-      <li><span data-lang="vi"><code>LAYLCK</code>: khóa layer của đối tượng được chọn. Mở khóa bằng <code>LAYULK</code>.</span><span data-lang="en"><code>LAYLCK</code>: locks the layer of the selected object. Unlock with <code>LAYULK</code>.</span></li>
-      <li><span data-lang="vi"><code>LAYWALK</code>: mở hộp thoại duyệt từng layer, chỉ hiện layer bạn chọn; khi thoát có thể khôi phục trạng thái ban đầu.</span><span data-lang="en"><code>LAYWALK</code>: opens a dialog to step through layers, showing only the ones you pick; on exit you can restore the original state.</span></li>
-    </ul>
-
-    <h2 data-lang="vi">Tắt (Off), đóng băng (Freeze) và khóa (Lock) khác nhau thế nào?</h2>
-    <h2 data-lang="en">Off vs Freeze vs Lock: what is the difference?</h2>
+    <p lang="vi" data-lang="vi">Tất cả lệnh dưới đây tác động lên layer của đối tượng bạn chọn:</p>
+    <p lang="en" data-lang="en">All of the commands below act on the layer of the object you select:</p>
 
     <ul>
-      <li><span data-lang="vi"><strong>Off:</strong> đối tượng ẩn khỏi màn hình và không in, nhưng vẫn nằm trong bộ nhớ và vẫn được tính khi tái tạo bản vẽ (regen). Phù hợp để ẩn tạm.</span><span data-lang="en"><strong>Off:</strong> objects are hidden and not plotted but stay in memory and are still processed during a regen. Good for temporarily hiding things.</span></li>
-      <li><span data-lang="vi"><strong>Freeze:</strong> đối tượng ẩn và không được tính khi regen, nên có thể giúp bản vẽ lớn phản hồi nhanh hơn. Không thể đóng băng layer đang hiện hành.</span><span data-lang="en"><strong>Freeze:</strong> objects are hidden and skipped during a regen, which can make large drawings respond faster. You cannot freeze the current layer.</span></li>
-      <li><span data-lang="vi"><strong>Lock:</strong> đối tượng vẫn hiện (có thể làm mờ) nhưng không chọn hoặc sửa được. Phù hợp khi muốn giữ làm nền tham chiếu mà không lỡ tay di chuyển.</span><span data-lang="en"><strong>Lock:</strong> objects stay visible (and can be faded) but cannot be selected or edited. Good for keeping a reference backdrop without moving it by accident.</span></li>
+      <li><span lang="vi" data-lang="vi"><code>LAYISO</code>: giữ layer của đối tượng được chọn, xử lý (tắt hoặc khóa và làm mờ) mọi layer còn lại. Hoàn tác bằng <code>LAYUNISO</code>.</span><span lang="en" data-lang="en"><code>LAYISO</code>: keeps the layer of the selected objects and handles (turns off, or locks and fades) every other layer. Undo with <code>LAYUNISO</code>.</span></li>
+      <li><span lang="vi" data-lang="vi"><code>LAYOFF</code>: tắt layer của đối tượng được chọn. Bật lại tất cả bằng <code>LAYON</code>.</span><span lang="en" data-lang="en"><code>LAYOFF</code>: turns off the layer of the selected object. Turn everything back on with <code>LAYON</code>.</span></li>
+      <li><span lang="vi" data-lang="vi"><code>LAYFRZ</code>: đóng băng (Freeze) layer của đối tượng được chọn. Rã băng tất cả bằng <code>LAYTHW</code>.</span><span lang="en" data-lang="en"><code>LAYFRZ</code>: freezes the layer of the selected object. Thaw everything with <code>LAYTHW</code>.</span></li>
+      <li><span lang="vi" data-lang="vi"><code>LAYLCK</code>: khóa layer của đối tượng được chọn. Mở khóa bằng <code>LAYULK</code>.</span><span lang="en" data-lang="en"><code>LAYLCK</code>: locks the layer of the selected object. Unlock with <code>LAYULK</code>.</span></li>
+      <li><span lang="vi" data-lang="vi"><code>LAYWALK</code>: mở hộp thoại duyệt từng layer, chỉ hiện layer bạn chọn; khi thoát có thể khôi phục trạng thái ban đầu.</span><span lang="en" data-lang="en"><code>LAYWALK</code>: opens a dialog to step through layers, showing only the ones you pick; on exit you can restore the original state.</span></li>
     </ul>
 
-    <h2 data-lang="vi">Khi nào dùng lệnh nào?</h2>
-    <h2 data-lang="en">Which command for which situation?</h2>
+    <h2 lang="vi" data-lang="vi">Tắt (Off), đóng băng (Freeze) và khóa (Lock) khác nhau thế nào?</h2>
+    <h2 lang="en" data-lang="en">Off vs Freeze vs Lock: what is the difference?</h2>
 
-    <h3 data-lang="vi">Muốn chỉ làm việc với một nhóm đối tượng</h3>
-    <h3 data-lang="en">You want to work on one group of objects only</h3>
+    <ul>
+      <li><span lang="vi" data-lang="vi"><strong>Off:</strong> đối tượng ẩn khỏi màn hình và không in, nhưng vẫn nằm trong bộ nhớ và vẫn được tính khi tái tạo bản vẽ (regen). Phù hợp để ẩn tạm.</span><span lang="en" data-lang="en"><strong>Off:</strong> objects are hidden and not plotted but stay in memory and are still processed during a regen. Good for temporarily hiding things.</span></li>
+      <li><span lang="vi" data-lang="vi"><strong>Freeze:</strong> đối tượng ẩn và không được tính khi regen, nên có thể giúp bản vẽ lớn phản hồi nhanh hơn. Không thể đóng băng layer đang hiện hành.</span><span lang="en" data-lang="en"><strong>Freeze:</strong> objects are hidden and skipped during a regen, which can make large drawings respond faster. You cannot freeze the current layer.</span></li>
+      <li><span lang="vi" data-lang="vi"><strong>Lock:</strong> đối tượng vẫn hiện (có thể làm mờ) nhưng không chọn hoặc sửa được. Phù hợp khi muốn giữ làm nền tham chiếu mà không lỡ tay di chuyển.</span><span lang="en" data-lang="en"><strong>Lock:</strong> objects stay visible (and can be faded) but cannot be selected or edited. Good for keeping a reference backdrop without moving it by accident.</span></li>
+    </ul>
 
-    <p data-lang="vi">Dùng <code>LAYISO</code>, chọn đối tượng cần giữ. Với tùy chọn khóa và làm mờ, các layer còn lại vẫn thấy mờ để bạn định hướng, nhưng không bị sửa nhầm. Xong việc gõ <code>LAYUNISO</code> để trả lại trạng thái cũ.</p>
-    <p data-lang="en">Use <code>LAYISO</code> and select the objects to keep. With the lock-and-fade option the remaining layers stay faintly visible for orientation but cannot be edited by mistake. When finished, type <code>LAYUNISO</code> to restore the previous state.</p>
+    <h2 lang="vi" data-lang="vi">Khi nào dùng lệnh nào?</h2>
+    <h2 lang="en" data-lang="en">Which command for which situation?</h2>
 
-    <h3 data-lang="vi">Muốn ẩn một vài layer vướng mắt</h3>
-    <h3 data-lang="en">You want to hide a few distracting layers</h3>
+    <h3 lang="vi" data-lang="vi">Muốn chỉ làm việc với một nhóm đối tượng</h3>
+    <h3 lang="en" data-lang="en">You want to work on one group of objects only</h3>
 
-    <p data-lang="vi">Dùng <code>LAYOFF</code> và chọn từng đối tượng đại diện. Cách này nhanh hơn việc dò tên layer trong danh sách. Khi cần hiện lại, gõ <code>LAYON</code>.</p>
-    <p data-lang="en">Use <code>LAYOFF</code> and pick a representative object for each layer. It is faster than hunting for layer names in the list. To bring them back, type <code>LAYON</code>.</p>
+    <p lang="vi" data-lang="vi">Dùng <code>LAYISO</code>, chọn đối tượng cần giữ. Với tùy chọn khóa và làm mờ, các layer còn lại vẫn thấy mờ để bạn định hướng, nhưng không bị sửa nhầm. Xong việc gõ <code>LAYUNISO</code> để trả lại trạng thái cũ.</p>
+    <p lang="en" data-lang="en">Use <code>LAYISO</code> and select the objects to keep. With the lock-and-fade option the remaining layers stay faintly visible for orientation but cannot be edited by mistake. When finished, type <code>LAYUNISO</code> to restore the previous state.</p>
 
-    <h3 data-lang="vi">Bản vẽ lớn, chạy chậm</h3>
-    <h3 data-lang="en">Large drawing that feels slow</h3>
+    <h3 lang="vi" data-lang="vi">Muốn ẩn một vài layer vướng mắt</h3>
+    <h3 lang="en" data-lang="en">You want to hide a few distracting layers</h3>
 
-    <p data-lang="vi">Cân nhắc <code>LAYFRZ</code> cho các layer không cần xem lúc đó. Xem thêm các cách làm nhẹ bản vẽ ở bài <a href="/autocad/chiase/giam-dung-luong-file-dwg-autocad.html">giảm dung lượng file DWG</a>.</p>
-    <p data-lang="en">Consider <code>LAYFRZ</code> for layers you do not need to see right now. For more ways to lighten a drawing, see the guide to <a href="/autocad/chiase/giam-dung-luong-file-dwg-autocad.html">reducing DWG size</a>.</p>
+    <p lang="vi" data-lang="vi">Dùng <code>LAYOFF</code> và chọn từng đối tượng đại diện. Cách này nhanh hơn việc dò tên layer trong danh sách. Khi cần hiện lại, gõ <code>LAYON</code>.</p>
+    <p lang="en" data-lang="en">Use <code>LAYOFF</code> and pick a representative object for each layer. It is faster than hunting for layer names in the list. To bring them back, type <code>LAYON</code>.</p>
 
-    <h3 data-lang="vi">Muốn giữ nền tham chiếu, tránh sửa nhầm</h3>
-    <h3 data-lang="en">You want a reference backdrop that cannot be edited</h3>
+    <h3 lang="vi" data-lang="vi">Bản vẽ lớn, chạy chậm</h3>
+    <h3 lang="en" data-lang="en">Large drawing that feels slow</h3>
 
-    <p data-lang="vi">Dùng <code>LAYLCK</code> cho các layer nền (kiến trúc, lưới trục...). Muốn mở khóa một layer, dùng <code>LAYULK</code> rồi chọn đối tượng thuộc layer đó.</p>
-    <p data-lang="en">Use <code>LAYLCK</code> on backdrop layers (architecture, grids...). To unlock one, run <code>LAYULK</code> and pick an object on that layer.</p>
+    <p lang="vi" data-lang="vi">Cân nhắc <code>LAYFRZ</code> cho các layer không cần xem lúc đó. Xem thêm các cách làm nhẹ bản vẽ ở bài <a href="/autocad/chiase/giam-dung-luong-file-dwg-autocad.html">giảm dung lượng file DWG</a>.</p>
+    <p lang="en" data-lang="en">Consider <code>LAYFRZ</code> for layers you do not need to see right now. For more ways to lighten a drawing, see the guide to <a href="/autocad/chiase/giam-dung-luong-file-dwg-autocad.html">reducing DWG size</a>.</p>
 
-    <h3 data-lang="vi">Muốn xem từng layer chứa gì</h3>
-    <h3 data-lang="en">You want to see what each layer contains</h3>
+    <h3 lang="vi" data-lang="vi">Muốn giữ nền tham chiếu, tránh sửa nhầm</h3>
+    <h3 lang="en" data-lang="en">You want a reference backdrop that cannot be edited</h3>
 
-    <p data-lang="vi">Dùng <code>LAYWALK</code>: chọn layer trong hộp thoại thì chỉ layer đó hiện. Rất tiện khi nhận bản vẽ của người khác mà chưa biết cấu trúc layer.</p>
-    <p data-lang="en">Use <code>LAYWALK</code>: select a layer in the dialog and only that layer is shown. Very handy when you receive someone else's drawing and do not know its layer structure yet.</p>
+    <p lang="vi" data-lang="vi">Dùng <code>LAYLCK</code> cho các layer nền (kiến trúc, lưới trục...). Muốn mở khóa một layer, dùng <code>LAYULK</code> rồi chọn đối tượng thuộc layer đó.</p>
+    <p lang="en" data-lang="en">Use <code>LAYLCK</code> on backdrop layers (architecture, grids...). To unlock one, run <code>LAYULK</code> and pick an object on that layer.</p>
 
-    <h2 data-lang="vi">Điều chỉnh độ mờ khi khóa và làm mờ</h2>
-    <h2 data-lang="en">Adjusting the fade amount</h2>
+    <h3 lang="vi" data-lang="vi">Muốn xem từng layer chứa gì</h3>
+    <h3 lang="en" data-lang="en">You want to see what each layer contains</h3>
 
-    <p data-lang="vi">Mức mờ của layer bị khóa do biến hệ thống <code>LAYLOCKFADECTL</code> điều khiển. Gõ tên biến để xem và đổi giá trị theo ý muốn. Cách chọn chế độ Tắt hoặc Khóa và làm mờ cho LAYISO được hướng dẫn trong <a href="/autocad/chiase/huong-dan-lenh-layiso-autocad.html">bài LAYISO</a>.</p>
-    <p data-lang="en">The fade level of locked layers is controlled by the <code>LAYLOCKFADECTL</code> system variable. Type the variable name to view and change it. How to choose between Off and Lock-and-Fade for LAYISO is covered in the <a href="/autocad/chiase/huong-dan-lenh-layiso-autocad.html">LAYISO guide</a>.</p>
+    <p lang="vi" data-lang="vi">Dùng <code>LAYWALK</code>: chọn layer trong hộp thoại thì chỉ layer đó hiện. Rất tiện khi nhận bản vẽ của người khác mà chưa biết cấu trúc layer.</p>
+    <p lang="en" data-lang="en">Use <code>LAYWALK</code>: select a layer in the dialog and only that layer is shown. Very handy when you receive someone else's drawing and do not know its layer structure yet.</p>
+
+    <h2 lang="vi" data-lang="vi">Điều chỉnh độ mờ khi khóa và làm mờ</h2>
+    <h2 lang="en" data-lang="en">Adjusting the fade amount</h2>
+
+    <p lang="vi" data-lang="vi">Mức mờ của layer bị khóa do biến hệ thống <code>LAYLOCKFADECTL</code> điều khiển. Gõ tên biến để xem và đổi giá trị theo ý muốn. Cách chọn chế độ Tắt hoặc Khóa và làm mờ cho LAYISO được hướng dẫn trong <a href="/autocad/chiase/huong-dan-lenh-layiso-autocad.html">bài LAYISO</a>.</p>
+    <p lang="en" data-lang="en">The fade level of locked layers is controlled by the <code>LAYLOCKFADECTL</code> system variable. Type the variable name to view and change it. How to choose between Off and Lock-and-Fade for LAYISO is covered in the <a href="/autocad/chiase/huong-dan-lenh-layiso-autocad.html">LAYISO guide</a>.</p>
 
     <div class="tip-box">
-      <strong data-lang="vi">Muốn gõ ít hơn nữa?</strong>
-      <strong data-lang="en">Want to type even less?</strong>
-      <p data-lang="vi">Bộ <a href="/autocad/autolisp/autolisp-layiso-layer-manager.html">Layiso Suite</a> của iViDLab gom các thao tác quản lý layer thành những phím tắt ngắn. Cách nạp Lisp xem tại <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html">hướng dẫn APPLOAD</a>.</p>
-      <p data-lang="en">iViDLab's <a href="/autocad/autolisp/autolisp-layiso-layer-manager.html">Layiso Suite</a> packs layer management into short shortcuts. To load Lisp files, see the <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html">APPLOAD guide</a>.</p>
+      <strong lang="vi" data-lang="vi">Muốn gõ ít hơn nữa?</strong>
+      <strong lang="en" data-lang="en">Want to type even less?</strong>
+      <p lang="vi" data-lang="vi">Bộ <a href="/autocad/autolisp/autolisp-layiso-layer-manager.html">Layiso Suite</a> của iViDLab gom các thao tác quản lý layer thành những phím tắt ngắn. Cách nạp Lisp xem tại <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html">hướng dẫn APPLOAD</a>.</p>
+      <p lang="en" data-lang="en">iViDLab's <a href="/autocad/autolisp/autolisp-layiso-layer-manager.html">Layiso Suite</a> packs layer management into short shortcuts. To load Lisp files, see the <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html">APPLOAD guide</a>.</p>
     </div>
 
     <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--border-color);">
     <p style="text-align: center; font-style: italic; color: var(--text-muted); margin-bottom: 0;">
-      <span data-lang="vi">Tài liệu được nghiên cứu và tổng hợp bởi đội ngũ kỹ thuật <a href="https://ividlab.com/">iViDLab.com</a>.</span>
-      <span data-lang="en">Document researched and compiled by the <a href="https://ividlab.com/">iViDLab.com</a> technical team.</span>
+      <span lang="vi" data-lang="vi">Tài liệu được nghiên cứu và tổng hợp bởi đội ngũ kỹ thuật <a href="https://ividlab.com/">iViDLab.com</a>.</span>
+      <span lang="en" data-lang="en">Document researched and compiled by the <a href="https://ividlab.com/">iViDLab.com</a> technical team.</span>
     </p>
   </div>
   <div class="related-container">
-    <h2 data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
-    <h2 data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">You might also be interested in</h2>
+    <h2 lang="vi" data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
+    <h2 lang="en" data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">You might also be interested in</h2>
     <div class="related-grid">
       <a class="related-card" href="/autocad/chiase/huong-dan-lenh-layiso-autocad.html">
         <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Hướng Dẫn Toàn Tập Lệnh LAYISO</span><span data-lang="en">Complete Guide to LAYISO</span></h3>
+        <h3><span lang="vi" data-lang="vi">Hướng Dẫn Toàn Tập Lệnh LAYISO</span><span lang="en" data-lang="en">Complete Guide to LAYISO</span></h3>
       </a>
       <a class="related-card" href="/autocad/chiase/giam-dung-luong-file-dwg-autocad.html">
         <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Cách Giảm Dung Lượng File DWG Nặng Và Làm AutoCAD Chạy Nhanh Hơn</span><span data-lang="en">How to Reduce a Heavy DWG File Size and Speed Up AutoCAD</span></h3>
+        <h3><span lang="vi" data-lang="vi">Cách Giảm Dung Lượng File DWG Nặng Và Làm AutoCAD Chạy Nhanh Hơn</span><span lang="en" data-lang="en">How to Reduce a Heavy DWG File Size and Speed Up AutoCAD</span></h3>
       </a>
       <a class="related-card" href="/autocad/chiase/huong-dan-appload-lisp-autocad.html">
         <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Hướng Dẫn Nạp Lisp Bằng APPLOAD</span><span data-lang="en">Guide to Load Lisp via APPLOAD</span></h3>
+        <h3><span lang="vi" data-lang="vi">Hướng Dẫn Nạp Lisp Bằng APPLOAD</span><span lang="en" data-lang="en">Guide to Load Lisp via APPLOAD</span></h3>
       </a>
     </div>
   </div>

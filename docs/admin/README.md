@@ -16,6 +16,9 @@ từng bật trước đây). Không cần đổi gì ở RFI Console — nó v�
 - `public/traffic-track.js` — chạy trên mọi trang công khai (được include qua 1 dòng
   `<script type="module" src="/traffic-track.js">` trong `<head>`). Mỗi lần tải trang, ghi
   1 document vào Firestore collection `trafficHits`: `{ path, type: 'view', ts }`.
+  Ghi bằng `fetch` tới Firestore REST API (`documents:commit`, `currentDocument.exists=false` +
+  transform `ts = REQUEST_TIME`), **không dùng Firebase SDK** (SDK nặng ~135 KB gzip mà chạy trên
+  mọi trang). Rules giữ nguyên: commit kiểu này là thao tác `create`, `ts == request.time` vẫn khớp.
 - Nút tải PEB Member (`public/tekla/peb-member/assets/article.js`) gọi
   `window.iViDTrack.download(packageKey)` khi bấm tải, ghi `{ path: '/download/<key>', type: 'download', ts }`.
   `packageKey` là mã gói ổn định (vd. `2021_Higher`), không phải tên file theo version, để

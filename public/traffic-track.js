@@ -5,28 +5,27 @@
 // trafficReads theo mốc 15/45/120/300 giây (chỉ tính lúc tab đang hiện và có focus).
 // Không cookie/fingerprint. Luôn fire-and-forget: lỗi mạng/ad-blocker/rules cũ không được
 // làm hỏng trang.
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+//
+// Ghi qua Firestore REST API (documents:commit) bằng fetch thay cho Firebase SDK: SDK nặng
+// ~135 KB gzip và chạy trên MỌI trang chỉ để ghi vài document. Commit với currentDocument
+// {exists:false} là thao tác "create" (rules vẫn áp như cũ) và transform REQUEST_TIME cho ts
+// chính là cách SDK làm serverTimestamp() — nên rules `ts == request.time` không cần đổi.
 
-const firebaseConfig = {
-  apiKey: "AIzaSyB8-vSVDKhOLuTA6xmYZzwHVrWX58eT3d4",
-  authDomain: "ividlab-rficonsole.firebaseapp.com",
-  projectId: "ividlab-rficonsole",
-  storageBucket: "ividlab-rficonsole.firebasestorage.app",
-  messagingSenderId: "447726977999",
-  appId: "1:447726977999:web:68355281ff424892ea48ba",
-};
+const API_KEY = 'AIzaSyB8-vSVDKhOLuTA6xmYZzwHVrWX58eT3d4';
+const DB = 'projects/ividlab-rficonsole/databases/(default)';
+const COMMIT_URL = `https://firestore.googleapis.com/v1/${DB}/documents:commit?key=${API_KEY}`;
 
-let db = null;
-try { db = getFirestore(initializeApp(firebaseConfig)); } catch (e) { /* bỏ qua */ }
+function randomId(len) {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const bytes = new Uint8Array(len);
+  try { crypto.getRandomValues(bytes); } catch (e) { for (let i = 0; i < len; i++) bytes[i] = Math.random() * 256; }
+  let s = '';
+  for (let i = 0; i < len; i++) s += chars[bytes[i] % chars.length];
+  return s;
+}
 
 // Mã phiên ngẫu nhiên cho MỖI lần mở trang: nối bản ghi lượt xem với các mốc thời gian đọc của nó.
-const sid = (() => {
-  try {
-    if (crypto.randomUUID) return crypto.randomUUID().replace(/-/g, '').slice(0, 20);
-  } catch (e) { /* dùng bản dự phòng */ }
-  return (Math.random().toString(36).slice(2) + Date.now().toString(36)).slice(0, 20);
-})();
+const sid = randomId(20);
 
 // Quốc gia của khách: /cdn-cgi/trace do Cloudflare (đứng trước ividlab.com) phục vụ cùng origin, trả `loc=VN`.
 // Nhớ trong sessionStorage để các trang sau không gọi lại. Không có (chạy local, bị chặn, quá hạn) thì trả ''.
@@ -50,20 +49,39 @@ async function visitorCountry(timeoutMs) {
   return cc;
 }
 
-function write(coll, data) {
-  return addDoc(collection(db, coll), { ...data, ts: serverTimestamp() });
+// Giá trị JS -> Firestore Value (chỉ cần string và số nguyên)
+function toFields(data) {
+  const fields = {};
+  for (const [k, v] of Object.entries(data)) {
+    fields[k] = Number.isInteger(v) ? { integerValue: String(v) } : { stringValue: String(v) };
+  }
+  return fields;
+}
+
+// Tạo 1 document mới; reject nếu rules từ chối (để logHit thử lại bản tối thiểu).
+async function write(coll, data) {
+  const res = await fetch(COMMIT_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    keepalive: true, // vẫn gửi được khi khách đóng tab ngay sau khi bấm tải
+    body: JSON.stringify({
+      writes: [{
+        update: { name: `${DB}/documents/${coll}/${randomId(20)}`, fields: toFields(data) },
+        updateTransforms: [{ fieldPath: 'ts', setToServerValue: 'REQUEST_TIME' }],
+        currentDocument: { exists: false },
+      }],
+    }),
+  });
+  if (!res.ok) throw new Error('firestore ' + res.status);
 }
 
 // Rules cũ (chưa cho field country/sid) sẽ từ chối bản đủ trường → ghi lại bản tối thiểu {path,type} để không mất lượt xem/tải.
 function logHit(path, type, country) {
-  if (!db) return;
-  try {
-    const extra = { sid };
-    if (country) extra.country = country;
-    write('trafficHits', { path, type, ...extra })
-      .catch(() => write('trafficHits', { path, type }))
-      .catch(() => {});
-  } catch (e) { /* bỏ qua */ }
+  const extra = { sid };
+  if (country) extra.country = country;
+  write('trafficHits', { path, type, ...extra })
+    .catch(() => write('trafficHits', { path, type }))
+    .catch(() => {});
 }
 
 visitorCountry(1500).then((country) => logHit(location.pathname + location.search, 'view', country));
@@ -72,7 +90,7 @@ visitorCountry(1500).then((country) => logHit(location.pathname + location.searc
 const MILESTONES = [15, 45, 120, 300];
 let engaged = 0;
 let nextMilestone = 0;
-if (db) {
+{
   const path = location.pathname + location.search;
   const timer = setInterval(async () => {
     if (document.visibilityState !== 'visible' || !document.hasFocus()) return;

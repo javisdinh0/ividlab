@@ -31,6 +31,8 @@ const urls = [{ loc: `${ORIGIN}/`, lastmod: lastmod('index.html'), priority: '1.
 for (const f of walk(pub).sort()) {
   const rel = path.relative(pub, f).split(path.sep).join('/');
   if (SKIP.some((re) => re.test(rel))) continue;
+  // Trang tự khai noindex (vd. tai/*.html) mà nằm trong sitemap thì Search Console báo lỗi
+  if (/<meta\s+name=["']robots["'][^>]*noindex/i.test(fs.readFileSync(f, 'utf8'))) continue;
   urls.push({ loc: `${ORIGIN}/${rel.replace(/index\.html$/, '')}`, lastmod: lastmod(path.join('public', rel)), priority: '0.7' });
 }
 

@@ -157,6 +157,7 @@
     body.lang-en span[data-lang="vi"], body.lang-en strong[data-lang="vi"], body.lang-en em[data-lang="vi"], body.lang-en a[data-lang="vi"], body.lang-en figcaption[data-lang="vi"] { display: none !important; }
     body.lang-en span[data-lang="en"], body.lang-en strong[data-lang="en"], body.lang-en em[data-lang="en"], body.lang-en a[data-lang="en"], body.lang-en figcaption[data-lang="en"] { display: inline !important; }
   </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"iViDLab","item":"https://ividlab.com/"},{"@type":"ListItem","position":2,"name":"Hướng dẫn & Chia sẻ","item":"https://ividlab.com/guides/"},{"@type":"ListItem","position":3,"name":"XBC: Explode Block Đã XClip Mà Giữ Nguyên Phạm Vi Cắt (AutoCAD)","item":"https://ividlab.com/autocad/autolisp/autolisp-xbc-explode-clipped-block.html"}]}</script>
 </head>
 <body>
   
@@ -169,19 +170,19 @@
       </a>
       <nav style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
         <a href="/?tab=all" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); transition: color 0.2s ease;">
-          <span data-lang="vi">// TRANG CHỦ</span><span data-lang="en" >// HOME</span>
+          <span lang="vi" data-lang="vi">// TRANG CHỦ</span><span lang="en" data-lang="en" >// HOME</span>
         </a>
         <a href="/?tab=tools" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// CÔNG CỤ</span><span data-lang="en" >// TOOLS</span>
+          <span lang="vi" data-lang="vi">// CÔNG CỤ</span><span lang="en" data-lang="en" >// TOOLS</span>
         </a>
         <a href="/?tab=guides" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span data-lang="en" >// GUIDES</span>
+          <span lang="vi" data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span lang="en" data-lang="en" >// GUIDES</span>
         </a>
         <a href="/?tab=tekla-component" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
           // TEKLA APP &amp; COMPONENT
         </a>
         <a href="/?tab=about" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en" >// ABOUT</span>
+          <span lang="vi" data-lang="vi">// GIỚI THIỆU</span><span lang="en" data-lang="en" >// ABOUT</span>
         </a>
       </nav>
       <div style="display: flex; align-items: center; gap: 10px;">
@@ -196,25 +197,25 @@
   </header>
   <div class="article-container">
     <span class="badge">CAD Automation & Block Tools</span>
-    <h1 data-lang="vi">XBC: Explode Block Đã XClip Mà Giữ Nguyên Phạm Vi Cắt</h1>
-    <h1 data-lang="en">XBC: Explode an XClipped Block and Keep the Clipped Area</h1>
+    <h1 lang="vi" data-lang="vi">XBC: Explode Block Đã XClip Mà Giữ Nguyên Phạm Vi Cắt</h1>
+    <h1 lang="en" data-lang="en">XBC: Explode an XClipped Block and Keep the Clipped Area</h1>
 
-    <p data-lang="vi">Bạn đã xclip một block để chỉ hiện phần cần dùng, rồi cần <strong>phá (explode)</strong> block đó ra để chỉnh sửa. Lệnh <code>EXPLODE</code> thông thường làm mất xclip, và toàn bộ hình nằm ngoài vùng clip hiện ra lại, bản vẽ trở nên rối và nặng.</p>
-    <p data-lang="en">You have clipped a block with XCLIP to show only the part you need, and now you want to <strong>explode</strong> it for editing. The normal <code>EXPLODE</code> drops the xclip, and everything outside the clip boundary appears again, leaving the drawing cluttered and heavy.</p>
+    <p lang="vi" data-lang="vi">Bạn đã xclip một block để chỉ hiện phần cần dùng, rồi cần <strong>phá (explode)</strong> block đó ra để chỉnh sửa. Lệnh <code>EXPLODE</code> thông thường làm mất xclip, và toàn bộ hình nằm ngoài vùng clip hiện ra lại, bản vẽ trở nên rối và nặng.</p>
+    <p lang="en" data-lang="en">You have clipped a block with XCLIP to show only the part you need, and now you want to <strong>explode</strong> it for editing. The normal <code>EXPLODE</code> drops the xclip, and everything outside the clip boundary appears again, leaving the drawing cluttered and heavy.</p>
 
-    <p data-lang="vi"><strong>iViDLab XBC</strong> cắt hình theo biên clip trước rồi mới explode, nên kết quả đúng như bạn đang nhìn thấy trên màn hình.</p>
-    <p data-lang="en"><strong>iViDLab XBC</strong> trims the geometry to the clip boundary first and only then explodes, so the result is exactly what you see on screen.</p>
+    <p lang="vi" data-lang="vi"><strong>iViDLab XBC</strong> cắt hình theo biên clip trước rồi mới explode, nên kết quả đúng như bạn đang nhìn thấy trên màn hình.</p>
+    <p lang="en" data-lang="en"><strong>iViDLab XBC</strong> trims the geometry to the clip boundary first and only then explodes, so the result is exactly what you see on screen.</p>
 
-    <h2 data-lang="vi">&#128142; Làm được gì</h2>
-    <h2 data-lang="en">&#128142; What it does</h2>
-    <ul data-lang="vi">
+    <h2 lang="vi" data-lang="vi">&#128142; Làm được gì</h2>
+    <h2 lang="en" data-lang="en">&#128142; What it does</h2>
+    <ul lang="vi" data-lang="vi">
       <li>Hỗ trợ clip <strong>chữ nhật, đa giác và clip đảo ngược</strong>; clip đang tắt thì bỏ qua.</li>
       <li>Block <strong>xoay, đổi tỉ lệ, lật gương</strong>, và <strong>block lồng</strong> (kể cả clip riêng của block lồng).</li>
       <li>Đường cong (line, arc, circle, polyline, ellipse, spline) được <strong>cắt chính xác tại biên clip</strong>.</li>
       <li><strong>Hatch</strong> cắt đúng hình, giữ pattern và lỗ.</li>
       <li>Xử lý được cả bản vẽ trong một lệnh (XBCA), không cần chọn từng block.</li>
     </ul>
-    <ul data-lang="en">
+    <ul lang="en" data-lang="en">
       <li>Works with <strong>rectangular, polygonal and inverted clips</strong>; a clip that is switched off is skipped.</li>
       <li>Blocks that are <strong>rotated, scaled or mirrored</strong>, and <strong>nested blocks</strong> (including a nested block's own clip).</li>
       <li>Curves (line, arc, circle, polyline, ellipse, spline) are <strong>cut exactly at the clip boundary</strong>.</li>
@@ -222,45 +223,45 @@
       <li>Process a whole drawing with one command (XBCA), with no need to pick each block.</li>
     </ul>
 
-    <h2 data-lang="vi">&#9000; Các lệnh</h2>
-    <h2 data-lang="en">&#9000; Commands</h2>
+    <h2 lang="vi" data-lang="vi">&#9000; Các lệnh</h2>
+    <h2 lang="en" data-lang="en">&#9000; Commands</h2>
     <table>
-      <thead><tr><th><span data-lang="vi">Lệnh</span><span data-lang="en">Command</span></th><th><span data-lang="vi">Tác dụng</span><span data-lang="en">What it does</span></th></tr></thead>
+      <thead><tr><th><span lang="vi" data-lang="vi">Lệnh</span><span lang="en" data-lang="en">Command</span></th><th><span lang="vi" data-lang="vi">Tác dụng</span><span lang="en" data-lang="en">What it does</span></th></tr></thead>
       <tbody>
-        <tr><td><code>XBC</code></td><td><span data-lang="vi">Chọn block, cắt theo xclip rồi explode, giữ đúng phạm vi clip.</span><span data-lang="en">Pick a block, trim to its xclip, then explode, keeping the clipped area.</span></td></tr>
-        <tr><td><code>XBCC</code></td><td><span data-lang="vi">Cắt theo xclip, gỡ clip và <strong>giữ block</strong> (tạo bản sao định nghĩa tên <code>&lt;tên&gt;_XBC</code>).</span><span data-lang="en">Trim to the xclip, remove the clip and <strong>keep the block</strong> (creates a copy of the definition named <code>&lt;name&gt;_XBC</code>).</span></td></tr>
-        <tr><td><code>XBCA</code> / <code>XBCCA</code></td><td><span data-lang="vi">Như XBC / XBCC nhưng cho <strong>mọi block có xclip</strong> trong bản vẽ, cả Model lẫn mọi layout, không cần chọn.</span><span data-lang="en">Like XBC / XBCC but for <strong>every xclipped block</strong> in the drawing, in Model and every layout, without picking.</span></td></tr>
-        <tr><td><code>XBCI</code></td><td><span data-lang="vi">Xem thông tin clip của block.</span><span data-lang="en">Show the clip information of a block.</span></td></tr>
+        <tr><td><code>XBC</code></td><td><span lang="vi" data-lang="vi">Chọn block, cắt theo xclip rồi explode, giữ đúng phạm vi clip.</span><span lang="en" data-lang="en">Pick a block, trim to its xclip, then explode, keeping the clipped area.</span></td></tr>
+        <tr><td><code>XBCC</code></td><td><span lang="vi" data-lang="vi">Cắt theo xclip, gỡ clip và <strong>giữ block</strong> (tạo bản sao định nghĩa tên <code>&lt;tên&gt;_XBC</code>).</span><span lang="en" data-lang="en">Trim to the xclip, remove the clip and <strong>keep the block</strong> (creates a copy of the definition named <code>&lt;name&gt;_XBC</code>).</span></td></tr>
+        <tr><td><code>XBCA</code> / <code>XBCCA</code></td><td><span lang="vi" data-lang="vi">Như XBC / XBCC nhưng cho <strong>mọi block có xclip</strong> trong bản vẽ, cả Model lẫn mọi layout, không cần chọn.</span><span lang="en" data-lang="en">Like XBC / XBCC but for <strong>every xclipped block</strong> in the drawing, in Model and every layout, without picking.</span></td></tr>
+        <tr><td><code>XBCI</code></td><td><span lang="vi" data-lang="vi">Xem thông tin clip của block.</span><span lang="en" data-lang="en">Show the clip information of a block.</span></td></tr>
       </tbody>
     </table>
 
-    <h2 data-lang="vi">&#128295; Cài đặt và sử dụng</h2>
-    <h2 data-lang="en">&#128295; Install and use</h2>
-    <ol data-lang="vi">
+    <h2 lang="vi" data-lang="vi">&#128295; Cài đặt và sử dụng</h2>
+    <h2 lang="en" data-lang="en">&#128295; Install and use</h2>
+    <ol lang="vi" data-lang="vi">
       <li>Tải và chạy bộ cài ở mục <a href="#tai-ve">Tải về</a> bên dưới, rồi <strong>đóng và mở lại AutoCAD</strong>.</li>
       <li>Gõ <code>XBC</code>, chọn block đã xclip, nhấn <strong>Enter</strong>.</li>
       <li>Cần xử lý cả bản vẽ thì gõ <code>XBCA</code>.</li>
     </ol>
-    <ol data-lang="en">
+    <ol lang="en" data-lang="en">
       <li>Download and run the installer in the <a href="#tai-ve">Download</a> section below, then <strong>close and reopen AutoCAD</strong>.</li>
       <li>Type <code>XBC</code>, pick the xclipped block and press <strong>Enter</strong>.</li>
       <li>To process the whole drawing, type <code>XBCA</code>.</li>
     </ol>
     <div style="background: var(--code-bg); border-left: 4px solid var(--link-color); padding: 4px 18px; border-radius: 8px; margin: 20px 0;">
-      <p data-lang="vi"><strong>Lưu ý:</strong> nên thử trên một bản sao của bản vẽ. Có thể <code>UNDO</code> một bước để quay lại.</p>
-      <p data-lang="en"><strong>Note:</strong> try it on a copy of your drawing first. You can <code>UNDO</code> in a single step.</p>
+      <p lang="vi" data-lang="vi"><strong>Lưu ý:</strong> nên thử trên một bản sao của bản vẽ. Có thể <code>UNDO</code> một bước để quay lại.</p>
+      <p lang="en" data-lang="en"><strong>Note:</strong> try it on a copy of your drawing first. You can <code>UNDO</code> in a single step.</p>
     </div>
 
-    <h2 data-lang="vi">&#9888; Giới hạn cần biết</h2>
-    <h2 data-lang="en">&#9888; Known limits</h2>
-    <ul data-lang="vi">
+    <h2 lang="vi" data-lang="vi">&#9888; Giới hạn cần biết</h2>
+    <h2 lang="en" data-lang="en">&#9888; Known limits</h2>
+    <ul lang="vi" data-lang="vi">
       <li>Text, mtext và dimension nằm ngang qua biên clip không cắt được hình học: chúng được <strong>giữ hoặc bỏ theo tâm</strong>, và lệnh báo số lượng.</li>
       <li>Hatch có loop chứa spline hoặc ellipse được giữ hoặc bỏ theo tâm thay vì cắt theo biên.</li>
       <li>Không xử lý clip theo độ sâu (front/back).</li>
       <li>Block không nằm trên mặt phẳng XY bị bỏ qua.</li>
       <li><code>XBCC</code> bỏ qua dynamic block; dynamic block chưa được thử với <code>XBC</code>.</li>
     </ul>
-    <ul data-lang="en">
+    <ul lang="en" data-lang="en">
       <li>Text, mtext and dimensions crossing the clip boundary cannot be trimmed: they are <strong>kept or dropped by their centre</strong>, and the command reports how many.</li>
       <li>Hatches whose loops contain a spline or ellipse are kept or dropped by their centre rather than trimmed.</li>
       <li>Front/back (depth) clipping is not handled.</li>
@@ -268,45 +269,45 @@
       <li><code>XBCC</code> skips dynamic blocks; dynamic blocks have not been tried with <code>XBC</code>.</li>
     </ul>
 
-    <h2 id="tai-ve" data-lang="vi">&#128229; Thông Tin Tải Về XBC</h2>
-    <h2 id="tai-ve-en" data-lang="en">&#128229; XBC Download Information</h2>
+    <h2 id="tai-ve" lang="vi" data-lang="vi">&#128229; Thông Tin Tải Về XBC</h2>
+    <h2 id="tai-ve-en" lang="en" data-lang="en">&#128229; XBC Download Information</h2>
 
     <div class="download-section">
       <ul>
         <li>
-            <span data-lang="vi"><strong>Tệp tin:</strong></span>
-            <span data-lang="en"><strong>File:</strong></span> <code>iViDExplodeClippedBlockSetup.exe</code> (52 KB)
+            <span lang="vi" data-lang="vi"><strong>Tệp tin:</strong></span>
+            <span lang="en" data-lang="en"><strong>File:</strong></span> <code>iViDExplodeClippedBlockSetup.exe</code> (52 KB)
         </li>
         <li>
-            <span data-lang="vi"><strong>Phiên bản:</strong> 1.0 (bộ cài gồm plugin .NET và loader LISP).</span>
-            <span data-lang="en"><strong>Version:</strong> 1.0 (installer with the .NET plugin and the LISP loader).</span>
+            <span lang="vi" data-lang="vi"><strong>Phiên bản:</strong> 1.0 (bộ cài gồm plugin .NET và loader LISP).</span>
+            <span lang="en" data-lang="en"><strong>Version:</strong> 1.0 (installer with the .NET plugin and the LISP loader).</span>
         </li>
         <li>
-            <span data-lang="vi"><strong>Tương thích:</strong> AutoCAD 2024.</span>
-            <span data-lang="en"><strong>Compatibility:</strong> AutoCAD 2024.</span>
+            <span lang="vi" data-lang="vi"><strong>Tương thích:</strong> AutoCAD 2024.</span>
+            <span lang="en" data-lang="en"><strong>Compatibility:</strong> AutoCAD 2024.</span>
         </li>
         <li>
-            <span data-lang="vi"><strong>Link Tải trực tiếp:</strong></span>
-            <span data-lang="en"><strong>Direct Download Link:</strong></span> <a id="xbc-download" href="/fordownload/iViDExplodeClippedBlockSetup.exe" download="iViDExplodeClippedBlockSetup.exe">&#11015; <span data-lang="vi">Tải Về</span><span data-lang="en">Download</span> iViDExplodeClippedBlockSetup.exe</a>
+            <span lang="vi" data-lang="vi"><strong>Link Tải trực tiếp:</strong></span>
+            <span lang="en" data-lang="en"><strong>Direct Download Link:</strong></span> <a id="xbc-download" href="/fordownload/iViDExplodeClippedBlockSetup.exe" download="iViDExplodeClippedBlockSetup.exe">&#11015; <span lang="vi" data-lang="vi">Tải Về</span><span lang="en" data-lang="en">Download</span> iViDExplodeClippedBlockSetup.exe</a>
         </li>
       </ul>
     </div>
   </div>
   <div class="related-container">
-    <h2 data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
-    <h2 data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem; display:none;">You might also be interested in</h2>
+    <h2 lang="vi" data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
+    <h2 lang="en" data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem; display:none;">You might also be interested in</h2>
     <div class="related-grid">
       <a class="related-card" href="/autocad/autolisp/autolisp-merge-hatch-mh.html">
         <span class="badge">CAD Automation</span>
-        <h3><span data-lang="vi">Lisp Gộp Vùng Hatch (Merge Hatch - MH)</span><span data-lang="en" >Merge Hatch Lisp (MH)</span></h3>
+        <h3><span lang="vi" data-lang="vi">Lisp Gộp Vùng Hatch (Merge Hatch - MH)</span><span lang="en" data-lang="en" >Merge Hatch Lisp (MH)</span></h3>
       </a>
       <a class="related-card" href="/autocad/autolisp/autolisp-quick-block-bb.html">
         <span class="badge">CAD Automation</span>
-        <h3><span data-lang="vi">Lisp Tạo Block Nhanh (Quick Block - BB)</span><span data-lang="en" >Quick Block Lisp (BB)</span></h3>
+        <h3><span lang="vi" data-lang="vi">Lisp Tạo Block Nhanh (Quick Block - BB)</span><span lang="en" data-lang="en" >Quick Block Lisp (BB)</span></h3>
       </a>
       <a class="related-card" href="/autocad/chiase/huong-dan-netload-dll-autocad.html">
         <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Hướng Dẫn NETLOAD Nạp DLL</span><span data-lang="en" >Guide to NETLOAD a DLL</span></h3>
+        <h3><span lang="vi" data-lang="vi">Hướng Dẫn NETLOAD Nạp DLL</span><span lang="en" data-lang="en" >Guide to NETLOAD a DLL</span></h3>
       </a>
     </div>
   </div>
