@@ -81,6 +81,7 @@ function main() {
     run(`git -c core.autocrlf=false commit -m "${msg}"`, tmp);
     run('git push origin gh-pages', tmp);
     console.log('✔ Deploy xong. GitHub Pages build lại sau ~1-2 phút.');
+    purgeCloudflareLater();
   } finally {
     try {
       run(`git worktree remove "${tmp}" --force`);
@@ -93,6 +94,35 @@ function main() {
       // nhánh cục bộ "gh-pages" có thể không tồn tại nếu bước trên đã fail sớm — bỏ qua
     }
   }
+}
+
+// Xoá cache Cloudflare sau khi GitHub Pages build xong — cần khi đã bật Cache Rule cache HTML ở edge
+// (docs/cloudflare-cache.md). Chỉ chạy nếu có biến môi trường CLOUDFLARE_API_TOKEN + CLOUDFLARE_ZONE_ID
+// (đặt ở biến môi trường User, KHÔNG để trong repo/OneDrive). Purge sớm quá thì edge lại cache bản cũ
+// từ GitHub Pages, nên đợi CF_PURGE_DELAY giây (mặc định 90).
+function purgeCloudflareLater() {
+  const token = process.env.CLOUDFLARE_API_TOKEN;
+  const zone = process.env.CLOUDFLARE_ZONE_ID;
+  if (!token || !zone) {
+    console.log('ℹ Bỏ qua xoá cache Cloudflare (chưa đặt CLOUDFLARE_API_TOKEN / CLOUDFLARE_ZONE_ID).');
+    return;
+  }
+  const delay = Number(process.env.CF_PURGE_DELAY || 90);
+  console.log(`… Đợi ${delay}s cho GitHub Pages build rồi xoá cache Cloudflare (Ctrl+C để bỏ qua).`);
+  setTimeout(async () => {
+    try {
+      const res = await fetch(`https://api.cloudflare.com/client/v4/zones/${zone}/purge_cache`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ purge_everything: true }),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (res.ok && body.success) console.log('✔ Đã xoá cache Cloudflare.');
+      else console.error('⚠ Xoá cache Cloudflare lỗi:', res.status, JSON.stringify(body.errors || body));
+    } catch (e) {
+      console.error('⚠ Xoá cache Cloudflare lỗi:', e.message);
+    }
+  }, delay * 1000);
 }
 
 main();
