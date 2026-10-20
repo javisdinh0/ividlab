@@ -1,5 +1,24 @@
 [
   {
+    "id": "cap-nhat-stay-hole-1-11",
+    "link": "/tekla/component/cap-nhat-stay-hole-1-11.html",
+    "product": "Stay Hole",
+    "title": {
+      "vi": "Stay Hole (CC2) 1.11P — có gì mới",
+      "en": "Stay Hole (CC2) 1.11P — what's new"
+    },
+    "description": {
+      "vi": "Tạo lỗ theo xà gồ lân cận, không làm gì với component đã có stay, thêm lựa chọn All bolts.",
+      "en": "Holes follow neighbouring purlins, components that already have a stay are left alone, plus the All bolts option."
+    },
+    "tag": {
+      "vi": "Cập nhật",
+      "en": "Release"
+    },
+    "date": "2026-10-20",
+    "cover": "/tekla/component/img/stay-hole-model.jpg"
+  },
+  {
     "id": "cap-nhat-2v-cross-1-44",
     "link": "/tekla/component/cap-nhat-2v-cross-1-44.html",
     "product": "2V Cross",

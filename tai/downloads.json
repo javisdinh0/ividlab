@@ -16,10 +16,10 @@
       "vi": "Tự tạo lỗ stay trên xà gồ ở chỗ không có thanh chống. Yêu cầu Tekla 2016 trở lên.",
       "en": "Creates stay holes on purlins where there is no strut. Requires Tekla 2016 or newer."
     },
-    "version": "1.05P",
-    "file": "/fordownload/tekla-component/iVidLab.StayHole_1.05P.tsep",
-    "saveAs": "iVidLab.StayHole_1.05P.tsep",
-    "size": "86 KB"
+    "version": "1.11P",
+    "file": "/fordownload/tekla-component/iVidLab.StayHole_1.11P.tsep",
+    "saveAs": "iVidLab.StayHole_1.11P.tsep",
+    "size": "88 KB"
   },
   "2vcross": {
     "name": "2V Cross Anti-Sag Roof",

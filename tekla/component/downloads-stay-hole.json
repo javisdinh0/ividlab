@@ -1,6 +1,6 @@
 {
-  "version": "1.05P",
-  "released": "2026-10-16",
+  "version": "1.11P",
+  "released": "2026-10-20",
   "baseUrl": "/fordownload/tekla-component/",
   "title": {
     "vi": "Tải iVidLab Stay Hole (CC2)",
@@ -8,9 +8,9 @@
   },
   "packages": {
     "stay": {
-      "file": "iVidLab.StayHole_1.05P.tsep",
-      "size": "86 KB",
-      "bytes": 87901,
+      "file": "iVidLab.StayHole_1.11P.tsep",
+      "size": "88 KB",
+      "bytes": 90578,
       "range": "2016+"
     }
   },
@@ -82,13 +82,13 @@
   "notes": {
     "vi": [
       "Tạo lỗ stay ở chỗ không có thanh chống, để mọi line xà gồ giống nhau và cùng mã chi tiết.",
-      "Quét chọn nhiều component Cold rolled overlap một lần; bám theo component gốc.",
-      "Thử trong Tekla Structures 2017; yêu cầu Tekla 2016 trở lên."
+      "1.11P: component đã có stay thì không làm gì; component không stay chỉ nhận lỗ ở phía mà xà gồ lân cận có stay. Ô Create thêm \"All bolts\": cả lỗ phụ cũng là bu-lông thật.",
+      "Lân cận đổi thì bấm Modify để cập nhật; nên nhập es1/es2 ở component gốc; xà gồ quay BACK không áp dụng."
     ],
     "en": [
       "Creates stay holes where there is no strut so every purlin line is identical and shares one part mark.",
-      "Pick many Cold rolled overlap components at once; follows the source component.",
-      "Tested in Tekla Structures 2017; requires Tekla 2016 or newer."
+      "1.11P: a component that already has a stay is left alone; one without a stay only gets holes on the side where a neighbouring purlin has a stay. The Create box gains \"All bolts\": the extra holes become real bolts too.",
+      "Click Modify after a neighbour changes; enter es1/es2 on the source component; purlins rotated BACK do not apply."
     ]
   }
 }
