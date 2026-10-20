@@ -2,6 +2,15 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
+    <!-- Áp theme/ngôn ngữ đã lưu trước khi vẽ trang, tránh nháy nền sáng khi đang dùng dark mode -->
+    <script>
+      try {
+        var th = localStorage.getItem('ividlab-theme') === 'dark' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', th);
+        if (localStorage.getItem('ividlab-lang') === 'en') document.documentElement.lang = 'en';
+      } catch (e) {}
+    </script>
+    <meta name="theme-color" content="#A2BFC7" />
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234924381658348" crossorigin="anonymous"></script>
     <script type="module" src="/traffic-track.js"></script>
@@ -26,6 +35,9 @@
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <p style="padding:2rem;font-family:sans-serif">iViDLab cần bật JavaScript để hiển thị. Xem nhanh: <a href="/tekla/peb-member/">Tekla App &amp; Component</a> · <a href="/sitemap.xml">Sơ đồ trang</a></p>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

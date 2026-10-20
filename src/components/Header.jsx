@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 export default function Header({ activeTab, setActiveTab, lang, setLang, theme, setTheme, t }) {
+  const navRef = useRef(null);
+
   const toggleTheme = () => {
     const nextTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(nextTheme);
@@ -11,43 +13,26 @@ export default function Header({ activeTab, setActiveTab, lang, setLang, theme, 
     setLang(nextLang);
   };
 
+  // Trên mobile thanh nav cuộn ngang: kéo tab đang chọn vào tầm nhìn.
+  useEffect(() => {
+    const active = navRef.current?.querySelector('[aria-current="page"]');
+    active?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  }, [activeTab]);
+
   return (
-    <header style={{
-      position: 'sticky',
-      top: 0,
-      zIndex: 100,
-      backgroundColor: 'var(--header-bg)',
-      backdropFilter: 'blur(12px)',
-      borderBottom: '1px solid var(--border-rule)',
-      padding: '1rem 0',
-      transition: 'background-color 0.3s ease'
-    }}>
-      <div className="container" style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap',
-        gap: '1rem'
-      }}>
+    <header className="site-header">
+      <div className="container site-header__inner">
         {/* Clean iViDLab Brand Title */}
-        <a 
-          href="#" 
+        <a
+          href="/"
+          className="site-brand"
           onClick={(e) => { e.preventDefault(); setActiveTab('all'); }}
-          style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}
         >
-          <span style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '1.45rem',
-            fontWeight: 900,
-            letterSpacing: '-0.02em',
-            color: 'var(--text-ink)'
-          }}>
-            iViD<span style={{ color: 'var(--accent-blue)' }}>Lab</span>
-          </span>
+          iViD<span style={{ color: 'var(--accent-blue)' }}>Lab</span>
         </a>
 
         {/* Navigation */}
-        <nav style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+        <nav className="site-nav" ref={navRef}>
           {[
             ['all', t.nav.home],
             ['tools', t.nav.tools],
@@ -58,42 +43,22 @@ export default function Header({ activeTab, setActiveTab, lang, setLang, theme, 
           ].map(([tab, label]) => (
             <button
               key={tab}
+              className="nav-link"
               onClick={() => setActiveTab(tab)}
               aria-current={activeTab === tab ? 'page' : undefined}
-              style={{
-                background: 'none',
-                border: 'none',
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.85rem',
-                fontWeight: activeTab === tab ? 700 : 500,
-                color: activeTab === tab ? 'var(--text-ink)' : 'var(--text-muted)',
-                cursor: 'pointer',
-                transition: 'color 0.2s ease'
-              }}
             >
               {label}
             </button>
           ))}
 
           {/* Link tới app RFI Console (trang riêng, ngoài SPA) */}
-          <a
-            href="/rficonsole/"
-            title="Cổng quản lý RFI dự án"
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              color: 'var(--accent-blue)',
-              textDecoration: 'none',
-              transition: 'opacity 0.2s ease'
-            }}
-          >
+          <a href="/rficonsole/" className="nav-link nav-link--external" title="Cổng quản lý RFI dự án">
             RFI Console ↗
           </a>
         </nav>
 
         {/* Toggles (Theme & Language) */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+        <div className="site-header__toggles">
           {/* Theme Toggle — iOS-style switch */}
           <button
             onClick={toggleTheme}

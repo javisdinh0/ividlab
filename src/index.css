@@ -114,6 +114,156 @@ h1, h2, h3, h4, .font-display {
   margin: 3rem 0;
 }
 
+/* Link #tools/#about không bị header dính che mất tiêu đề */
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
+/* Viền focus khi dùng bàn phím (Tab) */
+:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--header-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-rule);
+  padding: 1rem 0;
+  transition: background-color 0.3s ease;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.site-brand {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--text-ink);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.site-header__toggles {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+/* Nav một hàng: thiếu chỗ thì cuộn ngang thay vì xuống nhiều dòng */
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem 1rem;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.site-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-link {
+  position: relative;
+  flex-shrink: 0;
+  white-space: nowrap;
+  background: none;
+  border: none;
+  padding: 0.4rem 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--accent-blue);
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--text-ink);
+}
+
+.nav-link[aria-current="page"] {
+  color: var(--text-ink);
+  font-weight: 700;
+}
+
+.nav-link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+.nav-link--external {
+  color: var(--accent-blue);
+  font-weight: 600;
+}
+
+/* Màn hẹp: logo + nút gạt một hàng, nav xuống hàng dưới và cuộn ngang.
+   Nav tiếng Việt cần ~900px; container chỉ đủ rộng từ ~1240px trở lên. */
+@media (max-width: 1240px) {
+  .site-header {
+    padding: 0.7rem 0 0.35rem;
+  }
+
+  .site-header__inner {
+    flex-wrap: wrap;
+  }
+
+  .site-nav {
+    order: 3;
+    flex-basis: 100%;
+    /* Mờ dần mép phải để gợi ý còn mục cuộn được */
+    mask-image: linear-gradient(to right, #000 calc(100% - 2rem), transparent);
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 2rem), transparent);
+    padding-right: 2rem;
+  }
+}
+
+/* Người dùng bật "giảm chuyển động" trong hệ điều hành */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+}
+
 
 
 /* Toggle Controls */

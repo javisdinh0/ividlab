@@ -11,6 +11,9 @@ import { translations } from './i18n/translations';
 import './index.css';
 
 const TABS = ['all', 'tools', 'guides', 'tekla-component', 'amc-private', 'about'];
+const HOME_TITLE = 'iViDLab — BIM & Steel Structure Tools'; // khớp <title> trong index.html
+// Tab -> key trong translations (lấy .title làm tiêu đề trang)
+const TAB_I18N_KEY = { tools: 'tools', guides: 'guides', 'tekla-component': 'teklacomponent', 'amc-private': 'amcprivate', about: 'about' };
 
 // Các trang tĩnh (public/**) link về SPA bằng /?tab=<id>, nên tab ban đầu lấy từ URL.
 function tabFromUrl() {
@@ -30,6 +33,7 @@ export default function App() {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#182B37' : '#A2BFC7');
     localStorage.setItem('ividlab-theme', theme);
   }, [theme]);
 
@@ -47,8 +51,16 @@ export default function App() {
     if (url.href !== window.location.href) {
       window.history[isFirstTabSync.current ? 'replaceState' : 'pushState'](null, '', url);
     }
+    // Đổi tab khi đang cuộn giữa trang: đưa về đầu để thấy nội dung mới
+    if (!isFirstTabSync.current) window.scrollTo({ top: 0 });
     isFirstTabSync.current = false;
   }, [activeTab]);
+
+  // Mỗi tab một tiêu đề trang (tab trình duyệt, lịch sử, bookmark)
+  useEffect(() => {
+    const key = TAB_I18N_KEY[activeTab];
+    document.title = key ? `${t[key].title} — iViDLab` : HOME_TITLE;
+  }, [activeTab, t]);
 
   useEffect(() => {
     const onPopState = () => setActiveTab(tabFromUrl());
