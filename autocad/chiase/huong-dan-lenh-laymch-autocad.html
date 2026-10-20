@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234924381658348" crossorigin="anonymous"></script>
-  <script type="module" src="/traffic-track.js"></script>
+  <script type="module" src="/traffic-track.js?v=0f69739aed"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hướng Dẫn Lệnh LAYMCH Trong AutoCAD: Đổi Layer Cho Đối Tượng Theo Một Đối Tượng Mẫu - iViDLab</title>
   <meta name="description" content="Cách dùng lệnh LAYMCH (Layer Match) để chuyển đối tượng sang layer của một đối tượng mẫu mà không đổi layer hiện hành. So sánh với LAYCUR, MATCHPROP và các ví dụ chuẩn hóa layer thực tế." />
@@ -101,6 +101,7 @@
     body.lang-en span[data-lang="vi"], body.lang-en strong[data-lang="vi"], body.lang-en em[data-lang="vi"], body.lang-en a[data-lang="vi"], body.lang-en figcaption[data-lang="vi"] { display: none !important; }
     body.lang-en span[data-lang="en"], body.lang-en strong[data-lang="en"], body.lang-en em[data-lang="en"], body.lang-en a[data-lang="en"], body.lang-en figcaption[data-lang="en"] { display: inline !important; }
   </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"iViDLab","item":"https://ividlab.com/"},{"@type":"ListItem","position":2,"name":"Hướng dẫn & Chia sẻ","item":"https://ividlab.com/guides/"},{"@type":"ListItem","position":3,"name":"Hướng Dẫn Lệnh LAYMCH Trong AutoCAD: Đổi Layer Cho Đối Tượng Theo Một Đối Tượng Mẫu","item":"https://ividlab.com/autocad/chiase/huong-dan-lenh-laymch-autocad.html"}]}</script>
 </head>
 <body>
   
@@ -112,20 +113,20 @@
         </span>
       </a>
       <nav style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
-        <a href="/?tab=all" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); transition: color 0.2s ease;">
-          <span data-lang="vi">// TRANG CHỦ</span><span data-lang="en" >// HOME</span>
+        <a href="/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); transition: color 0.2s ease;">
+          <span lang="vi" data-lang="vi">// TRANG CHỦ</span><span lang="en" data-lang="en" >// HOME</span>
         </a>
-        <a href="/?tab=tools" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// CÔNG CỤ</span><span data-lang="en" >// TOOLS</span>
+        <a href="/tools/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span lang="vi" data-lang="vi">// CÔNG CỤ</span><span lang="en" data-lang="en" >// TOOLS</span>
         </a>
-        <a href="/?tab=guides" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span data-lang="en" >// GUIDES</span>
+        <a href="/guides/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span lang="vi" data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span lang="en" data-lang="en" >// GUIDES</span>
         </a>
-        <a href="/?tab=tekla-component" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+        <a href="/tekla-component/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
           // TEKLA APP &amp; COMPONENT
         </a>
-        <a href="/?tab=about" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en" >// ABOUT</span>
+        <a href="/about/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span lang="vi" data-lang="vi">// GIỚI THIỆU</span><span lang="en" data-lang="en" >// ABOUT</span>
         </a>
       </nav>
       <div style="display: flex; align-items: center; gap: 10px;">
@@ -139,102 +140,102 @@
     </div>
   </header>
   <div class="article-container">
-    <span class="badge" data-lang="vi">Hướng Dẫn Lệnh</span>
-    <span class="badge" data-lang="en">Command Guide</span>
+    <span class="badge" lang="vi" data-lang="vi">Hướng Dẫn Lệnh</span>
+    <span class="badge" lang="en" data-lang="en">Command Guide</span>
 
-    <h1 data-lang="vi">Hướng Dẫn Lệnh LAYMCH Trong AutoCAD: Đổi Layer Cho Đối Tượng Theo Một Đối Tượng Mẫu</h1>
-    <h1 data-lang="en">LAYMCH in AutoCAD: Change Objects to Match Another Object's Layer</h1>
+    <h1 lang="vi" data-lang="vi">Hướng Dẫn Lệnh LAYMCH Trong AutoCAD: Đổi Layer Cho Đối Tượng Theo Một Đối Tượng Mẫu</h1>
+    <h1 lang="en" data-lang="en">LAYMCH in AutoCAD: Change Objects to Match Another Object's Layer</h1>
 
-    <p data-lang="vi"><code>LAYMCH</code> (Layer Match) có công dụng giống một "cây cọ layer": bạn chọn các đối tượng cần đổi, rồi bấm vào một đối tượng mẫu đã nằm đúng layer, thế là toàn bộ đối tượng vừa chọn chuyển sang layer của đối tượng mẫu. Khác với <a href="/autocad/chiase/huong-dan-lenh-laycur-autocad.html">LAYCUR</a>, bạn không cần đổi layer hiện hành trước.</p>
-    <p data-lang="en"><code>LAYMCH</code> (Layer Match) works like a "layer paintbrush": select the objects to change, then click a sample object that already sits on the right layer, and everything you selected moves to the sample's layer. Unlike <a href="/autocad/chiase/huong-dan-lenh-laycur-autocad.html">LAYCUR</a>, you do not need to change the current layer first.</p>
+    <p lang="vi" data-lang="vi"><code>LAYMCH</code> (Layer Match) có công dụng giống một "cây cọ layer": bạn chọn các đối tượng cần đổi, rồi bấm vào một đối tượng mẫu đã nằm đúng layer, thế là toàn bộ đối tượng vừa chọn chuyển sang layer của đối tượng mẫu. Khác với <a href="/autocad/chiase/huong-dan-lenh-laycur-autocad.html">LAYCUR</a>, bạn không cần đổi layer hiện hành trước.</p>
+    <p lang="en" data-lang="en"><code>LAYMCH</code> (Layer Match) works like a "layer paintbrush": select the objects to change, then click a sample object that already sits on the right layer, and everything you selected moves to the sample's layer. Unlike <a href="/autocad/chiase/huong-dan-lenh-laycur-autocad.html">LAYCUR</a>, you do not need to change the current layer first.</p>
 
-    <h2 data-lang="vi">Cách dùng LAYMCH</h2>
-    <h2 data-lang="en">How to use LAYMCH</h2>
-
-    <ul>
-      <li><span data-lang="vi">Gõ <code>LAYMCH</code> rồi nhấn Enter.</span><span data-lang="en">Type <code>LAYMCH</code> and press Enter.</span></li>
-      <li><span data-lang="vi">Chọn các đối tượng cần đổi layer, sau đó nhấn Enter.</span><span data-lang="en">Select the objects whose layer you want to change, then press Enter.</span></li>
-      <li><span data-lang="vi">Bấm chọn một đối tượng đang nằm trên layer đích. Hoặc dùng tùy chọn <strong>Name</strong> để gõ tên layer đích khi không có sẵn đối tượng mẫu.</span><span data-lang="en">Click an object that already sits on the destination layer. Or use the <strong>Name</strong> option to type the destination layer name when there is no sample object.</span></li>
-      <li><span data-lang="vi">AutoCAD chuyển các đối tượng đã chọn sang layer đích và báo kết quả trong Command line.</span><span data-lang="en">AutoCAD moves the selected objects to the destination layer and reports the result in the Command line.</span></li>
-    </ul>
-
-    <h2 data-lang="vi">Khi nào LAYMCH tiện hơn các lệnh khác?</h2>
-    <h2 data-lang="en">When LAYMCH beats the other commands</h2>
+    <h2 lang="vi" data-lang="vi">Cách dùng LAYMCH</h2>
+    <h2 lang="en" data-lang="en">How to use LAYMCH</h2>
 
     <ul>
-      <li><span data-lang="vi"><strong>Không muốn đổi layer hiện hành:</strong> bạn đang vẽ ở layer A nhưng muốn chuyển nhanh vài đối tượng sang layer B. Dùng LAYMCH thì layer hiện hành vẫn giữ nguyên, còn LAYCUR buộc phải đổi layer hiện hành trước.</span><span data-lang="en"><strong>You do not want to change the current layer:</strong> you are drawing on layer A but want to quickly move a few objects to layer B. LAYMCH leaves the current layer alone, while LAYCUR requires you to change it first.</span></li>
-      <li><span data-lang="vi"><strong>Có đối tượng mẫu ngay trên màn hình:</strong> bấm vào là xong, không phải nhớ tên layer.</span><span data-lang="en"><strong>A sample object is already on screen:</strong> just click it, with no layer name to remember.</span></li>
-      <li><span data-lang="vi"><strong>Chỉ muốn đổi layer, giữ nguyên thuộc tính khác:</strong> <code>MATCHPROP</code> (lệnh <code>MA</code>) sao chép cả màu, linetype, lineweight… còn LAYMCH chỉ tác động lên layer.</span><span data-lang="en"><strong>You only want the layer to change:</strong> <code>MATCHPROP</code> (command <code>MA</code>) copies color, linetype, lineweight and more, whereas LAYMCH only affects the layer.</span></li>
+      <li><span lang="vi" data-lang="vi">Gõ <code>LAYMCH</code> rồi nhấn Enter.</span><span lang="en" data-lang="en">Type <code>LAYMCH</code> and press Enter.</span></li>
+      <li><span lang="vi" data-lang="vi">Chọn các đối tượng cần đổi layer, sau đó nhấn Enter.</span><span lang="en" data-lang="en">Select the objects whose layer you want to change, then press Enter.</span></li>
+      <li><span lang="vi" data-lang="vi">Bấm chọn một đối tượng đang nằm trên layer đích. Hoặc dùng tùy chọn <strong>Name</strong> để gõ tên layer đích khi không có sẵn đối tượng mẫu.</span><span lang="en" data-lang="en">Click an object that already sits on the destination layer. Or use the <strong>Name</strong> option to type the destination layer name when there is no sample object.</span></li>
+      <li><span lang="vi" data-lang="vi">AutoCAD chuyển các đối tượng đã chọn sang layer đích và báo kết quả trong Command line.</span><span lang="en" data-lang="en">AutoCAD moves the selected objects to the destination layer and reports the result in the Command line.</span></li>
     </ul>
 
-    <h2 data-lang="vi">Ví dụ thực tế</h2>
-    <h2 data-lang="en">Practical examples</h2>
+    <h2 lang="vi" data-lang="vi">Khi nào LAYMCH tiện hơn các lệnh khác?</h2>
+    <h2 lang="en" data-lang="en">When LAYMCH beats the other commands</h2>
 
-    <h3 data-lang="vi">Chuẩn hóa text, hatch, kích thước trong bản vẽ nhận được</h3>
-    <h3 data-lang="en">Standardizing text, hatches and dimensions in a received drawing</h3>
+    <ul>
+      <li><span lang="vi" data-lang="vi"><strong>Không muốn đổi layer hiện hành:</strong> bạn đang vẽ ở layer A nhưng muốn chuyển nhanh vài đối tượng sang layer B. Dùng LAYMCH thì layer hiện hành vẫn giữ nguyên, còn LAYCUR buộc phải đổi layer hiện hành trước.</span><span lang="en" data-lang="en"><strong>You do not want to change the current layer:</strong> you are drawing on layer A but want to quickly move a few objects to layer B. LAYMCH leaves the current layer alone, while LAYCUR requires you to change it first.</span></li>
+      <li><span lang="vi" data-lang="vi"><strong>Có đối tượng mẫu ngay trên màn hình:</strong> bấm vào là xong, không phải nhớ tên layer.</span><span lang="en" data-lang="en"><strong>A sample object is already on screen:</strong> just click it, with no layer name to remember.</span></li>
+      <li><span lang="vi" data-lang="vi"><strong>Chỉ muốn đổi layer, giữ nguyên thuộc tính khác:</strong> <code>MATCHPROP</code> (lệnh <code>MA</code>) sao chép cả màu, linetype, lineweight… còn LAYMCH chỉ tác động lên layer.</span><span lang="en" data-lang="en"><strong>You only want the layer to change:</strong> <code>MATCHPROP</code> (command <code>MA</code>) copies color, linetype, lineweight and more, whereas LAYMCH only affects the layer.</span></li>
+    </ul>
 
-    <p data-lang="vi">Bản vẽ nhận từ nơi khác có ghi chú nằm lẫn trong layer của đường nét. Chọn tất cả dòng text (dùng <code>SELECTSIMILAR</code> để chọn nhanh), gõ <code>LAYMCH</code>, chọn đúng layer ghi chú bằng cách bấm vào một dòng text đã đúng layer. Lặp lại cho hatch và kích thước.</p>
-    <p data-lang="en">A drawing from elsewhere has notes mixed into line layers. Select all text lines (use <code>SELECTSIMILAR</code> for speed), type <code>LAYMCH</code>, and click one text line already on the right layer. Repeat for hatches and dimensions.</p>
+    <h2 lang="vi" data-lang="vi">Ví dụ thực tế</h2>
+    <h2 lang="en" data-lang="en">Practical examples</h2>
 
-    <h3 data-lang="vi">Đưa đối tượng từ layer 0 về layer đúng</h3>
-    <h3 data-lang="en">Moving objects from layer 0 to the right layer</h3>
+    <h3 lang="vi" data-lang="vi">Chuẩn hóa text, hatch, kích thước trong bản vẽ nhận được</h3>
+    <h3 lang="en" data-lang="en">Standardizing text, hatches and dimensions in a received drawing</h3>
 
-    <p data-lang="vi">Đối tượng vẽ nhầm trên layer <code>0</code> thường được phát hiện khi kiểm tra bản vẽ. Chọn chúng, dùng LAYMCH và bấm vào một đối tượng tương tự đã đúng layer.</p>
-    <p data-lang="en">Objects drawn on layer <code>0</code> by mistake usually surface when you review the drawing. Select them, run LAYMCH and click a similar object that is already on the right layer.</p>
+    <p lang="vi" data-lang="vi">Bản vẽ nhận từ nơi khác có ghi chú nằm lẫn trong layer của đường nét. Chọn tất cả dòng text (dùng <code>SELECTSIMILAR</code> để chọn nhanh), gõ <code>LAYMCH</code>, chọn đúng layer ghi chú bằng cách bấm vào một dòng text đã đúng layer. Lặp lại cho hatch và kích thước.</p>
+    <p lang="en" data-lang="en">A drawing from elsewhere has notes mixed into line layers. Select all text lines (use <code>SELECTSIMILAR</code> for speed), type <code>LAYMCH</code>, and click one text line already on the right layer. Repeat for hatches and dimensions.</p>
 
-    <h3 data-lang="vi">Layer đích chưa có đối tượng nào</h3>
-    <h3 data-lang="en">The destination layer has no objects yet</h3>
+    <h3 lang="vi" data-lang="vi">Đưa đối tượng từ layer 0 về layer đúng</h3>
+    <h3 lang="en" data-lang="en">Moving objects from layer 0 to the right layer</h3>
 
-    <p data-lang="vi">Dùng tùy chọn <strong>Name</strong> để gõ tên layer đích. Cách này cũng hữu ích khi layer đích đang bị tắt hoặc đóng băng nên bạn không bấm vào đối tượng mẫu được.</p>
-    <p data-lang="en">Use the <strong>Name</strong> option to type the destination layer name. This also helps when the destination layer is off or frozen and you cannot click a sample object on it.</p>
+    <p lang="vi" data-lang="vi">Đối tượng vẽ nhầm trên layer <code>0</code> thường được phát hiện khi kiểm tra bản vẽ. Chọn chúng, dùng LAYMCH và bấm vào một đối tượng tương tự đã đúng layer.</p>
+    <p lang="en" data-lang="en">Objects drawn on layer <code>0</code> by mistake usually surface when you review the drawing. Select them, run LAYMCH and click a similar object that is already on the right layer.</p>
+
+    <h3 lang="vi" data-lang="vi">Layer đích chưa có đối tượng nào</h3>
+    <h3 lang="en" data-lang="en">The destination layer has no objects yet</h3>
+
+    <p lang="vi" data-lang="vi">Dùng tùy chọn <strong>Name</strong> để gõ tên layer đích. Cách này cũng hữu ích khi layer đích đang bị tắt hoặc đóng băng nên bạn không bấm vào đối tượng mẫu được.</p>
+    <p lang="en" data-lang="en">Use the <strong>Name</strong> option to type the destination layer name. This also helps when the destination layer is off or frozen and you cannot click a sample object on it.</p>
 
     <div class="tip-box">
-      <strong data-lang="vi">Nên kiểm tra sau khi đổi</strong>
-      <strong data-lang="en">Check the result afterwards</strong>
-      <p data-lang="vi">Màu, linetype hoặc lineweight đặt ở ByLayer sẽ lấy theo layer đích nên hình hiển thị có thể thay đổi. Dùng <a href="/autocad/chiase/huong-dan-lenh-laywalk-autocad.html">LAYWALK</a> để duyệt lại từng layer sau khi chuẩn hóa.</p>
-      <p data-lang="en">Color, linetype and lineweight set to ByLayer follow the destination layer, so the look can change. Use <a href="/autocad/chiase/huong-dan-lenh-laywalk-autocad.html">LAYWALK</a> to walk through the layers again after standardizing.</p>
+      <strong lang="vi" data-lang="vi">Nên kiểm tra sau khi đổi</strong>
+      <strong lang="en" data-lang="en">Check the result afterwards</strong>
+      <p lang="vi" data-lang="vi">Màu, linetype hoặc lineweight đặt ở ByLayer sẽ lấy theo layer đích nên hình hiển thị có thể thay đổi. Dùng <a href="/autocad/chiase/huong-dan-lenh-laywalk-autocad.html">LAYWALK</a> để duyệt lại từng layer sau khi chuẩn hóa.</p>
+      <p lang="en" data-lang="en">Color, linetype and lineweight set to ByLayer follow the destination layer, so the look can change. Use <a href="/autocad/chiase/huong-dan-lenh-laywalk-autocad.html">LAYWALK</a> to walk through the layers again after standardizing.</p>
     </div>
 
-    <h2 data-lang="vi">Lưu ý khi dùng</h2>
-    <h2 data-lang="en">Things to watch for</h2>
+    <h2 lang="vi" data-lang="vi">Lưu ý khi dùng</h2>
+    <h2 lang="en" data-lang="en">Things to watch for</h2>
 
     <ul>
-      <li><span data-lang="vi"><strong>Block:</strong> chọn Block thì lệnh đổi layer của chính Block đó, không đổi layer của các đối tượng bên trong định nghĩa Block.</span><span data-lang="en"><strong>Blocks:</strong> selecting a Block changes the Block's own layer, not the layers of the objects inside its definition.</span></li>
-      <li><span data-lang="vi"><strong>Layer khóa:</strong> đối tượng ở layer khóa thường không sửa được; mở khóa trước nếu lệnh không có tác dụng.</span><span data-lang="en"><strong>Locked layers:</strong> objects on locked layers usually cannot be changed; unlock first if the command has no effect.</span></li>
-      <li><span data-lang="vi"><strong>Xref:</strong> không thể đổi layer của đối tượng thuộc Xref, và layer của Xref (dạng <code>Xref|Layer</code>) không dùng làm layer đích được.</span><span data-lang="en"><strong>Xrefs:</strong> you cannot change the layer of Xref objects, and an Xref layer (the <code>Xref|Layer</code> form) cannot be the destination.</span></li>
-      <li><span data-lang="vi"><strong>Hoàn tác:</strong> nếu chuyển nhầm, dùng <code>U</code> hoặc Ctrl+Z ngay.</span><span data-lang="en"><strong>Undo:</strong> if you moved the wrong things, use <code>U</code> or Ctrl+Z right away.</span></li>
+      <li><span lang="vi" data-lang="vi"><strong>Block:</strong> chọn Block thì lệnh đổi layer của chính Block đó, không đổi layer của các đối tượng bên trong định nghĩa Block.</span><span lang="en" data-lang="en"><strong>Blocks:</strong> selecting a Block changes the Block's own layer, not the layers of the objects inside its definition.</span></li>
+      <li><span lang="vi" data-lang="vi"><strong>Layer khóa:</strong> đối tượng ở layer khóa thường không sửa được; mở khóa trước nếu lệnh không có tác dụng.</span><span lang="en" data-lang="en"><strong>Locked layers:</strong> objects on locked layers usually cannot be changed; unlock first if the command has no effect.</span></li>
+      <li><span lang="vi" data-lang="vi"><strong>Xref:</strong> không thể đổi layer của đối tượng thuộc Xref, và layer của Xref (dạng <code>Xref|Layer</code>) không dùng làm layer đích được.</span><span lang="en" data-lang="en"><strong>Xrefs:</strong> you cannot change the layer of Xref objects, and an Xref layer (the <code>Xref|Layer</code> form) cannot be the destination.</span></li>
+      <li><span lang="vi" data-lang="vi"><strong>Hoàn tác:</strong> nếu chuyển nhầm, dùng <code>U</code> hoặc Ctrl+Z ngay.</span><span lang="en" data-lang="en"><strong>Undo:</strong> if you moved the wrong things, use <code>U</code> or Ctrl+Z right away.</span></li>
     </ul>
 
-    <h2 data-lang="vi">Bộ lệnh layer đi cùng</h2>
-    <h2 data-lang="en">Related layer commands</h2>
+    <h2 lang="vi" data-lang="vi">Bộ lệnh layer đi cùng</h2>
+    <h2 lang="en" data-lang="en">Related layer commands</h2>
 
     <ul>
-      <li><span data-lang="vi"><a href="/autocad/chiase/huong-dan-lenh-laymcur-autocad.html">LAYMCUR</a>: lấy layer của một đối tượng làm layer hiện hành.</span><span data-lang="en"><a href="/autocad/chiase/huong-dan-lenh-laymcur-autocad.html">LAYMCUR</a>: makes an object's layer current.</span></li>
-      <li><span data-lang="vi"><a href="/autocad/chiase/huong-dan-lenh-laycur-autocad.html">LAYCUR</a>: chuyển đối tượng chọn sang layer hiện hành.</span><span data-lang="en"><a href="/autocad/chiase/huong-dan-lenh-laycur-autocad.html">LAYCUR</a>: moves selected objects to the current layer.</span></li>
-      <li><span data-lang="vi"><a href="/autocad/chiase/huong-dan-lenh-laymrg-gop-layer-autocad.html">LAYMRG</a>: gộp toàn bộ layer này vào layer khác và xóa layer nguồn.</span><span data-lang="en"><a href="/autocad/chiase/huong-dan-lenh-laymrg-gop-layer-autocad.html">LAYMRG</a>: merges an entire layer into another and deletes the source layer.</span></li>
+      <li><span lang="vi" data-lang="vi"><a href="/autocad/chiase/huong-dan-lenh-laymcur-autocad.html">LAYMCUR</a>: lấy layer của một đối tượng làm layer hiện hành.</span><span lang="en" data-lang="en"><a href="/autocad/chiase/huong-dan-lenh-laymcur-autocad.html">LAYMCUR</a>: makes an object's layer current.</span></li>
+      <li><span lang="vi" data-lang="vi"><a href="/autocad/chiase/huong-dan-lenh-laycur-autocad.html">LAYCUR</a>: chuyển đối tượng chọn sang layer hiện hành.</span><span lang="en" data-lang="en"><a href="/autocad/chiase/huong-dan-lenh-laycur-autocad.html">LAYCUR</a>: moves selected objects to the current layer.</span></li>
+      <li><span lang="vi" data-lang="vi"><a href="/autocad/chiase/huong-dan-lenh-laymrg-gop-layer-autocad.html">LAYMRG</a>: gộp toàn bộ layer này vào layer khác và xóa layer nguồn.</span><span lang="en" data-lang="en"><a href="/autocad/chiase/huong-dan-lenh-laymrg-gop-layer-autocad.html">LAYMRG</a>: merges an entire layer into another and deletes the source layer.</span></li>
     </ul>
 
     <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--border-color);">
     <p style="text-align: center; font-style: italic; color: var(--text-muted); margin-bottom: 0;">
-      <span data-lang="vi">Tài liệu được nghiên cứu và tổng hợp bởi đội ngũ kỹ thuật <a href="https://ividlab.com/">iViDLab.com</a>.</span>
-      <span data-lang="en">Document researched and compiled by the <a href="https://ividlab.com/">iViDLab.com</a> technical team.</span>
+      <span lang="vi" data-lang="vi">Tài liệu được nghiên cứu và tổng hợp bởi đội ngũ kỹ thuật <a href="https://ividlab.com/">iViDLab.com</a>.</span>
+      <span lang="en" data-lang="en">Document researched and compiled by the <a href="https://ividlab.com/">iViDLab.com</a> technical team.</span>
     </p>
   </div>
   <div class="related-container">
-    <h2 data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
-    <h2 data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">You might also be interested in</h2>
+    <h2 lang="vi" data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
+    <h2 lang="en" data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">You might also be interested in</h2>
     <div class="related-grid">
       <a class="related-card" href="/autocad/chiase/huong-dan-lenh-laycur-autocad.html">
         <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Hướng Dẫn Lệnh LAYCUR Trong AutoCAD: Chuyển Đối Tượng Sang Layer Hiện Hành</span><span data-lang="en">LAYCUR in AutoCAD: Move Objects to the Current Layer</span></h3>
+        <h3><span lang="vi" data-lang="vi">Hướng Dẫn Lệnh LAYCUR Trong AutoCAD: Chuyển Đối Tượng Sang Layer Hiện Hành</span><span lang="en" data-lang="en">LAYCUR in AutoCAD: Move Objects to the Current Layer</span></h3>
       </a>
       <a class="related-card" href="/autocad/chiase/huong-dan-lenh-laymcur-autocad.html">
         <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Hướng Dẫn Lệnh LAYMCUR Trong AutoCAD: Chọn Đối Tượng Để Đặt Layer Hiện Hành</span><span data-lang="en">LAYMCUR in AutoCAD: Set the Current Layer by Picking an Object</span></h3>
+        <h3><span lang="vi" data-lang="vi">Hướng Dẫn Lệnh LAYMCUR Trong AutoCAD: Chọn Đối Tượng Để Đặt Layer Hiện Hành</span><span lang="en" data-lang="en">LAYMCUR in AutoCAD: Set the Current Layer by Picking an Object</span></h3>
       </a>
       <a class="related-card" href="/autocad/chiase/huong-dan-lenh-laymrg-gop-layer-autocad.html">
         <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Hướng Dẫn Lệnh LAYMRG Trong AutoCAD: Gộp Nhiều Layer Thành Một</span><span data-lang="en">LAYMRG in AutoCAD: Merge Multiple Layers into One</span></h3>
+        <h3><span lang="vi" data-lang="vi">Hướng Dẫn Lệnh LAYMRG Trong AutoCAD: Gộp Nhiều Layer Thành Một</span><span lang="en" data-lang="en">LAYMRG in AutoCAD: Merge Multiple Layers into One</span></h3>
       </a>
     </div>
   </div>

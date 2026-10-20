@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234924381658348" crossorigin="anonymous"></script>
-  <script type="module" src="/traffic-track.js"></script>
+  <script type="module" src="/traffic-track.js?v=0f69739aed"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cảnh Báo Bảo Mật Khi Nạp Lisp/DLL Trong AutoCAD: TRUSTEDPATHS &amp; SECURELOAD - iViDLab</title>
   <meta name="description" content="Giải thích biến SECURELOAD và TRUSTEDPATHS, cách thêm thư mục vào vùng tin cậy (Trusted Locations) để nạp Lisp, DLL không bị cảnh báo hoặc chặn." />
@@ -101,6 +101,7 @@
     body.lang-en span[data-lang="vi"], body.lang-en strong[data-lang="vi"], body.lang-en em[data-lang="vi"], body.lang-en a[data-lang="vi"], body.lang-en figcaption[data-lang="vi"] { display: none !important; }
     body.lang-en span[data-lang="en"], body.lang-en strong[data-lang="en"], body.lang-en em[data-lang="en"], body.lang-en a[data-lang="en"], body.lang-en figcaption[data-lang="en"] { display: inline !important; }
   </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"iViDLab","item":"https://ividlab.com/"},{"@type":"ListItem","position":2,"name":"Hướng dẫn & Chia sẻ","item":"https://ividlab.com/guides/"},{"@type":"ListItem","position":3,"name":"Cảnh Báo Bảo Mật Khi Nạp Lisp/DLL Trong AutoCAD: TRUSTEDPATHS & SECURELOAD","item":"https://ividlab.com/autocad/chiase/trusted-paths-secureload-autocad.html"}]}</script>
 </head>
 <body>
   
@@ -112,20 +113,20 @@
         </span>
       </a>
       <nav style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
-        <a href="/?tab=all" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); transition: color 0.2s ease;">
-          <span data-lang="vi">// TRANG CHỦ</span><span data-lang="en" >// HOME</span>
+        <a href="/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); transition: color 0.2s ease;">
+          <span lang="vi" data-lang="vi">// TRANG CHỦ</span><span lang="en" data-lang="en" >// HOME</span>
         </a>
-        <a href="/?tab=tools" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// CÔNG CỤ</span><span data-lang="en" >// TOOLS</span>
+        <a href="/tools/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span lang="vi" data-lang="vi">// CÔNG CỤ</span><span lang="en" data-lang="en" >// TOOLS</span>
         </a>
-        <a href="/?tab=guides" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span data-lang="en" >// GUIDES</span>
+        <a href="/guides/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span lang="vi" data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span lang="en" data-lang="en" >// GUIDES</span>
         </a>
-        <a href="/?tab=tekla-component" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+        <a href="/tekla-component/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
           // TEKLA APP &amp; COMPONENT
         </a>
-        <a href="/?tab=about" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en" >// ABOUT</span>
+        <a href="/about/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span lang="vi" data-lang="vi">// GIỚI THIỆU</span><span lang="en" data-lang="en" >// ABOUT</span>
         </a>
       </nav>
       <div style="display: flex; align-items: center; gap: 10px;">
@@ -139,92 +140,92 @@
     </div>
   </header>
   <div class="article-container">
-    <span class="badge" data-lang="vi">Cài Đặt</span>
-    <span class="badge" data-lang="en">Settings</span>
+    <span class="badge" lang="vi" data-lang="vi">Cài Đặt</span>
+    <span class="badge" lang="en" data-lang="en">Settings</span>
 
-    <h1 data-lang="vi">Cảnh Báo Bảo Mật Khi Nạp Lisp/DLL Trong AutoCAD: TRUSTEDPATHS & SECURELOAD</h1>
-    <h1 data-lang="en">Security Warning When Loading Lisp/DLL in AutoCAD: TRUSTEDPATHS & SECURELOAD</h1>
+    <h1 lang="vi" data-lang="vi">Cảnh Báo Bảo Mật Khi Nạp Lisp/DLL Trong AutoCAD: TRUSTEDPATHS & SECURELOAD</h1>
+    <h1 lang="en" data-lang="en">Security Warning When Loading Lisp/DLL in AutoCAD: TRUSTEDPATHS & SECURELOAD</h1>
 
-    <p data-lang="vi">Khi nạp Lisp hoặc DLL từ một thư mục lạ, AutoCAD có thể hiện hộp thoại cảnh báo bảo mật hoặc từ chối nạp. Đó là cơ chế bảo vệ do hai biến hệ thống <code>SECURELOAD</code> và <code>TRUSTEDPATHS</code> điều khiển. Bài này giải thích chúng và cách thiết lập để công cụ của bạn chạy mượt mà mà vẫn an toàn.</p>
-    <p data-lang="en">When you load Lisp or DLL files from an unfamiliar folder, AutoCAD may show a security warning or refuse to load. This protection is controlled by two system variables, <code>SECURELOAD</code> and <code>TRUSTEDPATHS</code>. This guide explains them and how to configure them safely.</p>
+    <p lang="vi" data-lang="vi">Khi nạp Lisp hoặc DLL từ một thư mục lạ, AutoCAD có thể hiện hộp thoại cảnh báo bảo mật hoặc từ chối nạp. Đó là cơ chế bảo vệ do hai biến hệ thống <code>SECURELOAD</code> và <code>TRUSTEDPATHS</code> điều khiển. Bài này giải thích chúng và cách thiết lập để công cụ của bạn chạy mượt mà mà vẫn an toàn.</p>
+    <p lang="en" data-lang="en">When you load Lisp or DLL files from an unfamiliar folder, AutoCAD may show a security warning or refuse to load. This protection is controlled by two system variables, <code>SECURELOAD</code> and <code>TRUSTEDPATHS</code>. This guide explains them and how to configure them safely.</p>
 
-    <h2 data-lang="vi">SECURELOAD là gì?</h2>
-    <h2 data-lang="en">What is SECURELOAD?</h2>
+    <h2 lang="vi" data-lang="vi">SECURELOAD là gì?</h2>
+    <h2 lang="en" data-lang="en">What is SECURELOAD?</h2>
 
-    <p data-lang="vi"><code>SECURELOAD</code> quyết định AutoCAD xử lý thế nào với file thực thi (Lisp, ARX, DLL...) nằm ngoài vùng tin cậy:</p>
-    <p data-lang="en"><code>SECURELOAD</code> decides how AutoCAD treats executable files (Lisp, ARX, DLL...) located outside trusted folders:</p>
+    <p lang="vi" data-lang="vi"><code>SECURELOAD</code> quyết định AutoCAD xử lý thế nào với file thực thi (Lisp, ARX, DLL...) nằm ngoài vùng tin cậy:</p>
+    <p lang="en" data-lang="en"><code>SECURELOAD</code> decides how AutoCAD treats executable files (Lisp, ARX, DLL...) located outside trusted folders:</p>
 
     <ul>
-      <li><span data-lang="vi"><code>0</code>: nạp từ mọi nơi và không cảnh báo (kém an toàn nhất).</span><span data-lang="en"><code>0</code>: load from anywhere with no warning (least safe).</span></li>
-      <li><span data-lang="vi"><code>1</code>: nạp thẳng từ vùng tin cậy, còn ngoài vùng tin cậy thì hỏi bạn có cho phép không.</span><span data-lang="en"><code>1</code>: load directly from trusted folders and prompt you for anything outside them.</span></li>
-      <li><span data-lang="vi"><code>2</code>: chỉ nạp từ vùng tin cậy, các nơi khác bị từ chối.</span><span data-lang="en"><code>2</code>: load only from trusted folders; everything else is refused.</span></li>
+      <li><span lang="vi" data-lang="vi"><code>0</code>: nạp từ mọi nơi và không cảnh báo (kém an toàn nhất).</span><span lang="en" data-lang="en"><code>0</code>: load from anywhere with no warning (least safe).</span></li>
+      <li><span lang="vi" data-lang="vi"><code>1</code>: nạp thẳng từ vùng tin cậy, còn ngoài vùng tin cậy thì hỏi bạn có cho phép không.</span><span lang="en" data-lang="en"><code>1</code>: load directly from trusted folders and prompt you for anything outside them.</span></li>
+      <li><span lang="vi" data-lang="vi"><code>2</code>: chỉ nạp từ vùng tin cậy, các nơi khác bị từ chối.</span><span lang="en" data-lang="en"><code>2</code>: load only from trusted folders; everything else is refused.</span></li>
     </ul>
 
-    <p data-lang="vi">Giá trị mặc định có thể khác nhau tùy phiên bản AutoCAD. Gõ <code>SECURELOAD</code> trong Command line để xem giá trị hiện tại trên máy bạn.</p>
-    <p data-lang="en">The default value can vary by AutoCAD version. Type <code>SECURELOAD</code> in the Command line to see the current value on your machine.</p>
+    <p lang="vi" data-lang="vi">Giá trị mặc định có thể khác nhau tùy phiên bản AutoCAD. Gõ <code>SECURELOAD</code> trong Command line để xem giá trị hiện tại trên máy bạn.</p>
+    <p lang="en" data-lang="en">The default value can vary by AutoCAD version. Type <code>SECURELOAD</code> in the Command line to see the current value on your machine.</p>
 
-    <h2 data-lang="vi">Cách thêm thư mục vào vùng tin cậy</h2>
-    <h2 data-lang="en">How to add a folder to the trusted list</h2>
+    <h2 lang="vi" data-lang="vi">Cách thêm thư mục vào vùng tin cậy</h2>
+    <h2 lang="en" data-lang="en">How to add a folder to the trusted list</h2>
 
-    <h3 data-lang="vi">Cách 1: qua hộp thoại Options</h3>
-    <h3 data-lang="en">Method 1: via the Options dialog</h3>
+    <h3 lang="vi" data-lang="vi">Cách 1: qua hộp thoại Options</h3>
+    <h3 lang="en" data-lang="en">Method 1: via the Options dialog</h3>
 
     <ul>
-      <li><span data-lang="vi">Gõ <code>OP</code> và nhấn Enter để mở Options.</span><span data-lang="en">Type <code>OP</code> and press Enter to open Options.</span></li>
-      <li><span data-lang="vi">Chọn tab <strong>Files</strong>, mở mục <strong>Trusted Locations</strong>.</span><span data-lang="en">Go to the <strong>Files</strong> tab and expand <strong>Trusted Locations</strong>.</span></li>
-      <li><span data-lang="vi">Chọn <strong>Add</strong> rồi <strong>Browse</strong> tới thư mục chứa Lisp/DLL của bạn.</span><span data-lang="en">Choose <strong>Add</strong>, then <strong>Browse</strong> to the folder containing your Lisp/DLL files.</span></li>
-      <li><span data-lang="vi">Bấm OK. Từ lần nạp sau, file trong thư mục này sẽ không bị cảnh báo.</span><span data-lang="en">Click OK. Files in this folder will no longer trigger a warning.</span></li>
+      <li><span lang="vi" data-lang="vi">Gõ <code>OP</code> và nhấn Enter để mở Options.</span><span lang="en" data-lang="en">Type <code>OP</code> and press Enter to open Options.</span></li>
+      <li><span lang="vi" data-lang="vi">Chọn tab <strong>Files</strong>, mở mục <strong>Trusted Locations</strong>.</span><span lang="en" data-lang="en">Go to the <strong>Files</strong> tab and expand <strong>Trusted Locations</strong>.</span></li>
+      <li><span lang="vi" data-lang="vi">Chọn <strong>Add</strong> rồi <strong>Browse</strong> tới thư mục chứa Lisp/DLL của bạn.</span><span lang="en" data-lang="en">Choose <strong>Add</strong>, then <strong>Browse</strong> to the folder containing your Lisp/DLL files.</span></li>
+      <li><span lang="vi" data-lang="vi">Bấm OK. Từ lần nạp sau, file trong thư mục này sẽ không bị cảnh báo.</span><span lang="en" data-lang="en">Click OK. Files in this folder will no longer trigger a warning.</span></li>
     </ul>
 
-    <h3 data-lang="vi">Cách 2: qua biến TRUSTEDPATHS</h3>
-    <h3 data-lang="en">Method 2: via the TRUSTEDPATHS variable</h3>
+    <h3 lang="vi" data-lang="vi">Cách 2: qua biến TRUSTEDPATHS</h3>
+    <h3 lang="en" data-lang="en">Method 2: via the TRUSTEDPATHS variable</h3>
 
-    <p data-lang="vi">Gõ <code>TRUSTEDPATHS</code> rồi nhập danh sách thư mục, ngăn cách bằng dấu chấm phẩy. Thêm <code>...</code> ở cuối đường dẫn để bao gồm cả thư mục con:</p>
-    <p data-lang="en">Type <code>TRUSTEDPATHS</code> and enter the folder list, separated by semicolons. Add <code>...</code> at the end of a path to include its subfolders:</p>
+    <p lang="vi" data-lang="vi">Gõ <code>TRUSTEDPATHS</code> rồi nhập danh sách thư mục, ngăn cách bằng dấu chấm phẩy. Thêm <code>...</code> ở cuối đường dẫn để bao gồm cả thư mục con:</p>
+    <p lang="en" data-lang="en">Type <code>TRUSTEDPATHS</code> and enter the folder list, separated by semicolons. Add <code>...</code> at the end of a path to include its subfolders:</p>
 
-    <p data-lang="vi"><code>C:\Lisp;D:\CAD Tools\...</code></p>
-    <p data-lang="en"><code>C:\Lisp;D:\CAD Tools\...</code></p>
+    <p lang="vi" data-lang="vi"><code>C:\Lisp;D:\CAD Tools\...</code></p>
+    <p lang="en" data-lang="en"><code>C:\Lisp;D:\CAD Tools\...</code></p>
 
-    <p data-lang="vi">Lưu ý: khi nhập biến, nhớ giữ lại các đường dẫn đã có sẵn, nếu không bạn sẽ ghi đè mất chúng.</p>
-    <p data-lang="en">Note: when you set the variable, keep the paths that are already there, otherwise you will overwrite them.</p>
+    <p lang="vi" data-lang="vi">Lưu ý: khi nhập biến, nhớ giữ lại các đường dẫn đã có sẵn, nếu không bạn sẽ ghi đè mất chúng.</p>
+    <p lang="en" data-lang="en">Note: when you set the variable, keep the paths that are already there, otherwise you will overwrite them.</p>
 
-    <h2 data-lang="vi">Nên đặt thư mục nào làm tin cậy?</h2>
-    <h2 data-lang="en">Which folders should be trusted?</h2>
+    <h2 lang="vi" data-lang="vi">Nên đặt thư mục nào làm tin cậy?</h2>
+    <h2 lang="en" data-lang="en">Which folders should be trusted?</h2>
 
     <ul>
-      <li><span data-lang="vi">Chỉ thêm thư mục chứa công cụ bạn biết rõ nguồn gốc, ví dụ thư mục cài đặt Lisp/plugin của riêng bạn.</span><span data-lang="en">Only add folders holding tools whose source you know, such as your own Lisp or plugin folder.</span></li>
-      <li><span data-lang="vi">Không thêm cả ổ đĩa (<code>C:\</code>) hoặc thư mục <code>Downloads</code>, vì file tải về bất kỳ cũng sẽ được tin cậy.</span><span data-lang="en">Do not add a whole drive (<code>C:\</code>) or your <code>Downloads</code> folder, because any downloaded file would then be trusted.</span></li>
-      <li><span data-lang="vi">Đừng hạ <code>SECURELOAD</code> xuống 0 chỉ để hết cảnh báo; thêm đúng thư mục vào vùng tin cậy sẽ an toàn hơn.</span><span data-lang="en">Do not set <code>SECURELOAD</code> to 0 just to silence the warning; trusting the right folder is safer.</span></li>
+      <li><span lang="vi" data-lang="vi">Chỉ thêm thư mục chứa công cụ bạn biết rõ nguồn gốc, ví dụ thư mục cài đặt Lisp/plugin của riêng bạn.</span><span lang="en" data-lang="en">Only add folders holding tools whose source you know, such as your own Lisp or plugin folder.</span></li>
+      <li><span lang="vi" data-lang="vi">Không thêm cả ổ đĩa (<code>C:\</code>) hoặc thư mục <code>Downloads</code>, vì file tải về bất kỳ cũng sẽ được tin cậy.</span><span lang="en" data-lang="en">Do not add a whole drive (<code>C:\</code>) or your <code>Downloads</code> folder, because any downloaded file would then be trusted.</span></li>
+      <li><span lang="vi" data-lang="vi">Đừng hạ <code>SECURELOAD</code> xuống 0 chỉ để hết cảnh báo; thêm đúng thư mục vào vùng tin cậy sẽ an toàn hơn.</span><span lang="en" data-lang="en">Do not set <code>SECURELOAD</code> to 0 just to silence the warning; trusting the right folder is safer.</span></li>
     </ul>
 
     <div class="tip-box">
-      <strong data-lang="vi">Với file DLL tải từ Internet</strong>
-      <strong data-lang="en">For DLL files downloaded from the Internet</strong>
-      <p data-lang="vi">Ngoài vùng tin cậy, Windows còn có thể đánh dấu file tải về là bị chặn. Hãy bấm chuột phải vào file, chọn Properties và tích <strong>Unblock</strong> trước khi dùng <code>NETLOAD</code>. Chi tiết tại <a href="/autocad/chiase/huong-dan-netload-dll-autocad.html">Hướng dẫn NETLOAD</a>.</p>
-      <p data-lang="en">Besides trusted folders, Windows may also mark downloaded files as blocked. Right-click the file, open Properties and tick <strong>Unblock</strong> before using <code>NETLOAD</code>. Details in the <a href="/autocad/chiase/huong-dan-netload-dll-autocad.html">NETLOAD guide</a>.</p>
+      <strong lang="vi" data-lang="vi">Với file DLL tải từ Internet</strong>
+      <strong lang="en" data-lang="en">For DLL files downloaded from the Internet</strong>
+      <p lang="vi" data-lang="vi">Ngoài vùng tin cậy, Windows còn có thể đánh dấu file tải về là bị chặn. Hãy bấm chuột phải vào file, chọn Properties và tích <strong>Unblock</strong> trước khi dùng <code>NETLOAD</code>. Chi tiết tại <a href="/autocad/chiase/huong-dan-netload-dll-autocad.html">Hướng dẫn NETLOAD</a>.</p>
+      <p lang="en" data-lang="en">Besides trusted folders, Windows may also mark downloaded files as blocked. Right-click the file, open Properties and tick <strong>Unblock</strong> before using <code>NETLOAD</code>. Details in the <a href="/autocad/chiase/huong-dan-netload-dll-autocad.html">NETLOAD guide</a>.</p>
     </div>
 
     <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--border-color);">
     <p style="text-align: center; font-style: italic; color: var(--text-muted); margin-bottom: 0;">
-      <span data-lang="vi">Tài liệu được nghiên cứu và tổng hợp bởi đội ngũ kỹ thuật <a href="https://ividlab.com/">iViDLab.com</a>.</span>
-      <span data-lang="en">Document researched and compiled by the <a href="https://ividlab.com/">iViDLab.com</a> technical team.</span>
+      <span lang="vi" data-lang="vi">Tài liệu được nghiên cứu và tổng hợp bởi đội ngũ kỹ thuật <a href="https://ividlab.com/">iViDLab.com</a>.</span>
+      <span lang="en" data-lang="en">Document researched and compiled by the <a href="https://ividlab.com/">iViDLab.com</a> technical team.</span>
     </p>
   </div>
   <div class="related-container">
-    <h2 data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
-    <h2 data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">You might also be interested in</h2>
+    <h2 lang="vi" data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
+    <h2 lang="en" data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">You might also be interested in</h2>
     <div class="related-grid">
       <a class="related-card" href="/autocad/chiase/huong-dan-appload-lisp-autocad.html">
         <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Hướng Dẫn Nạp Lisp Bằng APPLOAD</span><span data-lang="en">Guide to Load Lisp via APPLOAD</span></h3>
+        <h3><span lang="vi" data-lang="vi">Hướng Dẫn Nạp Lisp Bằng APPLOAD</span><span lang="en" data-lang="en">Guide to Load Lisp via APPLOAD</span></h3>
       </a>
       <a class="related-card" href="/autocad/chiase/huong-dan-netload-dll-autocad.html">
         <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Hướng Dẫn NETLOAD Nạp Plugin DLL</span><span data-lang="en">NETLOAD Guide for DLL Plugins</span></h3>
+        <h3><span lang="vi" data-lang="vi">Hướng Dẫn NETLOAD Nạp Plugin DLL</span><span lang="en" data-lang="en">NETLOAD Guide for DLL Plugins</span></h3>
       </a>
       <a class="related-card" href="/autocad/chiase/lisp-khong-chay-unknown-command-autocad.html">
         <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Lisp Không Chạy, Báo "Unknown Command" Trong AutoCAD: Nguyên Nhân & Cách Sửa</span><span data-lang="en">AutoCAD Lisp Not Running or "Unknown Command": Causes & Fixes</span></h3>
+        <h3><span lang="vi" data-lang="vi">Lisp Không Chạy, Báo "Unknown Command" Trong AutoCAD: Nguyên Nhân & Cách Sửa</span><span lang="en" data-lang="en">AutoCAD Lisp Not Running or "Unknown Command": Causes & Fixes</span></h3>
       </a>
     </div>
   </div>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234924381658348" crossorigin="anonymous"></script>
-  <script type="module" src="/traffic-track.js"></script>
+  <script type="module" src="/traffic-track.js?v=0f69739aed"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lisp Tạo Block Nhanh Siêu Tốc & Tự Động Đặt Tên Theo Giây (Quick Block - BB) - iViDLab</title>
   <meta name="description" content="Lisp AutoCAD tạo Block nhanh bằng lệnh BB, tự động đặt tên Block theo giây để không bị trùng tên. Miễn phí." />
@@ -158,6 +158,7 @@
     body.lang-en span[data-lang="vi"], body.lang-en strong[data-lang="vi"], body.lang-en em[data-lang="vi"], body.lang-en a[data-lang="vi"], body.lang-en figcaption[data-lang="vi"] { display: none !important; }
     body.lang-en span[data-lang="en"], body.lang-en strong[data-lang="en"], body.lang-en em[data-lang="en"], body.lang-en a[data-lang="en"], body.lang-en figcaption[data-lang="en"] { display: inline !important; }
   </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"iViDLab","item":"https://ividlab.com/"},{"@type":"ListItem","position":2,"name":"Hướng dẫn & Chia sẻ","item":"https://ividlab.com/guides/"},{"@type":"ListItem","position":3,"name":"Lisp Tạo Block Nhanh Siêu Tốc & Tự Động Đặt Tên Theo Giây (Quick Block - BB)","item":"https://ividlab.com/autocad/autolisp/autolisp-quick-block-bb.html"}]}</script>
 </head>
 <body>
   
@@ -169,20 +170,20 @@
         </span>
       </a>
       <nav style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
-        <a href="/?tab=all" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); transition: color 0.2s ease;">
-          <span data-lang="vi">// TRANG CHỦ</span><span data-lang="en" >// HOME</span>
+        <a href="/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); transition: color 0.2s ease;">
+          <span lang="vi" data-lang="vi">// TRANG CHỦ</span><span lang="en" data-lang="en" >// HOME</span>
         </a>
-        <a href="/?tab=tools" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// CÔNG CỤ</span><span data-lang="en" >// TOOLS</span>
+        <a href="/tools/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span lang="vi" data-lang="vi">// CÔNG CỤ</span><span lang="en" data-lang="en" >// TOOLS</span>
         </a>
-        <a href="/?tab=guides" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span data-lang="en" >// GUIDES</span>
+        <a href="/guides/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span lang="vi" data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span lang="en" data-lang="en" >// GUIDES</span>
         </a>
-        <a href="/?tab=tekla-component" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+        <a href="/tekla-component/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
           // TEKLA APP &amp; COMPONENT
         </a>
-        <a href="/?tab=about" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en" >// ABOUT</span>
+        <a href="/about/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span lang="vi" data-lang="vi">// GIỚI THIỆU</span><span lang="en" data-lang="en" >// ABOUT</span>
         </a>
       </nav>
       <div style="display: flex; align-items: center; gap: 10px;">
@@ -197,144 +198,144 @@
   </header>
   <div class="article-container">
     <span class="badge">CAD Automation & Block Tools</span>
-    <h1 data-lang="vi">Lisp Tạo Block Nhanh & Tự Động Đặt Tên Theo Giây (Quick Block - BB)</h1>
-    <h1 data-lang="en">Quick Block Creator & Automatic Timestamp Naming (Quick Block - BB)</h1>
+    <h1 lang="vi" data-lang="vi">Lisp Tạo Block Nhanh & Tự Động Đặt Tên Theo Giây (Quick Block - BB)</h1>
+    <h1 lang="en" data-lang="en">Quick Block Creator & Automatic Timestamp Naming (Quick Block - BB)</h1>
 
-    <p data-lang="vi">Trong quy trình triển khai bản vẽ AutoCAD thông thường, việc tạo Block bằng lệnh chuẩn <code>B</code> (Block) thường mang lại trải nghiệm tương đối cồng kềnh: bạn phải đối mặt với hộp thoại lớn che khuất tầm nhìn, bắt buộc gõ tên cho từng khối, bấm chọn đối tượng và chọn điểm gốc bằng vô số bước click chuột. Chưa kể khi bạn lỡ tay nhập một tên Block đã tồn tại trước đó, CAD sẽ báo lỗi hoặc chèn nhầm đè lên block cũ gây náo loạn hồ sơ.</p>
-    <p data-lang="en">In the typical AutoCAD drafting process, creating a Block using the standard <code>B</code> (Block) command often results in a cumbersome experience: you have to deal with a large dialog box obscuring your view, manually type a name for each block, select objects, and pick a base point through numerous clicks. Furthermore, if you accidentally enter an existing Block name, CAD will either throw an error or mistakenly overwrite the old block, causing chaos in your project files.</p>
+    <p lang="vi" data-lang="vi">Trong quy trình triển khai bản vẽ AutoCAD thông thường, việc tạo Block bằng lệnh chuẩn <code>B</code> (Block) thường mang lại trải nghiệm tương đối cồng kềnh: bạn phải đối mặt với hộp thoại lớn che khuất tầm nhìn, bắt buộc gõ tên cho từng khối, bấm chọn đối tượng và chọn điểm gốc bằng vô số bước click chuột. Chưa kể khi bạn lỡ tay nhập một tên Block đã tồn tại trước đó, CAD sẽ báo lỗi hoặc chèn nhầm đè lên block cũ gây náo loạn hồ sơ.</p>
+    <p lang="en" data-lang="en">In the typical AutoCAD drafting process, creating a Block using the standard <code>B</code> (Block) command often results in a cumbersome experience: you have to deal with a large dialog box obscuring your view, manually type a name for each block, select objects, and pick a base point through numerous clicks. Furthermore, if you accidentally enter an existing Block name, CAD will either throw an error or mistakenly overwrite the old block, causing chaos in your project files.</p>
 
-    <p data-lang="vi">Để tối ưu hóa hiệu suất thiết kế, <strong>iViDLab</strong> ra mắt Lisp <strong>Quick Block (BB)</strong> — giải pháp đóng block siêu tốc không qua hộp thoại, được trang bị cơ chế thông minh cho phép tự động định danh theo Ngày_Giờ (Timestamp) cực nhanh nếu bạn không muốn tốn công nghĩ tên!</p>
-    <p data-lang="en">To optimize design performance, <strong>iViDLab</strong> introduces the <strong>Quick Block (BB)</strong> Lisp — an ultra-fast block creation solution without a dialog box, equipped with a smart mechanism that allows automatic naming based on Timestamp if you don't want to spend time thinking of a name!</p>
+    <p lang="vi" data-lang="vi">Để tối ưu hóa hiệu suất thiết kế, <strong>iViDLab</strong> ra mắt Lisp <strong>Quick Block (BB)</strong> — giải pháp đóng block siêu tốc không qua hộp thoại, được trang bị cơ chế thông minh cho phép tự động định danh theo Ngày_Giờ (Timestamp) cực nhanh nếu bạn không muốn tốn công nghĩ tên!</p>
+    <p lang="en" data-lang="en">To optimize design performance, <strong>iViDLab</strong> introduces the <strong>Quick Block (BB)</strong> Lisp — an ultra-fast block creation solution without a dialog box, equipped with a smart mechanism that allows automatic naming based on Timestamp if you don't want to spend time thinking of a name!</p>
 
     <div class="img-box">
-      <img src="Pic/QuickBlock_BB_01.png" alt="Tổng quan thành quả chốt nhanh cụm chi tiết thành Block hoàn chỉnh bằng lệnh BB trong AutoCAD" />
-      <span data-lang="vi">Hình 1: Cụm đối tượng được gom nhanh thành một Block vững chắc và chèn trực tiếp lại trên màn hình chỉ bằng hai bước chốt chuột</span>
-      <span data-lang="en">Figure 1: Object clusters are quickly grouped into a solid Block and inserted directly back on the screen with just two clicks</span>
+      <img src="Pic/QuickBlock_BB_01.png" width="637" height="482" alt="Tổng quan thành quả chốt nhanh cụm chi tiết thành Block hoàn chỉnh bằng lệnh BB trong AutoCAD" />
+      <span lang="vi" data-lang="vi">Hình 1: Cụm đối tượng được gom nhanh thành một Block vững chắc và chèn trực tiếp lại trên màn hình chỉ bằng hai bước chốt chuột</span>
+      <span lang="en" data-lang="en">Figure 1: Object clusters are quickly grouped into a solid Block and inserted directly back on the screen with just two clicks</span>
     </div>
 
-    <h2 data-lang="vi">&#128142; Tính Năng Nổi Bật & Sự Vượt Trội Hơn Lệnh Chuẩn</h2>
-    <h2 data-lang="en">&#128142; Outstanding Features & Superiority Over Standard Command</h2>
+    <h2 lang="vi" data-lang="vi">&#128142; Tính Năng Nổi Bật & Sự Vượt Trội Hơn Lệnh Chuẩn</h2>
+    <h2 lang="en" data-lang="en">&#128142; Outstanding Features & Superiority Over Standard Command</h2>
     
-    <p data-lang="vi">Công cụ <strong>Quick Block (BB)</strong> mang đến bước tiến căn bản trong việc gia tăng tốc độ triển khai bản vẽ, được tối ưu xoay quanh những thói quen thực tế nhất của các kỹ sư:</p>
-    <p data-lang="en">The <strong>Quick Block (BB)</strong> tool brings a fundamental leap in increasing drawing deployment speed, optimized around the most practical habits of engineers:</p>
+    <p lang="vi" data-lang="vi">Công cụ <strong>Quick Block (BB)</strong> mang đến bước tiến căn bản trong việc gia tăng tốc độ triển khai bản vẽ, được tối ưu xoay quanh những thói quen thực tế nhất của các kỹ sư:</p>
+    <p lang="en" data-lang="en">The <strong>Quick Block (BB)</strong> tool brings a fundamental leap in increasing drawing deployment speed, optimized around the most practical habits of engineers:</p>
 
     <div style="overflow-x: auto;">
       <table>
         <thead>
           <tr>
-            <th style="width: 32%;"><span data-lang="vi">Tính Năng</span><span data-lang="en">Feature</span></th>
-            <th style="width: 68%;"><span data-lang="vi">Giá Trị Mang Lại Cho Kỹ Sư & Kiến Trúc Sư</span><span data-lang="en">Value Delivered to Engineers & Architects</span></th>
+            <th style="width: 32%;"><span lang="vi" data-lang="vi">Tính Năng</span><span lang="en" data-lang="en">Feature</span></th>
+            <th style="width: 68%;"><span lang="vi" data-lang="vi">Giá Trị Mang Lại Cho Kỹ Sư & Kiến Trúc Sư</span><span lang="en" data-lang="en">Value Delivered to Engineers & Architects</span></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong data-lang="vi">Đóng Gói Siêu Tốc (No Dialog)</strong><strong data-lang="en">Ultra-fast Packaging (No Dialog)</strong></td>
+            <td><strong lang="vi" data-lang="vi">Đóng Gói Siêu Tốc (No Dialog)</strong><strong lang="en" data-lang="en">Ultra-fast Packaging (No Dialog)</strong></td>
             <td>
-                <span data-lang="vi">Bỏ qua toàn bộ giao diện hộp thoại phức tạp của AutoCAD. Chỉ cần quét chọn, chấm điểm gốc (Base Point) và chốt — Block được ra đời và chèn lại (insert) chuẩn xác tại đúng vị trí của bạn trong nháy mắt.</span>
-                <span data-lang="en">Skip the complex AutoCAD dialog interface entirely. Just select objects, pick a Base Point, and finalize — the Block is created and inserted precisely at your location in a flash.</span>
+                <span lang="vi" data-lang="vi">Bỏ qua toàn bộ giao diện hộp thoại phức tạp của AutoCAD. Chỉ cần quét chọn, chấm điểm gốc (Base Point) và chốt — Block được ra đời và chèn lại (insert) chuẩn xác tại đúng vị trí của bạn trong nháy mắt.</span>
+                <span lang="en" data-lang="en">Skip the complex AutoCAD dialog interface entirely. Just select objects, pick a Base Point, and finalize — the Block is created and inserted precisely at your location in a flash.</span>
             </td>
           </tr>
           <tr>
-            <td><strong data-lang="vi">Tự Động Đặt Tên Theo Ngày Giờ (Timestamp Naming)</strong><strong data-lang="en">Automatic Timestamp Naming</strong></td>
+            <td><strong lang="vi" data-lang="vi">Tự Động Đặt Tên Theo Ngày Giờ (Timestamp Naming)</strong><strong lang="en" data-lang="en">Automatic Timestamp Naming</strong></td>
             <td>
-                <span data-lang="vi">Khi được nhắc đặt tên, nếu bạn lười nghĩ tên và <strong>nhấn Enter luôn</strong> (để trống), Lisp lập tức sử dụng hàm thời gian thực để tạo tên độc bản theo định dạng <code>YYYYMMDD_HHMMSS</code> (Ví dụ: <code>20260728_173512</code>), không bao giờ lo gián đoạn mạch làm việc.</span>
-                <span data-lang="en">When prompted for a name, if you are too lazy to think of one and <strong>just press Enter</strong> (leave it blank), the Lisp instantly uses a real-time function to create a unique name in the format <code>YYYYMMDD_HHMMSS</code> (Example: <code>20260728_173512</code>), never interrupting your workflow.</span>
+                <span lang="vi" data-lang="vi">Khi được nhắc đặt tên, nếu bạn lười nghĩ tên và <strong>nhấn Enter luôn</strong> (để trống), Lisp lập tức sử dụng hàm thời gian thực để tạo tên độc bản theo định dạng <code>YYYYMMDD_HHMMSS</code> (Ví dụ: <code>20260728_173512</code>), không bao giờ lo gián đoạn mạch làm việc.</span>
+                <span lang="en" data-lang="en">When prompted for a name, if you are too lazy to think of one and <strong>just press Enter</strong> (leave it blank), the Lisp instantly uses a real-time function to create a unique name in the format <code>YYYYMMDD_HHMMSS</code> (Example: <code>20260728_173512</code>), never interrupting your workflow.</span>
             </td>
           </tr>
           <tr>
-            <td><strong data-lang="vi">Hỗ Trợ Tên Chứa Dấu Cách (Whitespace Supported)</strong><strong data-lang="en">Whitespace Supported Naming</strong></td>
+            <td><strong lang="vi" data-lang="vi">Hỗ Trợ Tên Chứa Dấu Cách (Whitespace Supported)</strong><strong lang="en" data-lang="en">Whitespace Supported Naming</strong></td>
             <td>
-                <span data-lang="vi">Khắc phục hạn chế của các Lisp cũ thường bị ngắt lệnh khi bạn gõ dấu phím cách. Lisp <strong>BB</strong> cho phép bạn nhập các tên dài có khoảng trắng thoải mái (Ví dụ: <code>Cụm bàn ghế ăn bàn tròn 6 ghế</code>) mà chỉ kết thúc khi bạn thực sự nhấn phím Enter.</span>
-                <span data-lang="en">Overcomes the limitations of older Lisps that often interrupt the command when you type a space. The <strong>BB</strong> Lisp allows you to freely input long names with spaces (Example: <code>Dining table cluster with 6 chairs</code>) and only finishes when you actually press the Enter key.</span>
+                <span lang="vi" data-lang="vi">Khắc phục hạn chế của các Lisp cũ thường bị ngắt lệnh khi bạn gõ dấu phím cách. Lisp <strong>BB</strong> cho phép bạn nhập các tên dài có khoảng trắng thoải mái (Ví dụ: <code>Cụm bàn ghế ăn bàn tròn 6 ghế</code>) mà chỉ kết thúc khi bạn thực sự nhấn phím Enter.</span>
+                <span lang="en" data-lang="en">Overcomes the limitations of older Lisps that often interrupt the command when you type a space. The <strong>BB</strong> Lisp allows you to freely input long names with spaces (Example: <code>Dining table cluster with 6 chairs</code>) and only finishes when you actually press the Enter key.</span>
             </td>
           </tr>
           <tr>
-            <td><strong data-lang="vi">Bảo Vệ & Chống Trùng Lặp Tên Thông Minh</strong><strong data-lang="en">Smart Protection & Anti-Duplicate Naming</strong></td>
+            <td><strong lang="vi" data-lang="vi">Bảo Vệ & Chống Trùng Lặp Tên Thông Minh</strong><strong lang="en" data-lang="en">Smart Protection & Anti-Duplicate Naming</strong></td>
             <td>
-                <span data-lang="vi">Nếu bạn tình cờ gõ một tên block đã tồn tại trong bộ đệm bản vẽ, cơ chế quét bảng thuộc tính sẽ lập tức kích hoạt, tự động bổ sung số thứ tự tiếp theo (Ví dụ: <code>Chi_Tiet_1</code>, <code>Chi_Tiet_2</code>), ngăn chặn 100% rủi ro ghi đè hỏng hóc các block cũ!</span>
-                <span data-lang="en">If you accidentally type a block name that already exists in the drawing buffer, the attribute table scanning mechanism immediately activates, automatically appending the next sequential number (Example: <code>Detail_1</code>, <code>Detail_2</code>), preventing a 100% risk of overwriting and damaging old blocks!</span>
+                <span lang="vi" data-lang="vi">Nếu bạn tình cờ gõ một tên block đã tồn tại trong bộ đệm bản vẽ, cơ chế quét bảng thuộc tính sẽ lập tức kích hoạt, tự động bổ sung số thứ tự tiếp theo (Ví dụ: <code>Chi_Tiet_1</code>, <code>Chi_Tiet_2</code>), ngăn chặn 100% rủi ro ghi đè hỏng hóc các block cũ!</span>
+                <span lang="en" data-lang="en">If you accidentally type a block name that already exists in the drawing buffer, the attribute table scanning mechanism immediately activates, automatically appending the next sequential number (Example: <code>Detail_1</code>, <code>Detail_2</code>), preventing a 100% risk of overwriting and damaging old blocks!</span>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <h2 data-lang="vi">&#128295; Hướng Dẫn Nạp Lisp Và Sử Dụng Trong AutoCAD</h2>
-    <h2 data-lang="en">&#128295; How to Load and Use in AutoCAD</h2>
+    <h2 lang="vi" data-lang="vi">&#128295; Hướng Dẫn Nạp Lisp Và Sử Dụng Trong AutoCAD</h2>
+    <h2 lang="en" data-lang="en">&#128295; How to Load and Use in AutoCAD</h2>
 
-    <p data-lang="vi">Thao tác với Lisp <strong>BB</strong> vô cùng tiện lợi, mạch lạc theo các bước sau:</p>
-    <p data-lang="en">Operating with the <strong>BB</strong> Lisp is incredibly convenient and coherent through the following steps:</p>
+    <p lang="vi" data-lang="vi">Thao tác với Lisp <strong>BB</strong> vô cùng tiện lợi, mạch lạc theo các bước sau:</p>
+    <p lang="en" data-lang="en">Operating with the <strong>BB</strong> Lisp is incredibly convenient and coherent through the following steps:</p>
     
     <ol>
       <li>
-        <span data-lang="vi">Nạp Lisp vào AutoCAD (kèm theo <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html" target="_blank">Hướng dẫn chi tiết APPLOAD và Startup Suite tải Lisp tự động</a> để giữ tool luôn sẵn sàng khi khởi động CAD).</span>
-        <span data-lang="en">Load the Lisp into AutoCAD (along with the <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html" target="_blank">Detailed Guide on APPLOAD and Startup Suite</a> to keep the tool always ready when starting CAD).</span>
+        <span lang="vi" data-lang="vi">Nạp Lisp vào AutoCAD (kèm theo <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html" target="_blank">Hướng dẫn chi tiết APPLOAD và Startup Suite tải Lisp tự động</a> để giữ tool luôn sẵn sàng khi khởi động CAD).</span>
+        <span lang="en" data-lang="en">Load the Lisp into AutoCAD (along with the <a href="/autocad/chiase/huong-dan-appload-lisp-autocad.html" target="_blank">Detailed Guide on APPLOAD and Startup Suite</a> to keep the tool always ready when starting CAD).</span>
       </li>
       <li>
-        <span data-lang="vi">Tại không gian làm việc, nhập phím tắt trên thanh Command Line: gõ <code>BB</code> (rồi nhấn Space / Enter).</span>
-        <span data-lang="en">In the workspace, enter the shortcut on the Command Line: type <code>BB</code> (then press Space / Enter).</span>
+        <span lang="vi" data-lang="vi">Tại không gian làm việc, nhập phím tắt trên thanh Command Line: gõ <code>BB</code> (rồi nhấn Space / Enter).</span>
+        <span lang="en" data-lang="en">In the workspace, enter the shortcut on the Command Line: type <code>BB</code> (then press Space / Enter).</span>
       </li>
       <li>
-        <span data-lang="vi">Quét chọn toàn bộ các đối tượng cần gộp thành Block (hệ thống sẽ nhắc nhở <code>No objects selected...</code> nếu bạn click truợt chuột) và click chấm điểm Gốc (Base Point).</span>
-        <span data-lang="en">Select all objects to be grouped into a Block (the system will warn <code>No objects selected...</code> if you misclick) and click to pick the Base Point.</span>
+        <span lang="vi" data-lang="vi">Quét chọn toàn bộ các đối tượng cần gộp thành Block (hệ thống sẽ nhắc nhở <code>No objects selected...</code> nếu bạn click truợt chuột) và click chấm điểm Gốc (Base Point).</span>
+        <span lang="en" data-lang="en">Select all objects to be grouped into a Block (the system will warn <code>No objects selected...</code> if you misclick) and click to pick the Base Point.</span>
       </li>
       <li>
-        <span data-lang="vi">Khi thanh lệnh báo hiệu: <code>Enter block name &lt;20260728_...&gt;:</code> — Bạn có thể <strong>gõ tên tùy ý</strong> (chứa dấu cách tùy thích) rồi nhấn Enter, hoặc <strong>nhấn Enter ngay lập tức</strong> để chốt tên Ngày Giờ gợi ý. Block lập tức ra đời và hoàn thiện!</span>
-        <span data-lang="en">When the command bar prompts: <code>Enter block name &lt;2026...&gt;:</code> — You can <strong>type any name</strong> (with spaces as you like) then press Enter, or <strong>immediately press Enter</strong> to accept the suggested Timestamp name. The Block is instantly created and finalized!</span>
+        <span lang="vi" data-lang="vi">Khi thanh lệnh báo hiệu: <code>Enter block name &lt;20260728_...&gt;:</code> — Bạn có thể <strong>gõ tên tùy ý</strong> (chứa dấu cách tùy thích) rồi nhấn Enter, hoặc <strong>nhấn Enter ngay lập tức</strong> để chốt tên Ngày Giờ gợi ý. Block lập tức ra đời và hoàn thiện!</span>
+        <span lang="en" data-lang="en">When the command bar prompts: <code>Enter block name &lt;2026...&gt;:</code> — You can <strong>type any name</strong> (with spaces as you like) then press Enter, or <strong>immediately press Enter</strong> to accept the suggested Timestamp name. The Block is instantly created and finalized!</span>
       </li>
       <li>
-        <span data-lang="vi"><strong>Lệnh / Phím tắt:</strong> <code>BB</code> - <a href="/autocad/chiase/tuy-chinh-lenh-autolisp.html" target="_blank">Hướng dẫn tuỳ chỉnh đổi phím tắt trong AutoLISP</a> (nếu bạn có nguyện vọng đổi sang phím tắt khác như <code>QB</code> hay <code>BN</code> theo tổ hợp phím riêng).</span>
-        <span data-lang="en"><strong>Command:</strong> <code>BB</code> - <a href="/autocad/chiase/tuy-chinh-lenh-autolisp.html" target="_blank">How to customize AutoLISP commands</a> (if you desire to change it to another shortcut like <code>QB</code> or <code>BN</code> according to your own key combination).</span>
+        <span lang="vi" data-lang="vi"><strong>Lệnh / Phím tắt:</strong> <code>BB</code> - <a href="/autocad/chiase/tuy-chinh-lenh-autolisp.html" target="_blank">Hướng dẫn tuỳ chỉnh đổi phím tắt trong AutoLISP</a> (nếu bạn có nguyện vọng đổi sang phím tắt khác như <code>QB</code> hay <code>BN</code> theo tổ hợp phím riêng).</span>
+        <span lang="en" data-lang="en"><strong>Command:</strong> <code>BB</code> - <a href="/autocad/chiase/tuy-chinh-lenh-autolisp.html" target="_blank">How to customize AutoLISP commands</a> (if you desire to change it to another shortcut like <code>QB</code> or <code>BN</code> according to your own key combination).</span>
       </li>
     </ol>
 
     <div class="img-box">
-      <img src="Pic/QuickBlock_BB_02.jpg" alt="Thao tác gọi lệnh BB trên thanh Command Line và chốt tên Block theo giây thời gian thực" />
-      <span data-lang="vi">Hình 2: Thao tác gõ lệnh BB và cơ chế gợi ý chốt nhanh tên Block mặc định theo giây hệ thống trên Command Line</span>
-      <span data-lang="en">Figure 2: Typing the BB command and the mechanism to quickly suggest the default Block name based on system seconds on the Command Line</span>
+      <img src="Pic/QuickBlock_BB_02.webp" width="1187" height="575" alt="Thao tác gọi lệnh BB trên thanh Command Line và chốt tên Block theo giây thời gian thực" loading="lazy" />
+      <span lang="vi" data-lang="vi">Hình 2: Thao tác gõ lệnh BB và cơ chế gợi ý chốt nhanh tên Block mặc định theo giây hệ thống trên Command Line</span>
+      <span lang="en" data-lang="en">Figure 2: Typing the BB command and the mechanism to quickly suggest the default Block name based on system seconds on the Command Line</span>
     </div>
 
-    <h2 data-lang="vi">&#128229; Thông Tin Tải Về Công Cụ Quick Block (BB)</h2>
-    <h2 data-lang="en">&#128229; Quick Block (BB) Download Information</h2>
+    <h2 lang="vi" data-lang="vi">&#128229; Thông Tin Tải Về Công Cụ Quick Block (BB)</h2>
+    <h2 lang="en" data-lang="en">&#128229; Quick Block (BB) Download Information</h2>
     
     <div class="download-section">
-      <p data-lang="vi">Tải về bộ công cụ gốc ngay tại đường dẫn bên dưới:</p>
-      <p data-lang="en">Download the original toolkit via the link below:</p>
+      <p lang="vi" data-lang="vi">Tải về bộ công cụ gốc ngay tại đường dẫn bên dưới:</p>
+      <p lang="en" data-lang="en">Download the original toolkit via the link below:</p>
       <ul>
         <li>
-            <span data-lang="vi"><strong>Tệp tin:</strong></span>
-            <span data-lang="en"><strong>File:</strong></span> <code>BB_Quick_Block_Creator.lsp</code>
+            <span lang="vi" data-lang="vi"><strong>Tệp tin:</strong></span>
+            <span lang="en" data-lang="en"><strong>File:</strong></span> <code>BB_Quick_Block_Creator.lsp</code>
         </li>
         <li>
-            <span data-lang="vi"><strong>Link Tải trực tiếp:</strong></span>
-            <span data-lang="en"><strong>Direct Download Link:</strong></span> <a href="/fordownload/BB_Quick_Block_Creator.lsp" download="BB_Quick_Block_Creator.lsp">&#11015; <span data-lang="vi">Tải Về</span><span data-lang="en">Download</span> BB_Quick_Block_Creator.lsp</a>
+            <span lang="vi" data-lang="vi"><strong>Link Tải trực tiếp:</strong></span>
+            <span lang="en" data-lang="en"><strong>Direct Download Link:</strong></span> <a href="/fordownload/BB_Quick_Block_Creator.lsp" download="BB_Quick_Block_Creator.lsp">&#11015; <span lang="vi" data-lang="vi">Tải Về</span><span lang="en" data-lang="en">Download</span> BB_Quick_Block_Creator.lsp</a>
         </li>
       </ul>
     </div>
   </div>
   <div class="related-container">
-    <h2 data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
-    <h2 data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem; display:none;">You might also be interested in</h2>
+    <h2 lang="vi" data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
+    <h2 lang="en" data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem; display:none;">You might also be interested in</h2>
     <div class="related-grid">
       <a class="related-card" href="/autocad/autolisp/autolisp-merge-hatch-mh.html">
         <span class="badge">CAD Automation</span>
-        <h3><span data-lang="vi">Lisp Gộp Vùng Hatch (Merge Hatch - MH)</span><span data-lang="en" >Merge Hatch Lisp (MH)</span></h3>
+        <h3><span lang="vi" data-lang="vi">Lisp Gộp Vùng Hatch (Merge Hatch - MH)</span><span lang="en" data-lang="en" >Merge Hatch Lisp (MH)</span></h3>
       </a>
       <a class="related-card" href="/autocad/autolisp/autolisp-quick-block-bb.html">
         <span class="badge">CAD Automation</span>
-        <h3><span data-lang="vi">Lisp Tạo Block Nhanh (Quick Block - BB)</span><span data-lang="en" >Quick Block Lisp (BB)</span></h3>
+        <h3><span lang="vi" data-lang="vi">Lisp Tạo Block Nhanh (Quick Block - BB)</span><span lang="en" data-lang="en" >Quick Block Lisp (BB)</span></h3>
       </a>
       <a class="related-card" href="/autocad/autolisp/autolisp-layiso-layer-manager.html">
         <span class="badge">CAD Automation</span>
-        <h3><span data-lang="vi">Bộ 10 Phím Tắt Quản Lý Layer (Layiso Suite)</span><span data-lang="en" >Layiso Layer Management Suite</span></h3>
+        <h3><span lang="vi" data-lang="vi">Bộ 10 Phím Tắt Quản Lý Layer (Layiso Suite)</span><span lang="en" data-lang="en" >Layiso Layer Management Suite</span></h3>
       </a>
       <a class="related-card" href="/autocad/chiase/huong-dan-appload-lisp-autocad.html">
         <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Hướng Dẫn Nạp Lisp Bằng APPLOAD</span><span data-lang="en" >Guide to Load Lisp via APPLOAD</span></h3>
+        <h3><span lang="vi" data-lang="vi">Hướng Dẫn Nạp Lisp Bằng APPLOAD</span><span lang="en" data-lang="en" >Guide to Load Lisp via APPLOAD</span></h3>
       </a>
       <a class="related-card" href="/autocad/chiase/tuy-chinh-lenh-autolisp.html">
         <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Cách Tùy Chỉnh Phím Tắt Lệnh AutoLISP</span><span data-lang="en" >How to Customize AutoLISP Commands</span></h3>
+        <h3><span lang="vi" data-lang="vi">Cách Tùy Chỉnh Phím Tắt Lệnh AutoLISP</span><span lang="en" data-lang="en" >How to Customize AutoLISP Commands</span></h3>
       </a>
     </div>
   </div>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234924381658348" crossorigin="anonymous"></script>
-  <script type="module" src="/traffic-track.js"></script>
+  <script type="module" src="/traffic-track.js?v=0f69739aed"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hướng Dẫn Lệnh LAYMRG Trong AutoCAD: Gộp Nhiều Layer Thành Một - iViDLab</title>
   <meta name="description" content="Cách dùng lệnh LAYMRG để gộp nhiều layer trùng lặp hoặc thừa vào một layer đích, chuẩn hóa bản vẽ nhận từ nơi khác. Các bước, lưu ý về màu/linetype ByLayer và cách hoàn tác." />
@@ -101,6 +101,7 @@
     body.lang-en span[data-lang="vi"], body.lang-en strong[data-lang="vi"], body.lang-en em[data-lang="vi"], body.lang-en a[data-lang="vi"], body.lang-en figcaption[data-lang="vi"] { display: none !important; }
     body.lang-en span[data-lang="en"], body.lang-en strong[data-lang="en"], body.lang-en em[data-lang="en"], body.lang-en a[data-lang="en"], body.lang-en figcaption[data-lang="en"] { display: inline !important; }
   </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"iViDLab","item":"https://ividlab.com/"},{"@type":"ListItem","position":2,"name":"Hướng dẫn & Chia sẻ","item":"https://ividlab.com/guides/"},{"@type":"ListItem","position":3,"name":"Hướng Dẫn Lệnh LAYMRG Trong AutoCAD: Gộp Nhiều Layer Thành Một","item":"https://ividlab.com/autocad/chiase/huong-dan-lenh-laymrg-gop-layer-autocad.html"}]}</script>
 </head>
 <body>
   
@@ -112,20 +113,20 @@
         </span>
       </a>
       <nav style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
-        <a href="/?tab=all" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); transition: color 0.2s ease;">
-          <span data-lang="vi">// TRANG CHỦ</span><span data-lang="en" >// HOME</span>
+        <a href="/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); transition: color 0.2s ease;">
+          <span lang="vi" data-lang="vi">// TRANG CHỦ</span><span lang="en" data-lang="en" >// HOME</span>
         </a>
-        <a href="/?tab=tools" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// CÔNG CỤ</span><span data-lang="en" >// TOOLS</span>
+        <a href="/tools/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span lang="vi" data-lang="vi">// CÔNG CỤ</span><span lang="en" data-lang="en" >// TOOLS</span>
         </a>
-        <a href="/?tab=guides" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span data-lang="en" >// GUIDES</span>
+        <a href="/guides/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span lang="vi" data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span lang="en" data-lang="en" >// GUIDES</span>
         </a>
-        <a href="/?tab=tekla-component" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+        <a href="/tekla-component/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
           // TEKLA APP &amp; COMPONENT
         </a>
-        <a href="/?tab=about" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en" >// ABOUT</span>
+        <a href="/about/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span lang="vi" data-lang="vi">// GIỚI THIỆU</span><span lang="en" data-lang="en" >// ABOUT</span>
         </a>
       </nav>
       <div style="display: flex; align-items: center; gap: 10px;">
@@ -139,88 +140,88 @@
     </div>
   </header>
   <div class="article-container">
-    <span class="badge" data-lang="vi">Hướng Dẫn Lệnh</span>
-    <span class="badge" data-lang="en">Command Guide</span>
+    <span class="badge" lang="vi" data-lang="vi">Hướng Dẫn Lệnh</span>
+    <span class="badge" lang="en" data-lang="en">Command Guide</span>
 
-    <h1 data-lang="vi">Hướng Dẫn Lệnh LAYMRG Trong AutoCAD: Gộp Nhiều Layer Thành Một</h1>
-    <h1 data-lang="en">LAYMRG in AutoCAD: Merge Multiple Layers into One</h1>
+    <h1 lang="vi" data-lang="vi">Hướng Dẫn Lệnh LAYMRG Trong AutoCAD: Gộp Nhiều Layer Thành Một</h1>
+    <h1 lang="en" data-lang="en">LAYMRG in AutoCAD: Merge Multiple Layers into One</h1>
 
-    <p data-lang="vi">Bản vẽ nhận từ nhiều nguồn thường có vô số layer na ná nhau: <code>WALL</code>, <code>Wall</code>, <code>A-WALL</code>, <code>Tuong</code>... Xóa từng layer thì mất đối tượng, còn di chuyển đối tượng từng cái sang layer đúng thì rất lâu. <code>LAYMRG</code> (Layer Merge) làm cả hai việc trong một lần: chuyển toàn bộ đối tượng của các layer nguồn sang layer đích rồi xóa các layer nguồn khỏi bản vẽ.</p>
-    <p data-lang="en">Drawings from several sources often contain many near-duplicate layers: <code>WALL</code>, <code>Wall</code>, <code>A-WALL</code> and so on. Deleting each layer would lose objects, and moving objects one by one is slow. <code>LAYMRG</code> (Layer Merge) does both in a single step: it moves every object on the source layers to a target layer and then removes the source layers from the drawing.</p>
+    <p lang="vi" data-lang="vi">Bản vẽ nhận từ nhiều nguồn thường có vô số layer na ná nhau: <code>WALL</code>, <code>Wall</code>, <code>A-WALL</code>, <code>Tuong</code>... Xóa từng layer thì mất đối tượng, còn di chuyển đối tượng từng cái sang layer đúng thì rất lâu. <code>LAYMRG</code> (Layer Merge) làm cả hai việc trong một lần: chuyển toàn bộ đối tượng của các layer nguồn sang layer đích rồi xóa các layer nguồn khỏi bản vẽ.</p>
+    <p lang="en" data-lang="en">Drawings from several sources often contain many near-duplicate layers: <code>WALL</code>, <code>Wall</code>, <code>A-WALL</code> and so on. Deleting each layer would lose objects, and moving objects one by one is slow. <code>LAYMRG</code> (Layer Merge) does both in a single step: it moves every object on the source layers to a target layer and then removes the source layers from the drawing.</p>
 
-    <h2 data-lang="vi">Cách dùng LAYMRG</h2>
-    <h2 data-lang="en">How to use LAYMRG</h2>
+    <h2 lang="vi" data-lang="vi">Cách dùng LAYMRG</h2>
+    <h2 lang="en" data-lang="en">How to use LAYMRG</h2>
 
     <ul>
-      <li><span data-lang="vi">Gõ <code>LAYMRG</code> rồi nhấn Enter.</span><span data-lang="en">Type <code>LAYMRG</code> and press Enter.</span></li>
-      <li><span data-lang="vi">Chọn một đối tượng nằm trên layer cần gộp (layer nguồn). Có thể chọn tiếp để thêm nhiều layer nguồn, sau đó nhấn Enter.</span><span data-lang="en">Pick an object on a layer to merge (a source layer). You can keep picking to add more source layers, then press Enter.</span></li>
-      <li><span data-lang="vi">Chọn một đối tượng nằm trên layer đích, hoặc dùng tùy chọn <strong>Name</strong> để gõ tên layer.</span><span data-lang="en">Pick an object on the target layer, or use the <strong>Name</strong> option to type the layer name.</span></li>
-      <li><span data-lang="vi">AutoCAD hỏi xác nhận gộp. Chọn <strong>Yes</strong> để thực hiện.</span><span data-lang="en">AutoCAD asks you to confirm the merge. Choose <strong>Yes</strong>.</span></li>
-      <li><span data-lang="vi">Toàn bộ đối tượng của layer nguồn chuyển sang layer đích và layer nguồn bị xóa.</span><span data-lang="en">All objects on the source layers move to the target layer and the source layers are deleted.</span></li>
+      <li><span lang="vi" data-lang="vi">Gõ <code>LAYMRG</code> rồi nhấn Enter.</span><span lang="en" data-lang="en">Type <code>LAYMRG</code> and press Enter.</span></li>
+      <li><span lang="vi" data-lang="vi">Chọn một đối tượng nằm trên layer cần gộp (layer nguồn). Có thể chọn tiếp để thêm nhiều layer nguồn, sau đó nhấn Enter.</span><span lang="en" data-lang="en">Pick an object on a layer to merge (a source layer). You can keep picking to add more source layers, then press Enter.</span></li>
+      <li><span lang="vi" data-lang="vi">Chọn một đối tượng nằm trên layer đích, hoặc dùng tùy chọn <strong>Name</strong> để gõ tên layer.</span><span lang="en" data-lang="en">Pick an object on the target layer, or use the <strong>Name</strong> option to type the layer name.</span></li>
+      <li><span lang="vi" data-lang="vi">AutoCAD hỏi xác nhận gộp. Chọn <strong>Yes</strong> để thực hiện.</span><span lang="en" data-lang="en">AutoCAD asks you to confirm the merge. Choose <strong>Yes</strong>.</span></li>
+      <li><span lang="vi" data-lang="vi">Toàn bộ đối tượng của layer nguồn chuyển sang layer đích và layer nguồn bị xóa.</span><span lang="en" data-lang="en">All objects on the source layers move to the target layer and the source layers are deleted.</span></li>
     </ul>
 
-    <p data-lang="vi">Cách khác: mở bảng <code>LAYER</code>, chọn nhiều layer (giữ <code>Ctrl</code>), bấm chuột phải rồi chọn <strong>Merge Selected Layer(s) To...</strong> và chọn layer đích. Cách này hợp khi bạn đã biết tên layer cần gộp.</p>
-    <p data-lang="en">Alternatively, open the <code>LAYER</code> palette, select several layers (hold <code>Ctrl</code>), right-click and choose <strong>Merge Selected Layer(s) To...</strong>, then pick the target layer. This is convenient when you already know the layer names.</p>
+    <p lang="vi" data-lang="vi">Cách khác: mở bảng <code>LAYER</code>, chọn nhiều layer (giữ <code>Ctrl</code>), bấm chuột phải rồi chọn <strong>Merge Selected Layer(s) To...</strong> và chọn layer đích. Cách này hợp khi bạn đã biết tên layer cần gộp.</p>
+    <p lang="en" data-lang="en">Alternatively, open the <code>LAYER</code> palette, select several layers (hold <code>Ctrl</code>), right-click and choose <strong>Merge Selected Layer(s) To...</strong>, then pick the target layer. This is convenient when you already know the layer names.</p>
 
     <div class="tip-box">
-      <strong data-lang="vi">Nên kiểm tra trước khi gộp</strong>
-      <strong data-lang="en">Check before you merge</strong>
-      <p data-lang="vi">Dùng <a href="/autocad/chiase/huong-dan-lenh-laywalk-autocad.html">LAYWALK</a> để xem từng layer chứa gì, tránh gộp nhầm hai layer có ý nghĩa khác nhau.</p>
-      <p data-lang="en">Use <a href="/autocad/chiase/huong-dan-lenh-laywalk-autocad.html">LAYWALK</a> to see what each layer holds so you do not merge two layers that mean different things.</p>
+      <strong lang="vi" data-lang="vi">Nên kiểm tra trước khi gộp</strong>
+      <strong lang="en" data-lang="en">Check before you merge</strong>
+      <p lang="vi" data-lang="vi">Dùng <a href="/autocad/chiase/huong-dan-lenh-laywalk-autocad.html">LAYWALK</a> để xem từng layer chứa gì, tránh gộp nhầm hai layer có ý nghĩa khác nhau.</p>
+      <p lang="en" data-lang="en">Use <a href="/autocad/chiase/huong-dan-lenh-laywalk-autocad.html">LAYWALK</a> to see what each layer holds so you do not merge two layers that mean different things.</p>
     </div>
 
-    <h2 data-lang="vi">Khi nào nên dùng LAYMRG?</h2>
-    <h2 data-lang="en">When should you use LAYMRG?</h2>
+    <h2 lang="vi" data-lang="vi">Khi nào nên dùng LAYMRG?</h2>
+    <h2 lang="en" data-lang="en">When should you use LAYMRG?</h2>
 
     <ul>
-      <li><span data-lang="vi"><strong>Chuẩn hóa bản vẽ nhận từ nơi khác:</strong> gộp các layer tên khác nhau nhưng cùng chức năng vào layer theo tiêu chuẩn của công ty.</span><span data-lang="en"><strong>Standardizing drawings from elsewhere:</strong> merge layers with different names but the same purpose into your company-standard layer.</span></li>
-      <li><span data-lang="vi"><strong>Dọn layer sau khi Bind Xref:</strong> khi Bind (chế độ mặc định), layer của Xref có thể thành dạng tên có ký hiệu <code>$0$</code>, ví dụ <code>TenXref$0$WALL</code>. Gộp chúng vào layer chuẩn sẽ gọn hơn nhiều.</span><span data-lang="en"><strong>Cleaning up after binding an Xref:</strong> when you Bind (the default mode), Xref layers can become names containing <code>$0$</code>, such as <code>XrefName$0$WALL</code>. Merging them into a standard layer is much tidier.</span></li>
-      <li><span data-lang="vi"><strong>Giảm số lượng layer thừa:</strong> bản vẽ quá nhiều layer làm bảng Layer rối và khó quản lý.</span><span data-lang="en"><strong>Reducing the layer count:</strong> too many layers clutter the Layer palette and make management harder.</span></li>
+      <li><span lang="vi" data-lang="vi"><strong>Chuẩn hóa bản vẽ nhận từ nơi khác:</strong> gộp các layer tên khác nhau nhưng cùng chức năng vào layer theo tiêu chuẩn của công ty.</span><span lang="en" data-lang="en"><strong>Standardizing drawings from elsewhere:</strong> merge layers with different names but the same purpose into your company-standard layer.</span></li>
+      <li><span lang="vi" data-lang="vi"><strong>Dọn layer sau khi Bind Xref:</strong> khi Bind (chế độ mặc định), layer của Xref có thể thành dạng tên có ký hiệu <code>$0$</code>, ví dụ <code>TenXref$0$WALL</code>. Gộp chúng vào layer chuẩn sẽ gọn hơn nhiều.</span><span lang="en" data-lang="en"><strong>Cleaning up after binding an Xref:</strong> when you Bind (the default mode), Xref layers can become names containing <code>$0$</code>, such as <code>XrefName$0$WALL</code>. Merging them into a standard layer is much tidier.</span></li>
+      <li><span lang="vi" data-lang="vi"><strong>Giảm số lượng layer thừa:</strong> bản vẽ quá nhiều layer làm bảng Layer rối và khó quản lý.</span><span lang="en" data-lang="en"><strong>Reducing the layer count:</strong> too many layers clutter the Layer palette and make management harder.</span></li>
     </ul>
 
-    <h2 data-lang="vi">Những lưu ý quan trọng</h2>
-    <h2 data-lang="en">Important cautions</h2>
+    <h2 lang="vi" data-lang="vi">Những lưu ý quan trọng</h2>
+    <h2 lang="en" data-lang="en">Important cautions</h2>
 
     <ul>
-      <li><span data-lang="vi"><strong>Màu và linetype ByLayer sẽ đổi:</strong> đối tượng đặt ở ByLayer sẽ lấy thuộc tính của layer đích, nên hình dạng hiển thị và in có thể thay đổi. Hãy kiểm tra lại sau khi gộp.</span><span data-lang="en"><strong>ByLayer color and linetype will change:</strong> objects set to ByLayer take the target layer's properties, so the on-screen and plotted look may change. Check the result after merging.</span></li>
-      <li><span data-lang="vi"><strong>Layer 0 và Defpoints:</strong> hai layer đặc biệt này không thể bị xóa nên thường không dùng làm layer nguồn.</span><span data-lang="en"><strong>Layer 0 and Defpoints:</strong> these special layers cannot be deleted, so they are generally not used as source layers.</span></li>
-      <li><span data-lang="vi"><strong>Layer của Xref (dạng <code>Xref|Layer</code>)</strong> thuộc file tham chiếu nên không gộp trực tiếp được; hãy sửa trong file gốc hoặc Bind trước.</span><span data-lang="en"><strong>Xref layers (the <code>Xref|Layer</code> form)</strong> belong to the referenced file and cannot be merged directly; fix them in the source file or Bind first.</span></li>
-      <li><span data-lang="vi"><strong>Không phải lúc nào cũng quay lại được:</strong> dù thường dùng được <code>U</code> hoặc Ctrl+Z, hãy lưu bản sao bản vẽ trước khi gộp số lượng lớn.</span><span data-lang="en"><strong>Undo is not always enough:</strong> although <code>U</code> or Ctrl+Z usually works, save a copy of the drawing before a large merge.</span></li>
+      <li><span lang="vi" data-lang="vi"><strong>Màu và linetype ByLayer sẽ đổi:</strong> đối tượng đặt ở ByLayer sẽ lấy thuộc tính của layer đích, nên hình dạng hiển thị và in có thể thay đổi. Hãy kiểm tra lại sau khi gộp.</span><span lang="en" data-lang="en"><strong>ByLayer color and linetype will change:</strong> objects set to ByLayer take the target layer's properties, so the on-screen and plotted look may change. Check the result after merging.</span></li>
+      <li><span lang="vi" data-lang="vi"><strong>Layer 0 và Defpoints:</strong> hai layer đặc biệt này không thể bị xóa nên thường không dùng làm layer nguồn.</span><span lang="en" data-lang="en"><strong>Layer 0 and Defpoints:</strong> these special layers cannot be deleted, so they are generally not used as source layers.</span></li>
+      <li><span lang="vi" data-lang="vi"><strong>Layer của Xref (dạng <code>Xref|Layer</code>)</strong> thuộc file tham chiếu nên không gộp trực tiếp được; hãy sửa trong file gốc hoặc Bind trước.</span><span lang="en" data-lang="en"><strong>Xref layers (the <code>Xref|Layer</code> form)</strong> belong to the referenced file and cannot be merged directly; fix them in the source file or Bind first.</span></li>
+      <li><span lang="vi" data-lang="vi"><strong>Không phải lúc nào cũng quay lại được:</strong> dù thường dùng được <code>U</code> hoặc Ctrl+Z, hãy lưu bản sao bản vẽ trước khi gộp số lượng lớn.</span><span lang="en" data-lang="en"><strong>Undo is not always enough:</strong> although <code>U</code> or Ctrl+Z usually works, save a copy of the drawing before a large merge.</span></li>
     </ul>
 
-    <h2 data-lang="vi">So với PURGE và LAYDEL</h2>
-    <h2 data-lang="en">Compared with PURGE and LAYDEL</h2>
+    <h2 lang="vi" data-lang="vi">So với PURGE và LAYDEL</h2>
+    <h2 lang="en" data-lang="en">Compared with PURGE and LAYDEL</h2>
 
     <ul>
-      <li><span data-lang="vi"><code>PURGE</code> chỉ xóa layer <em>không có đối tượng</em>. Layer đang có đối tượng thì PURGE không xóa được.</span><span data-lang="en"><code>PURGE</code> only removes layers that <em>have no objects</em>. A layer that still holds objects cannot be purged.</span></li>
-      <li><span data-lang="vi"><code>LAYDEL</code> xóa layer <em>kèm toàn bộ đối tượng trên đó</em>: dùng khi bạn muốn bỏ hẳn dữ liệu.</span><span data-lang="en"><code>LAYDEL</code> deletes a layer <em>together with all objects on it</em>: use it when you want the data gone.</span></li>
-      <li><span data-lang="vi"><code>LAYMRG</code> <em>giữ</em> đối tượng và chuyển sang layer khác: dùng khi bạn muốn gom lại chứ không xóa dữ liệu.</span><span data-lang="en"><code>LAYMRG</code> <em>keeps</em> the objects and moves them to another layer: use it when you want to consolidate without losing data.</span></li>
+      <li><span lang="vi" data-lang="vi"><code>PURGE</code> chỉ xóa layer <em>không có đối tượng</em>. Layer đang có đối tượng thì PURGE không xóa được.</span><span lang="en" data-lang="en"><code>PURGE</code> only removes layers that <em>have no objects</em>. A layer that still holds objects cannot be purged.</span></li>
+      <li><span lang="vi" data-lang="vi"><code>LAYDEL</code> xóa layer <em>kèm toàn bộ đối tượng trên đó</em>: dùng khi bạn muốn bỏ hẳn dữ liệu.</span><span lang="en" data-lang="en"><code>LAYDEL</code> deletes a layer <em>together with all objects on it</em>: use it when you want the data gone.</span></li>
+      <li><span lang="vi" data-lang="vi"><code>LAYMRG</code> <em>giữ</em> đối tượng và chuyển sang layer khác: dùng khi bạn muốn gom lại chứ không xóa dữ liệu.</span><span lang="en" data-lang="en"><code>LAYMRG</code> <em>keeps</em> the objects and moves them to another layer: use it when you want to consolidate without losing data.</span></li>
     </ul>
 
-    <p data-lang="vi">Xem thêm quy trình dọn bản vẽ đầy đủ ở bài <a href="/autocad/chiase/giam-dung-luong-file-dwg-autocad.html">giảm dung lượng file DWG</a> và so sánh các lệnh layer ở bài <a href="/autocad/chiase/phan-biet-layiso-layoff-layfrz-laylck-autocad.html">phân biệt LAYISO, LAYOFF, LAYFRZ, LAYLCK, LAYWALK</a>.</p>
-    <p data-lang="en">For the full cleanup routine see the guide to <a href="/autocad/chiase/giam-dung-luong-file-dwg-autocad.html">reducing DWG size</a>, and for a comparison of layer commands see <a href="/autocad/chiase/phan-biet-layiso-layoff-layfrz-laylck-autocad.html">LAYISO vs LAYOFF, LAYFRZ, LAYLCK and LAYWALK</a>.</p>
+    <p lang="vi" data-lang="vi">Xem thêm quy trình dọn bản vẽ đầy đủ ở bài <a href="/autocad/chiase/giam-dung-luong-file-dwg-autocad.html">giảm dung lượng file DWG</a> và so sánh các lệnh layer ở bài <a href="/autocad/chiase/phan-biet-layiso-layoff-layfrz-laylck-autocad.html">phân biệt LAYISO, LAYOFF, LAYFRZ, LAYLCK, LAYWALK</a>.</p>
+    <p lang="en" data-lang="en">For the full cleanup routine see the guide to <a href="/autocad/chiase/giam-dung-luong-file-dwg-autocad.html">reducing DWG size</a>, and for a comparison of layer commands see <a href="/autocad/chiase/phan-biet-layiso-layoff-layfrz-laylck-autocad.html">LAYISO vs LAYOFF, LAYFRZ, LAYLCK and LAYWALK</a>.</p>
 
     <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--border-color);">
     <p style="text-align: center; font-style: italic; color: var(--text-muted); margin-bottom: 0;">
-      <span data-lang="vi">Tài liệu được nghiên cứu và tổng hợp bởi đội ngũ kỹ thuật <a href="https://ividlab.com/">iViDLab.com</a>.</span>
-      <span data-lang="en">Document researched and compiled by the <a href="https://ividlab.com/">iViDLab.com</a> technical team.</span>
+      <span lang="vi" data-lang="vi">Tài liệu được nghiên cứu và tổng hợp bởi đội ngũ kỹ thuật <a href="https://ividlab.com/">iViDLab.com</a>.</span>
+      <span lang="en" data-lang="en">Document researched and compiled by the <a href="https://ividlab.com/">iViDLab.com</a> technical team.</span>
     </p>
   </div>
   <div class="related-container">
-    <h2 data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
-    <h2 data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">You might also be interested in</h2>
+    <h2 lang="vi" data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
+    <h2 lang="en" data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">You might also be interested in</h2>
     <div class="related-grid">
       <a class="related-card" href="/autocad/chiase/huong-dan-lenh-laywalk-autocad.html">
         <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Hướng Dẫn Lệnh LAYWALK Trong AutoCAD: Duyệt Từng Layer Để Kiểm Tra Bản Vẽ</span><span data-lang="en">LAYWALK in AutoCAD: Walk Through Layers to Audit a Drawing</span></h3>
+        <h3><span lang="vi" data-lang="vi">Hướng Dẫn Lệnh LAYWALK Trong AutoCAD: Duyệt Từng Layer Để Kiểm Tra Bản Vẽ</span><span lang="en" data-lang="en">LAYWALK in AutoCAD: Walk Through Layers to Audit a Drawing</span></h3>
       </a>
       <a class="related-card" href="/autocad/chiase/phan-biet-layiso-layoff-layfrz-laylck-autocad.html">
         <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Phân Biệt LAYISO, LAYOFF, LAYFRZ, LAYLCK, LAYWALK Trong AutoCAD: Khi Nào Dùng Lệnh Nào?</span><span data-lang="en">LAYISO vs LAYOFF, LAYFRZ, LAYLCK and LAYWALK in AutoCAD: Which One to Use?</span></h3>
+        <h3><span lang="vi" data-lang="vi">Phân Biệt LAYISO, LAYOFF, LAYFRZ, LAYLCK, LAYWALK Trong AutoCAD: Khi Nào Dùng Lệnh Nào?</span><span lang="en" data-lang="en">LAYISO vs LAYOFF, LAYFRZ, LAYLCK and LAYWALK in AutoCAD: Which One to Use?</span></h3>
       </a>
       <a class="related-card" href="/autocad/chiase/giam-dung-luong-file-dwg-autocad.html">
         <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Cách Giảm Dung Lượng File DWG Nặng Và Làm AutoCAD Chạy Nhanh Hơn</span><span data-lang="en">How to Reduce a Heavy DWG File Size and Speed Up AutoCAD</span></h3>
+        <h3><span lang="vi" data-lang="vi">Cách Giảm Dung Lượng File DWG Nặng Và Làm AutoCAD Chạy Nhanh Hơn</span><span lang="en" data-lang="en">How to Reduce a Heavy DWG File Size and Speed Up AutoCAD</span></h3>
       </a>
     </div>
   </div>

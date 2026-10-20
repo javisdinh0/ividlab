@@ -33,7 +33,7 @@
       "en": "Release"
     },
     "date": "2026-09-21",
-    "cover": "/tekla/peb-member/img/v1323-settings-plate-profile.png"
+    "cover": "/tekla/peb-member/img/v1323-settings-plate-profile.webp"
   },
   {
     "id": "cu-phap-tiet-dien-peb-member",
@@ -51,7 +51,7 @@
       "en": "Guide"
     },
     "date": "2026-09-21",
-    "cover": "/tekla/peb-member/img/profile-03-multi.png"
+    "cover": "/tekla/peb-member/img/profile-03-multi.webp"
   },
   {
     "id": "huong-dan-settings-peb-member",
@@ -69,7 +69,7 @@
       "en": "Guide"
     },
     "date": "2026-09-21",
-    "cover": "/tekla/peb-member/img/11-cai-dat-dat-ten.jpg"
+    "cover": "/tekla/peb-member/img/11-cai-dat-dat-ten.webp"
   },
   {
     "id": "gioi-thieu-peb-member",
@@ -87,7 +87,7 @@
       "en": "Overview"
     },
     "date": "2026-09-19",
-    "cover": "/tekla/peb-member/img/01-tong-quan.png",
+    "cover": "/tekla/peb-member/img/01-tong-quan.webp",
     "featured": true
   }
 ]

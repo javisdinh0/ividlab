@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234924381658348" crossorigin="anonymous"></script>
-  <script type="module" src="/traffic-track.js"></script>
+  <script type="module" src="/traffic-track.js?v=0f69739aed"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hướng Dẫn APPLOAD & Startup Suite Tải Lisp Tự Động - iViDLab</title>
   <meta name="description" content="Cách dùng lệnh APPLOAD tải file .lsp, .fas, .vlx vào AutoCAD và thiết lập Startup Suite để tự động nạp Lisp mỗi khi mở phần mềm." />
@@ -137,6 +137,7 @@
     body.lang-en span[data-lang="vi"], body.lang-en strong[data-lang="vi"], body.lang-en em[data-lang="vi"], body.lang-en a[data-lang="vi"], body.lang-en figcaption[data-lang="vi"] { display: none !important; }
     body.lang-en span[data-lang="en"], body.lang-en strong[data-lang="en"], body.lang-en em[data-lang="en"], body.lang-en a[data-lang="en"], body.lang-en figcaption[data-lang="en"] { display: inline !important; }
   </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"iViDLab","item":"https://ividlab.com/"},{"@type":"ListItem","position":2,"name":"Hướng dẫn & Chia sẻ","item":"https://ividlab.com/guides/"},{"@type":"ListItem","position":3,"name":"Hướng Dẫn APPLOAD & Startup Suite Tải Lisp Tự Động","item":"https://ividlab.com/autocad/chiase/huong-dan-appload-lisp-autocad.html"}]}</script>
 </head>
 <body>
   
@@ -148,20 +149,20 @@
         </span>
       </a>
       <nav style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
-        <a href="/?tab=all" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); transition: color 0.2s ease;">
-          <span data-lang="vi">// TRANG CHỦ</span><span data-lang="en" >// HOME</span>
+        <a href="/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); transition: color 0.2s ease;">
+          <span lang="vi" data-lang="vi">// TRANG CHỦ</span><span lang="en" data-lang="en" >// HOME</span>
         </a>
-        <a href="/?tab=tools" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// CÔNG CỤ</span><span data-lang="en" >// TOOLS</span>
+        <a href="/tools/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span lang="vi" data-lang="vi">// CÔNG CỤ</span><span lang="en" data-lang="en" >// TOOLS</span>
         </a>
-        <a href="/?tab=guides" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span data-lang="en" >// GUIDES</span>
+        <a href="/guides/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span lang="vi" data-lang="vi">// HƯỚNG DẪN & CHIA SẺ</span><span lang="en" data-lang="en" >// GUIDES</span>
         </a>
-        <a href="/?tab=tekla-component" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+        <a href="/tekla-component/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
           // TEKLA APP &amp; COMPONENT
         </a>
-        <a href="/?tab=about" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
-          <span data-lang="vi">// GIỚI THIỆU</span><span data-lang="en" >// ABOUT</span>
+        <a href="/about/" style="text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease;">
+          <span lang="vi" data-lang="vi">// GIỚI THIỆU</span><span lang="en" data-lang="en" >// ABOUT</span>
         </a>
       </nav>
       <div style="display: flex; align-items: center; gap: 10px;">
@@ -175,143 +176,143 @@
     </div>
   </header>
   <div class="article-container">
-    <span class="badge" data-lang="vi">Hướng Dẫn Kỹ Thuật CAD</span>
-    <span class="badge" data-lang="en">CAD Technical Guide</span>
+    <span class="badge" lang="vi" data-lang="vi">Hướng Dẫn Kỹ Thuật CAD</span>
+    <span class="badge" lang="en" data-lang="en">CAD Technical Guide</span>
     
-    <h1 data-lang="vi">Hướng Dẫn APPLOAD & Startup Suite Tải Lisp Tự Động Vào AutoCAD</h1>
-    <h1 data-lang="en">Guide to APPLOAD & Startup Suite for Automatic Lisp Loading in AutoCAD</h1>
+    <h1 lang="vi" data-lang="vi">Hướng Dẫn APPLOAD & Startup Suite Tải Lisp Tự Động Vào AutoCAD</h1>
+    <h1 lang="en" data-lang="en">Guide to APPLOAD & Startup Suite for Automatic Lisp Loading in AutoCAD</h1>
 
-    <p data-lang="vi">Khi sử dụng AutoCAD trong thiết kế và xây dựng, việc sử dụng AutoLISP (hoặc các tiện ích ObjectARX, VBA) là bí quyết cốt lõi để nâng cao năng suất vẽ và tự động hóa thao tác. Để các tệp tin này hoạt động, bạn cần phải nạp chúng vào bộ nhớ của AutoCAD thông qua lệnh <strong>APPLOAD</strong> (hoặc gõ tắt là <strong>AP</strong>).</p>
-    <p data-lang="en">When using AutoCAD in design and construction, utilizing AutoLISP (or ObjectARX, VBA utilities) is the core secret to enhancing drawing productivity and automating operations. For these files to work, you need to load them into AutoCAD's memory via the <strong>APPLOAD</strong> command (or its shortcut <strong>AP</strong>).</p>
+    <p lang="vi" data-lang="vi">Khi sử dụng AutoCAD trong thiết kế và xây dựng, việc sử dụng AutoLISP (hoặc các tiện ích ObjectARX, VBA) là bí quyết cốt lõi để nâng cao năng suất vẽ và tự động hóa thao tác. Để các tệp tin này hoạt động, bạn cần phải nạp chúng vào bộ nhớ của AutoCAD thông qua lệnh <strong>APPLOAD</strong> (hoặc gõ tắt là <strong>AP</strong>).</p>
+    <p lang="en" data-lang="en">When using AutoCAD in design and construction, utilizing AutoLISP (or ObjectARX, VBA utilities) is the core secret to enhancing drawing productivity and automating operations. For these files to work, you need to load them into AutoCAD's memory via the <strong>APPLOAD</strong> command (or its shortcut <strong>AP</strong>).</p>
 
-    <p data-lang="vi">Bài viết này sẽ hướng dẫn bạn hai phương pháp: <em>Tải tạm thời cho phiên làm việc hiện tại</em> và <em>Thiết lập Startup Suite (Add Contents)</em> để Lisp tự động chạy mãi mãi mỗi lần mở AutoCAD mà không phải load lại hằng ngày.</p>
-    <p data-lang="en">This article will guide you through two methods: <em>Temporary loading for the current session</em> and <em>Setting up Startup Suite (Add Contents)</em> to make Lisp run automatically forever every time you open AutoCAD without reloading it daily.</p>
+    <p lang="vi" data-lang="vi">Bài viết này sẽ hướng dẫn bạn hai phương pháp: <em>Tải tạm thời cho phiên làm việc hiện tại</em> và <em>Thiết lập Startup Suite (Add Contents)</em> để Lisp tự động chạy mãi mãi mỗi lần mở AutoCAD mà không phải load lại hằng ngày.</p>
+    <p lang="en" data-lang="en">This article will guide you through two methods: <em>Temporary loading for the current session</em> and <em>Setting up Startup Suite (Add Contents)</em> to make Lisp run automatically forever every time you open AutoCAD without reloading it daily.</p>
 
-    <h2 data-lang="vi">&#128194; Phương Pháp 1: Nạp Lisp Cho Phiên Làm Việc Hiện Tại</h2>
-    <h2 data-lang="en">&#128194; Method 1: Loading Lisp for the Current Session</h2>
+    <h2 lang="vi" data-lang="vi">&#128194; Phương Pháp 1: Nạp Lisp Cho Phiên Làm Việc Hiện Tại</h2>
+    <h2 lang="en" data-lang="en">&#128194; Method 1: Loading Lisp for the Current Session</h2>
     
-    <p data-lang="vi">Phương pháp này phù hợp khi bạn muốn dùng thử một công cụ Lisp mới tải về hoặc chỉ có nhu cầu sử dụng tạm thời trong ngày:</p>
-    <p data-lang="en">This method is suitable when you want to try out a newly downloaded Lisp tool or only need to use it temporarily for the day:</p>
+    <p lang="vi" data-lang="vi">Phương pháp này phù hợp khi bạn muốn dùng thử một công cụ Lisp mới tải về hoặc chỉ có nhu cầu sử dụng tạm thời trong ngày:</p>
+    <p lang="en" data-lang="en">This method is suitable when you want to try out a newly downloaded Lisp tool or only need to use it temporarily for the day:</p>
     
     <ol>
       <li>
-        <span data-lang="vi">Trong màn hình làm việc AutoCAD, gõ lệnh <code>AP</code> (hoặc <code>APPLOAD</code>) rồi nhấn <strong>Enter</strong> hoặc <strong>Space</strong>.</span>
-        <span data-lang="en">In the AutoCAD workspace, type the command <code>AP</code> (or <code>APPLOAD</code>) then press <strong>Enter</strong> or <strong>Space</strong>.</span>
+        <span lang="vi" data-lang="vi">Trong màn hình làm việc AutoCAD, gõ lệnh <code>AP</code> (hoặc <code>APPLOAD</code>) rồi nhấn <strong>Enter</strong> hoặc <strong>Space</strong>.</span>
+        <span lang="en" data-lang="en">In the AutoCAD workspace, type the command <code>AP</code> (or <code>APPLOAD</code>) then press <strong>Enter</strong> or <strong>Space</strong>.</span>
       </li>
       <li>
-        <span data-lang="vi">Hộp thoại <strong>Load/Unload Applications</strong> xuất hiện. Tại khung duyệt file phía trên, bạn tìm đến thư mục chứa file cần nạp (hỗ trợ các đuôi <code>.lsp</code>, <code>.fas</code>, <code>.vlx</code>, <code>.arx</code>, <code>.crx</code>, <code>.dvb</code>...).</span>
-        <span data-lang="en">The <strong>Load/Unload Applications</strong> dialog box appears. In the file browsing frame above, navigate to the folder containing the file to be loaded (supports extensions <code>.lsp</code>, <code>.fas</code>, <code>.vlx</code>, <code>.arx</code>, <code>.crx</code>, <code>.dvb</code>...).</span>
+        <span lang="vi" data-lang="vi">Hộp thoại <strong>Load/Unload Applications</strong> xuất hiện. Tại khung duyệt file phía trên, bạn tìm đến thư mục chứa file cần nạp (hỗ trợ các đuôi <code>.lsp</code>, <code>.fas</code>, <code>.vlx</code>, <code>.arx</code>, <code>.crx</code>, <code>.dvb</code>...).</span>
+        <span lang="en" data-lang="en">The <strong>Load/Unload Applications</strong> dialog box appears. In the file browsing frame above, navigate to the folder containing the file to be loaded (supports extensions <code>.lsp</code>, <code>.fas</code>, <code>.vlx</code>, <code>.arx</code>, <code>.crx</code>, <code>.dvb</code>...).</span>
       </li>
       <li>
-        <span data-lang="vi">Chọn file (ví dụ <code>DrawPurlin.lsp</code>) và bấm nút <strong>Load</strong> ở giữa hộp thoại.</span>
-        <span data-lang="en">Select the file (e.g., <code>DrawPurlin.lsp</code>) and click the <strong>Load</strong> button in the middle of the dialog.</span>
+        <span lang="vi" data-lang="vi">Chọn file (ví dụ <code>DrawPurlin.lsp</code>) và bấm nút <strong>Load</strong> ở giữa hộp thoại.</span>
+        <span lang="en" data-lang="en">Select the file (e.g., <code>DrawPurlin.lsp</code>) and click the <strong>Load</strong> button in the middle of the dialog.</span>
       </li>
       <li>
-        <span data-lang="vi">Quan sát góc dưới bên trái của hộp thoại. Nếu thấy dòng thông báo <em>"DrawPurlin.lsp successfully loaded."</em> nghĩa là bạn đã nạp thành công!</span>
-        <span data-lang="en">Observe the bottom left corner of the dialog. If you see the message <em>"DrawPurlin.lsp successfully loaded."</em>, it means you have loaded it successfully!</span>
+        <span lang="vi" data-lang="vi">Quan sát góc dưới bên trái của hộp thoại. Nếu thấy dòng thông báo <em>"DrawPurlin.lsp successfully loaded."</em> nghĩa là bạn đã nạp thành công!</span>
+        <span lang="en" data-lang="en">Observe the bottom left corner of the dialog. If you see the message <em>"DrawPurlin.lsp successfully loaded."</em>, it means you have loaded it successfully!</span>
       </li>
       <li>
-        <span data-lang="vi">Bấm <strong>Close</strong> để đóng hộp thoại và bắt đầu gõ lệnh Lisp (ví dụ <code>VEXAGO</code>) để sử dụng ngay.</span>
-        <span data-lang="en">Click <strong>Close</strong> to close the dialog and start typing the Lisp command (e.g., <code>VEXAGO</code>) to use immediately.</span>
+        <span lang="vi" data-lang="vi">Bấm <strong>Close</strong> để đóng hộp thoại và bắt đầu gõ lệnh Lisp (ví dụ <code>VEXAGO</code>) để sử dụng ngay.</span>
+        <span lang="en" data-lang="en">Click <strong>Close</strong> to close the dialog and start typing the Lisp command (e.g., <code>VEXAGO</code>) to use immediately.</span>
       </li>
     </ol>
 
     <div class="tip-box">
-      <strong data-lang="vi">&#128161; Mẹo nhanh: Kéo và thả trực tiếp (Drag & Drop)</strong>
-      <strong data-lang="en">&#128161; Quick Tip: Drag & Drop directly</strong>
-      <p data-lang="vi">Cách nạp siêu nhanh mà các kỹ sư thành thạo thường dùng là Mở thư mục Windows Explorer chứa file Lisp bên cạnh màn hình CAD, sau đó <strong>nhấp giữ chuột vào file Lisp, kéo thẳng và thả vào vùng không gian vẽ (Drawing Area)</strong> của AutoCAD. Lisp sẽ lập tức được nạp mà không cần bật hộp thoại AP!</p>
-      <p data-lang="en">An ultra-fast loading method often used by proficient engineers is to open the Windows Explorer folder containing the Lisp file next to the CAD screen, then <strong>click and hold the Lisp file, drag it straight and drop it into the drawing area</strong> of AutoCAD. The Lisp will immediately be loaded without opening the AP dialog!</p>
+      <strong lang="vi" data-lang="vi">&#128161; Mẹo nhanh: Kéo và thả trực tiếp (Drag & Drop)</strong>
+      <strong lang="en" data-lang="en">&#128161; Quick Tip: Drag & Drop directly</strong>
+      <p lang="vi" data-lang="vi">Cách nạp siêu nhanh mà các kỹ sư thành thạo thường dùng là Mở thư mục Windows Explorer chứa file Lisp bên cạnh màn hình CAD, sau đó <strong>nhấp giữ chuột vào file Lisp, kéo thẳng và thả vào vùng không gian vẽ (Drawing Area)</strong> của AutoCAD. Lisp sẽ lập tức được nạp mà không cần bật hộp thoại AP!</p>
+      <p lang="en" data-lang="en">An ultra-fast loading method often used by proficient engineers is to open the Windows Explorer folder containing the Lisp file next to the CAD screen, then <strong>click and hold the Lisp file, drag it straight and drop it into the drawing area</strong> of AutoCAD. The Lisp will immediately be loaded without opening the AP dialog!</p>
     </div>
 
-    <h2 data-lang="vi">&#128640; Phương Pháp 2: Thiết Lập Startup Suite (Tự Động Nạp Khi Mở CAD)</h2>
-    <h2 data-lang="en">&#128640; Method 2: Setting up Startup Suite (Auto Load on CAD Start)</h2>
+    <h2 lang="vi" data-lang="vi">&#128640; Phương Pháp 2: Thiết Lập Startup Suite (Tự Động Nạp Khi Mở CAD)</h2>
+    <h2 lang="en" data-lang="en">&#128640; Method 2: Setting up Startup Suite (Auto Load on CAD Start)</h2>
     
-    <p data-lang="vi">Nếu bạn có những tiện ích AutoLISP thường xuyên sử dụng hàng ngày trong công việc, việc thao tác gõ lệnh AP và tải file thủ công mỗi lần khởi động AutoCAD sẽ bất tiện và tốn thời gian. Bạn có thể tận dụng tính năng <strong>Startup Suite</strong> để tự động hóa quá trình này:</p>
-    <p data-lang="en">If you have AutoLISP utilities frequently used daily in your work, manually typing the AP command and loading files each time you start AutoCAD will be inconvenient and time-consuming. You can utilize the <strong>Startup Suite</strong> feature to automate this process:</p>
+    <p lang="vi" data-lang="vi">Nếu bạn có những tiện ích AutoLISP thường xuyên sử dụng hàng ngày trong công việc, việc thao tác gõ lệnh AP và tải file thủ công mỗi lần khởi động AutoCAD sẽ bất tiện và tốn thời gian. Bạn có thể tận dụng tính năng <strong>Startup Suite</strong> để tự động hóa quá trình này:</p>
+    <p lang="en" data-lang="en">If you have AutoLISP utilities frequently used daily in your work, manually typing the AP command and loading files each time you start AutoCAD will be inconvenient and time-consuming. You can utilize the <strong>Startup Suite</strong> feature to automate this process:</p>
 
     <ol>
       <li>
-        <span data-lang="vi">Gõ lệnh <code>AP</code> (hoặc <code>APPLOAD</code>) và nhấn Space để mở hộp thoại <strong>Load/Unload Applications</strong>.</span>
-        <span data-lang="en">Type the <code>AP</code> (or <code>APPLOAD</code>) command and press Space to open the <strong>Load/Unload Applications</strong> dialog box.</span>
+        <span lang="vi" data-lang="vi">Gõ lệnh <code>AP</code> (hoặc <code>APPLOAD</code>) và nhấn Space để mở hộp thoại <strong>Load/Unload Applications</strong>.</span>
+        <span lang="en" data-lang="en">Type the <code>AP</code> (or <code>APPLOAD</code>) command and press Space to open the <strong>Load/Unload Applications</strong> dialog box.</span>
       </li>
       <li>
-        <span data-lang="vi">Quan sát mục <strong>Startup Suite</strong> ở góc bên dưới bên phải hộp thoại. Bấm vào nút <strong>Contents...</strong> ngay bên cạnh.</span>
-        <span data-lang="en">Observe the <strong>Startup Suite</strong> section in the lower right corner of the dialog. Click the <strong>Contents...</strong> button right next to it.</span>
+        <span lang="vi" data-lang="vi">Quan sát mục <strong>Startup Suite</strong> ở góc bên dưới bên phải hộp thoại. Bấm vào nút <strong>Contents...</strong> ngay bên cạnh.</span>
+        <span lang="en" data-lang="en">Observe the <strong>Startup Suite</strong> section in the lower right corner of the dialog. Click the <strong>Contents...</strong> button right next to it.</span>
       </li>
       <li>
-        <span data-lang="vi">Hộp thoại <em>Startup Suite</em> xuất hiện, hiển thị danh sách các tiện ích đã được đăng ký nạp tự động. Bạn tiếp tục bấm nút <strong>Add...</strong> ở góc dưới.</span>
-        <span data-lang="en">The <em>Startup Suite</em> dialog box appears, displaying the list of utilities registered for automatic loading. Continue by clicking the <strong>Add...</strong> button at the bottom.</span>
+        <span lang="vi" data-lang="vi">Hộp thoại <em>Startup Suite</em> xuất hiện, hiển thị danh sách các tiện ích đã được đăng ký nạp tự động. Bạn tiếp tục bấm nút <strong>Add...</strong> ở góc dưới.</span>
+        <span lang="en" data-lang="en">The <em>Startup Suite</em> dialog box appears, displaying the list of utilities registered for automatic loading. Continue by clicking the <strong>Add...</strong> button at the bottom.</span>
       </li>
       <li>
-        <span data-lang="vi">Duyệt tìm trên ổ đĩa, chọn các file <code>.lsp</code>, <code>.fas</code> hoặc <code>.vlx</code> cần nạp rồi bấm <strong>Open</strong>.</span>
-        <span data-lang="en">Browse on your drive, select the <code>.lsp</code>, <code>.fas</code>, or <code>.vlx</code> files to load and click <strong>Open</strong>.</span>
+        <span lang="vi" data-lang="vi">Duyệt tìm trên ổ đĩa, chọn các file <code>.lsp</code>, <code>.fas</code> hoặc <code>.vlx</code> cần nạp rồi bấm <strong>Open</strong>.</span>
+        <span lang="en" data-lang="en">Browse on your drive, select the <code>.lsp</code>, <code>.fas</code>, or <code>.vlx</code> files to load and click <strong>Open</strong>.</span>
       </li>
       <li>
-        <span data-lang="vi">Tệp tin sẽ xuất hiện trong danh sách Startup Suite. Bạn bấm <strong>Close</strong> để chốt cài đặt, sau đó đóng hộp thoại APPLOAD.</span>
-        <span data-lang="en">The files will appear in the Startup Suite list. Click <strong>Close</strong> to confirm the settings, then close the APPLOAD dialog.</span>
+        <span lang="vi" data-lang="vi">Tệp tin sẽ xuất hiện trong danh sách Startup Suite. Bạn bấm <strong>Close</strong> để chốt cài đặt, sau đó đóng hộp thoại APPLOAD.</span>
+        <span lang="en" data-lang="en">The files will appear in the Startup Suite list. Click <strong>Close</strong> to confirm the settings, then close the APPLOAD dialog.</span>
       </li>
     </ol>
     
     <p>
-      <strong data-lang="vi">&#10024; Kết quả:</strong>
-      <strong data-lang="en">&#10024; Result:</strong> 
-      <span data-lang="vi">Từ thời điểm này, mỗi khi bạn khởi động AutoCAD hoặc tạo bản vẽ mới, phần mềm sẽ ngầm tải sẵn các công cụ trong danh sách này vào bộ nhớ. Bạn có thể sử dụng ngay lập tức các phím tắt của Lisp mà không cần tải lại thủ công!</span>
-      <span data-lang="en">From this point on, whenever you start AutoCAD or create a new drawing, the software will silently preload the tools in this list into memory. You can immediately use the Lisp shortcuts without reloading manually!</span>
+      <strong lang="vi" data-lang="vi">&#10024; Kết quả:</strong>
+      <strong lang="en" data-lang="en">&#10024; Result:</strong> 
+      <span lang="vi" data-lang="vi">Từ thời điểm này, mỗi khi bạn khởi động AutoCAD hoặc tạo bản vẽ mới, phần mềm sẽ ngầm tải sẵn các công cụ trong danh sách này vào bộ nhớ. Bạn có thể sử dụng ngay lập tức các phím tắt của Lisp mà không cần tải lại thủ công!</span>
+      <span lang="en" data-lang="en">From this point on, whenever you start AutoCAD or create a new drawing, the software will silently preload the tools in this list into memory. You can immediately use the Lisp shortcuts without reloading manually!</span>
     </p>
 
-    <h2 data-lang="vi">&#9888;&#65039; Các Lưu Ý Khi Thiết Lập Startup Suite</h2>
-    <h2 data-lang="en">&#9888;&#65039; Notes When Setting Up Startup Suite</h2>
+    <h2 lang="vi" data-lang="vi">&#9888;&#65039; Các Lưu Ý Khi Thiết Lập Startup Suite</h2>
+    <h2 lang="en" data-lang="en">&#9888;&#65039; Notes When Setting Up Startup Suite</h2>
 
     <div class="warning-box">
-      <strong data-lang="vi">1. Không thay đổi vị trí lưu trữ file Lisp sau khi đã thêm vào danh sách</strong>
-      <strong data-lang="en">1. Do not change the Lisp file location after adding it to the list</strong>
-      <p data-lang="vi">Startup Suite ghi nhớ đường dẫn cố định (Absolute Path) tới file trên máy tính. Nếu sau khi cấu hình, bạn chuyển file sang thư mục khác, thay đổi ký tự ổ đĩa hoặc đổi tên tệp, AutoCAD sẽ báo lỗi <em>"Unable to load..."</em> ở lần mở CAD tiếp theo vì không còn tìm thấy file theo đường dẫn cũ.</p>
-      <p data-lang="en">Startup Suite remembers the absolute path to the file on the computer. If after configuring, you move the file to another folder, change the drive letter, or rename the file, AutoCAD will report an <em>"Unable to load..."</em> error the next time CAD opens because it can no longer find the file using the old path.</p>
+      <strong lang="vi" data-lang="vi">1. Không thay đổi vị trí lưu trữ file Lisp sau khi đã thêm vào danh sách</strong>
+      <strong lang="en" data-lang="en">1. Do not change the Lisp file location after adding it to the list</strong>
+      <p lang="vi" data-lang="vi">Startup Suite ghi nhớ đường dẫn cố định (Absolute Path) tới file trên máy tính. Nếu sau khi cấu hình, bạn chuyển file sang thư mục khác, thay đổi ký tự ổ đĩa hoặc đổi tên tệp, AutoCAD sẽ báo lỗi <em>"Unable to load..."</em> ở lần mở CAD tiếp theo vì không còn tìm thấy file theo đường dẫn cũ.</p>
+      <p lang="en" data-lang="en">Startup Suite remembers the absolute path to the file on the computer. If after configuring, you move the file to another folder, change the drive letter, or rename the file, AutoCAD will report an <em>"Unable to load..."</em> error the next time CAD opens because it can no longer find the file using the old path.</p>
     </div>
 
     <div class="warning-box">
-      <strong data-lang="vi">2. Lưu file ở vị trí cố định, không để khoảng trắng hay Tiếng Việt có dấu</strong>
-      <strong data-lang="en">2. Save files in a fixed location, avoid spaces or Vietnamese accents</strong>
-      <p data-lang="vi">Bạn nên lập một thư mục cố định trên đĩa cứng (ví dụ <code>D:\CAD_Tools\AutoLISP\</code> hoặc <code>C:\iViDLab_Tools\</code>) chuyên dụng để quản lý tiện ích. Tránh lưu tệp trong đĩa ảo, thư mục tạm Downloads hoặc các đường dẫn chứa ký tự Tiếng Việt có dấu hoặc ký tự đặc biệt, nhằm bảo đảm AutoCAD đọc và thực thi chuỗi đường dẫn mượt mà không xung đột mã phông chữ.</p>
-      <p data-lang="en">You should create a fixed folder on your hard drive (e.g., <code>D:\CAD_Tools\AutoLISP\</code> or <code>C:\iViDLab_Tools\</code>) dedicated to managing utilities. Avoid saving files in virtual drives, temporary Downloads folders, or paths containing Vietnamese accents or special characters to ensure AutoCAD reads and executes the path string smoothly without font encoding conflicts.</p>
+      <strong lang="vi" data-lang="vi">2. Lưu file ở vị trí cố định, không để khoảng trắng hay Tiếng Việt có dấu</strong>
+      <strong lang="en" data-lang="en">2. Save files in a fixed location, avoid spaces or Vietnamese accents</strong>
+      <p lang="vi" data-lang="vi">Bạn nên lập một thư mục cố định trên đĩa cứng (ví dụ <code>D:\CAD_Tools\AutoLISP\</code> hoặc <code>C:\iViDLab_Tools\</code>) chuyên dụng để quản lý tiện ích. Tránh lưu tệp trong đĩa ảo, thư mục tạm Downloads hoặc các đường dẫn chứa ký tự Tiếng Việt có dấu hoặc ký tự đặc biệt, nhằm bảo đảm AutoCAD đọc và thực thi chuỗi đường dẫn mượt mà không xung đột mã phông chữ.</p>
+      <p lang="en" data-lang="en">You should create a fixed folder on your hard drive (e.g., <code>D:\CAD_Tools\AutoLISP\</code> or <code>C:\iViDLab_Tools\</code>) dedicated to managing utilities. Avoid saving files in virtual drives, temporary Downloads folders, or paths containing Vietnamese accents or special characters to ensure AutoCAD reads and executes the path string smoothly without font encoding conflicts.</p>
     </div>
 
     <div class="warning-box">
-      <strong data-lang="vi">3. Chỉ đưa các tiện ích thiết yếu vào Startup Suite</strong>
-      <strong data-lang="en">3. Only add essential utilities to Startup Suite</strong>
-      <p data-lang="vi">Tránh thêm quá nhiều file công cụ không thường dùng (ví dụ hàng chục file Lisp rải rác) vào Startup Suite vì điều này có thể làm ảnh hưởng đến tốc độ khởi động của AutoCAD.</p>
-      <p data-lang="en">Avoid adding too many infrequently used tool files (e.g., dozens of scattered Lisp files) to Startup Suite as this can affect AutoCAD's startup speed.</p>
+      <strong lang="vi" data-lang="vi">3. Chỉ đưa các tiện ích thiết yếu vào Startup Suite</strong>
+      <strong lang="en" data-lang="en">3. Only add essential utilities to Startup Suite</strong>
+      <p lang="vi" data-lang="vi">Tránh thêm quá nhiều file công cụ không thường dùng (ví dụ hàng chục file Lisp rải rác) vào Startup Suite vì điều này có thể làm ảnh hưởng đến tốc độ khởi động của AutoCAD.</p>
+      <p lang="en" data-lang="en">Avoid adding too many infrequently used tool files (e.g., dozens of scattered Lisp files) to Startup Suite as this can affect AutoCAD's startup speed.</p>
     </div>
 
     <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--border-color);">
     <p style="text-align: center; font-style: italic; color: var(--text-muted); margin-bottom: 0;">
-      <span data-lang="vi">Tài liệu được tổng hợp và biên soạn bởi đội ngũ kỹ thuật <a href="https://ividlab.com/">iViDLab.com</a>.</span>
-      <span data-lang="en">Document compiled and edited by the <a href="https://ividlab.com/">iViDLab.com</a> technical team.</span>
+      <span lang="vi" data-lang="vi">Tài liệu được tổng hợp và biên soạn bởi đội ngũ kỹ thuật <a href="https://ividlab.com/">iViDLab.com</a>.</span>
+      <span lang="en" data-lang="en">Document compiled and edited by the <a href="https://ividlab.com/">iViDLab.com</a> technical team.</span>
     </p>
   </div>
   <div class="related-container">
-    <h2 data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
-    <h2 data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem; display:none;">You might also be interested in</h2>
+    <h2 lang="vi" data-lang="vi" style="margin-top:0; border-bottom: none; font-size: 1.8rem;">Có thể bạn quan tâm</h2>
+    <h2 lang="en" data-lang="en" style="margin-top:0; border-bottom: none; font-size: 1.8rem; display:none;">You might also be interested in</h2>
     <div class="related-grid">
       <a class="related-card" href="/autocad/autolisp/autolisp-merge-hatch-mh.html">
         <span class="badge">CAD Automation</span>
-        <h3><span data-lang="vi">Lisp Gộp Vùng Hatch (Merge Hatch - MH)</span><span data-lang="en" >Merge Hatch Lisp (MH)</span></h3>
+        <h3><span lang="vi" data-lang="vi">Lisp Gộp Vùng Hatch (Merge Hatch - MH)</span><span lang="en" data-lang="en" >Merge Hatch Lisp (MH)</span></h3>
       </a>
       <a class="related-card" href="/autocad/autolisp/autolisp-quick-block-bb.html">
         <span class="badge">CAD Automation</span>
-        <h3><span data-lang="vi">Lisp Tạo Block Nhanh (Quick Block - BB)</span><span data-lang="en" >Quick Block Lisp (BB)</span></h3>
+        <h3><span lang="vi" data-lang="vi">Lisp Tạo Block Nhanh (Quick Block - BB)</span><span lang="en" data-lang="en" >Quick Block Lisp (BB)</span></h3>
       </a>
       <a class="related-card" href="/autocad/autolisp/autolisp-layiso-layer-manager.html">
         <span class="badge">CAD Automation</span>
-        <h3><span data-lang="vi">Bộ 10 Phím Tắt Quản Lý Layer (Layiso Suite)</span><span data-lang="en" >Layiso Layer Management Suite</span></h3>
+        <h3><span lang="vi" data-lang="vi">Bộ 10 Phím Tắt Quản Lý Layer (Layiso Suite)</span><span lang="en" data-lang="en" >Layiso Layer Management Suite</span></h3>
       </a>
       <a class="related-card" href="/autocad/chiase/huong-dan-appload-lisp-autocad.html">
         <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Hướng Dẫn Nạp Lisp Bằng APPLOAD</span><span data-lang="en" >Guide to Load Lisp via APPLOAD</span></h3>
+        <h3><span lang="vi" data-lang="vi">Hướng Dẫn Nạp Lisp Bằng APPLOAD</span><span lang="en" data-lang="en" >Guide to Load Lisp via APPLOAD</span></h3>
       </a>
       <a class="related-card" href="/autocad/chiase/tuy-chinh-lenh-autolisp.html">
         <span class="badge">Knowledge Share</span>
-        <h3><span data-lang="vi">Cách Tùy Chỉnh Phím Tắt Lệnh AutoLISP</span><span data-lang="en" >How to Customize AutoLISP Commands</span></h3>
+        <h3><span lang="vi" data-lang="vi">Cách Tùy Chỉnh Phím Tắt Lệnh AutoLISP</span><span lang="en" data-lang="en" >How to Customize AutoLISP Commands</span></h3>
       </a>
     </div>
   </div>

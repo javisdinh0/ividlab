@@ -198,9 +198,12 @@
   /* ---------- Ảnh minh hoạ ---------- */
   const isLocalPreview = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
 
-  function openLightbox(src, alt) {
-    const box = h('div', { class: 'lightbox', role: 'dialog', 'aria-modal': 'true', 'aria-label': alt || 'Image' },
-      h('img', { src, alt: alt || '' }));
+  function openLightbox(src, alt, isVideo) {
+    const media = isVideo
+      ? h('video', { src, muted: '', loop: '', autoplay: '', playsinline: '', 'aria-label': alt || '' })
+      : h('img', { src, alt: alt || '' });
+    if (isVideo) media.muted = true; // thuộc tính muted qua setAttribute chưa đủ để autoplay
+    const box = h('div', { class: 'lightbox', role: 'dialog', 'aria-modal': 'true', 'aria-label': alt || 'Image' }, media);
     const onKey = (e) => { if (e.key === 'Escape') close(); };
     const close = () => {
       box.remove();
@@ -227,6 +230,29 @@
       if (img.complete && img.naturalWidth === 0) fail();
       else img.addEventListener('error', fail, { once: true });
       img.addEventListener('click', () => openLightbox(img.currentSrc || img.src, img.alt));
+    });
+
+    // Hình động (GIF đã đổi sang mp4 — scripts/optimize-media.cjs): chỉ tải/phát khi lọt vào màn hình,
+    // nên bản ngôn ngữ đang ẩn không tốn băng thông. Bật "giảm chuyển động" thì không tự phát, hiện nút điều khiển.
+    const videos = document.querySelectorAll('figure.media video[data-autoplay]');
+    const reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const io = !reduceMotion && 'IntersectionObserver' in window && new IntersectionObserver((entries) => {
+      entries.forEach(({ target, isIntersecting }) => {
+        if (isIntersecting) target.play().catch(() => { target.controls = true; });
+        else target.pause();
+      });
+    }, { threshold: 0.25 });
+    videos.forEach((video) => {
+      video.muted = true;
+      video.addEventListener('error', () => {
+        if (!isLocalPreview) video.closest('figure').hidden = true;
+      }, { once: true });
+      if (io) io.observe(video);
+      else video.controls = true;
+      video.addEventListener('click', () => {
+        if (video.controls) return; // đang dùng nút điều khiển thì để trình duyệt xử lý
+        openLightbox(video.currentSrc || video.src, video.getAttribute('aria-label'), true);
+      });
     });
   }
 
