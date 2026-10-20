@@ -1,18 +1,5 @@
 export const toolsData = [
   {
-    id: 'asoft-license-trial',
-    title: 'Dùng thử miễn phí 90 ngày - A-Soft License',
-    category: 'A-Soft License',
-    tag: 'Free Trial',
-    description: {
-      vi: 'Nhập Product Key từ hộp thoại License của plugin A-Soft (DrawSteels, Purlin Shopdrawing, SDU, CADToon, PEB Tools VN), nhận ngay license dùng thử 90 ngày - không cần chờ, không cần liên hệ.',
-      en: 'Enter the Product Key from any A-Soft plugin\'s License dialog (DrawSteels, Purlin Shopdrawing, SDU, CADToon, PEB Tools VN) and get a 90-day trial license instantly - no waiting, no contact needed.'
-    },
-    status: 'Release',
-    link: '/trial/index.html',
-    featured: true
-  },
-  {
     id: 'peb-member-tekla',
     title: 'PEB Member - Dựng Cấu Kiện PEB Cho Tekla',
     category: 'Tekla Plugin',
