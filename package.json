@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "postbuild": "node -e \"import('fs').then(fs => fs.copyFileSync('public/brand-guidelines.html', 'dist/brand-guidelines.html'))\" && node scripts/gen-sitemap.cjs && node scripts/stamp-rficonsole.cjs",
+    "postbuild": "node -e \"import('fs').then(fs => fs.copyFileSync('public/brand-guidelines.html', 'dist/brand-guidelines.html'))\" && node scripts/gen-sitemap.cjs && node scripts/stamp-rficonsole.cjs && node scripts/stamp-assets.cjs",
     "preview": "vite preview",
+    "optimize-media": "node scripts/optimize-media.cjs",
     "predeploy": "npm run build",
     "deploy": "node scripts/deploy.cjs"
   },
@@ -17,6 +18,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^6.1.2",
+    "sharp": "^0.35.5",
     "vite": "^8.3.4"
   }
 }

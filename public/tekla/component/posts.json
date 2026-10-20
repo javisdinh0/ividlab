@@ -16,7 +16,7 @@
       "en": "Release"
     },
     "date": "2026-10-20",
-    "cover": "/tekla/component/img/stay-hole-model.jpg"
+    "cover": "/tekla/component/img/stay-hole-model.webp"
   },
   {
     "id": "cap-nhat-2v-cross-1-44",
@@ -35,7 +35,7 @@
       "en": "Release"
     },
     "date": "2026-10-19",
-    "cover": "/tekla/component/img/2v-cross-cover.png"
+    "cover": "/tekla/component/img/2v-cross-cover.webp"
   },
   {
     "id": "cap-nhat-2v-cross-1-39",
@@ -54,7 +54,7 @@
       "en": "Release"
     },
     "date": "2026-10-16",
-    "cover": "/tekla/component/img/2v-cross-cover.png"
+    "cover": "/tekla/component/img/2v-cross-cover.webp"
   },
   {
     "id": "stay-hole",
@@ -73,7 +73,7 @@
       "en": "Overview"
     },
     "date": "2026-10-16",
-    "cover": "/tekla/component/img/stay-hole-model.jpg"
+    "cover": "/tekla/component/img/stay-hole-model.webp"
   },
   {
     "id": "cap-nhat-tube-round-connect-1-14",
@@ -91,7 +91,7 @@
       "en": "Release"
     },
     "date": "2026-10-08",
-    "cover": "/tekla/component/img/tube-round-connect-1-12.png",
+    "cover": "/tekla/component/img/tube-round-connect-1-12.webp",
     "product": "Tube Round Connect"
   },
   {
@@ -111,7 +111,7 @@
       "en": "Overview"
     },
     "date": "2026-10-08",
-    "cover": "/tekla/component/img/bolt-quick-dim-v2-drawing.png"
+    "cover": "/tekla/component/img/bolt-quick-dim-v2-drawing.webp"
   },
   {
     "id": "tube-round-connect",
@@ -130,7 +130,7 @@
       "en": "Overview"
     },
     "date": "2026-10-06",
-    "cover": "/tekla/component/img/tube-round-connect-1-12.png"
+    "cover": "/tekla/component/img/tube-round-connect-1-12.webp"
   },
   {
     "id": "cap-nhat-2v-cross-1-30",
@@ -148,7 +148,7 @@
       "en": "Release"
     },
     "date": "2026-10-04",
-    "cover": "/tekla/component/img/2v-cross-cover.png",
+    "cover": "/tekla/component/img/2v-cross-cover.webp",
     "product": "2V Cross"
   },
   {
@@ -167,7 +167,7 @@
       "en": "Overview"
     },
     "date": "2026-10-03",
-    "cover": "/tekla/component/img/2v-cross-cover.png",
+    "cover": "/tekla/component/img/2v-cross-cover.webp",
     "featured": true,
     "product": "2V Cross"
   }

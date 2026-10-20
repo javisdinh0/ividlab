@@ -11,10 +11,10 @@ const SOURCES = [
 // Sản phẩm của chuyên mục: bấm thẻ để lọc bài viết theo sản phẩm (khớp `label` của SOURCES).
 // Thêm sản phẩm mới: thêm một mục ở đây, một nguồn ở SOURCES và chuỗi tên/mô tả trong translations.js.
 const PRODUCTS = [
-  { key: 'peb', label: 'PEB Member', cover: '/tekla/peb-member/img/01-tong-quan.png', intro: '/tekla/peb-member/gioi-thieu-peb-member.html' },
-  { key: '2v', label: '2V Cross', cover: '/tekla/component/img/2v-cross-cover.png', intro: '/tekla/component/anti-sag-2v-cross.html' },
-  { key: 'tube', label: 'Tube Round Connect', cover: '/tekla/component/img/tube-round-connect-1-12.png', intro: '/tekla/component/tube-round-connect.html' },
-  { key: 'bolt', label: 'Bolt Quick Dim V2', cover: '/tekla/component/img/bolt-quick-dim-v2-drawing.png', intro: '/tekla/component/bolt-quick-dim.html' },
+  { key: 'peb', label: 'PEB Member', cover: '/tekla/peb-member/img/01-tong-quan.webp', intro: '/tekla/peb-member/gioi-thieu-peb-member.html' },
+  { key: '2v', label: '2V Cross', cover: '/tekla/component/img/2v-cross-cover.webp', intro: '/tekla/component/anti-sag-2v-cross.html' },
+  { key: 'tube', label: 'Tube Round Connect', cover: '/tekla/component/img/tube-round-connect-1-12.webp', intro: '/tekla/component/tube-round-connect.html' },
+  { key: 'bolt', label: 'Bolt Quick Dim V2', cover: '/tekla/component/img/bolt-quick-dim-v2-drawing.webp', intro: '/tekla/component/bolt-quick-dim.html' },
   { key: 'stay', label: 'Stay Hole', cover: '/tekla/component/img/stay-hole-icon.png', intro: '/tekla/component/stay-hole.html' }
 ];
 const NS = 'teklacomponent';

@@ -43,7 +43,10 @@ Gói cài đặt nằm ở `public/fordownload/peb-member/` (chỉ giữ bản m
    `title`/`description`/`tag` có thể là chuỗi thường nếu chỉ viết một ngôn ngữ; `cover` không bắt buộc.
    Bài có `"featured": true` được dùng làm ảnh lớn ở đầu trang chuyên mục.
 4. Chỉ viết tiếng Việt: xoá khối `data-lang="en"` và bỏ `data-lang="vi"` ở khối nội dung (xem ghi chú trong mẫu).
-5. `npm run dev` → kiểm tra `http://localhost:5173/?tab=peb-member` và trang bài viết, rồi `npm run deploy`.
+5. `npm run optimize-media` — tạo bản `.webp` cho PNG/JPG (đổi `src` khi nhẹ hơn ≥10%) và đổi GIF trong
+   `<figure class="media">` thành video `.mp4` + ảnh poster (nhẹ ~80%, chỉ phát khi cuộn tới). Ảnh gốc giữ lại
+   để làm `og:image`. Chạy lại bao nhiêu lần cũng được; `-- --dry` để xem trước.
+6. `npm run dev` → kiểm tra `http://localhost:5173/tekla-component/` và trang bài viết, rồi `npm run deploy`.
 
 ## Tự kích hoạt dùng thử 90 ngày
 
@@ -68,6 +71,7 @@ Cần `ffmpeg` trên PATH (`winget install Gyan.FFmpeg`).
 
 Tham số hay dùng: `-Speed 1.5` (tua nhanh), `-Width 800`, `-Fps 10`, `-Colors 96` (giảm dung lượng).
 Nên giữ mỗi GIF dưới ~3 MB; quay cửa sổ ở độ phân giải vừa phải (≈1280×800) thì chữ trong GIF vẫn đọc được.
+GIF chỉ là file nguồn: `npm run optimize-media` đổi nó thành `.mp4` khi đăng (xem bước 5 ở trên).
 
 ## Phát hành bản plugin mới
 

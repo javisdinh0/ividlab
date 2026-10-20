@@ -428,7 +428,8 @@ figure.media {
   margin: 28px 0;
   text-align: center;
 }
-figure.media img {
+figure.media img,
+figure.media video {
   display: block;
   margin: 0 auto;
   max-width: 100%;
@@ -951,7 +952,8 @@ ol.steps > li::before {
   background: rgba(8, 18, 24, 0.88);
   cursor: zoom-out;
 }
-.lightbox img {
+.lightbox img,
+.lightbox video {
   max-width: 100%;
   max-height: 100%;
   border-radius: 8px;
