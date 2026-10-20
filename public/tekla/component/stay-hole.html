@@ -67,7 +67,7 @@
           <div class="eyebrow">Tekla Component // Cold rolled overlap</div>
           <h1>iVidLab Stay Hole (CC2) — Mọi line xà gồ giống hệt nhau, cùng một mã chi tiết</h1>
           <p class="lead">Tự tạo lỗ (và bu-lông) stay trên xà gồ ở những chỗ không có thanh chống, để các line xà gồ cùng loại giống hệt nhau và cùng một mã chi tiết.</p>
-          <ul class="meta-row"><li>Phiên bản 1.05P</li><li>Tekla 2016 trở lên</li></ul>
+          <ul class="meta-row"><li>Phiên bản 1.11P</li><li>Tekla 2016 trở lên</li></ul>
           <div class="cta-row"><a class="btn btn--primary" href="#tai-ve">⬇ Tải Stay Hole (CC2)</a></div>
         </header>
 
@@ -119,8 +119,11 @@
 
         <h2 id="luu-y">4. Lưu ý</h2>
         <ul>
-          <li>Bản 1.05P, thử trong Tekla Structures 2017; yêu cầu Tekla 2016 trở lên.</li>
-          <li>Đã kiểm với kiểu stay "bottom" và các lựa chọn bản mã stay 0/1/2/3. Kiểu "centre" và các lựa chọn 4/5 chưa kiểm trên model thật.</li>
+          <li>Bản 1.11P; yêu cầu Tekla 2016 trở lên.</li>
+          <li>Nên nhập es1/es2 ở component gốc. Để trống thì component gốc tự tính theo hình học, và Stay Hole chỉ suy ra được khi một phía đã có stay.</li>
+          <li>Component đã có stay thì Stay Hole không làm gì. Component không stay chỉ nhận lỗ ở phía mà <strong>xà gồ lân cận</strong> (cùng kèo, hàng kề bên) có stay; không có lân cận nào có stay thì tạo cả hai bên. Chọn "Both sides if no stay" ở ô Neighbours để luôn tạo cả hai bên. Lân cận đổi thì bấm Modify để cập nhật.</li>
+          <li>Ô Create: "Holes only" chỉ tạo lỗ; "Holes + bolts" giữ như component gốc (bu-lông ở vị trí stay, lỗ phụ chỉ là lỗ); "All bolts" cho cả lỗ phụ thành bu-lông thật.</li>
+          <li>Xà gồ quay BACK thì component gốc không tạo bu-lông stay, nên không áp dụng.</li>
           <li>Mã chi tiết vẫn có thể khác nếu hình học của chính component gốc khác nhau (ví dụ cleat lệch vài mm).</li>
         </ul>
 
@@ -136,7 +139,7 @@
           <div class="eyebrow">Tekla Component // Cold rolled overlap</div>
           <h1>iVidLab Stay Hole (CC2) — Every purlin line identical, one part mark</h1>
           <p class="lead">Automatically creates stay bolt holes (and bolts) on purlins where there is no strut, so purlin lines of the same type are identical and share one part mark.</p>
-          <ul class="meta-row"><li>Version 1.05P</li><li>Tekla 2016 or newer</li></ul>
+          <ul class="meta-row"><li>Version 1.11P</li><li>Tekla 2016 or newer</li></ul>
           <div class="cta-row"><a class="btn btn--primary" href="#tai-ve">⬇ Download Stay Hole (CC2)</a></div>
         </header>
 
@@ -188,8 +191,11 @@
 
         <h2 id="notes">4. Notes</h2>
         <ul>
-          <li>Version 1.05P, tested in Tekla Structures 2017; requires Tekla 2016 or newer.</li>
-          <li>Verified with stay type "bottom" and stay plate options 0/1/2/3. Type "centre" and options 4/5 have not been checked on a real model.</li>
+          <li>Version 1.11P; requires Tekla 2016 or newer.</li>
+          <li>Enter es1/es2 on the source component. If left blank the source component computes them from the geometry, and Stay Hole can only infer them when one side already has a stay.</li>
+          <li>A component that already has a stay is left alone. One without a stay only gets holes on the side where a <strong>neighbouring purlin</strong> (same rafter, adjacent row) has a stay; if no neighbour has one, both sides are created. Choose "Both sides if no stay" in the Neighbours box to always create both sides. Click Modify after a neighbour changes.</li>
+          <li>Create box: "Holes only" creates holes only; "Holes + bolts" matches the source component (bolts at the stay position, extra holes are holes only); "All bolts" makes the extra holes real bolts too.</li>
+          <li>Purlins rotated BACK: the source component creates no stay bolts, so this does not apply.</li>
           <li>Part marks can still differ if the source components' own geometry differs (for example a cleat off by a few mm).</li>
         </ul>
 
