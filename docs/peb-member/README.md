@@ -4,7 +4,7 @@ Chuyên mục giới thiệu plugin **PEB Member** (gói `PEBToolsVN`) cho Tekla
 
 | Link | Nguồn |
 |---|---|
-| `ividlab.com/?tab=peb-member` — trang chuyên mục (tab trong SPA) | `src/components/PebMemberSection.jsx` |
+| `ividlab.com/tekla-component/` — trang chuyên mục (tab trong SPA) | `src/components/PebMemberSection.jsx` |
 | `ividlab.com/tekla/peb-member/` — link gọn, tự chuyển về tab trên | `public/tekla/peb-member/index.html` |
 | `ividlab.com/tekla/peb-member/<slug>.html` — từng bài viết | `public/tekla/peb-member/*.html` |
 

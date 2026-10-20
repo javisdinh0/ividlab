@@ -1,7 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 
-export default function Header({ activeTab, setActiveTab, lang, setLang, theme, setTheme, t }) {
+const NAV_LABEL = { all: 'home', tools: 'tools', guides: 'guides', 'tekla-component': 'teklacomponent', 'amc-private': 'amcprivate', about: 'about' };
+
+export default function Header({ activeTab, setActiveTab, routes, lang, setLang, theme, setTheme, t }) {
   const navRef = useRef(null);
+
+  // Link thật (crawler lần theo được, Ctrl/chuột giữa mở tab mới); bấm thường thì đổi tab tại chỗ.
+  const go = (tab) => (e) => {
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    setActiveTab(tab);
+  };
 
   const toggleTheme = () => {
     const nextTheme = theme === 'light' ? 'dark' : 'light';
@@ -23,32 +32,22 @@ export default function Header({ activeTab, setActiveTab, lang, setLang, theme, 
     <header className="site-header">
       <div className="container site-header__inner">
         {/* Clean iViDLab Brand Title */}
-        <a
-          href="/"
-          className="site-brand"
-          onClick={(e) => { e.preventDefault(); setActiveTab('all'); }}
-        >
+        <a href="/" className="site-brand" onClick={go('all')}>
           iViD<span style={{ color: 'var(--accent-blue)' }}>Lab</span>
         </a>
 
         {/* Navigation */}
         <nav className="site-nav" ref={navRef}>
-          {[
-            ['all', t.nav.home],
-            ['tools', t.nav.tools],
-            ['guides', t.nav.guides],
-            ['tekla-component', t.nav.teklacomponent],
-            ['amc-private', t.nav.amcprivate],
-            ['about', t.nav.about]
-          ].map(([tab, label]) => (
-            <button
+          {routes.map(({ tab, path }) => (
+            <a
               key={tab}
+              href={path}
               className="nav-link"
-              onClick={() => setActiveTab(tab)}
+              onClick={go(tab)}
               aria-current={activeTab === tab ? 'page' : undefined}
             >
-              {label}
-            </button>
+              {t.nav[NAV_LABEL[tab]]}
+            </a>
           ))}
 
           {/* Link tới app RFI Console (trang riêng, ngoài SPA) */}

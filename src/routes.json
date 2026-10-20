@@ -1,0 +1,36 @@
+[
+  {
+    "tab": "all",
+    "path": "/"
+  },
+  {
+    "tab": "tools",
+    "path": "/tools/",
+    "i18n": "tools",
+    "description": "Danh mục công cụ và ứng dụng của iViDLab: plugin Tekla Structures, công cụ AutoCAD/AutoLISP và phần mềm tự động hoá thiết kế kết cấu thép."
+  },
+  {
+    "tab": "guides",
+    "path": "/guides/",
+    "i18n": "guides",
+    "description": "Hướng dẫn và chia sẻ kỹ thuật AutoCAD, AutoLISP, Tekla Structures: lệnh quản lý layer, APPLOAD/NETLOAD, phím tắt và mẹo tăng năng suất thiết kế."
+  },
+  {
+    "tab": "tekla-component",
+    "path": "/tekla-component/",
+    "i18n": "teklacomponent",
+    "description": "Plugin và component Tekla Structures của iViDLab: PEB Member, 2V Cross Anti-Sag, Tube Round Connect, Bolt Quick Dim V2, Stay Hole — bài giới thiệu, cập nhật và gói tải .tsep."
+  },
+  {
+    "tab": "amc-private",
+    "path": "/private/",
+    "i18n": "amcprivate",
+    "description": "Private tools: các công cụ iViDLab phát triển riêng theo tiêu chuẩn của từng công ty, kèm giới thiệu và hướng dẫn sử dụng cho người được cấp quyền."
+  },
+  {
+    "tab": "about",
+    "path": "/about/",
+    "i18n": "about",
+    "description": "Giới thiệu iViDLab — nhóm kỹ sư xây dựng phát triển công cụ tự động hoá thiết kế kết cấu thép, BIM, plugin Tekla Structures và AutoCAD."
+  }
+]

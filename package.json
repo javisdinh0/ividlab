@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "postbuild": "node -e \"import('fs').then(fs => fs.copyFileSync('public/brand-guidelines.html', 'dist/brand-guidelines.html'))\" && node scripts/gen-sitemap.cjs && node scripts/stamp-rficonsole.cjs && node scripts/stamp-assets.cjs",
+    "build": "vite build && vite build --ssr src/entry-server.jsx --outDir dist-ssr",
+    "postbuild": "node -e \"import('fs').then(fs => fs.copyFileSync('public/brand-guidelines.html', 'dist/brand-guidelines.html'))\" && node scripts/prerender.mjs && node scripts/gen-sitemap.cjs && node scripts/stamp-rficonsole.cjs && node scripts/stamp-assets.cjs",
     "preview": "vite preview",
     "optimize-media": "node scripts/optimize-media.cjs",
     "predeploy": "npm run build",

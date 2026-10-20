@@ -4,10 +4,15 @@ import React, { useEffect, useRef, useState } from 'react';
 // (mục "Bài viết khác"). Thêm bài mới chỉ cần sửa posts.json — xem docs/peb-member/README.md.
 // Cùng component dùng cho chuyên mục Tekla Component qua prop `category` (xem CATEGORIES bên dưới).
 // Chuyên mục 'tekla-component' gom bài của PEB Member và Tekla Component: đọc nhiều posts.json, gộp, xếp mới nhất trước.
-const SOURCES = [
+export const SOURCES = [
   { url: '/tekla/peb-member/posts.json', label: 'PEB Member' },
   { url: '/tekla/component/posts.json', label: 'Tekla Component' }
 ];
+
+// Gộp các posts.json (theo thứ tự SOURCES), gắn tên sản phẩm, xếp mới nhất trước.
+const mergePosts = (lists) => lists
+  .flatMap((data, i) => (Array.isArray(data) ? data : []).map((post) => ({ ...post, product: post.product || SOURCES[i].label })))
+  .sort((a, b) => String(b.date).localeCompare(String(a.date)));
 // Sản phẩm của chuyên mục: bấm thẻ để lọc bài viết theo sản phẩm (khớp `label` của SOURCES).
 // Thêm sản phẩm mới: thêm một mục ở đây, một nguồn ở SOURCES và chuỗi tên/mô tả trong translations.js.
 const PRODUCTS = [
@@ -37,9 +42,11 @@ function Cover({ src, alt, className }) {
   return <img className={className} src={src} alt={alt} loading="lazy" onError={() => setFailed(true)} />;
 }
 
-export default function PebMemberSection({ t, lang }) {
+// initialLists: nội dung các posts.json nhúng sẵn trong HTML dựng trước (scripts/prerender.mjs) —
+// có thì hiện ngay, không phải chờ fetch; vào tab từ trang khác thì vẫn fetch như cũ.
+export default function PebMemberSection({ t, lang, initialLists }) {
   const tx = t[NS];
-  const [posts, setPosts] = useState(null);
+  const [posts, setPosts] = useState(() => (initialLists ? mergePosts(initialLists) : null));
   const [failed, setFailed] = useState(false);
   const [selected, setSelected] = useState(null);
   const articlesRef = useRef(null);
@@ -50,16 +57,15 @@ export default function PebMemberSection({ t, lang }) {
   }, [selected]);
 
   useEffect(() => {
+    if (initialLists) return undefined;
     let cancelled = false;
     Promise.all(SOURCES.map((source) => fetch(source.url)
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
-      })
-      .then((data) => (Array.isArray(data) ? data : []).map((post) => ({ ...post, product: post.product || source.label })))))
+      })))
       .then((lists) => {
-        if (cancelled) return;
-        setPosts(lists.flat().sort((a, b) => String(b.date).localeCompare(String(a.date))));
+        if (!cancelled) setPosts(mergePosts(lists));
       })
       .catch(() => { if (!cancelled) setFailed(true); });
     return () => { cancelled = true; };

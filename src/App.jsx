@@ -8,25 +8,34 @@ import AmcPrivateSection from './components/AmcPrivateSection';
 import AboutSection from './components/AboutSection';
 import Footer from './components/Footer';
 import { translations } from './i18n/translations';
+import ROUTES from './routes.json';
 import './index.css';
 
-const TABS = ['all', 'tools', 'guides', 'tekla-component', 'amc-private', 'about'];
+const ORIGIN = 'https://ividlab.com';
 const HOME_TITLE = 'iViDLab — BIM & Steel Structure Tools'; // khớp <title> trong index.html
-// Tab -> key trong translations (lấy .title làm tiêu đề trang)
-const TAB_I18N_KEY = { tools: 'tools', guides: 'guides', 'tekla-component': 'teklacomponent', 'amc-private': 'amcprivate', about: 'about' };
+const routeOf = (tab) => ROUTES.find((r) => r.tab === tab) || ROUTES[0];
 
-// Các trang tĩnh (public/**) link về SPA bằng /?tab=<id>, nên tab ban đầu lấy từ URL.
-function tabFromUrl() {
+// Mỗi tab có đường dẫn riêng (src/routes.json, HTML dựng sẵn bởi scripts/prerender.mjs).
+// Link cũ dạng /?tab=<id> (trang tĩnh, bookmark, Google) vẫn mở đúng tab rồi được đổi sang đường dẫn mới.
+function tabFromLocation() {
+  const path = window.location.pathname.replace(/\/?$/, '/');
+  const byPath = ROUTES.find((r) => r.path === path);
+  if (byPath && byPath.tab !== 'all') return byPath.tab;
   let tab = new URLSearchParams(window.location.search).get('tab');
   if (tab === 'peb-member') tab = 'tekla-component'; // chuyên mục PEB Member đã gom vào Tekla App & Component
-  return TABS.includes(tab) ? tab : 'all';
+  return ROUTES.some((r) => r.tab === tab) ? tab : 'all';
 }
 
-export default function App() {
-  const [activeTab, setActiveTab] = useState(tabFromUrl);
+// Prerender chạy trên Node (không có localStorage) — đọc an toàn, mặc định 'vi'/'light'.
+function stored(key) {
+  try { return typeof localStorage === 'undefined' ? null : localStorage.getItem(key); } catch { return null; }
+}
+
+export default function App({ initialTab, initialPostLists }) {
+  const [activeTab, setActiveTab] = useState(() => initialTab || tabFromLocation());
   // Dùng chung key 'ividlab-lang' với các trang tĩnh để ngôn ngữ giữ nguyên khi chuyển trang.
-  const [lang, setLang] = useState(() => (localStorage.getItem('ividlab-lang') === 'en' ? 'en' : 'vi'));
-  const [theme, setTheme] = useState(() => localStorage.getItem('ividlab-theme') || 'light');
+  const [lang, setLang] = useState(() => (stored('ividlab-lang') === 'en' ? 'en' : 'vi'));
+  const [theme, setTheme] = useState(() => stored('ividlab-theme') || 'light');
   const isFirstTabSync = useRef(true);
 
   const t = translations[lang];
@@ -42,12 +51,13 @@ export default function App() {
     localStorage.setItem('ividlab-lang', lang);
   }, [lang]);
 
-  // Đồng bộ ?tab= để mỗi tab có link riêng và nút Back/Forward hoạt động.
-  // Lần chạy đầu chỉ chuẩn hoá URL (vd. /?tab=all -> /) nên dùng replaceState.
+  // Đồng bộ đường dẫn để mỗi tab có link riêng và nút Back/Forward hoạt động.
+  // Lần chạy đầu chỉ chuẩn hoá URL (vd. /?tab=guides -> /guides/) nên dùng replaceState.
   useEffect(() => {
     const url = new URL(window.location.href);
-    if (activeTab === 'all') url.searchParams.delete('tab');
-    else url.searchParams.set('tab', activeTab);
+    url.pathname = routeOf(activeTab).path;
+    url.searchParams.delete('tab');
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', ORIGIN + url.pathname);
     if (url.href !== window.location.href) {
       window.history[isFirstTabSync.current ? 'replaceState' : 'pushState'](null, '', url);
     }
@@ -58,12 +68,12 @@ export default function App() {
 
   // Mỗi tab một tiêu đề trang (tab trình duyệt, lịch sử, bookmark)
   useEffect(() => {
-    const key = TAB_I18N_KEY[activeTab];
+    const key = routeOf(activeTab).i18n;
     document.title = key ? `${t[key].title} — iViDLab` : HOME_TITLE;
   }, [activeTab, t]);
 
   useEffect(() => {
-    const onPopState = () => setActiveTab(tabFromUrl());
+    const onPopState = () => setActiveTab(tabFromLocation());
     window.addEventListener('popstate', onPopState);
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
@@ -73,6 +83,7 @@ export default function App() {
       <Header
         activeTab={activeTab}
         setActiveTab={setActiveTab}
+        routes={ROUTES}
         lang={lang}
         setLang={setLang}
         theme={theme}
@@ -107,7 +118,7 @@ export default function App() {
 
         {activeTab === 'tekla-component' && (
           <div style={{ paddingTop: '2rem' }}>
-            <PebMemberSection t={t} lang={lang} />
+            <PebMemberSection t={t} lang={lang} initialLists={initialPostLists} />
           </div>
         )}
 

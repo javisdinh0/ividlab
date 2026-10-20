@@ -27,7 +27,12 @@ function lastmod(file) {
   return new Date().toISOString().slice(0, 10);
 }
 
-const urls = [{ loc: `${ORIGIN}/`, lastmod: lastmod('index.html'), priority: '1.0' }];
+// Các tab của SPA (src/routes.json, HTML dựng sẵn bởi prerender.mjs); lastmod theo commit gần nhất của src/
+const urls = JSON.parse(fs.readFileSync(path.join(root, 'src', 'routes.json'), 'utf8')).map((r) => ({
+  loc: `${ORIGIN}${r.path}`,
+  lastmod: r.path === '/' ? lastmod('index.html') : lastmod('src'),
+  priority: r.path === '/' ? '1.0' : '0.8',
+}));
 for (const f of walk(pub).sort()) {
   const rel = path.relative(pub, f).split(path.sep).join('/');
   if (SKIP.some((re) => re.test(rel))) continue;

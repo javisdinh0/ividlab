@@ -5,7 +5,7 @@ bài giới thiệu + hướng dẫn sử dụng Steel Design Universe (SDU).
 
 | Link | Nguồn | Ghi chú |
 |---|---|---|
-| `ividlab.com/?tab=amc-private` | `src/components/AmcPrivateSection.jsx` | Chỉ mô tả công khai + nút đăng nhập |
+| `ividlab.com/private/` | `src/components/AmcPrivateSection.jsx` | Chỉ mô tả công khai + nút đăng nhập |
 | `ividlab.com/amc-private/` (`?p=<slug>`) | `public/amc-private/` | Trang đọc: đăng nhập → kiểm quyền → danh sách / 1 bài |
 | `ividlab.com/admin/amc.html` | `public/admin/amc.html`, `amc.js` | Owner: quản lý người đọc, tải bài lên |
 
