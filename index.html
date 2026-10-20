@@ -2,6 +2,15 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
+    <!-- Áp theme/ngôn ngữ đã lưu trước khi vẽ trang, tránh nháy nền sáng khi đang dùng dark mode -->
+    <script>
+      try {
+        var th = localStorage.getItem('ividlab-theme') === 'dark' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', th);
+        if (localStorage.getItem('ividlab-lang') === 'en') document.documentElement.lang = 'en';
+      } catch (e) {}
+    </script>
+    <meta name="theme-color" content="#A2BFC7" />
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234924381658348" crossorigin="anonymous"></script>
     <script type="module" src="/traffic-track.js"></script>
@@ -23,11 +32,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/assets/main-DFRkdFXa.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
-    <link rel="stylesheet" crossorigin href="/assets/main-BxTlkEi0.css">
+    <script type="module" crossorigin src="/assets/main-CDKpF9lf.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-P2Xu9kJm.js">
+    <link rel="stylesheet" crossorigin href="/assets/main-C8XmGnOi.css">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"></div>
+    <noscript>
+      <p style="padding:2rem;font-family:sans-serif">iViDLab cần bật JavaScript để hiển thị. Xem nhanh: <a href="/tekla/peb-member/">Tekla App &amp; Component</a> · <a href="/sitemap.xml">Sơ đồ trang</a></p>
+    </noscript>
   </body>
 </html>
