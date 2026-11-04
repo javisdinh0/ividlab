@@ -5,10 +5,10 @@
       "vi": "Liên kết Tekla Structures cho dầm sàn. Yêu cầu Tekla 2016 trở lên.",
       "en": "Tekla Structures connection for floor beams. Requires Tekla 2016 or newer."
     },
-    "version": "1.89P",
+    "version": "1.92P",
     "file": "/fordownload/tekla-component/iVidLab.FloorBeamGusset.tsep",
-    "saveAs": "iVidLab.FloorBeamGusset_1.89P.tsep",
-    "size": "266 KB"
+    "saveAs": "iVidLab.FloorBeamGusset_1.92P.tsep",
+    "size": "267 KB"
   },
   "stayhole": {
     "name": "iVidLab Stay Hole (CC2)",
