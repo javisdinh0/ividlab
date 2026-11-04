@@ -1,0 +1,95 @@
+{
+  "version": "1.99P",
+  "released": "2026-11-04",
+  "baseUrl": "/fordownload/tekla-component/",
+  "title": {
+    "vi": "Tải iVidLab Shear (CC1)",
+    "en": "Download iVidLab Shear (CC1)"
+  },
+  "packages": {
+    "shear": {
+      "file": "iVidLab.FloorBeamGusset.tsep",
+      "saveAs": "iVidLab.FloorBeamGusset_1.99P.tsep",
+      "size": "268 KB",
+      "bytes": 273931,
+      "range": "2016+"
+    }
+  },
+  "tekla": [
+    {
+      "value": "2026",
+      "label": "Tekla Structures 2026",
+      "package": "shear"
+    },
+    {
+      "value": "2025",
+      "label": "Tekla Structures 2025",
+      "package": "shear"
+    },
+    {
+      "value": "2024",
+      "label": "Tekla Structures 2024",
+      "package": "shear"
+    },
+    {
+      "value": "2023",
+      "label": "Tekla Structures 2023",
+      "package": "shear"
+    },
+    {
+      "value": "2022",
+      "label": "Tekla Structures 2022",
+      "package": "shear"
+    },
+    {
+      "value": "2021",
+      "label": "Tekla Structures 2021",
+      "package": "shear"
+    },
+    {
+      "value": "2020",
+      "label": "Tekla Structures 2020",
+      "package": "shear"
+    },
+    {
+      "value": "2019",
+      "label": "Tekla Structures 2019 / 2019i",
+      "package": "shear"
+    },
+    {
+      "value": "2018",
+      "label": "Tekla Structures 2018 / 2018i",
+      "package": "shear"
+    },
+    {
+      "value": "2017",
+      "label": "Tekla Structures 2017 / 2017i",
+      "package": "shear"
+    },
+    {
+      "value": "2016",
+      "label": "Tekla Structures 2016 / 2016i",
+      "package": "shear"
+    },
+    {
+      "value": "2027+",
+      "label": {
+        "vi": "Tekla Structures 2027 trở lên",
+        "en": "Tekla Structures 2027 or newer"
+      },
+      "package": "shear"
+    }
+  ],
+  "notes": {
+    "vi": [
+      "Dựng bản mã, bu-lông và cắt cánh cho dầm sàn thép hình hoặc dầm tổ hợp PEB Member.",
+      "Hình học theo đúng liên kết gốc JP Floor beam gusset; có dầm sàn nghiêng.",
+      "Yêu cầu Tekla 2016 trở lên."
+    ],
+    "en": [
+      "Builds the gusset, bolts and flange cuts for rolled-section or built-up PEB Member floor beams.",
+      "Geometry follows the original JP Floor beam gusset connection; sloped floor beams supported.",
+      "Requires Tekla 2016 or newer."
+    ]
+  }
+}

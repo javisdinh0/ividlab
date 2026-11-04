@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234924381658348" crossorigin="anonymous"></script>
+  <!-- Ghi lượt xem cho dashboard /admin — giữ dòng này ở mọi trang công khai -->
+  <script type="module" src="/traffic-track.js?v=0f69739aed"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-en="iVidLab Shear (CC1) – Floor beam connection with gusset and bolts - iViDLab">iVidLab Shear (CC1) — Liên kết dầm sàn vào dầm chính - iViDLab</title>
+  <meta name="description" content="Shear (CC1): liên kết dầm sàn thép hình hoặc dầm tổ hợp PEB Member vào dầm chính, tự dựng bản mã, bu-lông và cắt cánh trong Tekla Structures. Tekla 2016 trở lên." />
+  <link rel="canonical" href="https://ividlab.com/tekla/component/shear-cc1.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="iViDLab" />
+  <meta property="og:title" content="iVidLab Shear (CC1) — Liên kết dầm sàn vào dầm chính" />
+  <meta property="og:description" content="Dựng bản mã, bu-lông và cắt cánh cho dầm sàn trong một lần chọn. Tekla 2016 trở lên." />
+  <meta property="og:image" content="https://ividlab.com/tekla/component/img/shear-cc1-icon.png" />
+  <meta property="og:url" content="https://ividlab.com/tekla/component/shear-cc1.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <script>
+    (function () {
+      var root = document.documentElement;
+      try {
+        root.setAttribute('data-theme', localStorage.getItem('ividlab-theme') || 'light');
+        if (localStorage.getItem('ividlab-lang') === 'en') root.classList.add('lang-en');
+      } catch (e) {
+        root.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="/tekla/peb-member/assets/article.css?v=ff6126e48b" />
+  <script src="/tekla/peb-member/assets/article.js?v=239d69d9ae" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"iVidLab Shear (CC1) — Liên kết dầm sàn vào dầm chính - iViDLab","url":"https://ividlab.com/tekla/component/shear-cc1.html","description":"Shear (CC1): liên kết dầm sàn thép hình hoặc dầm tổ hợp PEB Member vào dầm chính, tự dựng bản mã, bu-lông và cắt cánh trong Tekla Structures. Tekla 2016 trở lên.","image":"https://ividlab.com/tekla/component/img/shear-cc1-icon.png","inLanguage":"vi","datePublished":"2026-11-04","dateModified":"2026-11-04","author":{"@type":"Organization","name":"iViDLab","url":"https://ividlab.com"},"publisher":{"@type":"Organization","name":"iViDLab","url":"https://ividlab.com","logo":{"@type":"ImageObject","url":"https://ividlab.com/logo.svg"}}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"iViDLab","item":"https://ividlab.com/"},{"@type":"ListItem","position":2,"name":"Tekla App & Component","item":"https://ividlab.com/tekla-component/"},{"@type":"ListItem","position":3,"name":"iVidLab Shear (CC1) — Liên kết dầm sàn vào dầm chính - iViDLab","item":"https://ividlab.com/tekla/component/shear-cc1.html"}]}</script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/">iViD<span>Lab</span></a>
+      <nav class="site-nav" aria-label="Menu">
+        <a href="/"><span lang="vi" data-lang="vi">// TRANG CHỦ</span><span lang="en" data-lang="en">// HOME</span></a>
+        <a href="/tools/"><span lang="vi" data-lang="vi">// CÔNG CỤ</span><span lang="en" data-lang="en">// TOOLS</span></a>
+        <a href="/guides/"><span lang="vi" data-lang="vi">// HƯỚNG DẪN &amp; CHIA SẺ</span><span lang="en" data-lang="en">// GUIDES &amp; TIPS</span></a>
+        <a href="/tekla-component/" aria-current="true">// TEKLA APP &amp; COMPONENT</a>
+        <a href="/about/"><span lang="vi" data-lang="vi">// GIỚI THIỆU</span><span lang="en" data-lang="en">// ABOUT</span></a>
+      </nav>
+      <div class="header-tools">
+        <button id="theme-toggle" type="button" class="theme-switch" role="switch" aria-checked="false" aria-label="Chuyển giao diện Sáng / Tối" title="Chuyển giao diện Sáng / Tối">
+          <span class="theme-switch-thumb">☀️</span>
+        </button>
+        <button id="lang-toggle" type="button" class="toggle-btn" title="Chuyển ngôn ngữ / Switch language">🌐 VI</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">iViDLab</a><span aria-hidden="true">›</span><a href="/tekla-component/">Tekla App &amp; Component</a><span aria-hidden="true">›</span><span lang="vi" data-lang="vi">Shear (CC1)</span><span lang="en" data-lang="en">Shear (CC1)</span>
+    </nav>
+
+    <article class="article">
+      <div data-lang="vi">
+        <header class="article-hero">
+          <div class="eyebrow">Tekla Component // Liên kết dầm sàn</div>
+          <h1>iVidLab Shear (CC1) — Liên kết dầm sàn vào dầm chính, dựng bản mã và bu-lông trong một lần chọn</h1>
+          <p class="lead">Liên kết mới khắc phục các điểm yếu của liên kết Shear trước đây, dùng cho dầm sàn thép hình hoặc thép tổ hợp PEB Member: chọn dầm chính và dầm sàn, bản mã, bu-lông và phần cắt cánh được dựng tự động.</p>
+          <ul class="meta-row"><li>Phiên bản 1.99P</li><li>Tekla 2016 trở lên</li></ul>
+          <div class="cta-row"><a class="btn btn--primary" href="#tai-ve">⬇ Tải Shear (CC1)</a></div>
+        </header>
+
+        <div class="callout">
+          <p><strong>Tóm tắt nhanh</strong></p>
+          <ul>
+            <li><strong>Thay thế</strong> JP Floor beam gusset (11), Shear plate simple (146) và Column with stiffeners S (187), khắc phục các lỗi của liên kết gốc.</li>
+            <li><strong>Dầm sàn thép hình hoặc dầm tổ hợp PEB Member</strong> (kể cả vát thuôn, chia đoạn).</li>
+            <li><strong>Hình học theo đúng liên kết gốc</strong> "JP Floor beam gusset" của Tekla: bản mã, bu-lông, đầu dầm và phần cắt cánh.</li>
+            <li>Xử lý được <strong>dầm sàn nghiêng</strong> và dầm sàn nằm thấp hơn trục dầm chính.</li>
+            <li>Hộp thoại quen thuộc, có <strong>Save / Load / Modify</strong> như component Tekla thông thường.</li>
+          </ul>
+        </div>
+
+                <figure class="media">
+          <img src="img/shear-cc1-model.jpg" width="1104" height="611" alt="Các liên kết Shear (CC1) trong một model Tekla" loading="lazy">
+        </figure>
+
+        <h2 id="thay-the">1. Thay thế các liên kết cũ</h2>
+        <p>Shear (CC1) thay cho ba liên kết Tekla thường dùng để nối dầm vào dầm hoặc cột:</p>
+        <figure class="media">
+          <img src="img/shear-cc1-replaces.png" width="1600" height="700" alt="Ba liên kết Shear plate simple (146), Column with stiffeners S (187) và JP Floor beam gusset (11) được thay bằng một liên kết Shear (CC1)" loading="lazy">
+        </figure>
+        <ul>
+          <li><strong>JP Floor beam gusset (11)</strong></li>
+          <li><strong>Shear plate simple (146)</strong></li>
+          <li><strong>Column with stiffeners S (187)</strong></li>
+        </ul>
+        <p>Một liên kết duy nhất thay vì chọn đúng liên kết cho từng trường hợp.</p>
+
+        <h2 id="khac-phuc">2. Khắc phục các lỗi của liên kết gốc</h2>
+        <p>Các liên kết gốc còn điểm yếu khi dùng thực tế:</p>
+        <ul>
+          <li><strong>JP Floor beam gusset (11):</strong> hay lỗi khi bắt liên kết, kết quả chưa ổn định.</li>
+          <li><strong>Column with stiffeners S (187):</strong> phải chỉnh nhiều thông số mới ra đúng.</li>
+        </ul>
+        <p>Shear (CC1) khắc phục các điểm đó: bắt liên kết ổn định, ít thông số phải chỉnh tay hơn, và khi không dựng được thì báo rõ lý do.</p>
+
+        <h2 id="lam-duoc-gi">3. Làm được gì</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Tính năng</th><th>Mô tả</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Bản mã và bu-lông</strong></td><td>Dựng bản mã nối dầm sàn vào dầm chính, kèm nhóm bu-lông, theo cách bố trí của liên kết gốc</td></tr>
+              <tr><td><strong>Cắt đầu dầm và cánh</strong></td><td>Tự cắt đầu dầm sàn và khoét cánh dầm để bản mã ôm vào, không phải cắt tay</td></tr>
+              <tr><td><strong>Nhiều kiểu bản mã</strong></td><td>Đủ các kiểu bản mã 0 đến 3 và nhiều lựa chọn bố trí bu-lông của liên kết gốc</td></tr>
+              <tr><td><strong>Dầm tổ hợp PEB</strong></td><td>Dùng được cho dầm tổ hợp PEB Member, kể cả dầm vát thuôn hoặc chia nhiều đoạn</td></tr>
+              <tr><td><strong>Dầm sàn nghiêng</strong></td><td>Tự tính theo độ dốc; khi dầm sàn thấp hơn trục dầm chính, bản mã tự lật khung cho đúng</td></tr>
+              <tr><td><strong>Hộp thoại quen thuộc</strong></td><td>Các tab Picture, Parts, Bolts như liên kết gốc, thêm tab Settings và Welds cho phần thông số của CC1</td></tr>
+              <tr><td><strong>Sửa được như thường</strong></td><td>Save / Load thuộc tính, Modify để cập nhật cụm cũ, Delete để xoá sạch</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+                <div class="media" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;align-items:flex-start">
+          <img src="img/shear-cc1-gusset-plain.jpg" width="545" height="565" alt="Bản mã dạng chữ nhật" loading="lazy" style="height:240px;width:auto;max-width:100%;border-radius:10px">
+          <img src="img/shear-cc1-gusset-round.jpg" width="516" height="600" alt="Bản mã có góc bo" loading="lazy" style="height:240px;width:auto;max-width:100%;border-radius:10px">
+          <img src="img/shear-cc1-gusset-l.jpg" width="617" height="662" alt="Bản mã dạng chữ L" loading="lazy" style="height:240px;width:auto;max-width:100%;border-radius:10px">
+        </div>
+
+        <h2 id="cach-dung">4. Cách dùng</h2>
+        <ol class="steps">
+          <li>Bấm <strong>Shear (CC1)</strong> trong nhóm iViDLab của bảng <em>Applications &amp; components</em>.</li>
+          <li>Chọn dầm chính, rồi chọn dầm sàn cần nối.</li>
+          <li>Nháy đúp vào component để chỉnh thông số trong hộp thoại, bấm Modify để cập nhật.</li>
+        </ol>
+
+                <figure class="media">
+          <video src="video/shear-cc1-floor-beam.mp4" controls preload="metadata" playsinline aria-label="Video: chèn Shear (CC1) vào dầm sàn" style="display:block;margin:0 auto;max-width:100%;height:auto;border-radius:10px"></video>
+        </figure>
+
+        <figure class="media">
+          <video src="video/shear-cc1-column.mp4" controls preload="metadata" playsinline aria-label="Video: Shear (CC1) vào cột" style="display:block;margin:0 auto;max-width:100%;height:auto;border-radius:10px"></video>
+        </figure>
+
+                <figure class="media">
+          <img src="img/shear-cc1-dialog-parts.png" width="751" height="722" alt="Hộp thoại Shear (CC1), tab Parts" loading="lazy">
+        </figure>
+
+        <h2 id="cai-dat">5. Cài đặt</h2>
+        <ol class="steps">
+          <li>Ở mục <a href="#tai-ve">Tải về</a> bên dưới, chọn phiên bản Tekla đang dùng để tải gói <code>.tsep</code> (từ Tekla 2016 trở lên).</li>
+          <li>Nếu đã cài bản cũ, gỡ bản cũ trong <strong>Tekla Extension Manager</strong> trước.</li>
+          <li>Nhấp đúp file <code>.tsep</code>, tick phiên bản Tekla rồi bấm <strong>Import</strong>. Gói được cài khi Tekla khởi động lần tiếp theo.</li>
+        </ol>
+      </div>
+
+      <div data-lang="en">
+        <header class="article-hero">
+          <div class="eyebrow">Tekla Component // Floor beam connection</div>
+          <h1>iVidLab Shear (CC1) — Connect floor beams to the main beam, with the gusset and bolts built in one pick</h1>
+          <p class="lead">A new connection that fixes the weaknesses of the earlier Shear connection, for floor beams made of rolled sections or built-up PEB Member beams: pick the main beam and the floor beam, and the gusset, bolts and flange cuts are built automatically.</p>
+          <ul class="meta-row"><li>Version 1.99P</li><li>Tekla 2016 or newer</li></ul>
+          <div class="cta-row"><a class="btn btn--primary" href="#tai-ve">⬇ Download Shear (CC1)</a></div>
+        </header>
+
+        <div class="callout">
+          <p><strong>At a glance</strong></p>
+          <ul>
+            <li><strong>Replaces</strong> JP Floor beam gusset (11), Shear plate simple (146) and Column with stiffeners S (187), fixing the faults of the original connections.</li>
+            <li><strong>Rolled-section floor beams or built-up PEB Member beams</strong> (including tapered and segmented ones).</li>
+            <li><strong>Geometry follows Tekla's own</strong> "JP Floor beam gusset" connection: gusset, bolts, beam end and flange cuts.</li>
+            <li>Handles <strong>sloped floor beams</strong> and floor beams lower than the main beam axis.</li>
+            <li>A familiar dialog with <strong>Save / Load / Modify</strong> like any Tekla component.</li>
+          </ul>
+        </div>
+
+                <figure class="media">
+          <img src="img/shear-cc1-model.jpg" width="1104" height="611" alt="Shear (CC1) connections in a Tekla model" loading="lazy">
+        </figure>
+
+        <h2 id="replaces">1. Replaces the older connections</h2>
+        <p>Shear (CC1) takes the place of three Tekla connections commonly used to join beams to beams or columns:</p>
+        <figure class="media">
+          <img src="img/shear-cc1-replaces.png" width="1600" height="700" alt="The Shear plate simple (146), Column with stiffeners S (187) and JP Floor beam gusset (11) connections replaced by one Shear (CC1) connection" loading="lazy">
+        </figure>
+        <ul>
+          <li><strong>JP Floor beam gusset (11)</strong></li>
+          <li><strong>Shear plate simple (146)</strong></li>
+          <li><strong>Column with stiffeners S (187)</strong></li>
+        </ul>
+        <p>One connection instead of picking the right one for each case.</p>
+
+        <h2 id="fixes">2. Fixes the faults of the original connections</h2>
+        <p>The original connections still have weaknesses in everyday use:</p>
+        <ul>
+          <li><strong>JP Floor beam gusset (11):</strong> it often fails when attaching the connection, and the result is not stable.</li>
+          <li><strong>Column with stiffeners S (187):</strong> you have to adjust many parameters before it comes out right.</li>
+        </ul>
+        <p>Shear (CC1) fixes those points: it attaches reliably, needs fewer hand-tuned parameters, and tells you why when it cannot build.</p>
+
+        <h2 id="what-it-does">3. What it does</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Feature</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Gusset and bolts</strong></td><td>Builds the gusset joining the floor beam to the main beam, with the bolt group, following the original connection's layout</td></tr>
+              <tr><td><strong>Beam end and flange cuts</strong></td><td>Cuts the floor beam end and notches the flange so the gusset fits, with no hand cutting</td></tr>
+              <tr><td><strong>Many gusset types</strong></td><td>All gusset types 0 to 3 and the original connection's bolt layout options</td></tr>
+              <tr><td><strong>Built-up PEB beams</strong></td><td>Works on built-up PEB Member beams, including tapered or multi-segment ones</td></tr>
+              <tr><td><strong>Sloped floor beams</strong></td><td>Follows the slope; when the floor beam is below the main beam axis the gusset flips its frame to stay correct</td></tr>
+              <tr><td><strong>Familiar dialog</strong></td><td>Picture, Parts and Bolts tabs as in the original connection, plus Settings and Welds tabs for CC1's own parameters</td></tr>
+              <tr><td><strong>Editable as usual</strong></td><td>Save / Load attributes, Modify to update an existing one, Delete to remove it cleanly</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+                <div class="media" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;align-items:flex-start">
+          <img src="img/shear-cc1-gusset-plain.jpg" width="545" height="565" alt="Rectangular gusset" loading="lazy" style="height:240px;width:auto;max-width:100%;border-radius:10px">
+          <img src="img/shear-cc1-gusset-round.jpg" width="516" height="600" alt="Gusset with a rounded corner" loading="lazy" style="height:240px;width:auto;max-width:100%;border-radius:10px">
+          <img src="img/shear-cc1-gusset-l.jpg" width="617" height="662" alt="L-shaped gusset" loading="lazy" style="height:240px;width:auto;max-width:100%;border-radius:10px">
+        </div>
+
+        <h2 id="how-to-use">4. How to use it</h2>
+        <ol class="steps">
+          <li>Click <strong>Shear (CC1)</strong> in the iViDLab group of the <em>Applications &amp; components</em> panel.</li>
+          <li>Pick the main beam, then the floor beam to connect.</li>
+          <li>Double-click the component to adjust the parameters in the dialog, and click Modify to update.</li>
+        </ol>
+
+                <figure class="media">
+          <video src="video/shear-cc1-floor-beam.mp4" controls preload="metadata" playsinline aria-label="Video: inserting Shear (CC1) on a floor beam" style="display:block;margin:0 auto;max-width:100%;height:auto;border-radius:10px"></video>
+        </figure>
+
+        <figure class="media">
+          <video src="video/shear-cc1-column.mp4" controls preload="metadata" playsinline aria-label="Video: Shear (CC1) on a column" style="display:block;margin:0 auto;max-width:100%;height:auto;border-radius:10px"></video>
+        </figure>
+
+                <figure class="media">
+          <img src="img/shear-cc1-dialog-parts.png" width="751" height="722" alt="Shear (CC1) dialog, Parts tab" loading="lazy">
+        </figure>
+
+        <h2 id="install">5. Installing</h2>
+        <ol class="steps">
+          <li>In the <a href="#tai-ve">Download</a> section below, select your Tekla version to get the <code>.tsep</code> package (Tekla 2016 or newer).</li>
+          <li>If an older version is installed, uninstall it in <strong>Tekla Extension Manager</strong> first.</li>
+          <li>Double-click the <code>.tsep</code> file, tick your Tekla version and click <strong>Import</strong>. It is installed the next time Tekla starts.</li>
+        </ol>
+      </div>
+
+      <section aria-labelledby="tai-ve">
+        <h2 id="tai-ve"><span lang="vi" data-lang="vi">Tải về</span><span lang="en" data-lang="en">Download</span></h2>
+        <div data-peb-download="/tekla/component/downloads-shear-cc1.json"></div>
+
+        <div class="key-card">
+          <img class="key-card__qr" src="/tekla/peb-member/img/zalo-group-qr.png" width="516" height="516" alt="Mã QR nhóm Zalo người dùng iViDLab" loading="lazy">
+          <div class="key-card__body">
+            <p class="key-card__title"><span lang="vi" data-lang="vi">Nhóm Zalo người dùng iViDLab</span><span lang="en" data-lang="en">iViDLab user group on Zalo</span></p>
+            <p lang="vi" data-lang="vi">Quét mã QR hoặc bấm nút bên cạnh để vào nhóm: hỏi đáp khi sử dụng, báo lỗi và nhận thông báo bản cập nhật mới.</p>
+            <p lang="en" data-lang="en">Scan the QR code or use the button to join the group: usage questions, bug reports and new release announcements.</p>
+          </div>
+          <div class="key-card__actions">
+            <a class="btn btn--zalo" href="https://zalo.me/g/jqsxa7ptubdcqxf5inwz" target="_blank" rel="noopener"><span lang="vi" data-lang="vi">Vào nhóm Zalo</span><span lang="en" data-lang="en">Join the Zalo group</span></a>
+            <button type="button" class="btn btn--ghost" data-copy="https://zalo.me/g/jqsxa7ptubdcqxf5inwz"><span lang="vi" data-lang="vi">Chép link nhóm</span><span lang="en" data-lang="en">Copy group link</span></button>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-card__body">
+            <p class="key-card__title"><span lang="vi" data-lang="vi">Liên hệ iViDLab</span><span lang="en" data-lang="en">Contact iViDLab</span></p>
+            <p lang="vi" data-lang="vi">Theo dõi fanpage Facebook hoặc gửi email để được hỗ trợ và góp ý.</p>
+            <p lang="en" data-lang="en">Follow the Facebook page or send an email for support and feedback.</p>
+          </div>
+          <div class="key-card__actions">
+            <a class="btn btn--facebook" href="https://www.facebook.com/people/IVidLab/61594900149481/" target="_blank" rel="noopener"><span lang="vi" data-lang="vi">Fanpage Facebook</span><span lang="en" data-lang="en">Facebook page</span></a>
+            <a class="btn btn--ghost" href="mailto:ividlab.com@gmail.com">ividlab.com@gmail.com</a>
+          </div>
+        </div>
+      </section>
+    </article>
+
+    <section class="related" hidden>
+      <div class="related__head">
+        <h2><span lang="vi" data-lang="vi">Bài viết khác trong chuyên mục</span><span lang="en" data-lang="en">More in this category</span></h2>
+        <a class="related__all" href="/tekla-component/"><span lang="vi" data-lang="vi">Xem tất cả →</span><span lang="en" data-lang="en">View all →</span></a>
+      </div>
+      <div class="related-grid" data-peb-posts="/tekla/component/posts.json"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand" href="/">iViD<span>Lab</span></a>
+    <p>© 2026 iViDLab. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
