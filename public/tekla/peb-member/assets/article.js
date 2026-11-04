@@ -312,10 +312,10 @@
           info.hidden = false;
           info.className = 'download-info';
           info.replaceChildren(h('dl', {},
-            h('dt', { text: t('dlPackage') }), h('dd', { text: pkg.file }),
+            h('dt', { text: t('dlPackage') }), h('dd', { text: pkg.saveAs || pkg.file }),
             h('dt', { text: t('dlCompat') }), h('dd', { text: `Tekla Structures ${pkg.range}` }),
             h('dt', { text: t('dlSize') }), h('dd', { text: pkg.size })));
-          setDownloadButton(button, t('dlButton', { tekla: pick(choice.label) }), data.baseUrl + pkg.file, pkg.file);
+          setDownloadButton(button, t('dlButton', { tekla: pick(choice.label) }), data.baseUrl + pkg.file, pkg.saveAs || pkg.file);
           button.onclick = () => { try { window.iViDTrack && window.iViDTrack.download(choice.package); } catch (e) { /* bỏ qua */ } };
         }
       };

@@ -20,7 +20,8 @@ const PRODUCTS = [
   { key: '2v', label: '2V Cross', cover: '/tekla/component/img/2v-cross-cover.webp', intro: '/tekla/component/anti-sag-2v-cross.html' },
   { key: 'tube', label: 'Tube Round Connect', cover: '/tekla/component/img/tube-round-connect-1-12.webp', intro: '/tekla/component/tube-round-connect.html' },
   { key: 'bolt', label: 'Bolt Quick Dim V2', cover: '/tekla/component/img/bolt-quick-dim-v2-drawing.webp', intro: '/tekla/component/bolt-quick-dim.html' },
-  { key: 'stay', label: 'Stay Hole', cover: '/tekla/component/img/stay-hole-icon.png', intro: '/tekla/component/stay-hole.html' }
+  { key: 'stay', label: 'Stay Hole', cover: '/tekla/component/img/stay-hole-icon.png', intro: '/tekla/component/stay-hole.html' },
+  { key: 'shear', label: 'Shear (CC1)', cover: '/tekla/component/img/shear-cc1-icon.png', intro: '/tekla/component/shear-cc1.html' }
 ];
 const NS = 'teklacomponent';
 

@@ -19,7 +19,7 @@
     "tab": "tekla-component",
     "path": "/tekla-component/",
     "i18n": "teklacomponent",
-    "description": "Plugin và component Tekla Structures của iViDLab: PEB Member, 2V Cross Anti-Sag, Tube Round Connect, Bolt Quick Dim V2, Stay Hole — bài giới thiệu, cập nhật và gói tải .tsep."
+    "description": "Plugin và component Tekla Structures của iViDLab: PEB Member, 2V Cross Anti-Sag, Tube Round Connect, Bolt Quick Dim V2, Stay Hole, Shear (CC1) — bài giới thiệu, cập nhật và gói tải .tsep."
   },
   {
     "tab": "amc-private",

@@ -1,5 +1,24 @@
 [
   {
+    "id": "shear-cc1",
+    "link": "/tekla/component/shear-cc1.html",
+    "product": "Shear (CC1)",
+    "title": {
+      "vi": "iVidLab Shear (CC1) — Liên kết dầm sàn vào dầm chính",
+      "en": "iVidLab Shear (CC1) — Connecting floor beams to the main beam"
+    },
+    "description": {
+      "vi": "Chọn dầm chính và dầm sàn, bản mã, bu-lông và cắt cánh được dựng tự động; dùng cho dầm thép hình và dầm tổ hợp PEB Member.",
+      "en": "Pick the main beam and the floor beam and the gusset, bolts and flange cuts are built automatically; for rolled sections and built-up PEB Member beams."
+    },
+    "tag": {
+      "vi": "Giới thiệu",
+      "en": "Overview"
+    },
+    "date": "2026-11-04",
+    "cover": "/tekla/component/img/shear-cc1-icon.png"
+  },
+  {
     "id": "cap-nhat-stay-hole-1-11",
     "link": "/tekla/component/cap-nhat-stay-hole-1-11.html",
     "product": "Stay Hole",
