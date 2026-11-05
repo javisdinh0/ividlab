@@ -8,8 +8,8 @@
       "en": "Shear (CC1) 2.02 — what's new"
     },
     "description": {
-      "vi": "Liên kết dầm vào cột với bản mã, gân và bu-lông; ô tụt gân cho cả dầm-dầm; bản mã chạm sát hai cánh dầm PEB dốc, vát; sửa lỗi Copy, Tekla 2022 và bảng Properties.",
-      "en": "Beam-to-column connections with gusset, stiffeners and bolts; stiffener inset for beam-to-beam too; the gusset reaches both flanges of sloped, tapered PEB beams; fixes for Copy, Tekla 2022 and the Properties dialog."
+      "vi": "Liên kết dầm vào cột với bản mã, gân và bu-lông; offset chiều cao / chiều dài gân cho cả dầm-dầm; bản mã chạm sát hai cánh dầm PEB dốc, dầm tổ hợp thay đổi tiết diện; sửa lỗi Copy, Tekla 2022 và bảng Properties.",
+      "en": "Beam-to-column connections with gusset, stiffeners and bolts; stiffener height / length offset for beam-to-beam too; the gusset reaches both flanges of sloped PEB and built-up variable-section beams; fixes for Copy, Tekla 2022 and the Properties dialog."
     },
     "tag": {
       "vi": "Cập nhật",
