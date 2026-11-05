@@ -61,6 +61,21 @@ liên hệ. `article.js` gọi cùng API với trang `/trial/` (A-Soft License):
 - CORS chỉ cho `https://ividlab.com` → chạy `npm run dev` bấm Nhận key sẽ báo "Không kết nối được máy chủ",
   đó là bình thường; muốn thử giao diện thì giả lập `window.fetch` trong DevTools.
 
+## Dùng thử qua email (Shear CC1)
+
+File `downloads-*.json` có trường `trialMail` thì `article.js` tự vẽ khối "Dùng thử N ngày qua email" ngay
+dưới hộp Tải về — mọi bài dùng chung file đó đều có, không phải sửa từng bài (anchor `#dung-thu-email`):
+
+```json
+"trialMail": { "to": "ividlab.com@gmail.com", "tag": "SH1", "days": 15, "product": "Shear (CC1)" }
+```
+
+Trang chỉ kiểm định dạng + checksum Product Key (bắt lỗi chép thiếu), rồi soạn sẵn thư (mailto / Gmail /
+Outlook 365 / Outlook.com, kèm nút chép) có tiêu đề chứa tag. Việc cấp key nằm ngoài repo này: bot Apps
+Script trong hộp thư đọc thư và gọi `POST /api/keygen/trial-mail` — mã nguồn + cách cài ở repo A-Soft
+License, thư mục `MailBot/`. `days` chỉ để hiển thị; số ngày thật do máy chủ quyết định — đổi thì sửa cả hai.
+**Chỉ bật `trialMail` khi bot đã chạy**, nếu không khách gửi thư mà không ai trả lời.
+
 ## Video → GIF
 
 Cần `ffmpeg` trên PATH (`winget install Gyan.FFmpeg`).

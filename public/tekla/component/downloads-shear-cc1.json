@@ -2,6 +2,12 @@
   "version": "2.02P",
   "released": "2026-11-05",
   "baseUrl": "/fordownload/tekla-component/",
+  "trialMail": {
+    "to": "ividlab.com@gmail.com",
+    "tag": "SH1",
+    "days": 15,
+    "product": "Shear (CC1)"
+  },
   "title": {
     "vi": "Tải iVidLab Shear (CC1)",
     "en": "Download iVidLab Shear (CC1)"

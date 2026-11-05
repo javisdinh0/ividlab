@@ -4,6 +4,8 @@
  *  - ảnh minh hoạ: phóng to khi bấm; ảnh chưa có thì hiện chỗ trống trên máy dev, ẩn trên site thật,
  *  - hộp Tải về: combobox phiên bản Tekla -> đúng gói .tsep (đọc downloads.json),
  *  - khối Tự kích hoạt dùng thử 90 ngày: Product Key + email -> Active Key (cùng API với /trial/),
+ *  - khối Dùng thử qua email (downloads-*.json có "trialMail"): tự hiện dưới hộp Tải về, soạn sẵn thư có
+ *    Product Key gửi iViDLab; bot MailBot (repo A-Soft License) trả lời bằng Active Key,
  *  - mục "Bài viết khác trong chuyên mục" (đọc posts.json).
  * Theme/ngôn ngữ ban đầu do đoạn script nhỏ trong <head> đặt sẵn để trang không bị nháy.
  */
@@ -70,6 +72,21 @@
       errUsedEmail: 'Email này đã nhận key dùng thử PEB Tools VN trước đây. Nếu cần hỗ trợ, vui lòng báo trong nhóm Zalo người dùng.',
       errRateLimit: 'Bạn gửi hơi nhiều yêu cầu. Vui lòng đợi 1 phút rồi thử lại.',
       errServer: 'Chưa cấp được key ({message}). Vui lòng thử lại sau hoặc báo trong nhóm Zalo người dùng.',
+      mailTitle: 'Dùng thử {days} ngày qua email',
+      mailIntro: 'Trong Tekla mở hộp thoại {product} > tab License, bấm Copy để chép Product Key rồi dán vào ô dưới. Bạn gửi một thư có Product Key tới iViDLab, thư trả lời kèm Active Key sẽ về đúng hộp thư đó trong khoảng 5–10 phút.',
+      mailKeyHint: 'Dán Product Key (bắt đầu bằng {tag}-)',
+      mailNext: 'Tiếp tục',
+      mailErrKey: 'Product Key bị thiếu hoặc thừa ký tự. Hãy bấm Copy trong tab License của {product} rồi dán lại cả chuỗi.',
+      mailErrOther: 'Đây không phải Product Key của {product} (Product Key phải bắt đầu bằng {tag}-).',
+      mailReady: 'Product Key hợp lệ. Chọn cách gửi thư — nội dung đã soạn sẵn, chỉ cần bấm Gửi:',
+      mailApp: 'Mở chương trình mail',
+      mailManual: 'Hoặc tự gửi thư tới {to} với nội dung:',
+      mailCopyAddr: 'Chép địa chỉ',
+      mailCopyBody: 'Chép nội dung thư',
+      mailNote: 'Mỗi máy được dùng thử một lần; key gửi về đúng địa chỉ bạn dùng để gửi thư. Sau 15 phút chưa thấy thư trả lời: xem thư mục Spam, hoặc báo trong nhóm Zalo người dùng.',
+      mailBack: 'Sửa Product Key',
+      mailSubject: '{product} trial {tag}',
+      mailBody: 'Xin key dùng thử {product} / {product} trial request\r\n\r\nProduct Key: {key}\r\n\r\n(Thư được đọc tự động — vui lòng giữ nguyên dòng Product Key.)',
       copied: '✔ Đã chép'
     },
     en: {
@@ -111,6 +128,21 @@
       errUsedEmail: 'This email has already received a PEB Tools VN trial key. If you need help, please ask in the Zalo user group.',
       errRateLimit: 'Too many requests. Please wait a minute and try again.',
       errServer: 'Could not issue a key ({message}). Please try again later or ask in the Zalo user group.',
+      mailTitle: '{days}-day trial by email',
+      mailIntro: 'In Tekla, open the {product} dialog > License tab, click Copy to copy the Product Key and paste it below. You send iViDLab one email with the Product Key; the reply with your Active Key arrives in that same mailbox within about 5–10 minutes.',
+      mailKeyHint: 'Paste the Product Key (starts with {tag}-)',
+      mailNext: 'Continue',
+      mailErrKey: 'The Product Key is incomplete or has extra characters. Click Copy in the {product} License tab and paste the whole string again.',
+      mailErrOther: 'This is not a {product} Product Key (it must start with {tag}-).',
+      mailReady: 'Product Key looks good. Choose how to send the email — it is already written, just click Send:',
+      mailApp: 'Open my mail app',
+      mailManual: 'Or send an email yourself to {to} with this text:',
+      mailCopyAddr: 'Copy address',
+      mailCopyBody: 'Copy email text',
+      mailNote: 'One trial per computer; the key is sent to the address you email from. No reply after 15 minutes? Check your Spam folder, or ask in the Zalo user group.',
+      mailBack: 'Edit Product Key',
+      mailSubject: '{product} trial {tag}',
+      mailBody: 'Xin key dùng thử {product} / {product} trial request\r\n\r\nProduct Key: {key}\r\n\r\n(Thư được đọc tự động — vui lòng giữ nguyên dòng Product Key.)',
       copied: '✔ Copied'
     }
   };
@@ -284,6 +316,13 @@
     let selected = storage.get(TEKLA_CHOICE_KEY) || '';
     if (!data.tekla.some((item) => item.value === selected)) selected = '';
 
+    // Khối dùng thử qua email: giữ Product Key đã dán qua các lần vẽ lại (đổi VI/EN).
+    const mailState = data.trialMail ? { key: '', error: null, ready: '' } : null;
+    let mailHolder = null;
+    const renderMail = () => {
+      if (mailHolder) mailHolder.replaceChildren(mailTrialCard(data.trialMail, index, mailState, renderMail));
+    };
+
     const render = () => {
       const select = h('select', { id: `tekla-version-${index}` },
         h('option', { value: '', text: t('dlPlaceholder') }),
@@ -322,7 +361,8 @@
       select.addEventListener('change', update);
 
       const notes = data.notes && pick(data.notes);
-      box.replaceChildren(h('div', { class: 'download-card' },
+      mailHolder = mailState ? h('div', {}) : null;
+      box.replaceChildren(...[h('div', { class: 'download-card' },
         h('div', { class: 'download-card__head' },
           h('div', {},
             h('div', { class: 'eyebrow', text: t('dlEyebrow') }),
@@ -334,12 +374,101 @@
         button,
         Array.isArray(notes) && notes.length > 0 && h('div', { class: 'whats-new' },
           h('h4', { text: t('dlWhatsNew', { version: data.version }) }),
-          h('ul', {}, notes.map((note) => h('li', { text: note }))))));
+          h('ul', {}, notes.map((note) => h('li', { text: note }))))), mailHolder].filter(Boolean));
       update();
+      renderMail();
     };
 
     render();
     langListeners.push(render);
+  }
+
+  /* ---------- Dùng thử qua email ("trialMail" trong downloads-*.json) ----------
+   * { "to": hộp thư nhận, "tag": tag Product Key (vd SH1), "days": số ngày, "product": tên hiển thị }.
+   * Trang chỉ kiểm định dạng + checksum để bắt lỗi chép thiếu sớm; cấp hay không do máy chủ quyết định
+   * (A-Soft License: POST /api/keygen/trial-mail, bot MailBot đọc hộp thư và trả lời). */
+  async function keyChecksum(fp) {
+    // Cùng công thức với plugin (LicMachine.Checksum): 2 byte đầu SHA-256 của vân tay in hoa.
+    if (!window.crypto || !crypto.subtle || typeof TextEncoder === 'undefined') return null;
+    const hash = new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(fp)));
+    return [hash[0], hash[1]].map((b) => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+  }
+
+  async function checkProductKey(raw, tag) {
+    const key = String(raw || '').replace(/\s+/g, '').toUpperCase();
+    if (!key) return { error: 'errKeyMissing' };
+    const m = key.match(/^([A-Z0-9]{2,4})-([0-9A-F]{64})-([0-9A-F]{4})$/);
+    if (!m) return { error: key.startsWith(`${tag}-`) || !/^[A-Z0-9]{2,4}-/.test(key) ? 'mailErrKey' : 'mailErrOther' };
+    if (m[1] !== tag) return { error: 'mailErrOther' };
+    const sum = await keyChecksum(m[2]).catch(() => null);
+    if (sum && sum !== m[3]) return { error: 'mailErrKey' };
+    return { key };
+  }
+
+  function mailTrialCard(cfg, index, state, rerender) {
+    const vars = { product: cfg.product, tag: cfg.tag, days: cfg.days, to: cfg.to };
+    const head = h('div', { class: 'activate-card__head' },
+      h('div', { class: 'activate-card__icon', 'aria-hidden': 'true', text: '✉️' }),
+      h('div', {},
+        h('h3', { class: 'activate-card__title', text: t('mailTitle', vars) }),
+        h('p', { text: t('mailIntro', vars) })));
+
+    const copyButton = (label, value) => {
+      const btn = h('button', { type: 'button', class: 'btn btn--ghost', text: t(label) });
+      btn.addEventListener('click', async () => {
+        await copyText(value);
+        btn.textContent = t('copied');
+        setTimeout(() => { btn.textContent = t(label); }, 1800);
+      });
+      return btn;
+    };
+
+    let body;
+    if (state.ready) {
+      const subject = t('mailSubject', vars);
+      const text = t('mailBody', { ...vars, key: state.ready });
+      const enc = encodeURIComponent;
+      const links = [
+        [t('mailApp'), `mailto:${cfg.to}?subject=${enc(subject)}&body=${enc(text)}`],
+        ['Gmail', `https://mail.google.com/mail/?view=cm&fs=1&to=${enc(cfg.to)}&su=${enc(subject)}&body=${enc(text)}`],
+        ['Outlook 365', `https://outlook.office.com/mail/deeplink/compose?to=${enc(cfg.to)}&subject=${enc(subject)}&body=${enc(text)}`],
+        ['Outlook.com', `https://outlook.live.com/mail/0/deeplink/compose?to=${enc(cfg.to)}&subject=${enc(subject)}&body=${enc(text)}`]
+      ];
+      const output = h('textarea', { class: 'activate-output', rows: 5, readonly: true });
+      output.value = text;
+      const back = h('button', { type: 'button', class: 'btn btn--ghost', text: t('mailBack') });
+      back.addEventListener('click', () => {
+        state.ready = '';
+        rerender();
+      });
+      body = h('div', { class: 'activate-result', 'aria-live': 'polite' },
+        h('p', { class: 'activate-done', text: t('mailReady') }),
+        h('div', { class: 'activate-actions' }, links.map(([label, href], i) => h('a', {
+          class: `btn ${i === 0 ? 'btn--primary' : 'btn--ghost'}`, href, text: label,
+          target: i > 0 ? '_blank' : null, rel: i > 0 ? 'noopener' : null
+        }))),
+        h('p', { class: 'activate-note', text: t('mailManual', vars) }),
+        output,
+        h('div', { class: 'activate-actions' }, copyButton('mailCopyAddr', cfg.to), copyButton('mailCopyBody', text), back),
+        h('p', { class: 'activate-note', text: t('mailNote') }));
+    } else {
+      const keyId = `mail-trial-key-${index}`;
+      const input = h('textarea', { id: keyId, rows: 2, required: true, spellcheck: 'false', placeholder: t('mailKeyHint', vars) });
+      input.value = state.key;
+      input.addEventListener('input', () => { state.key = input.value; });
+      body = h('form', { class: 'activate-form' },
+        h('label', { for: keyId, text: 'Product Key' }), input,
+        h('button', { type: 'submit', class: 'btn btn--primary', text: t('mailNext') }),
+        state.error && h('p', { class: 'activate-error', role: 'alert', text: t(state.error, vars) }));
+      body.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const result = await checkProductKey(state.key, cfg.tag);
+        state.error = result.error || null;
+        state.ready = result.key || '';
+        rerender();
+      });
+    }
+    return h('div', { class: 'activate-card', id: index ? `dung-thu-email-${index}` : 'dung-thu-email' }, head, body);
   }
 
   /* ---------- Bài viết khác trong chuyên mục ---------- */
