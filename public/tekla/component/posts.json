@@ -1,5 +1,24 @@
 [
   {
+    "id": "cap-nhat-shear-cc1-2-02",
+    "link": "/tekla/component/cap-nhat-shear-cc1-2-02.html",
+    "product": "Shear (CC1)",
+    "title": {
+      "vi": "Shear (CC1) 2.02 — có gì mới",
+      "en": "Shear (CC1) 2.02 — what's new"
+    },
+    "description": {
+      "vi": "Liên kết dầm vào cột với bản mã, gân và bu-lông; ô tụt gân cho cả dầm-dầm; bản mã chạm sát hai cánh dầm PEB dốc, vát; sửa lỗi Copy, Tekla 2022 và bảng Properties.",
+      "en": "Beam-to-column connections with gusset, stiffeners and bolts; stiffener inset for beam-to-beam too; the gusset reaches both flanges of sloped, tapered PEB beams; fixes for Copy, Tekla 2022 and the Properties dialog."
+    },
+    "tag": {
+      "vi": "Cập nhật",
+      "en": "Release"
+    },
+    "date": "2026-11-05",
+    "cover": "/tekla/component/img/shear-cc1-2-02-peb-doc-3d.webp"
+  },
+  {
     "id": "shear-cc1",
     "link": "/tekla/component/shear-cc1.html",
     "product": "Shear (CC1)",
@@ -16,7 +35,7 @@
       "en": "Overview"
     },
     "date": "2026-11-04",
-    "cover": "/tekla/component/img/shear-cc1-icon.png"
+    "cover": "/tekla/component/img/shear-cc1-icon.webp"
   },
   {
     "id": "cap-nhat-stay-hole-1-11",
