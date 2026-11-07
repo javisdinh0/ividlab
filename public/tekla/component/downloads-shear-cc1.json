@@ -1,5 +1,5 @@
 {
-  "version": "2.05P",
+  "version": "2.07P",
   "released": "2026-11-07",
   "baseUrl": "/fordownload/tekla-component/",
   "title": {
@@ -9,9 +9,9 @@
   "packages": {
     "shear": {
       "file": "iVidLab.FloorBeamGusset.tsep",
-      "saveAs": "iVidLab.FloorBeamGusset_2.05P.tsep",
-      "size": "277 KB",
-      "bytes": 284130,
+      "saveAs": "iVidLab.FloorBeamGusset_2.07P.tsep",
+      "size": "279 KB",
+      "bytes": 286073,
       "range": "2016+"
     }
   },
