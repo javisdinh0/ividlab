@@ -1,5 +1,24 @@
 [
   {
+    "id": "cap-nhat-shear-cc1-2-07",
+    "link": "/tekla/component/cap-nhat-shear-cc1-2-07.html",
+    "product": "Shear (CC1)",
+    "title": {
+      "vi": "Shear (CC1) 2.07P — có gì mới",
+      "en": "Shear (CC1) 2.07P — what's new"
+    },
+    "description": {
+      "vi": "Sườn tăng cứng khít cánh cột vát, dầm PEB nhiều đoạn không còn bị kéo dài tấm bụng, bản mã bám sát mặt cánh nghiêng.",
+      "en": "Stiffeners fit tapered column flanges, multi-segment PEB beams no longer get their web plates extended, and the gusset follows the sloping flange face."
+    },
+    "tag": {
+      "vi": "Cập nhật",
+      "en": "Release"
+    },
+    "date": "2026-11-07",
+    "cover": "/tekla/component/img/shear-cc1-model.jpg"
+  },
+  {
     "id": "cap-nhat-shear-cc1-2-02",
     "link": "/tekla/component/cap-nhat-shear-cc1-2-02.html",
     "product": "Shear (CC1)",
