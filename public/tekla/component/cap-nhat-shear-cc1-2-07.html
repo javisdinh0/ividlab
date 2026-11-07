@@ -87,12 +87,9 @@
         </div>
 
         <h2 id="apply">1. Sửa lỗi Apply: giá trị nhập trên bảng không tới liên kết (Tekla 2022 trở lên)</h2>
-        <p>Trên Tekla 2022 đến 2026, khi đặt giá trị trên bảng Shear (CC1), bấm <strong>Apply</strong> rồi chọn dầm để tạo liên kết mới, khoảng một nửa số ô bị bỏ qua và liên kết dùng giá trị mặc định. Nguyên nhân: 85 thuộc tính của CC1 trùng tên với thuộc tính gốc của Tekla (ví dụ <code>tpl1</code>, <code>adist1</code>, <code>partname</code>, <code>group_no</code>) nên Tekla không chuyển giá trị Apply cho chúng.</p>
-        <p>Từ bản 2.05P các thuộc tính này đổi sang tên riêng (<code>ivl_…</code>) và <strong>mọi ô trên bảng đều tới được liên kết</strong>. Tekla 2016 đến 2021 không bị lỗi này.</p>
-        <ul>
-          <li><strong>Tương thích ngược:</strong> liên kết đã có trong model và tệp thuộc tính đã lưu bằng bản cũ vẫn mở và nạp được, CC1 tự chuyển tên cũ sang tên mới.</li>
-          <li><strong>Dùng macro, script hoặc Open API</strong> đặt thuộc tính CC1 trên Tekla 2022 trở lên: dùng tên mới <code>ivl_&lt;tên cũ&gt;</code>, ví dụ <code>ivl_tpl1</code>.</li>
-        </ul>
+        <p>Trên Tekla 2022 đến 2026, khi đặt giá trị trên bảng Shear (CC1), bấm <strong>Apply</strong> rồi chọn dầm để tạo liên kết mới, khoảng một nửa số ô bị bỏ qua và liên kết dùng giá trị mặc định.</p>
+        <p>Từ bản 2.05P, <strong>mọi ô trên bảng đều tới được liên kết</strong>. Tekla 2016 đến 2021 không bị lỗi này.</p>
+        <p><strong>Tương thích ngược:</strong> liên kết đã có trong model và tệp thuộc tính đã lưu bằng bản cũ vẫn mở và nạp được.</p>
 
         <p><strong>Đã thử trên:</strong></p>
         <ul>
@@ -147,12 +144,9 @@
         </div>
 
         <h2 id="apply-en">1. Apply fix: values entered in the dialog did not reach the connection (Tekla 2022 and newer)</h2>
-        <p>On Tekla 2022 to 2026, when you set values in the Shear (CC1) dialog, click <strong>Apply</strong> and then pick a beam to create a new connection, about half of the boxes were ignored and the connection used default values. The cause: 85 CC1 attributes shared names with Tekla's own attributes (for example <code>tpl1</code>, <code>adist1</code>, <code>partname</code>, <code>group_no</code>), so Tekla did not pass the Apply values for them.</p>
-        <p>Since 2.05P these attributes have their own names (<code>ivl_…</code>) and <strong>every box in the dialog reaches the connection</strong>. Tekla 2016 to 2021 are not affected.</p>
-        <ul>
-          <li><strong>Backward compatible:</strong> connections already in the model and property files saved with older versions still open and load; CC1 converts old names to new ones.</li>
-          <li><strong>If you use macros, scripts or the Open API</strong> to set CC1 attributes on Tekla 2022 or newer: use the new name <code>ivl_&lt;old name&gt;</code>, for example <code>ivl_tpl1</code>.</li>
-        </ul>
+        <p>On Tekla 2022 to 2026, when you set values in the Shear (CC1) dialog, click <strong>Apply</strong> and then pick a beam to create a new connection, about half of the boxes were ignored and the connection used default values.</p>
+        <p>Since 2.05P, <strong>every box in the dialog reaches the connection</strong>. Tekla 2016 to 2021 are not affected.</p>
+        <p><strong>Backward compatible:</strong> connections already in the model and property files saved with older versions still open and load.</p>
 
         <p><strong>Tested on:</strong></p>
         <ul>
