@@ -3,7 +3,6 @@
  *  - công tắc Sáng/Tối và nút VN/EN (dùng chung key localStorage với SPA),
  *  - ảnh minh hoạ: phóng to khi bấm; ảnh chưa có thì hiện chỗ trống trên máy dev, ẩn trên site thật,
  *  - hộp Tải về: combobox phiên bản Tekla -> đúng gói .tsep (đọc downloads.json),
- *  - khối Tự kích hoạt dùng thử 90 ngày: Product Key + email -> Active Key (cùng API với /trial/),
  *  - khối Dùng thử qua email (downloads-*.json có "trialMail"): tự hiện dưới hộp Tải về, soạn sẵn thư có
  *    Product Key gửi iViDLab; bot MailBot (repo A-Soft License) trả lời bằng Active Key,
  *  - mục "Bài viết khác trong chuyên mục" (đọc posts.json).
@@ -15,20 +14,6 @@
   const root = document.documentElement;
   const CATEGORY = '/tekla/peb-member/';
   const ZALO_GROUP_URL = 'https://zalo.me/g/jqsxa7ptubdcqxf5inwz';
-  // Cùng backend với trang /trial/ (public/trial/trial.js) — đổi endpoint thì sửa cả hai chỗ.
-  const TRIAL_API_URL = 'https://license.ividlab.com/api/keygen/trial';
-  // Tên sản phẩm bên máy chủ (tag PT1-). Gửi kèm để Product Key dạng cũ (không tag) vẫn kích hoạt được
-  // và key của phần mềm khác bị báo lỗi rõ ràng thay vì cấp nhầm.
-  const TRIAL_PRODUCT = 'PEBToolsVN';
-  // Máy chủ trả lỗi tiếng Anh — đổi các lỗi hay gặp sang lời dễ hiểu, lỗi lạ hiện nguyên văn (errServer).
-  const TRIAL_ERRORS = [
-    [/valid email/i, 'errEmail'],
-    [/Product Key is required/i, 'errKeyMissing'],
-    [/checksum|single line|unexpectedly long|RSA key/i, 'errKeyBroken'],
-    [/was selected|Unknown product tag/i, 'errKeyOther'],
-    [/issued for this installation/i, 'errUsedMachine'],
-    [/issued to this email/i, 'errUsedEmail']
-  ];
   const TEKLA_CHOICE_KEY = 'peb-member-tekla-version';
 
   const TEXT = {
@@ -495,97 +480,6 @@
     section.hidden = false;
   }
 
-  /* ---------- Tự kích hoạt dùng thử 90 ngày (cùng API với trang /trial/) ---------- */
-  function initTrial(box, index) {
-    // Giữ nội dung đã gõ và kết quả khi khối được vẽ lại lúc đổi ngôn ngữ.
-    // error = { code, message } — lưu mã lỗi chứ không lưu câu đã dịch để đổi VI/EN vẫn đúng.
-    const state = { productKey: '', email: '', error: null, result: null, busy: false };
-
-    async function requestKey() {
-      state.busy = true;
-      state.error = null;
-      render();
-      try {
-        const res = await fetch(TRIAL_API_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ productKeyRaw: state.productKey.trim(), email: state.email.trim(), productOverride: TRIAL_PRODUCT })
-        });
-        const body = await res.json().catch(() => null);
-        if (res.ok && body && body.activeKeyText) {
-          state.result = body;
-        } else if (res.status === 429) {
-          state.error = { code: 'errRateLimit' };
-        } else {
-          const message = (body && body.error) || `${res.status} ${res.statusText}`.trim();
-          const known = TRIAL_ERRORS.find(([pattern]) => pattern.test(message));
-          state.error = { code: known ? known[1] : 'errServer', message: message.replace(/[.\s]+$/, '') };
-        }
-      } catch {
-        // fetch chỉ ném lỗi khi không tới được máy chủ (mất mạng, bị chặn CORS...).
-        state.error = { code: 'trialNetwork' };
-      } finally {
-        state.busy = false;
-        render();
-      }
-    }
-
-    function render() {
-      const head = h('div', { class: 'activate-card__head' },
-        h('div', { class: 'activate-card__icon', 'aria-hidden': 'true', text: '🔑' }),
-        h('div', {},
-          h('h3', { class: 'activate-card__title', text: t('trialTitle') }),
-          h('p', { text: t('trialIntro') })));
-
-      let body;
-      if (state.result) {
-        const output = h('textarea', { class: 'activate-output', rows: 6, readonly: true });
-        output.value = state.result.activeKeyText || '';
-        const copyBtn = h('button', { type: 'button', class: 'btn btn--primary', text: t('trialCopy') });
-        copyBtn.addEventListener('click', async () => {
-          await copyText(output.value);
-          copyBtn.textContent = t('copied');
-          setTimeout(() => { copyBtn.textContent = t('trialCopy'); }, 1800);
-        });
-        const again = h('button', { type: 'button', class: 'btn btn--ghost', text: t('trialAgain') });
-        again.addEventListener('click', () => {
-          state.result = null;
-          state.productKey = '';
-          render();
-        });
-        body = h('div', { class: 'activate-result', 'aria-live': 'polite' },
-          h('p', { class: 'activate-done', text: t('trialDone', { product: state.result.product === TRIAL_PRODUCT ? 'PEB Tools VN' : state.result.product }) }),
-          output,
-          h('div', { class: 'activate-actions' }, copyBtn, again),
-          h('p', { class: 'activate-note', text: t('trialNext') }));
-      } else {
-        const keyId = `trial-key-${index}`;
-        const emailId = `trial-email-${index}`;
-        const keyInput = h('textarea', { id: keyId, rows: 2, required: true, spellcheck: 'false', placeholder: t('trialProductKeyHint') });
-        keyInput.value = state.productKey;
-        keyInput.addEventListener('input', () => { state.productKey = keyInput.value; });
-        const emailInput = h('input', { id: emailId, type: 'email', required: true, autocomplete: 'email', placeholder: 'you@example.com' });
-        emailInput.value = state.email;
-        emailInput.addEventListener('input', () => { state.email = emailInput.value; });
-        body = h('form', { class: 'activate-form' },
-          h('label', { for: keyId, text: t('trialProductKey') }), keyInput,
-          h('label', { for: emailId, text: t('trialEmail') }), emailInput,
-          h('button', { type: 'submit', class: 'btn btn--primary', disabled: state.busy, text: t(state.busy ? 'trialBusy' : 'trialSubmit') }),
-          state.error && h('p', { class: 'activate-error', role: 'alert', text: t(state.error.code, { message: state.error.message }) }));
-        body.addEventListener('submit', (e) => {
-          e.preventDefault();
-          requestKey();
-        });
-      }
-
-      box.replaceChildren(head, body,
-        h('p', { class: 'activate-alt' }, `${t('trialAlt')} `, h('a', { href: '/trial/', text: t('trialAltLink') }), '.'));
-    }
-
-    render();
-    langListeners.push(render);
-  }
-
   /* ---------- Nút chép (link nhóm Zalo...) ---------- */
   async function copyText(value) {
     try {
@@ -617,6 +511,5 @@
   initFigures();
   initCopyButtons();
   document.querySelectorAll('[data-peb-download]').forEach(initDownload);
-  document.querySelectorAll('[data-trial-activate]').forEach(initTrial);
   initRelated();
 })();
