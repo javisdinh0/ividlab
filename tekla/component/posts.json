@@ -1,5 +1,24 @@
 [
   {
+    "id": "cap-nhat-stay-hole-1-21",
+    "link": "/tekla/component/cap-nhat-stay-hole-1-21.html",
+    "product": "Stay Hole",
+    "title": {
+      "vi": "CC2 - Stay Hole: Lỗ module chống xà gồ nhanh - chuẩn xác - dễ kiểm soát",
+      "en": "CC2 - Stay Hole: Fast, accurate, easy-to-control stay-bolt holes for purlins"
+    },
+    "description": {
+      "vi": "Vá lỗi chống lệch, chống nằm ngoài vùng lap; bổ sung Bolt comment để kiểm soát các lỗ module đã thêm.",
+      "en": "Fixes for misplaced stays and stays outside the lap zone; adds Bolt comment to control the module holes you added."
+    },
+    "tag": {
+      "vi": "Cập nhật",
+      "en": "Release"
+    },
+    "date": "2026-11-08",
+    "cover": "/tekla/component/img/stay-hole-1-18-lo-tren-xa-go.png"
+  },
+  {
     "id": "cap-nhat-shear-cc1-2-07",
     "link": "/tekla/component/cap-nhat-shear-cc1-2-07.html",
     "product": "Shear (CC1)",
