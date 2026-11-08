@@ -1,5 +1,5 @@
 {
-  "version": "1.21P",
+  "version": "1.22P",
   "released": "2026-11-08",
   "baseUrl": "/fordownload/tekla-component/",
   "title": {
@@ -8,9 +8,9 @@
   },
   "packages": {
     "stay": {
-      "file": "iVidLab.StayHole_1.21P.tsep",
-      "size": "98 KB",
-      "bytes": 100732,
+      "file": "iVidLab.StayHole_1.22P.tsep",
+      "size": "99 KB",
+      "bytes": 100949,
       "range": "2016+"
     }
   },
@@ -82,12 +82,12 @@
   "notes": {
     "vi": [
       "Tạo lỗ module chống xà gồ nhanh, chuẩn xác, dễ kiểm soát.",
-      "1.21P: vá lỗi chống lệch, chống nằm ngoài vùng lap; bổ sung Bolt comment để kiểm soát các lỗ module đã thêm.",
+      "1.22P: vá lỗi chống lệch, chống nằm ngoài vùng lap; bổ sung Bolt comment để kiểm soát các lỗ module đã thêm.",
       "Yêu cầu Tekla 2016 trở lên."
     ],
     "en": [
       "Fast, accurate, easy-to-control stay-bolt holes for purlins.",
-      "1.21P: fixes for misplaced stays and stays outside the lap zone; adds Bolt comment to control the module holes you added.",
+      "1.22P: fixes for misplaced stays and stays outside the lap zone; adds Bolt comment to control the module holes you added.",
       "Requires Tekla 2016 or newer."
     ]
   }
