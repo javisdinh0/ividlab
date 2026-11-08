@@ -70,7 +70,7 @@
           <div class="eyebrow">Tekla Component // Cold rolled overlap</div>
           <h1>iVidLab Stay Hole (CC2) — Mọi line xà gồ giống hệt nhau, cùng một mã chi tiết</h1>
           <p class="lead">Tự tạo lỗ (và bu-lông) stay trên xà gồ ở những chỗ không có thanh chống, để các line xà gồ cùng loại giống hệt nhau và cùng một mã chi tiết.</p>
-          <ul class="meta-row"><li>Phiên bản 1.11P</li><li>Tekla 2016 trở lên</li></ul>
+          <ul class="meta-row"><li>Phiên bản 1.21P</li><li>Tekla 2016 trở lên</li></ul>
           <div class="cta-row"><a class="btn btn--primary" href="#tai-ve">⬇ Tải Stay Hole (CC2)</a></div>
         </header>
 
@@ -78,7 +78,7 @@
           <p><strong>Tóm tắt nhanh</strong></p>
           <ul>
             <li><strong>Quét chọn hàng loạt</strong> component Cold rolled overlap (đã thử 90 component trong một lần chạy).</li>
-            <li><strong>Chỉ tạo ở phía chưa có stay;</strong> chỗ đã có giữ nguyên, không tạo trùng.</li>
+            <li><strong>Chọn bên đặt bolt;</strong> chỗ đã có stay giữ nguyên, không tạo trùng.</li>
             <li><strong>Bám theo component gốc:</strong> đổi thông số hoặc sửa kèo/xà gồ thì lỗ tự cập nhật.</li>
             <li>Chạy lại Numbering: các xà gồ cùng loại <strong>cùng mã chi tiết</strong>.</li>
           </ul>
@@ -98,7 +98,8 @@
             <thead><tr><th>Tính năng</th><th>Mô tả</th></tr></thead>
             <tbody>
               <tr><td><strong>Quét chọn hàng loạt</strong></td><td>Chọn một hay nhiều component Cold rolled overlap một lần; chọn luôn kèo hoặc xà gồ của chúng cũng nhận</td></tr>
-              <tr><td><strong>Tự nhận phía thiếu stay</strong></td><td>Chỉ tạo ở phía chưa có stay, không tạo trùng chỗ đã có</td></tr>
+              <tr><td><strong>Chọn bên đặt bolt</strong></td><td>Both sides, Right side hoặc Left side; component đã có stay thì giữ nguyên, không tạo trùng</td></tr>
+              <tr><td><strong>Bolt comment</strong></td><td>Gắn nhãn cho mọi cụm bu-lông Stay Hole tạo để lọc và kiểm soát</td></tr>
               <tr><td><strong>Lấy mặc định từ component gốc</strong></td><td>Vị trí lỗ so với tim kèo, độ cao lỗ, kiểu stay, đường kính, tiêu chuẩn, dung sai và lỗ dài của bu-lông</td></tr>
               <tr><td><strong>Lỗ phụ đối xứng</strong></td><td>Theo tuỳ chọn "Stay bolt holes" của component gốc</td></tr>
               <tr><td><strong>Tuỳ chọn bu-lông</strong></td><td>Chỉ lỗ, hoặc lỗ kèm bu-lông, đai ốc, long đen</td></tr>
@@ -122,9 +123,10 @@
 
         <h2 id="luu-y">4. Lưu ý</h2>
         <ul>
-          <li>Bản 1.11P; yêu cầu Tekla 2016 trở lên.</li>
+          <li>Bản 1.21P; yêu cầu Tekla 2016 trở lên.</li>
           <li>Nên nhập es1/es2 ở component gốc. Để trống thì component gốc tự tính theo hình học, và Stay Hole chỉ suy ra được khi một phía đã có stay.</li>
-          <li>Component đã có stay thì Stay Hole không làm gì. Component không stay chỉ nhận lỗ ở phía mà <strong>xà gồ lân cận</strong> (cùng kèo, hàng kề bên) có stay; không có lân cận nào có stay thì tạo cả hai bên. Chọn "Both sides if no stay" ở ô Neighbours để luôn tạo cả hai bên. Lân cận đổi thì bấm Modify để cập nhật.</li>
+          <li>Component đã có stay thì Stay Hole không làm gì (có thể chọn "Create anyway" ở ô "If original has stay"). Ô <strong>Bolt position</strong> cho chọn bên đặt bolt: Both sides, Right side (phía es2) hoặc Left side (phía es1).</li>
+          <li>Ô <strong>Bolt comment</strong>: chuỗi nhập vào được gán vào thuộc tính Bolt Comment của mọi cụm bu-lông Stay Hole tạo, để lọc và kiểm soát các lỗ module đã thêm.</li>
           <li>Ô Create: "Holes only" chỉ tạo lỗ; "Holes + bolts" giữ như component gốc (bu-lông ở vị trí stay, lỗ phụ chỉ là lỗ); "All bolts" cho cả lỗ phụ thành bu-lông thật.</li>
           <li>Xà gồ quay BACK thì component gốc không tạo bu-lông stay, nên không áp dụng.</li>
           <li>Mã chi tiết vẫn có thể khác nếu hình học của chính component gốc khác nhau (ví dụ cleat lệch vài mm).</li>
@@ -135,6 +137,28 @@
           <li>Ở mục <a href="#tai-ve">Tải về</a> bên dưới, chọn phiên bản Tekla đang dùng để tải gói <code>.tsep</code>.</li>
           <li>Nhấp đúp file <code>.tsep</code>, tick phiên bản Tekla rồi bấm <strong>Import</strong>. Gói được cài khi Tekla khởi động lần tiếp theo.</li>
         </ol>
+
+        <h2 id="kich-hoat">6. Kích hoạt miễn phí, 180 ngày</h2>
+        <p>Stay Hole (CC2) <strong>miễn phí</strong>, mỗi lần kích hoạt dùng được 180 ngày.</p>
+        <ol class="steps">
+          <li>Mở hộp thoại <strong>License</strong> của Stay Hole (CC2), bấm <strong>Copy</strong> để chép nguyên Product Key (dạng <code>CC2-…</code>).</li>
+          <li>Gửi thư có Product Key đó tới <a href="mailto:ividlab.com@gmail.com">ividlab.com@gmail.com</a>.</li>
+          <li>Hệ thống tự trả lời bằng <strong>Active Key</strong> (trong thân thư và trong file <code>.txt</code>) tới đúng địa chỉ bạn đã gửi, sau khoảng 1–2 phút từ 7h đến 22h; ban đêm tối đa khoảng 6 phút.</li>
+          <li>Dán Active Key vào hộp thoại License rồi bấm <strong>Activate</strong>.</li>
+        </ol>
+        <ul>
+          <li><strong>Kích hoạt lại:</strong> khi key còn 7 ngày trở xuống (hoặc đã hết hạn), gửi lại Product Key để nhận key 180 ngày mới. Gửi sớm hơn, bạn sẽ nhận thư báo key hiện tại còn hạn đến ngày nào và từ ngày nào có thể gửi lại.</li>
+          <li>Một địa chỉ email kích hoạt được nhiều máy; mỗi máy dùng Product Key của chính máy đó.</li>
+          <li>Nên gửi từ hộp thư thường (Gmail, Outlook…); thư từ mail server công ty có thể bị chuyển sang xét duyệt tay nên chậm hơn.</li>
+        </ul>
+
+        <h2 id="hoi-dap">7. Hỏi đáp về license</h2>
+        <h3>Cài lại Windows thì có mất license không?</h3>
+        <p>Nếu vẫn là máy cũ, dán lại Active Key cũ là chạy. Nếu bạn mất key, hãy liên hệ để được gửi lại.</p>
+        <h3>Thay bo mạch chủ hoặc CPU khác đời thì sao?</h3>
+        <p>Liên hệ <a href="mailto:ividlab.com@gmail.com">ividlab.com@gmail.com</a> để chuyển license sang máy mới.</p>
+        <h3>Gửi lại Product Key nhưng không nhận được key mới?</h3>
+        <p>Có thể key hiện tại của bạn còn hơn 7 ngày. Thư trả lời cho biết key còn hạn đến ngày nào và từ ngày nào bạn có thể gửi lại; hãy tiếp tục dùng key đã được cấp.</p>
       </div>
 
       <div lang="en" data-lang="en">
@@ -142,7 +166,7 @@
           <div class="eyebrow">Tekla Component // Cold rolled overlap</div>
           <h1>iVidLab Stay Hole (CC2) — Every purlin line identical, one part mark</h1>
           <p class="lead">Automatically creates stay bolt holes (and bolts) on purlins where there is no strut, so purlin lines of the same type are identical and share one part mark.</p>
-          <ul class="meta-row"><li>Version 1.11P</li><li>Tekla 2016 or newer</li></ul>
+          <ul class="meta-row"><li>Version 1.21P</li><li>Tekla 2016 or newer</li></ul>
           <div class="cta-row"><a class="btn btn--primary" href="#tai-ve">⬇ Download Stay Hole (CC2)</a></div>
         </header>
 
@@ -170,7 +194,8 @@
             <thead><tr><th>Feature</th><th>Description</th></tr></thead>
             <tbody>
               <tr><td><strong>Bulk selection</strong></td><td>Pick one or many Cold rolled overlap components at once; picking their rafter or purlin works too</td></tr>
-              <tr><td><strong>Detects the missing side</strong></td><td>Creates holes only on the side without a stay, never duplicating existing ones</td></tr>
+              <tr><td><strong>Choose the bolt side</strong></td><td>Both sides, Right side or Left side; a component that already has a stay is left alone, never duplicated</td></tr>
+              <tr><td><strong>Bolt comment</strong></td><td>Tags every bolt group Stay Hole creates so you can filter and control them</td></tr>
               <tr><td><strong>Defaults from the source component</strong></td><td>hole position from the rafter centre, hole height, stay type, bolt diameter, standard, tolerance and slotted holes</td></tr>
               <tr><td><strong>Symmetric extra holes</strong></td><td>According to the source component's "Stay bolt holes" option</td></tr>
               <tr><td><strong>Bolt option</strong></td><td>Holes only, or holes with bolts, nuts and washers</td></tr>
@@ -194,9 +219,10 @@
 
         <h2 id="notes">4. Notes</h2>
         <ul>
-          <li>Version 1.11P; requires Tekla 2016 or newer.</li>
+          <li>Version 1.21P; requires Tekla 2016 or newer.</li>
           <li>Enter es1/es2 on the source component. If left blank the source component computes them from the geometry, and Stay Hole can only infer them when one side already has a stay.</li>
-          <li>A component that already has a stay is left alone. One without a stay only gets holes on the side where a <strong>neighbouring purlin</strong> (same rafter, adjacent row) has a stay; if no neighbour has one, both sides are created. Choose "Both sides if no stay" in the Neighbours box to always create both sides. Click Modify after a neighbour changes.</li>
+          <li>A component that already has a stay is left alone (you can choose "Create anyway" in the "If original has stay" box). The <strong>Bolt position</strong> box lets you choose the side for the bolts: Both sides, Right side (es2 side) or Left side (es1 side).</li>
+          <li>The <strong>Bolt comment</strong> box: the text you enter is assigned to the Bolt Comment attribute of every bolt group Stay Hole creates, so you can filter and control the module holes that were added.</li>
           <li>Create box: "Holes only" creates holes only; "Holes + bolts" matches the source component (bolts at the stay position, extra holes are holes only); "All bolts" makes the extra holes real bolts too.</li>
           <li>Purlins rotated BACK: the source component creates no stay bolts, so this does not apply.</li>
           <li>Part marks can still differ if the source components' own geometry differs (for example a cleat off by a few mm).</li>
@@ -207,6 +233,28 @@
           <li>In the <a href="#tai-ve">Download</a> section below, select your Tekla version to get the <code>.tsep</code> package.</li>
           <li>Double-click the <code>.tsep</code> file, tick your Tekla version and click <strong>Import</strong>. It is installed the next time Tekla starts.</li>
         </ol>
+
+        <h2 id="activate-en">6. Free activation, 180 days</h2>
+        <p>Stay Hole (CC2) is <strong>free</strong>, and each activation lasts 180 days.</p>
+        <ol class="steps">
+          <li>Open the <strong>License</strong> dialog of Stay Hole (CC2) and click <strong>Copy</strong> to copy the whole Product Key (it looks like <code>CC2-…</code>).</li>
+          <li>Send an email containing that Product Key to <a href="mailto:ividlab.com@gmail.com">ividlab.com@gmail.com</a>.</li>
+          <li>The system replies automatically with an <strong>Active Key</strong> (in the message body and in a <code>.txt</code> file) to the address you sent from, in about 1–2 minutes between 7:00 and 22:00; at night up to about 6 minutes.</li>
+          <li>Paste the Active Key into the License dialog and click <strong>Activate</strong>.</li>
+        </ol>
+        <ul>
+          <li><strong>Re-activation:</strong> when your key has 7 days or less left (or has expired), send the Product Key again to receive a new 180-day key. If you send earlier, you will get a reply telling you until when your current key is valid and from when you can send again.</li>
+          <li>One email address can activate several machines; each machine uses its own Product Key.</li>
+          <li>Send from an ordinary mailbox (Gmail, Outlook…); mail from company mail servers may be held for manual review and arrive later.</li>
+        </ul>
+
+        <h2 id="faq-en">7. License FAQ</h2>
+        <h3>Do I lose the license if I reinstall Windows?</h3>
+        <p>If it is still the same machine, paste your old Active Key again and it works. If you lost the key, contact us and we will resend it.</p>
+        <h3>What if I change the motherboard or switch to a different CPU generation?</h3>
+        <p>Contact <a href="mailto:ividlab.com@gmail.com">ividlab.com@gmail.com</a> to move the license to the new machine.</p>
+        <h3>I sent the Product Key again but did not get a new key?</h3>
+        <p>Your current key may still have more than 7 days left. The reply tells you until when it is valid and from when you can send again; keep using the key you were issued.</p>
       </div>
 
       <section aria-labelledby="tai-ve">

@@ -1,6 +1,6 @@
 {
-  "version": "1.11P",
-  "released": "2026-10-20",
+  "version": "1.21P",
+  "released": "2026-11-08",
   "baseUrl": "/fordownload/tekla-component/",
   "title": {
     "vi": "Tải iVidLab Stay Hole (CC2)",
@@ -8,9 +8,9 @@
   },
   "packages": {
     "stay": {
-      "file": "iVidLab.StayHole_1.11P.tsep",
-      "size": "88 KB",
-      "bytes": 90578,
+      "file": "iVidLab.StayHole_1.21P.tsep",
+      "size": "98 KB",
+      "bytes": 100732,
       "range": "2016+"
     }
   },
@@ -81,14 +81,14 @@
   ],
   "notes": {
     "vi": [
-      "Tạo lỗ stay ở chỗ không có thanh chống, để mọi line xà gồ giống nhau và cùng mã chi tiết.",
-      "1.11P: component đã có stay thì không làm gì; component không stay chỉ nhận lỗ ở phía mà xà gồ lân cận có stay. Ô Create thêm \"All bolts\": cả lỗ phụ cũng là bu-lông thật.",
-      "Lân cận đổi thì bấm Modify để cập nhật; nên nhập es1/es2 ở component gốc; xà gồ quay BACK không áp dụng."
+      "Tạo lỗ module chống xà gồ nhanh, chuẩn xác, dễ kiểm soát.",
+      "1.21P: vá lỗi chống lệch, chống nằm ngoài vùng lap; bổ sung Bolt comment để kiểm soát các lỗ module đã thêm.",
+      "Yêu cầu Tekla 2016 trở lên."
     ],
     "en": [
-      "Creates stay holes where there is no strut so every purlin line is identical and shares one part mark.",
-      "1.11P: a component that already has a stay is left alone; one without a stay only gets holes on the side where a neighbouring purlin has a stay. The Create box gains \"All bolts\": the extra holes become real bolts too.",
-      "Click Modify after a neighbour changes; enter es1/es2 on the source component; purlins rotated BACK do not apply."
+      "Fast, accurate, easy-to-control stay-bolt holes for purlins.",
+      "1.21P: fixes for misplaced stays and stays outside the lap zone; adds Bolt comment to control the module holes you added.",
+      "Requires Tekla 2016 or newer."
     ]
   }
 }
