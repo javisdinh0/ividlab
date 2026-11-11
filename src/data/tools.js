@@ -5,7 +5,7 @@ export const toolsData = [
     category: 'Tekla Plugin',
     tag: 'Tekla Automation',
     description: {
-      vi: 'Plugin dựng cột, kèo, dầm tổ hợp vát thuôn nhà xưởng tiền chế trong Tekla Structures 2016 – 2024 (cài đặt được trên 2025, 2026): bảng kiểu Excel, xem trước 3D, vẽ và cập nhật hàng loạt. Miễn phí, kích hoạt qua email, mỗi key 180 ngày.',
+      vi: 'Plugin dựng cột, kèo, dầm tổ hợp thay đổi tiết diện nhà xưởng tiền chế trong Tekla Structures 2016 – 2024 (cài đặt được trên 2025, 2026): bảng kiểu Excel, xem trước 3D, vẽ và cập nhật hàng loạt. Miễn phí, kích hoạt qua email, mỗi key 180 ngày.',
       en: 'Tekla Structures 2016 – 2024 plugin (also installs on 2025 and 2026) for modeling tapered built-up PEB columns, rafters and beams: Excel-like table, 3D preview, one-click batch draw and update. Free, activated by email, 180 days per key.'
     },
     status: 'Release',
@@ -43,7 +43,7 @@ export const toolsData = [
   },
   {
     id: 'merge-hatch-mh',
-    title: 'Merge Hatch - Gộp Vùng Tô (MH)',
+    title: 'Merge Hatch - Gộp Vùng Hatch (MH)',
     category: 'AutoCAD Lisp',
     tag: 'CAD Automation',
     description: {

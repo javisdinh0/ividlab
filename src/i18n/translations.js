@@ -38,7 +38,7 @@ export const translations = {
     teklacomponent: {
       badge: 'TEKLA PLUGIN // APPLICATION & COMPONENT',
       title: 'Tekla Application & Component',
-      desc: 'Các plugin và component iViDLab phát triển cho Tekla Structures: PEB Member dựng cấu kiện thép tiền chế tiết diện tổ hợp, vát thuôn (bảng kiểu Excel, xem trước 3D, vẽ và cập nhật hàng loạt) và nhóm component giằng xà gồ Anti-Sag, hiện có 2V Cross cho giằng chéo chữ X giữa các xà gồ Tube Round Connect để nối ống tròn và Bolt Quick Dim V2 để đo bu-lông trong bản vẽ. Mỗi sản phẩm đóng gói riêng một gói .tsep, cài chung nhóm iViDLab.',
+      desc: 'Các plugin và component iViDLab phát triển cho Tekla Structures: PEB Member dựng cấu kiện thép tiền chế tiết diện tổ hợp, thay đổi tiết diện (bảng kiểu Excel, xem trước 3D, vẽ và cập nhật hàng loạt) và nhóm component giằng xà gồ Anti-Sag, hiện có 2V Cross cho giằng chéo chữ X giữa các xà gồ Tube Round Connect để nối ống tròn và Bolt Quick Dim V2 để đo bu-lông trong bản vẽ. Mỗi sản phẩm đóng gói riêng một gói .tsep, cài chung nhóm iViDLab.',
       highlights: ['Tekla 2016 – 2026', 'PEB Member', 'Anti-Sag 2V Cross', 'Một gói .tsep mỗi sản phẩm'],
       btn_intro_peb: 'Giới thiệu PEB Member →',
       btn_download_peb: '⬇ Tải PEB Member',
@@ -47,7 +47,7 @@ export const translations = {
       products_title: 'Sản phẩm',
       products_hint: 'Bấm vào một sản phẩm để xem các bài viết liên quan.',
       product_peb_name: 'PEB Member',
-      product_peb_desc: 'Dựng cấu kiện thép tiền chế tiết diện tổ hợp, vát thuôn: bảng kiểu Excel, xem trước 3D, vẽ và cập nhật hàng loạt.',
+      product_peb_desc: 'Dựng cấu kiện thép tiền chế tiết diện tổ hợp, thay đổi tiết diện: bảng kiểu Excel, xem trước 3D, vẽ và cập nhật hàng loạt.',
       product_2v_name: '2V Cross Anti-Sag Roof',
       product_2v_desc: 'Giằng chéo chữ X giữa các xà gồ: hai thanh V, klip và bu-lông chỉ với một lần chọn xà gồ.',
       product_tube_name: 'iVidLab Tube Round Connect',
