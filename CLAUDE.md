@@ -65,3 +65,11 @@ Because the repo is public, **do not hardcode secrets/IDs in `backend/**/Code.gs
 ### Local-only handoff notes
 
 `docs/HANDOFF.md` is gitignored on purpose (`/docs/HANDOFF.md` in `.gitignore`) — it's a running local note of environment gotchas and session-to-session state that must never be pushed (repo is public). It exists only in whichever working copy last wrote it; check whether it's present before assuming it's out of date, and don't recreate it from scratch if it's just missing from your current worktree.
+
+## Giao Gemini (skill `gemini-cowork`)
+
+Ghi 2026-11-09 từ kiểm kê T21 (agy đọc tài liệu và file dự án, Claude kiểm chọn lọc). Lệnh chạy từ thư mục dự án (`ROOT`). `{{TOOLS}}` là chỗ giữ trong phiếu, script tự thay bằng `Cowork\gemini`. Lệnh đánh dấu *(chưa chạy thử)* thì lần giao đầu tiên là lần kiểm: mã thoát 4 nghĩa là chính lệnh kiểm sai, sửa mục này.
+
+- `CHECK` build: `npm run build` (chạy `npm install` trước; `postbuild` prerender + sitemap ghi vào `dist\`) *(chưa chạy thử)*. Không có test.
+- Không cho người làm chạy `npm run deploy`.
+- Hợp giao: sửa giao diện/nội dung có `npm run build` kiểm, đọc/tóm tắt.
