@@ -1,6 +1,6 @@
 {
-  "version": "2.13P",
-  "released": "2026-11-09",
+  "version": "2.14P",
+  "released": "2026-11-11",
   "baseUrl": "/fordownload/tekla-component/",
   "title": {
     "vi": "Tải iVidLab Shear (CC1)",
@@ -9,9 +9,9 @@
   "packages": {
     "shear": {
       "file": "iVidLab.FloorBeamGusset.tsep",
-      "saveAs": "iVidLab.FloorBeamGusset_2.13P.tsep",
+      "saveAs": "iVidLab.FloorBeamGusset_2.14P.tsep",
       "size": "280 KB",
-      "bytes": 286798,
+      "bytes": 286756,
       "range": "2016+"
     }
   },
