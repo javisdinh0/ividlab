@@ -7,7 +7,7 @@
   <script type="module" src="/traffic-track.js?v=0f69739aed"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title data-en="PEB Member – PEB member modeling plugin for Tekla Structures - iViDLab">PEB Member – Plugin dựng cấu kiện PEB cho Tekla Structures - iViDLab</title>
-  <meta name="description" content="PEB Member: plugin miễn phí dựng và quản lý cấu kiện thép tiền chế (PEB) tổ hợp, vát thuôn trong Tekla Structures 2016 – 2024. Bảng kiểu Excel, xem trước 3D, Draw/Update hàng loạt, đặt tên tự động. Kích hoạt miễn phí qua email, mỗi key 180 ngày." />
+  <meta name="description" content="PEB Member: plugin miễn phí dựng và quản lý cấu kiện thép tiền chế (PEB) tổ hợp, thay đổi tiết diện trong Tekla Structures 2016 – 2024. Bảng kiểu Excel, xem trước 3D, Draw/Update hàng loạt, đặt tên tự động. Kích hoạt miễn phí qua email, mỗi key 180 ngày." />
   <link rel="canonical" href="https://ividlab.com/tekla/peb-member/gioi-thieu-peb-member.html" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="iViDLab" />
@@ -119,7 +119,7 @@
         </nav>
 
         <h2 id="gioi-thieu">1. PEB Member là gì?</h2>
-        <p>Trong Tekla Structures, các cấu kiện tổ hợp vát thuôn của nhà xưởng tiền chế — cột, kèo, dầm có chiều cao bụng thay đổi — thường được dựng bằng component <strong>PEB Member</strong>. Component này rất mạnh, nhưng mỗi lần dựng hay sửa một cấu kiện bạn phải điền tay nhiều nhóm thông số: các chiều cao bụng, bề rộng và chiều dày bản cánh, chiều dày bản bụng, vật liệu, rồi tên, prefix, class cho từng bản thép… Với dự án có hàng chục loại cột, kèo khác nhau, việc này vừa chậm, vừa dễ sai, lại khó giữ quy tắc đặt tên thống nhất giữa các thành viên trong nhóm.</p>
+        <p>Trong Tekla Structures, các cấu kiện tổ hợp thay đổi tiết diện của nhà xưởng tiền chế — cột, kèo, dầm có chiều cao bụng thay đổi — thường được dựng bằng component <strong>PEB Member</strong>. Component này rất mạnh, nhưng mỗi lần dựng hay sửa một cấu kiện bạn phải điền tay nhiều nhóm thông số: các chiều cao bụng, bề rộng và chiều dày bản cánh, chiều dày bản bụng, vật liệu, rồi tên, prefix, class cho từng bản thép… Với dự án có hàng chục loại cột, kèo khác nhau, việc này vừa chậm, vừa dễ sai, lại khó giữ quy tắc đặt tên thống nhất giữa các thành viên trong nhóm.</p>
         <p>PEB Member ra đời để giải quyết đúng vấn đề đó. Plugin chạy song song với Tekla, kết nối trực tiếp qua Tekla Open API và điều khiển component PEB Member gốc. Bạn chỉ cần mô tả tiết diện bằng một chuỗi ngắn gọn như <code>W(300-500)*6+F186*8</code> — phần mềm tự tách thông số, dựng hình 3D để bạn kiểm tra và ghi đầy đủ thuộc tính vào model.</p>
         <div class="callout">
           <p>💡 PEB Member không thay thế component PEB Member của Tekla mà giúp bạn dùng nó nhanh và nhất quán hơn. Mọi cấu kiện tạo ra vẫn là component PEB Member tiêu chuẩn — vẫn mở và chỉnh sửa được bằng hộp thoại gốc như bình thường.</p>
@@ -135,7 +135,7 @@
           <div class="feature">
             <div class="feature__icon" aria-hidden="true">✍️</div>
             <h3>Cú pháp tiết diện ngắn gọn</h3>
-            <p>Một chuỗi như <code>W(300-500-300)*6+F186*8</code> mô tả trọn tiết diện vát thuôn nhiều đoạn.</p>
+            <p>Một chuỗi như <code>W(300-500-300)*6+F186*8</code> mô tả trọn cấu kiện thay đổi tiết diện nhiều đoạn.</p>
           </div>
           <div class="feature">
             <div class="feature__icon" aria-hidden="true">🧊</div>
@@ -216,7 +216,7 @@
             <tbody>
               <tr><td><code>W300*6+F200*8</code></td><td>Tiết diện không đổi: bụng cao 300, dày 6; cánh rộng 200, dày 8.</td></tr>
               <tr><td><code>H300*186*6*8</code></td><td>Tổng chiều cao 300, cánh rộng 186, bụng dày 6, cánh dày 8.</td></tr>
-              <tr><td><code>W(300-500)*6+F186*8</code></td><td>Bụng vát thuôn từ 300 lên 500.</td></tr>
+              <tr><td><code>W(300-500)*6+F186*8</code></td><td>Bụng thay đổi tiết diện từ 300 lên 500.</td></tr>
               <tr><td><code>H(300-500)*186*6*8</code></td><td>Tổng chiều cao thay đổi từ 300 lên 500.</td></tr>
               <tr><td><code>W(300-500-600-300)*6+F186*8</code></td><td>Nhiều đoạn vát nối tiếp — thêm chiều cao, ngăn cách bằng dấu <code>-</code>.</td></tr>
             </tbody>
