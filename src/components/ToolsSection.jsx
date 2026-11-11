@@ -30,11 +30,18 @@ export default function ToolsSection({ t, lang }) {
           {toolsData.map((tool) => (
             <div key={tool.id} className="card">
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', gap: '0.5rem' }}>
                   <span className="tag-pill">{tool.tag}</span>
-                  <span className="font-mono" style={{ fontSize: '0.75rem', color: 'var(--text-ink)', fontWeight: 700 }}>
-                    {tool.status}
-                  </span>
+                  <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                    {tool.license && (
+                      <span className={`tag-pill tag-pill--${tool.license}`}>
+                        {t.tools[`license_${tool.license}`]}
+                      </span>
+                    )}
+                    <span className="font-mono" style={{ fontSize: '0.75rem', color: 'var(--text-ink)', fontWeight: 700 }}>
+                      {tool.status}
+                    </span>
+                  </div>
                 </div>
 
                 <h3 style={{ fontSize: '1.35rem', marginBottom: '0.75rem' }}>

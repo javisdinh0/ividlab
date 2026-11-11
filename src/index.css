@@ -409,6 +409,26 @@ section[id] {
   text-transform: uppercase;
 }
 
+.tag-pill--free {
+  background-color: #D4EDDA;
+  color: #1A5C2A;
+}
+
+.tag-pill--trial {
+  background-color: #FDE8D2;
+  color: #8B4511;
+}
+
+[data-theme="dark"] .tag-pill--free {
+  background-color: #1E3D28;
+  color: #5DBB78;
+}
+
+[data-theme="dark"] .tag-pill--trial {
+  background-color: #3D2010;
+  color: #F09050;
+}
+
 /* Thanh lọc tab Hướng dẫn: nhóm (AutoCAD/Tekla) + hashtag */
 .guide-filter {
   background-color: var(--bg-card);

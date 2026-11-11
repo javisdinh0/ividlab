@@ -20,7 +20,9 @@ export const translations = {
       badge: 'PORTFOLIO // TOOLS',
       title: 'Danh mục Công cụ & Ứng dụng',
       items_count: 'công cụ',
-      view_details: 'Xem chi tiết →'
+      view_details: 'Xem chi tiết →',
+      license_free: 'Miễn phí',
+      license_trial: 'Dùng thử'
     },
     guides: {
       badge: 'KNOWLEDGE // GUIDES & TIPS',
@@ -73,7 +75,9 @@ export const translations = {
       read_article: 'Đọc bài viết →',
       loading: 'Đang tải danh sách bài viết…',
       error: 'Không tải được danh sách bài viết. Vui lòng thử lại sau.',
-      empty: 'Chưa có bài viết nào trong chuyên mục.'
+      empty: 'Chưa có bài viết nào trong chuyên mục.',
+      license_free: 'Miễn phí',
+      license_trial: 'Dùng thử'
     },
     amcprivate: {
       badge: 'PRIVATE // TOOLS',
@@ -114,7 +118,9 @@ export const translations = {
       badge: 'PORTFOLIO // TOOLS',
       title: 'Tools & Applications Directory',
       items_count: 'tools',
-      view_details: 'View details →'
+      view_details: 'View details →',
+      license_free: 'Free',
+      license_trial: 'Free trial'
     },
     guides: {
       badge: 'KNOWLEDGE // GUIDES & TIPS',
@@ -167,7 +173,9 @@ export const translations = {
       read_article: 'Read article →',
       loading: 'Loading articles…',
       error: 'Could not load the article list. Please try again later.',
-      empty: 'No articles in this category yet.'
+      empty: 'No articles in this category yet.',
+      license_free: 'Free',
+      license_trial: 'Free trial'
     },
     amcprivate: {
       badge: 'PRIVATE // TOOLS',

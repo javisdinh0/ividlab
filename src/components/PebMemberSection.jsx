@@ -16,12 +16,12 @@ const mergePosts = (lists) => lists
 // Sản phẩm của chuyên mục: bấm thẻ để lọc bài viết theo sản phẩm (khớp `label` của SOURCES).
 // Thêm sản phẩm mới: thêm một mục ở đây, một nguồn ở SOURCES và chuỗi tên/mô tả trong translations.js.
 const PRODUCTS = [
-  { key: 'peb', label: 'PEB Member', cover: '/tekla/peb-member/img/01-tong-quan.webp', intro: '/tekla/peb-member/gioi-thieu-peb-member.html' },
-  { key: '2v', label: '2V Cross', cover: '/tekla/component/img/2v-cross-cover.webp', intro: '/tekla/component/anti-sag-2v-cross.html' },
-  { key: 'tube', label: 'Tube Round Connect', cover: '/tekla/component/img/tube-round-connect-1-12.webp', intro: '/tekla/component/tube-round-connect.html' },
-  { key: 'bolt', label: 'Bolt Quick Dim V2', cover: '/tekla/component/img/bolt-quick-dim-v2-drawing.webp', intro: '/tekla/component/bolt-quick-dim.html' },
-  { key: 'stay', label: 'Stay Hole', cover: '/tekla/component/img/stay-hole-icon.png', intro: '/tekla/component/stay-hole.html' },
-  { key: 'shear', label: 'Shear (CC1)', cover: '/tekla/component/img/shear-cc1-icon.webp', intro: '/tekla/component/shear-cc1.html' }
+  { key: 'peb', label: 'PEB Member', cover: '/tekla/peb-member/img/01-tong-quan.webp', intro: '/tekla/peb-member/gioi-thieu-peb-member.html', license: 'free' },
+  { key: '2v', label: '2V Cross', cover: '/tekla/component/img/2v-cross-cover.webp', intro: '/tekla/component/anti-sag-2v-cross.html', license: 'free' },
+  { key: 'tube', label: 'Tube Round Connect', cover: '/tekla/component/img/tube-round-connect-1-12.webp', intro: '/tekla/component/tube-round-connect.html', license: 'free' },
+  { key: 'bolt', label: 'Bolt Quick Dim V2', cover: '/tekla/component/img/bolt-quick-dim-v2-drawing.webp', intro: '/tekla/component/bolt-quick-dim.html', license: 'free' },
+  { key: 'stay', label: 'Stay Hole', cover: '/tekla/component/img/stay-hole-icon.png', intro: '/tekla/component/stay-hole.html', license: 'free' },
+  { key: 'shear', label: 'Shear (CC1)', cover: '/tekla/component/img/shear-cc1-icon.webp', intro: '/tekla/component/shear-cc1.html', license: 'trial' }
 ];
 const NS = 'teklacomponent';
 
@@ -120,6 +120,11 @@ export default function PebMemberSection({ t, lang, initialLists }) {
               >
                 <Cover className="post-cover" src={item.cover} alt="" />
                 <span className="product-card__name">{tx[`product_${item.key}_name`]}</span>
+                {item.license && (
+                  <span className={`tag-pill tag-pill--${item.license}`}>
+                    {item.license === 'free' ? tx.license_free : tx.license_trial}
+                  </span>
+                )}
               </button>
             </div>
           ))}

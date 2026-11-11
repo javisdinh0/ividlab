@@ -9,6 +9,7 @@ export const toolsData = [
       en: 'Tekla Structures 2016 – 2024 plugin (also installs on 2025 and 2026) for modeling tapered built-up PEB columns, rafters and beams: Excel-like table, 3D preview, one-click batch draw and update. Free, activated by email, 180 days per key.'
     },
     status: 'Release',
+    license: 'free',
     link: '/tekla/peb-member/gioi-thieu-peb-member.html',
     featured: true
   },
@@ -22,6 +23,7 @@ export const toolsData = [
       en: 'Tekla component that builds X bracing between purlins: two angle diagonals, clips and bolts from a single purlin pick. Tekla 2016 – 2026.'
     },
     status: 'Release',
+    license: 'free',
     link: '/tekla/component/anti-sag-2v-cross.html',
     featured: true
   },
@@ -35,6 +37,7 @@ export const toolsData = [
       en: 'Ultra-fast AutoLISP block creation without dialog boxes, featuring automated real-time YYYYMMDD_HHMMSS timestamp naming and space-inclusive naming support.'
     },
     status: 'Release',
+    license: 'free',
     link: '/autocad/autolisp/autolisp-quick-block-bb.html',
     featured: true
   },
@@ -48,6 +51,7 @@ export const toolsData = [
       en: 'AutoLISP tool to seamlessly merge multiple fragmented hatches into a single unified hatch object directly on your drawing without redefining boundaries.'
     },
     status: 'Release',
+    license: 'free',
     link: '/autocad/autolisp/autolisp-merge-hatch-mh.html',
     featured: true
   },
@@ -61,6 +65,7 @@ export const toolsData = [
       en: 'Explode an XClipped block while keeping the clipped area: geometry is trimmed to the clip boundary first, for one block or a whole drawing (XBC, XBCC, XBCA, XBCCA, XBCI).'
     },
     status: 'Release',
+    license: 'free',
     link: '/autocad/autolisp/autolisp-xbc-explode-clipped-block.html',
     featured: true
   },
@@ -74,6 +79,7 @@ export const toolsData = [
       en: 'Ultra-fast Layer and Linetype management shortcut suite (L1, L2, L3, TS0, LS) for isolating, toggling visibility, and shifting ByLayer properties instantly.'
     },
     status: 'Release',
+    license: 'free',
     link: '/autocad/autolisp/autolisp-layiso-layer-manager.html',
     featured: true
   },
@@ -87,6 +93,7 @@ export const toolsData = [
       en: 'AutoLISP tool to automatically generate cold-formed C and Z purlin profiles with precise R2T-R3T fillets and cached parameters.'
     },
     status: 'Release',
+    license: 'free',
     link: '/autocad/autolisp/autocad-lisp-vexago.html',
     featured: true
   }
