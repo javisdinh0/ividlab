@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" width="1200" height="340">
+  <title>Activate by email</title>
+  <style>
+    /* Concept: four flat cards, left to right, same palette as the step images */
+    :root {
+      --text: #2B4E64;
+      --accent: #2E6583;
+      --border: #D3E2E7;
+      --panel: #F1F6F8;
+      --card: #FFFFFF;
+      --success: #10B981;
+      --highlight: #E8772E;
+      --font-sans: "Segoe UI", Tahoma, Arial, sans-serif;
+      --font-mono: "Consolas", "Courier New", monospace;
+    }
+    text { font-family: var(--font-sans); }
+    .bg { fill: var(--panel); }
+    .card { fill: var(--card); stroke: var(--border); stroke-width: 1.5; }
+    .icon { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .icon-fill { fill: var(--accent); }
+    .icon-ok { fill: none; stroke: var(--success); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+    .key { fill: none; stroke: var(--highlight); stroke-width: 3; stroke-linecap: round; }
+    .label { fill: var(--text); font-size: 20px; font-weight: 700; text-anchor: middle; }
+    .label-mail { fill: var(--text); font-size: 17px; font-weight: 700; text-anchor: middle; }
+    .pill { fill: var(--accent); }
+    .pill-text { fill: var(--card); font-size: 13px; font-weight: 700; text-anchor: middle; }
+    .arrow { fill: none; stroke: var(--highlight); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  </style>
+
+  <rect width="1200" height="340" class="bg" />
+
+  <!-- Card 1: Product Key (dialog) -->
+  <rect x="30" y="40" width="240" height="260" rx="14" class="card" />
+  <rect x="100" y="80" width="100" height="78" rx="6" class="icon" />
+  <line x1="100" y1="98" x2="200" y2="98" class="icon" />
+  <line x1="115" y1="118" x2="185" y2="118" class="icon" />
+  <line x1="115" y1="136" x2="160" y2="136" class="icon" />
+  <text x="150" y="210" class="label">Product Key</text>
+  <rect x="115" y="232" width="70" height="28" rx="14" class="pill" />
+  <text x="150" y="251" class="pill-text">Copy</text>
+
+  <path d="M 284 170 L 326 170 M 314 158 L 326 170 L 314 182" class="arrow" />
+
+  <!-- Card 2: send email -->
+  <rect x="340" y="40" width="240" height="260" rx="14" class="card" />
+  <rect x="405" y="82" width="110" height="74" rx="6" class="icon" />
+  <path d="M 405 88 L 460 128 L 515 88" class="icon" />
+  <text x="460" y="214" class="label-mail">ividlab.com@gmail.com</text>
+
+  <path d="M 594 170 L 636 170 M 624 158 L 636 170 L 624 182" class="arrow" />
+
+  <!-- Card 3: Active Key (envelope with key) -->
+  <rect x="650" y="40" width="240" height="260" rx="14" class="card" />
+  <rect x="705" y="82" width="110" height="74" rx="6" class="icon" />
+  <path d="M 705 88 L 760 128 L 815 88" class="icon" />
+  <circle cx="822" cy="150" r="11" class="key" />
+  <path d="M 830 158 L 846 174 M 840 168 L 846 162 M 836 164 L 841 159" class="key" />
+  <text x="770" y="210" class="label">Active Key</text>
+
+  <path d="M 904 170 L 946 170 M 934 158 L 946 170 L 934 182" class="arrow" />
+
+  <!-- Card 4: Activate -->
+  <rect x="960" y="40" width="210" height="260" rx="14" class="card" />
+  <circle cx="1065" cy="118" r="38" class="icon" />
+  <path d="M 1047 119 L 1060 132 L 1084 106" class="icon-ok" />
+  <text x="1065" y="210" class="label">Activate</text>
+</svg>

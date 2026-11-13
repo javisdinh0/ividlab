@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" width="760" height="420">
+  <title>Send License Request</title>
+  <style>
+    /* Concept: Flat technical email compose step illustration */
+    :root {
+      --text: #2B4E64;
+      --accent: #2E6583;
+      --border: #D3E2E7;
+      --panel: #F1F6F8;
+      --input: #FFFFFF;
+      --highlight: #E8772E;
+      --font-sans: "Segoe UI", Tahoma, Arial, sans-serif;
+      --font-mono: "Consolas", "Courier New", monospace;
+    }
+    text {
+      font-family: var(--font-sans);
+    }
+    .mono {
+      font-family: var(--font-mono);
+    }
+    .canvas-bg { fill: var(--panel); }
+    .mail-win { fill: var(--input); stroke: var(--border); stroke-width: 1.5; }
+    .header-bar { fill: var(--accent); }
+    .header-text { fill: var(--input); font-weight: bold; font-size: 14px; }
+    .win-ctrl { stroke: var(--input); stroke-width: 1.5; fill: none; stroke-linecap: round; }
+    .divider { stroke: var(--border); stroke-width: 1; }
+    .field-tag { fill: var(--text); font-weight: 600; font-size: 13.5px; }
+    .field-val { fill: var(--text); font-size: 13.5px; }
+    .body-label { fill: var(--text); font-size: 13.5px; }
+    .body-key { fill: var(--text); font-size: 13.5px; }
+    .btn-send { fill: var(--accent); }
+    .btn-send-text { fill: var(--input); font-weight: bold; font-size: 13.5px; }
+    .hl-frame { fill: none; stroke: var(--highlight); stroke-width: 2.5; }
+    .hl-line { stroke: var(--highlight); stroke-width: 2; }
+    .hl-badge { fill: var(--highlight); }
+    .hl-num { fill: var(--input); font-size: 14px; font-weight: bold; text-anchor: middle; dominant-baseline: central; }
+  </style>
+
+  <rect width="760" height="420" class="canvas-bg" />
+
+  <!-- Compose Window Frame -->
+  <rect x="40" y="20" width="680" height="380" rx="6" class="mail-win" />
+
+  <!-- Header Bar -->
+  <path d="M 40 26 A 6 6 0 0 1 46 20 L 714 20 A 6 6 0 0 1 720 26 L 720 54 L 40 54 Z" class="header-bar" />
+  <text x="55" y="41" class="header-text">New message</text>
+
+  <!-- Controls -->
+  <line x1="645" y1="39" x2="655" y2="39" class="win-ctrl" />
+  <rect x="665" y="31" width="10" height="10" class="win-ctrl" />
+  <line x1="685" y1="31" x2="695" y2="41" class="win-ctrl" />
+  <line x1="695" y1="31" x2="685" y2="41" class="win-ctrl" />
+
+  <!-- To Row -->
+  <text x="60" y="77" class="field-tag">To</text>
+  <text x="95" y="77" class="field-val">ividlab.com@gmail.com</text>
+  <line x1="40" y1="90" x2="720" y2="90" class="divider" />
+
+  <!-- Subject Row -->
+  <text x="60" y="113" class="field-tag">Subject</text>
+  <text x="125" y="113" class="field-val">Shear (CC1) trial SH1</text>
+  <line x1="40" y1="126" x2="720" y2="126" class="divider" />
+
+  <!-- Body -->
+  <text x="60" y="165">
+    <tspan class="body-label">Product Key: </tspan>
+    <tspan class="body-key mono">SH1-4F2A9C1E…B70D9E21-7B3D</tspan>
+  </text>
+
+  <!-- Bottom Toolbar -->
+  <line x1="40" y1="336" x2="720" y2="336" class="divider" />
+  <rect x="60" y="350" width="100" height="34" rx="4" class="btn-send" />
+  <text x="110" y="372" text-anchor="middle" class="btn-send-text">Send</text>
+
+  <!-- Highlight 4: Send Button -->
+  <rect x="56" y="346" width="108" height="42" rx="5" class="hl-frame" />
+  <line x1="164" y1="367" x2="189" y2="367" class="hl-line" />
+  <circle cx="203" cy="367" r="14" class="hl-badge" />
+  <text x="203" y="367" class="hl-num">4</text>
+</svg>

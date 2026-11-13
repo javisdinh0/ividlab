@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" width="760" height="470">
+  <title>Copy Product Key</title>
+  <style>
+    /* Concept: Flat technical Windows dialog step illustration */
+    :root {
+      --text: #2B4E64;
+      --accent: #2E6583;
+      --border: #D3E2E7;
+      --panel: #F1F6F8;
+      --input: #FFFFFF;
+      --highlight: #E8772E;
+      --font-sans: "Segoe UI", Tahoma, Arial, sans-serif;
+      --font-mono: "Consolas", "Courier New", monospace;
+    }
+    text {
+      font-family: var(--font-sans);
+    }
+    .mono {
+      font-family: var(--font-mono);
+    }
+    .canvas-bg { fill: var(--panel); }
+    .win-bg { fill: var(--panel); stroke: var(--border); stroke-width: 1.5; }
+    .title-bar { fill: var(--accent); }
+    .title-text { fill: var(--input); font-weight: bold; font-size: 14px; }
+    .win-ctrl { stroke: var(--input); stroke-width: 1.5; fill: none; stroke-linecap: round; }
+    .tab-bar-line { stroke: var(--border); stroke-width: 1; }
+    .tab-inactive-text { fill: var(--text); font-size: 13px; }
+    .tab-active-bg { fill: var(--input); stroke: var(--border); stroke-width: 1; }
+    .tab-active-text { fill: var(--accent); font-weight: bold; font-size: 13px; }
+    .heading { fill: var(--text); font-weight: bold; font-size: 15px; }
+    .status-text { fill: var(--text); font-size: 13px; }
+    .field-label { fill: var(--text); font-size: 13px; }
+    .input-box { fill: var(--input); stroke: var(--border); stroke-width: 1; }
+    .input-text { fill: var(--text); font-size: 13px; }
+    .btn-default { fill: var(--panel); stroke: var(--border); stroke-width: 1; }
+    .btn-default-text { fill: var(--text); font-weight: 600; font-size: 13px; }
+    .btn-primary { fill: var(--accent); }
+    .btn-primary-text { fill: var(--input); font-weight: bold; font-size: 13.5px; }
+    .hl-frame { fill: none; stroke: var(--highlight); stroke-width: 2.5; }
+    .hl-line { stroke: var(--highlight); stroke-width: 2; }
+    .hl-badge { fill: var(--highlight); }
+    .hl-num { fill: var(--input); font-size: 14px; font-weight: bold; text-anchor: middle; dominant-baseline: central; }
+  </style>
+
+  <rect width="760" height="470" class="canvas-bg" />
+
+  <!-- Window Frame -->
+  <rect x="40" y="25" width="680" height="420" rx="6" class="win-bg" />
+
+  <!-- Title Bar -->
+  <path d="M 40 31 A 6 6 0 0 1 46 25 L 714 25 A 6 6 0 0 1 720 31 L 720 59 L 40 59 Z" class="title-bar" />
+  <text x="55" y="46" class="title-text">Shear (CC1)</text>
+
+  <!-- Title Bar Controls -->
+  <line x1="645" y1="44" x2="655" y2="44" class="win-ctrl" />
+  <rect x="665" y="36" width="10" height="10" class="win-ctrl" />
+  <line x1="685" y1="36" x2="695" y2="46" class="win-ctrl" />
+  <line x1="695" y1="36" x2="685" y2="46" class="win-ctrl" />
+
+  <!-- Tab Row -->
+  <line x1="40" y1="89" x2="720" y2="89" class="tab-bar-line" />
+  <text x="87" y="79" text-anchor="middle" class="tab-inactive-text">Picture</text>
+  <text x="150" y="79" text-anchor="middle" class="tab-inactive-text">Parts</text>
+  <text x="210" y="79" text-anchor="middle" class="tab-inactive-text">Bolts</text>
+  <text x="270" y="79" text-anchor="middle" class="tab-inactive-text">About</text>
+
+  <!-- License Tab (Selected) -->
+  <rect x="300" y="59" width="80" height="31" class="tab-active-bg" />
+  <text x="340" y="79" text-anchor="middle" class="tab-active-text">License</text>
+
+  <!-- Content -->
+  <text x="60" y="122" class="heading">License (this machine)</text>
+  <text x="60" y="148" class="status-text">No license found.</text>
+
+  <text x="60" y="180" class="field-label">Product Key (send it to request an Active Key):</text>
+  <rect x="60" y="193" width="490" height="32" rx="4" class="input-box" />
+  <text x="72" y="214" class="input-text mono">SH1-4F2A9C1E…B70D9E21-7B3D</text>
+
+  <!-- Copy Button -->
+  <rect x="560" y="193" width="100" height="32" rx="4" class="btn-default" />
+  <text x="610" y="214" text-anchor="middle" class="btn-default-text">Copy</text>
+
+  <!-- Highlight 2: Copy Button -->
+  <rect x="556" y="189" width="108" height="40" rx="4" class="hl-frame" />
+  <line x1="664" y1="209" x2="694" y2="209" class="hl-line" />
+  <circle cx="708" cy="209" r="14" class="hl-badge" />
+  <text x="708" y="209" class="hl-num">2</text>
+
+  <text x="60" y="252" class="field-label">Active Key (paste the license text you received):</text>
+  <rect x="60" y="265" width="600" height="116" rx="4" class="input-box" />
+
+  <rect x="60" y="395" width="115" height="34" rx="4" class="btn-primary" />
+  <text x="117" y="417" text-anchor="middle" class="btn-primary-text">Activate</text>
+</svg>
