@@ -1,5 +1,23 @@
 [
   {
+    "id": "kich-hoat-qua-email",
+    "link": "/tekla/component/kich-hoat-qua-email.html",
+    "title": {
+      "vi": "Kích hoạt qua email — nhận Active Key trong vài phút",
+      "en": "Activate by email — get your Active Key in a few minutes"
+    },
+    "description": {
+      "vi": "Từng thao tác có hình: chép Product Key, gửi tới ividlab.com@gmail.com, chép Active Key trong thư trả lời, dán và bấm Activate. Cho Shear (CC1), Stay Hole (CC2), PEB Member.",
+      "en": "Every action illustrated: copy the Product Key, email it to ividlab.com@gmail.com, copy the Active Key from the reply, paste it and click Activate. For Shear (CC1), Stay Hole (CC2), PEB Member."
+    },
+    "tag": {
+      "vi": "Hướng dẫn",
+      "en": "Guide"
+    },
+    "date": "2026-11-13",
+    "cover": "/tekla/component/img/kich-hoat-email-quy-trinh.png"
+  },
+  {
     "id": "cap-nhat-stay-hole-1-21",
     "link": "/tekla/component/cap-nhat-stay-hole-1-21.html",
     "product": "Stay Hole",
