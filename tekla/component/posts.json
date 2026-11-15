@@ -19,16 +19,16 @@
     "cover": "/tekla/component/img/peb-bracket-icon.webp"
   },
   {
-    "id": "cap-nhat-shear-cc1-2-14",
-    "link": "/tekla/component/cap-nhat-shear-cc1-2-14.html",
+    "id": "cap-nhat-shear-cc1-2-15",
+    "link": "/tekla/component/cap-nhat-shear-cc1-2-15.html",
     "product": "Shear (CC1)",
     "title": {
-      "vi": "iVidLab Shear (CC1) 2.14P — có gì mới",
-      "en": "iVidLab Shear (CC1) 2.14P — what's new"
+      "vi": "iVidLab Shear (CC1) 2.15P — có gì mới",
+      "en": "iVidLab Shear (CC1) 2.15P — what's new"
     },
     "description": {
-      "vi": "Ô Assy Pos/No cho tấm không hàn, ô Class hoạt động lại, tab Welds gọn hơn.",
-      "en": "Assy Pos/No box for unwelded plates, Class box works again, tidier Welds tab."
+      "vi": "Tab About và nhật ký chẩn đoán, ô tick lọc làm lại, nhận diện máy ổn định hơn, Assy Pos/No và Class.",
+      "en": "About tab and diagnostic log, reworked filter checkboxes, more stable machine identification, Assy Pos/No and Class."
     },
     "tag": {
       "vi": "Cập nhật",
