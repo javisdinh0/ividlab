@@ -1,5 +1,5 @@
 {
-  "version": "1.48P",
+  "version": "1.49P",
   "released": "2026-11-15",
   "baseUrl": "/fordownload/tekla-component/",
   "title": {
@@ -8,9 +8,9 @@
   },
   "packages": {
     "bracket": {
-      "file": "iVidLab.PEBBracket_1.48P.tsep",
+      "file": "iVidLab.PEBBracket_1.49P.tsep",
       "size": "512 KB",
-      "bytes": 523857,
+      "bytes": 524617,
       "range": "2016+"
     }
   },

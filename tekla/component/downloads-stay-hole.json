@@ -1,6 +1,6 @@
 {
-  "version": "1.22P",
-  "released": "2026-11-08",
+  "version": "1.23P",
+  "released": "2026-11-15",
   "baseUrl": "/fordownload/tekla-component/",
   "title": {
     "vi": "Tải iVidLab Stay Hole (CC2)",
@@ -8,9 +8,9 @@
   },
   "packages": {
     "stay": {
-      "file": "iVidLab.StayHole_1.22P.tsep",
-      "size": "99 KB",
-      "bytes": 100949,
+      "file": "iVidLab.StayHole_1.23P.tsep",
+      "size": "100 KB",
+      "bytes": 102036,
       "range": "2016+"
     }
   },
