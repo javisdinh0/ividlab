@@ -1,5 +1,24 @@
 [
   {
+    "id": "peb-bracket",
+    "link": "/tekla/component/peb-bracket.html",
+    "product": "PEB Bracket",
+    "title": {
+      "vi": "iVidLab PEB Bracket (CC3) — Nối dầm PEB vào cột bằng đoạn dầm chờ và hai bản mã bu-lông",
+      "en": "iVidLab PEB Bracket (CC3) — Connecting PEB beams to columns with a bracket stub and two bolted plates"
+    },
+    "description": {
+      "vi": "Dầm vào cánh hoặc bụng cột, dầm vào dầm, nút đỉnh cột 1 đến 4 dầm; bản mã, bu-lông và gân như PEB Splice.",
+      "en": "Beam to column flange or web, beam to beam, column-top joints with 1 to 4 beams; plates, bolts and stiffeners as in PEB Splice."
+    },
+    "tag": {
+      "vi": "Giới thiệu",
+      "en": "Overview"
+    },
+    "date": "2026-11-15",
+    "cover": "/tekla/component/img/peb-bracket-icon.webp"
+  },
+  {
     "id": "cap-nhat-shear-cc1-2-14",
     "link": "/tekla/component/cap-nhat-shear-cc1-2-14.html",
     "product": "Shear (CC1)",

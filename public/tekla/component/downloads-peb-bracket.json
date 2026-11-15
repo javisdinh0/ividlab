@@ -1,0 +1,92 @@
+{
+  "version": "1.48P",
+  "released": "2026-11-15",
+  "baseUrl": "/fordownload/tekla-component/",
+  "title": {
+    "vi": "Tải iVidLab PEB Bracket (CC3)",
+    "en": "Download iVidLab PEB Bracket (CC3)"
+  },
+  "packages": {
+    "bracket": {
+      "file": "iVidLab.PEBBracket_1.48P.tsep",
+      "size": "512 KB",
+      "bytes": 523857,
+      "range": "2016+"
+    }
+  },
+  "tekla": [
+    {
+      "value": "2026",
+      "label": "Tekla Structures 2026",
+      "package": "bracket"
+    },
+    {
+      "value": "2025",
+      "label": "Tekla Structures 2025",
+      "package": "bracket"
+    },
+    {
+      "value": "2024",
+      "label": "Tekla Structures 2024",
+      "package": "bracket"
+    },
+    {
+      "value": "2023",
+      "label": "Tekla Structures 2023",
+      "package": "bracket"
+    },
+    {
+      "value": "2022",
+      "label": "Tekla Structures 2022",
+      "package": "bracket"
+    },
+    {
+      "value": "2021",
+      "label": "Tekla Structures 2021",
+      "package": "bracket"
+    },
+    {
+      "value": "2020",
+      "label": "Tekla Structures 2020",
+      "package": "bracket"
+    },
+    {
+      "value": "2019",
+      "label": "Tekla Structures 2019 / 2019i",
+      "package": "bracket"
+    },
+    {
+      "value": "2018",
+      "label": "Tekla Structures 2018 / 2018i",
+      "package": "bracket"
+    },
+    {
+      "value": "2017",
+      "label": "Tekla Structures 2017 / 2017i",
+      "package": "bracket"
+    },
+    {
+      "value": "2016",
+      "label": "Tekla Structures 2016 / 2016i",
+      "package": "bracket"
+    },
+    {
+      "value": "2027+",
+      "label": {
+        "vi": "Tekla Structures 2027 trở lên",
+        "en": "Tekla Structures 2027 or newer"
+      },
+      "package": "bracket"
+    }
+  ],
+  "notes": {
+    "vi": [
+      "Nối dầm PEB vào cột PEB (hoặc dầm vào dầm) bằng đoạn dầm chờ và hai bản mã bu-lông.",
+      "Yêu cầu Tekla 2016 trở lên."
+    ],
+    "en": [
+      "Connects PEB beams to PEB columns (or beam to beam) with a bracket stub and two bolted plates.",
+      "Requires Tekla 2016 or newer."
+    ]
+  }
+}

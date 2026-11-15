@@ -21,7 +21,8 @@ const PRODUCTS = [
   { key: 'tube', label: 'Tube Round Connect', cover: '/tekla/component/img/tube-round-connect-1-12.webp', intro: '/tekla/component/tube-round-connect.html', license: 'free' },
   { key: 'bolt', label: 'Bolt Quick Dim V2', cover: '/tekla/component/img/bolt-quick-dim-v2-drawing.webp', intro: '/tekla/component/bolt-quick-dim.html', license: 'free' },
   { key: 'stay', label: 'Stay Hole', cover: '/tekla/component/img/stay-hole-icon.png', intro: '/tekla/component/stay-hole.html', license: 'free' },
-  { key: 'shear', label: 'Shear (CC1)', cover: '/tekla/component/img/shear-cc1-icon.webp', intro: '/tekla/component/shear-cc1.html', license: 'trial' }
+  { key: 'shear', label: 'Shear (CC1)', cover: '/tekla/component/img/shear-cc1-icon.webp', intro: '/tekla/component/shear-cc1.html', license: 'trial' },
+  { key: 'bracket', label: 'PEB Bracket', cover: '/tekla/component/img/peb-bracket-icon.webp', intro: '/tekla/component/peb-bracket.html' }
 ];
 const NS = 'teklacomponent';
 
