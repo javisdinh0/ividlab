@@ -27,10 +27,10 @@
       "vi": "Giằng xà gồ chữ X: thanh giằng, klip và bu-lông. Yêu cầu Tekla 2016 trở lên.",
       "en": "X bracing for purlins: braces, clips and bolts. Requires Tekla 2016 or newer."
     },
-    "version": "1.44P",
-    "file": "/fordownload/tekla-component/iVidLab.AntiSag2VCross_1.44P.tsep",
-    "saveAs": "iVidLab.AntiSag2VCross_1.44P.tsep",
-    "size": "152 KB"
+    "version": "1.52",
+    "file": "/fordownload/tekla-component/iVidLab.AntiSag2VCross_1.52P.tsep",
+    "saveAs": "iVidLab.AntiSag2VCross_1.52P.tsep",
+    "size": "154 KB"
   },
   "pebbracket": {
     "name": "iVidLab PEB Bracket (CC3)",

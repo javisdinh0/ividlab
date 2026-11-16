@@ -1,5 +1,24 @@
 [
   {
+    "id": "cap-nhat-2v-cross-1-52",
+    "link": "/tekla/component/cap-nhat-2v-cross-1-52.html",
+    "product": "2V Cross",
+    "title": {
+      "vi": "2V Cross Anti-Sag Roof 1.52 — Site weld và Klip flip",
+      "en": "2V Cross Anti-Sag Roof 1.52 — Site weld and Klip flip"
+    },
+    "description": {
+      "vi": "Cấp rời thanh giằng và klip ra công trường (Site weld); lật đối xứng klip xen kẽ giữa các khoang xà gồ (Klip flip).",
+      "en": "Ship braces and clips separately (Site weld); mirror clips alternately between purlin bays (Klip flip)."
+    },
+    "tag": {
+      "vi": "Cập nhật",
+      "en": "Release"
+    },
+    "date": "2026-11-16",
+    "cover": "/tekla/component/img/2v-cross-1-52-klip-flip-3d.webp"
+  },
+  {
     "id": "peb-bracket",
     "link": "/tekla/component/peb-bracket.html",
     "product": "PEB Bracket",
