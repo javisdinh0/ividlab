@@ -1,5 +1,5 @@
 {
-  "version": "1.23P",
+  "version": "1.26P",
   "released": "2026-11-15",
   "baseUrl": "/fordownload/tekla-component/",
   "title": {
@@ -8,9 +8,9 @@
   },
   "packages": {
     "stay": {
-      "file": "iVidLab.StayHole_1.23P.tsep",
-      "size": "100 KB",
-      "bytes": 102036,
+      "file": "iVidLab.StayHole_1.26P.tsep",
+      "size": "101 KB",
+      "bytes": 103092,
       "range": "2016+"
     }
   },
@@ -82,12 +82,12 @@
   "notes": {
     "vi": [
       "Tạo lỗ module chống xà gồ nhanh, chuẩn xác, dễ kiểm soát.",
-      "1.23P: nhận diện máy ổn định hơn, cài lại Windows vẫn dùng lại Active Key cũ. Từ 1.22P: vá lỗi chống lệch, chống nằm ngoài vùng lap; bổ sung Bolt comment để kiểm soát các lỗ module đã thêm.",
+      "1.26P: chọn hàng loạt component, mỗi component một CC2 riêng; nhận diện máy ổn định hơn, cài lại Windows vẫn dùng lại Active Key cũ. Từ 1.22P: vá lỗi chống lệch, chống nằm ngoài vùng lap; bổ sung Bolt comment để kiểm soát các lỗ module đã thêm.",
       "Yêu cầu Tekla 2016 trở lên."
     ],
     "en": [
       "Fast, accurate, easy-to-control stay-bolt holes for purlins.",
-      "1.23P: more stable machine identification, so an old Active Key survives a Windows reinstall. Since 1.22P: fixes for misplaced stays and stays outside the lap zone; adds Bolt comment to control the module holes you added.",
+      "1.26P: batch selection with one CC2 per component; more stable machine identification, so an old Active Key survives a Windows reinstall. Since 1.22P: fixes for misplaced stays and stays outside the lap zone; adds Bolt comment to control the module holes you added.",
       "Requires Tekla 2016 or newer."
     ]
   }
