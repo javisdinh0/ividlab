@@ -91,6 +91,13 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
+    // ---- siteStats : số liệu tổng hợp CÔNG KHAI cho trang chủ (bài đọc nhiều, công cụ tải nhiều) ----
+    // Chỉ owner ghi (trang /admin/ tự cập nhật khi mở); ai cũng đọc được. Chỉ chứa tổng đếm theo đường dẫn/sản phẩm, không có IP hay phiên.
+    match /siteStats/{docId} {
+      allow read: if true;
+      allow write: if isOwner();
+    }
+
     // ---- trafficReads : mốc thời gian đọc của từng lượt xem (traffic-track.js), nối với trafficHits qua sid ----
     match /trafficReads/{readId} {
       allow read: if isOwner();

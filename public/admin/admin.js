@@ -5,7 +5,7 @@ import {
   onAuthStateChanged, signInWithPopup, signOut
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import {
-  collection, query, where, orderBy, limit, getDocs, onSnapshot, doc, getDoc
+  collection, query, where, orderBy, limit, getDocs, onSnapshot, doc, getDoc, setDoc, serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 const $ = (id) => document.getElementById(id);
@@ -84,10 +84,32 @@ async function loadData() {
     const [views, downloads, reads, packages] = await Promise.all([fetchViews(), fetchDownloads(), fetchReads(), fetchPackages()]);
     cache = { views, downloads, reads, packages };
     render(cache);
+    publishStats(cache);
   } catch (e) {
     console.error(e);
     $('scope-note').textContent = 'Lỗi tải dữ liệu: ' + (e.message || e.code);
     toast('Không tải được dữ liệu traffic: ' + (e.message || e.code), 'err');
+  }
+}
+
+// Đẩy số liệu tổng hợp lên siteStats/popular để trang chủ hiện "bài đọc nhiều" và "công cụ tải nhiều" (đọc công khai).
+// Mỗi lần owner mở dashboard là cập nhật một lần; lỗi (rules chưa dán lại) chỉ cảnh báo, không ảnh hưởng dashboard.
+let statsWarned = false;
+async function publishStats({ views, downloads, packages }) {
+  try {
+    const cleanPath = (p) => String(p || '').split(/[?#]/)[0];
+    const v = {};
+    for (const h of views.hits) { const p = cleanPath(h.path); if (p) v[p] = (v[p] || 0) + 1; }
+    const d = {};
+    for (const h of downloads.hits) {
+      const k = h.path.replace(/^\/download\//, '');
+      const name = packages[k] ? packages[k].product : k;
+      d[name] = (d[name] || 0) + 1;
+    }
+    await setDoc(doc(db, 'siteStats', 'popular'), { data: JSON.stringify({ views: v, downloads: d }), updated: serverTimestamp() });
+  } catch (e) {
+    console.warn('publishStats', e);
+    if (!statsWarned) { statsWarned = true; toast('Chưa cập nhật được số liệu công khai cho trang chủ (dán lại firestore.rules mới vào Firebase Console).', 'err'); }
   }
 }
 
@@ -135,6 +157,9 @@ const DOWNLOAD_MANIFESTS = [
   { url: '/tekla/component/downloads-2v-cross.json', product: '2V Cross Anti-Sag' },
   { url: '/tekla/component/downloads-tube-round-connect.json', product: 'Tube Round Connect' },
   { url: '/tekla/component/downloads-bolt-quick-dim.json', product: 'Bolt Quick Dim' },
+  { url: '/tekla/component/downloads-stay-hole.json', product: 'Stay Hole' },
+  { url: '/tekla/component/downloads-shear-cc1.json', product: 'Shear (CC1)' },
+  { url: '/tekla/component/downloads-peb-bracket.json', product: 'PEB Bracket' },
   { url: '/autocad/downloads-xbc.json', product: 'XBC Explode Clipped Block' }
 ];
 

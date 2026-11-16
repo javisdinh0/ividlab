@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import HomeHighlights from './components/HomeHighlights';
 import ToolsSection from './components/ToolsSection';
 import GuidesSection from './components/GuidesSection';
 import PebMemberSection from './components/PebMemberSection';
@@ -95,7 +96,8 @@ export default function App({ initialTab, initialPostLists }) {
         {activeTab === 'all' && (
           <>
             <Hero t={t} />
-            <div className="divider" />
+            <HomeHighlights t={t} lang={lang} initialLists={initialPostLists} />
+            <div className="divider" style={{ marginTop: '2rem' }} />
             <ToolsSection t={t} lang={lang} />
             <div className="divider" />
             <GuidesSection t={t} lang={lang} />

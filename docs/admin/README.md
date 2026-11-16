@@ -42,6 +42,21 @@ từng bật trước đây). Không cần đổi gì ở RFI Console — nó v�
   **không hề công khai số GB băng thông đã dùng ở bất kỳ đâu**; lượt xem trang chỉ hiển thị
   số lượt, không suy ra dung lượng (page weight thay đổi theo ảnh/cache, số đó sẽ là bịa).
 
+## Số liệu công khai cho trang chủ (`siteStats/popular`)
+
+Trang chủ có ba khối: **Bài viết mới nhất** (tự lấy từ `posts.json` + `guides.js`), **Bài viết được quan tâm nhất** (6 bài nhiều lượt xem nhất)
+và **Công cụ phổ biến nhất** (lưới icon xếp theo lượt tải giảm dần). Hai khối sau cần số đếm, mà `trafficHits` chỉ owner đọc được, nên:
+
+- Mỗi lần owner mở `/admin/`, `admin.js` tổng hợp lượt xem theo đường dẫn và lượt tải theo sản phẩm rồi ghi vào document
+  `siteStats/popular` (field `data` là chuỗi JSON `{views:{path:n}, downloads:{product:n}}`, field `updated`).
+  Số đếm lấy từ tối đa 10.000 bản ghi gần nhất như phần còn lại của dashboard.
+- Trang chủ đọc document này bằng Firestore REST (không cần đăng nhập). **Chưa có document thì hai khối "đọc nhiều" và
+  "tải nhiều" tự ẩn**, không hiện thứ hạng bịa.
+- **Phải dán lại `firebase/rficonsole/firestore.rules`** (thêm `match /siteStats/{docId}`: ai cũng đọc, owner mới ghi) vào Firebase
+  Console, rồi mở `/admin/` một lần để tạo document. Số liệu chỉ cập nhật khi owner mở dashboard.
+- Thêm công cụ mới vào lưới: thêm một dòng vào `TOOLS` trong `src/components/HomeHighlights.jsx`; `product` phải trùng tên sản phẩm
+  trong `DOWNLOAD_MANIFESTS` của `admin.js`. Lượt tải chỉ đếm khi bấm nút tải trong hộp tải của bài hoặc trên trang `/tai/<slug>`.
+
 ## Cần làm khi cập nhật rules
 
 Rules của `trafficHits` nằm chung file với RFI Console (cùng Firebase project):

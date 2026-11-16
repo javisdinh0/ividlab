@@ -41,7 +41,7 @@ const postLists = SOURCES.map((s) => JSON.parse(fs.readFileSync(path.join(ROOT, 
 const vi = translations.vi;
 
 for (const route of ROUTES) {
-  const withPosts = route.tab === 'tekla-component';
+  const withPosts = route.tab === 'tekla-component' || route.tab === 'all'; // 'all' = trang chủ (khối bài mới nhất)
   const body = render(route.tab, withPosts ? postLists : undefined);
   let html = template.replace('<div id="root"></div>',
     `<div id="root">${body}</div>` +

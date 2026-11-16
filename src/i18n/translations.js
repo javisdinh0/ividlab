@@ -16,6 +16,16 @@ export const translations = {
       btn_explore: 'Khám phá công cụ ↓',
       btn_about: 'Tìm hiểu iViDLab'
     },
+    home: {
+      latest_badge: 'LATEST // NEW POSTS',
+      latest_title: 'Bài viết mới nhất',
+      read_badge: 'POPULAR // MOST READ',
+      read_title: 'Bài viết được quan tâm nhất',
+      reads: 'lượt đọc',
+      tools_badge: 'POPULAR // TOOLS',
+      tools_title: 'Công cụ phổ biến nhất',
+      downloads: 'lượt tải'
+    },
     tools: {
       badge: 'PORTFOLIO // TOOLS',
       title: 'Danh mục Công cụ & Ứng dụng',
@@ -115,6 +125,16 @@ export const translations = {
       desc: 'Sharing programming automation solutions, extensions, and workflows to optimize structural design, engineering, and 3D modeling.',
       btn_explore: 'Explore Tools ↓',
       btn_about: 'About iViDLab'
+    },
+    home: {
+      latest_badge: 'LATEST // NEW POSTS',
+      latest_title: 'Latest articles',
+      read_badge: 'POPULAR // MOST READ',
+      read_title: 'Most read articles',
+      reads: 'reads',
+      tools_badge: 'POPULAR // TOOLS',
+      tools_title: 'Most popular tools',
+      downloads: 'downloads'
     },
     tools: {
       badge: 'PORTFOLIO // TOOLS',
