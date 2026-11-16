@@ -104,7 +104,7 @@ export default function GuidesSection({ t, lang }) {
                 </div>
 
                 <h3 style={{ fontSize: '1.35rem', marginBottom: '0.75rem' }}>
-                  <span>{guide.title}</span>
+                  <span>{pick(guide.title, lang)}</span>
                 </h3>
 
                 <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '1rem' }}>

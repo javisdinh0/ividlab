@@ -1,7 +1,10 @@
 export const toolsData = [
   {
     id: 'peb-member-tekla',
-    title: 'PEB Member - Dựng Cấu Kiện PEB Cho Tekla',
+    title: {
+      vi: 'PEB Member - Dựng Cấu Kiện PEB Cho Tekla',
+      en: 'PEB Member - Modeling PEB Members for Tekla'
+    },
     category: 'Tekla Plugin',
     tag: 'Tekla Automation',
     description: {
@@ -15,7 +18,10 @@ export const toolsData = [
   },
   {
     id: 'anti-sag-2v-cross-tekla',
-    title: '2V Cross Anti-Sag Roof - Giằng Chéo Xà Gồ Cho Tekla',
+    title: {
+      vi: '2V Cross Anti-Sag Roof - Giằng Chéo Xà Gồ Cho Tekla',
+      en: '2V Cross Anti-Sag Roof - X Bracing for Purlins in Tekla'
+    },
     category: 'Tekla Plugin',
     tag: 'Tekla Component',
     description: {
@@ -29,7 +35,10 @@ export const toolsData = [
   },
   {
     id: 'quick-block-creator-bb',
-    title: 'Quick Block - Tạo Block Nhanh (BB)',
+    title: {
+      vi: 'Quick Block - Tạo Block Nhanh (BB)',
+      en: 'Quick Block - Fast Block Creation (BB)'
+    },
     category: 'AutoCAD Lisp',
     tag: 'CAD Automation',
     description: {
@@ -43,7 +52,10 @@ export const toolsData = [
   },
   {
     id: 'merge-hatch-mh',
-    title: 'Merge Hatch - Gộp Vùng Hatch (MH)',
+    title: {
+      vi: 'Merge Hatch - Gộp Vùng Hatch (MH)',
+      en: 'Merge Hatch - Merge Hatch Areas (MH)'
+    },
     category: 'AutoCAD Lisp',
     tag: 'CAD Automation',
     description: {
@@ -57,7 +69,10 @@ export const toolsData = [
   },
   {
     id: 'xbc-explode-clipped-block',
-    title: 'XBC - Explode Block Đã XClip',
+    title: {
+      vi: 'XBC - Explode Block Đã XClip',
+      en: 'XBC - Explode XClipped Blocks'
+    },
     category: 'AutoCAD Tool',
     tag: 'CAD Automation',
     description: {
@@ -71,7 +86,10 @@ export const toolsData = [
   },
   {
     id: 'layiso-layer-manager',
-    title: 'Layiso Layer Manager Suite',
+    title: {
+      vi: 'Layiso Layer Manager Suite',
+      en: 'Layiso Layer Manager Suite'
+    },
     category: 'AutoCAD Lisp',
     tag: 'CAD Automation',
     description: {
@@ -85,7 +103,10 @@ export const toolsData = [
   },
   {
     id: 'draw-purlin-lisp',
-    title: 'DrawPurlin Lisp (VEXAGO)',
+    title: {
+      vi: 'DrawPurlin Lisp (VEXAGO)',
+      en: 'DrawPurlin Lisp (VEXAGO)'
+    },
     category: 'AutoCAD Lisp',
     tag: 'CAD Automation',
     description: {
