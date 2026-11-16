@@ -51,6 +51,7 @@
         a.href = d.file; a.setAttribute('download', d.saveAs);
         a.textContent = (en ? '⬇ Download ' : '⬇ Tải ') + d.saveAs;
         a.style.pointerEvents = ''; a.style.opacity = '';
+        a.addEventListener('click', function () { try { if (window.iViDTrack && d.track) window.iViDTrack.download(d.track); } catch (e) { /* bỏ qua */ } });
         document.getElementById('eyebrow').textContent = en ? 'Download' : 'Tải về';
         document.getElementById('hint').textContent = en ? 'Install: double-click the .tsep file, tick your Tekla version and click Import.' : 'Cài: nhấp đúp file .tsep, tick phiên bản Tekla rồi bấm Import.';
       }).catch(function () { document.getElementById('name').textContent = en ? 'Could not load' : 'Không tải được thông tin'; });

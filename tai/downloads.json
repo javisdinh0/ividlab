@@ -8,7 +8,8 @@
     "version": "2.15P",
     "file": "/fordownload/tekla-component/iVidLab.FloorBeamGusset.tsep",
     "saveAs": "iVidLab.FloorBeamGusset_2.15P.tsep",
-    "size": "293 KB"
+    "size": "293 KB",
+    "track": "shear"
   },
   "stayhole": {
     "name": "iVidLab Stay Hole (CC2)",
@@ -19,7 +20,8 @@
     "version": "1.23P",
     "file": "/fordownload/tekla-component/iVidLab.StayHole_1.23P.tsep",
     "saveAs": "iVidLab.StayHole_1.23P.tsep",
-    "size": "100 KB"
+    "size": "100 KB",
+    "track": "stay"
   },
   "2vcross": {
     "name": "2V Cross Anti-Sag Roof",
@@ -30,7 +32,8 @@
     "version": "1.52",
     "file": "/fordownload/tekla-component/iVidLab.AntiSag2VCross_1.52P.tsep",
     "saveAs": "iVidLab.AntiSag2VCross_1.52P.tsep",
-    "size": "154 KB"
+    "size": "154 KB",
+    "track": "2v-cross"
   },
   "pebbracket": {
     "name": "iVidLab PEB Bracket (CC3)",
@@ -41,6 +44,7 @@
     "version": "1.49P",
     "file": "/fordownload/tekla-component/iVidLab.PEBBracket_1.49P.tsep",
     "saveAs": "iVidLab.PEBBracket_1.49P.tsep",
-    "size": "512 KB"
+    "size": "512 KB",
+    "track": "bracket"
   }
 }
