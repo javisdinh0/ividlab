@@ -1,6 +1,6 @@
 {
-  "version": "1.44",
-  "released": "2026-10-19",
+  "version": "1.52",
+  "released": "2026-11-16",
   "baseUrl": "/fordownload/tekla-component/",
   "title": {
     "vi": "Tải 2V Cross Anti-Sag Roof",
@@ -8,9 +8,9 @@
   },
   "packages": {
     "2v-cross": {
-      "file": "iVidLab.AntiSag2VCross_1.44P.tsep",
-      "size": "152 KB",
-      "bytes": 155555,
+      "file": "iVidLab.AntiSag2VCross_1.52P.tsep",
+      "size": "154 KB",
+      "bytes": 157368,
       "range": "2016+"
     }
   },
@@ -81,12 +81,12 @@
   ],
   "notes": {
     "vi": [
-      "Slots in chọn theo vai trò: Default / Klip / Purlin / All, đúng trên xà gồ giữa và đầu/cuối.",
-      "Xà gồ đầu/cuối (End purlins, Disconnect) chỉ khoét lỗ klip; lỗ slot không còn nhảy khi đổi tuỳ chọn."
+      "Site weld: thanh giằng và klip nhận assembly riêng để gửi ra công trường.",
+      "Klip flip: lật đối xứng klip xen kẽ giữa các khoang xà gồ."
     ],
     "en": [
-      "Slots in by role: Default / Klip / Purlin / All, correct on middle and first/last purlins.",
-      "First/last purlins (End purlins, Disconnect) only drill clip holes; slots no longer jump when options change."
+      "Site weld: braces and clips get separate assemblies to ship to site.",
+      "Klip flip: clips are mirrored alternately between purlin bays."
     ]
   }
 }
