@@ -8,8 +8,8 @@
       "en": "Shear (CC1) 2.16P — Better handling of built-up beams with several section changes, and connections that stay attached when you copy"
     },
     "description": {
-      "vi": "Ô lba nhận số âm; copy nên chọn assembly, chọn PEB component thì cần chọn cả liên kết để đi kèm.",
-      "en": "The lba box accepts negative numbers; when copying, select the assembly, or select the connection together with the PEB component."
+      "vi": "Tham số lba chấp nhận giá trị âm; sao chép nên chọn assembly, hoặc chọn đồng thời PEB component và liên kết.",
+      "en": "The lba parameter accepts negative values; when copying, select the assembly, or select the PEB component together with the connection."
     },
     "tag": {
       "vi": "Cập nhật",
