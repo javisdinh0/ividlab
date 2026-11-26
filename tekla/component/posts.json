@@ -1,5 +1,24 @@
 [
   {
+    "id": "cap-nhat-shear-cc1-2-16",
+    "link": "/tekla/component/cap-nhat-shear-cc1-2-16.html",
+    "product": "Shear (CC1)",
+    "title": {
+      "vi": "Shear (CC1) 2.16P — Cải tiến khả năng nhận dầm tổ hợp thay đổi tiết diện nhiều lần và tăng cường khả năng bám liên kết khi copy",
+      "en": "Shear (CC1) 2.16P — Better handling of built-up beams with several section changes, and connections that stay attached when you copy"
+    },
+    "description": {
+      "vi": "Ô lba nhận số âm; copy nên chọn assembly, chọn PEB component thì cần chọn cả liên kết để đi kèm.",
+      "en": "The lba box accepts negative numbers; when copying, select the assembly, or select the connection together with the PEB component."
+    },
+    "tag": {
+      "vi": "Cập nhật",
+      "en": "Release"
+    },
+    "date": "2026-11-26",
+    "cover": "/tekla/component/img/shear-cc1-model.jpg"
+  },
+  {
     "id": "cap-nhat-2v-cross-1-52",
     "link": "/tekla/component/cap-nhat-2v-cross-1-52.html",
     "product": "2V Cross",

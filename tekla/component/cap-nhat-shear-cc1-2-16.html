@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234924381658348" crossorigin="anonymous"></script>
+  <!-- Ghi lượt xem cho dashboard /admin — giữ dòng này ở mọi trang công khai -->
+  <script type="module" src="/traffic-track.js?v=0f69739aed"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-en="Shear (CC1) 2.16P – negative bolt offset, multi-section PEB beams, copy keeps the connection - iViDLab">Shear (CC1) 2.16P — số âm ở bu-lông, dầm tổ hợp đổi tiết diện nhiều lần, copy giữ liên kết - iViDLab</title>
+  <meta name="description" content="Shear (CC1) 2.16P: cải tiến khả năng nhận dầm tổ hợp thay đổi tiết diện nhiều lần và tăng cường khả năng bám liên kết khi copy. Ô lba nhận số âm; copy nên chọn assembly, chọn PEB component thì phải chọn cả liên kết. Tekla 2016 trở lên." />
+  <link rel="canonical" href="https://ividlab.com/tekla/component/cap-nhat-shear-cc1-2-16.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="iViDLab" />
+  <meta property="og:title" content="Shear (CC1) 2.16P — Cải tiến khả năng nhận dầm tổ hợp thay đổi tiết diện nhiều lần và tăng cường khả năng bám liên kết khi copy" />
+  <meta property="og:description" content="Cho phép nhận số âm ở bu-lông; copy nên chọn assembly, chọn PEB component thì cần chọn cả liên kết. Tekla 2016 trở lên." />
+  <meta property="og:image" content="https://ividlab.com/tekla/component/img/shear-cc1-model.jpg" />
+  <meta property="og:url" content="https://ividlab.com/tekla/component/cap-nhat-shear-cc1-2-16.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <script>
+    (function () {
+      var root = document.documentElement;
+      try {
+        root.setAttribute('data-theme', localStorage.getItem('ividlab-theme') || 'light');
+        if (localStorage.getItem('ividlab-lang') === 'en') root.classList.add('lang-en');
+      } catch (e) {
+        root.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="/tekla/peb-member/assets/article.css?v=ff6126e48b" />
+  <script src="/tekla/peb-member/assets/article.js?v=ad4407d205" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Shear (CC1) 2.16P — Cải tiến khả năng nhận dầm tổ hợp thay đổi tiết diện nhiều lần và tăng cường khả năng bám liên kết khi copy","url":"https://ividlab.com/tekla/component/cap-nhat-shear-cc1-2-16.html","description":"Shear (CC1) 2.16P: ô lba nhận số âm, bu-lông căn giữa bụng dầm tổ hợp đổi tiết diện nhiều lần, hướng dẫn copy giữ liên kết. Tekla 2016 trở lên.","image":"https://ividlab.com/tekla/component/img/shear-cc1-model.jpg","inLanguage":"vi","datePublished":"2026-11-26","dateModified":"2026-11-26","author":{"@type":"Organization","name":"iViDLab","url":"https://ividlab.com"},"publisher":{"@type":"Organization","name":"iViDLab","url":"https://ividlab.com","logo":{"@type":"ImageObject","url":"https://ividlab.com/logo.svg"}}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"iViDLab","item":"https://ividlab.com/"},{"@type":"ListItem","position":2,"name":"Tekla App & Component","item":"https://ividlab.com/tekla-component/"},{"@type":"ListItem","position":3,"name":"Shear (CC1) 2.16P — có gì mới","item":"https://ividlab.com/tekla/component/cap-nhat-shear-cc1-2-16.html"}]}</script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/">iViD<span>Lab</span></a>
+      <nav class="site-nav" aria-label="Menu">
+        <a href="/"><span lang="vi" data-lang="vi">// TRANG CHỦ</span><span lang="en" data-lang="en">// HOME</span></a>
+        <a href="/tools/"><span lang="vi" data-lang="vi">// CÔNG CỤ</span><span lang="en" data-lang="en">// TOOLS</span></a>
+        <a href="/guides/"><span lang="vi" data-lang="vi">// HƯỚNG DẪN &amp; CHIA SẺ</span><span lang="en" data-lang="en">// GUIDES &amp; TIPS</span></a>
+        <a href="/tekla-component/" aria-current="true">// TEKLA APP &amp; COMPONENT</a>
+        <a href="/about/"><span lang="vi" data-lang="vi">// GIỚI THIỆU</span><span lang="en" data-lang="en">// ABOUT</span></a>
+      </nav>
+      <div class="header-tools">
+        <button id="theme-toggle" type="button" class="theme-switch" role="switch" aria-checked="false" aria-label="Chuyển giao diện Sáng / Tối" title="Chuyển giao diện Sáng / Tối">
+          <span class="theme-switch-thumb">☀️</span>
+        </button>
+        <button id="lang-toggle" type="button" class="toggle-btn" title="Chuyển ngôn ngữ / Switch language">🌐 VI</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">iViDLab</a><span aria-hidden="true">›</span><a href="/tekla-component/">Tekla App &amp; Component</a><span aria-hidden="true">›</span><span lang="vi" data-lang="vi">Bản cập nhật Shear (CC1) 2.16P</span><span lang="en" data-lang="en">Shear (CC1) release 2.16P</span>
+    </nav>
+
+    <article class="article">
+      <div data-lang="vi">
+        <header class="article-hero">
+          <div class="eyebrow">Bản cập nhật // v2.16P</div>
+          <h1>Shear (CC1) 2.16P — Cải tiến khả năng nhận dầm tổ hợp thay đổi tiết diện nhiều lần và tăng cường khả năng bám liên kết khi copy</h1>
+          <p class="lead">Từ bản 2.15P, ô <strong>lba</strong> (hàng bu-lông trên cùng cách mặt trên dầm sàn) <strong>cho phép nhập số âm</strong> như liên kết gốc; bu-lông căn giữa bụng dầm phụ <strong>đổi tiết diện nhiều lần</strong>; và có hướng dẫn copy để liên kết đi theo: <strong>nên chọn assembly</strong>, nếu chọn PEB component thì <strong>phải chọn cả liên kết</strong>.</p>
+          <ul class="meta-row"><li>Phiên bản 2.16P</li><li>Phát hành 26/11/2026</li><li>Tekla 2016 trở lên</li></ul>
+          <div class="cta-row">
+            <a class="btn btn--primary" href="#tai-ve">⬇ Tải bản 2.16P</a>
+            <a class="btn btn--ghost" href="/tekla/component/shear-cc1.html">Xem bài giới thiệu Shear (CC1)</a>
+          </div>
+        </header>
+
+        <div class="callout">
+          <p><strong>Tóm tắt nhanh</strong></p>
+          <ul>
+            <li><strong>Số âm ở bu-lông:</strong> ô <strong>lba</strong> nhận số âm (ví dụ −50), cả liên kết dầm–dầm lẫn dầm–cột.</li>
+            <li><strong>Dầm tổ hợp đổi tiết diện nhiều lần</strong> (ví dụ 300–600–300): cụm bu-lông căn đúng tâm bụng dầm phụ tại vị trí bu-lông.</li>
+            <li><strong>Copy:</strong> nên chọn <strong>assembly</strong>. Nếu chọn <strong>PEB component</strong> thì phải chọn thêm <strong>cả liên kết</strong> để liên kết đi kèm.</li>
+          </ul>
+        </div>
+
+        <h2 id="lba-am">1. Ô lba nhận số âm</h2>
+        <p>Ô <strong>lba</strong> là khoảng cách từ mặt trên dầm sàn tới hàng bu-lông trên cùng. Trước đây khi nhập số âm (ví dụ <code>-50</code>), giá trị bị bỏ qua và hàng bu-lông quay về mặc định căn giữa. Từ 2.16P số âm được nhận đúng như liên kết gốc, ở <strong>cả liên kết dầm–dầm và dầm–cột</strong>. Đã đối chiếu với liên kết gốc trên cùng hình học với các giá trị lba 50, −20, −50, −100, −150, trên dầm thẳng và dầm dốc.</p>
+
+        <h2 id="dam-to-hop">2. Dầm tổ hợp thay đổi tiết diện nhiều lần</h2>
+        <p>Dầm phụ vát hoặc đổi tiết diện dọc trục (ví dụ PEB 300–600–300) có chiều cao bụng tại vị trí bu-lông khác với chiều cao đo ở đầu dầm. Bản này đo lại tiết diện <strong>tại tâm cụm bu-lông</strong> nên bu-lông căn đúng tâm bụng. Đo trên Tekla 2021 SP11, độ lệch tâm bu-lông so với tâm bụng giảm từ <strong>1,25–2,5 mm xuống còn khoảng 0,02 mm</strong> ở 4 dạng dầm: 300–600–300, 600–300–600, vát một đoạn và 450 không vát. Dầm lăng trụ và dầm dốc không đổi so với trước.</p>
+        <p>Các sửa từ 2.06P–2.07P cho dầm PEB nhiều đoạn (không kéo dài tấm bụng, bản mã bám mặt cánh nghiêng) vẫn giữ nguyên.</p>
+
+        <h2 id="copy">3. Copy: chọn gì để liên kết đi theo</h2>
+        <p>Khi bạn copy dầm PEB (Copy Special, Linear…), Tekla <strong>chạy lại component PEB tại vị trí mới</strong>, nên các tấm bản sao là chi tiết mới và liên kết gắn vào tấm cũ không tự đi theo. Cách chọn quyết định kết quả:</p>
+        <ol class="steps">
+          <li><strong>Chọn assembly</strong> (khuyên dùng): bản sao có đủ liên kết, bản mã và bu-lông.</li>
+          <li><strong>Chọn PEB component và chọn thêm liên kết:</strong> kéo khung chọn quanh đầu dầm phụ (mặc định chọn đúng component và liên kết), hoặc chọn PEB component rồi giữ <kbd>Ctrl</kbd> / <kbd>Shift</kbd> bấm thêm liên kết. Bản sao có đủ liên kết và vẫn giữ component PEB.</li>
+          <li><strong>Chỉ bấm chọn PEB component:</strong> bản sao <strong>không</strong> có liên kết.</li>
+          <li><strong>Chỉ chọn các tấm (parts):</strong> liên kết đi theo nhưng bản sao <strong>mất component PEB</strong> (chỉ còn các tấm rời).</li>
+        </ol>
+        <p>Đã thử Copy Special trên Tekla 2021 SP11 (liên kết đi theo khi chọn component cùng liên kết) và Tekla 2017 SP4 (chọn assembly). Phần dò vai dầm chính/dầm phụ của bản sao đã có từ 2.14P, bản này kèm hướng dẫn cách chọn.</p>
+
+        <p><strong>Đã thử trên:</strong> Tekla Structures 2021 SP11 cho phần lba âm và bu-lông dầm đổi tiết diện, 2017 SP4 và 2021 SP11 cho phần copy. Nếu gặp vấn đề trên phiên bản hoặc SP nào, vui lòng phản hồi để chúng tôi sửa.</p>
+
+        <h2 id="nang-cap">4. Cách nâng cấp</h2>
+        <ol class="steps">
+          <li>Ở mục <a href="#tai-ve">Tải về</a> bên dưới, tải gói <code>iVidLab.FloorBeamGusset_2.16P.tsep</code>.</li>
+          <li>Đóng Tekla, rồi cài đè gói <code>.tsep</code> mới: nhấp đúp file, tick phiên bản Tekla và bấm <strong>Import</strong>.</li>
+          <li>Liên kết đã có trong model chỉ được dựng lại theo bản mới khi <strong>Modify</strong> (nháy đúp liên kết, bấm Modify) hoặc khi Tekla cập nhật liên kết đó. Tệp thuộc tính và liên kết tạo bằng bản cũ vẫn dùng được.</li>
+        </ol>
+      </div>
+
+      <div data-lang="en">
+        <header class="article-hero">
+          <div class="eyebrow">Release // v2.16P</div>
+          <h1>Shear (CC1) 2.16P — Better handling of built-up beams with several section changes, and connections that stay attached when you copy</h1>
+          <p class="lead">Since 2.15P, the <strong>lba</strong> box (top bolt row, measured from the top of the floor beam) <strong>accepts negative numbers</strong> like the original connection; bolts are centred on the web of a secondary beam that <strong>changes section several times</strong>; and there is guidance for copying so the connection follows: <strong>select the assembly</strong>, or, if you select the PEB component, <strong>select the connection too</strong>.</p>
+          <ul class="meta-row"><li>Version 2.16P</li><li>Released Nov 26, 2026</li><li>Tekla 2016 or newer</li></ul>
+          <div class="cta-row">
+            <a class="btn btn--primary" href="#tai-ve">⬇ Download 2.16P</a>
+            <a class="btn btn--ghost" href="/tekla/component/shear-cc1.html">Read the Shear (CC1) overview</a>
+          </div>
+        </header>
+
+        <div class="callout">
+          <p><strong>At a glance</strong></p>
+          <ul>
+            <li><strong>Negative bolt offset:</strong> the <strong>lba</strong> box accepts negative numbers (e.g. −50), for both beam-to-beam and beam-to-column connections.</li>
+            <li><strong>Built-up beams with several section changes</strong> (e.g. 300–600–300): the bolt group is centred on the secondary beam's web at the bolt position.</li>
+            <li><strong>Copy:</strong> select the <strong>assembly</strong>. If you select the <strong>PEB component</strong>, <strong>select the connection as well</strong> so it comes along.</li>
+          </ul>
+        </div>
+
+        <h2 id="lba-am-en">1. The lba box accepts negative numbers</h2>
+        <p><strong>lba</strong> is the distance from the top of the floor beam to the top bolt row. Previously a negative value (e.g. <code>-50</code>) was ignored and the row fell back to the centred default. From 2.16P negative values are honoured like the original connection, in <strong>both beam-to-beam and beam-to-column connections</strong>. Checked against the original connection on the same geometry with lba = 50, −20, −50, −100, −150, on straight and sloping beams.</p>
+
+        <h2 id="dam-to-hop-en">2. Built-up beams with several section changes</h2>
+        <p>A tapered secondary beam, or one that changes section along its axis (e.g. PEB 300–600–300), has a web depth at the bolts that differs from the depth measured at the beam end. This version re-measures the section <strong>at the centre of the bolt group</strong>, so the bolts are centred on the web. Measured on Tekla 2021 SP11, the offset between bolt centre and web centre drops from <strong>1.25–2.5 mm to about 0.02 mm</strong> on four shapes: 300–600–300, 600–300–600, one tapered segment and an untapered 450. Prismatic and sloping beams are unchanged.</p>
+        <p>The 2.06P–2.07P fixes for multi-segment PEB beams (no extended web plates, gusset following the sloping flange) are kept.</p>
+
+        <h2 id="copy-en">3. Copy: what to select so the connection follows</h2>
+        <p>When you copy a PEB beam (Copy Special, Linear…), Tekla <strong>re-runs the PEB component at the new position</strong>, so the copied plates are new objects and a connection attached to the old plates does not follow by itself. What you select decides the result:</p>
+        <ol class="steps">
+          <li><strong>Select the assembly</strong> (recommended): the copy has the connection, plates and bolts.</li>
+          <li><strong>Select the PEB component and the connection:</strong> drag a selection window around the secondary beam's end (by default it picks exactly the component and the connection), or select the PEB component and <kbd>Ctrl</kbd> / <kbd>Shift</kbd>-click the connection. The copy has the connection and keeps the PEB component.</li>
+          <li><strong>Select only the PEB component:</strong> the copy has <strong>no</strong> connection.</li>
+          <li><strong>Select only the parts:</strong> the connection follows but the copy <strong>loses the PEB component</strong> (loose plates only).</li>
+        </ol>
+        <p>Tested with Copy Special on Tekla 2021 SP11 (connection follows when the component and connection are selected) and Tekla 2017 SP4 (assembly selected). The detection of main and secondary beam on the copy has been in since 2.14P; this version adds the selection guidance.</p>
+
+        <p><strong>Tested on:</strong> Tekla Structures 2021 SP11 for negative lba and the bolts on changing-section beams, 2017 SP4 and 2021 SP11 for copying. If you hit a problem on any version or service pack, please send us feedback so we can fix it.</p>
+
+        <h2 id="upgrade-en">4. How to upgrade</h2>
+        <ol class="steps">
+          <li>In the <a href="#tai-ve">Download</a> section below, get <code>iVidLab.FloorBeamGusset_2.16P.tsep</code>.</li>
+          <li>Close Tekla, then install the new <code>.tsep</code> over the old one: double-click it, tick your Tekla version and click <strong>Import</strong>.</li>
+          <li>Connections already in the model are only rebuilt with the new version on <strong>Modify</strong> (double-click the connection, click Modify) or when Tekla updates that connection. Property files and connections made with older versions still work.</li>
+        </ol>
+      </div>
+
+      <section aria-labelledby="tai-ve">
+        <h2 id="tai-ve"><span lang="vi" data-lang="vi">Tải về</span><span lang="en" data-lang="en">Download</span></h2>
+        <div data-peb-download="/tekla/component/downloads-shear-cc1.json"></div>
+
+        <div class="key-card">
+          <img class="key-card__qr" src="/tekla/peb-member/img/zalo-group-qr.png" width="516" height="516" alt="Mã QR nhóm Zalo người dùng iViDLab" loading="lazy">
+          <div class="key-card__body">
+            <p class="key-card__title"><span lang="vi" data-lang="vi">Nhóm Zalo người dùng iViDLab</span><span lang="en" data-lang="en">iViDLab user group on Zalo</span></p>
+            <p lang="vi" data-lang="vi">Quét mã QR hoặc bấm nút bên cạnh để vào nhóm: hỏi đáp khi sử dụng, báo lỗi và nhận thông báo bản cập nhật mới.</p>
+            <p lang="en" data-lang="en">Scan the QR code or use the button to join the group: usage questions, bug reports and new release announcements.</p>
+          </div>
+          <div class="key-card__actions">
+            <a class="btn btn--zalo" href="https://zalo.me/g/jqsxa7ptubdcqxf5inwz" target="_blank" rel="noopener"><span lang="vi" data-lang="vi">Vào nhóm Zalo</span><span lang="en" data-lang="en">Join the Zalo group</span></a>
+            <button type="button" class="btn btn--ghost" data-copy="https://zalo.me/g/jqsxa7ptubdcqxf5inwz"><span lang="vi" data-lang="vi">Chép link nhóm</span><span lang="en" data-lang="en">Copy group link</span></button>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-card__body">
+            <p class="key-card__title"><span lang="vi" data-lang="vi">Liên hệ iViDLab</span><span lang="en" data-lang="en">Contact iViDLab</span></p>
+            <p lang="vi" data-lang="vi">Theo dõi fanpage Facebook hoặc gửi email để được hỗ trợ và góp ý.</p>
+            <p lang="en" data-lang="en">Follow the Facebook page or send an email for support and feedback.</p>
+          </div>
+          <div class="key-card__actions">
+            <a class="btn btn--facebook" href="https://www.facebook.com/people/IVidLab/61594900149481/" target="_blank" rel="noopener"><span lang="vi" data-lang="vi">Fanpage Facebook</span><span lang="en" data-lang="en">Facebook page</span></a>
+            <a class="btn btn--ghost" href="mailto:ividlab.com@gmail.com">ividlab.com@gmail.com</a>
+          </div>
+        </div>
+      </section>
+    </article>
+
+    <section class="related" hidden>
+      <div class="related__head">
+        <h2><span lang="vi" data-lang="vi">Bài viết khác trong chuyên mục</span><span lang="en" data-lang="en">More in this category</span></h2>
+        <a class="related__all" href="/tekla-component/"><span lang="vi" data-lang="vi">Xem tất cả →</span><span lang="en" data-lang="en">View all →</span></a>
+      </div>
+      <div class="related-grid" data-peb-posts="/tekla/component/posts.json"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand" href="/">iViD<span>Lab</span></a>
+    <p>© 2026 iViDLab. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
