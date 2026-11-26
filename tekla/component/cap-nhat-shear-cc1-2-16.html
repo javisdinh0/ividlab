@@ -88,9 +88,17 @@
         <h2 id="lba-am">1. Tham số lba chấp nhận giá trị âm</h2>
         <p>Tham số <strong>lba</strong> xác định khoảng cách theo phương đứng từ mặt trên dầm sàn đến hàng bu-lông trên cùng. Ở các phiên bản trước, bước kiểm tra giá trị đầu vào chỉ chấp nhận số không âm; khi người dùng nhập giá trị âm (ví dụ <code>-50</code>), tham số bị bỏ qua và hàng bu-lông trở về vị trí mặc định (căn giữa). Từ 2.16P, giá trị âm được nhận và áp dụng giống liên kết gốc, ở <strong>cả liên kết dầm–dầm và dầm–cột</strong>.</p>
         <p>Phương pháp kiểm tra: so sánh kết quả với liên kết gốc trên cùng một hình học, với lba = 50, −20, −50, −100 và −150, trên dầm thẳng và dầm có độ dốc.</p>
+        <figure class="media">
+          <img src="img/shear-cc1-2-16-lba-am-hop-thoai.webp" width="1282" height="688" alt="Hộp thoại Shear (CC1), tab Bolts: tham số lba nhập giá trị −10 và cụm bu-lông trên bản mã trong mô hình" loading="lazy">
+          <figcaption>Tab Bolts: tham số lba = −10 (khung đỏ) được nhận và áp dụng cho liên kết trong mô hình.</figcaption>
+        </figure>
 
         <h2 id="dam-to-hop">2. Dầm tổ hợp có tiết diện thay đổi nhiều lần</h2>
         <p>Với dầm phụ vát hoặc có tiết diện thay đổi dọc trục (ví dụ PEB 300–600–300), chiều cao bụng tại vị trí cụm bu-lông khác với chiều cao đo tại đầu dầm. Nếu lấy chiều cao tại đầu dầm làm chuẩn, tâm cụm bu-lông bị lệch khỏi tâm bụng. Phiên bản này xác định lại tiết diện <strong>tại tâm cụm bu-lông</strong> và căn chỉnh theo đó.</p>
+        <figure class="media">
+          <img src="img/shear-cc1-2-16-dam-doi-tiet-dien.webp" width="663" height="410" alt="Mô hình 3D: dầm phụ tổ hợp thay đổi tiết diện nhiều lần liên kết vào bụng dầm chính, cụm bu-lông trên bản mã" loading="lazy">
+          <figcaption>Dầm phụ tổ hợp có tiết diện thay đổi nhiều lần liên kết vào bụng dầm chính.</figcaption>
+        </figure>
         <p>Kết quả đo trên Tekla 2021 SP11 (độ lệch giữa tâm cụm bu-lông và tâm bụng dầm):</p>
         <ul>
           <li>Trước khi sửa: <strong>1,25 – 2,5 mm</strong>.</li>
@@ -107,6 +115,14 @@
           <li><strong>Chỉ chọn PEB component:</strong> bản sao <strong>không</strong> có liên kết.</li>
           <li><strong>Chỉ chọn các tấm (parts):</strong> liên kết được sao chép theo nhưng bản sao <strong>không còn là component PEB</strong> (chỉ còn các tấm rời).</li>
         </ol>
+        <figure class="media">
+          <img src="img/shear-cc1-2-16-chon-assembly.webp" width="1273" height="775" alt="Chế độ chọn assembly (nút được đánh dấu đỏ): toàn bộ assembly dầm phụ cùng liên kết được chọn" loading="lazy">
+          <figcaption>Chế độ chọn <strong>assembly</strong> (nút đánh dấu đỏ): chọn dầm phụ sẽ chọn cả assembly, bao gồm liên kết.</figcaption>
+        </figure>
+        <figure class="media">
+          <img src="img/shear-cc1-2-16-chon-component.webp" width="1256" height="682" alt="Chế độ chọn component (nút được đánh dấu đỏ): PEB component và liên kết được chọn" loading="lazy">
+          <figcaption>Chế độ chọn <strong>component</strong> (nút đánh dấu đỏ): khi chọn PEB component, chọn thêm liên kết để liên kết được sao chép theo.</figcaption>
+        </figure>
         <p>Cơ chế nhận diện dầm chính và dầm phụ trên bản sao đã có từ 2.14P; phiên bản này bổ sung quy trình chọn đối tượng nêu trên. Kiểm tra bằng Copy Special: Tekla 2021 SP11 (chọn component cùng liên kết) và Tekla 2017 SP4 (chọn assembly).</p>
 
         <p><strong>Phạm vi kiểm tra:</strong> Tekla Structures 2021 SP11 cho tham số lba âm và định tâm bu-lông trên dầm thay đổi tiết diện; Tekla 2017 SP4 và 2021 SP11 cho sao chép. Nếu gặp vấn đề trên phiên bản hoặc SP khác, vui lòng gửi phản hồi để chúng tôi xử lý.</p>
@@ -143,9 +159,17 @@
         <h2 id="lba-am-en">1. The lba parameter accepts negative values</h2>
         <p>The <strong>lba</strong> parameter sets the vertical distance from the top of the floor beam to the top bolt row. In earlier versions the input check accepted only non-negative numbers; a negative entry (e.g. <code>-50</code>) was ignored and the bolt row reverted to its default, centred position. From 2.16P negative values are accepted and applied as in the original connection, in <strong>both beam-to-beam and beam-to-column connections</strong>.</p>
         <p>Verification method: results were compared with the original connection on identical geometry, with lba = 50, −20, −50, −100 and −150, on straight and sloping beams.</p>
+        <figure class="media">
+          <img src="img/shear-cc1-2-16-lba-am-hop-thoai.webp" width="1282" height="688" alt="Shear (CC1) dialog, Bolts tab: lba set to −10, with the bolt group on the gusset in the model" loading="lazy">
+          <figcaption>Bolts tab: lba = −10 (red frame) is accepted and applied to the connection in the model.</figcaption>
+        </figure>
 
         <h2 id="dam-to-hop-en">2. Built-up beams with several section changes</h2>
         <p>For a tapered secondary beam, or one whose section changes along its axis (e.g. PEB 300–600–300), the web depth at the bolt group differs from the depth measured at the beam end. Taking the end depth as the reference leaves the bolt group off the web centre. This version determines the section <strong>at the centre of the bolt group</strong> and aligns the bolts to it.</p>
+        <figure class="media">
+          <img src="img/shear-cc1-2-16-dam-doi-tiet-dien.webp" width="663" height="410" alt="3D model: a built-up secondary beam with several section changes connected to the web of the main beam, bolt group on the gusset" loading="lazy">
+          <figcaption>A built-up secondary beam with several section changes, connected to the web of the main beam.</figcaption>
+        </figure>
         <p>Measured on Tekla 2021 SP11 (offset between the bolt-group centre and the web centre):</p>
         <ul>
           <li>Before: <strong>1.25 – 2.5 mm</strong>.</li>
@@ -162,6 +186,14 @@
           <li><strong>Select only the PEB component:</strong> the copy has <strong>no</strong> connection.</li>
           <li><strong>Select only the parts:</strong> the connection is copied, but the copy is <strong>no longer a PEB component</strong> (loose plates only).</li>
         </ol>
+        <figure class="media">
+          <img src="img/shear-cc1-2-16-chon-assembly.webp" width="1273" height="775" alt="Select-assemblies mode (button marked in red): the whole secondary-beam assembly with its connection is selected" loading="lazy">
+          <figcaption><strong>Select assemblies</strong> mode (red-marked button): selecting the secondary beam selects the whole assembly, connection included.</figcaption>
+        </figure>
+        <figure class="media">
+          <img src="img/shear-cc1-2-16-chon-component.webp" width="1256" height="682" alt="Select-components mode (button marked in red): the PEB component and the connection are selected" loading="lazy">
+          <figcaption><strong>Select components</strong> mode (red-marked button): when you select the PEB component, add the connection to the selection so it is copied with it.</figcaption>
+        </figure>
         <p>Identification of the main and secondary beam on the copy has been available since 2.14P; this version adds the selection procedure above. Verified with Copy Special on Tekla 2021 SP11 (component and connection selected) and Tekla 2017 SP4 (assembly selected).</p>
 
         <p><strong>Scope of testing:</strong> Tekla Structures 2021 SP11 for negative lba and bolt centring on beams with changing section; Tekla 2017 SP4 and 2021 SP11 for copying. If you encounter a problem on another version or service pack, please send us feedback so we can address it.</p>
