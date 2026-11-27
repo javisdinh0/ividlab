@@ -1,6 +1,6 @@
 {
-  "version": "1.60P",
-  "released": "2026-11-26",
+  "version": "1.62P",
+  "released": "2026-11-27",
   "baseUrl": "/fordownload/tekla-component/",
   "title": {
     "vi": "Tải iVidLab PEB Bracket (CC3)",
@@ -8,9 +8,9 @@
   },
   "packages": {
     "bracket": {
-      "file": "iVidLab.PEBBracket_1.60P.tsep",
+      "file": "iVidLab.PEBBracket_1.62P.tsep",
       "size": "526 KB",
-      "bytes": 538303,
+      "bytes": 538653,
       "range": "2016+"
     }
   },
