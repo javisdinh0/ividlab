@@ -41,9 +41,9 @@
       "vi": "Nối dầm PEB vào cột PEB hoặc dầm vào dầm bằng đoạn dầm chờ và hai bản mã bu-lông. Yêu cầu Tekla 2016 trở lên.",
       "en": "Connects PEB beams to PEB columns or beam to beam with a bracket stub and two bolted plates. Requires Tekla 2016 or newer."
     },
-    "version": "1.62P",
-    "file": "/fordownload/tekla-component/iVidLab.PEBBracket_1.62P.tsep",
-    "saveAs": "iVidLab.PEBBracket_1.62P.tsep",
+    "version": "1.65P",
+    "file": "/fordownload/tekla-component/iVidLab.PEBBracket_1.65P.tsep",
+    "saveAs": "iVidLab.PEBBracket_1.65P.tsep",
     "size": "526 KB",
     "track": "bracket"
   }
