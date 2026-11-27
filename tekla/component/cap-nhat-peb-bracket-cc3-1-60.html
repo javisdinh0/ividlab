@@ -82,7 +82,7 @@
             <li><strong>Lỗi đã sửa:</strong> cột chính có End Plate to Flange cắt cánh thì PEB Bracket (CC3) không nhận được liên kết.</li>
             <li><strong>Tìm component:</strong> trong bảng Applications &amp; components gõ <strong>PEB Bracket</strong> (mã nội bộ của iViDLab là <strong>CC3</strong>).</li>
             <li>Trường hợp cột còn đủ hai cánh <strong>không thay đổi</strong>.</li>
-            <li>Có thêm: offset cánh bracket độc lập từng cánh và từng bên, bật tắt chamfer từng góc cánh bracket, nhận cấu kiện CPE Member.</li>
+            <li>Có thêm: offset cánh bracket độc lập từng cánh và từng bên, bật tắt chamfer từng góc cánh bracket.</li>
           </ul>
         </div>
 
@@ -110,7 +110,6 @@
         <ul>
           <li><strong>Offset cánh bracket độc lập từng cánh và từng bên</strong>: nhóm <strong>5 Bracket flange offset and corner chamfer</strong> ở tab Joint 1 có 4 ô Width offset (cánh trên và cánh dưới, mỗi cánh bên trái và bên phải) và 2 ô Height offset (cánh trên, cánh dưới), kèm hai hình minh họa. Áp dụng cho dầm vào <strong>bụng</strong> cột. Ô Width offset cũ nay chỉ áp cho bên trái; ô bên phải mới mặc định 0.</li>
           <li><strong>Chamfer từng góc cánh bracket</strong>: 4 ô Yes/No đặt ngay cạnh các góc trong hình, thay cho ô Both / Top only / Bottom only / None. Điều khiển 2 góc vát ở đầu cánh sát bụng cột; vát bụng bracket luôn cả 2 góc. Giá trị Top only / Bottom only đã lưu từ bản cũ không được chuyển: liên kết cũ quay về Yes cả 4 góc.</li>
-          <li><strong>Nhận cấu kiện CPE Member</strong> (gói Custom Pre-Engineering) như PEBMember.</li>
           <li><strong>Danh sách khoảng cách bu-lông</strong> đọc không còn phụ thuộc dấu thập phân của Windows.</li>
         </ul>
 
@@ -144,7 +143,7 @@
             <li><strong>Fixed:</strong> with an End Plate to Flange cutting the main column flange, PEB Bracket (CC3) did not create the connection.</li>
             <li><strong>Finding the component:</strong> in the Applications &amp; components panel type <strong>PEB Bracket</strong> (iViDLab's internal code is <strong>CC3</strong>).</li>
             <li>Columns that still have both flanges are <strong>unchanged</strong>.</li>
-            <li>Also new: bracket-flange offsets per flange and per side, chamfer on/off for each bracket-flange corner, and CPE Member support.</li>
+            <li>Also new: bracket-flange offsets per flange and per side, and chamfer on/off for each bracket-flange corner.</li>
           </ul>
         </div>
 
@@ -172,7 +171,6 @@
         <ul>
           <li><strong>Bracket-flange offsets per flange and per side</strong>: group <strong>5 Bracket flange offset and corner chamfer</strong> on the Joint 1 tab has 4 Width offset fields (top and bottom flange, each with a left and a right side) and 2 Height offset fields (top, bottom flange), with two illustrations. For beams framing into the column <strong>web</strong>. The old Width offset fields now apply to the left side only; the new right-side fields default to 0.</li>
           <li><strong>Chamfer per bracket-flange corner</strong>: 4 Yes/No fields placed next to the corners in the picture, replacing the Both / Top only / Bottom only / None combo. They control the 2 corner chamfers at the flange end next to the column web; the web chamfer always stays on both corners. A Top only / Bottom only value saved by an older version is not migrated: old connections go back to Yes on all 4 corners.</li>
-          <li><strong>CPE Member support</strong> (Custom Pre-Engineering package), treated like PEBMember.</li>
           <li><strong>Bolt distance lists</strong> are no longer affected by the Windows decimal separator.</li>
         </ul>
 
