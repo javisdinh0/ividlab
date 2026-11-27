@@ -4,8 +4,8 @@
     "link": "/tekla/component/cap-nhat-peb-bracket-cc3-1-60.html",
     "product": "PEB Bracket (CC3)",
     "title": {
-      "vi": "PEB Bracket (CC3) 1.65P — Sửa lỗi không nhận liên kết khi có End Plate to Flange cắt cánh cột chính",
-      "en": "PEB Bracket (CC3) 1.65P — Fix: connection not applied when an End Plate to Flange cuts the main column flange"
+      "vi": "PEB Bracket (CC3) 1.67P — Sửa lỗi không nhận liên kết khi có End Plate to Flange cắt cánh cột chính",
+      "en": "PEB Bracket (CC3) 1.67P — Fix: connection not applied when an End Plate to Flange cuts the main column flange"
     },
     "description": {
       "vi": "CC3 đo được cột khi cánh cột bị cắt ở liên kết End Plate to Flange; thêm offset cánh bracket trên/dưới riêng và bật tắt chamfer bụng từng phía.",
